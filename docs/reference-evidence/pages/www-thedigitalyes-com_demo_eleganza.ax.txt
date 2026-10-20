@@ -1,0 +1,132 @@
+Browser tab: 3, Title: "Eleganza – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/eleganza".
+1 AXWebArea Eleganza – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/eleganza
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Eleganza
+			24 text DIGITAL INVITATION
+			25 heading Eleganza, Value: 1
+				26 text Eleganza
+			27 text Hand-embroidered romance FROM €175 One-time payment · three levels of personalisation
+			28 checkbox Description: Save Eleganza, Value: 0
+				29 image
+			30 text Interactive demo
+			31 container Views
+				32 container
+					33 container Eleganza — live demo
+						34 AXWebArea about:blank
+					35 text Loading live demo…
+				36 button (disabled) Previous screen
+					37 image
+				38 button Next screen
+					39 image
+			40 container
+				41 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			42 button Try it yourself
+			43 button 2 · Envelope, music & motion
+			44 button 3 · Your names, your date
+			45 button 4 · Map & calendar
+			46 button 5 · The day, hour by hour
+			47 button 6 · An RSVP made for you
+			48 button In your languages
+			49 text 1  /  7
+			50 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			51 button Full screen
+				52 image
+			53 container Purchase
+				54 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				55 button PERSONALIZE THIS INVITATION
+				56 text ✓ Designed by hand ✓ Revisions included
+				57 container This is your invitation
+					58 text HANDMADE, ONLY FOR YOU
+					59 heading This is your invitation, Value: 2
+						60 text This is your invitation
+					61 tab group
+						62 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						63 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						64 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					65 container Description: WHO CREATES IT, ID: v5-info-pane
+						66 text Designed by a real person
+						67 text A designer from our atelier crafts it for you.
+						68 text Revisions included
+						69 text See your draft and request changes before sharing.
+						70 text At your own pace
+						71 text Send details and photos after payment, whenever ready.
+						72 text One-time payment, forever
+						73 text No subscriptions. A link ready for WhatsApp.
+				74 container Your sections, your order
+					75 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						76 text Your sections, your order
+					77 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					78 container Your sections, your order
+						79 content list
+							80 text Our story
+							81 text Schedule
+							82 text Dress code
+							83 text Travel & stay
+							84 text Gifts
+							85 text RSVP
+						86 text Add section
+				87 container
+					88 text DETAILS RECEIVED
+					89 text Once we have your details
+					90 text DESIGN & PROOF
+					91 text READY
+					92 text 7–14 days Counted from when we receive your details and materials.
+				93 text An invitation of ivory silk and hand-embroidered botanicals: cascading wisteria, orchids and a fringed silk bow tied over textured linen.
+				94 button (collapsed) What’s included +, Secondary Actions: Expand
+					95 text What’s included
+					96 text +
+				97 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					98 text Personalisation & extras
+					99 text +
+				100 button (collapsed) How it works +, Secondary Actions: Expand
+					101 text How it works
+					102 text +
+				103 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					104 text Delivery & revisions
+					105 text +
+				106 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Eleganza%20template%20%E2%9C%A8
+			107 text YOU MAY ALSO LIKE
+			108 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			109 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			110 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			111 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+		112 container
+			113 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			114 text Digital wedding invitations designed by hand.
+			115 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			116 text COLLECTIONS
+			117 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			118 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			119 link Description: Plans, Value: thedigitalyes.com/#plans
+			120 text SERVICE
+			121 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			122 link Description: Blog, Value: thedigitalyes.com/blog
+			123 link Description: Client portal, Value: thedigitalyes.com/clients
+			124 text LEGAL
+			125 link Description: Terms, Value: thedigitalyes.com/terms
+			126 link Description: Privacy, Value: thedigitalyes.com/privacy
+			127 link Description: Refunds, Value: thedigitalyes.com/refunds
+			128 text ©  2026  The Digital Yes EN  ·  EUR
+		129 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Eleganza – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/eleganza

@@ -1,0 +1,278 @@
+Browser tab: 3, Title: "Mother of Pearl – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/mother-of-pearl".
+1 AXWebArea Mother of Pearl – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/mother-of-pearl
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Mother of Pearl
+			24 text DIGITAL INVITATION
+			25 heading Mother of Pearl, Value: 1
+				26 text Mother
+				27 text of
+				28 text Pearl
+			29 text Pearlescent ginkgo leaves and a golden seal. FROM €175 One-time payment · three levels of personalisation
+			30 checkbox Description: Save Mother of Pearl, Value: 0
+				31 image
+			32 text Interactive demo
+			33 container Views
+				34 container Mother of Pearl — live demo
+					35 AXWebArea Alessia & Matteo · Lake Como Wedding 2027, URL: motherofpearl.thedigitalyes.com/?embed=1
+						36 container root
+							37 container Notifications (F8)
+								38 content list
+							39 container Notifications alt+T
+							40 container
+								41 container
+									42 text Together with their families
+									43 heading Cornelia, Value: 1
+										44 text Cornelia
+									45 text &
+									46 heading James, Value: 1
+										47 text James
+									48 text 20.05.2027 Villa Aurelia ROME, ITALY
+								49 container
+									50 heading Countdown, Value: 2
+										51 text Countdown
+									52 text 213 DAYS 21 HOURS 45 MINUTES 31 SECONDS See you soon!
+								53 image Together with their families
+								54 image Cornelia & James
+								55 heading Location, Value: 2
+									56 text Location
+								57 text Villa Aurelia
+								58 text ROME, ITALY
+								59 text Set in one of Rome's most beautiful corners, Villa Aurelia will be the setting for our celebration, surrounded by historic gardens and overlooking the Eternal City.
+								60 text We recommend arriving a little early to settle in and enjoy the surroundings before the celebration begins.
+								61 image Illustration of the Villa Aurelia terrace
+								62 link Description: GET DIRECTIONS, Value: google.com/maps/search/?api=1&query=Villa+Aurelia+Rome+Italy
+								63 container
+									64 heading The Day, Value: 2
+										65 text The
+										66 text Day
+									67 container
+										68 text A day to celebrate,
+										69 text from the first hello to the last dance.
+									70 container
+										71 text 4:30 PM WELCOME Drinks in the villa gardens.
+									72 container
+										73 text 5:00 PM CEREMONY We say “I do” at sunset.
+									74 container
+										75 text 6:00 PM COCKTAIL HOUR Aperitivo on the terrace.
+									76 container
+										77 text 8:00 PM DINNER Dinner under the stars.
+									78 container
+										79 text 10:30 PM DANCING Dancing until late.
+								80 container
+									81 image Dress code on lace frame
+									82 text Dress Code
+									83 text Formal Attire
+									84 image Wedding suit and dress illustration
+									85 container
+										86 text We'd love for our guests to embrace the occasion with elegant evening attire.
+										87 text Dress beautifully, feel comfortable,
+										88 text and come ready to celebrate
+										89 text with us.
+								90 container
+									91 heading Transportation, Value: 2
+										92 text Transportation
+									93 text We want getting to and from the celebration to be as easy as possible. A private bus will depart at 4:00 PM from Piazza della Repubblica, taking guests directly to Villa Aurelia with plenty of time to settle in before the ceremony. At the end of the evening, return transportation to central Rome will
+									94 text also be provided.
+									95 link Description: VIEW PICK-UP POINT, Value: google.com/maps/search/?api=1&query=Piazza+della+Repubblica+Rome
+								96 heading Where to Stay, Value: 2
+									97 text Where to Stay
+								98 text For those joining us from out of town, we've selected two beautiful places to stay close to Villa Aurelia.
+								99 container
+									100 heading Grand Hotel del Gianicolo, Value: 3
+										101 text Grand Hotel del Gianicolo
+									102 content list
+										103 container
+											104 text RECOMMENDED STAY 19 – 21 May 2027
+										105 container
+											106 text WEDDING GUEST RATE Code "CORNELIA & JAMES"
+										107 container
+											108 text PARKING Parking available on site
+									109 text Just moments from the venue, offering an elegant and convenient stay surrounded by the greenery of the Gianicolo.
+									110 link Description: BOOK, Value: google.com/maps/search/?api=1&query=Grand+Hotel+del+Gianicolo+Rome
+								111 container
+									112 heading Donna Camilla Savelli, Value: 3
+										113 text Donna
+Camilla Savelli
+									114 content list
+										115 container
+											116 text RECOMMENDED STAY 19 – 21 May 2027
+										117 container
+											118 text WEDDING GUEST RATE Code "CORNELIA & JAMES"
+										119 container
+											120 text PARKING Parking available on site
+									121 text A charming historic hotel in Trastevere, combining Roman character with a peaceful and refined atmosphere.
+									122 link Description: BOOK, Value: google.com/maps/search/?api=1&query=Donna+Camilla+Savelli+Rome
+								123 container
+									124 heading Wedding Gift, Value: 2
+										125 text Wedding Gift
+									126 text Your presence
+is our greatest gift. Should you wish to give a gift, you may do so in cash or by bank transfer. IBAN IT60 X054 2811 1010 0000 0123 456
+									127 button VIEW REGISTRY
+								128 container rsvp
+									129 heading RSVP, Value: 2
+										130 text RSVP
+									131 container
+										132 text Nothing would make us happier than celebrating this day surrounded by our favourite people. Please let us know whether you'll be able to join us by  May 1, 2027 .
+									133 button (collapsed) Description: Open the RSVP envelope, Secondary Actions: Expand
+								134 image C & J
+								135 text We can't wait to celebrate with you.
+								136 text With love,
+								137 container
+									138 text Cornelia & James
+								139 text 20 May 2027
+								140 container
+									141 text Made with love by
+									142 link Description: The Digital Yes, Value: thedigitalyes.com/
+			143 container
+				144 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			145 text 1  /  1
+			146 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			147 button Full screen
+				148 image
+			149 container Purchase
+				150 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				151 button PERSONALIZE THIS INVITATION
+				152 text ✓ Designed by hand ✓ Revisions included
+				153 container This is your invitation
+					154 text HANDMADE, ONLY FOR YOU
+					155 heading This is your invitation, Value: 2
+						156 text This is your invitation
+					157 tab group
+						158 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						159 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						160 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					161 container Description: WHO CREATES IT, ID: v5-info-pane
+						162 text Designed by a real person
+						163 text A designer from our atelier crafts it for you.
+						164 text Revisions included
+						165 text See your draft and request changes before sharing.
+						166 text At your own pace
+						167 text Send details and photos after payment, whenever ready.
+						168 text One-time payment, forever
+						169 text No subscriptions. A link ready for WhatsApp.
+				170 container Your sections, your order
+					171 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						172 text Your sections, your order
+					173 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					174 container Your sections, your order
+						175 content list
+							176 text Our story
+							177 text Schedule
+							178 text Dress code
+							179 text Travel & stay
+							180 text Gifts
+							181 text RSVP
+						182 text Add section
+				183 container
+					184 text DETAILS RECEIVED
+					185 text Once we have your details
+					186 text DESIGN & PROOF
+					187 text READY
+					188 text 7–14 days Counted from when we receive your details and materials.
+				189 text A mother-of-pearl invitation: an envelope of pearlescent ginkgo leaves with a golden wax seal opens onto an ivory card with embossed florals. Luminous, delicate and timeless.
+				190 button (collapsed) What’s included +, Secondary Actions: Expand
+					191 text What’s included
+					192 text +
+				193 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					194 text Personalisation & extras
+					195 text +
+				196 button (collapsed) How it works +, Secondary Actions: Expand
+					197 text How it works
+					198 text +
+				199 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					200 text Delivery & revisions
+					201 text +
+				202 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Mother%20of%20Pearl%20template%20%E2%9C%A8
+			203 container What couples say
+				204 heading What couples say, Value: 2, ID: h4p-ugc-title
+					205 text What couples say
+				206 text REAL COUPLES, REAL INVITATIONS
+				207 button Previous video
+				208 button Next video
+				209 container
+					210 button Play video — @irenefdz
+						211 container @irenefdz
+					212 link Description: @irenefdz, Value: instagram.com/irenefdz
+					213 button Play video — @fanicarbaj
+						214 container @fanicarbaj
+					215 link Description: @fanicarbaj, Value: instagram.com/fanicarbaj
+					216 button Play video — @miisspinkie
+						217 container @miisspinkie
+					218 link Description: @miisspinkie, Value: instagram.com/miisspinkie/
+					219 button Play video — @sophiialorraine
+						220 container @sophiialorraine
+					221 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					222 button Play video — @sophiialorraine
+						223 container @sophiialorraine
+					224 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					225 button Play video — Diana & Richard
+						226 container Diana & Richard
+					227 text Diana & Richard
+					228 button Play video — The Digital Yes
+						229 container The Digital Yes
+					230 text The Digital Yes
+			231 container reviews
+				232 heading Loved by 3,000+ couples., Value: 2
+					233 text Loved by 3,000+ couples.
+				234 text 4.9
+				235 text 278 reviews
+				236 container
+					237 container 5/5
+						238 text ★★★★★
+					239 text “ It was great to create our wedding website with the digital Yes. Congratulations on such a great business. Your customer service and human contact is great, fast responses via email and changes made in maximum 48 hours. Grazie!! ”
+					240 text Ludovica & Emanuele
+				241 container
+					242 container 5/5
+						243 text ★★★★★
+					244 text “ Thank you so much for creating our wedding invitation website! It turned out absolutely beautiful. We honestly had never seen anything like it before. Our family and friends were so impressed and kept telling us how gorgeous the website looks. We received so many compliments from our guests, and everyone loved it. Thank you for all your work and attention to every little detail. We are so happy with the final result and truly appreciate everything you did for us ❤️ ”
+					245 text Victor & Sabina
+				246 container
+					247 container 5/5
+						248 text ★★★★★
+					249 text “ First of all, the mobile wedding invitation has been completed exactly how I envisioned. Although I chose a basic package which allows me to start with their template, they have a lot of high quality beautiful templates to start from and they are just perfect enough. I am highly satisfied with my final result, and I appreciate all the details. Additionally, Digital Yes team has been very responsive and generously cared about my requests. Especially my designer Belen was great that she tried all her best to accomodate my requests and visualized what I wanted. It was also done perfectly on time. I am very thankful to all of the staffs who made this invitation for my soon-to-be-perfect day! ”
+					250 text Agnes & Gyutae
+			251 text YOU MAY ALSO LIKE
+			252 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			253 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			254 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+			255 link Description: Bella Vista — design preview Bella Vista From €175, Value: thedigitalyes.com/demo/bella-vista
+		256 container
+			257 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			258 text Digital wedding invitations designed by hand.
+			259 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			260 text COLLECTIONS
+			261 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			262 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			263 link Description: Plans, Value: thedigitalyes.com/#plans
+			264 text SERVICE
+			265 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			266 link Description: Blog, Value: thedigitalyes.com/blog
+			267 link Description: Client portal, Value: thedigitalyes.com/clients
+			268 text LEGAL
+			269 link Description: Terms, Value: thedigitalyes.com/terms
+			270 link Description: Privacy, Value: thedigitalyes.com/privacy
+			271 link Description: Refunds, Value: thedigitalyes.com/refunds
+			272 text ©  2026  The Digital Yes EN  ·  EUR
+		273 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Mother of Pearl – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/mother-of-pearl

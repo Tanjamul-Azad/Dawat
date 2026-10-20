@@ -1,0 +1,330 @@
+Browser tab: 3, Title: "Yes Planner · The app that keeps your wedding beautifully organized", URL: "https://www.thedigitalyes.com/planner".
+1 AXWebArea Yes Planner · The app that keeps your wedding beautifully organized, URL: thedigitalyes.com/planner
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: The Digital Yes, Value: thedigitalyes.com/
+			8 link Description: Yes Planner, home, Value: thedigitalyes.com/planner#inicio
+			9 container The app
+				10 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				11 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				12 link Description: How it works, Value: thedigitalyes.com/planner#como-funciona
+				13 link Description: What's new, Value: thedigitalyes.com/planner#hace-el-trabajo
+				14 link Description: The app, Value: thedigitalyes.com/planner#app
+				15 link Description: Price, Value: thedigitalyes.com/planner#precio
+			16 text Language
+			17 pop up button (collapsed, settable) Language, Value: English, ID: yp-lang, Secondary Actions: Expand
+				18 menu
+					19 Español
+					20 (selected) English
+					21 Français
+					22 Deutsch
+					23 Italiano
+					24 Português
+					25 Nederlands
+					26 العربية
+			27 link Description: Sign in, Value: thedigitalyes.com/yes-planner/app.html?lang=en
+			28 link Description: Buy, Value: thedigitalyes.com/planner#comprar
+		29 container
+			30 container
+				31 heading Your wedding, beautifully organized. Everything to decide, pay for and remember, in one app., Value: 1
+					32 text Your wedding, beautifully organized. Everything to decide, pay for and remember, in one app.
+				33 text Best wedding planner in the world Yes Planner sets itself up from your date: it splits your budget, orders your tasks and tells you which payment is next. Share it with your partner and, at the end, print your wedding-day binder.
+				34 link Description: Get my free place, Value: thedigitalyes.com/planner#comprar
+				35 link Description: Try the demo, Value: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en
+				36 text 100 free places · 87 already taken · 13 left
+			37 container
+				38 text Yes Planner on a computer
+				39 image Yes Planner summary on a computer: countdown, budget, RSVPs and tasks
+				40 container Yes Planner on a phone: summary, budget, guests, tables, tasks and wedding-day binder
+				41 text Clara has confirmed · just now
+		42 container
+			43 text Everything about your wedding in one place. For both of you, in your language. 56 sections IN YOUR WEDDING-DAY BINDER Timelines, contacts, setup, photos, packing and checklists, with examples already written so you only need to adjust them. 4 people ON THE SAME WEDDING The two of you plus anyone you like: family or your wedding planner. Every change shows up instantly. €0 JUST ONCE No subscriptions or renewals. On your phone, tablet and computer, even offline.
+		44 container como-funciona
+			45 text How it works From the proposal to the big day 0 1
+			46 heading Tell us about your wedding in a minute., Value: 3
+				47 text Tell us about your wedding in a minute.
+			48 text Names, date, guests and budget. Yes Planner splits the money across categories and dates every task from your wedding day.
+			49 text 0 2
+			50 heading Always know what's next., Value: 3
+				51 text Always know what's next.
+			52 text Your summary shows how many days are left, how much you've spent, who has replied and which task comes next. No spreadsheets.
+			53 text 0 3
+			54 heading Plan it together., Value: 3
+				55 text Plan it together.
+			56 text Invite your partner and anyone you like, up to 4 people. Everything is saved to the cloud and syncs instantly, on phone and computer.
+			57 text 0 4
+			58 heading The big day, printed and in order., Value: 3
+				59 text The big day, printed and in order.
+			60 text Timelines, who to call, setup, photos and packing in a binder with a cover and contents page, ready to print or send as a PDF.
+		61 container
+			62 text A wedding doesn't fit in a spreadsheet, forty phone notes and a hundred messages. It fits in one place that holds it all: what it costs, who's coming, what's left and what happens at every hour of the big day.
+		63 container incluye
+			64 text What's inside Everything to decide, pay for and remember
+			65 heading Every part of your wedding, sorted in one app., Value: 2
+				66 text Every part of your wedding, sorted in one app.
+			67 container
+				68 text Venue and reception €33,750 Photography and video €2,900 Music €1,450 Planned €43,414 €44,864
+			69 heading A budget that balances itself, Value: 3
+				70 text A budget that balances itself
+			71 text Planned, booked and paid, by category. You always know what's left and where it's going.
+			72 container
+				73 text Due in 5 days
+				74 text Sons de Nit · deposit  ·  €450 Estudio Llum · deposit €900 Finca Son Ribes · 2nd instalment 12 Mar Paid €1,164
+			75 heading No payment slips through, Value: 3
+				76 text No payment slips through
+			77 text Deposits, instalments and final payments with their dates. Your summary shows what's due and what's left to pay.
+			78 container
+				79 text 98 104 Attending 42 36 No reply 19 Not attending Vegetarian Child Gluten-free B-list
+			80 heading Guest lists that add up, Value: 3
+				81 text Guest lists that add up
+			82 text By family and allowance, with RSVPs, menus, allergies and a B-list. Plus a summary for your caterer in one tap.
+			83 container
+				84 text Table 1 6/8  seats unseated 8 2
+			85 heading Seating without arguments, Value: 3
+				86 text Seating without arguments
+			87 text Seat every guest and instantly see free seats and who still needs a table.
+			88 container
+				89 text Book the music 10 months before Book the florist and decor 8 months before Book hair and make-up 6 months before Send the save the dates 8 months before
+			90 heading A 12-month plan, Value: 3
+				91 text A 12-month plan
+			92 text 27 dated tasks, calculated from your wedding day. If the date changes, the plan changes.
+			93 container
+				94 text Es Molí Vell
+				95 text ★★★★ ·  €196 per guest
+				96 text €29,400
+				97 text Finca Son Ribes
+				98 text ★★★★★ ·  €225 per guest
+				99 text €33,750
+				100 text Best value
+			101 heading Compare before you book, Value: 3
+				102 text Compare before you book
+			103 text Venues, photographers or music side by side, with price per guest and your own rating.
+			104 text Offline
+			105 text Works on your phone even without signal, and syncs when you're back.
+			106 text In your language
+			107 text 8 languages and 20 currencies. Each of you uses your own.
+			108 text PDF and Excel
+			109 text Print the binder, the plan or the seating, and export your guest list.
+			110 text Private
+			111 text Only you and the people you invite can see it. Download a copy whenever you like.
+		112 container hace-el-trabajo
+			113 text It does the work for you What a spreadsheet can't do
+			114 heading Less typing, less debating, less to remember., Value: 2
+				115 text Less typing, less debating, less to remember.
+			116 container
+				117 text Clara has confirmed · just now Clara Roig  ·  Coming  ·  Vegetarian Coming 104 105
+			118 heading RSVPs that come in on their own, Value: 3
+				119 text RSVPs that come in on their own
+			120 text Each guest responds on their phone, with nothing to download: whether they’re coming, their menu and allergies. You see it in your list straight away. And anyone who hasn’t replied gets a WhatsApp reminder with a tap.
+			121 container
+				122 text Add Pepe and Ana Gil to the Work group Pepe Gil · Work Ana Gil · Work
+			123 heading Write how you talk, Value: 3
+				124 text Write how you talk
+			125 text “Add Pepe and Ana Gil to the Work group” or “we’ve paid €900 to the florist.” Yes Planner understands, shows you what it’s about to do, then does it.
+			126 container
+				127 text NOW 13:00 ·  Ceremony Next · in 35 min Cocktail hour Call  · Finca Son Ribes Call  · DJ
+			128 heading Your wedding day, in wedding-day mode, Value: 3
+				129 text Your wedding day, in wedding-day mode
+			130 text That day, the app changes: what’s happening now, what’s next and who to call. Your coordinator has it on their phone too, so you can simply enjoy it.
+			131 container
+				132 text 104 people at 11 tables Rules: 2 of 2 met
+			133 heading Seating with a tap, Value: 3
+				134 text Seating with a tap
+			135 text Mark who belongs together and who’s better apart. Yes Planner suggests a seating plan with the fewest tables, then you fine-tune it by dragging.
+			136 container
+				137 text Laura’s family · 32 of 40 places Jordi Puig ·  Suggested Approve
+			138 heading Every family, their own list, Value: 3
+				139 text Every family, their own list
+			140 text Send each family a link with their places. They add their guests and you approve them. No more copying lists from WhatsApp.
+			141 container
+				142 text Finca Son Ribes €29,250 3 payments Note: VAT not included
+			143 heading Snap a photo of your quote, Value: 3
+				144 text Snap a photo of your quote
+			145 text Take a photo or upload the PDF: it creates the budget item with its amount and payments, and flags what’s not included and the small print.
+			146 container
+				147 text This week · Laura and Marc ·  Book the florist ·  Pay €450 · Friday ·  12 guests yet to respond
+			148 heading This week, in your inbox, Value: 3
+				149 text This week, in your inbox
+			150 text Every Monday, what’s due: tasks, payments and who still needs to RSVP. And the same, right at the top of the app.
+			151 container
+				152 text Sat 12  · 13:00 24° · 0 mm
+			153 heading A weather plan B, Value: 3
+				154 text A weather plan B
+			155 text From 9 days out, the forecast at your venue for the ceremony hour. If rain threatens, let guests know with a tap.
+			156 container
+				157 text Received €12,450 Thank-yous sent 28 of 40
+			158 heading Gifts and thank-yous, Value: 3
+				159 text Gifts and thank-yous
+			160 text Who gave you what, how much of the catering it covers and who still needs a thank-you, with the message already written.
+			161 text Messages come from your WhatsApp, one by one, and you review them before sending. We never message your guests on your behalf.
+		162 container app
+			163 text The app Real screenshots, with a sample wedding
+			164 heading Yes Planner, inside., Value: 2
+				165 text Yes Planner, inside.
+			166 container
+				167 tab group The app
+					168 tab (selected, settable, boolean) Summary, Value: 1
+					169 tab (selectable, settable, boolean) Budget, Value: 0
+					170 tab (selectable, settable, boolean) Compare, Value: 0
+					171 tab (selectable, settable, boolean) Guests, Value: 0
+					172 tab (selectable, settable, boolean) Tables, Value: 0
+					173 tab (selectable, settable, boolean) Tasks, Value: 0
+					174 tab (selectable, settable, boolean) Binder, Value: 0
+				175 container Description: Summary, ID: yp-tour
+					176 text Your wedding at a glance
+					177 text Countdown, budget, RSVPs and tasks on one screen. And whatever needs your attention, right at the top.
+					178 image Yes Planner screenshot: Your wedding at a glance
+		179 container
+			180 text On your phone The big day in your pocket
+			181 heading And on the big day, all of it in your hand., Value: 2
+				182 text And on the big day, all of it in your hand.
+			183 text The timeline, minute by minute
+			184 image Wedding-day master timeline on a phone
+			185 text Who's coming and what they eat
+			186 image Caterer summary: menus and allergies
+			187 text What's still to pay
+			188 image Payment calendar on a phone
+		189 container probar
+			190 container
+				191 text Try it before you buy it. A sample wedding, ready to explore.
+			192 link Description: Try the demo, Value: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en
+		193 container precio
+			194 text Price One-time payment
+			195 heading One payment. No subscription., Value: 2
+				196 text One payment. No subscription.
+			197 text Pay once and you get everything. No monthly fees, no renewals, no extras.
+			198 container
+				199 text Yes Planner
+				200 text All included Your whole wedding, for both of you. 100 free places · 87 already taken · 13 left
+				201 text Get my free place
+				202 text One-time payment. Final price.
+				203 link Description: Get my free place, Value: thedigitalyes.com/planner#comprar
+				204 text One-time payment . No subscriptions or renewals. For both of you . Plus up to 2 more people, at no cost. Secure payment . With Stripe. Your access arrives instantly. Try it first . The demo has a complete sample wedding.
+			205 text Yes Planner
+			206 text One-time payment. No subscriptions or extra fees.
+			207 text Budget, payments and contracts Guests, families, tables and catering 12-month plan with automatic dates 56-section wedding-day binder Printable PDF and Excel export For you two plus up to 2 more people 8 languages and 20 currencies On phone and computer, even offline Online RSVPs and WhatsApp reminders Automatic seating and wedding-day mode AI quote reading
+			208 link Description: Try the demo, Value: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en
+			209 text Yes Planner versus doing it by hand
+			210 text Yes Planner
+			211 text Spreadsheets and notes
+			212 text Budget that recalculates itself
+			213 text Included
+			214 text By hand
+			215 text Dated payments, visible on your summary
+			216 text Included
+			217 text —
+			218 text Guests, menus and seating together
+			219 text Included
+			220 text Several sheets
+			221 text Task plan with automatic dates
+			222 text Included
+			223 text —
+			224 text Printable wedding-day binder
+			225 text 56 sections
+			226 text —
+			227 text Shared and synced instantly
+			228 text Up to 4 people
+			229 text Scattered files
+			230 text On your phone, even offline
+			231 text Included
+			232 text It depends
+			233 text Languages
+			234 text 8
+			235 text —
+			236 text Online RSVPs, no app for guests
+			237 text Included
+			238 text One by one on WhatsApp
+			239 text Suggested seating with your rules
+			240 text Included
+			241 text —
+			242 text Each family adds their own list
+			243 text Included
+			244 text Copy and paste
+			245 text Wedding-day mode for you and your coordinator
+			246 text Included
+			247 text —
+		248 container “Our wedding is beautifully organized.”
+			249 container
+				250 heading “Our wedding is beautifully organized.”, Value: 2
+					251 text “Our wedding is
+					252 text beautifully organized.”
+				253 text What you'll say when people ask how it's going.
+		254 container
+			255 text Getting started You're in within minutes 0 1 Buy Yes Planner Secure payment with Stripe. A welcome email arrives straight away. 0 2 Sign in with your email No passwords: we send you a 6-digit code. 0 3 Tell us about your wedding Names, date and guests, and your plan sets itself up.
+		256 container preguntas
+			257 text FAQ What couples ask us
+			258 heading What couples ask us., Value: 2
+				259 text What couples ask us.
+			260 button (collapsed) Is it a one-time payment? +, Secondary Actions: Expand
+				261 text Is it a one-time payment?
+				262 text +
+			263 button (collapsed) Which devices does it work on? +, Secondary Actions: Expand
+				264 text Which devices does it work on?
+				265 text +
+			266 button (collapsed) Can we both use it? +, Secondary Actions: Expand
+				267 text Can we both use it?
+				268 text +
+			269 button (collapsed) Which languages is it in? +, Secondary Actions: Expand
+				270 text Which languages is it in?
+				271 text +
+			272 button (collapsed) What about our data? +, Secondary Actions: Expand
+				273 text What about our data?
+				274 text +
+			275 button (collapsed) Can I get a refund? +, Secondary Actions: Expand
+				276 text Can I get a refund?
+				277 text +
+			278 button (collapsed) Can we print the binder? +, Secondary Actions: Expand
+				279 text Can we print the binder?
+				280 text +
+			281 button (collapsed) Can we try it before buying? +, Secondary Actions: Expand
+				282 text Can we try it before buying?
+				283 text +
+			284 button (collapsed) Do guests need to download anything? +, Secondary Actions: Expand
+				285 text Do guests need to download anything?
+				286 text +
+			287 button (collapsed) Do you message our guests? +, Secondary Actions: Expand
+				288 text Do you message our guests?
+				289 text +
+			290 button (collapsed) Are photos of quotes saved? +, Secondary Actions: Expand
+				291 text Are photos of quotes saved?
+				292 text +
+		293 container
+			294 heading Start organizing your wedding today., Value: 2
+				295 text Start organizing your wedding today.
+			296 text 1 Get my free place You'll use this email to sign in to Yes Planner. 2 Your access arrives Instantly, at the email you pay with. 3 Invite your partner And plan the wedding together.
+			297 link Description: Already have it? Sign in, Value: thedigitalyes.com/yes-planner/app.html?lang=en
+			298 text Yes Planner
+			299 text Free
+			300 text 100 free places · 87 already taken · 13 left
+			301 container
+				302 text Your email
+				303 text field (settable) Your email
+			304 text You'll use this email to sign in to Yes Planner.
+			305 container
+				306 checkbox (settable, integer) Value: 0, ID: yp-consent, Description: I want immediate access to Yes Planner. I understand that, as digital content, I lose my 14-day right of withdrawal once access begins.
+				307 text I want immediate access to Yes Planner. I understand that, as digital content, I lose my 14-day right of withdrawal once access begins.
+			308 button Get my free place
+		309 container
+			310 link Description: The Digital Yes, Value: thedigitalyes.com/
+			311 link Description: Yes Planner BY THE DIGITAL YES, Value: thedigitalyes.com/planner#inicio
+			312 text The app that keeps your wedding beautifully organized. Product
+			313 link Description: How it works, Value: thedigitalyes.com/planner#como-funciona
+			314 link Description: The app, Value: thedigitalyes.com/planner#app
+			315 link Description: Price, Value: thedigitalyes.com/planner#precio
+			316 link Description: Try the demo, Value: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en
+			317 text Account
+			318 link Description: Sign in, Value: thedigitalyes.com/yes-planner/app.html?lang=en
+			319 link Description: Buy, Value: thedigitalyes.com/planner#comprar
+			320 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			321 text Legal
+			322 link Description: Terms, Value: thedigitalyes.com/terms
+			323 link Description: Privacy, Value: thedigitalyes.com/privacy
+			324 link Description: Cookies, Value: thedigitalyes.com/cookies
+			325 text © 2026 The Digital Yes. Yes Planner is a product of The Digital Yes.
+			326 link Description: thedigitalyes.com, Value: thedigitalyes.com/
+		327 link Description: Get my free place, Value: thedigitalyes.com/planner#comprar
+
+The focused UI element is 1 AXWebArea Yes Planner · The app that keeps your wedding beautifully organized, URL: thedigitalyes.com/planner

@@ -1,0 +1,127 @@
+Browser tab: 3, Title: "Refund Policy | The Digital Yes", URL: "https://www.thedigitalyes.com/refunds".
+1 AXWebArea Refund Policy | The Digital Yes, URL: thedigitalyes.com/refunds
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 link Description: BACK TO HOME, Value: thedigitalyes.com/
+		21 heading Refund Policy, Value: 1
+			22 text Refund Policy
+		23 container
+			24 heading 1. No Refund Policy, Value: 2
+				25 text 1. No Refund Policy
+			26 text Due to the custom nature of our digital invitation design services,
+			27 container
+				28 text refunds are not accepted
+			29 text once the design process has begun
+			30 container
+				31 text or more than 2 weeks have passed since the order date
+			32 text , whichever comes first. Each invitation is uniquely created for each couple, involving time and resources dedicated specifically to your project from the moment of purchase. In the exceptional cases where a refund is approved, the amount will be reimbursed
+			33 container
+				34 text minus the bank and payment processing fees
+			35 text charged by our payment provider (Stripe) and the bank for the transaction, as these are non-refundable to The Digital Yes.
+		36 container
+			37 heading 2. Included Revisions, Value: 2
+				38 text 2. Included Revisions
+			39 text Each plan includes a set number of design revision rounds:
+			40 content list
+				41 container
+					42 AXListMarker • 
+					43 text Essential: 2 rounds
+				44 container
+					45 AXListMarker • 
+					46 text Premium: 4 rounds
+				47 container
+					48 AXListMarker • 
+					49 text Excellence: 7 rounds
+			50 text A round is one set of comments sent together. Data updates (times, addresses, typos) are not design rounds. Once these revisions are completed and approved by you, the design will be considered final.
+		51 container
+			52 heading 3. Additional Revisions, Value: 2
+				53 text 3. Additional Revisions
+			54 text If you need additional changes after the included revisions, we offer extra revision rounds at the following cost: €25 per additional revision round Each round includes the adjustments requested in a single feedback session.
+		55 container
+			56 heading 4. Information Changes, Value: 2
+				57 text 4. Information Changes
+			58 text Information changes (dates, names, addresses, etc.) on the finalised invitation are available at no additional cost until your wedding day, as long as they do not involve design modifications.
+		59 container
+			60 heading 5. Contact, Value: 2
+				61 text 5. Contact
+			62 text If you have any questions about our refund policy or need more information, please don't hesitate to contact us through our contact form or by email.
+		63 text Last updated: January 2026
+		64 container
+			65 container Newsletter
+				66 heading Newsletter, Value: 2, ID: :r0:-t
+					67 text Newsletter
+				68 text A 4-email welcome in week one, then roughly one a week.
+				69 container
+					70 text The practical guide is free to read, no subscription needed.
+					71 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				72 container
+					73 text EMAIL
+					74 text field (settable) EMAIL
+					75 text EMAIL LANGUAGE
+					76 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						77 menu
+							78 Español
+							79 (selected) English
+							80 Français
+							81 Deutsch
+							82 Italiano
+							83 Português
+							84 Nederlands
+							85 العربية
+					86 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					87 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					88 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					89 button SUBSCRIBE
+			90 heading COLLECTIONS, Value: 4
+				91 text COLLECTIONS
+			92 content list
+				93 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				94 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				95 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				96 link Description: All designs, Value: thedigitalyes.com/designs
+				97 link Description: Pricing, Value: thedigitalyes.com/pricing
+				98 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				99 link Description: Essential, Value: thedigitalyes.com/essential
+				100 link Description: Premium, Value: thedigitalyes.com/premium
+				101 link Description: Excellence, Value: thedigitalyes.com/excellence
+				102 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				103 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				104 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				105 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			106 heading SERVICE, Value: 4
+				107 text SERVICE
+			108 content list
+				109 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				110 link Description: Our story, Value: thedigitalyes.com/our-story
+				111 link Description: Reviews, Value: thedigitalyes.com/reviews
+				112 link Description: Blog, Value: thedigitalyes.com/blog
+				113 link Description: Client portal, Value: thedigitalyes.com/clients
+			114 heading LEGAL, Value: 4
+				115 text LEGAL
+			116 content list
+				117 link Description: Terms, Value: thedigitalyes.com/terms
+				118 link Description: Privacy, Value: thedigitalyes.com/privacy
+				119 link Description: Refunds, Value: thedigitalyes.com/refunds
+			120 heading THE DIGITAL YES, Value: 4
+				121 text THE DIGITAL YES
+			122 content list
+				123 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			124 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Refund Policy | The Digital Yes, URL: thedigitalyes.com/refunds

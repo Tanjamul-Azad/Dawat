@@ -1,0 +1,133 @@
+Browser tab: 3, Title: "Rosas – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/rosas".
+1 AXWebArea Rosas – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/rosas
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Rosas
+			24 text DIGITAL INVITATION
+			25 heading Rosas, Value: 1
+				26 text Rosas
+			27 text Floral romance FROM €175 One-time payment · three levels of personalisation
+			28 checkbox Description: Save Rosas, Value: 0
+				29 image
+			30 text Interactive demo
+			31 container Views
+				32 container
+					33 container Rosas — live demo
+						34 AXWebArea about:blank
+					35 text Loading live demo…
+				36 button (disabled) Previous screen
+					37 image
+				38 button Next screen
+					39 image
+			40 container
+				41 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			42 button Try it yourself
+			43 button 2 · Envelope, music & motion
+			44 button 3 · Your names, your date
+			45 button 4 · A live countdown
+			46 button 5 · The day, hour by hour
+			47 button 6 · Ceremony & reception
+			48 button 7 · An RSVP made for you
+			49 button In your languages
+			50 text 1  /  8
+			51 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			52 button Full screen
+				53 image
+			54 container Purchase
+				55 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				56 button PERSONALIZE THIS INVITATION
+				57 text ✓ Designed by hand ✓ Revisions included
+				58 container This is your invitation
+					59 text HANDMADE, ONLY FOR YOU
+					60 heading This is your invitation, Value: 2
+						61 text This is your invitation
+					62 tab group
+						63 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						64 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						65 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					66 container Description: WHO CREATES IT, ID: v5-info-pane
+						67 text Designed by a real person
+						68 text A designer from our atelier crafts it for you.
+						69 text Revisions included
+						70 text See your draft and request changes before sharing.
+						71 text At your own pace
+						72 text Send details and photos after payment, whenever ready.
+						73 text One-time payment, forever
+						74 text No subscriptions. A link ready for WhatsApp.
+				75 container Your sections, your order
+					76 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						77 text Your sections, your order
+					78 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					79 container Your sections, your order
+						80 content list
+							81 text Our story
+							82 text Schedule
+							83 text Dress code
+							84 text Travel & stay
+							85 text Gifts
+							86 text RSVP
+						87 text Add section
+				88 container
+					89 text DETAILS RECEIVED
+					90 text Once we have your details
+					91 text DESIGN & PROOF
+					92 text READY
+					93 text 7–14 days Counted from when we receive your details and materials.
+				94 text Hand-painted roses for a deeply romantic invitation. A piece that captivates at first sight.
+				95 button (collapsed) What’s included +, Secondary Actions: Expand
+					96 text What’s included
+					97 text +
+				98 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					99 text Personalisation & extras
+					100 text +
+				101 button (collapsed) How it works +, Secondary Actions: Expand
+					102 text How it works
+					103 text +
+				104 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					105 text Delivery & revisions
+					106 text +
+				107 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Rosas%20template%20%E2%9C%A8
+			108 text YOU MAY ALSO LIKE
+			109 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			110 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			111 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			112 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+		113 container
+			114 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			115 text Digital wedding invitations designed by hand.
+			116 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			117 text COLLECTIONS
+			118 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			119 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			120 link Description: Plans, Value: thedigitalyes.com/#plans
+			121 text SERVICE
+			122 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			123 link Description: Blog, Value: thedigitalyes.com/blog
+			124 link Description: Client portal, Value: thedigitalyes.com/clients
+			125 text LEGAL
+			126 link Description: Terms, Value: thedigitalyes.com/terms
+			127 link Description: Privacy, Value: thedigitalyes.com/privacy
+			128 link Description: Refunds, Value: thedigitalyes.com/refunds
+			129 text ©  2026  The Digital Yes EN  ·  EUR
+		130 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Rosas – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/rosas

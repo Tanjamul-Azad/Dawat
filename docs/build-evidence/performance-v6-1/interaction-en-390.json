@@ -1,0 +1,69 @@
+{
+  "capturedAt": "2026-10-19T15:49:20.969Z",
+  "scope": "Local manual interaction sample; not field INP or a physical-device certification.",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "viewport": [
+      390,
+      844
+    ],
+    "pixelRatio": 1,
+    "visibility": "visible",
+    "reducedMotion": false,
+    "supportedEntryTypes": [
+      "element",
+      "event",
+      "first-input",
+      "interaction-contentful-paint",
+      "largest-contentful-paint",
+      "layout-shift",
+      "long-animation-frame",
+      "longtask",
+      "mark",
+      "measure",
+      "navigation",
+      "paint",
+      "resource",
+      "soft-navigation",
+      "visibility-state"
+    ]
+  },
+  "phases": [
+    {
+      "phase": "closed",
+      "atMs": 98
+    },
+    {
+      "phase": "opening",
+      "atMs": 4615
+    },
+    {
+      "phase": "open",
+      "atMs": 6415
+    }
+  ],
+  "openingDurationMs": 1800,
+  "openingFrameSamples": 323,
+  "openingFrameP95Ms": 6,
+  "openingFramesOver50Ms": 0,
+  "observedNavigationLcpMs": 124,
+  "observedCls": 0.0003,
+  "interactionEntries": 16,
+  "maxObservedInteractionMs": 24,
+  "longTasks": [],
+  "transferredResourceBytes": 1227222,
+  "images": [
+    {
+      "asset": "/artwork/jamdani-garden-v5-640.webp",
+      "loaded": true
+    },
+    {
+      "asset": "/artwork/jamdani-couple-v1.webp",
+      "loaded": true
+    },
+    {
+      "asset": "/artwork/jamdani-hands-v1.webp",
+      "loaded": true
+    }
+  ]
+}

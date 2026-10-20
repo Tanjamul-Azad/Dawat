@@ -1,0 +1,224 @@
+.shell {
+  max-width: 1200px;
+  margin: auto;
+  padding: 48px 40px 72px;
+}
+.heading {
+  max-width: 700px;
+  margin-bottom: 50px;
+}
+.heading h1,
+.gate h1 {
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.25;
+  margin: 22px 0;
+}
+.heading h1 em,
+.gate h1 em {
+  color: var(--wine);
+}
+.heading p {
+  max-width: 550px;
+  color: #71665d;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 64px;
+  align-items: start;
+}
+.paper {
+  background: #ece5d9;
+  border-radius: 180px 180px 8px 8px;
+  padding: 40px 30px 28px;
+  text-align: center;
+}
+.cover {
+  max-width: 280px;
+  margin: 0 auto 32px;
+  transform: rotate(-3deg);
+  box-shadow: 10px 15px 30px #4e3b2920;
+}
+.paper p {
+  font: 32px var(--display);
+  margin: 15px 0 8px;
+  overflow-wrap: anywhere;
+}
+.paper small {
+  display: block;
+  line-height: 1.8;
+}
+.paper a {
+  display: inline-block;
+  margin-top: 20px;
+}
+.details {
+  padding-top: 20px;
+  min-width: 0;
+}
+.details h2 {
+  font-size: 34px;
+  margin: 18px 0;
+}
+.details p {
+  color: #71665d;
+}
+.form {
+  display: grid;
+  gap: 24px;
+  margin-top: 28px;
+}
+.form label {
+  display: grid;
+  gap: 10px;
+}
+.form input {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 12px 14px;
+  background: var(--surface);
+  font-size: 16px;
+}
+.form small,
+.footnote {
+  color: #71665d;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.timeline {
+  padding: 0;
+  list-style: none;
+  margin: 35px 0;
+}
+.timeline li {
+  display: flex;
+  gap: 18px;
+  padding-bottom: 28px;
+  position: relative;
+}
+.timeline li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 35px;
+  bottom: 0;
+  border-left: 1px solid var(--line);
+}
+.timeline li > span {
+  display: grid;
+  place-items: center;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 10px;
+}
+.timeline .done > span {
+  background: var(--olive);
+  color: white;
+  border-color: var(--olive);
+}
+.timeline strong {
+  font-weight: 500;
+  display: block;
+  margin: 3px 0 6px;
+}
+.timeline small {
+  display: block;
+  color: #71665d;
+  line-height: 1.6;
+}
+.receipt {
+  display: flex;
+  gap: 12px;
+  padding: 18px 0 28px;
+  overflow-wrap: anywhere;
+}
+.receipt small {
+  display: block;
+  margin-top: 5px;
+  color: #71665d;
+  font-size: 11px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+.notice {
+  display: flex;
+  gap: 15px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  margin-bottom: 25px;
+}
+.notice svg {
+  flex-shrink: 0;
+}
+.notice p {
+  margin: 0;
+  font-size: 12px;
+}
+.footnote {
+  border-top: 1px solid var(--line);
+  margin-top: 60px;
+  padding-top: 22px;
+}
+.gate {
+  max-width: 700px;
+  padding: 90px 30px;
+  text-align: center;
+  margin: auto;
+}
+.gate > svg {
+  display: block;
+  margin: 0 auto 26px;
+  color: var(--wine);
+}
+.gate p {
+  color: #71665d;
+  max-width: 490px;
+  margin: 0 auto 30px;
+}
+.gate > a {
+  display: table;
+  margin: 20px auto;
+}
+@media (max-width: 700px) {
+  .shell {
+    padding: 40px 22px 50px;
+  }
+  .heading {
+    margin-bottom: 30px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .paper {
+    padding: 24px;
+    border-radius: 150px 150px 6px 6px;
+  }
+  .cover {
+    max-width: 190px;
+    margin-bottom: 25px;
+  }
+  .paper .eyebrow {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+  .details h2 {
+    font-size: 38px;
+  }
+  .gate {
+    padding: 65px 22px;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

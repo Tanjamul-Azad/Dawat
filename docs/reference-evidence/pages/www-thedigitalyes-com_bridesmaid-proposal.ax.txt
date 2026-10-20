@@ -1,0 +1,167 @@
+Browser tab: 3, Title: "3D Pop-Up Bridesmaid Proposal Cards | The Digital Yes", URL: "https://www.thedigitalyes.com/bridesmaid-proposal".
+1 AXWebArea 3D Pop-Up Bridesmaid Proposal Cards | The Digital Yes, URL: thedigitalyes.com/bridesmaid-proposal
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 container Menu
+				8 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+				9 container
+					10 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+					11 pop up button (collapsed) Description: Classic · 3D Pop-Up Save the Dates, Secondary Actions: Expand
+						12 image
+				13 link Description: PLANS, Value: thedigitalyes.com/#plans
+				14 link Description: HOW IT WORKS, Value: thedigitalyes.com/#how-it-works
+				15 pop up button (collapsed) MORE NEW, Secondary Actions: Expand
+					16 text MORE
+					17 text NEW
+					18 image
+			19 link Description: The Digital Yes, Value: thedigitalyes.com/
+			20 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			21 link Description: SEE THE DESIGNS, Value: thedigitalyes.com/bridesmaid-proposal#ev-grid
+			22 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				23 image
+				24 text EN
+			25 link Description: PORTAL, Value: thedigitalyes.com/clients
+		26 container
+			27 container Breadcrumb
+				28 link Description: Home, Value: thedigitalyes.com/
+				29 text / Bridesmaid proposal
+			30 container
+				31 text BRIDESMAID PROPOSAL  · 3D POP-UP
+			32 heading Ask your bridesmaids in 3D, Value: 1
+				33 text Ask your bridesmaids in 3D
+			34 text A card she opens with a tap — and your question pops up. Personalised with her name, your name and the date, ready to share in 2–4 days.
+			35 button See the designs
+			36 text From €55
+			37 container Choose your design, ID: ev-grid
+				38 heading Choose your design, Value: 2, ID: ev-grid-title
+					39 text Choose your design
+				40 container
+					41 text Search by theme or mood…
+					42 search text field (settable) Search by theme or mood…
+				43 tab group Styles
+					44 tab (selected, settable, boolean) All 10, Value: 1
+All
+10
+					45 tab (selectable, settable, boolean) Romantic & nature 4, Value: 0
+Romantic & nature
+4
+					46 tab (selectable, settable, boolean) Coast & islands 3, Value: 0
+Coast & islands
+3
+					47 tab (selectable, settable, boolean) Party 3, Value: 0
+Party
+3
+				48 text 10 designs
+				49 link Description: Pop the Question PARTY Pop the Question Bubbles, roses and the big question. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-champagne
+				50 link Description: Bouquet for You ROMANTIC & NATURE Bouquet for You A bouquet with her name on it. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-bouquet
+				51 link Description: The Dress Rail ROMANTIC & NATURE The Dress Rail A rail of dresses waiting for her. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-dresses
+				52 link Description: Paris Balcony COAST & ISLANDS Paris Balcony A Parisian balcony and a sweet question. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-paris
+				53 link Description: Rose Arch ROMANTIC & NATURE Rose Arch A rose arch for your best friend. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-garden
+				54 link Description: Seaside Sisters COAST & ISLANDS Seaside Sisters Seaside sisters, side by side. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-beach
+				55 link Description: Sweet Question PARTY Sweet Question The sweetest way to ask. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-cake
+				56 link Description: Getting Ready ROMANTIC & NATURE Getting Ready Getting ready, together. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-vanity
+				57 link Description: Amalfi Spritz COAST & ISLANDS Amalfi Spritz Lemons, spritz and an Amalfi yes. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-amalfi
+				58 link Description: Last Disco PARTY Last Disco One last disco before the big day. From €55, Value: thedigitalyes.com/bridesmaid-proposal/bridesmaid-disco
+			59 container How it works
+				60 heading How it works, Value: 2, ID: ev-how
+					61 text How it works
+				62 content list
+					63 container
+						64 text 1
+						65 heading Pick a card, Value: 3
+							66 text Pick a card
+						67 text Open the demos and choose your favourite.
+					68 container
+						69 text 2
+						70 heading Add your details, Value: 3
+							71 text Add your details
+						72 text Name(s), date, time, venue and any notes.
+					73 container
+						74 text 3
+						75 heading Share it, Value: 3
+							76 text Share it
+						77 text In 2–4 days you get your link, ready for WhatsApp.
+			78 heading Questions, Value: 2
+				79 text Questions
+			80 heading How long does it take?, Value: 3
+				81 text How long does it take?
+			82 text 2–4 days from your order.
+			83 heading How do guests open it?, Value: 3
+				84 text How do guests open it?
+			85 text With a link that works on any phone — no app needed.
+			86 heading What can be personalised?, Value: 3
+				87 text What can be personalised?
+			88 text Name(s), date, time and venue, plus any short note you want on the card.
+			89 heading Can I request a change?, Value: 3
+				90 text Can I request a change?
+			91 text Yes, reply to your confirmation email and we'll adjust it.
+			92 heading Do promo codes apply?, Value: 3
+				93 text Do promo codes apply?
+			94 text No, the price is fixed and promo codes or credit don't apply.
+			95 button See the designs
+		96 container
+			97 container Newsletter
+				98 heading Newsletter, Value: 2, ID: :r0:-t
+					99 text Newsletter
+				100 text A 4-email welcome in week one, then roughly one a week.
+				101 container
+					102 text The practical guide is free to read, no subscription needed.
+					103 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				104 container
+					105 text EMAIL
+					106 text field (settable) EMAIL
+					107 text EMAIL LANGUAGE
+					108 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						109 menu
+							110 Español
+							111 (selected) English
+							112 Français
+							113 Deutsch
+							114 Italiano
+							115 Português
+							116 Nederlands
+							117 العربية
+					118 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					119 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					120 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					121 button SUBSCRIBE
+			122 heading COLLECTIONS, Value: 4
+				123 text COLLECTIONS
+			124 content list
+				125 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				126 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				127 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				128 link Description: All designs, Value: thedigitalyes.com/designs
+				129 link Description: Pricing, Value: thedigitalyes.com/pricing
+				130 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				131 link Description: Essential, Value: thedigitalyes.com/essential
+				132 link Description: Premium, Value: thedigitalyes.com/premium
+				133 link Description: Excellence, Value: thedigitalyes.com/excellence
+				134 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				135 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				136 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				137 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			138 heading SERVICE, Value: 4
+				139 text SERVICE
+			140 content list
+				141 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				142 link Description: Our story, Value: thedigitalyes.com/our-story
+				143 link Description: Reviews, Value: thedigitalyes.com/reviews
+				144 link Description: Blog, Value: thedigitalyes.com/blog
+				145 link Description: Client portal, Value: thedigitalyes.com/clients
+			146 heading LEGAL, Value: 4
+				147 text LEGAL
+			148 content list
+				149 link Description: Terms, Value: thedigitalyes.com/terms
+				150 link Description: Privacy, Value: thedigitalyes.com/privacy
+				151 link Description: Refunds, Value: thedigitalyes.com/refunds
+			152 heading THE DIGITAL YES, Value: 4
+				153 text THE DIGITAL YES
+			154 content list
+				155 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			156 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea 3D Pop-Up Bridesmaid Proposal Cards | The Digital Yes, URL: thedigitalyes.com/bridesmaid-proposal

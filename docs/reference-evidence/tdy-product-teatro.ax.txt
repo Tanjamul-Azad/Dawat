@@ -1,0 +1,276 @@
+Browser tab: 4, Title: "Teatro – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/teatro".
+0 AXWebArea Teatro – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/teatro
+	1 container root
+		2 container Notifications (F8)
+			3 content list
+		4 container Notifications alt+T
+		5 container
+			6 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			7 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			8 link Description: PLANS, Value: thedigitalyes.com/#plans
+			9 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			10 link Description: BLOG, Value: thedigitalyes.com/blog
+			11 link Description: The Digital Yes, Value: thedigitalyes.com/
+			12 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			13 button BUY NOW
+			14 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				15 image
+				16 text EN
+			17 link Description: PORTAL, Value: thedigitalyes.com/clients
+		18 container
+			19 container Breadcrumb
+				20 link Description: Collection, Value: thedigitalyes.com/
+				21 text /
+				22 text Teatro
+			23 text DIGITAL INVITATION
+			24 heading Teatro, Value: 1
+				25 text Teatro
+			26 text Red velvet curtains opening onto your story. FROM €175 One-time payment · three levels of personalisation
+			27 checkbox Description: Save Teatro, Value: 0
+				28 image
+			29 text Interactive demo
+			30 container Views
+				131 container Teatro — live demo
+					132 AXWebArea Theatre Template Demo, URL: template-teatro.thedigitalyes.com/?embed=1
+						133 container root
+							134 container Notifications (F8)
+								135 content list
+							136 container Notifications alt+T
+							137 container
+								138 button EN
+								139 button IT
+								140 container
+									141 image
+									142 text Tap to continue
+								143 heading Reveal, Value: 2
+									144 text Reveal
+								145 text SCRATCH TO DISCOVER THE DATE
+								146 container
+									147 text 10
+									148 image
+								149 container
+									150 text Sept
+									151 image
+								152 container
+									153 text 2027
+									154 image
+								155 heading Countdown, Value: 2
+									156 text Countdown
+								157 text 12 DAYS 16 HOURS 17 MIN 30 SEC
+								158 text until the big day
+								159 text THE CELEBRATION WILL TAKE PLACE AT
+								160 image Venue Illustration
+								161 heading Villa Medicea di Artimino, Value: 2
+									162 text Villa Medicea di Artimino
+								163 text VIA DI PAPA LEONE X, 28
+								164 text ARTIMINO, FLORENCIA
+								165 text September 10, 2027
+								166 text Reception to Follow
+								167 container
+									168 heading APERITIVO, Value: 3
+										169 text APERITIVO
+									170 text Selección de antipasti toscanos Bruschetta, crostini & affettati misti
+									171 heading PRIMO, Value: 3
+										172 text PRIMO
+									173 text Risotto al tartufo nero di Norcia con parmigiano reggiano 24 mesi
+									174 heading SECONDO, Value: 3
+										175 text SECONDO
+									176 text Filetto di manzo alla griglia con salsa al vino rosso e verdure di stagione
+									177 heading DOLCE, Value: 3
+										178 text DOLCE
+									179 text Torta nuziale con crema di mascarpone e frutti di bosco freschi Vini della Tenuta
+								180 heading Dress Code, Value: 2
+									181 text Dress Code
+								182 image Dress Code Illustration
+								183 text We invite you to dress elegantly and formally to celebrate this special day with us.
+								184 text Formal Attire
+								185 text Please avoid wearing white
+								186 text WEDDING REGISTRY
+								187 image Regalo
+								188 heading Gifts, Value: 2
+									189 text Gifts
+								190 text Your presence is the best gift we could receive. However, if you wish to contribute to our new life together, you can do so via bank transfer.
+								191 text With all our love
+								192 text BANK DETAILS
+								193 container
+									194 text ACCOUNT HOLDER : SAM & SOFIA IBAN: ES00 0000 0000 0000 0000 0000 REFERENCE: Sam & Sofia Wedding
+								195 text HOW TO GET THERE
+								196 heading Transport, Value: 2
+									197 text Transport
+								198 text We have organized buses from the center of Florence to the villa so you can enjoy the celebration without worries.
+								199 text BUS DEPARTURE
+								200 text Piazza della Signoria
+								201 text 16:00h
+								202 text RETURN TO FLORENCE
+								203 text 02:00h
+								204 text Please indicate in your RSVP if you need transport
+								205 image Foto de los novios con marco decorativo
+								206 container rsvp
+									207 image
+									208 text This form is fully customizable to your needs
+									209 image RSVP icon
+									210 heading Confirm your attendance, Value: 2
+										211 text Confirm your attendance
+									212 container
+										213 text FULL NAME  *
+										214 text field (settable) FULL NAME *, ID: name
+										215 text EMAIL (OPTIONAL)
+										216 text field (settable) EMAIL (OPTIONAL)
+										217 text WILL YOU ATTEND?  *
+										218 button Yes, I'll be there!
+										219 button No, I can't make it
+										220 text MESSAGE FOR THE COUPLE (OPTIONAL)
+										221 text entry area (settable) MESSAGE FOR THE COUPLE (OPTIONAL), ID: message
+										222 button (disabled) Confirm
+											223 image
+											224 text Confirm
+								225 container
+									226 heading Thank You, Value: 2
+										227 text Thank You
+									228 text For joining us on this special day. Your presence is the best gift we could receive. Sam & Sofía
+				35 button (disabled) Previous screen
+					36 image
+				37 button Next screen
+					38 image
+			39 container
+				40 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			41 button Try it yourself
+			42 button 2 · Envelope, music & motion
+			43 button 3 · Your names, your date
+			44 button 4 · A live countdown
+			45 button 5 · Dress code
+			46 button 6 · Gifts
+			47 button 7 · Travel & stay
+			48 button 8 · An RSVP made for you
+			49 button In your languages
+			50 text 1  /  9
+			51 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			52 button Full screen
+				53 image
+			54 container Purchase
+				55 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				56 button PERSONALIZE THIS INVITATION
+				57 text ✓ Designed by hand ✓ Revisions included
+				58 container This is your invitation
+					59 text HANDMADE, ONLY FOR YOU
+					60 heading This is your invitation, Value: 2
+						61 text This is your invitation
+					62 tab group
+						63 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						64 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						65 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					66 container Description: WHO CREATES IT, ID: v5-info-pane
+						67 text Designed by a real person
+						68 text A designer from our atelier crafts it for you.
+						69 text Revisions included
+						70 text See your draft and request changes before sharing.
+						71 text At your own pace
+						72 text Send details and photos after payment, whenever ready.
+						73 text One-time payment, forever
+						74 text No subscriptions. A link ready for WhatsApp.
+				75 container Your sections, your order
+					76 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						77 text Your sections, your order
+					78 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					79 container Your sections, your order
+						80 content list
+							81 text Our story
+							82 text Schedule
+							83 text Dress code
+							84 text Travel & stay
+							85 text Gifts
+							86 text RSVP
+						87 text Add section
+				88 container
+					89 text DETAILS RECEIVED
+					90 text Once we have your details
+					91 text DESIGN & PROOF
+					92 text READY
+					93 text 7–14 days Counted from when we receive your details and materials.
+				94 text A theatrical design with red velvet curtains. Dramatic, elegant and memorable like a grand performance.
+				95 button (collapsed) What’s included +, Secondary Actions: Expand
+					96 text What’s included
+					97 text +
+				98 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					99 text Personalisation & extras
+					100 text +
+				101 button (collapsed) How it works +, Secondary Actions: Expand
+					102 text How it works
+					103 text +
+				104 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					105 text Delivery & revisions
+					106 text +
+				107 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Teatro%20template%20%E2%9C%A8
+			229 container What couples say
+				230 heading What couples say, Value: 2, ID: h4p-ugc-title
+					231 text What couples say
+				232 text REAL COUPLES, REAL INVITATIONS
+				233 button Previous video
+				234 button Next video
+				235 container
+					236 button Play video — @irenefdz
+						237 container @irenefdz
+					238 link Description: @irenefdz, Value: instagram.com/irenefdz
+					239 button Play video — @fanicarbaj
+						240 container @fanicarbaj
+					241 link Description: @fanicarbaj, Value: instagram.com/fanicarbaj
+					242 button Play video — @miisspinkie
+						243 container @miisspinkie
+					244 link Description: @miisspinkie, Value: instagram.com/miisspinkie/
+					245 button Play video — @sophiialorraine
+						246 container @sophiialorraine
+					247 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					248 button Play video — @sophiialorraine
+						249 container @sophiialorraine
+					250 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					251 button Play video — Diana & Richard
+						252 container Diana & Richard
+					253 text Diana & Richard
+					254 button Play video — The Digital Yes
+						255 container The Digital Yes
+					256 text The Digital Yes
+			257 container reviews
+				258 heading Loved by 3,000+ couples., Value: 2
+					259 text Loved by 3,000+ couples.
+				260 text 4.9
+				261 text 278 reviews
+				262 container
+					263 container 5/5
+						264 text ★★★★★
+					265 text “ Everything was perfect! The responses were always very quick, and they really did their best to accommodate everything we wanted for our wedding invitation. They were professional, helpful, and made the whole process so easy. Highly recommended! ”
+					266 text Ranya
+				267 container
+					268 container 5/5
+						269 text ★★★★★
+					270 text “ We got the envelope made from The Digital Yes, and they did not disappoint. Delivered exactly what they showed and were responsive when changes were needed. Definitely recommend them. ”
+					271 text Adil & Adil
+				272 container
+					273 container 5/5
+						274 text ★★★★★
+					275 text “ I couldn’t be happier with my save the date invitations! They are absolutely gorgeous and turned out even better than I imagined. The quality is outstanding, every little detail is perfect, and they’ve captured exactly the elegant look I was hoping for. The whole process was smooth, and the team was so helpful, professional, and easy to work with. I have received so many compliments from family and friends already. Thank you for creating such a beautiful keepsake for our wedding—I can’t wait to work with you again for the rest of our stationery. Highly recommend! X ”
+					276 text Adrian & Karlie
+			108 text YOU MAY ALSO LIKE
+			109 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			110 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			111 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			112 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+		113 container
+			114 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			115 text Digital wedding invitations designed by hand.
+			116 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			117 text COLLECTIONS
+			118 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			119 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			120 link Description: Plans, Value: thedigitalyes.com/#plans
+			121 text SERVICE
+			122 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			123 link Description: Blog, Value: thedigitalyes.com/blog
+			124 link Description: Client portal, Value: thedigitalyes.com/clients
+			125 text LEGAL
+			126 link Description: Terms, Value: thedigitalyes.com/terms
+			127 link Description: Privacy, Value: thedigitalyes.com/privacy
+			128 link Description: Refunds, Value: thedigitalyes.com/refunds
+			129 text ©  2026  The Digital Yes EN  ·  EUR
+		130 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 0 AXWebArea Teatro – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/teatro

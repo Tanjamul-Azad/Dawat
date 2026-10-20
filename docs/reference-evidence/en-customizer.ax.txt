@@ -1,0 +1,91 @@
+Browser tab: 3, Title: "e-Nimontron — Digital Invitations. Simply Beautiful.", URL: "https://www.e-nimontron.com/customize?template=royal-scroll".
+1 AXWebArea e-Nimontron — Digital Invitations. Simply Beautiful., URL: e-nimontron.com/customize?template=royal-scroll
+	2 container
+		3 link Description: e-Nimontron home, Value: e-nimontron.com/
+		4 content list
+			5 link Description: টেমপ্লেট, Value: e-nimontron.com/#gallery
+			6 link Description: যেভাবে কাজ করে, Value: e-nimontron.com/#how
+			7 link Description: মূল্য, Value: e-nimontron.com/#pricing
+			8 link Description: যোগাযোগ, Value: e-nimontron.com/#contact
+		9 container ভাষা পরিবর্তন করুন
+			10 checkbox EN, Value: 0
+			11 checkbox বাংলা, Value: 1
+	12 link Description: টেমপ্লেটে ফিরে যান, Value: e-nimontron.com/#gallery
+	13 container
+		14 text কাস্টমাইজ করছেন: রাজকীয় মেরুন স্ক্রোল
+	15 heading আপনার আয়োজন সম্পর্কে বলুন, Value: 1
+		16 text আপনার আয়োজন সম্পর্কে বলুন
+	17 text নিচে আপনার তথ্য দিন — সঙ্গে সঙ্গে আপনার আমন্ত্রণের প্রিভিউ দেখুন।
+	18 container
+		19 heading নাম, Value: 2
+			20 text নাম
+		21 text কার আয়োজন বরের পূর্ণ নাম (ছেলে)
+		22 text field (settable)
+		23 text কনের পূর্ণ নাম (মেয়ে)
+		24 text field (settable)
+		25 text বরের ডাকনাম — খোলার পর্দায় দেখানো হবে
+		26 text field (settable)
+		27 text কনের ডাকনাম — খোলার পর্দায় দেখানো হবে
+		28 text field (settable)
+		29 text বরের বাবার নাম — ঐচ্ছিক
+		30 text field (settable)
+		31 text কনের বাবার নাম — ঐচ্ছিক
+		32 text field (settable)
+		33 text বরের মায়ের নাম — ঐচ্ছিক
+		34 text field (settable)
+		35 text কনের মায়ের নাম — ঐচ্ছিক
+		36 text field (settable)
+		37 heading আয়োজন, Value: 2
+			38 text আয়োজন
+		39 text তারিখ ও সময় আয়োজনের ধরন
+		40 pop up button (collapsed, settable) Value: Wedding, Secondary Actions: Expand
+			41 menu
+				42 (selected) Wedding
+				43 Reception
+				44 Walima
+				45 Nikah
+				46 Engagement
+				47 Anniversary
+		48 text বার (তারিখ থেকে স্বয়ংক্রিয়)
+		49 text field Sunday
+		50 text আয়োজনের তারিখ
+		51 date field (settable) 2027-04-18
+			52 container
+				53 stepper
+				54 stepper
+				55 stepper
+			56 pop up button Show date picker
+		57 text সময়
+		58 time field (settable) 19:00
+			59 container
+				60 stepper
+				61 stepper
+				62 stepper
+			63 pop up button Show time picker
+		64 heading স্থান, Value: 2
+			65 text স্থান
+		66 text যেখানে উদযাপন স্থানের নাম
+		67 text field (settable)
+		68 text সম্পূর্ণ ঠিকানা (অতিথিদের পথনির্দেশের জন্য)
+		69 text entry area (settable)
+		70 text আপনার আমন্ত্রণের "Get Directions" বোতামটি এই ঠিকানা ব্যবহার করবে।
+		71 heading আপনার ছবি, Value: 2
+			72 text আপনার ছবি
+		73 text ঐচ্ছিক সর্বোচ্চ ৫টি ছবি দিন — সেগুলো আপনার নিমন্ত্রণপত্রের ভেতরে স্লাইডশো হয়ে দেখাবে। লম্বালম্বি (portrait) ছবি সবচেয়ে সুন্দর দেখায়।
+		74 image
+		75 text ছবি যোগ করুন 0  /  5
+		76 heading শেষ ছোঁয়া, Value: 2
+			77 text শেষ ছোঁয়া
+		78 text ঐচ্ছিক RSVP-এর শেষ তারিখ (আয়োজনের আগে বা সেদিন)
+		79 date field (settable)
+			80 container
+				81 stepper
+				82 stepper
+				83 stepper
+			84 pop up button Show date picker
+		85 text অতিথিদের জন্য একটি ব্যক্তিগত বার্তা
+		86 text entry area (settable)
+		87 button আমার আমন্ত্রণ প্রিভিউ করুন →
+	88 link Description: Chat with us on WhatsApp, Value: wa.me/8801577348028?text=Hi!%20I%27m%20interested%20in%20a%20digital%20invitation%20from%20e-Nimontron.
+
+The focused UI element is 1 AXWebArea e-Nimontron — Digital Invitations. Simply Beautiful., URL: e-nimontron.com/customize?template=royal-scroll

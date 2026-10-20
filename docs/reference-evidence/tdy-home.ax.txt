@@ -1,0 +1,516 @@
+Browser tab: 5, Title: "Digital Wedding Invitations Designed by Hand | The Digital Yes", URL: "https://www.thedigitalyes.com/".
+1 AXWebArea Digital Wedding Invitations Designed by Hand | The Digital Yes, URL: thedigitalyes.com/
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 button New: 3D Pop-Up Save the Dates — cards that unfold on your guests' phone Close
+			6 link New: 3D Pop-Up Save the Dates — cards that unfold on your guests' phone
+				7 text New: 3D Pop-Up Save the Dates — cards that unfold on your guests' phone
+			8 button Close
+		9 container
+			10 container Menu
+				11 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+				12 container
+					13 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+					14 pop up button (collapsed) Description: Classic · 3D Pop-Up Save the Dates, Secondary Actions: Expand
+						15 image
+				16 link Description: PLANS, Value: thedigitalyes.com/#plans
+				17 link Description: HOW IT WORKS, Value: thedigitalyes.com/#how-it-works
+				18 pop up button (collapsed) MORE NEW, Secondary Actions: Expand
+					19 text MORE
+					20 text NEW
+					21 image
+			22 link Description: The Digital Yes, Value: thedigitalyes.com/
+			23 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			24 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			25 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				26 image
+				27 text EN
+			28 link Description: PORTAL, Value: thedigitalyes.com/clients
+		29 container
+			30 container
+				31 link Description: 4.9/5 · 278 reviews · 3,000+ couples, Value: thedigitalyes.com/reviews
+				32 text DIGITAL WEDDING INVITATIONS
+				33 heading We bring your dream digital wedding invitation to life., Value: 1
+					34 text We bring your dream digital wedding invitation to life.
+				35 text Choose a design you love. Our team personalises it with your names, photos and wedding details, ready to share with your guests.
+				36 link Description: EXPLORE DESIGNS →, Value: thedigitalyes.com/#invitations
+				37 link Description: Compare plans, Value: thedigitalyes.com/#plans
+				38 text From €175 · One-time payment
+				39 link Description: Instagram · 170,000+ followers, Value: instagram.com/thedigitalyes/
+				40 link Description: Facebook · 60,000+ followers, Value: facebook.com/thedigitalyes
+				41 container
+					42 button Pause video
+			43 text THE COLLECTION 35 INVITATIONS  ·  16 SAVE THE DATES
+			44 heading 35 designs. Every one made yours by hand., Value: 2
+				45 text 35 designs. Every one made yours by hand.
+			46 container
+				47 link Description: View the LACE demo, Value: thedigitalyes.com/demo/lace
+				48 link Description: View the Embroidered Garden demo, Value: thedigitalyes.com/demo/embroidered-garden
+				49 link Description: View the Mother of Pearl demo, Value: thedigitalyes.com/demo/mother-of-pearl
+				50 link Description: View the Fresco demo, Value: thedigitalyes.com/demo/fresco
+				51 link Description: View the Stained Glass demo, Value: thedigitalyes.com/demo/stained-glass
+				52 link Description: View the Royal demo, Value: thedigitalyes.com/demo/royal
+				53 link Description: View the Day & Night demo, Value: thedigitalyes.com/demo/daynight
+				54 link Description: View the La Finca demo, Value: thedigitalyes.com/demo/finca
+				55 link Description: View the La Maison Dorée demo, Value: thedigitalyes.com/demo/maison-doree
+				56 link Description: View the Majestic demo, Value: thedigitalyes.com/demo/majestic
+				57 link Description: View the Teatro demo, Value: thedigitalyes.com/demo/teatro
+				58 link Description: View the Bella Vista demo, Value: thedigitalyes.com/demo/bella-vista
+				59 link Description: View the Villa Perlé demo, Value: thedigitalyes.com/demo/villa-perle
+				60 link Description: View the Cap Blanc demo, Value: thedigitalyes.com/demo/cap-blanc
+				61 link Description: View the Prestige demo, Value: thedigitalyes.com/demo/prestige
+				62 link Description: View the Eleganza demo, Value: thedigitalyes.com/demo/eleganza
+				63 link Description: View the Bellagio demo, Value: thedigitalyes.com/demo/bellagio
+				64 link Description: View the Secret Garden demo, Value: thedigitalyes.com/demo/secret-garden
+				65 link Description: View the Odette demo, Value: thedigitalyes.com/demo/odette
+				66 link Description: View the Papercraft demo, Value: thedigitalyes.com/demo/papercraft
+				67 link Description: View the Bridgerton demo, Value: thedigitalyes.com/demo/bridgerton
+				68 link Description: View the Boho demo, Value: thedigitalyes.com/demo/boho
+				69 link Description: View the Minimal Fun demo, Value: thedigitalyes.com/demo/minimal-fun
+				70 link Description: View the Beach demo, Value: thedigitalyes.com/demo/beach
+				71 link Description: View the Africa demo, Value: thedigitalyes.com/demo/africa
+				72 link Description: View the Rosas demo, Value: thedigitalyes.com/demo/rosas
+				73 link Description: View the Editorial demo, Value: thedigitalyes.com/demo/editorial
+				74 link Description: View the Bloom demo, Value: thedigitalyes.com/demo/bloom
+				75 link Description: View the Dolce Vita demo, Value: thedigitalyes.com/demo/dolce-vita
+				76 link Description: View the Nautical Edition demo, Value: thedigitalyes.com/demo/nautical
+				77 link Description: View the Mediterranean demo, Value: thedigitalyes.com/demo/mediterranean-edition
+				78 link Description: View the Floral demo, Value: thedigitalyes.com/demo/floral
+				79 link Description: View the Dulce Amor demo, Value: thedigitalyes.com/demo/dulce-amor
+				80 link Description: View the Minimalista demo, Value: thedigitalyes.com/demo/minimal
+				81 link Description: View the Aventureros demo, Value: thedigitalyes.com/demo/aventureros
+			82 container 4.9
+			83 text average from 278 verified reviews
+			84 container 3,000+
+			85 container
+				86 text couples have trusted  The Digital Yes  to create their invitation
+			87 container 170,000+
+			88 text followers on Instagram
+			89 container how-it-works
+				90 text HOW IT WORKS THREE STEPS. NO DESIGN SKILLS NEEDED. 01
+				91 heading Choose your design & plan., Value: 3
+					92 text Choose your design & plan.
+				93 text Pick a design and how personal you want it: as it is, fully redesigned around your wedding, or bespoke from scratch.
+				94 link Description: Compare plans →, Value: thedigitalyes.com/#plans
+				95 text 02
+				96 heading We create it., Value: 3
+					97 text We create it.
+				98 text Fill in a guided briefing at your own pace. A real designer crafts it and you review a private draft. Ready in 7–14 days, or 1–4 days with optional Express on Essential and Premium.
+				99 text 03
+				100 heading Share one link., Value: 3
+					101 text Share one link.
+				102 text Send it by WhatsApp or email. Guests reply in seconds and every RSVP lands in your private portal.
+			103 text THE FIRST IMPRESSION
+			104 container
+				105 text The memory of your wedding doesn’t start on the big day. It starts the second they open your invitation.
+			106 container invitations
+				107 text COLLECTION EVERY DESIGN IS PERSONALISED FOR YOUR WEDDING BY OUR TEAM.
+				108 heading Wedding invitations 35, Value: 2
+					109 text Wedding invitations 35
+				110 button VIEW ALL DESIGNS
+				111 link Description: Complimentary with Premium · €75 per design on its own, Value: thedigitalyes.com/#save-the-dates
+				112 checkbox SAVED DESIGNS (0), Value: 0
+					113 image
+					114 text SAVED DESIGNS (0)
+				115 container theme-card-lace
+					116 container
+						117 link Description: LACE — Wedding invitations, Value: thedigitalyes.com/demo/lace
+						118 text NEW
+						119 checkbox Description: Save LACE, Value: 0
+							120 image
+					121 link Description: LACE, Value: thedigitalyes.com/demo/lace
+					122 text Ivory lace, pearls and an embossed seal
+					123 text From €175
+				124 container theme-card-embroidered-garden
+					125 container
+						126 link Description: Embroidered Garden — Wedding invitations, Value: thedigitalyes.com/demo/embroidered-garden
+						127 text NEW
+						128 checkbox Description: Save Embroidered Garden, Value: 0
+							129 image
+					130 link Description: Embroidered Garden, Value: thedigitalyes.com/demo/embroidered-garden
+					131 text A hand-embroidered Provençal garden
+					132 text From €175
+				133 container theme-card-mother-of-pearl
+					134 container
+						135 link Description: Mother of Pearl — Wedding invitations, Value: thedigitalyes.com/demo/mother-of-pearl
+						136 text NEW
+						137 checkbox Description: Save Mother of Pearl, Value: 0
+							138 image
+					139 link Description: Mother of Pearl, Value: thedigitalyes.com/demo/mother-of-pearl
+					140 text Mother of pearl, ginkgo leaves and a golden seal
+					141 text From €175
+				142 container theme-card-fresco
+					143 container
+						144 link Description: Fresco — Wedding invitations, Value: thedigitalyes.com/demo/fresco
+						145 text NEW
+						146 checkbox Description: Save Fresco, Value: 0
+							147 image
+					148 link Description: Fresco, Value: thedigitalyes.com/demo/fresco
+					149 text Fresh, sun-drenched Mediterranean
+					150 text From €175
+				151 container theme-card-stained-glass
+					152 container
+						153 link Description: Stained Glass — Wedding invitations, Value: thedigitalyes.com/demo/stained-glass
+						154 text NEW
+						155 checkbox Description: Save Stained Glass, Value: 0
+							156 image
+					157 link Description: Stained Glass, Value: thedigitalyes.com/demo/stained-glass
+					158 text Floral stained glass and pearlescent light
+					159 text From €175
+				160 container theme-card-royal
+					161 container
+						162 link Description: Royal — Wedding invitations, Value: thedigitalyes.com/demo/royal
+						163 checkbox Description: Save Royal, Value: 0
+							164 image
+					165 link Description: Royal, Value: thedigitalyes.com/demo/royal
+					166 text Our permanent best seller
+					167 text From €175
+				168 container theme-card-daynight
+					169 container
+						170 link Description: Day & Night — Wedding invitations, Value: thedigitalyes.com/demo/daynight
+						171 checkbox Description: Save Day & Night, Value: 0
+							172 image
+					173 link Description: Day & Night, Value: thedigitalyes.com/demo/daynight
+					174 text From day to night
+					175 text From €175
+				176 container theme-card-finca
+					177 container
+						178 link Description: La Finca — Wedding invitations, Value: thedigitalyes.com/demo/finca
+						179 checkbox Description: Save La Finca, Value: 0
+							180 image
+					181 link Description: La Finca, Value: thedigitalyes.com/demo/finca
+					182 text Illustrated venue style
+					183 text From €175
+				184 container theme-card-maison-doree
+					185 container
+						186 link Description: La Maison Dorée — Wedding invitations, Value: thedigitalyes.com/demo/maison-doree
+						187 text EXCLUSIVE
+						188 checkbox Description: Save La Maison Dorée, Value: 0
+							189 image
+					190 link Description: La Maison Dorée, Value: thedigitalyes.com/demo/maison-doree
+					191 text Our new exclusive edition
+					192 text From €175
+				193 container theme-card-majestic
+					194 container
+						195 link Description: Majestic — Wedding invitations, Value: thedigitalyes.com/demo/majestic
+						196 checkbox Description: Save Majestic, Value: 0
+							197 image
+					198 link Description: Majestic, Value: thedigitalyes.com/demo/majestic
+					199 text Exclusive new release
+					200 text From €175
+				201 container theme-card-teatro
+					202 container
+						203 link Description: Teatro — Wedding invitations, Value: thedigitalyes.com/demo/teatro
+						204 checkbox Description: Save Teatro, Value: 0
+							205 image
+					206 link Description: Teatro, Value: thedigitalyes.com/demo/teatro
+					207 text Let the curtain rise on your story
+					208 text From €175
+				209 container theme-card-bella-vista
+					210 container
+						211 link Description: Bella Vista — Wedding invitations, Value: thedigitalyes.com/demo/bella-vista
+						212 checkbox Description: Save Bella Vista, Value: 0
+							213 image
+					214 link Description: Bella Vista, Value: thedigitalyes.com/demo/bella-vista
+					215 text Tuscan watercolour under string lights
+					216 text From €175
+				217 button (collapsed) SHOW ALL 35 DESIGNS · 23 MORE, Secondary Actions: Expand
+					218 text SHOW ALL 35 DESIGNS
+					219 text  · 
+					220 text 23
+					221 text MORE
+				222 text Looking for something fully custom?
+				223 text Check our Excellence plan: an invitation designed from scratch.
+				224 link Description: See Excellence →, Value: thedigitalyes.com/#plans
+			225 container save-the-dates
+				226 text COLLECTION ANNOUNCE THE DATE WITH AN INTERACTIVE PIECE
+				227 heading Save the Dates 16, Value: 2
+					228 text Save the Dates 16
+				229 container
+					230 text ✓  Complimentary with Premium · €75 per design on its own
+				231 button VIEW ALL SAVE THE DATES
+				232 tab group
+					233 tab (selected, settable, boolean) Classic, Value: 1
+					234 tab (selectable, settable, boolean) 3D Pop-Up NEW, Value: 0
+				235 button ✧ Custom Your design here From €135
+					236 text ✧
+					237 text Custom
+					238 text Your design here
+					239 text From €135
+				240 container std-card-photobooth
+					241 link Description: Photobooth — Save the Date, Value: thedigitalyes.com/save-the-date/photobooth
+					242 link Description: Photobooth, Value: thedigitalyes.com/save-the-date/photobooth
+					243 text Your photobooth strip in a vintage gold frame on burgundy velvet. Nostalgic, elegant and unmistakably yours.
+					244 text €75
+					245 checkbox Description: Save Photobooth, Value: 0
+						246 image
+				247 container std-card-heartfold
+					248 link Description: Heartfold — Save the Date, Value: thedigitalyes.com/save-the-date/heartfold
+					249 link Description: Heartfold, Value: thedigitalyes.com/save-the-date/heartfold
+					250 text Delicate florals and ivory drapes frame your date. Romantic, refined and timeless.
+					251 text €75
+					252 checkbox Description: Save Heartfold, Value: 0
+						253 image
+				254 container std-card-the-lovebirds
+					255 link Description: The Lovebirds — Save the Date, Value: thedigitalyes.com/save-the-date/the-lovebirds
+					256 link Description: The Lovebirds, Value: thedigitalyes.com/save-the-date/the-lovebirds
+					257 text Two lovebirds, soft florals and a gentle countdown. Romantic and quietly elegant.
+					258 text €75
+					259 checkbox Description: Save The Lovebirds, Value: 0
+						260 image
+				261 container std-card-photo-scratch
+					262 link Description: Photo Scratch — Save the Date, Value: thedigitalyes.com/save-the-date/photo-scratch
+					263 link Description: Photo Scratch, Value: thedigitalyes.com/save-the-date/photo-scratch
+					264 text Your photo revealed by scratching. A playful reveal your guests will remember.
+					265 text €75
+					266 checkbox Description: Save Photo Scratch, Value: 0
+						267 image
+				268 button (collapsed) SHOW ALL 16 SAVE THE DATES · 12 MORE, Secondary Actions: Expand
+					269 text SHOW ALL 16 SAVE THE DATES
+					270 text  · 
+					271 text 12
+					272 text MORE
+			273 container
+				274 text ATELIER REAL DESIGNERS, NOT AN EDITOR
+				275 container Unable to play media.
+				276 button Play video
+					277 image
+				278 heading Handcrafted by our team, Value: 2
+					279 text Handcrafted by our team
+				280 text We design it for you: choose a design and our team composes it with your details, your story and the level of personalisation of your plan. 0 1 Choose a design 0 2 Share your details 0 3 We design, you approve
+			281 container reviews
+				282 text COUPLES VERIFIED REVIEWS
+				283 heading See what others are saying., Value: 2
+					284 text See what others are saying.
+				285 text 4.9
+				286 text ★★★★★
+				287 container
+					288 text 278 verified reviews  ·  3,000+ couples worldwide
+				289 link Description: See all reviews, Value: thedigitalyes.com/reviews
+			290 container inside
+				291 text INSIDE YOUR INVITATION REAL SCREENS FROM A DEMO
+				292 container
+					293 image Real screens from a demo
+					294 image Real screens from a demo
+				295 heading Everything your guests need. Nothing they don’t., Value: 2
+					296 text Everything your guests need. Nothing they don’t.
+				297 text There is no fixed template to fill in. Your designer writes every section around your wedding: the ones you want, in the order you want, in your languages. One link holds it all.
+				298 content list
+					299 container
+						300 text 01
+						301 text Your cover, your names Your names, date, venue and the words you choose.
+					302 container
+						303 text 02
+						304 text Countdown Days, hours and minutes until your wedding.
+					305 container
+						306 text 03
+						307 text Scratch to reveal A small surprise your guests uncover with a finger.
+					308 container
+						309 text 04
+						310 text Ceremony, map & calendar Open in Maps and add to calendar in one tap.
+					311 container
+						312 text 05
+						313 text Dress code & programme What to wear and the order of the day.
+					314 container
+						315 text 06
+						316 text Gifts, travel & stay Gift details, airports and your hotel recommendation.
+					317 container
+						318 text 07
+						319 text Real-time RSVP Guests confirm attendance and allergies from their phone.
+				320 text YOUR SECTIONS, IN YOUR ORDER
+				321 text Ceremony & reception RSVP Dress code Transport Gifts Day schedule Accommodation Welcome party FAQ + any section you imagine
+				322 text Up to 2 languages: each guest reads it in theirs.
+				323 link Description: START MY INVITATION, Value: thedigitalyes.com/#plans
+			324 container gift-card
+				325 container
+					326 image Gift card
+					327 text MOVE YOUR CURSOR OVER THE CARD
+				328 text GIFT CARD
+				329 heading Want to give an unforgettable gift?, Value: 2
+					330 text Want to give an unforgettable gift?
+				331 text Gift their Save the Date, their invitation or atelier credit. The couple choose their design whenever they like with their own code.
+				332 Amount
+					333 radio button Full Save the Date €75, Value: 0
+						334 text Full Save the Date
+						335 text €75
+					336 radio button Full Essential invitation €175, Value: 1
+						337 text Full Essential invitation
+						338 text €175
+					339 radio button Full Premium invitation €575, Value: 0
+						340 text Full Premium invitation
+						341 text €575
+					342 radio button Custom amount €50+, Value: 0
+						343 text Custom amount
+						344 container
+							345 text €50 +
+				346 button GIVE THIS CARD · €175
+					347 image
+					348 text GIVE THIS CARD
+					349 text  · 
+					350 text €175
+				351 text You instantly receive the code, the link and the card to send on WhatsApp or print.
+			352 container You’ll-Love-It Promise
+				353 text YOU’LL-LOVE-IT PROMISE
+				354 heading You’ll love it., Value: 2
+					355 text You’ll love it.
+				356 text We refine every detail with you, so your invitation feels unmistakably yours before you share it with your guests.
+			357 container Digital wedding invitations, designed for you by hand
+				358 text THE DIGITAL YES
+				359 heading Digital wedding invitations, designed for you by hand, Value: 2, ID: home-editorial-title
+					360 text Digital wedding invitations, designed for you by hand
+				361 heading A private wedding mini-site, not a PDF, Value: 3
+					362 text A private wedding mini-site, not a PDF
+				363 text A digital wedding invitation from The Digital Yes is a private mini-site made for one wedding. It is not a downloadable image, a PDF or a self-service template. You choose a design and the level of personalization; our team composes the page with your names, photographs, venue and practical details. Couples who want an entirely original direction can choose Excellence, which starts from a blank page.
+				364 heading One link for every guest and every RSVP, Value: 3
+					365 text One link for every guest and every RSVP
+				366 text Send the invitation as a link by WhatsApp, email or SMS. Guests open it on their phone, read the schedule and venue information, then reply inside the invitation. The included RSVP collects confirmations; the guest list manager (included in Premium and Excellence, optional on Essential) lets each named guest see whether they may bring a +1, +2 or +3. You follow replies privately instead of searching through message threads.
+				367 heading Made for multilingual and destination weddings, Value: 3
+					368 text Made for multilingual and destination weddings
+				369 text Each invitation can include 2 languages on Essential, up to 3 on Premium and as many as you need on Excellence, so international guests can read the same design without receiving a separate version. For a destination wedding, the mini-site keeps the venue, map, timings and travel information together. Explore our wedding invitation designs, or begin earlier with a digital Save the Date while the remaining details are still being confirmed.
+				370 heading Clear timing and one payment per wedding, Value: 3
+					371 text Clear timing and one payment per wedding
+				372 text Standard production is 7–14 days after we receive your information. Express production is 1–4 days for an additional €85 on eligible plans. Pricing is one payment per wedding: Essential €175, Premium €575 and Excellence €975. Compare the invitation plans, then read our complete guide to digital wedding invitations for etiquette, timing, wording and practical examples.
+				373 container
+					374 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+					375 text  · 
+					376 link Description: Save the Date, Value: thedigitalyes.com/digital-save-the-date
+			377 container faq
+				378 text FREQUENTLY ASKED BEFORE YOU DECIDE
+				379 heading Frequently asked questions., Value: 2
+					380 text Frequently asked questions.
+				381 button (collapsed) Do you include the venue name and address? +, Secondary Actions: Expand
+					382 text Do you include the venue name and address?
+					383 text +
+				384 button (collapsed) Which extras can I add? +, Secondary Actions: Expand
+					385 text Which extras can I add?
+					386 text +
+				387 button (collapsed) When do I get access to the portal? +, Secondary Actions: Expand
+					388 text When do I get access to the portal?
+					389 text +
+				390 button (collapsed) Are digital wedding invitations tacky or acceptable? +, Secondary Actions: Expand
+					391 text Are digital wedding invitations tacky or acceptable?
+					392 text +
+				393 button (collapsed) Can I send my wedding invitation by WhatsApp? +, Secondary Actions: Expand
+					394 text Can I send my wedding invitation by WhatsApp?
+					395 text +
+				396 button (collapsed) How much do digital wedding invitations cost? +, Secondary Actions: Expand
+					397 text How much do digital wedding invitations cost?
+					398 text +
+			399 text REAL DEMOS TAP A NAME TO SEE ITS ENVELOPE
+			400 image Stained Glass
+			401 text 35 INTERACTIVE DEMOS
+			402 text Stained Glass
+			403 text Open it on your phone exactly as your guests will: envelope, music, every section and the RSVP.
+			404 link Description: OPEN THE LIVE DEMO →, Value: thedigitalyes.com/demo/stained-glass
+			405 checkbox LACE, Value: 0
+			406 checkbox EMBROIDERED GARDEN, Value: 0
+			407 checkbox MOTHER OF PEARL, Value: 0
+			408 checkbox FRESCO, Value: 0
+			409 checkbox STAINED GLASS, Value: 1
+			410 checkbox ROYAL, Value: 0
+			411 checkbox DAY & NIGHT, Value: 0
+			412 checkbox LA FINCA, Value: 0
+			413 checkbox LA MAISON DORÉE, Value: 0
+			414 checkbox MAJESTIC, Value: 0
+			415 checkbox TEATRO, Value: 0
+			416 checkbox BELLA VISTA, Value: 0
+			417 checkbox VILLA PERLÉ, Value: 0
+			418 checkbox CAP BLANC, Value: 0
+			419 checkbox PRESTIGE, Value: 0
+			420 checkbox ELEGANZA, Value: 0
+			421 checkbox BELLAGIO, Value: 0
+			422 checkbox SECRET GARDEN, Value: 0
+			423 checkbox ODETTE, Value: 0
+			424 checkbox PAPERCRAFT, Value: 0
+			425 checkbox BRIDGERTON, Value: 0
+			426 checkbox BOHO, Value: 0
+			427 checkbox MINIMAL FUN, Value: 0
+			428 checkbox BEACH, Value: 0
+			429 checkbox AFRICA, Value: 0
+			430 checkbox ROSAS, Value: 0
+			431 checkbox EDITORIAL, Value: 0
+			432 checkbox BLOOM, Value: 0
+			433 checkbox DOLCE VITA, Value: 0
+			434 checkbox NAUTICAL EDITION, Value: 0
+			435 checkbox MEDITERRANEAN, Value: 0
+			436 checkbox FLORAL, Value: 0
+			437 checkbox DULCE AMOR, Value: 0
+			438 checkbox MINIMALISTA, Value: 0
+			439 checkbox AVENTUREROS, Value: 0
+			440 container Letters to help you plan your invitation
+				441 text NEWSLETTER
+				442 heading Letters to help you plan your invitation, Value: 2, ID: :r3:-t
+					443 text Letters to help you plan your invitation
+				444 text Wording ideas, timelines and styles that work, written by our design team. First a short 4-email welcome during your first week, then roughly one email a week. Unsubscribe whenever you like.
+				445 container
+					446 text The practical guide is free to read, no subscription needed.
+					447 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				448 container
+					449 text EMAIL
+					450 text field (settable) EMAIL
+					451 text EMAIL LANGUAGE
+					452 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						453 menu
+							454 Español
+							455 (selected) English
+							456 Français
+							457 Deutsch
+							458 Italiano
+							459 Português
+							460 Nederlands
+							461 العربية
+					462 text WEDDING DATE
+					463 container
+						464 text ( optional )
+					465 date field (settable) WEDDING DATE (optional) Optional, so tips match your timeline.
+						466 container
+							467 stepper
+							468 stepper
+							469 stepper
+						470 pop up button Show date picker Show date picker
+					471 text Optional, so tips match your timeline.
+					472 text STYLE YOU LOVE
+					473 container
+						474 text ( optional )
+					475 pop up button (collapsed, settable) STYLE YOU LOVE (optional), Value: Not chosen, Secondary Actions: Expand
+						476 menu
+							477 (selected) Not chosen
+							478 Classic
+							479 Modern
+							480 Romantic
+							481 Mediterranean
+							482 Minimalist
+							483 Not sure yet
+					484 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					485 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					486 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					487 button SUBSCRIBE
+		488 container
+			489 link Description: THE DIGITAL YES, Value: thedigitalyes.com/#top
+			490 text Digital wedding invitations designed by hand.
+			491 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			492 text COLLECTIONS
+			493 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			494 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+			495 link Description: Yes Planner, Value: thedigitalyes.com/planner
+			496 link Description: All designs, Value: thedigitalyes.com/designs
+			497 link Description: Pricing, Value: thedigitalyes.com/pricing
+			498 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+			499 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+			500 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+			501 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+			502 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			503 text SERVICE
+			504 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			505 link Description: Our story, Value: thedigitalyes.com/our-story
+			506 link Description: Blog, Value: thedigitalyes.com/blog
+			507 link Description: Client portal, Value: thedigitalyes.com/clients
+			508 text LEGAL
+			509 link Description: Terms, Value: thedigitalyes.com/terms
+			510 link Description: Privacy, Value: thedigitalyes.com/privacy
+			511 link Description: Refunds, Value: thedigitalyes.com/refunds
+			512 text ©  2026  The Digital Yes EN  ·  EUR
+		513 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Digital Wedding Invitations Designed by Hand | The Digital Yes, URL: thedigitalyes.com/

@@ -1,0 +1,140 @@
+Browser tab: 3, Title: "e-Nimontron — Digital Invitations. Simply Beautiful.", URL: "https://www.e-nimontron.com/preview".
+1 AXWebArea e-Nimontron — Digital Invitations. Simply Beautiful., URL: e-nimontron.com/preview
+	2 container
+		3 link Description: e-Nimontron home, Value: e-nimontron.com/
+		4 content list
+			5 link Description: টেমপ্লেট, Value: e-nimontron.com/#gallery
+			6 link Description: যেভাবে কাজ করে, Value: e-nimontron.com/#how
+			7 link Description: মূল্য, Value: e-nimontron.com/#pricing
+			8 link Description: যোগাযোগ, Value: e-nimontron.com/#contact
+		9 container ভাষা পরিবর্তন করুন
+			10 checkbox EN, Value: 0
+			11 checkbox বাংলা, Value: 1
+	12 text লাইভ প্রিভিউ
+	13 heading Demo Groom & Demo Bride, Value: 1
+		14 text Demo Groom & Demo Bride
+	15 text আপনার অতিথিরা ঠিক এটাই দেখবেন।
+	16 button মোবাইল
+	17 button ডেস্কটপ
+	18 container
+		19 text ENIMONTRON.COM/ DEMOBRIDE-DEMOGROOM প্রিভিউ
+		20 container Invitation preview
+			21 AXWebArea Demo Groom & Demo Bride — Wedding Invitation, URL: e-nimontron.com/templates/royal-scroll.html?template=royal-scroll&occasion=wedding&groomFullName=Demo+Groom&brideFullName=Demo+Bride&groomNickname=Groom&brideNickname=Bride&groomFatherName=&brideFatherName=&groomMotherName=&brideMotherName=&eventType=Wedding&eventDate=2027-04-18&eventTime=19%3A00&venueName=Demo+Wedding+Hall&venueAddress=Dhaka%2C+Bangladesh&rsvpDeadline=&personalMessage=&dayOfWeek=Sunday&brideName=Demo+Bride&groomName=Demo+Groom&brideParents=&groomParents=
+				22 image petalsCanvas
+				23 container
+					24 container hero
+						25 container
+							26 text Together with families
+							27 heading D e m o G r o o m, Value: 1, ID: groomName
+								28 container
+									29 text D e m o
+								30 container
+									31 text G r o o m
+							32 text &
+							33 heading D e m o B r i d e, Value: 1, ID: brideName
+								34 container
+									35 text D e m o
+								36 container
+									37 text B r i d e
+							38 text Heartily invite you to be part of the celebration of their joyful union
+						39 image Bride and groom
+					40 container
+						41 text With the blessings of our families,
+						42 text we joyfully invite you to celebrate
+					43 container dateRow
+						44 text APRIL
+						45 text 18
+						46 text 7:00 PM
+					47 container
+						48 text Save The Date SCRATCH TO REVEAL
+						49 container
+							50 text Sunday, 18 April 2027 7:00 PM onwards
+						51 image
+					52 text DEMO WEDDING HALL
+					53 text Dhaka, Bangladesh
+					54 text — COUNTING DOWN —
+					55 text 0
+					56 text DAYS until your dream wedding
+					57 container cd-cell-days
+						58 text 00
+						59 text DAYS
+					60 container cd-cell-hrs
+						61 text 00
+						62 text HOURS
+					63 container cd-cell-mins
+						64 text 00
+						65 text MINS
+					66 container cd-cell-secs
+						67 text 00
+						68 text SECS
+					69 container
+						70 text G
+						71 text &
+						72 text B
+					73 text WITH BLESSINGS · FOREVER
+					74 container invite-widgets
+						75 container
+							76 text Our Moments CAPTURED TOGETHER
+							77 container Photo slideshow
+								78 container
+									79 image Photo 1 of 4
+									80 text 1  / 4
+								81 button Previous photo
+									82 image
+								83 button Next photo
+									84 image
+							85 button Photo 1
+							86 button Photo 2
+							87 button Photo 3
+							88 button Photo 4
+						89 text Join Us
+						90 button MAP
+							91 image
+							92 text MAP
+						93 button CALENDAR
+							94 image
+							95 text CALENDAR
+						96 text Kindly RSVP
+						97 text WE HOPE YOU CAN CELEBRATE WITH US
+						98 container w-rsvp-form
+							99 text YOUR NAME
+							100 text field (settable) YOUR NAME, ID: w-rsvp-name
+							101 text WILL YOU ATTEND?
+							102 container
+								103 radio button (settable, integer) Description: JOYFULLY, Value: 1
+								104 text JOYFULLY
+							105 container
+								106 radio button (settable, integer) Description: SADLY NO, Value: 0
+								107 text SADLY NO
+							108 text NUMBER OF GUESTS (0–10)
+							109 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+							110 button SEND RSVP
+						111 text Send Your Wishes
+						112 text LEAVE A PRIVATE MESSAGE
+						113 container w-wish-form
+							114 text Send your wish
+							115 text Your message stays private — it won't be shown here publicly
+							116 text YOUR NAME
+							117 text field (settable) YOUR NAME, ID: w-wish-name
+							118 text YOUR MESSAGE
+							119 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+							120 container
+								121 image
+								122 text ADD A PHOTO (OPTIONAL)
+							123 button ADD YOUR WISH
+						124 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+						125 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+						126 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+				127 container
+					128 text — YOU ARE INVITED — Groom & Bride WEDDING
+					129 button OPEN INVITATION
+				130 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+					131 image
+	132 button এই আমন্ত্রণটি অর্ডার করুন
+		133 image
+		134 text এই আমন্ত্রণটি অর্ডার করুন
+	135 link Description: তথ্য এডিট করুন, Value: e-nimontron.com/customize?template=royal-scroll
+	136 link Description: অন্য টেমপ্লেট দেখুন, Value: e-nimontron.com/#gallery
+	137 link Description: Chat with us on WhatsApp, Value: wa.me/8801577348028?text=Hi!%20I%27m%20interested%20in%20a%20digital%20invitation%20from%20e-Nimontron.
+
+The focused UI element is 1 AXWebArea e-Nimontron — Digital Invitations. Simply Beautiful., URL: e-nimontron.com/preview

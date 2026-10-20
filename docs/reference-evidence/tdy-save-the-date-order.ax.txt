@@ -1,0 +1,39 @@
+Browser tab: 5, Title: "Candlelight – Digital Save the Date | The Digital Yes", URL: "https://www.thedigitalyes.com/save-the-date/candlelight".
+1 AXWebArea Candlelight – Digital Save the Date | The Digital Yes, URL: thedigitalyes.com/save-the-date/candlelight
+	2 container
+		3 container root
+			4 container Notifications alt+T
+			5 container Newsletter
+		6 container Your Save the Date, ID: radix-:r4:
+			7 heading Your Save the Date, Value: 2, ID: radix-:r5:
+				8 text Your Save the Date
+			9 content list Your details · Payment
+				10 container
+					11 text 1 Your details
+				12 container
+					13 text 2 Payment
+			14 container
+				15 image Candlelight
+				16 text Candlelight With your details €75 RSVP is not included; it comes with wedding invitations. Your name
+				17 text field (settable) Your name, ID: p3-partner1Name
+				18 text Your partner’s name
+				19 text field (settable) Your partner’s name, ID: p3-partner2Name
+				20 text Date
+				21 date field (settable) Date, ID: p3-weddingDate
+					22 container
+						23 stepper
+						24 stepper
+						25 stepper
+					26 pop up button Show date picker Show date picker
+				27 text Venue (optional)
+				28 text field (settable) Venue (optional), ID: p3-venue
+				29 text Email
+				30 text field (settable) Email
+				31 text Phone (optional)
+				32 text field (settable) Phone (optional)
+				33 button Continue to payment
+			34 button Close
+				35 image
+				36 text Close
+
+The focused UI element is 6 container Your Save the Date, ID: radix-:r4:

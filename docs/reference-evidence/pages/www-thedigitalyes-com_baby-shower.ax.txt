@@ -1,0 +1,177 @@
+Browser tab: 3, Title: "3D Pop-Up Baby Shower Invitations | The Digital Yes", URL: "https://www.thedigitalyes.com/baby-shower".
+1 AXWebArea 3D Pop-Up Baby Shower Invitations | The Digital Yes, URL: thedigitalyes.com/baby-shower
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 container Menu
+				8 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+				9 container
+					10 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+					11 pop up button (collapsed) Description: Classic · 3D Pop-Up Save the Dates, Secondary Actions: Expand
+						12 image
+				13 link Description: PLANS, Value: thedigitalyes.com/#plans
+				14 link Description: HOW IT WORKS, Value: thedigitalyes.com/#how-it-works
+				15 pop up button (collapsed) MORE NEW, Secondary Actions: Expand
+					16 text MORE
+					17 text NEW
+					18 image
+			19 link Description: The Digital Yes, Value: thedigitalyes.com/
+			20 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			21 link Description: SEE THE DESIGNS, Value: thedigitalyes.com/baby-shower#ev-grid
+			22 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				23 image
+				24 text EN
+			25 link Description: PORTAL, Value: thedigitalyes.com/clients
+		26 container
+			27 container Breadcrumb
+				28 link Description: Home, Value: thedigitalyes.com/
+				29 text / Baby shower invitations
+			30 container
+				31 text BABY SHOWER INVITATIONS  · 3D POP-UP
+			32 heading Baby shower invitations that unfold in 3D, Value: 1
+				33 text Baby shower invitations that unfold in 3D
+			34 text A sweet 3D card your guests open with a tap. Personalised with names, date and place — ready to share in 2–4 days.
+			35 button See the designs
+			36 text From €55
+			37 container Choose your design, ID: ev-grid
+				38 heading Choose your design, Value: 2, ID: ev-grid-title
+					39 text Choose your design
+				40 container
+					41 text Search by theme or mood…
+					42 search text field (settable) Search by theme or mood…
+				43 tab group Styles
+					44 tab (selected, settable, boolean) All 20, Value: 1
+All
+20
+					45 tab (selectable, settable, boolean) Animals 10, Value: 0
+Animals
+10
+					46 tab (selectable, settable, boolean) Dreamy 5, Value: 0
+Dreamy
+5
+					47 tab (selectable, settable, boolean) Floral 5, Value: 0
+Floral
+5
+				48 text 20 designs
+				49 link Description: Special Delivery ANIMALS Special Delivery A stork with the sweetest delivery. From €55, Value: thedigitalyes.com/baby-shower/stork
+				50 link Description: Teddy Bear Picnic ANIMALS Teddy Bear Picnic A cosy picnic for the little one. From €55, Value: thedigitalyes.com/baby-shower/teddy-picnic
+				51 link Description: Over the Moon DREAMY Over the Moon Moon, stars and a dream coming true. From €55, Value: thedigitalyes.com/baby-shower/over-the-moon
+				52 link Description: Woodland Friends ANIMALS Woodland Friends Forest friends gathering to welcome baby. From €55, Value: thedigitalyes.com/baby-shower/woodland
+				53 link Description: Mommy to Bee ANIMALS Mommy to Bee Honey, flowers and a buzz of joy. From €55, Value: thedigitalyes.com/baby-shower/mommy-to-bee
+				54 link Description: Little Lamb ANIMALS Little Lamb A soft little lamb in spring meadows. From €55, Value: thedigitalyes.com/baby-shower/little-lamb
+				55 link Description: Elephant Parade ANIMALS Elephant Parade A gentle parade to welcome baby. From €55, Value: thedigitalyes.com/baby-shower/elephant
+				56 link Description: Bunny Garden ANIMALS Bunny Garden Bunnies hopping among the flowers. From €55, Value: thedigitalyes.com/baby-shower/bunny-garden
+				57 link Description: Ahoy, It’s a Boy DREAMY Ahoy, It’s a Boy A little sailboat on its first voyage. From €55, Value: thedigitalyes.com/baby-shower/ahoy
+				58 link Description: Little Rainbow DREAMY Little Rainbow Soft colours after the sweetest wait. From €55, Value: thedigitalyes.com/baby-shower/rainbow
+				59 link Description: Duckling Pond ANIMALS Duckling Pond Little ducklings on a quiet pond. From €55, Value: thedigitalyes.com/baby-shower/duckling-pond
+				60 link Description: Boho Baby FLORAL Boho Baby Pampas, neutrals and boho calm. From €55, Value: thedigitalyes.com/baby-shower/boho-pampas
+				61 link Description: Sweet Pea FLORAL Sweet Pea Delicate blooms for a sweet little one. From €55, Value: thedigitalyes.com/baby-shower/sweet-pea
+				62 link Description: Little Cutie FLORAL Little Cutie Citrus sunshine for a little cutie. From €55, Value: thedigitalyes.com/baby-shower/little-cutie
+				63 link Description: Ready to Pop DREAMY Ready to Pop Balloons, joy and a countdown to baby. From €55, Value: thedigitalyes.com/baby-shower/ready-to-pop
+				64 link Description: Baby in Bloom FLORAL Baby in Bloom A garden blooming for baby. From €55, Value: thedigitalyes.com/baby-shower/baby-in-bloom
+				65 link Description: Noah’s Ark ANIMALS Noah’s Ark Two by two, everyone celebrates. From €55, Value: thedigitalyes.com/baby-shower/noahs-ark
+				66 link Description: Storybook DREAMY Storybook A new chapter, once upon a time. From €55, Value: thedigitalyes.com/baby-shower/storybook
+				67 link Description: Little Pumpkin FLORAL Little Pumpkin Autumn leaves for a little pumpkin. From €55, Value: thedigitalyes.com/baby-shower/little-pumpkin
+				68 link Description: Baby It’s Cold ANIMALS Baby It’s Cold A cuddly polar bear in the snow. From €55, Value: thedigitalyes.com/baby-shower/polar-bear
+			69 container How it works
+				70 heading How it works, Value: 2, ID: ev-how
+					71 text How it works
+				72 content list
+					73 container
+						74 text 1
+						75 heading Pick a card, Value: 3
+							76 text Pick a card
+						77 text Open the demos and choose your favourite.
+					78 container
+						79 text 2
+						80 heading Add your details, Value: 3
+							81 text Add your details
+						82 text Name(s), date, time, venue and any notes.
+					83 container
+						84 text 3
+						85 heading Share it, Value: 3
+							86 text Share it
+						87 text In 2–4 days you get your link, ready for WhatsApp.
+			88 heading Questions, Value: 2
+				89 text Questions
+			90 heading How long does it take?, Value: 3
+				91 text How long does it take?
+			92 text 2–4 days from your order.
+			93 heading How do guests open it?, Value: 3
+				94 text How do guests open it?
+			95 text With a link that works on any phone — no app needed.
+			96 heading What can be personalised?, Value: 3
+				97 text What can be personalised?
+			98 text Name(s), date, time and venue, plus any short note you want on the card.
+			99 heading Can I request a change?, Value: 3
+				100 text Can I request a change?
+			101 text Yes, reply to your confirmation email and we'll adjust it.
+			102 heading Do promo codes apply?, Value: 3
+				103 text Do promo codes apply?
+			104 text No, the price is fixed and promo codes or credit don't apply.
+			105 button See the designs
+		106 container
+			107 container Newsletter
+				108 heading Newsletter, Value: 2, ID: :r0:-t
+					109 text Newsletter
+				110 text A 4-email welcome in week one, then roughly one a week.
+				111 container
+					112 text The practical guide is free to read, no subscription needed.
+					113 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				114 container
+					115 text EMAIL
+					116 text field (settable) EMAIL
+					117 text EMAIL LANGUAGE
+					118 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						119 menu
+							120 Español
+							121 (selected) English
+							122 Français
+							123 Deutsch
+							124 Italiano
+							125 Português
+							126 Nederlands
+							127 العربية
+					128 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					129 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					130 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					131 button SUBSCRIBE
+			132 heading COLLECTIONS, Value: 4
+				133 text COLLECTIONS
+			134 content list
+				135 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				136 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				137 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				138 link Description: All designs, Value: thedigitalyes.com/designs
+				139 link Description: Pricing, Value: thedigitalyes.com/pricing
+				140 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				141 link Description: Essential, Value: thedigitalyes.com/essential
+				142 link Description: Premium, Value: thedigitalyes.com/premium
+				143 link Description: Excellence, Value: thedigitalyes.com/excellence
+				144 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				145 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				146 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				147 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			148 heading SERVICE, Value: 4
+				149 text SERVICE
+			150 content list
+				151 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				152 link Description: Our story, Value: thedigitalyes.com/our-story
+				153 link Description: Reviews, Value: thedigitalyes.com/reviews
+				154 link Description: Blog, Value: thedigitalyes.com/blog
+				155 link Description: Client portal, Value: thedigitalyes.com/clients
+			156 heading LEGAL, Value: 4
+				157 text LEGAL
+			158 content list
+				159 link Description: Terms, Value: thedigitalyes.com/terms
+				160 link Description: Privacy, Value: thedigitalyes.com/privacy
+				161 link Description: Refunds, Value: thedigitalyes.com/refunds
+			162 heading THE DIGITAL YES, Value: 4
+				163 text THE DIGITAL YES
+			164 content list
+				165 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			166 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea 3D Pop-Up Baby Shower Invitations | The Digital Yes, URL: thedigitalyes.com/baby-shower

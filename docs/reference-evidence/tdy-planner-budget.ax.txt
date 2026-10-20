@@ -1,0 +1,105 @@
+Browser tab: 6, Title: "Budget · Yes Planner", URL: "https://www.thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#dinero-partidas".
+0 AXWebArea Budget · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#dinero-partidas
+	1 container Sections
+		2 text Yes Planner
+		3 text The Digital Yes
+		4 container sideNav
+			145 button Search Ctrl K
+				146 text Search
+				147 text Ctrl K
+			148 button Summary
+			149 button Budget 93 %
+				150 text Budget
+				151 text 93 %
+			152 button Guests 104/159
+				153 text Guests
+				154 text 104/159
+			155 button Tasks 6/27
+				156 text Tasks
+				157 text 6/27
+			158 button Binder 4/56
+				159 text Binder
+				160 text 4/56
+		21 container sideCount
+			161 text Laura & Marc
+			162 text 328 days
+		24 button Wedding settings, ID: sideSet
+	25 container base
+		163 container
+			164 button Add item
+			165 button Read a quote
+		166 heading Budget, Value: 1
+			167 text Budget
+		168 text $48,000 for 150 guests
+		169 container
+			170 text Planned $44,864 of $48,000
+			171 text $3,136 left
+			172 image Breakdown by category
+			173 text Venue and reception Attire and beauty Photography and video Decor and flowers Music Rings Invitations and stationery Booked $4,614 Paid $1,164 To pay $3,450
+		174 tab group
+			175 tab (selected, settable, boolean) Items, Value: 1
+			176 tab (selectable, settable, boolean) Payments, Value: 0
+			177 tab (selectable, settable, boolean) Contracts, Value: 0
+			178 tab (selectable, settable, boolean) Compare, Value: 0
+		179 container
+			180 heading BY CATEGORY, Value: 2
+				181 text BY CATEGORY
+			182 button Venue and reception Finca Son Ribes $33,750 guide $25,440
+				183 text Venue and reception
+				184 text Finca Son Ribes
+				185 text $33,750
+				186 text guide $25,440
+			187 button Attire and beauty Wedding dress, Groom's suit $3,500 guide $4,800
+				188 text Attire and beauty
+				189 text Wedding dress, Groom's suit
+				190 text $3,500
+				191 text guide $4,800
+			192 button Photography and video Estudio Llum $2,900 guide $3,840
+				193 text Photography and video
+				194 text Estudio Llum
+				195 text $2,900
+				196 text guide $3,840
+			197 button Decor and flowers Flowers and decor $1,900 guide $2,880
+				198 text Decor and flowers
+				199 text Flowers and decor
+				200 text $1,900
+				201 text guide $2,880
+			202 button Music Sons de Nit $1,450 guide $2,400
+				203 text Music
+				204 text Sons de Nit
+				205 text $1,450
+				206 text guide $2,400
+			207 button Rings Wedding rings $1,100 guide $1,920
+				208 text Rings
+				209 text Wedding rings
+				210 text $1,100
+				211 text guide $1,920
+			212 button Invitations and stationery The Digital Yes $264 guide $960
+				213 text Invitations and stationery
+				214 text The Digital Yes
+				215 text $264
+				216 text guide $960
+			217 button Guest favours Nothing yet $0 guide $1,440
+				218 text Guest favours
+				219 text Nothing yet
+				220 text $0
+				221 text guide $1,440
+			222 button Transport Nothing yet $0 guide $1,440
+				223 text Transport
+				224 text Nothing yet
+				225 text $0
+				226 text guide $1,440
+			227 button Ceremony Nothing yet $0 guide $960
+				228 text Ceremony
+				229 text Nothing yet
+				230 text $0
+				231 text guide $960
+			232 button Contingency Nothing yet $0 guide $1,920
+				233 text Contingency
+				234 text Nothing yet
+				235 text $0
+				236 text guide $1,920
+			237 text The guide splits your budget the way couples in Spain do on average (Wedding Sector Report 2026).
+	144 button Get Yes Planner
+
+The focused UI element is 0 AXWebArea Budget · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#dinero-partidas

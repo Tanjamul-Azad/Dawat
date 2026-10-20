@@ -1,0 +1,250 @@
+Browser tab: 6, Title: "Binder · Yes Planner", URL: "https://www.thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#carpeta".
+0 AXWebArea Binder · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#carpeta
+	1 container Sections
+		2 text Yes Planner
+		3 text The Digital Yes
+		4 container sideNav
+			145 button Search Ctrl K
+				146 text Search
+				147 text Ctrl K
+			148 button Summary
+			149 button Budget 93 %
+				150 text Budget
+				151 text 93 %
+			152 button Guests 104/159
+				153 text Guests
+				154 text 104/159
+			155 button Tasks 6/27
+				156 text Tasks
+				157 text 6/27
+			158 button Binder 4/56
+				159 text Binder
+				160 text 4/56
+		21 container sideCount
+			161 text Laura & Marc
+			162 text 328 days
+		24 button Wedding settings, ID: sideSet
+	25 container base
+		163 button Create binder PDF
+		164 heading Binder, Value: 1
+			165 text Binder
+		166 text Everything you need on the big day, ready to print.
+		167 container
+			168 text Your wedding binder 4 of 56 sections with something prepared 443 items ready · 3 of 253 ticked Timelines, contacts, setup, packing and checklists with examples already written. Edit everything and bring it printed on the big day.
+			169 button Create printable PDF
+		170 container
+			171 heading USEFUL RIGHT NOW, Value: 2
+				172 text USEFUL RIGHT NOW
+			173 button Master timeline 8 entries
+				174 text Master timeline
+				175 text 8 entries
+			176 button Who to call 6 contacts
+				177 text Who to call
+				178 text 6 contacts
+			179 button Order of ceremony 14 steps
+				180 text Order of ceremony
+				181 text 14 steps
+		182 container
+			183 text Search the binder
+			184 search text field (settable) Search the binder, ID: cq
+		185 container
+			186 heading BIG DAY TIMELINES, Value: 2
+				187 text BIG DAY TIMELINES
+			188 button Master timeline 8 entries
+				189 text Master timeline
+				190 text 8 entries
+			191 button Rehearsal and dinner 6 entries
+				192 text Rehearsal and dinner
+				193 text 6 entries
+			194 button Ceremony 9 entries
+				195 text Ceremony
+				196 text 9 entries
+			197 button Reception and party 10 entries
+				198 text Reception and party
+				199 text 10 entries
+			200 button Bride's timeline 7 entries
+				201 text Bride's timeline
+				202 text 7 entries
+			203 button Groom's timeline 6 entries
+				204 text Groom's timeline
+				205 text 6 entries
+			206 button Wedding party timeline 6 entries
+				207 text Wedding party timeline
+				208 text 6 entries
+			209 button Hair and make-up 6 entries
+				210 text Hair and make-up
+				211 text 6 entries
+			212 button Guest timeline 7 entries
+				213 text Guest timeline
+				214 text 7 entries
+			215 button Supplier timeline 7 suppliers
+				216 text Supplier timeline
+				217 text 7 suppliers
+			218 button Setup timeline 7 entries
+				219 text Setup timeline
+				220 text 7 entries
+			221 button Transport 4 journeys
+				222 text Transport
+				223 text 4 journeys
+		224 container
+			225 heading CEREMONY AND PARTY, Value: 2
+				226 text CEREMONY AND PARTY
+			227 button Order of ceremony 14 steps
+				228 text Order of ceremony
+				229 text 14 steps
+			230 button Ceremony entrance 7 steps
+				231 text Ceremony entrance
+				232 text 7 steps
+			233 button Speeches 5 speeches
+				234 text Speeches
+				235 text 5 speeches
+			236 button Music 10 songs
+				237 text Music
+				238 text 10 songs
+			239 button Entertainment 4 activities
+				240 text Entertainment
+				241 text 4 activities
+			242 button If something goes wrong 7 plans
+				243 text If something goes wrong
+				244 text 7 plans
+		245 container
+			246 heading PEOPLE, Value: 2
+				247 text PEOPLE
+			248 button Wedding party and witnesses 7 people
+				249 text Wedding party and witnesses
+				250 text 7 people
+			251 button Parents and family 4 people
+				252 text Parents and family
+				253 text 4 people
+			254 button Who to call 6 contacts
+				255 text Who to call
+				256 text 6 contacts
+			257 button Gifts and thank-yous Thank-yous sent 0 of 10
+				258 text Gifts and thank-yous
+				259 text Thank-yous sent 0 of 10
+			260 button Suppliers 3 booked
+				261 text Suppliers
+				262 text 3 booked
+		263 container
+			264 heading LOCATIONS AND LOGISTICS, Value: 2
+				265 text LOCATIONS AND LOGISTICS
+			266 button Key locations 5 locations
+				267 text Key locations
+				268 text 5 locations
+			269 button Guest accommodation 2 of 4
+				270 text Guest accommodation
+				271 text 2 of 4
+			272 button Rentals 0 of 4
+				273 text Rentals
+				274 text 0 of 4
+			275 button Decor deliveries 0 of 5
+				276 text Decor deliveries
+				277 text 0 of 5
+			278 button Flower deliveries 0 of 7
+				279 text Flower deliveries
+				280 text 0 of 7
+		281 container
+			282 heading DECOR AND SETUP, Value: 2
+				283 text DECOR AND SETUP
+			284 button Setup instructions 0 of 30
+				285 text Setup instructions
+				286 text 0 of 30
+			287 button Decor inventory 0 of 5
+				288 text Decor inventory
+				289 text 0 of 5
+			290 button Stationery inventory 1 of 6
+				291 text Stationery inventory
+				292 text 1 of 6
+			293 button Palette and style 5 colours
+				294 text Palette and style
+				295 text 5 colours
+			296 button Attire and dress code 5 people
+				297 text Attire and dress code
+				298 text 5 people
+		299 container
+			300 heading FOOD AND DRINK, Value: 2
+				301 text FOOD AND DRINK
+			302 button Reception menu 7 dishes
+				303 text Reception menu
+				304 text 7 dishes
+			305 button Drinks and bar 7 drinks
+				306 text Drinks and bar
+				307 text 7 drinks
+		308 container
+			309 heading PHOTOS AND VIDEO, Value: 2
+				310 text PHOTOS AND VIDEO
+			311 button Shot list 0 of 26
+				312 text Shot list
+				313 text 0 of 26
+			314 button Photo timeline 8 entries
+				315 text Photo timeline
+				316 text 8 entries
+			317 button Video timeline 6 entries
+				318 text Video timeline
+				319 text 6 entries
+		320 container
+			321 heading PACKING, Value: 2
+				322 text PACKING
+			323 button Bride's bag 0 of 10
+				324 text Bride's bag
+				325 text 0 of 10
+			326 button Bridesmaids' bag 0 of 7
+				327 text Bridesmaids' bag
+				328 text 0 of 7
+			329 button Groom's bag 0 of 9
+				330 text Groom's bag
+				331 text 0 of 9
+			332 button For the ceremony 0 of 8
+				333 text For the ceremony
+				334 text 0 of 8
+			335 button For the reception 0 of 8
+				336 text For the reception
+				337 text 0 of 8
+			338 button Emergency kit 0 of 12
+				339 text Emergency kit
+				340 text 0 of 12
+			341 button Other things 0 of 6
+				342 text Other things
+				343 text 0 of 6
+			344 button Wedding night 0 of 6
+				345 text Wedding night
+				346 text 0 of 6
+			347 button At the end of the night 0 of 7
+				348 text At the end of the night
+				349 text 0 of 7
+		350 container
+			351 heading CHECKLISTS, Value: 2
+				352 text CHECKLISTS
+			353 button What to book and buy 0 of 17
+				354 text What to book and buy
+				355 text 0 of 17
+			356 button Ceremony 0 of 10
+				357 text Ceremony
+				358 text 0 of 10
+			359 button Reception 0 of 10
+				360 text Reception
+				361 text 0 of 10
+			362 button Final week 0 of 10
+				363 text Final week
+				364 text 0 of 10
+			365 button Hen and stag parties 0 of 7
+				366 text Hen and stag parties
+				367 text 0 of 7
+			368 button Rehearsal dinner 0 of 6
+				369 text Rehearsal dinner
+				370 text 0 of 6
+			371 button Honeymoon 0 of 9
+				372 text Honeymoon
+				373 text 0 of 9
+			374 button Decor 0 of 9
+				375 text Decor
+				376 text 0 of 9
+			377 button Stationery 0 of 8
+				378 text Stationery
+				379 text 0 of 8
+			380 button After the wedding 0 of 7
+				381 text After the wedding
+				382 text 0 of 7
+	144 button Get Yes Planner
+
+The focused UI element is 0 AXWebArea Binder · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#carpeta

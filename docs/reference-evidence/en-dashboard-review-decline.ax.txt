@@ -1,0 +1,119 @@
+Browser tab: 8, Title: "Azad Raval & Jyoti Majila — Wedding Invitation", URL: "https://www.e-nimontron.com/templates/royal-scroll.html".
+0 AXWebArea Azad Raval & Jyoti Majila — Wedding Invitation, URL: e-nimontron.com/templates/royal-scroll.html
+	1 image petalsCanvas
+	2 container
+		3 container hero
+			4 container
+				5 text Together with families
+				6 heading A z a d R a v a l, Value: 1, ID: groomName
+					7 container
+						8 text A z a d
+					9 container
+						10 text R a v a l
+				11 text &
+				12 heading J y o t i M a j i l a, Value: 1, ID: brideName
+					13 container
+						14 text J y o t i
+					15 container
+						16 text M a j i l a
+				17 text Heartily invite you to be part of the celebration of their joyful union
+			18 image Bride and groom
+		19 container
+			20 text With the blessings of our families,
+			21 text we joyfully invite you to celebrate
+		22 container families
+			23 container groomFam
+				24 text THE GROOM
+				25 text Son of Mr. Harish Raval & Mrs. Meena Raval
+			26 text &
+			27 container brideFam
+				28 text THE BRIDE
+				29 text Daughter of Mr. Suresh Majila & Mrs. Kavita Majila
+		30 container dateRow
+			31 text DECEMBER
+			32 text 31
+			33 text 7:00 PM
+		34 container
+			35 text Save The Date SCRATCH TO REVEAL
+			36 container
+				37 text Thursday, 31 December 2026 7:00 PM onwards
+			38 image
+		39 text INTERNATIONAL CONVENTION CITY BASHUNDHARA
+		40 text Kuril, Purbachal Express Highway, Dhaka 1229, Bangladesh
+		41 text — COUNTING DOWN —
+		42 text 0
+		43 text DAYS until your dream wedding
+		44 container cd-cell-days
+			45 text 00
+			46 text DAYS
+		47 container cd-cell-hrs
+			48 text 00
+			49 text HOURS
+		50 container cd-cell-mins
+			51 text 00
+			52 text MINS
+		53 container cd-cell-secs
+			54 text 00
+			55 text SECS
+		56 container
+			57 text A
+			58 text &
+			59 text J
+		60 text WITH BLESSINGS · FOREVER
+		61 container invite-widgets
+			62 container
+				63 text Our Moments CAPTURED TOGETHER
+				64 container Photo slideshow
+					65 container
+						66 image Photo 1 of 4
+						67 text 1  / 4
+					68 button Previous photo
+						69 image
+					70 button Next photo
+						71 image
+				72 button Photo 1
+				73 button Photo 2
+				74 button Photo 3
+				75 button Photo 4
+			76 text Join Us
+			77 button MAP
+				78 image
+				79 text MAP
+			80 button CALENDAR
+				81 image
+				82 text CALENDAR
+			83 text Kindly RSVP
+			84 text WE HOPE YOU CAN CELEBRATE WITH US
+			85 container w-rsvp-form
+				86 text YOUR NAME
+				87 text field (settable) YOUR NAME, ID: w-rsvp-name
+				88 text WILL YOU ATTEND?
+				89 container
+					90 radio button (settable, integer) Description: JOYFULLY, Value: 0
+					91 text JOYFULLY
+				92 container
+					93 radio button (settable, integer) Description: SADLY NO, Value: 1
+					94 text SADLY NO
+				95 text NUMBER OF GUESTS (0–10)
+				96 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+				97 button SEND RSVP
+			98 text Send Your Wishes
+			99 text LEAVE A PRIVATE MESSAGE
+			100 container w-wish-form
+				101 text Send your wish
+				102 text Your message stays private — it won't be shown here publicly
+				103 text YOUR NAME
+				104 text field (settable) YOUR NAME, ID: w-wish-name
+				105 text YOUR MESSAGE
+				106 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+				107 container
+					108 image
+					109 text ADD A PHOTO (OPTIONAL)
+				110 button ADD YOUR WISH
+			111 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+			112 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+			113 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	117 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		118 image
+
+The focused UI element is 93 radio button (settable, integer) Description: SADLY NO, Value: 1

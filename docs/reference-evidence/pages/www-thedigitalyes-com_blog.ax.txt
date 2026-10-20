@@ -1,0 +1,113 @@
+Browser tab: 3, Title: "Blog | Digital Wedding Invitations — The Digital Yes", URL: "https://www.thedigitalyes.com/blog".
+1 AXWebArea Blog | Digital Wedding Invitations — The Digital Yes, URL: thedigitalyes.com/blog
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 container
+			21 text THE BLOG
+			22 heading Digital Wedding Invitations, Value: 1
+				23 text Digital Wedding Invitations
+			24 text Guides, ideas and comparisons to design the perfect digital wedding invitation.
+			25 link Value: thedigitalyes.com/blog/electronic-wedding-invitations, Description: La Maison Dorée electronic wedding invitation open on a phone GUIDES, 4 MIN Electronic Wedding Invitations: The Complete Guide to E-Invites “E-invite”, “electronic invitation”, “virtual invitation”, “digital invitation”: four names for the same idea, but not for the same quality. Here is what separates a forwarded image from a real wedding invitation, and how to choose.
+			26 link Value: thedigitalyes.com/blog/whatsapp-wedding-invitations-without-group-chat, Description: Maison Dorée digital wedding invitation shared privately on WhatsApp HOW-TO, 4 MIN How to Send Wedding Invitations on WhatsApp Without a Group Chat A wedding invitation is personal. Here is how to deliver it privately at scale, avoid reply-all noise and keep every RSVP in one reliable place.
+			27 link Value: thedigitalyes.com/blog/save-the-date-whatsapp-messages, Description: Bella Vista digital Save the Date ready to share by WhatsApp SAVE THE DATE, 4 MIN Save the Date by WhatsApp: 10 Messages You Can Copy A Save the Date message should make the date unmistakable and the reply pressure low. Here are ten adaptable texts and the practical sending rules that matter.
+			28 link Value: thedigitalyes.com/blog/como-enviar-invitaciones-boda-whatsapp, Description: Wedding invitation shared via WhatsApp preview HOW-TO, 5 MIN How to Send Your Wedding Invitation by WhatsApp, Step by Step A practical walk-through: share the invitation link, check how it looks before sending, two short messages you can copy, and where to read the RSVPs afterwards.
+			29 link Value: thedigitalyes.com/blog/ideas-invitaciones-boda, Description: Rosas wedding invitation idea INSPIRATION, 2 MIN 30 Wedding Invitation Ideas That Don't Feel Generic Thirty real ideas — from animated envelopes to song trailers — to make a digital wedding invitation feel like yours and not like a Pinterest reshare.
+			30 link Value: thedigitalyes.com/blog/ejemplos-invitaciones-boda-digitales, Description: La Maison Dorée digital wedding invitation example INSPIRATION, 2 MIN 20 Real Digital Wedding Invitation Examples to Inspire You Twenty real digital wedding invitation examples — from minimalist black and white to fully animated Mediterranean — with the design choices behind each one.
+			31 link Value: thedigitalyes.com/blog/plantillas-invitaciones-boda-gratis-vs-personalizadas, Description: Royal custom digital wedding invitation by The Digital Yes COMPARISON, 2 MIN Free vs Custom Digital Wedding Invitations: When Is It Worth Paying? Canva templates are free. Custom digital invitations cost money. Here is the honest comparison — design, RSVP, time and the moment paying actually pays off.
+			32 link Value: thedigitalyes.com/blog/animated-wedding-invitation, Description: Teatro template — animated wedding invitation with theatrical curtain rise DESIGN, 1 MIN Animated Wedding Invitations: 7 Effects That Consistently Wow Guests Used right, animation turns an invitation into a moment. Used wrong, it turns a beautiful design into a battery-draining mess. Here are the seven effects that work.
+			33 link Value: thedigitalyes.com/blog/how-to-follow-up-non-rsvps, Description: RSVP, 1 MIN How to Follow Up on Wedding RSVPs Without Being Annoying Around 20% of guests will not respond to your first RSVP request. Here are the exact messages — by channel and by week — that get answers without damaging relationships.
+			34 link Value: thedigitalyes.com/blog/personalized-wedding-invitation-ideas, Description: La Finca template — personalized digital wedding invitation with your venue illustrated PERSONALIZATION, 2 MIN Personalized Wedding Invitations: 12 Ideas Beyond Putting Your Names On It Adding your names to a template is not personalization. Here are twelve genuine ways to make a digital wedding invitation feel made for you.
+			35 link Value: thedigitalyes.com/blog/destination-wedding-invitation-tips, Description: Aventureros template — destination wedding invitation with travel theme DESTINATION, 1 MIN Destination Wedding Invitations: The 2026 Complete Guide A destination wedding invitation has to do more work — it's selling a trip, not just an event. Here is the complete playbook so guests say yes and book the flight.
+			36 link Value: thedigitalyes.com/blog/minimalist-wedding-invitation, Description: Minimalist digital wedding invitation — clean modern typography DESIGN, 1 MIN Minimalist Wedding Invitations: The 2026 Design Principles Minimal isn't bare. It's earned. Here is what separates a confident minimalist wedding invitation from one that just looks unfinished.
+			37 link Value: thedigitalyes.com/blog/luxury-wedding-invitation, Description: Excellence luxury digital wedding invitation — fully bespoke LUXURY, 1 MIN Luxury Digital Wedding Invitations: The 2026 Definitive Guide True luxury isn't a price tag — it's restraint, craftsmanship and details no guest expects. Here is what separates a luxury digital wedding invitation from a pretty one.
+			38 link Value: thedigitalyes.com/blog/multilingual-wedding-invitation, Description: Royal multilingual digital wedding invitation in 8 languages INTERNATIONAL, 1 MIN Multilingual Wedding Invitations: How to Do It Right If your wedding crosses languages, your invitation should too — without making anyone use Google Translate. Here's how to do it elegantly.
+			39 link Value: thedigitalyes.com/blog/save-the-date-digital, Description: SAVE THE DATE, 1 MIN Digital Save the Date: The Complete 2026 Guide with Examples A save the date is the warm-up. Done well, it builds anticipation for months. Here is what to include, when to send and three ready-to-use templates.
+			40 link Value: thedigitalyes.com/blog/mobile-friendly-wedding-invitation, Description: Minimalist digital wedding invitation displayed on a smartphone TECHNICAL, 3 MIN Mobile-Friendly Wedding Invitations: How to Test Yours Before Sending Most guests will receive your invitation as a link in a chat, so they will probably open it on a phone. Rather than trusting that it “fits the screen”, run these checks yourselves — as a guest would — before you share it.
+			41 link Value: thedigitalyes.com/blog/themed-wedding-invitation-design, Description: Teatro digital wedding invitation — theatrical themed design with red velvet curtains DESIGN, 1 MIN Themed Wedding Invitation Design: 10 Ideas That Actually Work A themed wedding invitation tells your story before the ceremony begins. Here are ten directions that consistently land — with real examples from couples who got it right.
+			42 link Value: thedigitalyes.com/blog/video-wedding-invitation, Description: La Finca animated digital wedding invitation — venue brought to life DESIGN, 1 MIN Video Wedding Invitations: How to Create One That Actually Wows Guests A great video wedding invitation gets shared in family WhatsApp groups in under an hour. Here's the formula — length, music, animation style — and the mistakes that turn a beautiful video into 12MB nobody opens.
+			43 link Value: thedigitalyes.com/blog/are-digital-wedding-invitations-tacky, Description: Majestic luxury digital wedding invitation — proof that digital can be high-end ETIQUETTE, 1 MIN Are Digital Wedding Invitations Tacky? An Honest Answer for 2026 Five years ago, the answer was 'maybe'. Today, luxury venues actively recommend them. Here's why the perception has flipped — and the only scenarios where paper still wins.
+			44 link Value: thedigitalyes.com/blog/wedding-invitation-cost-breakdown, Description: Excellence template — fully bespoke digital wedding invitation BUDGET, 3 MIN Digital Wedding Invitation Cost: What You Actually Pay One price per wedding, not per guest. Here is exactly what is included at each level, what the optional extras cost, and three worked examples so you can budget with real numbers.
+			45 link Value: thedigitalyes.com/blog/how-far-in-advance-send-digital-wedding-invitations, Description: PLANNING, 1 MIN When to Send Digital Wedding Invitations: The Full 2026 Timeline Send too early and guests forget. Too late and they have plans. Here is the exact week-by-week timeline for sending digital wedding invitations in every scenario.
+			46 link Value: thedigitalyes.com/blog/rsvp-digital-wedding-invitation, Description: Day & Night digital wedding invitation with built-in RSVP form RSVP, 2 MIN RSVP for Digital Wedding Invitations: Best Practices in 2026 A digital wedding invitation lives or dies by its RSVP. Here is how the RSVP works inside the invitation itself, which questions are worth asking, and how the whole order works from design to your private portal.
+			47 link Value: thedigitalyes.com/blog/how-to-word-digital-wedding-invitation, Description: Editorial digital wedding invitation template — magazine-style typography WORDING, 1 MIN Digital Wedding Invitation Wording: 12 Examples That Actually Work The wording on your digital wedding invitation sets the tone before any guest sees the venue. Here are 12 ready-to-use examples for every style — formal, modern, intimate and bilingual.
+			48 link Value: thedigitalyes.com/blog/digital-vs-printed-wedding-invitations, Description: Majestic digital wedding invitation template — modern alternative to printed invites COMPARISONS, 3 MIN Digital vs Printed Wedding Invitations: An Honest 2026 Comparison Paper invitations look beautiful in a frame. Digital wedding invitations get answered faster and cost a fraction. Here's the honest, no-bias comparison so you can decide what fits your wedding.
+			49 link Value: thedigitalyes.com/blog/what-to-include-digital-wedding-invitation, Description: Royal digital wedding invitation by The Digital Yes — example of a complete digital invite PLANNING, 2 MIN What to Include in a Digital Wedding Invitation: The Complete Checklist A digital wedding invitation is more than a save the date — it's the first chapter of your wedding. Here is exactly what every couple should include so guests have every answer before they ask.
+		50 container
+			51 container Newsletter
+				52 heading Newsletter, Value: 2, ID: :r0:-t
+					53 text Newsletter
+				54 text A 4-email welcome in week one, then roughly one a week.
+				55 container
+					56 text The practical guide is free to read, no subscription needed.
+					57 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				58 container
+					59 text EMAIL
+					60 text field (settable) EMAIL
+					61 text EMAIL LANGUAGE
+					62 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						63 menu
+							64 Español
+							65 (selected) English
+							66 Français
+							67 Deutsch
+							68 Italiano
+							69 Português
+							70 Nederlands
+							71 العربية
+					72 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					73 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					74 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					75 button SUBSCRIBE
+			76 heading COLLECTIONS, Value: 4
+				77 text COLLECTIONS
+			78 content list
+				79 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				80 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				81 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				82 link Description: All designs, Value: thedigitalyes.com/designs
+				83 link Description: Pricing, Value: thedigitalyes.com/pricing
+				84 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				85 link Description: Essential, Value: thedigitalyes.com/essential
+				86 link Description: Premium, Value: thedigitalyes.com/premium
+				87 link Description: Excellence, Value: thedigitalyes.com/excellence
+				88 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				89 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				90 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				91 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			92 heading SERVICE, Value: 4
+				93 text SERVICE
+			94 content list
+				95 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				96 link Description: Our story, Value: thedigitalyes.com/our-story
+				97 link Description: Reviews, Value: thedigitalyes.com/reviews
+				98 link Description: Blog, Value: thedigitalyes.com/blog
+				99 link Description: Client portal, Value: thedigitalyes.com/clients
+			100 heading LEGAL, Value: 4
+				101 text LEGAL
+			102 content list
+				103 link Description: Terms, Value: thedigitalyes.com/terms
+				104 link Description: Privacy, Value: thedigitalyes.com/privacy
+				105 link Description: Refunds, Value: thedigitalyes.com/refunds
+			106 heading THE DIGITAL YES, Value: 4
+				107 text THE DIGITAL YES
+			108 content list
+				109 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			110 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Blog | Digital Wedding Invitations — The Digital Yes, URL: thedigitalyes.com/blog

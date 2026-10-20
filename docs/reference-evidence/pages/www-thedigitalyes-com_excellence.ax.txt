@@ -1,0 +1,128 @@
+Browser tab: 3, Title: "Excellence plan · €975 | The Digital Yes", URL: "https://www.thedigitalyes.com/excellence".
+1 AXWebArea Excellence plan · €975 | The Digital Yes, URL: thedigitalyes.com/excellence
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 container
+			21 text BESPOKE
+			22 heading Excellence · €975, Value: 1
+				23 text Excellence  ·  €975
+			24 text ONE-TIME PAYMENT · NO SUBSCRIPTION · NO HIDDEN FEES
+			25 text A bespoke invitation designed from scratch. Any collection design is only a starting point of inspiration, never the base.
+			26 button Start with this plan
+			27 link Description: See the designs, Value: thedigitalyes.com/designs
+			28 heading Designed from scratch, only for you, Value: 3
+				29 text Designed from scratch, only for you
+			30 heading Exclusive illustrations and animations, Value: 3
+				31 text Exclusive illustrations and animations
+			32 heading Custom Save the Date included, Value: 3
+				33 text Custom Save the Date included
+			34 heading 7 rounds of design revisions, Value: 3
+				35 text 7 rounds of design revisions
+			36 text IN DETAIL
+			37 heading What we do in this plan, Value: 2
+				38 text What we do in this plan
+			39 content list
+				40 text Everything in Premium, plus an editorial art direction built around your wedding.
+				41 text Exclusive illustrations and animations produced for you and never reused.
+				42 text Express delivery does not apply to Excellence.
+				43 text Ideal for destination weddings and highly personal concepts.
+			44 text Standard turnaround of 7–14 days from the moment we receive your information.
+			45 text COMPARE
+			46 heading The other two plans, Value: 2
+				47 text The other two plans
+			48 container
+				49 text TEMPLATE ESSENTIAL €175
+				50 content list
+					51 text The template as shown in the demo
+					52 text Your names, photos, venue and details
+					53 text RSVP, guest dashboard and client portal
+					54 text 2 rounds of design revisions
+				55 link Description: See this plan, Value: thedigitalyes.com/essential
+			56 container
+				57 text REDESIGNED PREMIUM €575
+				58 content list
+					59 text Cover and interior redesigned for you
+					60 text Venue illustration, video, music and monogram
+					61 text Save the Date included
+					62 text 4 rounds of design revisions
+				63 link Description: See this plan, Value: thedigitalyes.com/premium
+			64 link Description: Full comparison, Value: thedigitalyes.com/pricing
+		65 container
+			66 container Newsletter
+				67 heading Newsletter, Value: 2, ID: :r0:-t
+					68 text Newsletter
+				69 text A 4-email welcome in week one, then roughly one a week.
+				70 container
+					71 text The practical guide is free to read, no subscription needed.
+					72 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				73 container
+					74 text EMAIL
+					75 text field (settable) EMAIL
+					76 text EMAIL LANGUAGE
+					77 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						78 menu
+							79 Español
+							80 (selected) English
+							81 Français
+							82 Deutsch
+							83 Italiano
+							84 Português
+							85 Nederlands
+							86 العربية
+					87 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					88 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					89 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					90 button SUBSCRIBE
+			91 heading COLLECTIONS, Value: 4
+				92 text COLLECTIONS
+			93 content list
+				94 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				95 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				96 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				97 link Description: All designs, Value: thedigitalyes.com/designs
+				98 link Description: Pricing, Value: thedigitalyes.com/pricing
+				99 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				100 link Description: Essential, Value: thedigitalyes.com/essential
+				101 link Description: Premium, Value: thedigitalyes.com/premium
+				102 link Description: Excellence, Value: thedigitalyes.com/excellence
+				103 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				104 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				105 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				106 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			107 heading SERVICE, Value: 4
+				108 text SERVICE
+			109 content list
+				110 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				111 link Description: Our story, Value: thedigitalyes.com/our-story
+				112 link Description: Reviews, Value: thedigitalyes.com/reviews
+				113 link Description: Blog, Value: thedigitalyes.com/blog
+				114 link Description: Client portal, Value: thedigitalyes.com/clients
+			115 heading LEGAL, Value: 4
+				116 text LEGAL
+			117 content list
+				118 link Description: Terms, Value: thedigitalyes.com/terms
+				119 link Description: Privacy, Value: thedigitalyes.com/privacy
+				120 link Description: Refunds, Value: thedigitalyes.com/refunds
+			121 heading THE DIGITAL YES, Value: 4
+				122 text THE DIGITAL YES
+			123 content list
+				124 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			125 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Excellence plan · €975 | The Digital Yes, URL: thedigitalyes.com/excellence

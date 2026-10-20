@@ -1,0 +1,94 @@
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"
+- main:
+  - button "EN"
+  - button "IT"
+  - button:
+  - paragraph: You are cordially invited to celebrate the wedding of
+  - heading "Sam" [level=1]
+  - generic: "&"
+  - heading "Sofía" [level=1]
+  - paragraph: We would like to invite you to celebrate with us the most special day of our lives. It would be an honor to have you present at this important moment.
+  - paragraph: Scroll
+  - paragraph: Scratch all three circles to continue
+  - heading "Reveal" [level=2]
+  - paragraph: Scratch to discover the date
+  - generic: "10"
+  - generic: Sept
+  - generic: "2027"
+  - heading "Countdown" [level=2]
+  - generic: "12"
+  - generic: Days
+  - generic: "01"
+  - generic: Hours
+  - generic: "38"
+  - generic: Min
+  - generic: "51"
+  - generic: Sec
+  - paragraph: until the big day
+  - paragraph: The celebration will take place at
+  - img "Venue Illustration"
+  - heading "Villa Medicea di Artimino" [level=2]
+  - paragraph: Via di Papa Leone X, 28
+  - paragraph: Artimino, Florencia
+  - paragraph: September 10, 2027
+  - paragraph: Reception to Follow
+  - heading "Aperitivo" [level=3]
+  - paragraph: Selección de antipasti toscanos
+  - paragraph: Bruschetta, crostini & affettati misti
+  - heading "Primo" [level=3]
+  - paragraph: Risotto al tartufo nero di Norcia
+  - paragraph: con parmigiano reggiano 24 mesi
+  - heading "Secondo" [level=3]
+  - paragraph: Filetto di manzo alla griglia
+  - paragraph: con salsa al vino rosso e verdure di stagione
+  - heading "Dolce" [level=3]
+  - paragraph: Torta nuziale con crema di mascarpone
+  - paragraph: e frutti di bosco freschi
+  - paragraph: Vini della Tenuta
+  - heading "Dress Code" [level=2]
+  - img "Dress Code Illustration"
+  - paragraph: We invite you to dress elegantly and formally to celebrate this special day with us.
+  - paragraph: Formal Attire
+  - paragraph: Please avoid wearing white
+  - paragraph: Wedding registry
+  - img "Regalo"
+  - heading "Gifts" [level=2]
+  - paragraph: Your presence is the best gift we could receive. However, if you wish to contribute to our new life together, you can do so via bank transfer.
+  - paragraph: With all our love
+  - paragraph: Bank details
+  - paragraph: "ACCOUNT HOLDER: SAM & SOFIA"
+  - paragraph: "IBAN: ES00 0000 0000 0000 0000 0000"
+  - paragraph: "REFERENCE: Sam & Sofia Wedding"
+  - paragraph: How to get there
+  - heading "Transport" [level=2]
+  - paragraph: We have organized buses from the center of Florence to the villa so you can enjoy the celebration without worries.
+  - paragraph: Bus departure
+  - paragraph: Piazza della Signoria
+  - paragraph: 16:00h
+  - paragraph: Return to Florence
+  - paragraph: 02:00h
+  - paragraph: Please indicate in your RSVP if you need transport
+  - img "Foto de los novios con marco decorativo"
+  - generic: This form is fully customizable to your needs
+  - img "RSVP icon"
+  - heading "Confirm your attendance" [level=2]
+  - textbox
+  - generic: Full Name *
+  - textbox "Full Name *":
+    - /placeholder: Your name
+  - generic: Email (optional)
+  - textbox "Email (optional)":
+    - /placeholder: your@email.com
+  - generic: Will you attend? *
+  - button "Yes, I'll be there!"
+  - button "No, I can't make it" [active]
+  - generic: Message for the couple (optional)
+  - textbox "Message for the couple (optional)":
+    - /placeholder: Write us a few words...
+  - button "Confirm":
+    - text: Confirm
+  - heading "Thank You" [level=2]
+  - paragraph: For joining us on this special day. Your presence is the best gift we could receive.
+  - paragraph: Sam & Sofía

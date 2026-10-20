@@ -1,0 +1,760 @@
+[
+  {
+    "url": "https://www.thedigitalyes.com/demo/lace",
+    "file": "pages/www-thedigitalyes-com_demo_lace.ax.txt",
+    "characters": 6766,
+    "heading": "25 heading LACE, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/embroidered-garden",
+    "file": "pages/www-thedigitalyes-com_demo_embroidered-garden.ax.txt",
+    "characters": 6954,
+    "heading": "25 heading Embroidered Garden, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/mother-of-pearl",
+    "file": "pages/www-thedigitalyes-com_demo_mother-of-pearl.ax.txt",
+    "characters": 14979,
+    "heading": "25 heading Mother of Pearl, Value: 1",
+    "embedded": [
+      "35 AXWebArea Alessia & Matteo · Lake Como Wedding 2027, URL: motherofpearl.thedigitalyes.com/?embed=1"
+    ]
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/fresco",
+    "file": "pages/www-thedigitalyes-com_demo_fresco.ax.txt",
+    "characters": 15058,
+    "heading": "25 heading Fresco, Value: 1",
+    "embedded": [
+      "33 AXWebArea Diana & Richard, URL: fresco-template.thedigitalyes.com/?embed=1"
+    ]
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/stained-glass",
+    "file": "pages/www-thedigitalyes-com_demo_stained-glass.ax.txt",
+    "characters": 14719,
+    "heading": "25 heading Stained Glass, Value: 1",
+    "embedded": [
+      "34 AXWebArea Bloom Template, URL: 13-15-stainedglass-template.thedigitalyes.com/?embed=1"
+    ]
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/royal",
+    "file": "pages/www-thedigitalyes-com_demo_royal.ax.txt",
+    "characters": 6708,
+    "heading": "25 heading Royal, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/daynight",
+    "file": "pages/www-thedigitalyes-com_demo_daynight.ax.txt",
+    "characters": 6836,
+    "heading": "25 heading Day & Night, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/finca",
+    "file": "pages/www-thedigitalyes-com_demo_finca.ax.txt",
+    "characters": 6785,
+    "heading": "25 heading La Finca, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/maison-doree",
+    "file": "pages/www-thedigitalyes-com_demo_maison-doree.ax.txt",
+    "characters": 6853,
+    "heading": "25 heading La Maison Dorée, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/majestic",
+    "file": "pages/www-thedigitalyes-com_demo_majestic.ax.txt",
+    "characters": 6768,
+    "heading": "25 heading Majestic, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/teatro",
+    "file": "pages/www-thedigitalyes-com_demo_teatro.ax.txt",
+    "characters": 13339,
+    "heading": "25 heading Teatro, Value: 1",
+    "embedded": [
+      "33 AXWebArea Theatre Template Demo, URL: template-teatro.thedigitalyes.com/?embed=1"
+    ]
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/bella-vista",
+    "file": "pages/www-thedigitalyes-com_demo_bella-vista.ax.txt",
+    "characters": 12886,
+    "heading": "25 heading Bella Vista, Value: 1",
+    "embedded": [
+      "34 AXWebArea Toscana Template, URL: bellavista-template.thedigitalyes.com/?embed=1"
+    ]
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/villa-perle",
+    "file": "pages/www-thedigitalyes-com_demo_villa-perle.ax.txt",
+    "characters": 6786,
+    "heading": "25 heading Villa Perlé, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/cap-blanc",
+    "file": "pages/www-thedigitalyes-com_demo_cap-blanc.ax.txt",
+    "characters": 17238,
+    "heading": "25 heading Cap Blanc, Value: 1",
+    "embedded": [
+      "34 AXWebArea Bloom Template, URL: cap-blanc-template.thedigitalyes.com/?embed=1"
+    ]
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/prestige",
+    "file": "pages/www-thedigitalyes-com_demo_prestige.ax.txt",
+    "characters": 6798,
+    "heading": "25 heading Prestige, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/eleganza",
+    "file": "pages/www-thedigitalyes-com_demo_eleganza.ax.txt",
+    "characters": 6631,
+    "heading": "25 heading Eleganza, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/bellagio",
+    "file": "pages/www-thedigitalyes-com_demo_bellagio.ax.txt",
+    "characters": 6716,
+    "heading": "25 heading Bellagio, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/secret-garden",
+    "file": "pages/www-thedigitalyes-com_demo_secret-garden.ax.txt",
+    "characters": 12311,
+    "heading": "25 heading Secret Garden, Value: 1",
+    "embedded": [
+      "34 AXWebArea Save the Date, URL: template-secretgarden.thedigitalyes.com/?embed=1"
+    ]
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/odette",
+    "file": "pages/www-thedigitalyes-com_demo_odette.ax.txt",
+    "characters": 15544,
+    "heading": "25 heading Odette, Value: 1",
+    "embedded": [
+      "34 AXWebArea Wedding Waleed and Julia, URL: template-odette.thedigitalyes.com/?embed=1"
+    ]
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/papercraft",
+    "file": "pages/www-thedigitalyes-com_demo_papercraft.ax.txt",
+    "characters": 6754,
+    "heading": "25 heading Papercraft, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/bridgerton",
+    "file": "pages/www-thedigitalyes-com_demo_bridgerton.ax.txt",
+    "characters": 6701,
+    "heading": "25 heading Bridgerton, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/boho",
+    "file": "pages/www-thedigitalyes-com_demo_boho.ax.txt",
+    "characters": 6697,
+    "heading": "25 heading Boho, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/minimal-fun",
+    "file": "pages/www-thedigitalyes-com_demo_minimal-fun.ax.txt",
+    "characters": 6879,
+    "heading": "25 heading Minimal Fun, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/beach",
+    "file": "pages/www-thedigitalyes-com_demo_beach.ax.txt",
+    "characters": 6725,
+    "heading": "25 heading Beach, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/africa",
+    "file": "pages/www-thedigitalyes-com_demo_africa.ax.txt",
+    "characters": 6809,
+    "heading": "25 heading Africa, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/rosas",
+    "file": "pages/www-thedigitalyes-com_demo_rosas.ax.txt",
+    "characters": 6581,
+    "heading": "25 heading Rosas, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/editorial",
+    "file": "pages/www-thedigitalyes-com_demo_editorial.ax.txt",
+    "characters": 6654,
+    "heading": "25 heading Editorial, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/bloom",
+    "file": "pages/www-thedigitalyes-com_demo_bloom.ax.txt",
+    "characters": 6727,
+    "heading": "25 heading Bloom, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/dolce-vita",
+    "file": "pages/www-thedigitalyes-com_demo_dolce-vita.ax.txt",
+    "characters": 6811,
+    "heading": "25 heading Dolce Vita, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/nautical",
+    "file": "pages/www-thedigitalyes-com_demo_nautical.ax.txt",
+    "characters": 6871,
+    "heading": "25 heading Nautical Edition, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/mediterranean-edition",
+    "file": "pages/www-thedigitalyes-com_demo_mediterranean-edition.ax.txt",
+    "characters": 6806,
+    "heading": "25 heading Mediterranean, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/floral",
+    "file": "pages/www-thedigitalyes-com_demo_floral.ax.txt",
+    "characters": 6606,
+    "heading": "25 heading Floral, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/dulce-amor",
+    "file": "pages/www-thedigitalyes-com_demo_dulce-amor.ax.txt",
+    "characters": 6576,
+    "heading": "25 heading Dulce Amor, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/minimal",
+    "file": "pages/www-thedigitalyes-com_demo_minimal.ax.txt",
+    "characters": 6660,
+    "heading": "25 heading Minimalista, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/demo/aventureros",
+    "file": "pages/www-thedigitalyes-com_demo_aventureros.ax.txt",
+    "characters": 6712,
+    "heading": "25 heading Aventureros, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/photobooth",
+    "file": "pages/www-thedigitalyes-com_save-the-date_photobooth.ax.txt",
+    "characters": 8190,
+    "heading": "43 heading Photobooth, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/heartfold",
+    "file": "pages/www-thedigitalyes-com_save-the-date_heartfold.ax.txt",
+    "characters": 8128,
+    "heading": "43 heading Heartfold, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/the-lovebirds",
+    "file": "pages/www-thedigitalyes-com_save-the-date_the-lovebirds.ax.txt",
+    "characters": 8168,
+    "heading": "43 heading The Lovebirds, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/photo-scratch",
+    "file": "pages/www-thedigitalyes-com_save-the-date_photo-scratch.ax.txt",
+    "characters": 8162,
+    "heading": "43 heading Photo Scratch, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/majestic",
+    "file": "pages/www-thedigitalyes-com_save-the-date_majestic.ax.txt",
+    "characters": 8053,
+    "heading": "43 heading Majestic, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/elegant-photo-scratch",
+    "file": "pages/www-thedigitalyes-com_save-the-date_elegant-photo-scratch.ax.txt",
+    "characters": 8301,
+    "heading": "43 heading Elegant Photo Scratch, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/soft-lace-edit",
+    "file": "pages/www-thedigitalyes-com_save-the-date_soft-lace-edit.ax.txt",
+    "characters": 8208,
+    "heading": "43 heading The Soft Lace Edit, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/lace-edit",
+    "file": "pages/www-thedigitalyes-com_save-the-date_lace-edit.ax.txt",
+    "characters": 8133,
+    "heading": "43 heading The Lace Edit, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/cisnes",
+    "file": "pages/www-thedigitalyes-com_save-the-date_cisnes.ax.txt",
+    "characters": 8031,
+    "heading": "43 heading Swans, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/floral",
+    "file": "pages/www-thedigitalyes-com_save-the-date_floral.ax.txt",
+    "characters": 8036,
+    "heading": "43 heading Floral, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/interactive-scratch",
+    "file": "pages/www-thedigitalyes-com_save-the-date_interactive-scratch.ax.txt",
+    "characters": 8239,
+    "heading": "43 heading Interactive Scratch, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/bloom",
+    "file": "pages/www-thedigitalyes-com_save-the-date_bloom.ax.txt",
+    "characters": 8033,
+    "heading": "43 heading Bloom, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/candlelight",
+    "file": "pages/www-thedigitalyes-com_save-the-date_candlelight.ax.txt",
+    "characters": 8119,
+    "heading": "43 heading Candlelight, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/oasis-royale",
+    "file": "pages/www-thedigitalyes-com_save-the-date_oasis-royale.ax.txt",
+    "characters": 8144,
+    "heading": "43 heading Oasis Royale, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/le-jardin",
+    "file": "pages/www-thedigitalyes-com_save-the-date_le-jardin.ax.txt",
+    "characters": 8083,
+    "heading": "43 heading Le Jardin, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/tropical",
+    "file": "pages/www-thedigitalyes-com_save-the-date_tropical.ax.txt",
+    "characters": 8068,
+    "heading": "43 heading Tropical, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/royal-scroll.html",
+    "file": "pages/www-e-nimontron-com_templates_royal-scroll.html.ax.txt",
+    "characters": 4065,
+    "heading": "7 heading A z a d R a v a l, Value: 1, ID: groomName",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/blue-gold-floral.html",
+    "file": "pages/www-e-nimontron-com_templates_blue-gold-floral.html.ax.txt",
+    "characters": 3451,
+    "heading": "6 heading T a n v e e r, Value: 1, ID: groomName",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/blue-watercolor.html",
+    "file": "pages/www-e-nimontron-com_templates_blue-watercolor.html.ax.txt",
+    "characters": 3698,
+    "heading": "7 heading D a n i e l, Value: 1, ID: groomName",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/pink-orange-birthday.html",
+    "file": "pages/www-e-nimontron-com_templates_pink-orange-birthday.html.ax.txt",
+    "characters": 3271,
+    "heading": "6 heading I n a y a, Value: 1, ID: brideName",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/red-pink-traditional.html",
+    "file": "pages/www-e-nimontron-com_templates_red-pink-traditional.html.ax.txt",
+    "characters": 3476,
+    "heading": "5 heading B a p p a, Value: 1, ID: groomName",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/rgb-birthday.html",
+    "file": "pages/www-e-nimontron-com_templates_rgb-birthday.html.ax.txt",
+    "characters": 3309,
+    "heading": "5 heading HAPPY BIRTHDAY, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/watercolor-purple-green.html",
+    "file": "pages/www-e-nimontron-com_templates_watercolor-purple-green.html.ax.txt",
+    "characters": 3578,
+    "heading": "8 heading Y a s i n, Value: 1, ID: groomName",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/red-cream-indian.html",
+    "file": "pages/www-e-nimontron-com_templates_red-cream-indian.html.ax.txt",
+    "characters": 3816,
+    "heading": "6 heading R a k e s h, Value: 1, ID: groomName",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/muslim-elegance.html",
+    "file": "pages/www-e-nimontron-com_templates_muslim-elegance.html.ax.txt",
+    "characters": 3757,
+    "heading": "No product heading captured",
+    "embedded": []
+  },
+  {
+    "url": "https://www.e-nimontron.com/templates/royal-walima.html",
+    "file": "pages/www-e-nimontron-com_templates_royal-walima.html.ax.txt",
+    "characters": 4890,
+    "heading": "No product heading captured",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/just-married",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_just-married.ax.txt",
+    "characters": 8230,
+    "heading": "43 heading Just Married 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/mallorca",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_mallorca.ax.txt",
+    "characters": 8234,
+    "heading": "43 heading Mallorca Finca 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/santorini",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_santorini.ax.txt",
+    "characters": 8192,
+    "heading": "43 heading Santorini 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/lake-como",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_lake-como.ax.txt",
+    "characters": 8206,
+    "heading": "43 heading Lake Como 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/champagne",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_champagne.ax.txt",
+    "characters": 8234,
+    "heading": "43 heading Champagne Tower 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/desert-nights",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_desert-nights.ax.txt",
+    "characters": 8240,
+    "heading": "43 heading Desert Nights 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/swan-garden",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_swan-garden.ax.txt",
+    "characters": 8206,
+    "heading": "43 heading Swan Garden 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/chateau",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_chateau.ax.txt",
+    "characters": 8281,
+    "heading": "43 heading Château de Provence 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/english-manor",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_english-manor.ax.txt",
+    "characters": 8242,
+    "heading": "43 heading English Manor 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/tuscan-villa",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_tuscan-villa.ax.txt",
+    "characters": 8231,
+    "heading": "43 heading Tuscan Villa 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/amalfi",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_amalfi.ax.txt",
+    "characters": 8207,
+    "heading": "43 heading Amalfi Coast 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/hacienda",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_hacienda.ax.txt",
+    "characters": 8282,
+    "heading": "43 heading Andalusian Hacienda 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/dubai-palace",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_dubai-palace.ax.txt",
+    "characters": 8265,
+    "heading": "43 heading Arabian Palace 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/paris",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_paris.ax.txt",
+    "characters": 8236,
+    "heading": "43 heading Paris Je t’aime 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/new-york",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_new-york.ax.txt",
+    "characters": 8278,
+    "heading": "43 heading New York Brownstone 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/scottish-castle",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_scottish-castle.ax.txt",
+    "characters": 8274,
+    "heading": "43 heading Highland Castle 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/bali",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_bali.ax.txt",
+    "characters": 8249,
+    "heading": "43 heading Bali Jungle Temple 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/maldives",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_maldives.ax.txt",
+    "characters": 8265,
+    "heading": "43 heading Maldives Overwater 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/sintra",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_sintra.ax.txt",
+    "characters": 8226,
+    "heading": "43 heading Sintra Palace 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/rustic-barn",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_rustic-barn.ax.txt",
+    "characters": 8214,
+    "heading": "43 heading Rustic Barn 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/napa-vineyard",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_napa-vineyard.ax.txt",
+    "characters": 8242,
+    "heading": "43 heading Napa Vineyard 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/glasshouse",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_glasshouse.ax.txt",
+    "characters": 8233,
+    "heading": "43 heading The Glasshouse 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/kyoto",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_kyoto.ax.txt",
+    "characters": 8210,
+    "heading": "43 heading Kyoto Blossom 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/venice",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_venice.ax.txt",
+    "characters": 8160,
+    "heading": "43 heading Venezia 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/byron-bay",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_byron-bay.ax.txt",
+    "characters": 8194,
+    "heading": "43 heading Byron Bay 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/marrakech",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_marrakech.ax.txt",
+    "characters": 8241,
+    "heading": "43 heading Marrakech Riad 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/save-the-date/3d/alpine-chalet",
+    "file": "pages/www-thedigitalyes-com_save-the-date_3d_alpine-chalet.ax.txt",
+    "characters": 8244,
+    "heading": "43 heading Alpine Chalet 3D Pop-Up, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/pricing",
+    "file": "pages/www-thedigitalyes-com_pricing.ax.txt",
+    "characters": 18130,
+    "heading": "22 heading Pricing and levels of personalisation, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/how-it-works",
+    "file": "pages/www-thedigitalyes-com_how-it-works.ax.txt",
+    "characters": 9132,
+    "heading": "22 heading You tell us your story. We design the rest., Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/essential",
+    "file": "pages/www-thedigitalyes-com_essential.ax.txt",
+    "characters": 6796,
+    "heading": "22 heading Essential · €175, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/premium",
+    "file": "pages/www-thedigitalyes-com_premium.ax.txt",
+    "characters": 6761,
+    "heading": "22 heading Premium · €575, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/excellence",
+    "file": "pages/www-thedigitalyes-com_excellence.ax.txt",
+    "characters": 6658,
+    "heading": "22 heading Excellence · €975, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/digital-save-the-date",
+    "file": "pages/www-thedigitalyes-com_digital-save-the-date.ax.txt",
+    "characters": 15401,
+    "heading": "25 heading Digital save the date, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/planner",
+    "file": "pages/www-thedigitalyes-com_planner.ax.txt",
+    "characters": 19075,
+    "heading": "31 heading Your wedding, beautifully organized. Everything to decide, pay for and remember, in one app., Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/terms",
+    "file": "pages/www-thedigitalyes-com_terms.ax.txt",
+    "characters": 10179,
+    "heading": "21 heading Terms and Conditions, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/privacy",
+    "file": "pages/www-thedigitalyes-com_privacy.ax.txt",
+    "characters": 9274,
+    "heading": "21 heading Privacy Policy, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/refunds",
+    "file": "pages/www-thedigitalyes-com_refunds.ax.txt",
+    "characters": 6902,
+    "heading": "21 heading Refund Policy, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/birthdays",
+    "file": "pages/www-thedigitalyes-com_birthdays.ax.txt",
+    "characters": 10450,
+    "heading": "32 heading Birthday invitations that pop off the screen, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/baby-shower",
+    "file": "pages/www-thedigitalyes-com_baby-shower.ax.txt",
+    "characters": 10423,
+    "heading": "32 heading Baby shower invitations that unfold in 3D, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/bridesmaid-proposal",
+    "file": "pages/www-thedigitalyes-com_bridesmaid-proposal.ax.txt",
+    "characters": 9121,
+    "heading": "32 heading Ask your bridesmaids in 3D, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/designs",
+    "file": "pages/www-thedigitalyes-com_designs.ax.txt",
+    "characters": 14282,
+    "heading": "22 heading Every design, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/blog",
+    "file": "pages/www-thedigitalyes-com_blog.ax.txt",
+    "characters": 14698,
+    "heading": "22 heading Digital Wedding Invitations, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/our-story",
+    "file": "pages/www-thedigitalyes-com_our-story.ax.txt",
+    "characters": 6499,
+    "heading": "22 heading It started with our own wedding., Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/reviews",
+    "file": "pages/www-thedigitalyes-com_reviews.ax.txt",
+    "characters": 5540,
+    "heading": "22 heading In their words, Value: 1",
+    "embedded": []
+  },
+  {
+    "url": "https://www.thedigitalyes.com/invitation-guide",
+    "file": "pages/www-thedigitalyes-com_invitation-guide.ax.txt",
+    "characters": 11252,
+    "heading": "22 heading Your invitation, step by step, Value: 1",
+    "embedded": []
+  }
+]

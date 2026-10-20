@@ -1,0 +1,32 @@
+Browser tab: 5, Title: "Digital Wedding Invitations Designed by Hand | The Digital Yes", URL: "https://www.thedigitalyes.com/clients/login".
+1 AXWebArea Digital Wedding Invitations Designed by Hand | The Digital Yes, URL: thedigitalyes.com/clients/login
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button ES
+				8 image
+				9 text ES
+			10 image The Digital Yes
+			11 text The Digital Yes
+			12 heading Client Portal, Value: 1
+				13 text Client Portal
+			14 text Access with your order code
+			15 container
+				16 image
+				17 text Order code
+			18 text field (settable) Order code, ID: access-code
+			19 text Enter the full code, including TDY- (e.g. TDY-AB12)
+			20 container
+				21 image
+				22 text Email
+			23 text field (settable) Email
+			24 text You'll find your code in your order confirmation email.
+			25 button (disabled) ACCESS MY PORTAL
+			26 button Already have a password account?
+			27 text Having trouble logging in?
+			28 link Description: Contact us, Value: mailto:info@thedigitalyes.com
+			29 image
+
+The focused UI element is 1 AXWebArea Digital Wedding Invitations Designed by Hand | The Digital Yes, URL: thedigitalyes.com/clients/login

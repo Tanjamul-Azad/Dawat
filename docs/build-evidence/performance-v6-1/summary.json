@@ -1,0 +1,80 @@
+[
+  {
+    "locale": "bn",
+    "run": 1,
+    "performance": 91,
+    "accessibility": 100,
+    "bestPractices": 96,
+    "fcpMs": 1209.7926,
+    "lcpMs": 3456.5284,
+    "tbtMs": 15.5,
+    "cls": 0.0034210415078684215,
+    "transferBytes": 556987,
+    "scriptBytes": 194576.0
+  },
+  {
+    "locale": "bn",
+    "run": 2,
+    "performance": 91,
+    "accessibility": 100,
+    "bestPractices": 96,
+    "fcpMs": 1360.24965,
+    "lcpMs": 3456.8331,
+    "tbtMs": 10,
+    "cls": 0.0034210415078684215,
+    "transferBytes": 556987,
+    "scriptBytes": 194576.0
+  },
+  {
+    "locale": "bn",
+    "run": 3,
+    "performance": 91,
+    "accessibility": 100,
+    "bestPractices": 96,
+    "fcpMs": 1357.8701999999998,
+    "lcpMs": 3455.2468000000003,
+    "tbtMs": 11,
+    "cls": 0.0034210415078684215,
+    "transferBytes": 556987,
+    "scriptBytes": 194576.0
+  },
+  {
+    "locale": "en",
+    "run": 1,
+    "performance": 91,
+    "accessibility": 100,
+    "bestPractices": 96,
+    "fcpMs": 1358.8743,
+    "lcpMs": 3455.9161999999997,
+    "tbtMs": 10.5,
+    "cls": 0.002057685876510486,
+    "transferBytes": 449436,
+    "scriptBytes": 194576.0
+  },
+  {
+    "locale": "en",
+    "run": 2,
+    "performance": 91,
+    "accessibility": 100,
+    "bestPractices": 96,
+    "fcpMs": 1358.9176499999999,
+    "lcpMs": 3455.9451000000004,
+    "tbtMs": 14.5,
+    "cls": 0.002057685876510486,
+    "transferBytes": 449436,
+    "scriptBytes": 194576.0
+  },
+  {
+    "locale": "en",
+    "run": 3,
+    "performance": 91,
+    "accessibility": 100,
+    "bestPractices": 96,
+    "fcpMs": 1358.95875,
+    "lcpMs": 3455.9725,
+    "tbtMs": 11.5,
+    "cls": 0.002057685876510486,
+    "transferBytes": 449436,
+    "scriptBytes": 194576.0
+  }
+]

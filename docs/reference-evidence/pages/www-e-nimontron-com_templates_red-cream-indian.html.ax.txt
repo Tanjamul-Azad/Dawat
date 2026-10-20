@@ -1,0 +1,126 @@
+Browser tab: 3, Title: "Rakesh & Sromila — Wedding Invitation", URL: "https://www.e-nimontron.com/templates/red-cream-indian.html".
+1 AXWebArea Rakesh & Sromila — Wedding Invitation, URL: e-nimontron.com/templates/red-cream-indian.html
+	2 image petalsCanvas
+	3 container
+		4 container
+			5 text — WEDDING — You are cordially invited to the wedding of
+			6 heading R a k e s h, Value: 1, ID: groomName
+				7 text R
+				8 text a
+				9 text k
+				10 text e
+				11 text s
+				12 text h
+			13 image &
+			14 heading S r o m i l a, Value: 1, ID: brideName
+				15 text S
+				16 text r
+				17 text o
+				18 text m
+				19 text i
+				20 text l
+				21 text a
+			22 text 21 · JUNE · 2026
+		23 container
+			24 text With the blessings of our families,
+			25 text we joyfully invite you to celebrate the wedding of
+		26 container dateRow
+			27 text JUNE
+			28 text 21
+			29 text 7:00 PM
+		30 container w-scratch-mount
+			31 text Save The Date
+			32 text SCRATCH TO REVEAL
+			33 container
+				34 text Thursday, 31 December 2026
+				35 text 7:00 PM onwards
+				36 image
+		37 text KRISHIBID CONVENTION CENTRE
+		38 text Khamarbari Rd, Farmgate, Dhaka 1215, Bangladesh
+		39 text — COUNTING DOWN —
+		40 text 0
+		41 text DAYS until your dream wedding
+		42 container cd-cell-days
+			43 text ✦
+			44 text 00
+			45 text DAYS
+			46 text ✦
+		47 container cd-cell-hrs
+			48 text ✦
+			49 text 00
+			50 text HOURS
+			51 text ✦
+		52 container cd-cell-mins
+			53 text ✦
+			54 text 00
+			55 text MINS
+			56 text ✦
+		57 container cd-cell-secs
+			58 text ✦
+			59 text 00
+			60 text SECS
+			61 text ✦
+		62 container
+			63 text Rakesh & Sromila
+			64 text WITH BLESSINGS · FOREVER
+	65 container invite-widgets
+		66 container
+			67 text Our Moments CAPTURED TOGETHER
+			68 container Photo slideshow
+				69 container
+					70 image Photo 1 of 4
+					71 text 1  / 4
+				72 button Previous photo
+					73 image
+				74 button Next photo
+					75 image
+			76 button Photo 1
+			77 button Photo 2
+			78 button Photo 3
+			79 button Photo 4
+		80 text Join Us
+		81 button MAP
+			82 image
+			83 text MAP
+		84 button CALENDAR
+			85 image
+			86 text CALENDAR
+		87 text Kindly RSVP
+		88 text WE HOPE YOU CAN CELEBRATE WITH US
+		89 container w-rsvp-form
+			90 text YOUR NAME
+			91 text field (settable) YOUR NAME, ID: w-rsvp-name
+			92 text WILL YOU ATTEND?
+			93 container
+				94 radio button (settable, integer) Description: JOYFULLY, Value: 1
+				95 text JOYFULLY
+			96 container
+				97 radio button (settable, integer) Description: SADLY NO, Value: 0
+				98 text SADLY NO
+			99 text NUMBER OF GUESTS (0–10)
+			100 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+			101 button SEND RSVP
+		102 text Send Your Wishes
+		103 text LEAVE A PRIVATE MESSAGE
+		104 container w-wish-form
+			105 text Send your wish
+			106 text Your message stays private — it won't be shown here publicly
+			107 text YOUR NAME
+			108 text field (settable) YOUR NAME, ID: w-wish-name
+			109 text YOUR MESSAGE
+			110 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+			111 container
+				112 image
+				113 text ADD A PHOTO (OPTIONAL)
+			114 button ADD YOUR WISH
+		115 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+		116 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+		117 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	118 container
+		119 text — YOU ARE INVITED — Welcome WEDDING
+		120 button OPEN INVITATION
+	121 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		122 image
+	123 image w-fx-canvas
+
+The focused UI element is 1 AXWebArea Rakesh & Sromila — Wedding Invitation, URL: e-nimontron.com/templates/red-cream-indian.html

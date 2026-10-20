@@ -1,0 +1,108 @@
+Browser tab: 4, Title: "Teatro – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/teatro".
+0 AXWebArea Teatro – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/teatro
+	1 container
+		2 container root
+			3 container Notifications alt+T
+			4 container
+				5 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+		6 container How personalised should it be?, ID: radix-:r0:
+			7 button Close
+				8 image
+			9 container
+				10 text TEATRO
+				11 heading How personalised should it be?, Value: 2, ID: radix-:r1:
+					12 text How personalised should it be?
+				13 text Same design, three levels of craft. You can change it before paying.
+				14 How personalised should it be?
+					15 radio button Value: 0, Essential €175 If you love this design exactly as it is and just want to add your wedding details. Your names, dates and venues RSVP & guest list included Up to 2 languages 2 revision rounds Optional add-ons available
+						16 text Essential
+						17 text €175
+						18 text If you love this design exactly as it is and just want to add your wedding details.
+						19 content list
+							20 container
+								21 image
+								22 text Your names, dates and venues
+							23 container
+								24 image
+								25 text RSVP & guest list included
+							26 container
+								27 image
+								28 text Up to 2 languages
+							29 container
+								30 image
+								31 text 2 revision rounds
+							32 container
+								33 image
+								34 text Optional add-ons available
+					35 radio button Value: 1, MOST CHOSEN Premium €575 We redesign this concept exclusively for your wedding: a unique style no one else will have. Cover, icons and colors made for your wedding RSVP & guest list included Up to 3 languages All extras included Interactive Save the Date included 4 revision rounds Save the Date worth €75 Included free Yes Planner worth €59 Included free You save €134
+						36 text MOST CHOSEN
+						37 text Premium
+						38 text €575
+						39 text We redesign this concept exclusively for your wedding: a unique style no one else will have.
+						40 content list
+							41 container
+								42 image
+								43 text Cover, icons and colors made for your wedding
+							44 container
+								45 image
+								46 text RSVP & guest list included
+							47 container
+								48 image
+								49 text Up to 3 languages
+							50 container
+								51 image
+								52 text All extras included
+							53 container
+								54 image
+								55 text Interactive Save the Date included
+							56 container
+								57 image
+								58 text 4 revision rounds
+						59 image
+						60 text Save the Date
+						61 text worth €75
+						62 text Included free
+						63 image
+						64 text Yes Planner
+						65 text worth €59
+						66 text Included free
+						67 text You save
+						68 text €134
+					69 radio button Value: 0, Excellence €975 A one-of-a-kind invitation designed from scratch with your own designer. A one-of-a-kind piece Your own designer from day one RSVP & all extras included 7 revision rounds Custom Save the Date worth €135 Included free Yes Planner worth €59 Included free You save €194
+						70 text Excellence
+						71 text €975
+						72 text A one-of-a-kind invitation designed from scratch with your own designer.
+						73 content list
+							74 container
+								75 image
+								76 text A one-of-a-kind piece
+							77 container
+								78 image
+								79 text Your own designer from day one
+							80 container
+								81 image
+								82 text RSVP & all extras included
+							83 container
+								84 image
+								85 text 7 revision rounds
+						86 image
+						87 text Custom Save the Date
+						88 text worth €135
+						89 text Included free
+						90 image
+						91 text Yes Planner
+						92 text worth €59
+						93 text Included free
+						94 text You save
+						95 text €194
+				96 checkbox (settable, integer) Description: Express delivery 1–4 days +€85, Value: 0
+				97 text Express delivery
+				98 text 1–4 days + €85
+			99 button CONTINUE WITH PREMIUM · €575
+				100 text CONTINUE WITH PREMIUM
+				101 text  · 
+				102 text €575
+			103 text Designed by hand · Revisions included · You'll-Love-It Promise
+			104 link Description: Questions? Write to us on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20plans%20%F0%9F%92%8D
+
+The focused UI element is 7 button Close

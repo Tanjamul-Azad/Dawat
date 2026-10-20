@@ -1,0 +1,302 @@
+Browser tab: 3, Title: "Odette – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/odette".
+1 AXWebArea Odette – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/odette
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Odette
+			24 text DIGITAL INVITATION
+			25 heading Odette, Value: 1
+				26 text Odette
+			27 text Inspired by Swan Lake FROM €175 One-time payment · three levels of personalisation
+			28 checkbox Description: Save Odette, Value: 0
+				29 image
+			30 text Interactive demo
+			31 container Views
+				32 container
+					33 container Odette — live demo
+						34 AXWebArea Wedding Waleed and Julia, URL: template-odette.thedigitalyes.com/?embed=1
+							35 container root
+								36 container Notifications (F8)
+									37 content list
+								38 container Notifications alt+T
+								39 container
+									40 container hero
+										41 container
+											42 container Waleed & Julia — wedding invitation video
+										43 container
+											44 text WE'RE GETTING MARRIED
+											45 heading Waleed & Julia, Value: 1
+												46 text Waleed & Julia
+											47 text SEPTEMBER 29, 2026
+											48 button RSVP
+											49 button SCROLL DOWN
+												50 text SCROLL DOWN
+												51 image
+									52 container
+										53 text 00 DAYS 00 HOURS 00 MINUTES 00 SECONDS
+									54 container
+										55 image Mansão Alvite — embroidered illustration of the wedding venue
+										56 heading When & Where, Value: 2
+											57 text When & Where
+										58 text CEREMONY AND CELEBRATION
+										59 text Mansão Alvite
+										60 text Santa Teresa, Rio de Janeiro
+										61 text September 29, 2026
+										62 text Ceremony at 3:30 PM
+										63 link Description: View map, Value: google.com/maps/search/?api=1&query=Mans%C3%A3o%20Alvite%2C%20Santa%20Teresa%2C%20Rio%20de%20Janeiro%2C%20Brazil
+									64 container
+										65 heading Schedule, Value: 2
+											66 text Schedule
+										67 text Timeline of the day
+										68 heading Tuesday, September 29, 2026, Value: 3
+											69 text Tuesday, September 29, 2026
+										70 text 3:00 PM
+										71 image
+										72 text Welcome Drinks 4:00 PM
+										73 image
+										74 text Ceremony 5:00 PM
+										75 image
+										76 text Cocktail Hour 6:00 PM
+										77 image
+										78 text Dinner 11:00 PM
+										79 image
+										80 text End of Party
+									81 heading Dress Code, Value: 2
+										82 text Dress Code
+									83 text Smart – Dress to Impress
+									84 image Dress code illustration
+									85 text White is reserved exclusively for the bride!
+									86 image Embroidered wedding banquet table illustration
+									87 heading Menu, Value: 2
+										88 text Menu
+									89 text A taste of our celebration
+									90 text Welcome Drinks
+									91 text Champagne | Caipirinha | Seasonal juices
+									92 text Starter
+									93 text Burrata | Heirloom tomatoes | Basil
+									94 text Main Course
+									95 text Beef tenderloin | Rosemary potatoes | Grilled vegetables
+									96 text Vegetarian Option
+									97 text Asparagus risotto | Parmesan | Herbs
+									98 text Dessert
+									99 text Wedding cake | Fresh fruit | Coffee
+									100 image Embroidered cat illustration
+									101 heading Mascotas bienvenidas, Value: 2
+										102 text Mascotas bienvenidas
+									103 text Tu compañero peludo también es parte de la familia
+									104 text Si prefieres traer a tu mascota, avísanos en el formulario de RSVP para poder organizar el espacio adecuadamente.
+									105 text Con cariño, Waleed & Julia
+									106 image Embroidered vintage wedding car illustration
+									107 heading Transporte, Value: 2
+										108 text Transporte
+									109 text Opciones para llegar a la celebración
+									110 text Desde Copacabana
+									111 text Habrá transporte organizado desde el punto central de Copacabana. Indícanos en el RSVP si necesitas plaza.
+									112 text Llegada propia
+									113 text Mansão Alvite, Santa Teresa, Rio de Janeiro. Estacionamiento disponible en la finca.
+									114 link Description: Ver ubicación en el mapa, Value: google.com/maps/search/?api=1&query=Mans%C3%A3o+Alvite,+Santa+Teresa,+Rio+de+Janeiro
+									115 button Toca para ver detalles del regalo
+										116 image Embroidered wedding bouquet illustration
+									117 heading Regalos, Value: 2
+										118 text Regalos
+									119 text Toca el ramo para ver detalles
+									120 container rsvp
+										121 heading RSVP, Value: 2
+											122 text RSVP
+										123 text Please let us know if you can make it
+										124 image Waleed & Julia
+										125 container
+											126 text Will you attend?  *
+											127 radio button Description: Yes, I'll be there, Value: 1, ID: yes
+												128 image
+											129 text Yes, I'll be there
+											130 radio button Description: Unfortunately, I can't make it, Value: 0, ID: no
+											131 text Unfortunately, I can't make it
+											132 image
+											133 text How many guests?
+											134 button (disabled) -
+											135 text 1
+											136 button +
+											137 text Person 1 (Primary Contact)
+											138 text field (settable)
+											139 image
+											140 text Do you need transportation to the venue? A bus will be available from Copacabana to the venue.
+											141 radio button Description: Yes, I need a seat on the bus, Value: 0, ID: transport_yes
+											142 text Yes, I need a seat on the bus
+											143 radio button Description: No, I'll arrange my own transport, Value: 0, ID: transport_no
+											144 text No, I'll arrange my own transport
+											145 text Message for the couple
+											146 text entry area (settable) Message for the couple, ID: message
+											147 button Send RSVP
+												148 image
+												149 text Send RSVP
+									150 container
+										151 image Waleed & Julia
+										152 text Waleed  &  Julia September 29, 2026 Made with love by
+										153 link Description: The Digital Yes, Value: thedigitalyes.com/
+					154 text Loading live demo…
+				155 button (disabled) Previous screen
+					156 image
+				157 button Next screen
+					158 image
+			159 container
+				160 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			161 button Try it yourself
+			162 button 2 · Envelope, music & motion
+			163 button 3 · Your names, your date
+			164 button 4 · Map & calendar
+			165 button 5 · The day, hour by hour
+			166 button 6 · Dress code
+			167 button 7 · The menu
+			168 button 8 · Travel & stay
+			169 button 9 · Gifts
+			170 button In your languages
+			171 text 1  /  10
+			172 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			173 button Full screen
+				174 image
+			175 container Purchase
+				176 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				177 button PERSONALIZE THIS INVITATION
+				178 text ✓ Designed by hand ✓ Revisions included
+				179 container This is your invitation
+					180 text HANDMADE, ONLY FOR YOU
+					181 heading This is your invitation, Value: 2
+						182 text This is your invitation
+					183 tab group
+						184 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						185 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						186 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					187 container Description: WHO CREATES IT, ID: v5-info-pane
+						188 text Designed by a real person
+						189 text A designer from our atelier crafts it for you.
+						190 text Revisions included
+						191 text See your draft and request changes before sharing.
+						192 text At your own pace
+						193 text Send details and photos after payment, whenever ready.
+						194 text One-time payment, forever
+						195 text No subscriptions. A link ready for WhatsApp.
+				196 container Your sections, your order
+					197 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						198 text Your sections, your order
+					199 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					200 container Your sections, your order
+						201 content list
+							202 text Our story
+							203 text Schedule
+							204 text Dress code
+							205 text Travel & stay
+							206 text Gifts
+							207 text RSVP
+						208 text Add section
+				209 container
+					210 text DETAILS RECEIVED
+					211 text Once we have your details
+					212 text DESIGN & PROOF
+					213 text READY
+					214 text 7–14 days Counted from when we receive your details and materials.
+				215 text An ethereal invitation inspired by Swan Lake: embroidered swans, water lilies, silvery moons and dusty-blue tones for a romantic, fairytale wedding.
+				216 button (collapsed) What’s included +, Secondary Actions: Expand
+					217 text What’s included
+					218 text +
+				219 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					220 text Personalisation & extras
+					221 text +
+				222 button (collapsed) How it works +, Secondary Actions: Expand
+					223 text How it works
+					224 text +
+				225 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					226 text Delivery & revisions
+					227 text +
+				228 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Odette%20template%20%E2%9C%A8
+			229 container What couples say
+				230 heading What couples say, Value: 2, ID: h4p-ugc-title
+					231 text What couples say
+				232 text REAL COUPLES, REAL INVITATIONS
+				233 button Previous video
+				234 button Next video
+				235 container
+					236 button Play video — @irenefdz
+						237 container @irenefdz
+					238 link Description: @irenefdz, Value: instagram.com/irenefdz
+					239 button Play video — @fanicarbaj
+						240 container @fanicarbaj
+					241 link Description: @fanicarbaj, Value: instagram.com/fanicarbaj
+					242 button Play video — @miisspinkie
+						243 container @miisspinkie
+					244 link Description: @miisspinkie, Value: instagram.com/miisspinkie/
+					245 button Play video — @sophiialorraine
+						246 container @sophiialorraine
+					247 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					248 button Play video — @sophiialorraine
+						249 container @sophiialorraine
+					250 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					251 button Play video — Diana & Richard
+						252 container Diana & Richard
+					253 text Diana & Richard
+					254 button Play video — The Digital Yes
+						255 container The Digital Yes
+					256 text The Digital Yes
+			257 container reviews
+				258 heading Loved by 3,000+ couples., Value: 2
+					259 text Loved by 3,000+ couples.
+				260 text 4.9
+				261 text 278 reviews
+				262 container
+					263 container 5/5
+						264 text ★★★★★
+					265 text “ We chose The Digital Yes to create our digital wedding invitation, and we couldn’t be happier with our experience. From the very first contact, they proved to be extremely helpful and attentive to every request, guiding us with great professionalism through every step of the process. We especially appreciated their flexibility: every change or customization was welcomed with enthusiasm and handled and with great attention to detail. Their punctuality in delivery was impeccable, and the precision of their work truly remarkable. The final result exceeded our expectations in terms of both quality and elegance. We are absolutely thrilled with our choice and would highly recommend this service to anyone looking for a refined, beautifully crafted digital invitation with outstanding customer care. Filippo e Silvia ”
+					266 text Silvia Esposito
+				267 container
+					268 container 5/5
+						269 text ★★★★★
+					270 text “ We're truly happy with the result! It was a wonderful experience creating our own personalized invitation, and the customer service is simply impeccable! I had some questions, and they responded immediately, even on holidays! We're over the moon. Thank you for your skill, kindness, and the passion you put into your work❤️❤️❤️ ”
+					271 text Silvia & Gianluca
+				272 container
+					273 container 5/5
+						274 text ★★★★★
+					275 text “ Optamos por hacer una invitación digital ya “hecha” para que el proceso fuera más sencillo para nosotros y la web visualmente más bonita. No esperábamos que tanta gente nos diría lo bien hecha que estaba la invitación y cuánto les había gustado. La personalización y todos los detalles, un 10. Y sobretodo lo fácil que es añadir toda la información y que el equipo de The Digital Yes haga su magia. Espero no tener que organizar una boda de nuevo pero repetiría 100%. ”
+					276 text Meritxell Camós
+			277 text YOU MAY ALSO LIKE
+			278 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			279 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			280 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			281 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+		282 container
+			283 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			284 text Digital wedding invitations designed by hand.
+			285 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			286 text COLLECTIONS
+			287 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			288 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			289 link Description: Plans, Value: thedigitalyes.com/#plans
+			290 text SERVICE
+			291 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			292 link Description: Blog, Value: thedigitalyes.com/blog
+			293 link Description: Client portal, Value: thedigitalyes.com/clients
+			294 text LEGAL
+			295 link Description: Terms, Value: thedigitalyes.com/terms
+			296 link Description: Privacy, Value: thedigitalyes.com/privacy
+			297 link Description: Refunds, Value: thedigitalyes.com/refunds
+			298 text ©  2026  The Digital Yes EN  ·  EUR
+		299 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Odette – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/odette

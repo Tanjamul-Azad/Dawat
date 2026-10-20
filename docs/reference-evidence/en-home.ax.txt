@@ -1,0 +1,191 @@
+Browser tab: 3, Title: "e-Nimontron — Digital Invitations. Simply Beautiful.", URL: "https://www.e-nimontron.com/".
+1 AXWebArea e-Nimontron — Digital Invitations. Simply Beautiful., URL: e-nimontron.com/
+	2 container
+		3 link Description: e-Nimontron home, Value: e-nimontron.com/
+		4 content list
+			5 link Description: টেমপ্লেট, Value: e-nimontron.com/#gallery
+			6 link Description: যেভাবে কাজ করে, Value: e-nimontron.com/#how
+			7 link Description: মূল্য, Value: e-nimontron.com/#pricing
+			8 link Description: যোগাযোগ, Value: e-nimontron.com/#contact
+		9 container ভাষা পরিবর্তন করুন
+			10 checkbox EN, Value: 0
+			11 checkbox বাংলা, Value: 1
+	12 container
+		13 text ডিজিটাল আমন্ত্রণ
+		14 heading শুরু হোক সুন্দর কিছু, Value: 1
+			15 text শুরু হোক সুন্দর কিছু
+		16 text প্রতিটি অতিথির হাতের মুঠোয় পৌঁছে যাওয়া দৃষ্টিনন্দন, ইন্টারঅ্যাক্টিভ ডিজিটাল আমন্ত্রণ। কাগজ নেই, অপচয় নেই — অসীম স্মৃতি।
+		17 link Description: টেমপ্লেট দেখুন, Value: e-nimontron.com/#gallery
+		18 link Description: যেভাবে কাজ করে, Value: e-nimontron.com/#how
+	19 container gallery
+		20 text আমাদের সংগ্রহ
+		21 heading আপনার গল্প বেছে নিন, Value: 2
+			22 text আপনার গল্প বেছে নিন
+		23 text প্রতিটি টেমপ্লেট সম্পূর্ণ কাস্টমাইজযোগ্য — আপনার তথ্য যোগ করুন আর দেখুন কীভাবে প্রাণ পায়।
+		24 button সব
+		25 button মুসলিম
+		26 button ওয়াটারকালার
+		27 button নীল ও সোনালি
+		28 button ঐতিহ্যবাহী
+		29 button জন্মদিন
+		30 container
+			31 container
+				32 text TOGETHER WITH FAMILIES Azad & Jyoti
+			33 text TRADITIONAL · MAROON & GOLD
+			34 text বিবাহ
+			35 heading রাজকীয় মেরুন স্ক্রোল, Value: 3
+				36 text রাজকীয় মেরুন স্ক্রোল
+			37 text মেরুন ডামাস্কের ওপর প্রাচীন পার্চমেন্ট স্ক্রোলে খোদাই করা ফুলেল তোরণ, জলরঙা ফুলের তোড়ায় ঘেরা শেরওয়ানি-লেহেঙ্গায় যুগল। ৩ডি-তে খুলে যায় স্ক্রোল, নাম লেখা হয় অক্ষরে অক্ষরে, আর ঝরে পড়ে গোলাপের পাপড়ি।
+			38 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/royal-scroll.html
+			39 button অর্ডার করুন →
+		40 container
+			41 container
+				42 text SAVE THE DATE Tanveer & Ariana
+			43 text MODERN · NAVY & GOLD
+			44 text বিবাহ · জন্মদিন
+			45 heading নীল ও সোনালি ফুলেল, Value: 3
+				46 text নীল ও সোনালি ফুলেল
+			47 text গাঢ় নেভি ফুল, সোনালি নকশা আর ক্রিম কাগজে সাদা পিওনি — মার্জিত ও আধুনিক।
+			48 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/blue-gold-floral.html
+			49 button অর্ডার করুন →
+		50 container
+			51 container
+				52 text Zayan & Anaya SAVE THE DATE
+			53 text WATERCOLOR · DUSTY BLUE & GOLD
+			54 text বিবাহ
+			55 heading নীল জলরঙা ফুল, Value: 3
+				56 text নীল জলরঙা ফুল
+			57 text হাতে আঁকা নীল গোলাপ ও ব্লাশ পিওনি, সোনালি পাতার ছোঁয়া, নরম জলরঙা যুগল ছবি আর ভাসমান তারার ঝিলিক।
+			58 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/blue-watercolor.html
+			59 button অর্ডার করুন →
+		60 container
+			61 container
+				62 text Inaya TURNS FIVE
+			63 text BIRTHDAY · WATERCOLOR
+			64 text জন্মদিন
+			65 heading গোলাপি ও কমলা জন্মদিন, Value: 3
+				66 text গোলাপি ও কমলা জন্মদিন
+			67 text প্রাণবন্ত জলরঙা জন্মদিনের কার্ড — কেক, কাপকেক, বেলুন, উপহার আর হ্যাপি বার্থডে ব্যানার। রঙিন কনফেটি ঝরে অবিরাম।
+			68 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/pink-orange-birthday.html
+			69 button অর্ডার করুন →
+		70 container
+			71 container
+				72 text WEDDING Bappa & Mou
+			73 text TRADITIONAL · COUPLE PORTRAIT
+			74 text বিবাহ
+			75 heading লাল ও গোলাপি ঐতিহ্য, Value: 3
+				76 text লাল ও গোলাপি ঐতিহ্য
+			77 text ঐতিহ্যবাহী বিয়ের কার্ড — খাঁজকাটা তোরণে যুগলের ছবি, উপরে ঝোলানো গাঁদা ফুলের তোরণ ও ডেইজি।
+			78 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/red-pink-traditional.html
+			79 button অর্ডার করুন →
+		80 container
+			81 container
+				82 text YOU'RE INVITED Arham TURNS SIX
+			83 text BIRTHDAY · KIDS · SPACE
+			84 text জন্মদিন
+			85 heading মহাকাশ অভিযান জন্মদিন, Value: 3
+				86 text মহাকাশ অভিযান জন্মদিন
+			87 text জলরঙা মহাকাশ থিমের শিশুদের পার্টি — ইউএফওতে বিড়াল, গ্রহ-কেক, বেলুন, বান্টিং ও তারা। গোলগাল ফন্ট আর রংধনু কনফেটি।
+			88 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/rgb-birthday.html
+			89 button অর্ডার করুন →
+		90 container
+			91 container
+				92 text SAVE THE DATE Yasin & Sumaiya IN BLOOM · 2026
+			93 text WATERCOLOR · PURPLE & GREEN
+			94 text বিবাহ · জন্মদিন
+			95 heading জলরঙা রোমান্স, Value: 3
+				96 text জলরঙা রোমান্স
+			97 text হাতে আঁকা বেগুনি পিওনি, সেজ পাতা, নরম জলরঙের ছোঁয়া আর ভাসমান সোনালি তারা।
+			98 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/watercolor-purple-green.html
+			99 button অর্ডার করুন →
+		100 container
+			101 container
+				102 text WEDDING Rakesh ❤ Sromila 21 · JUNE · 2026
+			103 text TRADITIONAL · FLORAL
+			104 text বিবাহ
+			105 heading লাল ও ক্রিম ফুলেল, Value: 3
+				106 text লাল ও ক্রিম ফুলেল
+			107 text লাল ও ক্রিম রঙে ঐতিহ্যবাহী বিয়ের কার্ড — আপনার নাম ও তারিখ সুন্দর নকশার পটভূমিতে।
+			108 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/red-cream-indian.html
+			109 button অর্ডার করুন →
+		110 container
+			111 container
+				112 text بِسْمِ ٱللَّٰهِ Bilal  &  Ayesha 17 · X · 2026
+			113 text MUSLIM · WALIMA
+			114 text বিবাহ
+			115 heading মুসলিম আভিজাত্য, Value: 3
+				116 text মুসলিম আভিজাত্য
+			117 text পর্দা উন্মোচন, কুরআনের আয়াত আর অ্যানিমেটেড মান্ডালা। গাঢ় সবুজ ও প্রাচীন সোনালি।
+			118 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/muslim-elegance.html
+			119 button অর্ডার করুন →
+		120 container
+			121 image
+			122 container
+				123 text وليمة Yusuf & Mariam BARAKAH · WALIMA
+			124 text MUSLIM · WALIMA
+			125 text বিবাহ
+			126 heading রাজকীয় ওয়ালিমা, Value: 3
+				127 text রাজকীয় ওয়ালিমা
+			128 text উষ্ণ আইভরি ও প্রাচীন সোনালি, ঝোলানো লণ্ঠন, মসজিদ-তোরণের ট্রানজিশন, উজ্জ্বল কাউন্টডাউন আর স্ক্র্যাচ রিভিল।
+			129 link Description: লাইভ প্রিভিউ, Value: e-nimontron.com/templates/royal-walima.html
+			130 button অর্ডার করুন →
+	131 container how
+		132 text সহজ প্রক্রিয়া
+		133 heading তিন ধাপে আপনার আমন্ত্রণ, Value: 2
+			134 text তিন ধাপে আপনার আমন্ত্রণ
+		135 text ০১
+		136 heading টেমপ্লেট বেছে নিন, Value: 3
+			137 text টেমপ্লেট বেছে নিন
+		138 text আমাদের সংগ্রহ ঘুরে দেখুন আর আপনার পছন্দের ডিজাইনটি বেছে নিন।
+		139 text ০২
+		140 heading বিস্তারিত যোগ করুন, Value: 3
+			141 text বিস্তারিত যোগ করুন
+		142 text তারিখ, ঠিকানা, ছবি, RSVP — সবকিছু আপনার আয়োজন অনুযায়ী।
+		143 text ০৩
+		144 heading অতিথিদের সাথে শেয়ার করুন, Value: 3
+			145 text অতিথিদের সাথে শেয়ার করুন
+		146 text একটি ব্যক্তিগত লিংক পান — WhatsApp, ইমেইল বা সোশ্যাল মিডিয়ায় শেয়ার করুন।
+	147 container pricing
+		148 text মূল্য
+		149 heading সহজ ও স্বচ্ছ, Value: 2
+			150 text সহজ ও স্বচ্ছ
+		151 container
+			152 text রেডিমেড আমাদের সংগ্রহ থেকে বেছে নিন ৳ ৯৮০ ৳ ৫৯৯ ৩৯% ছাড় · সীমিত সময় প্রথম ৫০ জন গ্রাহকের জন্য
+			153 text ১ ইতিমধ্যে বুক হয়েছে  · ৪৯ টি স্লট বাকি
+			154 content list
+				155 container
+					156 text ✦ যেকোনো উপলব্ধ টেমপ্লেট বেছে নিন
+				157 container
+					158 text ✦ নাম, তারিখ ও ঠিকানা কাস্টমাইজ করুন
+				159 container
+					160 text ✦ RSVP ফর্ম অন্তর্ভুক্ত
+				161 container
+					162 text ✦ ব্যাকগ্রাউন্ড মিউজিক ও কাউন্টডাউন
+			163 link Description: রেডিমেড বেছে নিন, Value: e-nimontron.com/#gallery
+		164 container
+			165 text সর্বাধিক জনপ্রিয় কাস্টম নিজের মতো এডিট বা তৈরি করুন কথা বলুন
+			166 content list
+				167 container
+					168 text ✦ রেডিমেড-এর সব সুবিধা
+				169 container
+					170 text ✦ টেমপ্লেটের রং ও লেআউট এডিট করুন
+				171 container
+					172 text ✦ শূন্য থেকে সম্পূর্ণ কাস্টম ডিজাইন তৈরি
+				173 container
+					174 text ✦ কাস্টম ইলাস্ট্রেশন ও ফন্ট
+				175 container
+					176 text ✦ ১টি রিভিশন অন্তর্ভুক্ত
+			177 link Description: কাস্টম বেছে নিন, Value: wa.me/8801577348028?text=%E0%A6%B9%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%B2%E0%A7%8B%20e-Nimontron!%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%8F%E0%A6%95%E0%A6%9F%E0%A6%BF%20%E0%A6%95%E0%A6%BE%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A6%AE%20%E0%A6%86%E0%A6%AE%E0%A6%A8%E0%A7%8D%E0%A6%A4%E0%A7%8D%E0%A6%B0%E0%A6%A3%20%E0%A6%A1%E0%A6%BF%E0%A6%9C%E0%A6%BE%E0%A6%87%E0%A6%A8%20%E0%A6%A8%E0%A6%BF%E0%A6%AF%E0%A6%BC%E0%A7%87%20%E0%A6%95%E0%A6%A5%E0%A6%BE%20%E0%A6%AC%E0%A6%B2%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4
+	178 container contact
+		179 text যোগাযোগ করুন
+		180 heading চলুন সুন্দর কিছু তৈরি করি, Value: 2
+			181 text চলুন সুন্দর কিছু তৈরি করি
+		182 text প্রশ্ন, কাস্টম অনুরোধ, কিংবা অর্ডার করতে প্রস্তুত — আমরা আপনার কথা শুনতে চাই।
+		183 link Description: WHATSAPP / কল +880 1577-348028, Value: wa.me/8801577348028
+		184 link Description: ইমেইল hello@e-nimontron.com, Value: mailto:hello@e-nimontron.com
+	185 container
+		186 image e-Nimontron — Digital Invitations. Simply Beautiful.
+		187 text © ২০২৬ e-Nimontron। ঢাকায় ভালোবাসা দিয়ে তৈরি।
+	188 link Description: Chat with us on WhatsApp, Value: wa.me/8801577348028?text=Hi!%20I%27m%20interested%20in%20a%20digital%20invitation%20from%20e-Nimontron.
+
+The focused UI element is 1 AXWebArea e-Nimontron — Digital Invitations. Simply Beautiful., URL: e-nimontron.com/

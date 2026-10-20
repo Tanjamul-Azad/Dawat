@@ -1,0 +1,161 @@
+Browser tab: 6, Title: "Tasks · Yes Planner", URL: "https://www.thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#tareas-pendientes".
+0 AXWebArea Tasks · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#tareas-pendientes
+	1 container Sections
+		2 text Yes Planner
+		3 text The Digital Yes
+		4 container sideNav
+			145 button Search Ctrl K
+				146 text Search
+				147 text Ctrl K
+			148 button Summary
+			149 button Budget 93 %
+				150 text Budget
+				151 text 93 %
+			152 button Guests 104/159
+				153 text Guests
+				154 text 104/159
+			155 button Tasks 6/27
+				156 text Tasks
+				157 text 6/27
+			158 button Binder 4/56
+				159 text Binder
+				160 text 4/56
+		21 container sideCount
+			161 text Laura & Marc
+			162 text 328 days
+		24 button Wedding settings, ID: sideSet
+	25 container base
+		163 container
+			164 button Create plan PDF
+			165 button Add task
+		166 heading Tasks, Value: 1
+			167 text Tasks
+		168 text Dates are worked out automatically from the wedding date.
+		169 container
+			170 text 22% 6 of 27 done
+		171 tab group
+			172 tab (selected, settable, boolean) To do, Value: 1
+			173 tab (selectable, settable, boolean) All, Value: 0
+		174 container
+			175 heading 12 TO 9 MONTHS BEFORE 6 of 9, Value: 2
+				176 text 12 TO 9 MONTHS BEFORE 6 of 9
+			177 container
+				178 checkbox Description: Mark as done, Value: 0
+				179 button Book the music 10 months before · Nov 12, 2026
+					180 text Book the music
+					181 text 10 months before · Nov 12, 2026
+			182 container
+				183 checkbox Description: Mark as done, Value: 0
+				184 button Define the style, palette and theme 10 months before · Nov 12, 2026
+					185 text Define the style, palette and theme
+					186 text 10 months before · Nov 12, 2026
+			187 container
+				188 checkbox Description: Mark as done, Value: 0
+				189 button Start looking for the dress and suit 9 months before · Dec 12, 2026
+					190 text Start looking for the dress and suit
+					191 text 9 months before · Dec 12, 2026
+		192 container
+			193 heading 8 TO 6 MONTHS BEFORE 0 of 5, Value: 2
+				194 text 8 TO 6 MONTHS BEFORE 0 of 5
+			195 container
+				196 checkbox Description: Mark as done, Value: 0
+				197 button Send the save the dates 8 months before · Jan 12, 2027
+					198 text Send the save the dates
+					199 text 8 months before · Jan 12, 2027
+			200 container
+				201 checkbox Description: Mark as done, Value: 0
+				202 button Book the florist and decor 8 months before · Jan 12, 2027
+					203 text Book the florist and decor
+					204 text 8 months before · Jan 12, 2027
+			205 container
+				206 checkbox Description: Mark as done, Value: 0
+				207 button Block-book hotel rooms for guests 7 months before · Feb 12, 2027
+					208 text Block-book hotel rooms for guests
+					209 text 7 months before · Feb 12, 2027
+			210 container
+				211 checkbox Description: Mark as done, Value: 0
+				212 button Book hair and make-up 6 months before · Mar 12, 2027
+					213 text Book hair and make-up
+					214 text 6 months before · Mar 12, 2027
+			215 container
+				216 checkbox Description: Mark as done, Value: 0
+				217 button Plan the honeymoon and check passports 6 months before · Mar 12, 2027
+					218 text Plan the honeymoon and check passports
+					219 text 6 months before · Mar 12, 2027
+		220 container
+			221 heading 5 TO 3 MONTHS BEFORE 0 of 5, Value: 2
+				222 text 5 TO 3 MONTHS BEFORE 0 of 5
+			223 container
+				224 checkbox Description: Mark as done, Value: 0
+				225 button Order the cake or dessert table 5 months before · Apr 12, 2027
+					226 text Order the cake or dessert table
+					227 text 5 months before · Apr 12, 2027
+			228 container
+				229 checkbox Description: Mark as done, Value: 0
+				230 button Buy the rings 4 months before · May 12, 2027
+					231 text Buy the rings
+					232 text 4 months before · May 12, 2027
+			233 container
+				234 checkbox Description: Mark as done, Value: 0
+				235 button Menu tasting with the caterer 4 months before · May 12, 2027
+					236 text Menu tasting with the caterer
+					237 text 4 months before · May 12, 2027
+			238 container
+				239 checkbox Description: Mark as done, Value: 0
+				240 button Send the invitation with RSVP 3 months before · Jun 12, 2027
+					241 text Send the invitation with RSVP
+					242 text 3 months before · Jun 12, 2027
+			243 container
+				244 checkbox Description: Mark as done, Value: 0
+				245 button Choose the key songs 3 months before · Jun 12, 2027
+					246 text Choose the key songs
+					247 text 3 months before · Jun 12, 2027
+		248 container
+			249 heading 2 MONTHS TO 1 MONTH BEFORE 0 of 5, Value: 2
+				250 text 2 MONTHS TO 1 MONTH BEFORE 0 of 5
+			251 container
+				252 checkbox Description: Mark as done, Value: 0
+				253 button Sort out the marriage licence and paperwork 2 months before · Jul 12, 2027
+					254 text Sort out the marriage licence and paperwork
+					255 text 2 months before · Jul 12, 2027
+			256 container
+				257 checkbox Description: Mark as done, Value: 0
+				258 button Buy the guest favours 2 months before · Jul 12, 2027
+					259 text Buy the guest favours
+					260 text 2 months before · Jul 12, 2027
+			261 container
+				262 checkbox Description: Mark as done, Value: 0
+				263 button Finalise confirmed guests and special menus 1 month before · Aug 12, 2027
+					264 text Finalise confirmed guests and special menus
+					265 text 1 month before · Aug 12, 2027
+			266 container
+				267 checkbox Description: Mark as done, Value: 0
+				268 button Send the seating plan to the caterer 1 month before · Aug 12, 2027
+					269 text Send the seating plan to the caterer
+					270 text 1 month before · Aug 12, 2027
+			271 container
+				272 checkbox Description: Mark as done, Value: 0
+				273 button Share the day's timeline with suppliers 1 month before · Aug 12, 2027
+					274 text Share the day's timeline with suppliers
+					275 text 1 month before · Aug 12, 2027
+		276 container
+			277 heading THE FINAL WEEKS 0 of 3, Value: 2
+				278 text THE FINAL WEEKS 0 of 3
+			279 container
+				280 checkbox Description: Mark as done, Value: 0
+				281 button Final dress fitting and make-up trial 15 days before · Aug 28, 2027
+					282 text Final dress fitting and make-up trial
+					283 text 15 days before · Aug 28, 2027
+			284 container
+				285 checkbox Description: Mark as done, Value: 0
+				286 button Prepare the final payment envelopes 15 days before · Aug 28, 2027
+					287 text Prepare the final payment envelopes
+					288 text 15 days before · Aug 28, 2027
+			289 container
+				290 checkbox Description: Mark as done, Value: 0
+				291 button Pack for the wedding night 8 days before · Sep 4, 2027
+					292 text Pack for the wedding night
+					293 text 8 days before · Sep 4, 2027
+	144 button Get Yes Planner
+
+The focused UI element is 0 AXWebArea Tasks · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#tareas-pendientes

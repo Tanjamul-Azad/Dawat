@@ -1,0 +1,309 @@
+Browser tab: 3, Title: "Stained Glass – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/stained-glass".
+1 AXWebArea Stained Glass – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/stained-glass
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Stained Glass
+			24 text DIGITAL INVITATION
+			25 heading Stained Glass, Value: 1
+				26 text Stained
+				27 text Glass
+			28 text Floral stained glass and pearlescent light. FROM €175 One-time payment · three levels of personalisation
+			29 checkbox Description: Save Stained Glass, Value: 0
+				30 image
+			31 text Interactive demo
+			32 container Views
+				33 container Stained Glass — live demo
+					34 AXWebArea Bloom Template, URL: 13-15-stainedglass-template.thedigitalyes.com/?embed=1
+						35 container root
+							36 container Notifications (F8)
+								37 content list
+							38 container Notifications alt+T
+							39 container
+								40 container hero
+									41 text TAP TO OPEN
+								42 container
+									43 heading Countdown, Value: 2
+										44 text Countdown
+									45 text UNTIL 23 MAY 2027 216 DAYS 15 HOURS 45 MINUTES
+								46 container
+									47 image Ornamento de rosas decorativo
+									48 heading We're so happy to celebrate this day with you., Value: 2
+										49 text We're so happy to celebrate this day with you.
+									50 container
+										51 text Having you with us means the world.
+										52 text We can't wait to welcome you.
+								53 container
+									54 heading Welcome, Value: 2
+										55 text Welcome
+									56 text Together with their families
+									57 heading Alba, Value: 3
+										58 text Alba
+									59 text &
+									60 heading Felipe, Value: 3
+										61 text Felipe
+									62 text request the honor of your presence as they
+									63 text exchange vows of marriage. We hope you will join us to celebrate a day full of love, laughter and dancing — it wouldn't be the same without you.
+								64 container wedding-events
+									65 container
+										66 heading Ceremony & Reception, Value: 2
+											67 text Ceremony &  Reception
+										68 text WHERE WE CELEBRATE
+										69 container
+											70 heading La Baronia, Value: 3
+												71 text La
+												72 text Baronia
+											73 text Sant Feliu de Codines
+											74 text Barcelona Sunday, 23rd of May, 2027 5:30 PM Carretera de Caldes, km 14,4 08182 Sant Feliu de Codines, Barcelona
+									75 pop up button (collapsed) OPEN IN MAPS, ID: radix-:r0:, Secondary Actions: Expand
+									76 pop up button (collapsed) ADD TO CALENDAR, ID: radix-:r2:, Secondary Actions: Expand
+								77 container
+									78 heading Dress Code, Value: 2
+										79 text Dress Code
+									80 text BLACK TIE We kindly ask our guests to wear formal evening attire — a tuxedo or dark suit for gentlemen, and a long or elegant cocktail dress for ladies.
+								81 container day-program
+									82 text Program
+									83 container
+										84 text THIS WILL BE THE ORDER
+										85 text OF THE DAY
+									86 container
+										87 container
+											88 text Guest Arrival 5:00 PM
+										89 container
+											90 text Ceremony 5:30 PM
+										91 container
+											92 text Cocktail Hour 6:30 PM
+										93 container
+											94 text Dinner 8:00 PM
+										95 container
+											96 text First Dance 10:00 PM
+										97 container
+											98 text Party 10:30 PM
+								99 container
+									100 heading Gifts, Value: 2
+										101 text Gifts
+									102 container
+										103 text YOUR PRESENCE
+										104 text IS THE GREATEST GIFT
+									105 text If you would like to give us a gift, we have set up an account. Any contribution towards our honeymoon and our new life together is received with immense gratitude.
+									106 text ES00 0000 0000 0000 0000 0000
+									107 container
+										108 text BIC  XXXX XXX XXX
+								109 container
+									110 heading Travel & Stay, Value: 2
+										111 text Travel  &  Stay
+									112 text We recommend flying into Barcelona–El Prat Airport (BCN, ~45 min).
+									113 container
+										114 text OUR RECOMMENDATION
+										115 heading Hotel El Roure Blanc, Value: 3
+											116 text Hotel El Roure Blanc
+										117 text Carrer del Roure 8
+08182 Sant Feliu de Codines, Barcelona
+
+									118 definition list
+										119 container BLOCK DATES
+											120 text BLOCK DATES
+										121 text May 22 – 24, 2027
+										122 container RATES
+											123 text RATES
+										124 container
+											125 text Double room — €110 per night Suite — €160 per night
+										126 container BOOKING CODE
+											127 text BOOKING CODE
+										128 container
+											129 text ALBAFELIPE27 Quote this code when booking by phone or email
+										130 container PARKING
+											131 text PARKING
+										132 text Free private parking for guests
+EV charging points available on site
+										133 text Breakfast included · 10 minutes from La Baronia
+									134 link Description: GOOGLE MAPS, Value: google.com/maps/search/?api=1&query=Sant%20Feliu%20de%20Codines%2C%20Barcelona
+								135 container rsvp
+									136 heading RSVP, Value: 2
+										137 text RSVP
+									138 text KINDLY RESPOND BY 23 APRIL 2027
+									139 container
+										140 text Full name *
+										141 text field (settable) Full name *, ID: fullName
+										142 text Will you be attending? *
+										143 radio button Description: Joyfully accepts, Value: 0, ID: yes
+										144 text Joyfully accepts
+										145 radio button Description: Regretfully declines, Value: 0, ID: no
+										146 text Regretfully declines
+										147 text A personal message for the couple
+										148 text entry area (settable) A personal message for the couple, ID: message
+										149 button SEND RSVP
+								150 container
+									151 container
+										152 heading Alba & Felipe, Value: 2
+											153 text Alba & Felipe
+										154 text MAY 23, 2027
+										155 image Decorative frame
+									156 text Made with love by
+									157 link Description: The Digital Yes, Value: thedigitalyes.com/
+				158 button (disabled) Previous screen
+					159 image
+				160 button Next screen
+					161 image
+			162 container
+				163 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			164 button Try it yourself
+			165 button 2 · Envelope, music & motion
+			166 button 3 · A live countdown
+			167 button 4 · Little surprises
+			168 button 5 · Map & calendar
+			169 button 6 · Your sections, your order
+			170 button 7 · The day, hour by hour
+			171 button 8 · Gifts
+			172 button 9 · Travel & stay
+			173 button 10 · An RSVP made for you
+			174 button In your languages
+			175 text 1  /  11
+			176 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			177 button Full screen
+				178 image
+			179 container Purchase
+				180 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				181 button PERSONALIZE THIS INVITATION
+				182 text ✓ Designed by hand ✓ Revisions included
+				183 container This is your invitation
+					184 text HANDMADE, ONLY FOR YOU
+					185 heading This is your invitation, Value: 2
+						186 text This is your invitation
+					187 tab group
+						188 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						189 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						190 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					191 container Description: WHO CREATES IT, ID: v5-info-pane
+						192 text Designed by a real person
+						193 text A designer from our atelier crafts it for you.
+						194 text Revisions included
+						195 text See your draft and request changes before sharing.
+						196 text At your own pace
+						197 text Send details and photos after payment, whenever ready.
+						198 text One-time payment, forever
+						199 text No subscriptions. A link ready for WhatsApp.
+				200 container Your sections, your order
+					201 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						202 text Your sections, your order
+					203 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					204 container Your sections, your order
+						205 content list
+							206 text Our story
+							207 text Schedule
+							208 text Dress code
+							209 text Travel & stay
+							210 text Gifts
+							211 text RSVP
+						212 text Add section
+				213 container
+					214 text DETAILS RECEIVED
+					215 text Once we have your details
+					216 text DESIGN & PROOF
+					217 text READY
+					218 text 7–14 days Counted from when we receive your details and materials.
+				219 text An invitation inspired by handcrafted stained glass: ivory and green florals, pearlescent reflections and delicate lead lines framing your story. Luminous, romantic and artistic.
+				220 button (collapsed) What’s included +, Secondary Actions: Expand
+					221 text What’s included
+					222 text +
+				223 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					224 text Personalisation & extras
+					225 text +
+				226 button (collapsed) How it works +, Secondary Actions: Expand
+					227 text How it works
+					228 text +
+				229 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					230 text Delivery & revisions
+					231 text +
+				232 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Stained%20Glass%20template%20%E2%9C%A8
+			233 container What couples say
+				234 heading What couples say, Value: 2, ID: h4p-ugc-title
+					235 text What couples say
+				236 text REAL COUPLES, REAL INVITATIONS
+				237 button Previous video
+				238 button Next video
+				239 container
+					240 button Play video — @irenefdz
+						241 container @irenefdz
+					242 link Description: @irenefdz, Value: instagram.com/irenefdz
+					243 button Play video — @fanicarbaj
+						244 container @fanicarbaj
+					245 link Description: @fanicarbaj, Value: instagram.com/fanicarbaj
+					246 button Play video — @miisspinkie
+						247 container @miisspinkie
+					248 link Description: @miisspinkie, Value: instagram.com/miisspinkie/
+					249 button Play video — @sophiialorraine
+						250 container @sophiialorraine
+					251 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					252 button Play video — @sophiialorraine
+						253 container @sophiialorraine
+					254 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					255 button Play video — Diana & Richard
+						256 container Diana & Richard
+					257 text Diana & Richard
+					258 button Play video — The Digital Yes
+						259 container The Digital Yes
+					260 text The Digital Yes
+			261 container reviews
+				262 heading Loved by 3,000+ couples., Value: 2
+					263 text Loved by 3,000+ couples.
+				264 text 4.9
+				265 text 278 reviews
+				266 container
+					267 container 5/5
+						268 text ★★★★★
+					269 text “ eautiful invite, fast communication and our designer worked on it to make it exactly how we had envisioned ”
+					270 text aro
+				271 container
+					272 container 5/5
+						273 text ★★★★★
+					274 text “ Beautiful invite, fast communication and our designer worked on it to make it exactly how we had envisioned it. 😍 Highly recommend! ”
+					275 text Bianca & Pearse
+				276 container
+					277 container 4/5
+						278 text ★★★★
+					279 text “ initially i had a lot of questions before purchasing - post purchase came more questions that i felt weren't clear until i emailed customer services. As a customer experience manager for an ecommerce company, there's definitely improvements to limit CS tickets, but when speaking to CS they were super efficient polite and really helpful. I chose this company because they're just the best at what they offer, no one else compared so i would definitely recommend ”
+					280 text alice wherrett
+			281 text YOU MAY ALSO LIKE
+			282 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			283 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			284 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+			285 link Description: Bella Vista — design preview Bella Vista From €175, Value: thedigitalyes.com/demo/bella-vista
+		286 container
+			287 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			288 text Digital wedding invitations designed by hand.
+			289 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			290 text COLLECTIONS
+			291 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			292 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			293 link Description: Plans, Value: thedigitalyes.com/#plans
+			294 text SERVICE
+			295 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			296 link Description: Blog, Value: thedigitalyes.com/blog
+			297 link Description: Client portal, Value: thedigitalyes.com/clients
+			298 text LEGAL
+			299 link Description: Terms, Value: thedigitalyes.com/terms
+			300 link Description: Privacy, Value: thedigitalyes.com/privacy
+			301 link Description: Refunds, Value: thedigitalyes.com/refunds
+			302 text ©  2026  The Digital Yes EN  ·  EUR
+		303 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Stained Glass – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/stained-glass

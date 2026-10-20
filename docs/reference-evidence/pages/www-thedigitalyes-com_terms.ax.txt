@@ -1,0 +1,216 @@
+Browser tab: 3, Title: "Terms & Conditions | The Digital Yes", URL: "https://www.thedigitalyes.com/terms".
+1 AXWebArea Terms & Conditions | The Digital Yes, URL: thedigitalyes.com/terms
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 link Description: Back to home, Value: thedigitalyes.com/
+		21 heading Terms and Conditions, Value: 1
+			22 text Terms and Conditions
+		23 text Last updated: January 1, 2026
+		24 container
+			25 heading 1. Identification, Value: 2
+				26 text 1. Identification
+			27 text The Digital Yes
+Email: info@thedigitalyes.com
+Location: United Arab Emirates (UAE)
+
+These terms and conditions govern the use of digital wedding invitation services offered through this website.
+		28 container
+			29 heading 2. Service Description, Value: 2
+				30 text 2. Service Description
+			31 text The Digital Yes offers a custom digital wedding invitation creation service that includes:
+
+• Custom digital invitation design
+• RSVP confirmation system
+• Guest management dashboard
+• Lifetime access to the invitation
+• Technical support
+
+The service is provided through a one-time payment, with no subscriptions or recurring fees.
+		32 container
+			33 heading 3. Ordering Process, Value: 2
+				34 text 3. Ordering Process
+			35 text The ordering process consists of the following steps:
+
+1. Selection of desired package and add-ons
+2. Completing the form with wedding details
+3. Secure payment through Stripe
+4. Order confirmation by email
+5. Creation and delivery of the personalized invitation
+
+The contract is considered completed once payment is made and confirmation is received.
+		36 container
+			37 heading 4. Prices and Payment, Value: 2
+				38 text 4. Prices and Payment
+			39 text • Displayed prices include VAT
+• Payment is made securely through Stripe
+• Credit/debit cards are accepted
+• The final price is shown before confirming payment
+• No hidden fees or recurring charges
+
+Payment is made in a single charge at the time of ordering.
+		40 container
+			41 heading 5. Service Delivery, Value: 2
+				42 text 5. Service Delivery
+			43 text • The digital invitation is delivered within up to 14 days
+• We will send you the link to your invitation by email
+• You can request minor modifications at no additional cost
+• Access to the invitation is for life
+
+In case of delay, we will inform you and offer a solution.
+		44 container
+			45 heading 6. Right of Withdrawal, Value: 2
+				46 text 6. Right of Withdrawal
+			47 text In accordance with consumer regulations, you have the right to withdraw from the contract within 14 calendar days from the date of purchase.
+
+After these 14 days, no refunds will be accepted under any circumstances.
+
+EXCEPTIONS:
+Once we have started creating your personalized invitation (custom-made digital content), the right of withdrawal will be considered fulfilled, as the service will have started with your express consent.
+
+ADDITIONALLY:
+• Once the design has started, it is not possible to change the selected template or style.
+• Once the design is completed and delivered, no refunds or returns will be accepted.
+
+To exercise withdrawal before the service begins, contact info@thedigitalyes.com
+		48 container
+			49 heading 7. Satisfaction Guarantee, Value: 2
+				50 text 7. Satisfaction Guarantee
+			51 text We offer a satisfaction guarantee:
+
+• If you are not satisfied with the result, we will work with you to modify it
+• We include unlimited design revisions within reason
+• We commit to ensuring the final result meets your expectations
+
+This guarantee does not include package changes, template or style changes once the initial design is approved, nor refunds once the work is delivered.
+		52 container
+			53 heading 8. Intellectual Property, Value: 2
+				54 text 8. Intellectual Property
+			55 text • Base designs, code, and graphic elements are the property of The Digital Yes
+• We grant you a personal use license for your invitation
+• You may not resell, redistribute, or sublicense the designs
+• Photos and personal information you provide remain your property
+• We reserve the right to display your invitation in our portfolio (anonymized) unless you indicate otherwise
+		56 container
+			57 heading 9. User Obligations, Value: 2
+				58 text 9. User Obligations
+			59 text The user agrees to:
+
+• Provide truthful and up-to-date information
+• Use the service for legal purposes
+• Not attempt to access systems or data of other users
+• Respect intellectual property rights
+• Not upload illegal, offensive content or content that infringes third-party rights
+		60 container
+			61 heading 10. Limitation of Liability, Value: 2
+				62 text 10. Limitation of Liability
+			63 text The Digital Yes will not be liable for:
+
+• Damages arising from misuse of the service
+• Connectivity or internet availability issues
+• Errors in information provided by the user
+• Indirect or consequential losses
+
+Our maximum liability is limited to the amount paid for the service.
+		64 container
+			65 heading 11. Data Protection, Value: 2
+				66 text 11. Data Protection
+			67 text Personal data processing is carried out in accordance with our Privacy Policy, available on this website.
+
+You can consult your rights and how to exercise them in said policy.
+		68 container
+			69 heading 12. Modifications, Value: 2
+				70 text 12. Modifications
+			71 text We reserve the right to modify these terms. Changes will be published on this page.
+
+Already formalized contracts will be governed by the terms in effect at the time of contracting.
+		72 container
+			73 heading 13. Applicable Law and Jurisdiction, Value: 2
+				74 text 13. Applicable Law and Jurisdiction
+			75 text These terms are governed by the laws of the United Arab Emirates (UAE).
+
+For any dispute, the parties submit to the competent courts of the UAE, unless the law provides otherwise.
+		76 container
+			77 heading 14. Contact, Value: 2
+				78 text 14. Contact
+			79 text For any questions about these terms:
+
+Email: info@thedigitalyes.com
+		80 container
+			81 container Newsletter
+				82 heading Newsletter, Value: 2, ID: :r0:-t
+					83 text Newsletter
+				84 text A 4-email welcome in week one, then roughly one a week.
+				85 container
+					86 text The practical guide is free to read, no subscription needed.
+					87 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				88 container
+					89 text EMAIL
+					90 text field (settable) EMAIL
+					91 text EMAIL LANGUAGE
+					92 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						93 menu
+							94 Español
+							95 (selected) English
+							96 Français
+							97 Deutsch
+							98 Italiano
+							99 Português
+							100 Nederlands
+							101 العربية
+					102 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					103 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					104 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					105 button SUBSCRIBE
+			106 heading COLLECTIONS, Value: 4
+				107 text COLLECTIONS
+			108 content list
+				109 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				110 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				111 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				112 link Description: All designs, Value: thedigitalyes.com/designs
+				113 link Description: Pricing, Value: thedigitalyes.com/pricing
+				114 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				115 link Description: Essential, Value: thedigitalyes.com/essential
+				116 link Description: Premium, Value: thedigitalyes.com/premium
+				117 link Description: Excellence, Value: thedigitalyes.com/excellence
+				118 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				119 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				120 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				121 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			122 heading SERVICE, Value: 4
+				123 text SERVICE
+			124 content list
+				125 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				126 link Description: Our story, Value: thedigitalyes.com/our-story
+				127 link Description: Reviews, Value: thedigitalyes.com/reviews
+				128 link Description: Blog, Value: thedigitalyes.com/blog
+				129 link Description: Client portal, Value: thedigitalyes.com/clients
+			130 heading LEGAL, Value: 4
+				131 text LEGAL
+			132 content list
+				133 link Description: Terms, Value: thedigitalyes.com/terms
+				134 link Description: Privacy, Value: thedigitalyes.com/privacy
+				135 link Description: Refunds, Value: thedigitalyes.com/refunds
+			136 heading THE DIGITAL YES, Value: 4
+				137 text THE DIGITAL YES
+			138 content list
+				139 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			140 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Terms & Conditions | The Digital Yes, URL: thedigitalyes.com/terms

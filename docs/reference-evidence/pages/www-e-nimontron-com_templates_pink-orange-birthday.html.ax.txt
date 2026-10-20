@@ -1,0 +1,102 @@
+Browser tab: 3, Title: "Inaya's Birthday Party", URL: "https://www.e-nimontron.com/templates/pink-orange-birthday.html".
+1 AXWebArea Inaya's Birthday Party, URL: e-nimontron.com/templates/pink-orange-birthday.html
+	2 image confettiCanvas
+	3 container
+		4 image Happy Birthday
+		5 text You're invited to celebrate
+		6 heading I n a y a, Value: 1, ID: brideName
+			7 text I
+			8 text n
+			9 text a
+			10 text y
+			11 text a
+		12 text — TURNS FIVE —
+		13 text SAVE THE DATE
+		14 container dateRow
+			15 text AUGUST
+			16 text 15
+			17 text 3:00 PM
+		18 container w-scratch-mount
+			19 text Save The Date
+			20 text SCRATCH TO REVEAL
+			21 container
+				22 text Thursday, 31 December 2026
+				23 text 7:00 PM onwards
+				24 image
+		25 text THE GARDEN CAFÉ
+		26 text Road 11, Banani, Dhaka 1213, Bangladesh
+		27 text — COUNTING DOWN — 0 DAYS until your big celebration
+		28 container cd-cell-days
+			29 text 00
+			30 text DAYS
+		31 container cd-cell-hrs
+			32 text 00
+			33 text HOURS
+		34 container cd-cell-mins
+			35 text 00
+			36 text MINS
+		37 container cd-cell-secs
+			38 text 00
+			39 text SECS
+		40 text See you there!
+		41 text BRING YOUR PARTY HATS
+	42 container invite-widgets
+		43 container
+			44 text Sweet Moments A FEW FAVOURITES
+			45 container Photo slideshow
+				46 container
+					47 image Photo 1 of 3
+					48 text 1  / 3
+				49 button Previous photo
+					50 image
+				51 button Next photo
+					52 image
+			53 button Photo 1
+			54 button Photo 2
+			55 button Photo 3
+		56 text Join Us
+		57 button MAP
+			58 image
+			59 text MAP
+		60 button CALENDAR
+			61 image
+			62 text CALENDAR
+		63 text Kindly RSVP
+		64 text WE HOPE YOU CAN CELEBRATE WITH US
+		65 container w-rsvp-form
+			66 text YOUR NAME
+			67 text field (settable) YOUR NAME, ID: w-rsvp-name
+			68 text WILL YOU ATTEND?
+			69 container
+				70 radio button (settable, integer) Description: JOYFULLY, Value: 1
+				71 text JOYFULLY
+			72 container
+				73 radio button (settable, integer) Description: SADLY NO, Value: 0
+				74 text SADLY NO
+			75 text NUMBER OF GUESTS (0–10)
+			76 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+			77 button SEND RSVP
+		78 text Send Your Wishes
+		79 text LEAVE A PRIVATE MESSAGE
+		80 container w-wish-form
+			81 text Send your wish
+			82 text Your message stays private — it won't be shown here publicly
+			83 text YOUR NAME
+			84 text field (settable) YOUR NAME, ID: w-wish-name
+			85 text YOUR MESSAGE
+			86 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+			87 container
+				88 image
+				89 text ADD A PHOTO (OPTIONAL)
+			90 button ADD YOUR WISH
+		91 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+		92 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+		93 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	94 container
+		95 text — A PARTY AWAITS — Welcome BIRTHDAY
+		96 button OPEN INVITATION
+	97 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		98 image
+	99 image w-fx-canvas
+
+The focused UI element is 1 AXWebArea Inaya's Birthday Party, URL: e-nimontron.com/templates/pink-orange-birthday.html

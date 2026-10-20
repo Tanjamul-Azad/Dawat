@@ -1,0 +1,118 @@
+Browser tab: 3, Title: "Our Story | Wedding Invitations Made With Love", URL: "https://www.thedigitalyes.com/our-story".
+1 AXWebArea Our Story | Wedding Invitations Made With Love, URL: thedigitalyes.com/our-story
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 container
+			21 text OUR STORY
+			22 heading It started with our own wedding., Value: 1
+				23 text It started with our own wedding.
+			24 text We're a couple who looked everywhere for a digital wedding invitation we actually loved. We couldn't find one.
+			25 container
+				26 heading Nothing felt right, Value: 2
+					27 text Nothing felt right
+				28 text We looked everywhere. Every invitation looked the same, nothing felt personal, nothing felt made with heart. We wanted something that truly reflected our story — not just another template.
+				29 heading So he designed one just for her, Value: 2
+					30 text So he designed one just for her
+				31 text The groom decided to create an invitation made only for her. Something unique, breathtaking, unlike anything we'd ever seen. That's where our most recognizable idea was born: the envelope that opens. No one had done it before.
+				32 heading When he showed it to her, it was magic, Value: 2
+					33 text When he showed it to her, it was magic
+				34 text It was the perfect invitation. So special that we decided to share it with the world. People loved it, orders started coming in, and little by little we built what is today The Digital Yes.
+				35 heading Today we're a team creating with love, Value: 2
+					36 text Today we're a team creating with love
+				37 text Over 3,000 couples later, the mission is still the same: beautiful invitations, made with love. We're a team of designers who personally craft every single invitation, one by one.
+			38 text 3,000+
+			39 text COUPLES
+			40 text 160k+
+			41 text INSTAGRAM COMMUNITY
+			42 text 4.9★
+			43 text AVERAGE RATING
+			44 image The Digital Yes
+			45 heading The rest is The Digital Yes., Value: 2
+				46 text The rest is The Digital Yes.
+			47 text Thank you for trusting us to be part of the beginning of your story.
+			48 image
+			49 container
+				50 text —  With all our love, the team at The Digital Yes
+			51 button SEE OUR INVITATIONS
+				52 image
+				53 text SEE OUR INVITATIONS
+				54 image
+		55 container
+			56 container Newsletter
+				57 heading Newsletter, Value: 2, ID: :r0:-t
+					58 text Newsletter
+				59 text A 4-email welcome in week one, then roughly one a week.
+				60 container
+					61 text The practical guide is free to read, no subscription needed.
+					62 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				63 container
+					64 text EMAIL
+					65 text field (settable) EMAIL
+					66 text EMAIL LANGUAGE
+					67 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						68 menu
+							69 Español
+							70 (selected) English
+							71 Français
+							72 Deutsch
+							73 Italiano
+							74 Português
+							75 Nederlands
+							76 العربية
+					77 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					78 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					79 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					80 button SUBSCRIBE
+			81 heading COLLECTIONS, Value: 4
+				82 text COLLECTIONS
+			83 content list
+				84 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				85 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				86 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				87 link Description: All designs, Value: thedigitalyes.com/designs
+				88 link Description: Pricing, Value: thedigitalyes.com/pricing
+				89 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				90 link Description: Essential, Value: thedigitalyes.com/essential
+				91 link Description: Premium, Value: thedigitalyes.com/premium
+				92 link Description: Excellence, Value: thedigitalyes.com/excellence
+				93 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				94 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				95 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				96 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			97 heading SERVICE, Value: 4
+				98 text SERVICE
+			99 content list
+				100 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				101 link Description: Our story, Value: thedigitalyes.com/our-story
+				102 link Description: Reviews, Value: thedigitalyes.com/reviews
+				103 link Description: Blog, Value: thedigitalyes.com/blog
+				104 link Description: Client portal, Value: thedigitalyes.com/clients
+			105 heading LEGAL, Value: 4
+				106 text LEGAL
+			107 content list
+				108 link Description: Terms, Value: thedigitalyes.com/terms
+				109 link Description: Privacy, Value: thedigitalyes.com/privacy
+				110 link Description: Refunds, Value: thedigitalyes.com/refunds
+			111 heading THE DIGITAL YES, Value: 4
+				112 text THE DIGITAL YES
+			113 content list
+				114 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			115 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Our Story | Wedding Invitations Made With Love, URL: thedigitalyes.com/our-story

@@ -1,0 +1,60 @@
+Browser tab: 6, Title: "Guests · Yes Planner", URL: "https://www.thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-catering".
+0 AXWebArea Guests · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-catering
+	1 container Sections
+		2 text Yes Planner
+		3 text The Digital Yes
+		4 container sideNav
+			145 button Search Ctrl K
+				146 text Search
+				147 text Ctrl K
+			148 button Summary
+			149 button Budget 93 %
+				150 text Budget
+				151 text 93 %
+			152 button Guests 104/159
+				153 text Guests
+				154 text 104/159
+			155 button Tasks 6/27
+				156 text Tasks
+				157 text 6/27
+			158 button Binder 4/56
+				159 text Binder
+				160 text 4/56
+		21 container sideCount
+			161 text Laura & Marc
+			162 text 328 days
+		24 button Wedding settings, ID: sideSet
+	25 container base
+		163 heading Guests, Value: 1
+			164 text Guests
+		165 text 104 attending, 36 yet to reply and 19 can't make it. RSVP by July 12.
+		166 tab group
+			167 tab (selectable, settable, boolean) List, Value: 0
+			168 tab (selectable, settable, boolean) Families, Value: 0
+			169 tab (selectable, settable, boolean) Tables, Value: 0
+			170 tab (selected, settable, boolean) Catering, Value: 1
+		171 container
+			172 text Attending 104 No reply 36 Covers $23,400
+		173 container
+			174 heading MENUS, Value: 2
+				175 text MENUS
+			176 text Adult 86 Vegetarian 9 Child 9 Total 104
+		177 container
+			178 heading ALLERGIES AND INTOLERANCES, Value: 2
+				179 text ALLERGIES AND INTOLERANCES
+			180 text Gluten Sergi Mas, Guillem Palou, Neus Sastre, Paula Fiol, David Roca 5 Nuts Lucía López 1
+		181 container
+			182 button Copy summary for the caterer
+			183 text Paste it into a message or email. It includes the totals and allergies.
+		184 container
+			185 heading PRINT AND EXPORT, Value: 2
+				186 text PRINT AND EXPORT
+			187 button Create guests and tables PDF List, tables with menus and summary for the caterer
+				188 text Create guests and tables PDF
+				189 text List, tables with menus and summary for the caterer
+			190 button Export the list to Excel CSV file with all the details
+				191 text Export the list to Excel
+				192 text CSV file with all the details
+	144 button Get Yes Planner
+
+The focused UI element is 0 AXWebArea Guests · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-catering

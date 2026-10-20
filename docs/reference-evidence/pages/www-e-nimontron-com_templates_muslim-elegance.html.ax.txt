@@ -1,0 +1,101 @@
+Browser tab: 3, Title: "Ayesha & Bilal — Walima Invitation", URL: "https://www.e-nimontron.com/templates/muslim-elegance.html".
+1 AXWebArea Ayesha & Bilal — Walima Invitation, URL: e-nimontron.com/templates/muslim-elegance.html
+	2 container openPrompt
+		3 text بِسْمِ ٱللَّٰهِ
+		4 heading YOU'RE INVITED, Value: 2
+			5 text YOU'RE INVITED
+		6 text Tap to open the curtains
+		7 image
+	8 container
+		9 text بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ In the name of Allah, the Most Gracious, the Most Merciful
+		10 image
+		11 text SCROLL
+		12 image
+	13 container
+		14 text وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا "And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts." — SURAH AR-RUM, 30:21 WITH THE BLESSINGS OF ALLAH Bilal بلال Son of Mr. & Mrs. Khan & Ayesha عائشة Daughter of Mr. & Mrs. Rahman
+	15 container
+		16 image
+		17 text REQUEST THE PLEASURE OF YOUR COMPANY Walima
+		18 container
+			19 text SAVE THE DATE
+			20 text Saturday, 17 October 2026
+			21 text 7:00 PM onwards
+		22 image scratchCanvas
+		23 text SCRATCH THE GOLD FOIL TO REVEAL THE DATE & TIME
+	24 container
+		25 heading The Venue, Value: 2
+			26 text The Venue
+		27 text FIND YOUR WAY TO US
+		28 text Kara Convention Center
+		29 container
+			30 text 30/3 Umesh, Nandakumar Dutta Rd
+			31 text Dhaka 1211
+			32 text Bangladesh
+	33 container clockFrame
+		34 image Arabic calligraphy blessing
+		35 text Countdown to our
+		36 text Walima Reception
+		37 text ✦
+		38 text The blessed day has arrived
+		39 text ✦
+		40 container
+			41 text ✦
+			42 text BARAKAH UPON US
+	43 container
+		44 heading Kindly Reply, Value: 2
+			45 text Kindly Reply
+		46 text WE HOPE YOU CAN JOIN US
+		47 container rsvpForm
+			48 text YOUR NAME
+			49 text field (settable)
+			50 text WILL YOU ATTEND?
+			51 button JOYFULLY ACCEPT
+			52 button WITH REGRETS
+			53 text NUMBER OF GUESTS (0–10)
+			54 stepper (settable, integer) 0
+			55 button SEND WITH LOVE
+	56 container
+		57 text رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ "Our Lord, grant us from among our spouses and offspring comfort to our eyes." — Surah Al-Furqan, 25:74 B & A 17 · 10 · 2026
+	58 text Opening directions...
+	59 container invite-widgets
+		60 container
+			61 text Our Moments CAPTURED TOGETHER
+			62 container Photo slideshow
+				63 container
+					64 image Photo 1 of 4
+					65 text 1  / 4
+				66 button Previous photo
+					67 image
+				68 button Next photo
+					69 image
+			70 button Photo 1
+			71 button Photo 2
+			72 button Photo 3
+			73 button Photo 4
+		74 text Join Us
+		75 button MAP
+			76 image
+			77 text MAP
+		78 button CALENDAR
+			79 image
+			80 text CALENDAR
+		81 text Send Your Wishes
+		82 text LEAVE A PRIVATE MESSAGE
+		83 container w-wish-form
+			84 text Send your wish
+			85 text Your message stays private — it won't be shown here publicly
+			86 text YOUR NAME
+			87 text field (settable) YOUR NAME, ID: w-wish-name
+			88 text YOUR MESSAGE
+			89 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+			90 container
+				91 image
+				92 text ADD A PHOTO (OPTIONAL)
+			93 button ADD YOUR WISH
+		94 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+		95 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+		96 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	97 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		98 image
+
+The focused UI element is 1 AXWebArea Ayesha & Bilal — Walima Invitation, URL: e-nimontron.com/templates/muslim-elegance.html

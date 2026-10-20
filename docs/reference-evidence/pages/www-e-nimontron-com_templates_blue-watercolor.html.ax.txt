@@ -1,0 +1,119 @@
+Browser tab: 3, Title: "Daniel & Olivia — Wedding Invitation", URL: "https://www.e-nimontron.com/templates/blue-watercolor.html".
+1 AXWebArea Daniel & Olivia — Wedding Invitation, URL: e-nimontron.com/templates/blue-watercolor.html
+	2 image starsCanvas
+	3 container
+		4 container salutation
+			5 text Together with their families,
+			6 text joyfully invite you to their wedding celebration
+		7 heading D a n i e l, Value: 1, ID: groomName
+			8 text D
+			9 text a
+			10 text n
+			11 text i
+			12 text e
+			13 text l
+		14 text &
+		15 heading O l i v i a, Value: 1, ID: brideName
+			16 text O
+			17 text l
+			18 text i
+			19 text v
+			20 text i
+			21 text a
+		22 text SAVE THE DATE
+		23 text — THE WEDDING —
+		24 container dateRow
+			25 container dateLeft
+				26 text DECEMBER
+				27 text FRIDAY
+			28 container dateMid
+				29 text 18
+				30 text 2026
+			31 container dateRight
+				32 text 4:00 PM
+				33 text ONWARDS
+		34 container w-scratch-mount
+			35 text Save The Date
+			36 text SCRATCH TO REVEAL
+			37 container
+				38 text Thursday, 31 December 2026
+				39 text 7:00 PM onwards
+				40 image
+		41 text Borcelle Ballroom
+		42 container
+			43 text Marine Drive, Kolatoli, Cox's Bazar 4700, Bangladesh
+		44 text — COUNTING DOWN — 0 DAYS until your dream wedding
+		45 container cd-cell-days
+			46 text 00
+			47 text DAYS
+		48 container cd-cell-hrs
+			49 text 00
+			50 text HOURS
+		51 container cd-cell-mins
+			52 text 00
+			53 text MINS
+		54 container cd-cell-secs
+			55 text 00
+			56 text SECS
+		57 text Daniel & Olivia
+		58 text TWO HEARTS · ONE JOURNEY
+	59 container invite-widgets
+		60 container
+			61 text Our Moments CAPTURED TOGETHER
+			62 container Photo slideshow
+				63 container
+					64 image Photo 1 of 4
+					65 text 1  / 4
+				66 button Previous photo
+					67 image
+				68 button Next photo
+					69 image
+			70 button Photo 1
+			71 button Photo 2
+			72 button Photo 3
+			73 button Photo 4
+		74 text Join Us
+		75 button MAP
+			76 image
+			77 text MAP
+		78 button CALENDAR
+			79 image
+			80 text CALENDAR
+		81 text Kindly RSVP
+		82 text WE HOPE YOU CAN CELEBRATE WITH US
+		83 container w-rsvp-form
+			84 text YOUR NAME
+			85 text field (settable) YOUR NAME, ID: w-rsvp-name
+			86 text WILL YOU ATTEND?
+			87 container
+				88 radio button (settable, integer) Description: JOYFULLY, Value: 1
+				89 text JOYFULLY
+			90 container
+				91 radio button (settable, integer) Description: SADLY NO, Value: 0
+				92 text SADLY NO
+			93 text NUMBER OF GUESTS (0–10)
+			94 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+			95 button SEND RSVP
+		96 text Send Your Wishes
+		97 text LEAVE A PRIVATE MESSAGE
+		98 container w-wish-form
+			99 text Send your wish
+			100 text Your message stays private — it won't be shown here publicly
+			101 text YOUR NAME
+			102 text field (settable) YOUR NAME, ID: w-wish-name
+			103 text YOUR MESSAGE
+			104 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+			105 container
+				106 image
+				107 text ADD A PHOTO (OPTIONAL)
+			108 button ADD YOUR WISH
+		109 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+		110 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+		111 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	112 container
+		113 text — YOU ARE INVITED — Welcome WEDDING
+		114 button OPEN INVITATION
+	115 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		116 image
+
+The focused UI element is 1 AXWebArea Daniel & Olivia — Wedding Invitation, URL: e-nimontron.com/templates/blue-watercolor.html

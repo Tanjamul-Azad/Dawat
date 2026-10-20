@@ -1,0 +1,185 @@
+Browser tab: 3, Title: "How It Works | Digital Wedding Invitations", URL: "https://www.thedigitalyes.com/how-it-works".
+1 AXWebArea How It Works | Digital Wedding Invitations, URL: thedigitalyes.com/how-it-works
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 container
+			21 text HOW IT WORKS
+			22 heading You tell us your story. We design the rest., Value: 1
+				23 text You tell us your story. We design the rest.
+			24 text A real designer crafts your digital invitation by hand, only for you. No apps, no templates to build, nothing technical.
+			25 button START MY INVITATION
+				26 text START MY INVITATION
+				27 image
+			28 link Description: SEE DESIGNS, Value: thedigitalyes.com/designs
+			29 text From €175
+			30 content list
+				31 text 4.9★ · loved by couples
+				32 text 100K+ on Instagram
+				33 text One-time payment, no subscription
+		34 container
+			35 text THE PROCESS
+			36 heading Four steps, zero stress, Value: 2
+				37 text Four steps, zero stress
+			38 content list
+				39 container
+					40 text I
+					41 heading Choose your design & plan, Value: 3
+						42 text Choose your design & plan
+					43 text Pick the style you love and your level of personalization: as it is, redesigned for your wedding, or fully bespoke. 5 MINUTES
+				44 container
+					45 text II
+					46 heading Tell us your story, Value: 3
+						47 text Tell us your story
+					48 text A guided briefing with just the essentials: names, date, venues, schedule, photos and music. It saves automatically — come back anytime. AT YOUR OWN PACE
+				49 container
+					50 text III
+					51 heading Your designer crafts it, Value: 3
+						52 text Your designer crafts it
+					53 text A dedicated designer creates your invitation by hand. You receive a private draft in your portal to review before anyone sees it. 7–14 DAYS · EXPRESS 1–4 DAYS
+				54 container
+					55 text IV
+					56 heading Share it, guests RSVP, Value: 3
+						57 text Share it, guests RSVP
+					58 text Get your link and send it via WhatsApp or email. Guests open it on their phone and RSVP in one tap. DETAIL UPDATES UNTIL YOUR WEDDING DAY
+			59 button START MY INVITATION
+				60 text START MY INVITATION
+				61 image
+		62 container
+			63 heading Always included, Value: 2
+				64 text Always included
+			65 image
+			66 heading Human design, Value: 3
+				67 text Human design
+			68 text A real designer, never an automatic editor.
+			69 image
+			70 heading Revisions included, Value: 3
+				71 text Revisions included
+			72 text Design rounds per plan: 2 · 4 · 7.
+			73 image
+			74 heading Live RSVP, Value: 3
+				75 text Live RSVP
+			76 text See who's coming, menus and allergies instantly.
+			77 image
+			78 heading Multiple languages, Value: 3
+				79 text Multiple languages
+			80 text Up to 2 with Essential, 3 with Premium and as many as needed with Excellence. Each guest picks theirs; we translate.
+		81 container
+			82 text FREQUENTLY ASKED QUESTIONS
+			83 heading Everything you're wondering, Value: 2
+				84 text Everything you're wondering
+			85 button (collapsed) What exactly is a TDY digital invitation?, Secondary Actions: Expand
+				86 text What exactly is a TDY digital invitation?
+				87 image
+			88 button (collapsed) Is it a template?, Secondary Actions: Expand
+				89 text Is it a template?
+				90 image
+			91 button (collapsed) How long does it take?, Secondary Actions: Expand
+				92 text How long does it take?
+				93 image
+			94 button (collapsed) What if we don't love the first draft?, Secondary Actions: Expand
+				95 text What if we don't love the first draft?
+				96 image
+			97 button (collapsed) How do we request changes?, Secondary Actions: Expand
+				98 text How do we request changes?
+				99 image
+			100 button (collapsed) How do guests receive it?, Secondary Actions: Expand
+				101 text How do guests receive it?
+				102 image
+			103 button (collapsed) Can it be in multiple languages?, Secondary Actions: Expand
+				104 text Can it be in multiple languages?
+				105 image
+			106 button (collapsed) Any hidden fees or subscriptions?, Secondary Actions: Expand
+				107 text Any hidden fees or subscriptions?
+				108 image
+		109 container
+			110 heading Your wedding deserves an invitation no one forgets, Value: 2
+				111 text Your wedding deserves an invitation no one forgets
+			112 text Choose your plan and, within minutes, your designer gets started.
+			113 button START MY INVITATION
+				114 text START MY INVITATION
+				115 image
+			116 text FROM €175  ·  LIMITED DESIGN SLOTS EACH MONTH
+			117 container Related guides
+				118 link Description: See all designs, Value: thedigitalyes.com/designs
+				119 link Description: Compare plans, Value: thedigitalyes.com/pricing
+				120 link Description: Cost guide, Value: thedigitalyes.com/blog/wedding-invitation-cost-breakdown
+				121 link Description: How RSVP works, Value: thedigitalyes.com/blog/rsvp-digital-wedding-invitation
+		122 container
+			123 container Newsletter
+				124 heading Newsletter, Value: 2, ID: :r0:-t
+					125 text Newsletter
+				126 text A 4-email welcome in week one, then roughly one a week.
+				127 container
+					128 text The practical guide is free to read, no subscription needed.
+					129 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				130 container
+					131 text EMAIL
+					132 text field (settable) EMAIL
+					133 text EMAIL LANGUAGE
+					134 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						135 menu
+							136 Español
+							137 (selected) English
+							138 Français
+							139 Deutsch
+							140 Italiano
+							141 Português
+							142 Nederlands
+							143 العربية
+					144 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					145 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					146 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					147 button SUBSCRIBE
+			148 heading COLLECTIONS, Value: 4
+				149 text COLLECTIONS
+			150 content list
+				151 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				152 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				153 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				154 link Description: All designs, Value: thedigitalyes.com/designs
+				155 link Description: Pricing, Value: thedigitalyes.com/pricing
+				156 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				157 link Description: Essential, Value: thedigitalyes.com/essential
+				158 link Description: Premium, Value: thedigitalyes.com/premium
+				159 link Description: Excellence, Value: thedigitalyes.com/excellence
+				160 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				161 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				162 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				163 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			164 heading SERVICE, Value: 4
+				165 text SERVICE
+			166 content list
+				167 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				168 link Description: Our story, Value: thedigitalyes.com/our-story
+				169 link Description: Reviews, Value: thedigitalyes.com/reviews
+				170 link Description: Blog, Value: thedigitalyes.com/blog
+				171 link Description: Client portal, Value: thedigitalyes.com/clients
+			172 heading LEGAL, Value: 4
+				173 text LEGAL
+			174 content list
+				175 link Description: Terms, Value: thedigitalyes.com/terms
+				176 link Description: Privacy, Value: thedigitalyes.com/privacy
+				177 link Description: Refunds, Value: thedigitalyes.com/refunds
+			178 heading THE DIGITAL YES, Value: 4
+				179 text THE DIGITAL YES
+			180 content list
+				181 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			182 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea How It Works | Digital Wedding Invitations, URL: thedigitalyes.com/how-it-works

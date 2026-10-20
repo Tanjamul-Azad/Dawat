@@ -1,0 +1,118 @@
+.cover {
+  container-type: inline-size;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/3;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 21% 12% 22%;
+  text-align: center;
+  overflow: hidden;
+  color: #6b1d2a;
+  background: #fbf1dc;
+}
+.art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.garden {
+  color: #3f563c;
+}
+.garden .art {
+  filter: hue-rotate(20deg) saturate(0.65);
+}
+.holud {
+  color: #71480d;
+}
+.holud .art {
+  filter: sepia(0.25) saturate(1.2);
+}
+.eyebrow {
+  font: 500 2.8cqw/1.8 var(--ui);
+  letter-spacing: 0.3cqw;
+  max-width: 95%;
+  overflow-wrap: anywhere;
+}
+.monogram {
+  font: 6cqw var(--display);
+  width: 11cqw;
+  height: 11cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4cqw;
+  border: 1px solid #8d6b4860;
+  border-radius: 50%;
+  margin: 5cqw 0;
+  flex-shrink: 0;
+}
+.monogram i {
+  font-size: 3cqw;
+}
+.names {
+  font-family: var(--display), var(--bangla);
+  font-size: var(--name-size);
+  line-height: 1.15;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.names i {
+  font-size: 0.43em;
+  padding: 1.7cqw 0;
+}
+.occasion {
+  font-size: 2.4cqw;
+  letter-spacing: 0.5cqw;
+  margin: 5cqw 0 2cqw;
+}
+.divider {
+  display: flex;
+  gap: 2cqw;
+  align-items: center;
+  font-size: 4cqw;
+  margin-bottom: 2.5cqw;
+}
+.divider span {
+  width: 8cqw;
+  border-top: 1px solid #8d6b4860;
+}
+.date {
+  font: 5cqw var(--display);
+  margin-bottom: 2cqw;
+}
+.place {
+  font-size: 2.4cqw;
+  letter-spacing: 0.4cqw;
+  margin-bottom: 4cqw;
+}
+.bangla {
+  font: 3.2cqw/1.8 var(--bangla);
+  margin: 0;
+}
+.compact .eyebrow {
+  font-size: 2.8cqw;
+}
+.cover:lang(bn) .names {
+  font-family: var(--bangla);
+  line-height: 1.6;
+  font-size: calc(var(--name-size) * 0.85);
+}
+.cover:lang(bn) :is(.eyebrow, .occasion, .place) {
+  font-family: var(--font-bangla-ui), sans-serif;
+  letter-spacing: 0;
+}

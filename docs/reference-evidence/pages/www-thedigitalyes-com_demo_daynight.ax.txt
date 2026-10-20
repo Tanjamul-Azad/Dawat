@@ -1,0 +1,140 @@
+Browser tab: 3, Title: "Day & Night – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/daynight".
+1 AXWebArea Day & Night – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/daynight
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Day & Night
+			24 text DIGITAL INVITATION
+			25 heading Day & Night, Value: 1
+				26 text Day
+				27 text &
+				28 text Night
+			29 text From day to night FROM €175 One-time payment · three levels of personalisation
+			30 checkbox Description: Save Day & Night, Value: 0
+				31 image
+			32 text Interactive demo
+			33 container Views
+				34 container
+					35 container Day & Night — live demo
+						36 AXWebArea about:blank
+					37 text Loading live demo…
+				38 button (disabled) Previous screen
+					39 image
+				40 button Next screen
+					41 image
+			42 container
+				43 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			44 button Try it yourself
+			45 button 2 · Envelope, music & motion
+			46 button 3 · Your names, your date
+			47 button 4 · A live countdown
+			48 button 5 · All the details
+			49 button 6 · The day, hour by hour
+			50 button 7 · Ceremony & reception
+			51 button 8 · Dress code
+			52 button 9 · Travel & stay
+			53 button 10 · Your guests' questions
+			54 button 11 · Gifts
+			55 button 12 · An RSVP made for you
+			56 button In your languages
+			57 text 1  /  13
+			58 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			59 button Full screen
+				60 image
+			61 container Purchase
+				62 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				63 button PERSONALIZE THIS INVITATION
+				64 text ✓ Designed by hand ✓ Revisions included
+				65 container This is your invitation
+					66 text HANDMADE, ONLY FOR YOU
+					67 heading This is your invitation, Value: 2
+						68 text This is your invitation
+					69 tab group
+						70 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						71 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						72 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					73 container Description: WHO CREATES IT, ID: v5-info-pane
+						74 text Designed by a real person
+						75 text A designer from our atelier crafts it for you.
+						76 text Revisions included
+						77 text See your draft and request changes before sharing.
+						78 text At your own pace
+						79 text Send details and photos after payment, whenever ready.
+						80 text One-time payment, forever
+						81 text No subscriptions. A link ready for WhatsApp.
+				82 container Your sections, your order
+					83 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						84 text Your sections, your order
+					85 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					86 container Your sections, your order
+						87 content list
+							88 text Our story
+							89 text Schedule
+							90 text Dress code
+							91 text Travel & stay
+							92 text Gifts
+							93 text RSVP
+						94 text Add section
+				95 container
+					96 text DETAILS RECEIVED
+					97 text Once we have your details
+					98 text DESIGN & PROOF
+					99 text READY
+					100 text 7–14 days Counted from when we receive your details and materials.
+				101 text A magical transition that takes your celebration from sunrise to the very last toast.
+				102 button (collapsed) What’s included +, Secondary Actions: Expand
+					103 text What’s included
+					104 text +
+				105 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					106 text Personalisation & extras
+					107 text +
+				108 button (collapsed) How it works +, Secondary Actions: Expand
+					109 text How it works
+					110 text +
+				111 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					112 text Delivery & revisions
+					113 text +
+				114 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Day%20%26%20Night%20template%20%E2%9C%A8
+			115 text YOU MAY ALSO LIKE
+			116 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			117 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			118 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			119 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+		120 container
+			121 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			122 text Digital wedding invitations designed by hand.
+			123 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			124 text COLLECTIONS
+			125 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			126 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			127 link Description: Plans, Value: thedigitalyes.com/#plans
+			128 text SERVICE
+			129 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			130 link Description: Blog, Value: thedigitalyes.com/blog
+			131 link Description: Client portal, Value: thedigitalyes.com/clients
+			132 text LEGAL
+			133 link Description: Terms, Value: thedigitalyes.com/terms
+			134 link Description: Privacy, Value: thedigitalyes.com/privacy
+			135 link Description: Refunds, Value: thedigitalyes.com/refunds
+			136 text ©  2026  The Digital Yes EN  ·  EUR
+		137 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Day & Night – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/daynight

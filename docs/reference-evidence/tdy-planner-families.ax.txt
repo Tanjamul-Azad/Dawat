@@ -1,0 +1,69 @@
+Browser tab: 6, Title: "Guests · Yes Planner", URL: "https://www.thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-familias".
+0 AXWebArea Guests · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-familias
+	1 container Sections
+		2 text Yes Planner
+		3 text The Digital Yes
+		4 container sideNav
+			145 button Search Ctrl K
+				146 text Search
+				147 text Ctrl K
+			148 button Summary
+			149 button Budget 93 %
+				150 text Budget
+				151 text 93 %
+			152 button Guests 104/159
+				153 text Guests
+				154 text 104/159
+			155 button Tasks 6/27
+				156 text Tasks
+				157 text 6/27
+			158 button Binder 4/56
+				159 text Binder
+				160 text 4/56
+		21 container sideCount
+			161 text Laura & Marc
+			162 text 328 days
+		24 button Wedding settings, ID: sideSet
+	25 container base
+		163 button Add side
+		164 heading Guests, Value: 1
+			165 text Guests
+		166 text 104 attending, 36 yet to reply and 19 can't make it. RSVP by July 12.
+		167 tab group
+			168 tab (selectable, settable, boolean) List, Value: 0
+			169 tab (selected, settable, boolean) Families, Value: 1
+			170 tab (selectable, settable, boolean) Tables, Value: 0
+			171 tab (selectable, settable, boolean) Catering, Value: 0
+		172 container
+			173 text Places taken 140  / 150 Guest list cost
+			174 text $31,500
+			175 text at $225 per head
+		176 container
+			177 heading ALLOWANCES, Value: 2
+				178 text ALLOWANCES
+			179 button You two 64 / 70 6 places left · 1 on the B-list $14,400
+				180 text You two
+				181 text 64 / 70
+				182 text 6 places left · 1 on the B-list
+				183 text $14,400
+			184 button Laura's family 35 / 40 5 places left $7,875
+				185 text Laura's family
+				186 text 35 / 40
+				187 text 5 places left
+				188 text $7,875
+			189 button Marc's family 41 / 40 1 over the allowance · 1 on the B-list $9,225
+				190 text Marc's family
+				191 text 41 / 40
+				192 text 1 over the allowance · 1 on the B-list
+				193 text $9,225
+			194 text Tap a side to change its places.
+		195 container
+			196 heading LET EACH FAMILY ADD THEIR GUESTS, Value: 2
+				197 text LET EACH FAMILY ADD THEIR GUESTS
+			198 button Link for You two
+			199 button Link for Laura's family
+			200 button Link for Marc's family
+			201 text They see their allowance and add names; you approve them.
+	144 button Get Yes Planner
+
+The focused UI element is 0 AXWebArea Guests · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-familias

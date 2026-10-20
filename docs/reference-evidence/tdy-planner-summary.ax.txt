@@ -1,0 +1,148 @@
+Browser tab: 6, Title: "Summary · Yes Planner", URL: "https://www.thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#inicio".
+0 AXWebArea Summary · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#inicio
+	1 container Sections
+		2 text Yes Planner
+		3 text The Digital Yes
+		4 container sideNav
+			145 button Search Ctrl K
+				146 text Search
+				147 text Ctrl K
+			148 button Summary
+			149 button Budget 93 %
+				150 text Budget
+				151 text 93 %
+			152 button Guests 104/159
+				153 text Guests
+				154 text 104/159
+			155 button Tasks 6/27
+				156 text Tasks
+				157 text 6/27
+			158 button Binder 4/56
+				159 text Binder
+				160 text 4/56
+		21 container sideCount
+			161 text Laura & Marc
+			162 text 328 days
+		24 button Wedding settings, ID: sideSet
+	25 container base
+		163 text MONDAY, OCTOBER 19
+		164 heading Laura & Marc, Value: 1
+			165 text Laura & Marc
+		166 button Search Yes Planner Ctrl K
+			167 text Search Yes Planner
+			168 text Ctrl K
+		169 button Add
+		170 container It may rain around the ceremony: 2.2 mm between 12:00 and 14:00
+			171 text THE WEATHER FOR SEPTEMBER 12
+			172 text 25° / 18°
+			173 heading It may rain around the ceremony: 2.2 mm between 12:00 and 14:00, Value: 2, ID: wxT
+				174 text It may rain around the ceremony: 2.2 mm between 12:00 and 14:00
+			175 text At 13:00: 25° · 0.4 mm
+			176 button Let the guests know
+			177 button Confirm the rain plan with the venue
+			178 container
+				179 link Description: Forecast: MET Norway (CC BY 4.0), Value: api.met.no/
+				180 text  · 
+				181 link Description: Location: © OpenStreetMap, Value: openstreetmap.org/copyright
+			182 text Sample forecast
+		183 container Your wedding
+			184 button Cambiar foto de portada
+			185 container
+				186 text Finca Son Ribes, Mallorca September 12, 2027 328 days
+		187 container
+			188 text TASKS
+			189 heading Up next, Value: 2
+				190 text Up next
+			191 container 6 of 27 done
+			192 container
+				193 checkbox Description: Mark as done, Value: 0
+				194 button Book the music 10 months before · Nov 12, 2026
+					195 text Book the music
+					196 text 10 months before · Nov 12, 2026
+			197 container
+				198 checkbox Description: Mark as done, Value: 0
+				199 button Define the style, palette and theme 10 months before · Nov 12, 2026
+					200 text Define the style, palette and theme
+					201 text 10 months before · Nov 12, 2026
+			202 container
+				203 checkbox Description: Mark as done, Value: 0
+				204 button Start looking for the dress and suit 9 months before · Dec 12, 2026
+					205 text Start looking for the dress and suit
+					206 text 9 months before · Dec 12, 2026
+			207 container
+				208 checkbox Description: Mark as done, Value: 0
+				209 button Send the save the dates 8 months before · Jan 12, 2027
+					210 text Send the save the dates
+					211 text 8 months before · Jan 12, 2027
+			212 button See all tasks
+		213 container
+			214 heading On the big day, the app changes, Value: 2
+				215 text On the big day, the app changes
+			216 text You'll see what's happening now, what's next and who to call.
+			217 button Try it now
+		218 text This is a demo with a sample wedding. Tap anything you like; changes aren't saved.
+		219 button Get Yes Planner
+		220 container
+			221 heading NEEDS ATTENTION, Value: 2
+				222 text NEEDS ATTENTION
+			223 button 1 unsigned contract
+			224 button Marc's family: 1 guest over the allowance
+		225 button BUDGET $3,136 left $44,864 of $48,000 Venue and reception $33,750 Attire and beauty $3,500 Photography and video $2,900 Decor and flowers $1,900 Music $1,450 Other $1,364
+			226 text BUDGET
+			227 text $3,136 left
+			228 text $44,864
+			229 text of $48,000
+			230 text Venue and reception
+			231 text $33,750
+			232 text Attire and beauty
+			233 text $3,500
+			234 text Photography and video
+			235 text $2,900
+			236 text Decor and flowers
+			237 text $1,900
+			238 text Music
+			239 text $1,450
+			240 text Other
+			241 text $1,364
+		242 button GUESTS 104 of 159 attending 104 Attending, 36 No reply, 19 Not attending 104 Attending 36 No reply 19 Not attending
+			243 text GUESTS
+			244 text 104 of 159 attending
+			245 image 104 Attending, 36 No reply, 19 Not attending
+			246 text 104
+			247 text Attending
+			248 text 36
+			249 text No reply
+			250 text 19
+			251 text Not attending
+		252 container
+			253 text PAYMENTS
+			254 heading $3,450, Value: 2
+				255 text $3,450
+			256 text To pay
+			257 content list
+				258 button Sons de Nit $450 August 28, 2027
+					259 text Sons de Nit
+					260 text $450
+					261 text August 28, 2027
+				262 button Estudio Llum $2,000 September 9, 2027
+					263 text Estudio Llum
+					264 text $2,000
+					265 text September 9, 2027
+				266 button Sons de Nit $1,000 September 12, 2027
+					267 text Sons de Nit
+					268 text $1,000
+					269 text September 12, 2027
+			270 button See payment schedule
+		271 button TABLES 11 of 140 seated
+			272 text TABLES
+			273 text 11 of 140 seated
+		274 container 4 of 56 sections with something prepared
+			275 text YOUR WEDDING BINDER
+			276 heading 4 of 56 sections with something prepared, Value: 2, ID: homeFolderT
+				277 text 4 of 56 sections with something prepared
+			278 text Master timeline Who to call Order of ceremony
+			279 button Open the binder
+			280 button Create PDF
+	144 button Get Yes Planner
+
+The focused UI element is 0 AXWebArea Summary · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#inicio

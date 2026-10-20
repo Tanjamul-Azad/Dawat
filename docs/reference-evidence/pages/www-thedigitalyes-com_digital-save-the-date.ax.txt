@@ -1,0 +1,171 @@
+Browser tab: 3, Title: "Digital Save the Date Designs | The Digital Yes", URL: "https://www.thedigitalyes.com/digital-save-the-date".
+1 AXWebArea Digital Save the Date Designs | The Digital Yes, URL: thedigitalyes.com/digital-save-the-date
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 container
+			21 container Breadcrumb
+				22 link Description: Home, Value: thedigitalyes.com/
+				23 text / Digital save the date
+			24 text SAVE THE DATE COLLECTION
+			25 heading Digital save the date, Value: 1
+				26 text Digital save the date
+			27 text Announce your wedding with a private, mobile-first link designed by our team. Choose an interactive design, send it by WhatsApp, email or SMS, and give guests the date and place before the full invitation is ready.
+			28 container Choose your Save the Date design
+				29 heading Choose your Save the Date design, Value: 2, ID: std-grid-title
+					30 text Choose your Save the Date design
+				31 tab group
+					32 tab (selected, settable, boolean) Classic, Value: 1
+					33 tab (selectable, settable, boolean) 3D Pop-Up NEW, Value: 0
+				34 link Value: thedigitalyes.com/save-the-date/photobooth, Description: Photobooth digital Save the Date design Photobooth Your photobooth strip in a vintage gold frame on burgundy velvet. Nostalgic, elegant and unmistakably yours. View design
+				35 link Value: thedigitalyes.com/save-the-date/heartfold, Description: Heartfold digital Save the Date design Heartfold Delicate florals and ivory drapes frame your date. Romantic, refined and timeless. View design
+				36 link Value: thedigitalyes.com/save-the-date/the-lovebirds, Description: The Lovebirds digital Save the Date design The Lovebirds Two lovebirds, soft florals and a gentle countdown. Romantic and quietly elegant. View design
+				37 link Value: thedigitalyes.com/save-the-date/photo-scratch, Description: Photo Scratch digital Save the Date design Photo Scratch Your photo revealed by scratching. A playful reveal your guests will remember. View design
+				38 link Description: Majestic digital Save the Date design Majestic Grand, refined and unmistakably majestic. View design, Value: thedigitalyes.com/save-the-date/majestic
+				39 link Value: thedigitalyes.com/save-the-date/elegant-photo-scratch, Description: Elegant Photo Scratch digital Save the Date design Elegant Photo Scratch A lace-framed photo revealed by scratching. Editorial elegance with a playful surprise. View design
+				40 link Value: thedigitalyes.com/save-the-date/soft-lace-edit, Description: The Soft Lace Edit digital Save the Date design The Soft Lace Edit Soft, delicate lace with a gentle reveal. Understated and romantic. View design
+				41 link Value: thedigitalyes.com/save-the-date/lace-edit, Description: The Lace Edit digital Save the Date design The Lace Edit Wax seal on lace. Timeless, editorial and unmistakably elegant. View design
+				42 link Value: thedigitalyes.com/save-the-date/cisnes, Description: Swans digital Save the Date design Swans Watercolor swans and a live countdown. Quietly romantic. View design
+				43 link Value: thedigitalyes.com/save-the-date/floral, Description: Floral digital Save the Date design Floral A floral frame around your date. Timeless and refined. View design
+				44 link Value: thedigitalyes.com/save-the-date/interactive-scratch, Description: Interactive Scratch digital Save the Date design Interactive Scratch Scratch to reveal the date. A playful, tactile reveal for your guests. View design
+				45 link Value: thedigitalyes.com/save-the-date/bloom, Description: Bloom digital Save the Date design Bloom Delicate florals in bloom. Soft, feminine and full of life. View design
+				46 link Value: thedigitalyes.com/save-the-date/candlelight, Description: Candlelight digital Save the Date design Candlelight Tap to light the candles. Warm, cinematic and quietly romantic. View design
+				47 link Value: thedigitalyes.com/save-the-date/oasis-royale, Description: Oasis Royale digital Save the Date design Oasis Royale Beaded curtains, palms and a fountain. Regal Mediterranean opulence. View design
+				48 link Value: thedigitalyes.com/save-the-date/le-jardin, Description: Le Jardin digital Save the Date design Le Jardin A garden banquet under beaded drapes. Cinematic and warm. View design
+				49 link Value: thedigitalyes.com/save-the-date/tropical, Description: Tropical digital Save the Date design Tropical Watercolor palms and cabana stripes. Breezy and romantic. View design
+			50 container
+				51 heading What is a digital Save the Date?, Value: 2
+					52 text What is a digital Save the Date?
+				53 text A digital Save the Date is an early announcement sent as a link rather than a printed card. It gives guests the essential information—your names, wedding date and location—while plans such as the final schedule, accommodation or dress code are still being confirmed. Each The Digital Yes design is prepared by our team with your details; it is not a file you have to edit yourself. It is deliberately lighter than the full wedding invitation. A standalone Save the Date does not include RSVP or the guest dashboard. Those tools belong to the complete invitation, which you can commission later when the event details are ready.
+			54 container
+				55 heading What you receive, Value: 2
+					56 text What you receive
+				57 text A digital Save the Date from our collection, prepared by our team with your names, wedding date and venue. It can include music and an optional envelope, and it comes with its own link to share by WhatsApp, email or SMS. You do not edit files yourselves: you send us the details and we prepare it.
+			58 container
+				59 heading Save the Date or wedding invitation: what is the difference?, Value: 2
+					60 text Save the Date or wedding invitation: what is the difference?
+				61 text The Save the Date is the early notice: date and place, so guests can keep the day free. The wedding invitation comes later and carries everything else: schedule, venue information, map and the RSVP with your private guest dashboard. If your details are already confirmed, you can go straight to the invitation.
+			62 container
+				63 heading When should you send it?, Value: 2
+					64 text When should you send it?
+				65 text Typical guidance is six to twelve months before the wedding. Send earlier when guests must book long-distance travel, visas or accommodation for a destination wedding. If most guests live nearby and already know the date, the shorter end of that range is often enough. The useful test is simple: send it when guests need the date to protect their calendar, even if you are not ready to send the formal invitation.
+			66 container
+				67 heading How to send a Save the Date by WhatsApp, Value: 2
+					68 text How to send a Save the Date by WhatsApp
+				69 text Send the link individually or with a broadcast list, with a short personal line naming the couple and date. Guests tap once and see the design in their browser, so there is no attachment to download. You can also send the same link by email or SMS. Avoid a group chat unless your guests already know one another and you genuinely want a shared conversation.
+			70 container
+				71 heading Example messages to send with the link, Value: 2
+					72 text Example messages to send with the link
+				73 text Warm: “We're getting married! Save the date: 14 June 2027 in Seville. Here's our Save the Date, the full invitation will follow 💛 [link]” Formal: “Dear Ana and Luis, we are delighted to share that we will marry on 14 June 2027 in Seville. Please save the date; the formal invitation will follow. [link]” Replace the example names, date and city with your own, and send each message individually or with a broadcast list.
+			74 container
+				75 heading Scratch-to-reveal designs, Value: 2
+					76 text Scratch-to-reveal designs
+				77 text Our interactive scratch designs hide the photograph or wedding date until the guest rubs the screen. Searchers sometimes call this “scratch The Digital Yes”; in the collection, Photo Scratch, Elegant Photo Scratch and Interactive Scratch each use the reveal differently. The interaction is part of the page, so guests do not need an app.
+			78 container
+				79 heading Price and the full invitation later, Value: 2
+					80 text Price and the full invitation later
+				81 text A standalone 3D Pop-Up costs €55 and a classic design €75, both as a one-time purchase. If you order it as an add-on to an Essential wedding invitation, the Save the Date add-on is €49. Premium includes a matching Save the Date, and Excellence includes a custom one. These are different purchase contexts, so the price is always shown before you continue. When the remaining plans are confirmed, the full invitation can add the schedule, venue information, maps, RSVP and guest management. The Save the Date remains an independent order and does not force you to choose the invitation immediately.
+			82 container Next steps
+				83 heading Next steps, Value: 2, ID: std-next-title
+					84 text Next steps
+				85 content list
+					86 link Description: See the wedding invitation designs and live demos →, Value: thedigitalyes.com/designs
+					87 link Description: Compare plans: Premium includes a matching Save the Date →, Value: thedigitalyes.com/pricing
+					88 link Description: Guide: what digital wedding invitations include →, Value: thedigitalyes.com/en/digital-wedding-invitations
+					89 link Description: How to send your invitation by WhatsApp →, Value: thedigitalyes.com/blog/como-enviar-invitaciones-boda-whatsapp
+			90 container
+				91 heading Digital Save the Date questions, Value: 2
+					92 text Digital Save the Date questions
+				93 heading How far in advance should I send a digital Save the Date?, Value: 3
+					94 text How far in advance should I send a digital Save the Date?
+				95 text Usually 6–12 months before the wedding, and earlier for destination weddings or when guests need to arrange flights, visas or accommodation.
+				96 heading Can I send a Save the Date by WhatsApp?, Value: 3
+					97 text Can I send a Save the Date by WhatsApp?
+				98 text Yes. Send its private link individually by WhatsApp, email or SMS. Guests open it in their browser without installing an app.
+				99 heading Does a Save the Date include RSVP?, Value: 3
+					100 text Does a Save the Date include RSVP?
+				101 text No. The standalone Save the Date gives guests the date and place. RSVP and the private guest dashboard are included with the full wedding invitation.
+				102 heading How much does a digital Save the Date cost?, Value: 3
+					103 text How much does a digital Save the Date cost?
+				104 text A standalone 3D Pop-Up costs €55 and a classic design €75. Added to an Essential wedding invitation it costs €49; Premium includes a matching design and Excellence includes a custom one.
+				105 heading Can the full invitation match my Save the Date?, Value: 3
+					106 text Can the full invitation match my Save the Date?
+				107 text Yes. You can choose a related visual direction later. Premium includes a matching Save the Date, while Excellence creates both within a bespoke art direction.
+		108 container
+			109 container Newsletter
+				110 heading Newsletter, Value: 2, ID: :r0:-t
+					111 text Newsletter
+				112 text A 4-email welcome in week one, then roughly one a week.
+				113 container
+					114 text The practical guide is free to read, no subscription needed.
+					115 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				116 container
+					117 text EMAIL
+					118 text field (settable) EMAIL
+					119 text EMAIL LANGUAGE
+					120 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						121 menu
+							122 Español
+							123 (selected) English
+							124 Français
+							125 Deutsch
+							126 Italiano
+							127 Português
+							128 Nederlands
+							129 العربية
+					130 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					131 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					132 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					133 button SUBSCRIBE
+			134 heading COLLECTIONS, Value: 4
+				135 text COLLECTIONS
+			136 content list
+				137 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				138 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				139 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				140 link Description: All designs, Value: thedigitalyes.com/designs
+				141 link Description: Pricing, Value: thedigitalyes.com/pricing
+				142 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				143 link Description: Essential, Value: thedigitalyes.com/essential
+				144 link Description: Premium, Value: thedigitalyes.com/premium
+				145 link Description: Excellence, Value: thedigitalyes.com/excellence
+				146 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				147 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				148 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				149 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			150 heading SERVICE, Value: 4
+				151 text SERVICE
+			152 content list
+				153 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				154 link Description: Our story, Value: thedigitalyes.com/our-story
+				155 link Description: Reviews, Value: thedigitalyes.com/reviews
+				156 link Description: Blog, Value: thedigitalyes.com/blog
+				157 link Description: Client portal, Value: thedigitalyes.com/clients
+			158 heading LEGAL, Value: 4
+				159 text LEGAL
+			160 content list
+				161 link Description: Terms, Value: thedigitalyes.com/terms
+				162 link Description: Privacy, Value: thedigitalyes.com/privacy
+				163 link Description: Refunds, Value: thedigitalyes.com/refunds
+			164 heading THE DIGITAL YES, Value: 4
+				165 text THE DIGITAL YES
+			166 content list
+				167 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			168 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Digital Save the Date Designs | The Digital Yes, URL: thedigitalyes.com/digital-save-the-date

@@ -1,0 +1,113 @@
+Browser tab: 3, Title: "Yasin & Sumaiya — Wedding Invitation", URL: "https://www.e-nimontron.com/templates/watercolor-purple-green.html".
+1 AXWebArea Yasin & Sumaiya — Wedding Invitation, URL: e-nimontron.com/templates/watercolor-purple-green.html
+	2 image starsCanvas
+	3 container
+		4 container salutation
+			5 text Together with their families,
+			6 text they joyfully invite you to celebrate
+		7 container
+			8 heading Y a s i n, Value: 1, ID: groomName
+				9 text Y
+				10 text a
+				11 text s
+				12 text i
+				13 text n
+			14 text &
+			15 heading S u m a i y a, Value: 1, ID: brideName
+				16 text S
+				17 text u
+				18 text m
+				19 text a
+				20 text i
+				21 text y
+				22 text a
+		23 text SAVE THE DATE
+		24 text — THE WEDDING —
+		25 container dateRow
+			26 text JULY
+			27 text 18
+			28 text 4:00 PM
+		29 container w-scratch-mount
+			30 text Save The Date
+			31 text SCRATCH TO REVEAL
+			32 container
+				33 text Thursday, 31 December 2026
+				34 text 7:00 PM onwards
+				35 image
+		36 text Sayeman Beach Resort
+		37 text Marine Drive, Kolatoli, Cox's Bazar 4700, Bangladesh
+		38 text — COUNTING DOWN — 0 DAYS until your dream wedding
+		39 container cd-cell-days
+			40 text 00
+			41 text DAYS
+		42 container cd-cell-hrs
+			43 text 00
+			44 text HOURS
+		45 container cd-cell-mins
+			46 text 00
+			47 text MINS
+		48 container cd-cell-secs
+			49 text 00
+			50 text SECS
+		51 text Yasin & Sumaiya
+		52 text IN BLOOM · FOREVER
+	53 container invite-widgets
+		54 container
+			55 text Our Moments CAPTURED TOGETHER
+			56 container Photo slideshow
+				57 container
+					58 image Photo 1 of 4
+					59 text 1  / 4
+				60 button Previous photo
+					61 image
+				62 button Next photo
+					63 image
+			64 button Photo 1
+			65 button Photo 2
+			66 button Photo 3
+			67 button Photo 4
+		68 text Join Us
+		69 button MAP
+			70 image
+			71 text MAP
+		72 button CALENDAR
+			73 image
+			74 text CALENDAR
+		75 text Kindly RSVP
+		76 text WE HOPE YOU CAN CELEBRATE WITH US
+		77 container w-rsvp-form
+			78 text YOUR NAME
+			79 text field (settable) YOUR NAME, ID: w-rsvp-name
+			80 text WILL YOU ATTEND?
+			81 container
+				82 radio button (settable, integer) Description: JOYFULLY, Value: 1
+				83 text JOYFULLY
+			84 container
+				85 radio button (settable, integer) Description: SADLY NO, Value: 0
+				86 text SADLY NO
+			87 text NUMBER OF GUESTS (0–10)
+			88 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+			89 button SEND RSVP
+		90 text Send Your Wishes
+		91 text LEAVE A PRIVATE MESSAGE
+		92 container w-wish-form
+			93 text Send your wish
+			94 text Your message stays private — it won't be shown here publicly
+			95 text YOUR NAME
+			96 text field (settable) YOUR NAME, ID: w-wish-name
+			97 text YOUR MESSAGE
+			98 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+			99 container
+				100 image
+				101 text ADD A PHOTO (OPTIONAL)
+			102 button ADD YOUR WISH
+		103 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+		104 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+		105 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	106 container
+		107 text — YOU ARE INVITED — Welcome WEDDING
+		108 button OPEN INVITATION
+	109 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		110 image
+
+The focused UI element is 1 AXWebArea Yasin & Sumaiya — Wedding Invitation, URL: e-nimontron.com/templates/watercolor-purple-green.html

@@ -1,0 +1,197 @@
+Browser tab: 5, Title: "3D Pop-Up Save the Dates | The Digital Yes", URL: "https://www.thedigitalyes.com/3d-pop-up-save-the-date".
+1 AXWebArea 3D Pop-Up Save the Dates | The Digital Yes, URL: thedigitalyes.com/3d-pop-up-save-the-date
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 container Menu
+				8 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+				9 container
+					10 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+					11 pop up button (collapsed) Description: Classic · 3D Pop-Up Save the Dates, Secondary Actions: Expand
+						12 image
+				13 link Description: PLANS, Value: thedigitalyes.com/#plans
+				14 link Description: HOW IT WORKS, Value: thedigitalyes.com/#how-it-works
+				15 pop up button (collapsed) MORE NEW, Secondary Actions: Expand
+					16 text MORE
+					17 text NEW
+					18 image
+			19 link Description: The Digital Yes, Value: thedigitalyes.com/
+			20 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			21 link Description: SEE THE DESIGNS, Value: thedigitalyes.com/3d-pop-up-save-the-date#p3-grid
+			22 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				23 image
+				24 text EN
+			25 link Description: PORTAL, Value: thedigitalyes.com/clients
+		26 container
+			27 container Breadcrumb
+				28 link Description: Home, Value: thedigitalyes.com/
+				29 text /
+				30 link Description: Save the Date, Value: thedigitalyes.com/digital-save-the-date
+				31 text / 3D Pop-Up
+			32 text NEW · 3D POP-UP COLLECTION
+			33 heading Save the Dates that unfold in 3D, Value: 1
+				34 text Save the Dates that unfold in 3D
+			35 text A card your guests open with a tap — and watch your venue rise from the page. Personalised by our designers with your names, date and place.
+			36 button Choose my design
+			37 text From €55
+			38 container 27 designs, one tap to open, ID: p3-grid
+				39 heading 27 designs, one tap to open, Value: 2, ID: p3-grid-title
+					40 text 27 designs, one tap to open
+				41 container
+					42 text Search by theme or mood…
+					43 search text field (settable) Search by theme or mood…
+				44 tab group Styles
+					45 tab (selected, settable, boolean) All 27, Value: 1
+All
+27
+					46 tab (selectable, settable, boolean) Coast & islands 7, Value: 0
+Coast & islands
+7
+					47 tab (selectable, settable, boolean) Palaces & estates 8, Value: 0
+Palaces & estates
+8
+					48 tab (selectable, settable, boolean) World cities 6, Value: 0
+World cities
+6
+					49 tab (selectable, settable, boolean) Romantic & nature 6, Value: 0
+Romantic & nature
+6
+				50 text 27 designs
+				51 link Description: Just Married ROMANTIC & NATURE Just Married Two words that unfold into forever. From €55, Value: thedigitalyes.com/save-the-date/3d/just-married
+				52 link Description: Mallorca Finca COAST & ISLANDS Mallorca Finca Stone, olive trees and island light. From €55, Value: thedigitalyes.com/save-the-date/3d/mallorca
+				53 link Description: Santorini COAST & ISLANDS Santorini White domes over an Aegean blue. From €55, Value: thedigitalyes.com/save-the-date/3d/santorini
+				54 link Description: Lake Como COAST & ISLANDS Lake Como A villa, the lake and a quiet promise. From €55, Value: thedigitalyes.com/save-the-date/3d/lake-como
+				55 link Description: Champagne Tower ROMANTIC & NATURE Champagne Tower A toast that rises as it opens. From €55, Value: thedigitalyes.com/save-the-date/3d/champagne
+				56 link Description: Desert Nights PALACES & ESTATES Desert Nights Dunes, lanterns and a sky of stars. From €55, Value: thedigitalyes.com/save-the-date/3d/desert-nights
+				57 link Description: Swan Garden ROMANTIC & NATURE Swan Garden Two swans, one garden in bloom. From €55, Value: thedigitalyes.com/save-the-date/3d/swan-garden
+				58 link Value: thedigitalyes.com/save-the-date/3d/chateau, Description: Château de Provence PALACES & ESTATES Château de Provence Lavender fields and a French château. From €55
+				59 link Description: English Manor PALACES & ESTATES English Manor A country manor, timeless and green. From €55, Value: thedigitalyes.com/save-the-date/3d/english-manor
+				60 link Description: Tuscan Villa PALACES & ESTATES Tuscan Villa Cypress, terracotta and golden hills. From €55, Value: thedigitalyes.com/save-the-date/3d/tuscan-villa
+				61 link Description: Amalfi Coast COAST & ISLANDS Amalfi Coast Lemons, cliffs and the Mediterranean. From €55, Value: thedigitalyes.com/save-the-date/3d/amalfi
+				62 link Value: thedigitalyes.com/save-the-date/3d/hacienda, Description: Andalusian Hacienda PALACES & ESTATES Andalusian Hacienda Whitewashed arches and southern warmth. From €55
+				63 link Value: thedigitalyes.com/save-the-date/3d/dubai-palace, Description: Arabian Palace PALACES & ESTATES Arabian Palace Golden domes and a night of a thousand lamps. From €55
+				64 link Description: Paris Je t’aime WORLD CITIES Paris Je t’aime The Eiffel Tower, in love with you. From €55, Value: thedigitalyes.com/save-the-date/3d/paris
+				65 link Description: New York Brownstone WORLD CITIES New York Brownstone A city stoop and a promise for life. From €55, Value: thedigitalyes.com/save-the-date/3d/new-york
+				66 link Description: Highland Castle PALACES & ESTATES Highland Castle Stone towers above the misty Highlands. From €55, Value: thedigitalyes.com/save-the-date/3d/scottish-castle
+				67 link Description: Bali Jungle Temple COAST & ISLANDS Bali Jungle Temple A temple hidden in tropical green. From €55, Value: thedigitalyes.com/save-the-date/3d/bali
+				68 link Description: Maldives Overwater COAST & ISLANDS Maldives Overwater Turquoise water beneath your villa. From €55, Value: thedigitalyes.com/save-the-date/3d/maldives
+				69 link Description: Sintra Palace PALACES & ESTATES Sintra Palace A fairytale palace among Portuguese hills. From €55, Value: thedigitalyes.com/save-the-date/3d/sintra
+				70 link Description: Rustic Barn ROMANTIC & NATURE Rustic Barn Fairy lights, wood and wildflowers. From €55, Value: thedigitalyes.com/save-the-date/3d/rustic-barn
+				71 link Description: Napa Vineyard ROMANTIC & NATURE Napa Vineyard Sunlit vines and a toast to forever. From €55, Value: thedigitalyes.com/save-the-date/3d/napa-vineyard
+				72 link Description: The Glasshouse ROMANTIC & NATURE The Glasshouse A greenhouse of light and blooms. From €55, Value: thedigitalyes.com/save-the-date/3d/glasshouse
+				73 link Description: Kyoto Blossom WORLD CITIES Kyoto Blossom Cherry blossoms over a quiet pagoda. From €55, Value: thedigitalyes.com/save-the-date/3d/kyoto
+				74 link Description: Venezia WORLD CITIES Venezia Gondolas, canals and a Venetian kiss. From €55, Value: thedigitalyes.com/save-the-date/3d/venice
+				75 link Description: Byron Bay COAST & ISLANDS Byron Bay Surf, sun and a lighthouse by the sea. From €55, Value: thedigitalyes.com/save-the-date/3d/byron-bay
+				76 link Description: Marrakech Riad WORLD CITIES Marrakech Riad Lanterns, tiles and a hidden courtyard. From €55, Value: thedigitalyes.com/save-the-date/3d/marrakech
+				77 link Description: Alpine Chalet WORLD CITIES Alpine Chalet Snowy peaks and a warm wooden chalet. From €55, Value: thedigitalyes.com/save-the-date/3d/alpine-chalet
+			78 container How it works
+				79 heading How it works, Value: 2, ID: p3-how
+					80 text How it works
+				81 content list
+					82 container
+						83 text 1
+						84 heading Choose your design, Value: 3
+							85 text Choose your design
+						86 text Pick the 3D card that feels like your wedding.
+					87 container
+						88 text 2
+						89 heading Tell us your details, Value: 3
+							90 text Tell us your details
+						91 text Initials, names, date, time and venue — two minutes.
+					92 container
+						93 text 3
+						94 heading Share it, Value: 3
+							95 text Share it
+						96 text We personalise it and send you a link ready for WhatsApp or email.
+			97 container Two ways to make it yours
+				98 heading Two ways to make it yours, Value: 2, ID: p3-opt
+					99 text Two ways to make it yours
+				100 heading With your details · €55, Value: 3
+					101 text With your details  ·  €55
+				102 text The card exactly as designed, with your initials, names, date, time and venue.
+				103 heading Custom · €135, Value: 3
+					104 text Custom  ·  €135
+				105 text Same 3D style, but we redraw the illustration with your own venue or anything you dream of.
+				106 heading Included free with Premium, Value: 3
+					107 text Included free with Premium
+				108 text Choose the Premium invitation plan and your 3D Save the Date is included at no extra cost. Upgrade it to Custom for just €39 more.
+			109 heading Questions, Value: 2
+				110 text Questions
+			111 heading How do guests open it?, Value: 3
+				112 text How do guests open it?
+			113 text With a link. It opens in any phone browser — no app needed — and the card unfolds with a tap.
+			114 heading How long does it take?, Value: 3
+				115 text How long does it take?
+			116 text Your personalised Save the Date is ready in about 7 days. Custom illustrations take a little longer.
+			117 heading Can I make changes?, Value: 3
+				118 text Can I make changes?
+			119 text Yes. You'll see a proof and can request revisions before sharing it.
+			120 heading Do promo codes apply?, Value: 3
+				121 text Do promo codes apply?
+			122 text 3D Pop-Up Save the Dates have a fixed price; promo codes and credit don't apply.
+			123 button Choose my design
+		124 container
+			125 container Newsletter
+				126 heading Newsletter, Value: 2, ID: :r0:-t
+					127 text Newsletter
+				128 text A 4-email welcome in week one, then roughly one a week.
+				129 container
+					130 text The practical guide is free to read, no subscription needed.
+					131 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				132 container
+					133 text EMAIL
+					134 text field (settable) EMAIL
+					135 text EMAIL LANGUAGE
+					136 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						137 menu
+							138 Español
+							139 (selected) English
+							140 Français
+							141 Deutsch
+							142 Italiano
+							143 Português
+							144 Nederlands
+							145 العربية
+					146 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					147 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					148 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					149 button SUBSCRIBE
+			150 heading COLLECTIONS, Value: 4
+				151 text COLLECTIONS
+			152 content list
+				153 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				154 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				155 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				156 link Description: All designs, Value: thedigitalyes.com/designs
+				157 link Description: Pricing, Value: thedigitalyes.com/pricing
+				158 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				159 link Description: Essential, Value: thedigitalyes.com/essential
+				160 link Description: Premium, Value: thedigitalyes.com/premium
+				161 link Description: Excellence, Value: thedigitalyes.com/excellence
+				162 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				163 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				164 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				165 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			166 heading SERVICE, Value: 4
+				167 text SERVICE
+			168 content list
+				169 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				170 link Description: Our story, Value: thedigitalyes.com/our-story
+				171 link Description: Reviews, Value: thedigitalyes.com/reviews
+				172 link Description: Blog, Value: thedigitalyes.com/blog
+				173 link Description: Client portal, Value: thedigitalyes.com/clients
+			174 heading LEGAL, Value: 4
+				175 text LEGAL
+			176 content list
+				177 link Description: Terms, Value: thedigitalyes.com/terms
+				178 link Description: Privacy, Value: thedigitalyes.com/privacy
+				179 link Description: Refunds, Value: thedigitalyes.com/refunds
+			180 heading THE DIGITAL YES, Value: 4
+				181 text THE DIGITAL YES
+			182 content list
+				183 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			184 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea 3D Pop-Up Save the Dates | The Digital Yes, URL: thedigitalyes.com/3d-pop-up-save-the-date

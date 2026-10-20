@@ -1,0 +1,138 @@
+Browser tab: 3, Title: "Minimal Fun – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/minimal-fun".
+1 AXWebArea Minimal Fun – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/minimal-fun
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Minimal Fun
+			24 text DIGITAL INVITATION
+			25 heading Minimal Fun, Value: 1
+				26 text Minimal
+				27 text Fun
+			28 text Hand-drawn illustrations and playful monograms. FROM €175 One-time payment · three levels of personalisation
+			29 checkbox Description: Save Minimal Fun, Value: 0
+				30 image
+			31 text Interactive demo
+			32 container Views
+				33 container
+					34 container Minimal Fun — live demo
+						35 AXWebArea about:blank
+					36 text Loading live demo…
+				37 button (disabled) Previous screen
+					38 image
+				39 button Next screen
+					40 image
+			41 container
+				42 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			43 button Try it yourself
+			44 button 2 · Envelope, music & motion
+			45 button 3 · Your names, your date
+			46 button 4 · A live countdown
+			47 button 5 · All the details
+			48 button 6 · The day, hour by hour
+			49 button 7 · Dress code
+			50 button 8 · The menu
+			51 button 9 · Travel & stay
+			52 button 10 · Your guests' questions
+			53 button 11 · An RSVP made for you
+			54 button In your languages
+			55 text 1  /  12
+			56 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			57 button Full screen
+				58 image
+			59 container Purchase
+				60 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				61 button PERSONALIZE THIS INVITATION
+				62 text ✓ Designed by hand ✓ Revisions included
+				63 container This is your invitation
+					64 text HANDMADE, ONLY FOR YOU
+					65 heading This is your invitation, Value: 2
+						66 text This is your invitation
+					67 tab group
+						68 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						69 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						70 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					71 container Description: WHO CREATES IT, ID: v5-info-pane
+						72 text Designed by a real person
+						73 text A designer from our atelier crafts it for you.
+						74 text Revisions included
+						75 text See your draft and request changes before sharing.
+						76 text At your own pace
+						77 text Send details and photos after payment, whenever ready.
+						78 text One-time payment, forever
+						79 text No subscriptions. A link ready for WhatsApp.
+				80 container Your sections, your order
+					81 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						82 text Your sections, your order
+					83 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					84 container Your sections, your order
+						85 content list
+							86 text Our story
+							87 text Schedule
+							88 text Dress code
+							89 text Travel & stay
+							90 text Gifts
+							91 text RSVP
+						92 text Add section
+				93 container
+					94 text DETAILS RECEIVED
+					95 text Once we have your details
+					96 text DESIGN & PROOF
+					97 text READY
+					98 text 7–14 days Counted from when we receive your details and materials.
+				99 text A fresh, playful invitation: hand-drawn illustrations, monograms with personality and joyful details for a wedding that's both fun and elegant.
+				100 button (collapsed) What’s included +, Secondary Actions: Expand
+					101 text What’s included
+					102 text +
+				103 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					104 text Personalisation & extras
+					105 text +
+				106 button (collapsed) How it works +, Secondary Actions: Expand
+					107 text How it works
+					108 text +
+				109 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					110 text Delivery & revisions
+					111 text +
+				112 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Minimal%20Fun%20template%20%E2%9C%A8
+			113 text YOU MAY ALSO LIKE
+			114 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			115 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			116 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			117 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+		118 container
+			119 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			120 text Digital wedding invitations designed by hand.
+			121 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			122 text COLLECTIONS
+			123 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			124 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			125 link Description: Plans, Value: thedigitalyes.com/#plans
+			126 text SERVICE
+			127 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			128 link Description: Blog, Value: thedigitalyes.com/blog
+			129 link Description: Client portal, Value: thedigitalyes.com/clients
+			130 text LEGAL
+			131 link Description: Terms, Value: thedigitalyes.com/terms
+			132 link Description: Privacy, Value: thedigitalyes.com/privacy
+			133 link Description: Refunds, Value: thedigitalyes.com/refunds
+			134 text ©  2026  The Digital Yes EN  ·  EUR
+		135 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Minimal Fun – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/minimal-fun

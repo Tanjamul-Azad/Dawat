@@ -1,0 +1,616 @@
+Browser tab: 6, Title: "Guests · Yes Planner", URL: "https://www.thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-lista".
+0 AXWebArea Guests · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-lista
+	1 container Sections
+		2 text Yes Planner
+		3 text The Digital Yes
+		4 container sideNav
+			145 button Search Ctrl K
+				146 text Search
+				147 text Ctrl K
+			148 button Summary
+			149 button Budget 93 %
+				150 text Budget
+				151 text 93 %
+			152 button Guests 104/159
+				153 text Guests
+				154 text 104/159
+			155 button Tasks 6/27
+				156 text Tasks
+				157 text 6/27
+			158 button Binder 4/56
+				159 text Binder
+				160 text 4/56
+		21 container sideCount
+			161 text Laura & Marc
+			162 text 328 days
+		24 button Wedding settings, ID: sideSet
+	25 container base
+		163 button Add guest
+		164 heading Guests, Value: 1
+			165 text Guests
+		166 text 104 attending, 36 yet to reply and 19 can't make it. RSVP by July 12.
+		167 tab group
+			168 tab (selected, settable, boolean) List, Value: 1
+			169 tab (selectable, settable, boolean) Families, Value: 0
+			170 tab (selectable, settable, boolean) Tables, Value: 0
+			171 tab (selectable, settable, boolean) Catering, Value: 0
+		172 container
+			173 text Search guests
+			174 search text field (settable) Search guests, ID: gq
+		175 toolbar Filter
+			176 checkbox All 159, Value: 1
+			177 checkbox Attending 104, Value: 0
+			178 checkbox No reply 36, Value: 0
+			179 checkbox Not attending 19, Value: 0
+		180 button Online RSVPs
+		181 container
+			182 heading UNIVERSITY FRIENDS · YOU TWO 20, Value: 2
+				183 text UNIVERSITY FRIENDS · YOU TWO 20
+			184 button Ana Puig Table 1 Attending
+				185 text Ana Puig
+				186 text Table 1
+				187 text Attending
+			188 button Pol Vidal Table 1 Attending
+				189 text Pol Vidal
+				190 text Table 1
+				191 text Attending
+			192 button Clara Roig Vegetarian · Table 1 No reply
+				193 text Clara Roig
+				194 text Vegetarian · Table 1
+				195 text No reply
+			196 button Laia Pons Child Not attending
+				197 text Laia Pons
+				198 text Child
+				199 text Not attending
+			200 button Aina Tous Attending
+				201 text Aina Tous
+				202 text Attending
+			203 button Marta Roca Attending
+				204 text Marta Roca
+				205 text Attending
+			206 button Teresa Serra No reply
+				207 text Teresa Serra
+				208 text No reply
+			209 button Mireia Gelabert Attending
+				210 text Mireia Gelabert
+				211 text Attending
+			212 button Cristina Vich Attending
+				213 text Cristina Vich
+				214 text Attending
+			215 button Bea Ramis No reply
+				216 text Bea Ramis
+				217 text No reply
+			218 button Núria Mir Attending
+				219 text Núria Mir
+				220 text Attending
+			221 button Sara Coll Attending
+				222 text Sara Coll
+				223 text Attending
+			224 button Marina Amengual Not attending
+				225 text Marina Amengual
+				226 text Not attending
+			227 button Irene Alemany Attending
+				228 text Irene Alemany
+				229 text Attending
+			230 button Carla Bestard Child Attending
+				231 text Carla Bestard
+				232 text Child
+				233 text Attending
+			234 button Elena Llull No reply
+				235 text Elena Llull
+				236 text No reply
+			237 button Neus Riera Vegetarian Attending
+				238 text Neus Riera
+				239 text Vegetarian
+				240 text Attending
+			241 button Paula Fiol Allergy: Gluten Attending
+				242 text Paula Fiol
+				243 text Allergy: Gluten
+				244 text Attending
+			245 button Laia Cerdà No reply
+				246 text Laia Cerdà
+				247 text No reply
+			248 button Aina Palou Attending
+				249 text Aina Palou
+				250 text Attending
+		251 container
+			252 heading WORK · YOU TWO 20, Value: 2
+				253 text WORK · YOU TWO 20
+			254 button Sergi Mas Allergy: Gluten · Table 1 Attending
+				255 text Sergi Mas
+				256 text Allergy: Gluten · Table 1
+				257 text Attending
+			258 button Júlia Ferrer Not attending
+				259 text Júlia Ferrer
+				260 text Not attending
+			261 button Nil Ferrer No reply
+				262 text Nil Ferrer
+				263 text No reply
+			264 button Xavi Cerdà Attending
+				265 text Xavi Cerdà
+				266 text Attending
+			267 button Guillem Palou Allergy: Gluten Attending
+				268 text Guillem Palou
+				269 text Allergy: Gluten
+				270 text Attending
+			271 button Toni Sastre Not attending
+				272 text Toni Sastre
+				273 text Not attending
+			274 button Miquel Font Vegetarian Attending
+				275 text Miquel Font
+				276 text Vegetarian
+				277 text Attending
+			278 button Pere Crespí Attending
+				279 text Pere Crespí
+				280 text Attending
+			281 button Joan Roca No reply
+				282 text Joan Roca
+				283 text No reply
+			284 button Hugo Serra Attending
+				285 text Hugo Serra
+				286 text Attending
+			287 button Lluís Gelabert Attending
+				288 text Lluís Gelabert
+				289 text Attending
+			290 button Rafel Pons Child No reply
+				291 text Rafel Pons
+				292 text Child
+				293 text No reply
+			294 button Oriol Tous Attending
+				295 text Oriol Tous
+				296 text Attending
+			297 button Àlex Mir Attending
+				298 text Àlex Mir
+				299 text Attending
+			300 button Pau Coll Not attending
+				301 text Pau Coll
+				302 text Not attending
+			303 button Jordi Amengual Attending
+				304 text Jordi Amengual
+				305 text Attending
+			306 button David Vich Attending
+				307 text David Vich
+				308 text Attending
+			309 button Biel Ramis No reply
+				310 text Biel Ramis
+				311 text No reply
+			312 button Xavi Llull Attending
+				313 text Xavi Llull
+				314 text Attending
+			315 button Guillem Riera Vegetarian Attending
+				316 text Guillem Riera
+				317 text Vegetarian
+				318 text Attending
+		319 container
+			320 heading IMMEDIATE FAMILY · LAURA'S FAMILY 2, Value: 2
+				321 text IMMEDIATE FAMILY · LAURA'S FAMILY
+			322 button Carmen García Top table Attending
+				323 text Carmen García
+				324 text Top table
+				325 text Attending
+			326 button Joan García Top table Attending
+				327 text Joan García
+				328 text Top table
+				329 text Attending
+		330 container
+			331 heading AUNTS, UNCLES AND COUSINS · LAURA'S FAMILY 19, Value: 2
+				332 text AUNTS, UNCLES AND COUSINS · LAURA'S FAMILY 19
+			333 button Pilar García Table 2 Attending
+				334 text Pilar García
+				335 text Table 2
+				336 text Attending
+			337 button Andrés López Allergy: Lactose · Table 2 No reply
+				338 text Andrés López
+				339 text Allergy: Lactose · Table 2
+				340 text No reply
+			341 button Lucía López Child · Allergy: Nuts · Table 2 Attending
+				342 text Lucía López
+				343 text Child · Allergy: Nuts · Table 2
+				344 text Attending
+			345 button Xavi Mir Not attending
+				346 text Xavi Mir
+				347 text Not attending
+			348 button Oriol Roca No reply
+				349 text Oriol Roca
+				350 text No reply
+			351 button Toni Fiol Vegetarian Attending
+				352 text Toni Fiol
+				353 text Vegetarian
+				354 text Attending
+			355 button Àlex Serra Attending
+				356 text Àlex Serra
+				357 text Attending
+			358 button Miquel Alemany No reply
+				359 text Miquel Alemany
+				360 text No reply
+			361 button Pau Gelabert Attending
+				362 text Pau Gelabert
+				363 text Attending
+			364 button Pere Bestard Attending
+				365 text Pere Bestard
+				366 text Attending
+			367 button Jordi Pons Not attending
+				368 text Jordi Pons
+				369 text Not attending
+			370 button Joan Llull Attending
+				371 text Joan Llull
+				372 text Attending
+			373 button David Ramis Attending
+				374 text David Ramis
+				375 text Attending
+			376 button Hugo Font No reply
+				377 text Hugo Font
+				378 text No reply
+			379 button Biel Mir Child Attending
+				380 text Biel Mir
+				381 text Child
+				382 text Attending
+			383 button Lluís Crespí Attending
+				384 text Lluís Crespí
+				385 text Attending
+			386 button Xavi Coll No reply
+				387 text Xavi Coll
+				388 text No reply
+			389 button Rafel Cerdà Attending
+				390 text Rafel Cerdà
+				391 text Attending
+			392 button Guillem Amengual Vegetarian Attending
+				393 text Guillem Amengual
+				394 text Vegetarian
+				395 text Attending
+		396 container
+			397 heading FAMILY FRIENDS · LAURA'S FAMILY 18, Value: 2
+				398 text FAMILY FRIENDS · LAURA'S FAMILY 18
+			399 button Rosa Ferrer No reply
+				400 text Rosa Ferrer
+				401 text No reply
+			402 button Laia Alemany Attending
+				403 text Laia Alemany
+				404 text Attending
+			405 button Sara Gelabert Attending
+				406 text Sara Gelabert
+				407 text Attending
+			408 button Marta Sastre Attending
+				409 text Marta Sastre
+				410 text Attending
+			411 button Irene Ramis Not attending
+				412 text Irene Ramis
+				413 text Not attending
+			414 button Teresa Font Attending
+				415 text Teresa Font
+				416 text Attending
+			417 button Carla Mir Attending
+				418 text Carla Mir
+				419 text Attending
+			420 button Mireia Crespí Child No reply
+				421 text Mireia Crespí
+				422 text Child
+				423 text No reply
+			424 button Elena Coll Attending
+				425 text Elena Coll
+				426 text Attending
+			427 button Cristina Cerdà Attending
+				428 text Cristina Cerdà
+				429 text Attending
+			430 button Neus Amengual Vegetarian · Allergy: Gluten No reply
+				431 text Neus Amengual
+				432 text Vegetarian · Allergy: Gluten
+				433 text No reply
+			434 button Bea Serra Attending
+				435 text Bea Serra
+				436 text Attending
+			437 button Paula Alemany Attending
+				438 text Paula Alemany
+				439 text Attending
+			440 button Núria Gelabert Not attending
+				441 text Núria Gelabert
+				442 text Not attending
+			443 button Laia Bestard Attending
+				444 text Laia Bestard
+				445 text Attending
+			446 button Sara Pons Attending
+				447 text Sara Pons
+				448 text Attending
+			449 button Aina Llull No reply
+				450 text Aina Llull
+				451 text No reply
+			452 button Marina Tous Attending
+				453 text Marina Tous
+				454 text Attending
+		455 container
+			456 heading IMMEDIATE FAMILY · MARC'S FAMILY 2, Value: 2
+				457 text IMMEDIATE FAMILY · MARC'S FAMILY
+			458 button Maria Bauzà Top table Attending
+				459 text Maria Bauzà
+				460 text Top table
+				461 text Attending
+			462 button Jaume Bauzà Top table Attending
+				463 text Jaume Bauzà
+				464 text Top table
+				465 text Attending
+		466 container
+			467 heading AUNTS, UNCLES AND COUSINS · MARC'S FAMILY 24, Value: 2
+				468 text AUNTS, UNCLES AND COUSINS · MARC'S FAMILY 24
+			469 button Tomeu Bauzà Attending
+				470 text Tomeu Bauzà
+				471 text Attending
+			472 button Aina Oliver Not attending
+				473 text Aina Oliver
+				474 text Not attending
+			475 button Biel Oliver Child No reply
+				476 text Biel Oliver
+				477 text Child
+				478 text No reply
+			479 button Oriol Palou No reply
+				480 text Oriol Palou
+				481 text No reply
+			482 button Toni Vich Attending
+				483 text Toni Vich
+				484 text Attending
+			485 button Àlex Sastre Attending
+				486 text Àlex Sastre
+				487 text Attending
+			488 button Miquel Ramis No reply
+				489 text Miquel Ramis
+				490 text No reply
+			491 button Pau Font Attending
+				492 text Pau Font
+				493 text Attending
+			494 button Pere Mir Attending
+				495 text Pere Mir
+				496 text Attending
+			497 button Jordi Crespí Not attending
+				498 text Jordi Crespí
+				499 text Not attending
+			500 button Joan Riera Attending
+				501 text Joan Riera
+				502 text Attending
+			503 button David Roca Child · Allergy: Gluten Attending
+				504 text David Roca
+				505 text Child · Allergy: Gluten
+				506 text Attending
+			507 button Hugo Fiol No reply
+				508 text Hugo Fiol
+				509 text No reply
+			510 button Biel Serra Vegetarian Attending
+				511 text Biel Serra
+				512 text Vegetarian
+				513 text Attending
+			514 button Lluís Alemany Attending
+				515 text Lluís Alemany
+				516 text Attending
+			517 button Xavi Gelabert No reply
+				518 text Xavi Gelabert
+				519 text No reply
+			520 button Rafel Bestard Attending
+				521 text Rafel Bestard
+				522 text Attending
+			523 button Guillem Pons Attending
+				524 text Guillem Pons
+				525 text Attending
+			526 button Oriol Llull Not attending
+				527 text Oriol Llull
+				528 text Not attending
+			529 button Toni Tous Attending
+				530 text Toni Tous
+				531 text Attending
+			532 button Àlex Font Attending
+				533 text Àlex Font
+				534 text Attending
+			535 button Miquel Mir No reply
+				536 text Miquel Mir
+				537 text No reply
+			538 button Pau Crespí Child Attending
+				539 text Pau Crespí
+				540 text Child
+				541 text Attending
+			542 button Pere Coll Attending
+				543 text Pere Coll
+				544 text Attending
+		545 container
+			546 heading FAMILY FRIENDS · MARC'S FAMILY 21, Value: 2
+				547 text FAMILY FRIENDS · MARC'S FAMILY 21
+			548 button Xisca Pons Vegetarian Attending
+				549 text Xisca Pons
+				550 text Vegetarian
+				551 text Attending
+			552 button Marta Riera Attending
+				553 text Marta Riera
+				554 text Attending
+			555 button Irene Roca Not attending
+				556 text Irene Roca
+				557 text Not attending
+			558 button Teresa Fiol Child Attending
+				559 text Teresa Fiol
+				560 text Child
+				561 text Attending
+			562 button Carla Serra Vegetarian Attending
+				563 text Carla Serra
+				564 text Vegetarian
+				565 text Attending
+			566 button Mireia Alemany No reply
+				567 text Mireia Alemany
+				568 text No reply
+			569 button Elena Gelabert Attending
+				570 text Elena Gelabert
+				571 text Attending
+			572 button Cristina Bestard Attending
+				573 text Cristina Bestard
+				574 text Attending
+			575 button Neus Vich No reply
+				576 text Neus Vich
+				577 text No reply
+			578 button Bea Sastre Attending
+				579 text Bea Sastre
+				580 text Attending
+			581 button Paula Ramis Attending
+				582 text Paula Ramis
+				583 text Attending
+			584 button Núria Font Not attending
+				585 text Núria Font
+				586 text Not attending
+			587 button Laia Mir Attending
+				588 text Laia Mir
+				589 text Attending
+			590 button Sara Crespí Attending
+				591 text Sara Crespí
+				592 text Attending
+			593 button Aina Coll Child No reply
+				594 text Aina Coll
+				595 text Child
+				596 text No reply
+			597 button Marina Cerdà Attending
+				598 text Marina Cerdà
+				599 text Attending
+			600 button Marta Amengual Attending
+				601 text Marta Amengual
+				602 text Attending
+			603 button Irene Palou Vegetarian · Allergy: Gluten No reply
+				604 text Irene Palou
+				605 text Vegetarian · Allergy: Gluten
+				606 text No reply
+			607 button Teresa Alemany Attending
+				608 text Teresa Alemany
+				609 text Attending
+			610 button Carla Gelabert Attending
+				611 text Carla Gelabert
+				612 text Attending
+			613 button Mireia Bestard Not attending
+				614 text Mireia Bestard
+				615 text Not attending
+		616 container
+			617 heading SCHOOL FRIENDS · YOU TWO 17, Value: 2
+				618 text SCHOOL FRIENDS · YOU TWO 17
+			619 button Sara Llull Attending
+				620 text Sara Llull
+				621 text Attending
+			622 button Marina Riera No reply
+				623 text Marina Riera
+				624 text No reply
+			625 button Irene Fiol Attending
+				626 text Irene Fiol
+				627 text Attending
+			628 button Carla Alemany Attending
+				629 text Carla Alemany
+				630 text Attending
+			631 button Elena Bestard Not attending
+				632 text Elena Bestard
+				633 text Not attending
+			634 button Neus Sastre Child · Allergy: Gluten Attending
+				635 text Neus Sastre
+				636 text Child · Allergy: Gluten
+				637 text Attending
+			638 button Paula Font Vegetarian Attending
+				639 text Paula Font
+				640 text Vegetarian
+				641 text Attending
+			642 button Laia Crespí No reply
+				643 text Laia Crespí
+				644 text No reply
+			645 button Aina Cerdà Attending
+				646 text Aina Cerdà
+				647 text Attending
+			648 button Marta Palou Attending
+				649 text Marta Palou
+				650 text Attending
+			651 button Teresa Gelabert No reply
+				652 text Teresa Gelabert
+				653 text No reply
+			654 button Mireia Pons Attending
+				655 text Mireia Pons
+				656 text Attending
+			657 button Cristina Tous Attending
+				658 text Cristina Tous
+				659 text Attending
+			660 button Bea Roca Not attending
+				661 text Bea Roca
+				662 text Not attending
+			663 button Núria Serra Attending
+				664 text Núria Serra
+				665 text Attending
+			666 button Sara Amengual Attending
+				667 text Sara Amengual
+				668 text Attending
+			669 button Marina Vich Child No reply
+				670 text Marina Vich
+				671 text Child
+				672 text No reply
+		673 container
+			674 heading FRIENDS FROM MALLORCA · YOU TWO 16, Value: 2
+				675 text FRIENDS FROM MALLORCA · YOU TWO 16
+			676 button Rafel Amengual No reply
+				677 text Rafel Amengual
+				678 text No reply
+			679 button Oriol Vich Attending
+				680 text Oriol Vich
+				681 text Attending
+			682 button Àlex Ramis Child Attending
+				683 text Àlex Ramis
+				684 text Child
+				685 text Attending
+			686 button Pau Mir No reply
+				687 text Pau Mir
+				688 text No reply
+			689 button Jordi Coll Attending
+				690 text Jordi Coll
+				691 text Attending
+			692 button David Fiol Attending
+				693 text David Fiol
+				694 text Attending
+			695 button Biel Alemany Not attending
+				696 text Biel Alemany
+				697 text Not attending
+			698 button Xavi Bestard Attending
+				699 text Xavi Bestard
+				700 text Attending
+			701 button Guillem Llull Attending
+				702 text Guillem Llull
+				703 text Attending
+			704 button Toni Riera Vegetarian · Allergy: Gluten No reply
+				705 text Toni Riera
+				706 text Vegetarian · Allergy: Gluten
+				707 text No reply
+			708 button Miquel Crespí Attending
+				709 text Miquel Crespí
+				710 text Attending
+			711 button Pere Cerdà Attending
+				712 text Pere Cerdà
+				713 text Attending
+			714 button Joan Palou No reply
+				715 text Joan Palou
+				716 text No reply
+			717 button Hugo Sastre Child Attending
+				718 text Hugo Sastre
+				719 text Child
+				720 text Attending
+			721 button Lluís Font Attending
+				722 text Lluís Font
+				723 text Attending
+			724 button Rafel Tous Not attending
+				725 text Rafel Tous
+				726 text Not attending
+		727 container
+			728 heading B-LIST, Value: 2
+				729 text B-LIST
+			730 button Marta Vives You two
+				731 text Marta Vives
+				732 text You two
+			733 button Invite
+			734 button Toni Femenia Marc's family
+				735 text Toni Femenia
+				736 text Marc's family
+			737 button Invite
+			738 text Reserve guests. If someone can't come, we'll suggest the next one from the same side.
+		739 container
+			740 heading PRINT AND EXPORT, Value: 2
+				741 text PRINT AND EXPORT
+			742 button Create guests and tables PDF List, tables with menus and summary for the caterer
+				743 text Create guests and tables PDF
+				744 text List, tables with menus and summary for the caterer
+			745 button Export the list to Excel CSV file with all the details
+				746 text Export the list to Excel
+				747 text CSV file with all the details
+			748 button Paste a guest list
+	144 button Get Yes Planner
+
+The focused UI element is 0 AXWebArea Guests · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-lista

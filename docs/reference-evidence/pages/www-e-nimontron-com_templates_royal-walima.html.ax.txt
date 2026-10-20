@@ -1,0 +1,139 @@
+Browser tab: 3, Title: "Mariam & Yusuf — Walima Invitation", URL: "https://www.e-nimontron.com/templates/royal-walima.html".
+1 AXWebArea Mariam & Yusuf — Walima Invitation, URL: e-nimontron.com/templates/royal-walima.html
+	2 button Description: Toggle lighting mood, Help: Evening glow — tap for afternoon light, ID: modeToggle
+		3 image
+	4 container hero
+		5 image
+		6 text بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+		7 text In the name of Allah, the Most Gracious, the Most Merciful
+		8 container
+			9 text SCROLL
+			10 image
+	11 container names
+		12 text وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
+		13 text "And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has placed between you affection and mercy."
+		14 text — SURAH AR-RUM, 30:21
+		15 text By the blessings of Allah, we request the honour of your presence at our Walima reception to share in our joy and gratitude.
+		16 container
+			17 text Yusuf يوسف Son of Mr. & Mrs. Aziz
+		18 text &
+		19 container
+			20 text Mariam مريم Daughter of Mr. & Mrs. Siddiqui
+	21 container event
+		22 image
+		23 text REQUEST THE HONOUR OF YOUR COMPANY
+		24 text Walima
+		25 text وليمة
+		26 container
+			27 text DAY
+			28 text Saturday
+			29 text DATE
+			30 text 17
+			31 text October 2026
+			32 text RECEPTION Begins at
+		33 container
+			34 text THE CELEBRATION BEGINS
+			35 text 7:00 PM
+			36 text onwards
+			37 image scratchCanvas
+		38 text SCRATCH THE GOLD FOIL TO REVEAL THE TIME
+		39 text at Royal Pavilion Hall
+	40 container countdownSection
+		41 heading Counting Down, Value: 2
+			42 text Counting Down
+		43 text UNTIL OUR BLESSED DAY
+		44 text The blessed day has arrived
+		45 container daysLeft
+			46 text ✦
+			47 text BARAKAH UPON US
+	48 container venue
+		49 heading The Venue, Value: 2
+			50 text The Venue
+		51 text FIND YOUR WAY TO US
+		52 container
+			53 text Royal Pavilion Hall
+			54 container venueAddress
+				55 text Plot 12, Gulshan Avenue
+				56 text Gulshan 2, Dhaka 1212
+				57 text Bangladesh
+			58 text GET DIRECTIONS FROM YOUR LOCATION
+			59 text field (settable) userAddress
+			60 button Description: Use my current location, ID: locateBtn
+				61 image
+			62 button SHOW ME THE WAY, ID: getDirectionsBtn
+				63 image
+				64 text SHOW ME THE WAY
+	65 container footer
+		66 text We humbly look forward to welcoming you and your family.
+		67 container
+			68 image
+			69 container Barakah and Walima blessing seal
+				70 text BARAKAH
+				71 text ✦
+				72 text WALIMA
+			73 image
+		74 text رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ
+		75 text May Allah bless us all — Aameen.
+		76 text Y & M
+		77 text 17 · 10 · 2026
+	78 text Opening directions...
+	79 container invite-widgets
+		80 container
+			81 text Our Moments CAPTURED TOGETHER
+			82 container Photo slideshow
+				83 container
+					84 image Photo 1 of 4
+					85 text 1  / 4
+				86 button Previous photo
+					87 image
+				88 button Next photo
+					89 image
+			90 button Photo 1
+			91 button Photo 2
+			92 button Photo 3
+			93 button Photo 4
+		94 text Join Us
+		95 button MAP
+			96 image
+			97 text MAP
+		98 button CALENDAR
+			99 image
+			100 text CALENDAR
+		101 text Kindly RSVP
+		102 text WE HOPE YOU CAN CELEBRATE WITH US
+		103 container w-rsvp-form
+			104 text YOUR NAME
+			105 text field (settable) YOUR NAME, ID: w-rsvp-name
+			106 text WILL YOU ATTEND?
+			107 container
+				108 radio button (settable, integer) Description: JOYFULLY, Value: 1
+				109 text JOYFULLY
+			110 container
+				111 radio button (settable, integer) Description: SADLY NO, Value: 0
+				112 text SADLY NO
+			113 text NUMBER OF GUESTS (0–10)
+			114 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+			115 button SEND RSVP
+		116 text Send Your Wishes
+		117 text LEAVE A PRIVATE MESSAGE
+		118 container w-wish-form
+			119 text Send your wish
+			120 text Your message stays private — it won't be shown here publicly
+			121 text YOUR NAME
+			122 text field (settable) YOUR NAME, ID: w-wish-name
+			123 text YOUR MESSAGE
+			124 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+			125 container
+				126 image
+				127 text ADD A PHOTO (OPTIONAL)
+			128 button ADD YOUR WISH
+		129 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+		130 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+		131 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	132 container
+		133 text — YOU ARE INVITED — Welcome WEDDING
+		134 button OPEN INVITATION
+	135 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		136 image
+
+The focused UI element is 1 AXWebArea Mariam & Yusuf — Walima Invitation, URL: e-nimontron.com/templates/royal-walima.html

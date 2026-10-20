@@ -1,0 +1,109 @@
+Browser tab: 3, Title: "Tanveer & Ariana — Wedding Invitation", URL: "https://www.e-nimontron.com/templates/blue-gold-floral.html".
+1 AXWebArea Tanveer & Ariana — Wedding Invitation, URL: e-nimontron.com/templates/blue-gold-floral.html
+	2 image petalsCanvas
+	3 container
+		4 text — SAVE THE DATE —
+		5 text With joyful hearts, we invite you to celebrate
+		6 heading T a n v e e r, Value: 1, ID: groomName
+			7 text T
+			8 text a
+			9 text n
+			10 text v
+			11 text e
+			12 text e
+			13 text r
+		14 heading A r i a n a, Value: 1, ID: brideName
+			15 text A
+			16 text r
+			17 text i
+			18 text a
+			19 text n
+			20 text a
+		21 container dateRow
+			22 text SEPTEMBER
+			23 text 12
+			24 text 6:30 PM
+		25 container w-scratch-mount
+			26 text Save The Date
+			27 text SCRATCH TO REVEAL
+			28 container
+				29 text Thursday, 31 December 2026
+				30 text 7:00 PM onwards
+				31 image
+		32 text LE MÉRIDIEN DHAKA
+		33 text 79/A Commercial Area, Nikunja-2, Dhaka 1229, Bangladesh
+		34 text — COUNTING DOWN — 0 DAYS until your dream wedding
+		35 container cd-cell-days
+			36 text 00
+			37 text DAYS
+		38 container cd-cell-hrs
+			39 text 00
+			40 text HOURS
+		41 container cd-cell-mins
+			42 text 00
+			43 text MINS
+		44 container cd-cell-secs
+			45 text 00
+			46 text SECS
+		47 text Tanveer & Ariana
+		48 text FOREVER BEGINS
+	49 container invite-widgets
+		50 container
+			51 text Our Moments CAPTURED TOGETHER
+			52 container Photo slideshow
+				53 container
+					54 image Photo 1 of 4
+					55 text 1  / 4
+				56 button Previous photo
+					57 image
+				58 button Next photo
+					59 image
+			60 button Photo 1
+			61 button Photo 2
+			62 button Photo 3
+			63 button Photo 4
+		64 text Join Us
+		65 button MAP
+			66 image
+			67 text MAP
+		68 button CALENDAR
+			69 image
+			70 text CALENDAR
+		71 text Kindly RSVP
+		72 text WE HOPE YOU CAN CELEBRATE WITH US
+		73 container w-rsvp-form
+			74 text YOUR NAME
+			75 text field (settable) YOUR NAME, ID: w-rsvp-name
+			76 text WILL YOU ATTEND?
+			77 container
+				78 radio button (settable, integer) Description: JOYFULLY, Value: 1
+				79 text JOYFULLY
+			80 container
+				81 radio button (settable, integer) Description: SADLY NO, Value: 0
+				82 text SADLY NO
+			83 text NUMBER OF GUESTS (0–10)
+			84 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+			85 button SEND RSVP
+		86 text Send Your Wishes
+		87 text LEAVE A PRIVATE MESSAGE
+		88 container w-wish-form
+			89 text Send your wish
+			90 text Your message stays private — it won't be shown here publicly
+			91 text YOUR NAME
+			92 text field (settable) YOUR NAME, ID: w-wish-name
+			93 text YOUR MESSAGE
+			94 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+			95 container
+				96 image
+				97 text ADD A PHOTO (OPTIONAL)
+			98 button ADD YOUR WISH
+		99 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+		100 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+		101 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	102 container
+		103 text — YOU ARE INVITED — Welcome WEDDING
+		104 button OPEN INVITATION
+	105 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		106 image
+
+The focused UI element is 1 AXWebArea Tanveer & Ariana — Wedding Invitation, URL: e-nimontron.com/templates/blue-gold-floral.html

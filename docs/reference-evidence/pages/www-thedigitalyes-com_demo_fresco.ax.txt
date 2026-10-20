@@ -1,0 +1,303 @@
+Browser tab: 3, Title: "Fresco – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/fresco".
+1 AXWebArea Fresco – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/fresco
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Fresco
+			24 text DIGITAL INVITATION
+			25 heading Fresco, Value: 1
+				26 text Fresco
+			27 text Illustrated Mediterranean villa, olives and a linen bow. FROM €175 One-time payment · three levels of personalisation
+			28 checkbox Description: Save Fresco, Value: 0
+				29 image
+			30 text Interactive demo
+			31 container Views
+				32 container Fresco — live demo
+					33 AXWebArea Diana & Richard, URL: fresco-template.thedigitalyes.com/?embed=1
+						34 container root
+							35 container Notifications (F8)
+								36 content list
+							37 container Notifications alt+T
+							38 container
+								39 button EN
+								40 button DE
+								41 container
+									42 heading Diana & Richard, Value: 2
+										43 text Diana & Richard
+									44 text WE INVITE YOU TO
+									45 text CELEBRATE OUR WEDDING JULY 27 TUESDAY 2027 TO BE HELD AT Son Bunyola, Mallorca
+								46 button Scroll down
+									47 image
+								48 container countdown
+									49 heading Countdown, Value: 2
+										50 text Countdown
+									51 text Until 27 July 2027
+									52 container
+										53 text 281 Days 21 Hours 45 Minutes 29 Seconds
+								54 container our-story
+									55 heading Our Story, Value: 2
+										56 text Our Story
+									57 container
+										58 text Some of the best love stories begin unexpectedly, and ours was no different. What started as a chance encounter soon became endless conversations, spontaneous adventures, and countless memories together. Somewhere along the way, we found our favorite place: by each other’s side. And now, we're ready for our greatest adventure yet — a lifetime together.
+									59 text Diana and Richard
+								60 container
+									61 heading The Celebration, Value: 2
+										62 text The Celebration
+									63 text CEREMONY & DINNER
+									64 container
+										65 heading Sa Tafona, Value: 3
+											66 text Sa Tafona
+										67 text SON BUNYOLA A ceremony in the gardens at sunset behind the Tramuntana, followed by dinner and dancing. Tuesday, 27 July 2027 5:30 PM
+									68 link Description: VIEW ON MAP, Value: google.com/maps/search/?api=1&query=Son+Bunyola+Bunyola+Mallorca
+								69 container
+									70 heading The Day, Value: 2
+										71 text The Day
+									72 text PROGRAM · TUESDAY 27 JULY Our wedding day, from sunset drinks to the last dance. 25 26
+									73 text 27 28 29
+									74 container
+										75 text 17:00 Guests Arrival & Welcome Drinks
+									76 container
+										77 text 17:30 Ceremony
+									78 container
+										79 text 19:15 Cocktail Hour
+									80 container
+										81 text 20:30 Dinner
+									82 container
+										83 text 22:30 Cake & Toasts
+									84 container
+										85 text 23:00 First Dance
+									86 container
+										87 text 23:15 Dancing under
+the Stars
+									88 container
+										89 text 02:00 Goodnight
+								90 heading Dress Code, Value: 2
+									91 text Dress Code
+								92 text BLACK TIE
+								93 text Under a Mediterranean sky, with the sea as our witness — wear the dress you have dreamed of, and dance until the last star fades.
+								94 container
+									95 text 26TH JULY
+									96 heading Welcome Soirée, Value: 3
+										97 text Welcome Soirée
+									98 heading Sa Terrassa, Value: 4
+										99 text Sa Terrassa
+									100 text SON BUNYOLA Join us for an intimate evening of cocktails and Mediterranean views as we begin our celebrations at Son Bunyola.
+								101 container accommodations
+									102 container
+										103 heading Where to Stay, Value: 2
+											104 text Where to Stay
+										105 text RECOMMENDED HOTELS
+										106 text NEAR THE VENUE
+									107 container
+										108 text EXCLUSIVE WEDDING GUEST RATE
+										109 heading SON BUNYOLA HOTEL & VILLAS, Value: 3
+											110 text SON BUNYOLA HOTEL & VILLAS
+										111 text €650 per night · double room · breakfast included A special fixed rate of €650 per night has been reserved exclusively for our wedding guests. ADDRESS Finca Son Bunyola, Ctra. C-710, 07191 Banyalbufar PARKING Free on-site parking
+										112 link Description: BOOK YOUR STAY, Value: virginlimitededition.com/son-bunyola/reservations/
+									113 container
+										114 heading SON BORGUNY, Value: 3
+											115 text SON BORGUNY
+										116 text €180 per night · double room · breakfast included ADDRESS Carrer Borguny 1, 07191 Banyalbufar PARKING Free on-site parking TO THE VENUE 9 km · about 25 min by car
+										117 link Description: BOOK YOUR STAY, Value: hotelsonborguny.com/en/home/
+								118 container
+									119 heading Wedding Gift, Value: 2
+										120 text Wedding Gift
+									121 text Your presence is our greatest gift.
+									122 text If you wish to honour us with a gift, we kindly prefer monetary contributions.
+									123 button VIEW BANK DETAILS
+								124 container
+									125 heading RSVP, Value: 2
+										126 text RSVP
+									127 text THE FAVOUR OF A REPLY IS KINDLY REQUESTED BY THE FIFTEENTH OF MAY, 2027 01 Will you be joining us? *
+									128 container
+										129 radio button Description: Delighted to accept, Value: 1, ID: yes
+											130 image
+										131 text Delighted to accept
+									132 container
+										133 radio button Description: Regretfully unable to attend, Value: 0, ID: no
+										134 text Regretfully unable to attend
+									135 text 02 Which events will you be attending? *
+									136 container
+										137 checkbox Description: Welcome Soirée – 26th July, Value: 0, ID: event-cruise
+										138 text Welcome Soirée – 26th July
+									139 container
+										140 checkbox Description: Wedding Ceremony & Reception – 27th July, Value: 0, ID: event-wedding
+										141 text Wedding Ceremony & Reception – 27th July
+									142 text 03 Number of guests in your party
+									143 button (disabled) Decrease
+										144 image
+									145 text 1
+									146 button Increase
+										147 image
+									148 text PRINCIPAL GUEST
+									149 text field (settable)
+									150 text field (settable)
+									151 text 04 Will any children be accompanying you?
+									152 container
+										153 radio button Description: Yes, Value: 0, ID: children-yes
+										154 text Yes
+									155 container
+										156 radio button Description: No, Value: 1, ID: children-no
+											157 image
+										158 text No
+									159 text 05 A message for the couple
+									160 text entry area (settable) message
+									161 button SUBMIT RESPONSE
+										162 image
+										163 text SUBMIT RESPONSE
+								164 container
+									165 text Diana & Richard 27 July 2027
+								166 container
+									167 text Made with love by
+									168 link Description: The Digital Yes, Value: thedigitalyes.com/
+			169 container
+				170 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			171 text 1  /  1
+			172 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			173 button Full screen
+				174 image
+			175 container Purchase
+				176 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				177 button PERSONALIZE THIS INVITATION
+				178 text ✓ Designed by hand ✓ Revisions included
+				179 container This is your invitation
+					180 text HANDMADE, ONLY FOR YOU
+					181 heading This is your invitation, Value: 2
+						182 text This is your invitation
+					183 tab group
+						184 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						185 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						186 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					187 container Description: WHO CREATES IT, ID: v5-info-pane
+						188 text Designed by a real person
+						189 text A designer from our atelier crafts it for you.
+						190 text Revisions included
+						191 text See your draft and request changes before sharing.
+						192 text At your own pace
+						193 text Send details and photos after payment, whenever ready.
+						194 text One-time payment, forever
+						195 text No subscriptions. A link ready for WhatsApp.
+				196 container Your sections, your order
+					197 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						198 text Your sections, your order
+					199 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					200 container Your sections, your order
+						201 content list
+							202 text Our story
+							203 text Schedule
+							204 text Dress code
+							205 text Travel & stay
+							206 text Gifts
+							207 text RSVP
+						208 text Add section
+				209 container
+					210 text DETAILS RECEIVED
+					211 text Once we have your details
+					212 text DESIGN & PROOF
+					213 text READY
+					214 text 7–14 days Counted from when we receive your details and materials.
+				215 text An invitation that smells of the Mediterranean: an illustrated villa, olive branches, lavender and a sailor's bow. Fresh, elegant and summery.
+				216 button (collapsed) What’s included +, Secondary Actions: Expand
+					217 text What’s included
+					218 text +
+				219 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					220 text Personalisation & extras
+					221 text +
+				222 button (collapsed) How it works +, Secondary Actions: Expand
+					223 text How it works
+					224 text +
+				225 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					226 text Delivery & revisions
+					227 text +
+				228 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Fresco%20template%20%E2%9C%A8
+			229 container What couples say
+				230 heading What couples say, Value: 2, ID: h4p-ugc-title
+					231 text What couples say
+				232 text REAL COUPLES, REAL INVITATIONS
+				233 button Previous video
+				234 button Next video
+				235 container
+					236 button Play video — @irenefdz
+						237 container @irenefdz
+					238 link Description: @irenefdz, Value: instagram.com/irenefdz
+					239 button Play video — @fanicarbaj
+						240 container @fanicarbaj
+					241 link Description: @fanicarbaj, Value: instagram.com/fanicarbaj
+					242 button Play video — @miisspinkie
+						243 container @miisspinkie
+					244 link Description: @miisspinkie, Value: instagram.com/miisspinkie/
+					245 button Play video — @sophiialorraine
+						246 container @sophiialorraine
+					247 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					248 button Play video — @sophiialorraine
+						249 container @sophiialorraine
+					250 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					251 button Play video — Diana & Richard
+						252 container Diana & Richard
+					253 text Diana & Richard
+					254 button Play video — The Digital Yes
+						255 container The Digital Yes
+					256 text The Digital Yes
+			257 container reviews
+				258 heading Loved by 3,000+ couples., Value: 2
+					259 text Loved by 3,000+ couples.
+				260 text 4.9
+				261 text 278 reviews
+				262 container
+					263 container 5/5
+						264 text ★★★★★
+					265 text “ We were BLOWN AWAY with the invitation!! Way better than I expected it to be. So many people have said it's the best invitation they've ever seen!!!! Very easy to use, amazing communication and easy to amend. Highly recommend!!!!! ”
+					266 text Lisa Martin
+				267 container
+					268 container 5/5
+						269 text ★★★★★
+					270 text “ Absolutely incredible invites. Thank you so much! It’s everything I asked for. ”
+					271 text Melanie & Nohra
+				272 container
+					273 container 5/5
+						274 text ★★★★★
+					275 text “ I am so glad I came across this site to create my custom unique wedding e-cute. Everything to do with the design was made with ease. Very fast on the feedback aswell, any tweaks that had to be made was done almost instantly. The design templates to choose from fit my vision perfectly. Would highly recommend them to anyone looking for beautiful wedding invite site. ”
+					276 text Parveen Kaur
+			277 text YOU MAY ALSO LIKE
+			278 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			279 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			280 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			281 link Description: Bella Vista — design preview Bella Vista From €175, Value: thedigitalyes.com/demo/bella-vista
+		282 container
+			283 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			284 text Digital wedding invitations designed by hand.
+			285 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			286 text COLLECTIONS
+			287 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			288 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			289 link Description: Plans, Value: thedigitalyes.com/#plans
+			290 text SERVICE
+			291 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			292 link Description: Blog, Value: thedigitalyes.com/blog
+			293 link Description: Client portal, Value: thedigitalyes.com/clients
+			294 text LEGAL
+			295 link Description: Terms, Value: thedigitalyes.com/terms
+			296 link Description: Privacy, Value: thedigitalyes.com/privacy
+			297 link Description: Refunds, Value: thedigitalyes.com/refunds
+			298 text ©  2026  The Digital Yes EN  ·  EUR
+		299 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Fresco – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/fresco

@@ -1,0 +1,412 @@
+Browser tab: 3, Title: "Digital wedding invitation pricing: €175, €575 and €975 | The Digital Yes", URL: "https://www.thedigitalyes.com/pricing".
+1 AXWebArea Digital wedding invitation pricing: €175, €575 and €975 | The Digital Yes, URL: thedigitalyes.com/pricing
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/
+			11 link Description: PLANS, Value: thedigitalyes.com/
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 container
+			21 text PLANS
+			22 heading Pricing and levels of personalisation, Value: 1
+				23 text Pricing and levels of personalisation
+			24 text One payment per wedding. Choose a collection template, a redesign for your wedding, or a bespoke creation.
+			25 container
+				26 container
+					27 text THE FIRST IMPRESSION
+					28 heading What your guests will say, Value: 2
+						29 text What your guests will say
+					30 text The memory of your wedding doesn't start on the big day. It starts the second they open your invitation.
+				31 image Real guest message reacting to a The Digital Yes invitation
+				32 container plans
+					33 container plans-header
+						34 text HAND-CRAFTED FOR YOUR WEDDING
+						35 heading Choose your plan, Value: 2
+							36 text Choose your plan
+						37 button 4.9 stars 4.9 278 reviews
+							38 container 4.9 stars
+								39 image
+								40 image
+								41 image
+								42 image
+								43 image
+							44 text 4.9
+							45 text 278
+							46 text reviews
+						47 text Closing spring–summer 2027 · Limited monthly slots
+						48 text Every plan includes
+						49 content list
+							50 container
+								51 image
+								52 text RSVP built in
+							53 container
+								54 image
+								55 text Unlimited sends
+							56 container
+								57 image
+								58 text Any language
+						59 text Three levels of design, made for every couple and every wedding.
+						60 content list
+							61 container
+								62 text Essential The collection design as it is, with your details · Optional add-ons
+							63 container
+								64 text Premium Redesigned in your wedding's style: cover, icons, colors… · All extras included
+							65 container
+								66 text Excellence Fully bespoke: an exclusive piece created from scratch
+					67 container plan-essential
+						68 container
+							69 text FROM € 175 TEMPLATE AS IS
+							70 heading Essential plan, Value: 3
+								71 text Essential plan
+							72 text Your favorite template from our collection, adapted with your names, wording, photos and wedding details. One-time payment · No subscription · No hidden fees
+						73 content list
+							74 container
+								75 image
+								76 text The full collection to choose from (30+ designs)
+							77 container
+								78 image
+								79 text RSVP + private guest dashboard
+							80 container
+								81 image
+								82 text Animated envelope + initials wax seal
+							83 container
+								84 image
+								85 text 2 languages + 2 revision rounds included
+						86 button (collapsed) See all features, Secondary Actions: Expand
+							87 text See all features
+							88 image
+						89 text PERSONALIZE YOUR COVER TO MAKE IT EXTRA SPECIAL
+						90 switch Illustrated cover pack Illustration of your venue + animated cover + copyright free music €115 +€89, Value: 0
+							91 text Illustrated cover pack
+							92 text Illustration of your venue + animated cover + copyright free music
+							93 text €115
+							94 text +
+							95 text €89
+						96 button (collapsed) Prefer individual extras? See options, Secondary Actions: Expand
+							97 text Prefer individual extras? See options
+							98 image
+						99 button START WITH ESSENTIAL · €175
+							100 text START WITH ESSENTIAL
+							101 text  · 
+							102 text €175
+							103 image
+						104 text Choose your design after paying, at your own pace, in the form.
+						105 button I'd rather choose the design now
+					106 container plan-premium
+						107 container
+							108 image
+							109 text RECOMMENDED € 575 TEMPLATE REDESIGNED FOR YOU
+							110 heading Premium plan, Value: 3
+								111 text Premium plan
+							112 text Your chosen template, reimagined around your venue or theme: cover, interior and icons.
+							113 button See the before & after
+							114 text One-time payment · No subscription · No hidden fees
+						115 text Yes Planner included free
+						116 content list
+							117 container
+								118 image
+								119 text Dedicated wedding designer + full cover & interior redesign
+							120 container
+								121 image
+								122 text Interactive Save the Date included · a €75 gift (optional)
+							123 container
+								124 image
+								125 text Personalized animated envelope with initials + video & music
+							126 container
+								127 image
+								128 text Up to 3 languages worldwide · 4 revision rounds
+						129 button (collapsed) See all features, Secondary Actions: Expand
+							130 text See all features
+							131 image
+						132 button CREATE MY INVITATION
+							133 text CREATE MY INVITATION
+							134 image
+						135 button I'd rather choose the base template now →
+						136 text Real proofs and revisions included · You'll-Love-It Promise
+					137 container plan-excellence
+						138 container
+							139 text € 975 DESIGNED FROM SCRATCH
+							140 heading Excellence plan, Value: 3
+								141 text Excellence plan
+							142 text A one-of-a-kind invitation designed from scratch with your own designer. One-time payment · No subscription · No hidden fees
+						143 text Yes Planner included free
+						144 content list
+							145 container
+								146 image
+								147 text A design created from scratch, just for you
+							148 container
+								149 image
+								150 text Editorial art direction with exclusive illustrations
+							151 container
+								152 image
+								153 text Complimentary custom Save the Date, designed from scratch (optional)
+							154 container
+								155 image
+								156 text Personalized initials envelope + any languages you need · 7 revision rounds
+						157 button (collapsed) See all features, Secondary Actions: Expand
+							158 text See all features
+							159 image
+						160 button START MY BESPOKE INVITATION
+							161 text START MY BESPOKE INVITATION
+							162 image
+						163 text Real proofs and revisions included · You'll-Love-It Promise
+					164 container
+						165 text GIFT CARD
+						166 heading Want to give an unforgettable gift?, Value: 3
+							167 text Want to give an unforgettable gift?
+						168 text Gift their Save the Date, their invitation or atelier credit. The couple choose their design whenever they like with their own code.
+						169 image Gift card
+						170 checkbox Full Save the Date €75, Value: 0
+						171 checkbox Full Essential invitation €175, Value: 1
+						172 checkbox Full Premium invitation €575, Value: 0
+						173 checkbox Custom amount min. €50, Value: 0
+							174 text Custom amount
+							175 text min. 
+							176 text €50
+						177 button Give this card · €175
+							178 text Give this card
+							179 text  · €175
+					180 container Compare plans
+						181 heading Compare plans, Value: 3, ID: compare-plans-title
+							182 text Compare plans
+						183 checkbox (settable, integer) Description: Show only differences, Value: 1
+						184 table
+							185 row
+								186 cell
+									187 text INCLUDED
+								188 cell
+									189 text Essential plan
+								190 cell
+									191 text Premium plan
+								192 cell
+									193 text Excellence plan
+							194 row
+								195 cell
+									196 text Design
+								197 cell
+									198 text Your wording and photos on the collection you choose
+								199 cell
+									200 text Complete redesign in your own style
+								201 cell
+									202 text Created from scratch with art direction
+							203 row
+								204 cell
+									205 text Personalization
+								206 cell
+									207 text Names, details, photos and venue
+								208 cell
+									209 text Icons, cover, all around your wedding · included
+								210 cell
+									211 text Fully custom, included
+							212 row
+								213 cell
+									214 text Save the Date
+								215 cell
+									216 text Optional
+								217 cell
+									218 text Included (template)
+								219 cell
+									220 text Included, custom
+							221 row
+								222 cell
+									223 text Languages
+								224 cell
+									225 text 2 included
+								226 cell
+									227 text Up to 3 included
+								228 cell
+									229 text As many as you need
+							230 row
+								231 cell
+									232 text Design revisions
+								233 cell
+									234 text 2 rounds
+								235 cell
+									236 text 4 rounds
+								237 cell
+									238 text 7 rounds
+							239 row
+								240 cell
+									241 text Ready in
+								242 cell
+									243 text 7–14 days
+								244 cell
+									245 text 7–14 days
+								246 cell
+									247 text Bespoke schedule
+							248 row
+								249 cell
+									250 text Your designer
+								251 cell
+									252 text Direct contact after ordering
+								253 cell
+									254 text A designer dedicated to your wedding
+								255 cell
+									256 text Dedicated designer + priority response
+							257 row
+								258 cell
+									259 text Video and music
+								260 cell
+									261 text Optional
+								262 cell
+									263 text Included
+								264 cell
+									265 text Included, original edit
+							266 row
+								267 cell
+									268 text Art direction
+								269 cell
+									270 text —
+								271 cell
+									272 text —
+								273 cell
+									274 text Editorial
+							275 row
+								276 cell
+									277 text Wedding tools
+								278 cell
+									279 text —
+								280 cell
+									281 text Included
+								282 cell
+									283 text Included
+							284 row
+								285 cell
+									286 text Express delivery
+								287 cell
+									288 text 1–4 days · +€85
+								289 cell
+									290 text 1–4 days · +€85
+								291 cell
+									292 text Not available
+					293 link Description: Don't have all your wedding details yet? Start with your save the date., Value: thedigitalyes.com/
+					294 container Description: Premium customization examples, ID: premium-comparison
+						295 text See the transformation
+						296 text 3 REAL EXAMPLES
+						297 slider Description: Drag to compare Essential and Premium, Value: 50
+						298 button Previous example
+						299 text Beach 1 / 3
+						300 button Next example
+					301 text Standard delivery in 7–14 days
+					302 container
+						303 image
+						304 text YOU'LL-LOVE-IT PROMISE We refine every detail with you, so your invitation feels unmistakably yours before you share it with your guests.
+					305 button Frequently asked questions
+						306 image
+						307 text Frequently asked questions
+						308 image
+					309 heading Real demos, Value: 3
+						310 text Real demos
+					311 text INTERACTIVE
+					312 container
+						313 link Description: Open demo Mother of Pearl, Value: thedigitalyes.com/demo/mother-of-pearl
+						314 link Description: Open demo LACE, Value: thedigitalyes.com/demo/lace
+						315 link Description: Open demo Stained Glass, Value: thedigitalyes.com/demo/stained-glass
+						316 link Description: Open demo Fresco, Value: thedigitalyes.com/demo/fresco
+						317 link Description: Open demo Bella Vista, Value: thedigitalyes.com/demo/bella-vista
+						318 link Description: Open demo Villa Perlé, Value: thedigitalyes.com/demo/villa-perle
+						319 link Description: Open demo La Maison Dorée, Value: thedigitalyes.com/demo/maison-doree
+						320 link Description: Open demo Royal, Value: thedigitalyes.com/demo/royal
+						321 link Description: Open demo Day & Night, Value: thedigitalyes.com/demo/daynight
+						322 link Description: Open demo Majestic, Value: thedigitalyes.com/demo/majestic
+						323 link Description: Open demo Teatro, Value: thedigitalyes.com/demo/teatro
+						324 link Description: Open demo La Finca, Value: thedigitalyes.com/demo/finca
+						325 link Description: Open demo Cap Blanc, Value: thedigitalyes.com/demo/cap-blanc
+						326 link Description: Open demo Embroidered Garden, Value: thedigitalyes.com/demo/embroidered-garden
+						327 link Description: Open demo Prestige, Value: thedigitalyes.com/demo/prestige
+						328 link Description: Open demo Eleganza, Value: thedigitalyes.com/demo/eleganza
+						329 link Description: Open demo Bellagio, Value: thedigitalyes.com/demo/bellagio
+						330 link Description: Open demo Secret Garden, Value: thedigitalyes.com/demo/secret-garden
+						331 link Description: Open demo Odette, Value: thedigitalyes.com/demo/odette
+						332 link Description: Open demo Papercraft, Value: thedigitalyes.com/demo/papercraft
+						333 link Description: Open demo Bridgerton, Value: thedigitalyes.com/demo/bridgerton
+						334 link Description: Open demo Boho, Value: thedigitalyes.com/demo/boho
+						335 link Description: Open demo Minimal Fun, Value: thedigitalyes.com/demo/minimal-fun
+						336 link Description: Open demo Beach, Value: thedigitalyes.com/demo/beach
+						337 link Description: Open demo Africa, Value: thedigitalyes.com/demo/africa
+						338 link Description: Open demo Rosas, Value: thedigitalyes.com/demo/rosas
+						339 link Description: Open demo Editorial, Value: thedigitalyes.com/demo/editorial
+						340 link Description: Open demo Bloom, Value: thedigitalyes.com/demo/bloom
+						341 link Description: Open demo Dolce Vita, Value: thedigitalyes.com/demo/dolce-vita
+						342 link Description: Open demo Nautical Edition, Value: thedigitalyes.com/demo/nautical
+						343 link Description: Open demo Mediterranean, Value: thedigitalyes.com/demo/mediterranean-edition
+						344 link Description: Open demo Floral, Value: thedigitalyes.com/demo/floral
+						345 link Description: Open demo Dulce Amor, Value: thedigitalyes.com/demo/dulce-amor
+						346 link Description: Open demo Minimalista, Value: thedigitalyes.com/demo/minimal
+						347 link Description: Open demo Aventureros, Value: thedigitalyes.com/demo/aventureros
+					348 text Tap to open the interactive demo in a new tab
+		349 container
+			350 container Newsletter
+				351 heading Newsletter, Value: 2, ID: :rk:-t
+					352 text Newsletter
+				353 text A 4-email welcome in week one, then roughly one a week.
+				354 container
+					355 text The practical guide is free to read, no subscription needed.
+					356 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				357 container
+					358 text EMAIL
+					359 text field (settable) EMAIL
+					360 text EMAIL LANGUAGE
+					361 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						362 menu
+							363 Español
+							364 (selected) English
+							365 Français
+							366 Deutsch
+							367 Italiano
+							368 Português
+							369 Nederlands
+							370 العربية
+					371 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					372 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					373 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					374 button SUBSCRIBE
+			375 heading COLLECTIONS, Value: 4
+				376 text COLLECTIONS
+			377 content list
+				378 link Description: Invitations, Value: thedigitalyes.com/
+				379 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				380 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				381 link Description: All designs, Value: thedigitalyes.com/designs
+				382 link Description: Pricing, Value: thedigitalyes.com/pricing
+				383 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				384 link Description: Essential, Value: thedigitalyes.com/essential
+				385 link Description: Premium, Value: thedigitalyes.com/premium
+				386 link Description: Excellence, Value: thedigitalyes.com/excellence
+				387 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				388 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				389 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				390 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			391 heading SERVICE, Value: 4
+				392 text SERVICE
+			393 content list
+				394 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				395 link Description: Our story, Value: thedigitalyes.com/our-story
+				396 link Description: Reviews, Value: thedigitalyes.com/reviews
+				397 link Description: Blog, Value: thedigitalyes.com/blog
+				398 link Description: Client portal, Value: thedigitalyes.com/clients
+			399 heading LEGAL, Value: 4
+				400 text LEGAL
+			401 content list
+				402 link Description: Terms, Value: thedigitalyes.com/terms
+				403 link Description: Privacy, Value: thedigitalyes.com/privacy
+				404 link Description: Refunds, Value: thedigitalyes.com/refunds
+			405 heading THE DIGITAL YES, Value: 4
+				406 text THE DIGITAL YES
+			407 content list
+				408 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			409 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Digital wedding invitation pricing: €175, €575 and €975 | The Digital Yes, URL: thedigitalyes.com/pricing

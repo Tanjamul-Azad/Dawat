@@ -1,0 +1,92 @@
+.list {
+  display: grid;
+  gap: 25px;
+}
+.photo {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.photo > img {
+  width: 100px;
+  height: 145px;
+  object-fit: cover;
+}
+.photo label {
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+.photo label input,
+.photo label select {
+  font-size: 16px;
+  min-height: 46px;
+  padding: 10px;
+}
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.actions button {
+  min-height: 44px;
+  min-width: 44px;
+  background: transparent;
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+.upload {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  gap: 20px;
+  border: 1px dashed #b29b7c;
+  padding: 22px;
+  margin-top: 25px;
+  min-height: 95px;
+  cursor: pointer;
+}
+.upload input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.upload:focus-within {
+  outline: 2px solid var(--wine);
+  outline-offset: 4px;
+}
+.upload small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.note {
+  color: #74695b;
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 22px 0;
+}
+@media (max-width: 700px) {
+  .photo {
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .photo > img {
+    width: 70px;
+    height: 100px;
+  }
+  .photo label input,
+  .photo label select {
+    font-size: 16px;
+  }
+}

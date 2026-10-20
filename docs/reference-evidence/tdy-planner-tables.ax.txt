@@ -1,0 +1,89 @@
+Browser tab: 6, Title: "Guests · Yes Planner", URL: "https://www.thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-mesas".
+0 AXWebArea Guests · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-mesas
+	1 container Sections
+		2 text Yes Planner
+		3 text The Digital Yes
+		4 container sideNav
+			145 button Search Ctrl K
+				146 text Search
+				147 text Ctrl K
+			148 button Summary
+			149 button Budget 93 %
+				150 text Budget
+				151 text 93 %
+			152 button Guests 104/159
+				153 text Guests
+				154 text 104/159
+			155 button Tasks 6/27
+				156 text Tasks
+				157 text 6/27
+			158 button Binder 4/56
+				159 text Binder
+				160 text 4/56
+		21 container sideCount
+			161 text Laura & Marc
+			162 text 328 days
+		24 button Wedding settings, ID: sideSet
+	25 container base
+		163 button Add table
+		164 heading Guests, Value: 1
+			165 text Guests
+		166 text 104 attending, 36 yet to reply and 19 can't make it. RSVP by July 12.
+		167 tab group
+			168 tab (selectable, settable, boolean) List, Value: 0
+			169 tab (selectable, settable, boolean) Families, Value: 0
+			170 tab (selected, settable, boolean) Tables, Value: 1
+			171 tab (selectable, settable, boolean) Catering, Value: 0
+		172 container
+			173 text Tables 4 Seats 38 Unseated 129
+		174 button Seat automatically
+		175 container
+			176 heading NO TABLE 95, Value: 2
+				177 text NO TABLE 95
+			178 checkbox TB Tomeu, Value: 0
+			179 checkbox XP Xisca, Value: 0
+			180 checkbox XC Xavi, Value: 0
+			181 checkbox SL Sara, Value: 0
+			182 checkbox AT Aina, Value: 0
+			183 checkbox GP Guillem, Value: 0
+			184 checkbox OV Oriol, Value: 0
+			185 checkbox MR Marta, Value: 0
+			186 checkbox IF Irene, Value: 0
+			187 checkbox ÀR Àlex, Value: 0
+			188 checkbox MF Miquel, Value: 0
+			189 checkbox CA Carla, Value: 0
+			190 checkbox MG Mireia, Value: 0
+			191 checkbox PC Pere, Value: 0
+			192 checkbox JC Jordi, Value: 0
+			193 checkbox CV Cristina, Value: 0
+			194 checkbox NS Neus, Value: 0
+			195 checkbox DF David, Value: 0
+			196 button No table: +77
+		197 button Top table: 4 of 8 seats
+			198 text 4/8
+			199 text Top table
+			200 text Carmen, Joan, Maria, Jaume
+		201 button Table 1: 4 of 10 seats
+			202 text 4/10
+			203 text Table 1
+			204 text Ana, Pol, Clara, Sergi
+		205 button Table 2: 3 of 10 seats
+			206 text 3/10
+			207 text Table 2
+			208 text Pilar, Andrés, Lucía
+		209 button Table 3: 0 of 10 seats
+			210 text 0/10
+			211 text Table 3
+			212 text Nobody seated yet
+		213 container
+			214 heading PRINT AND EXPORT, Value: 2
+				215 text PRINT AND EXPORT
+			216 button Create guests and tables PDF List, tables with menus and summary for the caterer
+				217 text Create guests and tables PDF
+				218 text List, tables with menus and summary for the caterer
+			219 button Export the list to Excel CSV file with all the details
+				220 text Export the list to Excel
+				221 text CSV file with all the details
+	144 button Get Yes Planner
+
+The focused UI element is 0 AXWebArea Guests · Yes Planner, URL: thedigitalyes.com/yes-planner/app.html?demo=1&lang=en#invitados-mesas

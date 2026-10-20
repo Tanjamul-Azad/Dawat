@@ -1,0 +1,267 @@
+Browser tab: 3, Title: "Bella Vista – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/bella-vista".
+1 AXWebArea Bella Vista – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/bella-vista
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Bella Vista
+			24 text DIGITAL INVITATION
+			25 heading Bella Vista, Value: 1
+				26 text Bella
+				27 text Vista
+			28 text Tuscan watercolour under string lights FROM €175 One-time payment · three levels of personalisation
+			29 checkbox Description: Save Bella Vista, Value: 0
+				30 image
+			31 text Interactive demo
+			32 container Views
+				33 container Bella Vista — live demo
+					34 AXWebArea Toscana Template, URL: bellavista-template.thedigitalyes.com/?embed=1
+						35 container root
+							36 container Notifications (F8)
+								37 content list
+							38 container Notifications alt+T
+							39 container
+								40 heading Countdown, Value: 2
+									41 text Countdown
+								42 text 00
+								43 text DAYS
+								44 text 00
+								45 text HOURS
+								46 text 00
+								47 text MIN
+								48 text 00
+								49 text SEC
+								50 text until the big day
+								51 text THE CELEBRATION WILL TAKE PLACE AT
+								52 heading Villa Il Garofalo, Value: 2
+									53 text Villa Il Garofalo
+								54 text SAN CASCIANO DEI BAGNI, TUSCANY, ITALY
+								55 text Strada Provinciale di Celle, 53040 San Casciano dei Bagni SI, Italia
+								56 text October 10, 2026
+								57 link Description: OPEN IN GOOGLE MAPS, Value: google.com/maps/search/?api=1&query=Villa%20Il%20Garofalo%2C%20Strada%20Provinciale%20di%20Celle%2C%2053040%20San%20Casciano%20dei%20Bagni%20SI%2C%20Italia
+								58 link Description: ADD TO CALENDAR, Value: calendar.google.com/calendar/render?action=TEMPLATE&text=Alessia+%26+Jacopo+Wedding&dates=20261010T140000Z%2F20261010T200000Z&location=Villa+Il+Garofalo%2C+Strada+Provinciale+di+Celle%2C+53040+San+Casciano+dei+Bagni+SI%2C+Italia
+								59 text MENU
+								60 heading The Feast, Value: 2
+									61 text The Feast
+								62 container
+									63 heading Antipasti Toscani, Value: 3
+										64 text Antipasti Toscani
+									65 text Bruschetta, crostini & local cured meats
+									66 heading Pici al Ragù, Value: 3
+										67 text Pici al Ragù
+									68 text Hand-rolled Tuscan pasta
+									69 heading Bistecca alla Fiorentina, Value: 3
+										70 text Bistecca alla Fiorentina
+									71 text Grilled T-bone, Tuscan style
+									72 heading Dolce della Casa, Value: 3
+										73 text Dolce della Casa
+									74 text Traditional Tuscan desserts
+								75 text GETTING AROUND
+								76 heading Transportation, Value: 2
+									77 text Transportation
+								78 text The villa is located in the Tuscan countryside. We recommend renting a car. Contact us for recommendations.
+								79 image Coche de boda ilustrado en acuarela
+								80 heading Dress Code, Value: 2
+									81 text Dress Code
+								82 image Dress Code Illustration
+								83 text We invite you to dress elegantly for this special celebration.
+								84 text Formal Attire
+								85 text Black & White is reserved for the Bride and Groom
+								86 heading Gifts, Value: 2
+									87 text Gifts
+								88 text Your presence is the best gift we could receive. However, if you wish to contribute to our new life together, you can do so via bank transfer.
+								89 image Regalo
+								90 text BANK DETAILS
+								91 button Tap to reveal
+									92 image
+									93 text Tap to reveal
+								94 text WHERE TO STAY
+								95 heading Accommodation, Value: 2
+									96 text Accommodation
+								97 text Plenty of choices close to the venue. The Fiesole and Florence areas offer the most options.
+								98 container rsvp
+									99 heading Confirm your attendance, Value: 2
+										100 text Confirm your attendance
+									101 text UNTIL 10TH OF MAY
+									102 container
+										103 text FULL NAME  *
+										104 text field (settable) FULL NAME *, ID: name
+										105 text EMAIL (OPTIONAL)
+										106 text field (settable) EMAIL (OPTIONAL)
+										107 text WILL YOU ATTEND?  *
+										108 button Yes, I'll be there!
+										109 button No, I can't make it
+										110 text MESSAGE FOR THE COUPLE (OPTIONAL)
+										111 text entry area (settable) MESSAGE FOR THE COUPLE (OPTIONAL), ID: message
+										112 button (disabled) Confirm
+											113 image
+											114 text Confirm
+								115 container
+									116 image Monograma de la boda
+									117 heading Thank You, Value: 2
+										118 text Thank You
+									119 text For joining us on this special day. Your presence is the best gift we could receive. Alessia & Jacopo MADE WITH LOVE BY
+									120 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+				121 button (disabled) Previous screen
+					122 image
+				123 button Next screen
+					124 image
+			125 container
+				126 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			127 button Try it yourself
+			128 button 2 · Envelope, music & motion
+			129 button 3 · Your names, your date
+			130 button 4 · A live countdown
+			131 button 5 · The menu
+			132 button 6 · Travel & stay
+			133 button 7 · Dress code
+			134 button 8 · An RSVP made for you
+			135 button In your languages
+			136 text 1  /  9
+			137 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			138 button Full screen
+				139 image
+			140 container Purchase
+				141 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				142 button PERSONALIZE THIS INVITATION
+				143 text ✓ Designed by hand ✓ Revisions included
+				144 container This is your invitation
+					145 text HANDMADE, ONLY FOR YOU
+					146 heading This is your invitation, Value: 2
+						147 text This is your invitation
+					148 tab group
+						149 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						150 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						151 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					152 container Description: WHO CREATES IT, ID: v5-info-pane
+						153 text Designed by a real person
+						154 text A designer from our atelier crafts it for you.
+						155 text Revisions included
+						156 text See your draft and request changes before sharing.
+						157 text At your own pace
+						158 text Send details and photos after payment, whenever ready.
+						159 text One-time payment, forever
+						160 text No subscriptions. A link ready for WhatsApp.
+				161 container Your sections, your order
+					162 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						163 text Your sections, your order
+					164 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					165 container Your sections, your order
+						166 content list
+							167 text Our story
+							168 text Schedule
+							169 text Dress code
+							170 text Travel & stay
+							171 text Gifts
+							172 text RSVP
+						173 text Add section
+				174 container
+					175 text DETAILS RECEIVED
+					176 text Once we have your details
+					177 text DESIGN & PROOF
+					178 text READY
+					179 text 7–14 days Counted from when we receive your details and materials.
+				180 text A watercolour invitation from the Tuscan countryside: cypress hills, a garden gazebo, olive-green paper and warm string lights. Serene, sunlit and romantic.
+				181 button (collapsed) What’s included +, Secondary Actions: Expand
+					182 text What’s included
+					183 text +
+				184 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					185 text Personalisation & extras
+					186 text +
+				187 button (collapsed) How it works +, Secondary Actions: Expand
+					188 text How it works
+					189 text +
+				190 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					191 text Delivery & revisions
+					192 text +
+				193 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Bella%20Vista%20template%20%E2%9C%A8
+			194 container What couples say
+				195 heading What couples say, Value: 2, ID: h4p-ugc-title
+					196 text What couples say
+				197 text REAL COUPLES, REAL INVITATIONS
+				198 button Previous video
+				199 button Next video
+				200 container
+					201 button Play video — @irenefdz
+						202 container @irenefdz
+					203 link Description: @irenefdz, Value: instagram.com/irenefdz
+					204 button Play video — @fanicarbaj
+						205 container @fanicarbaj
+					206 link Description: @fanicarbaj, Value: instagram.com/fanicarbaj
+					207 button Play video — @miisspinkie
+						208 container @miisspinkie
+					209 link Description: @miisspinkie, Value: instagram.com/miisspinkie/
+					210 button Play video — @sophiialorraine
+						211 container @sophiialorraine
+					212 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					213 button Play video — @sophiialorraine
+						214 container @sophiialorraine
+					215 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					216 button Play video — Diana & Richard
+						217 container Diana & Richard
+					218 text Diana & Richard
+					219 button Play video — The Digital Yes
+						220 container The Digital Yes
+					221 text The Digital Yes
+			222 container reviews
+				223 heading Loved by 3,000+ couples., Value: 2
+					224 text Loved by 3,000+ couples.
+				225 text 4.9
+				226 text 278 reviews
+				227 container
+					228 container 5/5
+						229 text ★★★★★
+					230 text “ We love our invite! It is unique & beautiful! The process was simple and the digital yes were amazing. Thank you! ”
+					231 text Isabella & Keanu
+				232 container
+					233 container 5/5
+						234 text ★★★★★
+					235 text “ Gracias al esfuerzo de the digitalyes nuetsra invitacion reflejo exactamente lo que pretendriamos. El resultado fue precioso y estamos muy contentos. Muy recomendable. ”
+					236 text Sorima & Quique
+				237 container
+					238 container 5/5
+						239 text ★★★★★
+					240 text “ everyone was blown away ”
+					241 text Ahmad Hamza
+			242 text YOU MAY ALSO LIKE
+			243 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			244 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			245 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			246 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+		247 container
+			248 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			249 text Digital wedding invitations designed by hand.
+			250 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			251 text COLLECTIONS
+			252 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			253 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			254 link Description: Plans, Value: thedigitalyes.com/#plans
+			255 text SERVICE
+			256 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			257 link Description: Blog, Value: thedigitalyes.com/blog
+			258 link Description: Client portal, Value: thedigitalyes.com/clients
+			259 text LEGAL
+			260 link Description: Terms, Value: thedigitalyes.com/terms
+			261 link Description: Privacy, Value: thedigitalyes.com/privacy
+			262 link Description: Refunds, Value: thedigitalyes.com/refunds
+			263 text ©  2026  The Digital Yes EN  ·  EUR
+		264 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Bella Vista – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/bella-vista

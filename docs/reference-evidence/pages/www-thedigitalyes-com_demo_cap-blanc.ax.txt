@@ -1,0 +1,361 @@
+Browser tab: 3, Title: "Cap Blanc – Digital Wedding Invitation Demo | The Digital Yes", URL: "https://www.thedigitalyes.com/demo/cap-blanc".
+1 AXWebArea Cap Blanc – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/cap-blanc
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+			8 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+			9 link Description: PLANS, Value: thedigitalyes.com/#plans
+			10 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			11 link Description: BLOG, Value: thedigitalyes.com/blog
+			12 link Description: The Digital Yes, Value: thedigitalyes.com/
+			13 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			14 button BUY NOW
+			15 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				16 image
+				17 text EN
+			18 link Description: PORTAL, Value: thedigitalyes.com/clients
+		19 container
+			20 container Breadcrumb
+				21 link Description: Collection, Value: thedigitalyes.com/
+				22 text /
+				23 text Cap Blanc
+			24 text DIGITAL INVITATION
+			25 heading Cap Blanc, Value: 1
+				26 text Cap
+				27 text Blanc
+			28 text Watercolour French Riviera FROM €175 One-time payment · three levels of personalisation
+			29 checkbox Description: Save Cap Blanc, Value: 0
+				30 image
+			31 text Interactive demo
+			32 container Views
+				33 container Cap Blanc — live demo
+					34 AXWebArea Bloom Template, URL: cap-blanc-template.thedigitalyes.com/?embed=1
+						35 container root
+							36 container Notifications (F8)
+								37 content list
+							38 container Notifications alt+T
+							39 container
+								40 image Sobre lacrado M&J
+								41 text TAP TO OPEN
+							42 container
+								43 container hero
+									44 container
+										45 text WE'RE GETTING
+ MARRIED
+										46 heading Martina & Javier, Value: 1
+											47 text Martina & Javier
+										48 text 27
+SEP
+2026
+
+									49 button DISCOVER
+										50 text DISCOVER
+										51 image
+								52 container
+									53 image Countdown frame
+									54 heading Countdown, Value: 2
+										55 text Countdown
+									56 text UNTIL 27 SEPTEMBER 2026
+									57 text 00 DAYS 00 HOURS 00 MINUTES
+								58 image Rama floral decorativa
+								59 heading We're so happy to celebrate this day with you., Value: 2
+									60 text We're so happy to celebrate this day with you.
+								61 text Having you with us means the world. We can't wait to welcome you to Hotel du Cap-Eden-Roc on September 27th, 2026.
+								62 container
+									63 heading Welcome, Value: 2
+										64 text Welcome
+									65 text Together with their families
+									66 heading Martina, Value: 3
+										67 text Martina
+									68 text and
+									69 heading Javier, Value: 3
+										70 text Javier
+									71 text request the honor of your presence as they exchange vows of marriage ON SUNDAY the twenty-seventh of September
+									72 text two thousand twenty-six
+								73 container wedding-events
+									74 container
+										75 heading Ceremony & Reception, Value: 2
+											76 text Ceremony
+& Reception
+										77 text WHERE WE CELEBRATE
+										78 heading Hotel du Cap-Eden-Roc, Value: 3
+											79 text Hotel du
+											80 text Cap-Eden-Roc
+										81 text ANTIBES, FRANCE Sunday, 27th of September, 2026 · 5:30 PM Boulevard J. F. Kennedy 06160 Antibes, France
+										82 image Ilustración del Hotel du Cap-Eden-Roc
+									83 pop up button (collapsed) OPEN IN MAPS, ID: radix-:r1:, Secondary Actions: Expand
+										84 image
+										85 text OPEN IN MAPS
+									86 pop up button (collapsed) ADD TO CALENDAR, ID: radix-:r3:, Secondary Actions: Expand
+										87 image
+										88 text ADD TO CALENDAR
+								89 container
+									90 heading Dress Code, Value: 2
+										91 text Dress Code
+									92 text Black Tie
+								93 container
+									94 heading Schedule, Value: 2
+										95 text Schedule
+									96 text Saturday, 29th August 12:00 Guests arrive 13:00 Ceremony 13:30 Drinks reception 15:30 Call to dinner 16:00 Wedding breakfast 18:30 Cocktail hour commences 19:00 Evening guests arrive 20:00 First dance 21:00 Evening food 00:00 Carriages home
+								97 image Rama decorativa de pino y hortensias
+								98 container our-story
+									99 container
+										100 heading How it all started…, Value: 2
+											101 text How it all started…
+										102 button (collapsed) Our Story, Secondary Actions: Expand
+									103 container
+										104 image Gallery moment 1
+										105 image Gallery moment 2
+										106 image Gallery moment 3
+										107 image Gallery moment 4
+										108 image Gallery moment 5
+										109 image Gallery moment 6
+										110 image Gallery moment 7
+										111 image Gallery moment 8
+										112 image Gallery moment 9
+										113 image Gallery moment 10
+										114 image Gallery moment 11
+										115 image Gallery moment 12
+										116 image Gallery moment 13
+										117 image Gallery moment 14
+										118 image Gallery moment 15
+										119 image Gallery moment 16
+										120 image Gallery moment 17
+										121 image Gallery moment 18
+										122 image Gallery moment 19
+								123 container important-info
+									124 heading The Weekend, Value: 2
+										125 text The Weekend
+									126 text JOIN US THE EVENING BEFORE
+									127 container
+										128 heading Restaurant César, Value: 3
+											129 text Restaurant César
+										130 text CAP D'ANTIBES, FRANCE Saturday | 26 September 2026 · 5:30 – 8:30 PM Plage Keller, Chemin de la Garoupe 06160 Antibes, France
+										131 pop up button (collapsed) OPEN IN MAPS, ID: radix-:r5:, Secondary Actions: Expand
+											132 image
+											133 text OPEN IN MAPS
+										134 pop up button (collapsed) ADD TO CALENDAR, ID: radix-:r7:, Secondary Actions: Expand
+											135 image
+											136 text ADD TO CALENDAR
+								137 container
+									138 heading Travel & Stay, Value: 2
+										139 text Travel & Stay
+									140 text We recommend flying into Nice Côte d'Azur Airport (NCE, ~30 min). A preferred room block is reserved at Hotel du Cap-Eden-Roc.
+									141 container
+										142 text PREFERRED ROOM BLOCK
+										143 heading Hotel du Cap-Eden-Roc , Value: 3
+											144 text Hotel du Cap-Eden-Roc
+
+										145 text Boulevard J. F. Kennedy · 
+06160 Antibes, France
+
+									146 definition list
+										147 container BLOCK DATES
+											148 text BLOCK DATES
+										149 text September 26 – 28, 2026
+										150 container RATES
+											151 text RATES
+										152 container
+											153 text Classic Room — €890 / night Deluxe Sea View — €1,250 / night
+										154 text Reserve by Monday, July 27, 2026
+										155 text Reference: Martina / Javier
+Wedding Room Block
+
+									156 link Description: +33 4 93 61 39 01, Value: tel:+33%204%2093%2061%2039%2001
+									157 link Description: GOOGLE MAPS, Value: google.com/maps/search/?api=1&query=Hotel%20du%20Cap-Eden-Roc%2C%20Boulevard%20J.%20F.%20Kennedy%2C%2006160%20Antibes%2C%20France
+									158 container
+										159 text ADDITIONAL OPTION
+										160 heading Hôtel Belles Rives, Value: 3
+											161 text Hôtel Belles Rives
+										162 text 33 Boulevard Édouard Baudoin · 
+06160 Juan-les-Pins, France
+
+									163 link Description: +33 4 93 61 02 79, Value: tel:+33%204%2093%2061%2002%2079
+									164 link Description: GOOGLE MAPS, Value: google.com/maps/search/?api=1&query=Hotel%20Belles%20Rives%2C%2033%20Boulevard%20Edouard%20Baudoin%2C%2006160%20Juan-les-Pins%2C%20France
+								165 container rsvp
+									166 heading RSVP, Value: 2
+										167 text RSVP
+									168 text KINDLY RESPOND BY 15 JULY 2026
+									169 container
+										170 text Full name *
+										171 text field (settable) Full name *, ID: fullName
+										172 text Will you be attending? *
+										173 radio button Description: Joyfully accepts, Value: 1, ID: yes
+											174 image
+										175 text Joyfully accepts
+										176 radio button Description: Regretfully declines, Value: 0, ID: no
+										177 text Regretfully declines
+										178 image
+										179 text Number of guests attending *
+										180 button (disabled) -
+										181 text 1
+										182 button +
+										183 text Transportation *
+										184 radio button Description: Shuttle Service from Hôtel Belles Rives, Value: 1, ID: shuttle
+											185 image
+										186 text Shuttle Service from Hôtel Belles Rives
+										187 radio button Description: Valet Parking at the venue, Value: 0, ID: valet
+										188 text Valet Parking at the venue
+										189 text A personal message for the couple
+										190 text entry area (settable) A personal message for the couple, ID: message
+										191 button SEND RSVP
+											192 image
+											193 text SEND RSVP
+								194 container
+									195 container
+										196 image Decorative frame
+										197 container
+											198 text Martina & Javier
+										199 text SEPTEMBER 27, 2026
+									200 text Made with love by
+									201 link Description: The Digital Yes, Value: thedigitalyes.com/
+				202 button (disabled) Previous screen
+					203 image
+				204 button Next screen
+					205 image
+			206 container
+				207 text 01 Try it yourself Tap to open it, scroll and reply like a guest would.
+			208 button Try it yourself
+			209 button 2 · Envelope, music & motion
+			210 button 3 · Your names, your date
+			211 button 4 · A live countdown
+			212 button 5 · Ceremony & reception
+			213 button 6 · Dress code
+			214 button 7 · The day, hour by hour
+			215 button 8 · Your story
+			216 button 9 · Travel & stay
+			217 button In your languages
+			218 text 1  /  10
+			219 text This is an example. Your invitation has the sections you choose, in the order you choose.
+			220 button Full screen
+				221 image
+			222 container Purchase
+				223 link Description: 4.9 · 278 reviews  · Reviews left by our clients, Value: thedigitalyes.com/reviews
+				224 button PERSONALIZE THIS INVITATION
+				225 text ✓ Designed by hand ✓ Revisions included
+				226 container This is your invitation
+					227 text HANDMADE, ONLY FOR YOU
+					228 heading This is your invitation, Value: 2
+						229 text This is your invitation
+					230 tab group
+						231 tab (selected, settable, boolean) WHO CREATES IT, Value: 1, ID: v5-info-tab-0
+						232 tab (selectable, settable, boolean) YOUR SECTIONS, Value: 0, ID: v5-info-tab-1
+						233 tab (selectable, settable, boolean) WHAT'S INCLUDED, Value: 0, ID: v5-info-tab-2
+					234 container Description: WHO CREATES IT, ID: v5-info-pane
+						235 text Designed by a real person
+						236 text A designer from our atelier crafts it for you.
+						237 text Revisions included
+						238 text See your draft and request changes before sharing.
+						239 text At your own pace
+						240 text Send details and photos after payment, whenever ready.
+						241 text One-time payment, forever
+						242 text No subscriptions. A link ready for WhatsApp.
+				243 container Your sections, your order
+					244 heading Your sections, your order, Value: 2, ID: v5-sections-title
+						245 text Your sections, your order
+					246 text Add, remove and reorder every section. Story, schedule, dress code, travel, gifts, FAQ, RSVP questions… you decide what your guests see.
+					247 container Your sections, your order
+						248 content list
+							249 text Our story
+							250 text Schedule
+							251 text Dress code
+							252 text Travel & stay
+							253 text Gifts
+							254 text RSVP
+						255 text Add section
+				256 container
+					257 text DETAILS RECEIVED
+					258 text Once we have your details
+					259 text DESIGN & PROOF
+					260 text READY
+					261 text 7–14 days Counted from when we receive your details and materials.
+				262 text An invitation inspired by the French Riviera: an arch of white orchids and hydrangeas, Mediterranean pines and porcelain-blue lace over the pool.
+				263 button (collapsed) What’s included +, Secondary Actions: Expand
+					264 text What’s included
+					265 text +
+				266 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					267 text Personalisation & extras
+					268 text +
+				269 button (collapsed) How it works +, Secondary Actions: Expand
+					270 text How it works
+					271 text +
+				272 button (collapsed) Delivery & revisions +, Secondary Actions: Expand
+					273 text Delivery & revisions
+					274 text +
+				275 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Cap%20Blanc%20template%20%E2%9C%A8
+			276 container What couples say
+				277 heading What couples say, Value: 2, ID: h4p-ugc-title
+					278 text What couples say
+				279 text REAL COUPLES, REAL INVITATIONS
+				280 button Previous video
+				281 button Next video
+				282 container
+					283 button Play video — @irenefdz
+						284 container @irenefdz
+					285 link Description: @irenefdz, Value: instagram.com/irenefdz
+					286 button Play video — @fanicarbaj
+						287 container @fanicarbaj
+					288 link Description: @fanicarbaj, Value: instagram.com/fanicarbaj
+					289 button Play video — @miisspinkie
+						290 container @miisspinkie
+					291 link Description: @miisspinkie, Value: instagram.com/miisspinkie/
+					292 button Play video — @sophiialorraine
+						293 container @sophiialorraine
+					294 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					295 button Play video — @sophiialorraine
+						296 container @sophiialorraine
+					297 link Description: @sophiialorraine, Value: instagram.com/sophiialorraine
+					298 button Play video — Diana & Richard
+						299 container Diana & Richard
+					300 text Diana & Richard
+					301 button Play video — The Digital Yes
+						302 container The Digital Yes
+					303 text The Digital Yes
+			304 container reviews
+				305 heading Loved by 3,000+ couples., Value: 2
+					306 text Loved by 3,000+ couples.
+				307 text 4.9
+				308 text 278 reviews
+				309 container
+					310 container 5/5
+						311 text ★★★★★
+					312 text “ We absolutely loved our wedding website! Belen did such an incredible job bringing our vision to life with so much creativity, thoughtfulness, and attention to detail. Every illustration and little personal touch made it feel truly unique to us. Our family and friends have been absolutely blown away, and we’ve received endless compliments on how beautifully everything was put together! A huge thank you to Belen for her patience, dedication, and for creating something even more beautiful than we imagined. We couldn’t recommend her enough! 🤍 ”
+					313 text Rochelle & Anthony
+				314 container
+					315 container 5/5
+						316 text ★★★★★
+					317 text “ The process whas really easy, I loved it ! Thank you ”
+					318 text Sarahy Huerta Coronado & Ignacio Gonzalez Cano
+				319 container
+					320 container 5/5
+						321 text ★★★★★
+					322 text “ We absolutely loved our custom digital save the date! 💕 It turned out even more beautiful than we imagined and felt so personal and unique to us. The design was elegant, modern, and perfectly captured the style of our wedding. The process was easy, the communication was great, and the final result looked amazing. Charlotte was so helpful and made sure every detail was exactly as we wanted it. ”
+					323 text Kayla & Danny
+			324 text YOU MAY ALSO LIKE
+			325 link Description: Mother of Pearl — design preview Mother of Pearl From €175, Value: thedigitalyes.com/demo/mother-of-pearl
+			326 link Description: LACE — design preview LACE From €175, Value: thedigitalyes.com/demo/lace
+			327 link Description: Stained Glass — design preview Stained Glass From €175, Value: thedigitalyes.com/demo/stained-glass
+			328 link Description: Fresco — design preview Fresco From €175, Value: thedigitalyes.com/demo/fresco
+		329 container
+			330 link Description: THE DIGITAL YES, Value: thedigitalyes.com/
+			331 text Digital wedding invitations designed by hand.
+			332 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			333 text COLLECTIONS
+			334 link Description: Invitations, Value: thedigitalyes.com/#invitations
+			335 link Description: Save the Dates, Value: thedigitalyes.com/#save-the-dates
+			336 link Description: Plans, Value: thedigitalyes.com/#plans
+			337 text SERVICE
+			338 link Description: How it works, Value: thedigitalyes.com/how-it-works
+			339 link Description: Blog, Value: thedigitalyes.com/blog
+			340 link Description: Client portal, Value: thedigitalyes.com/clients
+			341 text LEGAL
+			342 link Description: Terms, Value: thedigitalyes.com/terms
+			343 link Description: Privacy, Value: thedigitalyes.com/privacy
+			344 link Description: Refunds, Value: thedigitalyes.com/refunds
+			345 text ©  2026  The Digital Yes EN  ·  EUR
+		346 link Description: Chat on WhatsApp, Value: wa.me/15559754143?text=Hi!%20I%20have%20a%20question%20about%20the%20invitations%20%E2%9C%A8
+
+The focused UI element is 1 AXWebArea Cap Blanc – Digital Wedding Invitation Demo | The Digital Yes, URL: thedigitalyes.com/demo/cap-blanc

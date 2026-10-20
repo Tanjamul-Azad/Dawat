@@ -1,0 +1,221 @@
+Browser tab: 3, Title: "Digital Wedding Invitations Designed by Hand | The Digital Yes", URL: "https://www.thedigitalyes.com/invitation-guide".
+1 AXWebArea Practical guide to digital wedding invitations | The Digital Yes, URL: thedigitalyes.com/invitation-guide
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 container
+			21 text PRACTICAL GUIDE
+			22 heading Your invitation, step by step, Value: 1
+				23 text Your invitation, step by step
+			24 text Everything worth knowing before you start: which details to gather, when to send what, how to word it and which plan fits you.
+			25 button Print or save as PDF
+			26 container In this guide
+				27 text IN THIS GUIDE
+				28 content list
+					29 link Description: Details checklist, Value: thedigitalyes.com/invitation-guide#checklist
+					30 link Description: Flexible timeline, Value: thedigitalyes.com/invitation-guide#calendar
+					31 link Description: Short wording examples, Value: thedigitalyes.com/invitation-guide#wording
+					32 link Description: Choose a style with three demos, Value: thedigitalyes.com/invitation-guide#style
+					33 link Description: Essential, Premium or Excellence?, Value: thedigitalyes.com/invitation-guide#plans
+					34 link Description: Common mistakes, Value: thedigitalyes.com/invitation-guide#mistakes
+			35 container checklist
+				36 heading Details checklist, Value: 2
+					37 text Details checklist
+				38 text With these at hand, the form takes a short while. Anything missing can be added later.
+				39 content list
+					40 text Your names exactly as you want them shown
+					41 text Date and time of ceremony and celebration
+					42 text Name and address of each venue
+					43 text Schedule of the day (arrival, ceremony, drinks, dinner, party)
+					44 text Dress code, if any
+					45 text RSVP deadline
+					46 text RSVP questions: menus, allergies, transport, plus-ones
+					47 text Languages you need
+					48 text Photos you'd like to include
+					49 text Gift or registry details, if you want to show them
+					50 text Recommended accommodation and transport
+					51 text A contact for guest questions
+			52 container calendar
+				53 heading Flexible timeline, Value: 2
+					54 text Flexible timeline
+				55 text Adapt it to your wedding: every couple and guest list has its own pace.
+				56 container
+					57 text Wedding date (optional, only to calculate)
+					58 date field (settable) Wedding date (optional, only to calculate)
+						59 container
+							60 stepper
+							61 stepper
+							62 stepper
+						63 pop up button Show date picker Show date picker
+				64 content list
+					65 container
+						66 text 9 MONTHS · BEFORE THE WEDDING Save the Date Useful when guests travel or the wedding is in peak season.
+					67 container
+						68 text 4 MONTHS · BEFORE THE WEDDING Choose style and plan Leave room for unhurried revisions.
+					69 container
+						70 text 3 MONTHS · BEFORE THE WEDDING Form and first proposal Standard design time: 7–14 days after the form is complete (Express 1–4 days, not available on Excellence).
+					71 container
+						72 text 2 MONTHS · BEFORE THE WEDDING Send the invitation By WhatsApp or email, with the RSVP deadline clearly visible.
+					73 container
+						74 text 4 WEEKS · BEFORE THE WEDDING RSVP reminder A short message to anyone who hasn't replied.
+					75 container
+						76 text 1 WEEK · BEFORE THE WEDDING Final tweaks Times, venues or transport: details can be updated until the day.
+			77 container wording
+				78 heading Short wording examples, Value: 2
+					79 text Short wording examples
+				80 text Starting points to adapt to your own voice.
+				81 container
+					82 text CLASSIC Together with our families, we joyfully invite you to celebrate our wedding.
+				83 container
+					84 text WARM We're getting married and it wouldn't be the same without you. Will you join us?
+				85 container
+					86 text RSVP REMINDER Hi! We'd love to know if you can come before the 15th. It's just one tap on the invitation.
+			87 container style
+				88 heading Choose a style with three demos, Value: 2
+					89 text Choose a style with three demos
+				90 text Open each demo on your phone, the way your guests will see it.
+				91 heading Lace, Value: 3
+					92 text Lace
+				93 text Lace and delicate details for romantic, elegant weddings.
+				94 link Description: View demo, Value: thedigitalyes.com/demo/lace
+				95 heading Majestic, Value: 3
+					96 text Majestic
+				97 text A ceremonial, classic feel for formal celebrations.
+				98 link Description: View demo, Value: thedigitalyes.com/demo/majestic
+				99 heading Editorial, Value: 3
+					100 text Editorial
+				101 text Clean, typographic and modern composition.
+				102 link Description: View demo, Value: thedigitalyes.com/demo/editorial
+			103 container plans
+				104 heading Essential, Premium or Excellence?, Value: 2
+					105 text Essential, Premium or Excellence?
+				106 text Three levels of personalization, one payment per wedding.
+				107 heading Essential, Value: 3
+					108 text Essential
+				109 container
+					110 text From €175
+				111 text You love a collection design as it is.
+				112 content list
+					113 text Your text and photos on the chosen design
+					114 text 2 revision rounds
+					115 text 7–14 days
+				116 link Description: See plan, Value: thedigitalyes.com/essential
+				117 heading Premium, Value: 3
+					118 text Premium
+				119 container
+					120 text From €575
+				121 text You want the design to speak about your wedding.
+				122 content list
+					123 text Redesigned in your style: cover, icons and colors
+					124 text 4 revision rounds
+					125 text 7–14 days
+				126 link Description: See plan, Value: thedigitalyes.com/premium
+				127 heading Excellence, Value: 3
+					128 text Excellence
+				129 container
+					130 text From €975
+				131 text You want a piece created from scratch.
+				132 content list
+					133 text Created from scratch with art direction
+					134 text 7 revision rounds
+					135 text 14 days
+				136 link Description: See plan, Value: thedigitalyes.com/excellence
+			137 container mistakes
+				138 heading Common mistakes, Value: 2
+					139 text Common mistakes
+				140 definition list
+					141 container Leaving the RSVP date open
+						142 text Leaving the RSVP date open
+					143 text Without a deadline, replies drag on.
+					144 container Asking for too much
+						145 text Asking for too much
+					146 text Only ask what you'll use: menus, allergies, transport.
+					147 container Starting too late
+						148 text Starting too late
+					149 text Allow for design time and revisions.
+					150 container Mixing languages in one text
+						151 text Mixing languages in one text
+					152 text Better to let each guest pick their language.
+					153 container Sending without a phone test
+						154 text Sending without a phone test
+					155 text Open it yourselves from WhatsApp first.
+			156 heading Next step, Value: 2
+				157 text Next step
+			158 text Once your style is clear, choose a plan and a designer starts with your story.
+			159 link Description: SEE PLANS, Value: thedigitalyes.com/pricing
+			160 link Description: See all designs, Value: thedigitalyes.com/designs
+			161 container Newsletter
+				162 heading Newsletter, Value: 2, ID: :r0:-t
+					163 text Newsletter
+				164 text A 4-email welcome in week one, then roughly one a week.
+				165 container
+					166 text EMAIL
+					167 text field (settable) EMAIL
+					168 text EMAIL LANGUAGE
+					169 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						170 menu
+							171 Español
+							172 (selected) English
+							173 Français
+							174 Deutsch
+							175 Italiano
+							176 Português
+							177 Nederlands
+							178 العربية
+					179 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					180 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					181 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					182 button SUBSCRIBE
+		183 container
+			184 heading COLLECTIONS, Value: 4
+				185 text COLLECTIONS
+			186 content list
+				187 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				188 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				189 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				190 link Description: All designs, Value: thedigitalyes.com/designs
+				191 link Description: Pricing, Value: thedigitalyes.com/pricing
+				192 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				193 link Description: Essential, Value: thedigitalyes.com/essential
+				194 link Description: Premium, Value: thedigitalyes.com/premium
+				195 link Description: Excellence, Value: thedigitalyes.com/excellence
+				196 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				197 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				198 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				199 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			200 heading SERVICE, Value: 4
+				201 text SERVICE
+			202 content list
+				203 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				204 link Description: Our story, Value: thedigitalyes.com/our-story
+				205 link Description: Reviews, Value: thedigitalyes.com/reviews
+				206 link Description: Blog, Value: thedigitalyes.com/blog
+				207 link Description: Client portal, Value: thedigitalyes.com/clients
+			208 heading LEGAL, Value: 4
+				209 text LEGAL
+			210 content list
+				211 link Description: Terms, Value: thedigitalyes.com/terms
+				212 link Description: Privacy, Value: thedigitalyes.com/privacy
+				213 link Description: Refunds, Value: thedigitalyes.com/refunds
+			214 heading THE DIGITAL YES, Value: 4
+				215 text THE DIGITAL YES
+			216 content list
+				217 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			218 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Practical guide to digital wedding invitations | The Digital Yes, URL: thedigitalyes.com/invitation-guide

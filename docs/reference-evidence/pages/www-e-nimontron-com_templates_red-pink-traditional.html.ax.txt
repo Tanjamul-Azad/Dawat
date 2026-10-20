@@ -1,0 +1,108 @@
+Browser tab: 3, Title: "Bappa & Mou — Wedding Invitation", URL: "https://www.e-nimontron.com/templates/red-pink-traditional.html".
+1 AXWebArea Bappa & Mou — Wedding Invitation, URL: e-nimontron.com/templates/red-pink-traditional.html
+	2 image petalsCanvas
+	3 container
+		4 text — WE ARE GETTING MARRIED —
+		5 heading B a p p a, Value: 1, ID: groomName
+			6 text B
+			7 text a
+			8 text p
+			9 text p
+			10 text a
+		11 text &
+		12 heading M o u, Value: 1, ID: brideName
+			13 text M
+			14 text o
+			15 text u
+		16 container
+			17 text With the blessings of our families,
+			18 text we joyfully invite you to celebrate
+			19 container dateRow
+				20 text NOVEMBER
+				21 text 25
+				22 text 7:00 PM
+			23 container w-scratch-mount
+				24 text Save The Date
+				25 text SCRATCH TO REVEAL
+				26 container
+					27 text Thursday, 31 December 2026
+					28 text 7:00 PM onwards
+					29 image
+			30 text DHAKESHWARI NATIONAL TEMPLE
+			31 text Bakshi Bazar, Lalbagh, Dhaka 1211, Bangladesh
+			32 text — COUNTING DOWN —
+			33 text 0
+			34 text DAYS until your dream wedding
+			35 container cd-cell-days
+				36 text 00
+				37 text DAYS
+			38 container cd-cell-hrs
+				39 text 00
+				40 text HOURS
+			41 container cd-cell-mins
+				42 text 00
+				43 text MINS
+			44 container cd-cell-secs
+				45 text 00
+				46 text SECS
+			47 text WITH BLESSINGS · FOREVER
+	48 container invite-widgets
+		49 container
+			50 text Our Moments CAPTURED TOGETHER
+			51 container Photo slideshow
+				52 container
+					53 image Photo 1 of 4
+					54 text 1  / 4
+				55 button Previous photo
+					56 image
+				57 button Next photo
+					58 image
+			59 button Photo 1
+			60 button Photo 2
+			61 button Photo 3
+			62 button Photo 4
+		63 text Join Us
+		64 button MAP
+			65 image
+			66 text MAP
+		67 button CALENDAR
+			68 image
+			69 text CALENDAR
+		70 text Kindly RSVP
+		71 text WE HOPE YOU CAN CELEBRATE WITH US
+		72 container w-rsvp-form
+			73 text YOUR NAME
+			74 text field (settable) YOUR NAME, ID: w-rsvp-name
+			75 text WILL YOU ATTEND?
+			76 container
+				77 radio button (settable, integer) Description: JOYFULLY, Value: 1
+				78 text JOYFULLY
+			79 container
+				80 radio button (settable, integer) Description: SADLY NO, Value: 0
+				81 text SADLY NO
+			82 text NUMBER OF GUESTS (0–10)
+			83 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+			84 button SEND RSVP
+		85 text Send Your Wishes
+		86 text LEAVE A PRIVATE MESSAGE
+		87 container w-wish-form
+			88 text Send your wish
+			89 text Your message stays private — it won't be shown here publicly
+			90 text YOUR NAME
+			91 text field (settable) YOUR NAME, ID: w-wish-name
+			92 text YOUR MESSAGE
+			93 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+			94 container
+				95 image
+				96 text ADD A PHOTO (OPTIONAL)
+			97 button ADD YOUR WISH
+		98 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+		99 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+		100 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	101 container
+		102 text — YOU ARE INVITED — Welcome WEDDING
+		103 button OPEN INVITATION
+	104 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		105 image
+
+The focused UI element is 1 AXWebArea Bappa & Mou — Wedding Invitation, URL: e-nimontron.com/templates/red-pink-traditional.html

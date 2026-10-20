@@ -1,0 +1,122 @@
+Browser tab: 3, Title: "Azad Raval & Jyoti Majila — Wedding Invitation", URL: "https://www.e-nimontron.com/templates/royal-scroll.html".
+1 AXWebArea Azad Raval & Jyoti Majila — Wedding Invitation, URL: e-nimontron.com/templates/royal-scroll.html
+	2 image petalsCanvas
+	3 container
+		4 container hero
+			5 container
+				6 text Together with families
+				7 heading A z a d R a v a l, Value: 1, ID: groomName
+					8 container
+						9 text A z a d
+					10 container
+						11 text R a v a l
+				12 text &
+				13 heading J y o t i M a j i l a, Value: 1, ID: brideName
+					14 container
+						15 text J y o t i
+					16 container
+						17 text M a j i l a
+				18 text Heartily invite you to be part of the celebration of their joyful union
+			19 image Bride and groom
+		20 container
+			21 text With the blessings of our families,
+			22 text we joyfully invite you to celebrate
+		23 container families
+			24 container groomFam
+				25 text THE GROOM
+				26 text Son of Mr. Harish Raval & Mrs. Meena Raval
+			27 text &
+			28 container brideFam
+				29 text THE BRIDE
+				30 text Daughter of Mr. Suresh Majila & Mrs. Kavita Majila
+		31 container dateRow
+			32 text DECEMBER
+			33 text 31
+			34 text 7:00 PM
+		35 container
+			36 text Save The Date SCRATCH TO REVEAL
+			37 container
+				38 text Thursday, 31 December 2026 7:00 PM onwards
+			39 image
+		40 text INTERNATIONAL CONVENTION CITY BASHUNDHARA
+		41 text Kuril, Purbachal Express Highway, Dhaka 1229, Bangladesh
+		42 text — COUNTING DOWN —
+		43 text 0
+		44 text DAYS until your dream wedding
+		45 container cd-cell-days
+			46 text 00
+			47 text DAYS
+		48 container cd-cell-hrs
+			49 text 00
+			50 text HOURS
+		51 container cd-cell-mins
+			52 text 00
+			53 text MINS
+		54 container cd-cell-secs
+			55 text 00
+			56 text SECS
+		57 container
+			58 text A
+			59 text &
+			60 text J
+		61 text WITH BLESSINGS · FOREVER
+		62 container invite-widgets
+			63 container
+				64 text Our Moments CAPTURED TOGETHER
+				65 container Photo slideshow
+					66 container
+						67 image Photo 1 of 4
+						68 text 1  / 4
+					69 button Previous photo
+						70 image
+					71 button Next photo
+						72 image
+				73 button Photo 1
+				74 button Photo 2
+				75 button Photo 3
+				76 button Photo 4
+			77 text Join Us
+			78 button MAP
+				79 image
+				80 text MAP
+			81 button CALENDAR
+				82 image
+				83 text CALENDAR
+			84 text Kindly RSVP
+			85 text WE HOPE YOU CAN CELEBRATE WITH US
+			86 container w-rsvp-form
+				87 text YOUR NAME
+				88 text field (settable) YOUR NAME, ID: w-rsvp-name
+				89 text WILL YOU ATTEND?
+				90 container
+					91 radio button (settable, integer) Description: JOYFULLY, Value: 1
+					92 text JOYFULLY
+				93 container
+					94 radio button (settable, integer) Description: SADLY NO, Value: 0
+					95 text SADLY NO
+				96 text NUMBER OF GUESTS (0–10)
+				97 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+				98 button SEND RSVP
+			99 text Send Your Wishes
+			100 text LEAVE A PRIVATE MESSAGE
+			101 container w-wish-form
+				102 text Send your wish
+				103 text Your message stays private — it won't be shown here publicly
+				104 text YOUR NAME
+				105 text field (settable) YOUR NAME, ID: w-wish-name
+				106 text YOUR MESSAGE
+				107 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+				108 container
+					109 image
+					110 text ADD A PHOTO (OPTIONAL)
+				111 button ADD YOUR WISH
+			112 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+			113 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+			114 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+	115 container
+		116 text — YOU ARE INVITED — Azad & Jyoti WEDDING
+		117 button OPEN INVITATION
+	118 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+		119 image
+
+The focused UI element is 1 AXWebArea Azad Raval & Jyoti Majila — Wedding Invitation, URL: e-nimontron.com/templates/royal-scroll.html

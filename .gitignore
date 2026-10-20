@@ -1,0 +1,20 @@
+.research-tools/
+.artifacts/
+
+# Local dependencies, generated builds and deployment bindings
+**/node_modules/
+**/.next/
+**/out/
+**/.sites-runtime/
+**/.openai/
+*.tsbuildinfo
+*.log
+.DS_Store
+
+# Environment files and private key material; templates are safe to track
+.env*
+**/.env*
+!.env.example
+!**/.env.example
+*.pem
+*.key

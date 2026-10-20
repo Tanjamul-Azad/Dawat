@@ -1,0 +1,100 @@
+Browser tab: 3, Title: "The Digital Yes Reviews: 4.9/5 from 278 Couples", URL: "https://www.thedigitalyes.com/reviews".
+1 AXWebArea The Digital Yes Reviews: 4.9/5 from 278 Couples, URL: thedigitalyes.com/reviews
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 container
+			21 text THE DIGITAL YES REVIEWS
+			22 heading In their words, Value: 1
+				23 text In their words
+			24 text Reviews written by couples who have already sent their invitation. We only publish verified ones.
+			25 button (collapsed) Already celebrated with us? Write our review +, Secondary Actions: Expand
+				26 text Already celebrated with us?
+				27 text Write our review +
+			28 container How we collect reviews
+				29 heading How we collect reviews, Value: 2, ID: reviews-method
+					30 text How we collect reviews
+				31 text Anyone can leave a review with their name and email using the form on this page. If the email matches a paid order, the review is published automatically. Otherwise our team reads it before deciding whether to publish it. The rating shown on our site is calculated from published reviews.
+			32 text Loading reviews…
+			33 heading Yours could be next, Value: 2
+				34 text Yours could be next
+			35 text Choose a design and our team composes it around your story.
+			36 link Description: See the designs, Value: thedigitalyes.com/designs
+		37 container
+			38 container Newsletter
+				39 heading Newsletter, Value: 2, ID: :r0:-t
+					40 text Newsletter
+				41 text A 4-email welcome in week one, then roughly one a week.
+				42 container
+					43 text The practical guide is free to read, no subscription needed.
+					44 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				45 container
+					46 text EMAIL
+					47 text field (settable) EMAIL
+					48 text EMAIL LANGUAGE
+					49 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						50 menu
+							51 Español
+							52 (selected) English
+							53 Français
+							54 Deutsch
+							55 Italiano
+							56 Português
+							57 Nederlands
+							58 العربية
+					59 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					60 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					61 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					62 button SUBSCRIBE
+			63 heading COLLECTIONS, Value: 4
+				64 text COLLECTIONS
+			65 content list
+				66 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				67 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				68 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				69 link Description: All designs, Value: thedigitalyes.com/designs
+				70 link Description: Pricing, Value: thedigitalyes.com/pricing
+				71 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				72 link Description: Essential, Value: thedigitalyes.com/essential
+				73 link Description: Premium, Value: thedigitalyes.com/premium
+				74 link Description: Excellence, Value: thedigitalyes.com/excellence
+				75 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				76 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				77 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				78 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			79 heading SERVICE, Value: 4
+				80 text SERVICE
+			81 content list
+				82 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				83 link Description: Our story, Value: thedigitalyes.com/our-story
+				84 link Description: Reviews, Value: thedigitalyes.com/reviews
+				85 link Description: Blog, Value: thedigitalyes.com/blog
+				86 link Description: Client portal, Value: thedigitalyes.com/clients
+			87 heading LEGAL, Value: 4
+				88 text LEGAL
+			89 content list
+				90 link Description: Terms, Value: thedigitalyes.com/terms
+				91 link Description: Privacy, Value: thedigitalyes.com/privacy
+				92 link Description: Refunds, Value: thedigitalyes.com/refunds
+			93 heading THE DIGITAL YES, Value: 4
+				94 text THE DIGITAL YES
+			95 content list
+				96 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			97 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea The Digital Yes Reviews: 4.9/5 from 278 Couples, URL: thedigitalyes.com/reviews

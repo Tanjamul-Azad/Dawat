@@ -1,0 +1,191 @@
+Browser tab: 3, Title: "Privacy Policy | The Digital Yes", URL: "https://www.thedigitalyes.com/privacy".
+1 AXWebArea Privacy Policy | The Digital Yes, URL: thedigitalyes.com/privacy
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 button (collapsed) Description: Open menu, Secondary Actions: Expand
+				8 image
+			9 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			10 link Description: DESIGNS, Value: thedigitalyes.com/#invitations
+			11 link Description: PLANS, Value: thedigitalyes.com/#plans
+			12 link Description: HOW IT WORKS, Value: thedigitalyes.com/how-it-works
+			13 link Description: The Digital Yes, Value: thedigitalyes.com/
+			14 link Description: BUY NOW, Value: thedigitalyes.com/#plans
+			15 pop up button (collapsed) Description: Choose your language, Secondary Actions: Expand
+				16 text EN
+				17 text  · 
+				18 text EUR
+			19 link Description: PORTAL, Value: thedigitalyes.com/clients
+		20 link Description: Back to home, Value: thedigitalyes.com/
+		21 heading Privacy Policy, Value: 1
+			22 text Privacy Policy
+		23 text Last updated: January 1, 2026
+		24 container
+			25 heading 1. Data Controller, Value: 2
+				26 text 1. Data Controller
+			27 text The Digital Yes is the data controller for the personal data you provide through this website.
+
+Location: United Arab Emirates (UAE)
+Contact email: info@thedigitalyes.com
+
+We are committed to protecting your privacy and processing your personal data in accordance with applicable data protection regulations.
+		28 container
+			29 heading 2. Data We Collect, Value: 2
+				30 text 2. Data We Collect
+			31 text We collect the following types of personal data:
+
+• Contact data: name, email, phone
+• Wedding data: names of the couple, date, venue, schedules
+• Payment data: securely processed through Stripe
+• Images: photos you upload to personalize your invitation
+• Browsing data: technical and analytical cookies
+
+We do not collect specially protected data or sensitive information beyond what is strictly necessary to provide our services.
+		32 container
+			33 heading 3. Purpose of Processing, Value: 2
+				34 text 3. Purpose of Processing
+			35 text We use your data to:
+
+• Create and manage your digital wedding invitation
+• Process payments securely
+• Communicate with you about your order
+• Improve our services and user experience
+• Comply with legal and tax obligations
+• Send commercial communications (only with your consent)
+		36 container
+			37 heading 4. Legal Basis for Processing, Value: 2
+				38 text 4. Legal Basis for Processing
+			39 text The processing of your data is based on:
+
+• Contract execution: to provide the contracted service
+• Consent: for sending commercial communications
+• Legitimate interest: to improve our services
+• Legal obligation: to comply with tax and legal requirements
+		40 container
+			41 heading 5. Data Retention, Value: 2
+				42 text 5. Data Retention
+			43 text We retain your data for the time necessary to:
+
+• Keep your invitation active (indefinitely, as it includes lifetime access)
+• Comply with legal obligations (5-10 years according to tax regulations)
+• Resolve possible claims
+
+Once the relationship ends, data will be blocked and subsequently deleted.
+		44 container
+			45 heading 6. Data Recipients, Value: 2
+				46 text 6. Data Recipients
+			47 text We may share your data with:
+
+• Stripe: for secure payment processing (PCI-DSS certified)
+• Hosting and cloud service providers (EU servers)
+• Public authorities when legally required
+
+We do not sell, rent, or share your data with third parties for commercial purposes.
+		48 container
+			49 heading 7. User Rights, Value: 2
+				50 text 7. User Rights
+			51 text You have the right to:
+
+• Access your personal data
+• Rectify inaccurate or incomplete data
+• Request deletion of your data
+• Object to processing
+• Request data portability
+• Withdraw consent at any time
+
+To exercise these rights, contact us at info@thedigitalyes.com
+
+You may also file a complaint with the relevant data protection authority in your jurisdiction.
+		52 container
+			53 heading 8. Data Security, Value: 2
+				54 text 8. Data Security
+			55 text We implement technical and organizational measures to protect your data:
+
+• SSL/TLS encryption for all communications
+• Secure storage with restricted access
+• Regular backups
+• Continuous security monitoring
+• Staff trained in data protection
+		56 container
+			57 heading 9. International Transfers, Value: 2
+				58 text 9. International Transfers
+			59 text Your data is stored on secure servers. In case of transfers to third countries, we ensure adequate safeguards in accordance with applicable data protection regulations.
+		60 container
+			61 heading 10. Modifications, Value: 2
+				62 text 10. Modifications
+			63 text We reserve the right to modify this privacy policy. We will notify you of any significant changes through the provided email or by a notice on our website.
+		64 container
+			65 heading 11. Newsletter, Value: 2
+				66 text 11. Newsletter
+			67 text If you subscribe to the newsletter, we use your data only to send it to you. It is separate from your orders, and we never use guest data (RSVPs, allergies, addresses or events) for it.
+
+• Provider: emails are sent through Klaviyo, our email marketing platform.
+• Data: email and language; optionally, wedding date and preferred style. We also keep the date, the form you used and the exact wording of the box you ticked.
+• Sign-up: your subscription is recorded when you send the form with the box ticked; there is no confirmation email.
+• Frequency: a short 4-email welcome during the first week, then roughly one email a week.
+• Unsubscribe: via the link in every email or by writing to info@thedigitalyes.com. Accepting cookies does not mean subscribing.
+		68 container
+			69 container Newsletter
+				70 heading Newsletter, Value: 2, ID: :r0:-t
+					71 text Newsletter
+				72 text A 4-email welcome in week one, then roughly one a week.
+				73 container
+					74 text The practical guide is free to read, no subscription needed.
+					75 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				76 container
+					77 text EMAIL
+					78 text field (settable) EMAIL
+					79 text EMAIL LANGUAGE
+					80 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						81 menu
+							82 Español
+							83 (selected) English
+							84 Français
+							85 Deutsch
+							86 Italiano
+							87 Português
+							88 Nederlands
+							89 العربية
+					90 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					91 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					92 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					93 button SUBSCRIBE
+			94 heading COLLECTIONS, Value: 4
+				95 text COLLECTIONS
+			96 content list
+				97 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				98 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				99 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				100 link Description: All designs, Value: thedigitalyes.com/designs
+				101 link Description: Pricing, Value: thedigitalyes.com/pricing
+				102 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				103 link Description: Essential, Value: thedigitalyes.com/essential
+				104 link Description: Premium, Value: thedigitalyes.com/premium
+				105 link Description: Excellence, Value: thedigitalyes.com/excellence
+				106 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				107 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				108 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				109 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			110 heading SERVICE, Value: 4
+				111 text SERVICE
+			112 content list
+				113 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				114 link Description: Our story, Value: thedigitalyes.com/our-story
+				115 link Description: Reviews, Value: thedigitalyes.com/reviews
+				116 link Description: Blog, Value: thedigitalyes.com/blog
+				117 link Description: Client portal, Value: thedigitalyes.com/clients
+			118 heading LEGAL, Value: 4
+				119 text LEGAL
+			120 content list
+				121 link Description: Terms, Value: thedigitalyes.com/terms
+				122 link Description: Privacy, Value: thedigitalyes.com/privacy
+				123 link Description: Refunds, Value: thedigitalyes.com/refunds
+			124 heading THE DIGITAL YES, Value: 4
+				125 text THE DIGITAL YES
+			126 content list
+				127 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			128 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Privacy Policy | The Digital Yes, URL: thedigitalyes.com/privacy

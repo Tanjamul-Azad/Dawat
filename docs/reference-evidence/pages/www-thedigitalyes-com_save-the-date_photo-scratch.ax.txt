@@ -1,0 +1,155 @@
+Browser tab: 3, Title: "Photo Scratch – Digital Save the Date | The Digital Yes", URL: "https://www.thedigitalyes.com/save-the-date/photo-scratch".
+1 AXWebArea Photo Scratch – Digital Save the Date | The Digital Yes, URL: thedigitalyes.com/save-the-date/photo-scratch
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 container Menu
+				8 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+				9 container
+					10 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+					11 pop up button (collapsed) Description: Classic · 3D Pop-Up Save the Dates, Secondary Actions: Expand
+						12 image
+				13 link Description: PLANS, Value: thedigitalyes.com/#plans
+				14 link Description: HOW IT WORKS, Value: thedigitalyes.com/#how-it-works
+				15 pop up button (collapsed) MORE NEW, Secondary Actions: Expand
+					16 text MORE
+					17 text NEW
+					18 image
+			19 link Description: The Digital Yes, Value: thedigitalyes.com/
+			20 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			21 link Description: BUY MY SAVE THE DATE · €75, Value: thedigitalyes.com/save-the-date/photo-scratch#purchase
+			22 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				23 image
+				24 text EN
+			25 link Description: PORTAL, Value: thedigitalyes.com/clients
+		26 container
+			27 container Breadcrumb
+				28 link Description: Collection, Value: thedigitalyes.com/digital-save-the-date
+				29 text Photo Scratch
+			30 container Gallery
+				31 container
+					32 container Photo Scratch — live demo
+						33 AXWebArea about:blank
+					34 text Loading live demo…
+				35 tab group Views
+					36 tab (selected, settable, boolean) LIVE DEMO, Value: 1
+					37 tab (selectable, settable, boolean) PREVIEW, Value: 0
+					38 button FULL SCREEN
+					39 text 1 / 2
+			40 container Purchase
+				41 link Description: 4.9 out of 5 · 278 reviews , Value: thedigitalyes.com/reviews
+				42 text SAVE THE DATE
+				43 heading Photo Scratch, Value: 1
+					44 text Photo Scratch
+				45 checkbox Description: Save Photo Scratch, Value: 0
+					46 image
+				47 text Your photo revealed by scratching. A playful reveal your guests will remember.
+				48 text €75
+				49 heading 1 · Choose your version, Value: 2
+					50 text 1 · Choose your version
+				51 1 · Choose your version
+					52 radio button With your details €75 This design with your names, date and venue., Value: 1
+						53 text With your details
+						54 text €75
+						55 text This design with your names, date and venue.
+					56 radio button Value: 0, Custom design €135 We redraw the illustration by hand with your venue, colors or anything you dream of.
+						57 text Custom design
+						58 text €135
+						59 text We redraw the illustration by hand with your venue, colors or anything you dream of.
+				60 button Buy my Save the Date · €75
+					61 text Buy my Save the Date
+					62 text  · 
+					63 text €75
+				64 text One-time secure payment with Stripe · Proof and revisions included · Ready in about 7 days
+				65 container Today · You buy → You send your details → ≈ 7 days · You get your link
+					66 text Today · You buy
+					67 text You send your details
+					68 text ≈ 7 days · You get your link
+				69 container
+					70 text Also need the invitation? With the Premium plan this Save the Date is free  · 
+					71 button See Premium
+				72 text Your photo revealed by scratching. A playful reveal your guests will remember.
+				73 button (collapsed) What’s included +, Secondary Actions: Expand
+					74 text What’s included
+					75 text +
+				76 button (collapsed) Personalisation & extras +, Secondary Actions: Expand
+					77 text Personalisation & extras
+					78 text +
+				79 button (collapsed) How it works +, Secondary Actions: Expand
+					80 text How it works
+					81 text +
+				82 button (collapsed) Delivery +, Secondary Actions: Expand
+					83 text Delivery
+					84 text +
+				85 link Description: Talk to a designer, Value: wa.me/15559754143?text=Hi!%20I%27m%20interested%20in%20the%20Photo%20Scratch%20template%20%E2%9C%A8
+			86 heading You may also like, Value: 2
+				87 text You may also like
+			88 link Description: Photobooth — design preview Photobooth €75, Value: thedigitalyes.com/save-the-date/photobooth
+			89 link Description: Heartfold — design preview Heartfold €75, Value: thedigitalyes.com/save-the-date/heartfold
+			90 link Description: The Lovebirds — design preview The Lovebirds €75, Value: thedigitalyes.com/save-the-date/the-lovebirds
+			91 link Description: Majestic — design preview Majestic €75, Value: thedigitalyes.com/save-the-date/majestic
+		92 container
+			93 container Newsletter
+				94 heading Newsletter, Value: 2, ID: :r3:-t
+					95 text Newsletter
+				96 text A 4-email welcome in week one, then roughly one a week.
+				97 container
+					98 text The practical guide is free to read, no subscription needed.
+					99 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				100 container
+					101 text EMAIL
+					102 text field (settable) EMAIL
+					103 text EMAIL LANGUAGE
+					104 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						105 menu
+							106 Español
+							107 (selected) English
+							108 Français
+							109 Deutsch
+							110 Italiano
+							111 Português
+							112 Nederlands
+							113 العربية
+					114 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					115 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					116 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					117 button SUBSCRIBE
+			118 heading COLLECTIONS, Value: 4
+				119 text COLLECTIONS
+			120 content list
+				121 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				122 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				123 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				124 link Description: All designs, Value: thedigitalyes.com/designs
+				125 link Description: Pricing, Value: thedigitalyes.com/pricing
+				126 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				127 link Description: Essential, Value: thedigitalyes.com/essential
+				128 link Description: Premium, Value: thedigitalyes.com/premium
+				129 link Description: Excellence, Value: thedigitalyes.com/excellence
+				130 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				131 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				132 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				133 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			134 heading SERVICE, Value: 4
+				135 text SERVICE
+			136 content list
+				137 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				138 link Description: Our story, Value: thedigitalyes.com/our-story
+				139 link Description: Reviews, Value: thedigitalyes.com/reviews
+				140 link Description: Blog, Value: thedigitalyes.com/blog
+				141 link Description: Client portal, Value: thedigitalyes.com/clients
+			142 heading LEGAL, Value: 4
+				143 text LEGAL
+			144 content list
+				145 link Description: Terms, Value: thedigitalyes.com/terms
+				146 link Description: Privacy, Value: thedigitalyes.com/privacy
+				147 link Description: Refunds, Value: thedigitalyes.com/refunds
+			148 heading THE DIGITAL YES, Value: 4
+				149 text THE DIGITAL YES
+			150 content list
+				151 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			152 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea Photo Scratch – Digital Save the Date | The Digital Yes, URL: thedigitalyes.com/save-the-date/photo-scratch

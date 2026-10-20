@@ -1,0 +1,180 @@
+Browser tab: 3, Title: "3D Pop-Up Birthday Invitations | The Digital Yes", URL: "https://www.thedigitalyes.com/birthdays".
+1 AXWebArea 3D Pop-Up Birthday Invitations | The Digital Yes, URL: thedigitalyes.com/birthdays
+	2 container root
+		3 container Notifications (F8)
+			4 content list
+		5 container Notifications alt+T
+		6 container
+			7 container Menu
+				8 link Description: INVITATIONS, Value: thedigitalyes.com/#invitations
+				9 container
+					10 link Description: SAVE THE DATES, Value: thedigitalyes.com/#save-the-dates
+					11 pop up button (collapsed) Description: Classic · 3D Pop-Up Save the Dates, Secondary Actions: Expand
+						12 image
+				13 link Description: PLANS, Value: thedigitalyes.com/#plans
+				14 link Description: HOW IT WORKS, Value: thedigitalyes.com/#how-it-works
+				15 pop up button (collapsed) MORE NEW, Secondary Actions: Expand
+					16 text MORE
+					17 text NEW
+					18 image
+			19 link Description: The Digital Yes, Value: thedigitalyes.com/
+			20 link Description: Yes Planner NEW, Value: thedigitalyes.com/planner
+			21 link Description: SEE THE DESIGNS, Value: thedigitalyes.com/birthdays#ev-grid
+			22 button (collapsed) Description: Language · Currency, Secondary Actions: Expand
+				23 image
+				24 text EN
+			25 link Description: PORTAL, Value: thedigitalyes.com/clients
+		26 container
+			27 container Breadcrumb
+				28 link Description: Home, Value: thedigitalyes.com/
+				29 text / Birthday invitations
+			30 container
+				31 text BIRTHDAY INVITATIONS  · 3D POP-UP
+			32 heading Birthday invitations that pop off the screen, Value: 1
+				33 text Birthday invitations that pop off the screen
+			34 text A 3D card your guests open with a tap. Personalised with the name, date and place — ready to share in 2–4 days.
+			35 button See the designs
+			36 text From €55
+			37 container Choose your design, ID: ev-grid
+				38 heading Choose your design, Value: 2, ID: ev-grid-title
+					39 text Choose your design
+				40 container
+					41 text Search by theme or mood…
+					42 search text field (settable) Search by theme or mood…
+				43 tab group Styles
+					44 tab (selected, settable, boolean) All 20, Value: 1
+All
+20
+					45 tab (selectable, settable, boolean) Animals 4, Value: 0
+Animals
+4
+					46 tab (selectable, settable, boolean) Adventure 6, Value: 0
+Adventure
+6
+					47 tab (selectable, settable, boolean) Party 6, Value: 0
+Party
+6
+					48 tab (selectable, settable, boolean) Fantasy 4, Value: 0
+Fantasy
+4
+				49 text 20 designs
+				50 link Description: Carousel ADVENTURE Carousel A carousel that spins into the party. From €55, Value: thedigitalyes.com/birthdays/carousel
+				51 link Description: Hot-Air Balloons ADVENTURE Hot-Air Balloons Balloons lifting off for your big day. From €55, Value: thedigitalyes.com/birthdays/hot-air-balloons
+				52 link Description: Pâtisserie PARTY Pâtisserie Sweet layers, candles and a celebration. From €55, Value: thedigitalyes.com/birthdays/patisserie
+				53 link Description: Under the Sea ANIMALS Under the Sea A splash of coral, fish and bubbles. From €55, Value: thedigitalyes.com/birthdays/under-the-sea
+				54 link Value: thedigitalyes.com/birthdays/pool-party, Description: Palm Springs Pool Party PARTY Palm Springs Pool Party Palm trees, sunshine and a pool party. From €55
+				55 link Description: Safari Adventure ANIMALS Safari Adventure Lions, giraffes and a wild celebration. From €55, Value: thedigitalyes.com/birthdays/safari
+				56 link Description: Dino Party ANIMALS Dino Party A roaring party from the Jurassic. From €55, Value: thedigitalyes.com/birthdays/dinosaur
+				57 link Description: Space Explorer ADVENTURE Space Explorer Blast off to a party among the stars. From €55, Value: thedigitalyes.com/birthdays/space
+				58 link Description: Unicorn Dreams FANTASY Unicorn Dreams Rainbows, sparkle and a magic unicorn. From €55, Value: thedigitalyes.com/birthdays/unicorn
+				59 link Description: Big Top Circus ADVENTURE Big Top Circus Step right up under the big top. From €55, Value: thedigitalyes.com/birthdays/circus
+				60 link Description: Fairy Garden FANTASY Fairy Garden Tiny wings in an enchanted garden. From €55, Value: thedigitalyes.com/birthdays/fairy-garden
+				61 link Description: Pirate Island ADVENTURE Pirate Island Treasure maps and a ship ahoy. From €55, Value: thedigitalyes.com/birthdays/pirate
+				62 link Description: Barnyard Fun ANIMALS Barnyard Fun Tractors, hay and friendly animals. From €55, Value: thedigitalyes.com/birthdays/farm
+				63 link Description: Choo Choo Express ADVENTURE Choo Choo Express All aboard for the birthday express. From €55, Value: thedigitalyes.com/birthdays/train
+				64 link Description: Disco Fever PARTY Disco Fever A mirror ball and a dance floor. From €55, Value: thedigitalyes.com/birthdays/disco
+				65 link Description: Garden Tea Party FANTASY Garden Tea Party Teacups, cake and garden roses. From €55, Value: thedigitalyes.com/birthdays/tea-party
+				66 link Description: Tropical Luau PARTY Tropical Luau Leis, tiki torches and island sun. From €55, Value: thedigitalyes.com/birthdays/luau
+				67 link Description: Disco Cowgirl PARTY Disco Cowgirl Boots, glitter and a disco rodeo. From €55, Value: thedigitalyes.com/birthdays/disco-cowgirl
+				68 link Description: Winter Skate FANTASY Winter Skate Snowflakes and a frozen rink. From €55, Value: thedigitalyes.com/birthdays/ice-skating
+				69 link Description: Great Gatsby PARTY Great Gatsby Art-deco gold and roaring twenties glamour. From €55, Value: thedigitalyes.com/birthdays/gatsby
+			70 container How it works
+				71 heading How it works, Value: 2, ID: ev-how
+					72 text How it works
+				73 content list
+					74 container
+						75 text 1
+						76 heading Pick a card, Value: 3
+							77 text Pick a card
+						78 text Open the demos and choose your favourite.
+					79 container
+						80 text 2
+						81 heading Add your details, Value: 3
+							82 text Add your details
+						83 text Name(s), date, time, venue and any notes.
+					84 container
+						85 text 3
+						86 heading Share it, Value: 3
+							87 text Share it
+						88 text In 2–4 days you get your link, ready for WhatsApp.
+			89 heading Questions, Value: 2
+				90 text Questions
+			91 heading How long does it take?, Value: 3
+				92 text How long does it take?
+			93 text 2–4 days from your order.
+			94 heading How do guests open it?, Value: 3
+				95 text How do guests open it?
+			96 text With a link that works on any phone — no app needed.
+			97 heading What can be personalised?, Value: 3
+				98 text What can be personalised?
+			99 text Name(s), date, time and venue, plus any short note you want on the card.
+			100 heading Can I request a change?, Value: 3
+				101 text Can I request a change?
+			102 text Yes, reply to your confirmation email and we'll adjust it.
+			103 heading Do promo codes apply?, Value: 3
+				104 text Do promo codes apply?
+			105 text No, the price is fixed and promo codes or credit don't apply.
+			106 button See the designs
+		107 container
+			108 container Newsletter
+				109 heading Newsletter, Value: 2, ID: :r0:-t
+					110 text Newsletter
+				111 text A 4-email welcome in week one, then roughly one a week.
+				112 container
+					113 text The practical guide is free to read, no subscription needed.
+					114 link Description: Read the guide, Value: thedigitalyes.com/invitation-guide
+				115 container
+					116 text EMAIL
+					117 text field (settable) EMAIL
+					118 text EMAIL LANGUAGE
+					119 pop up button (collapsed, settable) EMAIL LANGUAGE, Value: English, Secondary Actions: Expand
+						120 menu
+							121 Español
+							122 (selected) English
+							123 Français
+							124 Deutsch
+							125 Italiano
+							126 Português
+							127 Nederlands
+							128 العربية
+					129 checkbox (settable, integer) Value: 0, Description: I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time. Privacy policy
+					130 text I'd like to receive The Digital Yes newsletter with ideas and news: a 4-email welcome during the first week, then roughly one email a week. I can unsubscribe at any time.
+					131 link Description: Privacy policy, Value: thedigitalyes.com/privacy
+					132 button SUBSCRIBE
+			133 heading COLLECTIONS, Value: 4
+				134 text COLLECTIONS
+			135 content list
+				136 link Description: Invitations, Value: thedigitalyes.com/#invitations
+				137 link Description: Save the Dates, Value: thedigitalyes.com/digital-save-the-date
+				138 link Description: Yes Planner, Value: thedigitalyes.com/planner
+				139 link Description: All designs, Value: thedigitalyes.com/designs
+				140 link Description: Pricing, Value: thedigitalyes.com/pricing
+				141 link Description: Guide to digital wedding invitations, Value: thedigitalyes.com/en/digital-wedding-invitations
+				142 link Description: Essential, Value: thedigitalyes.com/essential
+				143 link Description: Premium, Value: thedigitalyes.com/premium
+				144 link Description: Excellence, Value: thedigitalyes.com/excellence
+				145 link Description: 3D Pop-Up Save the Date, Value: thedigitalyes.com/3d-pop-up-save-the-date
+				146 link Description: Birthday invitations, Value: thedigitalyes.com/birthdays
+				147 link Description: Baby shower invitations, Value: thedigitalyes.com/baby-shower
+				148 link Description: Bridesmaid proposal, Value: thedigitalyes.com/bridesmaid-proposal
+			149 heading SERVICE, Value: 4
+				150 text SERVICE
+			151 content list
+				152 link Description: How it works, Value: thedigitalyes.com/how-it-works
+				153 link Description: Our story, Value: thedigitalyes.com/our-story
+				154 link Description: Reviews, Value: thedigitalyes.com/reviews
+				155 link Description: Blog, Value: thedigitalyes.com/blog
+				156 link Description: Client portal, Value: thedigitalyes.com/clients
+			157 heading LEGAL, Value: 4
+				158 text LEGAL
+			159 content list
+				160 link Description: Terms, Value: thedigitalyes.com/terms
+				161 link Description: Privacy, Value: thedigitalyes.com/privacy
+				162 link Description: Refunds, Value: thedigitalyes.com/refunds
+			163 heading THE DIGITAL YES, Value: 4
+				164 text THE DIGITAL YES
+			165 content list
+				166 link Description: info@thedigitalyes.com, Value: mailto:info@thedigitalyes.com
+			167 text ©  2026  The Digital Yes
+
+The focused UI element is 1 AXWebArea 3D Pop-Up Birthday Invitations | The Digital Yes, URL: thedigitalyes.com/birthdays

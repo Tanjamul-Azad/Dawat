@@ -1,0 +1,360 @@
+Browser tab: 3, Title: "e-Nimontron — Digital Invitations. Simply Beautiful.", URL: "https://www.e-nimontron.com/preview".
+1 AXWebArea e-Nimontron — Digital Invitations. Simply Beautiful., URL: e-nimontron.com/preview
+	2 container
+		3 link Description: e-Nimontron home, Value: e-nimontron.com/
+		4 content list
+			5 link Description: টেমপ্লেট, Value: e-nimontron.com/#gallery
+			6 link Description: যেভাবে কাজ করে, Value: e-nimontron.com/#how
+			7 link Description: মূল্য, Value: e-nimontron.com/#pricing
+			8 link Description: যোগাযোগ, Value: e-nimontron.com/#contact
+		9 container ভাষা পরিবর্তন করুন
+			10 checkbox EN, Value: 0
+			11 checkbox বাংলা, Value: 1
+	12 text লাইভ প্রিভিউ
+	13 heading Demo Groom & Demo Bride, Value: 1
+		14 text Demo Groom & Demo Bride
+	15 text আপনার অতিথিরা ঠিক এটাই দেখবেন।
+	16 button মোবাইল
+	17 button ডেস্কটপ
+	18 container
+		19 text ENIMONTRON.COM/ DEMOBRIDE-DEMOGROOM প্রিভিউ
+		20 container Invitation preview
+			21 AXWebArea Demo Groom & Demo Bride — Wedding Invitation, URL: e-nimontron.com/templates/royal-scroll.html?template=royal-scroll&occasion=wedding&groomFullName=Demo+Groom&brideFullName=Demo+Bride&groomNickname=Groom&brideNickname=Bride&groomFatherName=&brideFatherName=&groomMotherName=&brideMotherName=&eventType=Wedding&eventDate=2027-04-18&eventTime=19%3A00&venueName=Demo+Wedding+Hall&venueAddress=Dhaka%2C+Bangladesh&rsvpDeadline=&personalMessage=&dayOfWeek=Sunday&brideName=Demo+Bride&groomName=Demo+Groom&brideParents=&groomParents=
+				22 image petalsCanvas
+				23 container
+					24 container hero
+						25 container
+							26 text Together with families
+							27 heading D e m o G r o o m, Value: 1, ID: groomName
+								28 container
+									29 text D e m o
+								30 container
+									31 text G r o o m
+							32 text &
+							33 heading D e m o B r i d e, Value: 1, ID: brideName
+								34 container
+									35 text D e m o
+								36 container
+									37 text B r i d e
+							38 text Heartily invite you to be part of the celebration of their joyful union
+						39 image Bride and groom
+					40 container
+						41 text With the blessings of our families,
+						42 text we joyfully invite you to celebrate
+					43 container dateRow
+						44 text APRIL
+						45 text 18
+						46 text 7:00 PM
+					105 container
+						106 text Save The Date SCRATCH TO REVEAL
+						107 container
+							108 text Sunday, 18 April 2027 7:00 PM onwards
+						109 image
+					47 text DEMO WEDDING HALL
+					48 text Dhaka, Bangladesh
+					110 text — COUNTING DOWN —
+					111 text 0
+					49 text DAYS until your dream wedding
+					50 container cd-cell-days
+						51 text 00
+						52 text DAYS
+					53 container cd-cell-hrs
+						54 text 00
+						55 text HOURS
+					56 container cd-cell-mins
+						57 text 00
+						58 text MINS
+					59 container cd-cell-secs
+						60 text 00
+						61 text SECS
+					62 container
+						63 text G
+						64 text &
+						65 text B
+					66 text WITH BLESSINGS · FOREVER
+					67 container invite-widgets
+						68 container
+							112 text Our Moments CAPTURED TOGETHER
+							113 container Photo slideshow
+								114 container
+									115 image Photo 1 of 4
+									116 text 1  / 4
+								117 button Previous photo
+									118 image
+								119 button Next photo
+									120 image
+							73 button Photo 1
+							74 button Photo 2
+							75 button Photo 3
+							76 button Photo 4
+						121 text Join Us
+						77 button MAP
+							78 image
+							122 text MAP
+						79 button CALENDAR
+							80 image
+							123 text CALENDAR
+						124 text Kindly RSVP
+						125 text WE HOPE YOU CAN CELEBRATE WITH US
+						81 container w-rsvp-form
+							126 text YOUR NAME
+							82 text field (settable) YOUR NAME, ID: w-rsvp-name
+							127 text WILL YOU ATTEND?
+							128 container
+								129 radio button (settable, integer) Description: JOYFULLY, Value: 1
+								130 text JOYFULLY
+							131 container
+								132 radio button (settable, integer) Description: SADLY NO, Value: 0
+								133 text SADLY NO
+							134 text NUMBER OF GUESTS (0–10)
+							85 stepper (settable, integer) NUMBER OF GUESTS (0–10), Value: 0, ID: w-rsvp-guests
+							86 button SEND RSVP
+						135 text Send Your Wishes
+						136 text LEAVE A PRIVATE MESSAGE
+						87 container w-wish-form
+							137 text Send your wish
+							138 text Your message stays private — it won't be shown here publicly
+							139 text YOUR NAME
+							88 text field (settable) YOUR NAME, ID: w-wish-name
+							140 text YOUR MESSAGE
+							89 text entry area (settable) YOUR MESSAGE, ID: w-wish-msg
+							141 container
+								142 image
+								143 text ADD A PHOTO (OPTIONAL)
+							91 button ADD YOUR WISH
+						92 link Description: MADE WITH ♥ BY E-NIMONTRON, Help: Create your own digital invitation at e-Nimontron, Value: e-nimontron.com/
+						93 link Description: e-Nimontron on Facebook, Help: Follow e-Nimontron on Facebook, Value: facebook.com/enimontron16
+						94 link Description: e-Nimontron on WhatsApp, Help: Message e-Nimontron on WhatsApp, Value: wa.me/8801577348028
+				95 container
+					144 text — YOU ARE INVITED — Groom & Bride WEDDING
+					96 button OPEN INVITATION
+				97 button Description: Toggle music, Help: Pause music, ID: w-music-btn
+					98 image
+	99 button এই আমন্ত্রণটি অর্ডার করুন
+		100 image
+		101 text এই আমন্ত্রণটি অর্ডার করুন
+	102 link Description: তথ্য এডিট করুন, Value: e-nimontron.com/customize?template=royal-scroll
+	103 link Description: অন্য টেমপ্লেট দেখুন, Value: e-nimontron.com/#gallery
+	145 container
+		146 button Close
+		147 text অর্ডার করুন · ধাপ ১/২
+		148 heading আপনার তথ্য, Value: 2
+			149 text আপনার তথ্য
+		150 text আপনার সাথে কীভাবে যোগাযোগ করব জানান। পেমেন্ট যাচাই হলে আপনার ব্যক্তিগত আমন্ত্রণ লিংক এখানেই পাঠানো হবে। আপনার নাম
+		151 text field (settable)
+		152 text যোগাযোগের পছন্দের মাধ্যম
+		153 button WHATSAPP
+		154 button ইমেইল
+		155 text ইমেইল (ঐচ্ছিক)
+		156 text field (settable)
+		157 text ফোন / WHATSAPP (আবশ্যক)
+		158 pop up button (collapsed, settable) Description: Country code, Value: 🇧🇩 +880, Secondary Actions: Expand
+			159 menu
+				160 🇦🇫 +93
+				161 🇦🇱 +355
+				162 🇩🇿 +213
+				163 🇦🇩 +376
+				164 🇦🇴 +244
+				165 🇦🇬 +1
+				166 🇦🇷 +54
+				167 🇦🇲 +374
+				168 🇦🇺 +61
+				169 🇦🇹 +43
+				170 🇦🇿 +994
+				171 🇧🇸 +1
+				172 🇧🇭 +973
+				173 (selected) 🇧🇩 +880
+				174 🇧🇧 +1
+				175 🇧🇾 +375
+				176 🇧🇪 +32
+				177 🇧🇿 +501
+				178 🇧🇯 +229
+				179 🇧🇹 +975
+				180 🇧🇴 +591
+				181 🇧🇦 +387
+				182 🇧🇼 +267
+				183 🇧🇷 +55
+				184 🇧🇳 +673
+				185 🇧🇬 +359
+				186 🇧🇫 +226
+				187 🇧🇮 +257
+				188 🇰🇭 +855
+				189 🇨🇲 +237
+				190 🇨🇦 +1
+				191 🇨🇻 +238
+				192 🇨🇫 +236
+				193 🇹🇩 +235
+				194 🇨🇱 +56
+				195 🇨🇳 +86
+				196 🇨🇴 +57
+				197 🇰🇲 +269
+				198 🇨🇬 +242
+				199 🇨🇩 +243
+				200 🇨🇷 +506
+				201 🇭🇷 +385
+				202 🇨🇺 +53
+				203 🇨🇾 +357
+				204 🇨🇿 +420
+				205 🇩🇰 +45
+				206 🇩🇯 +253
+				207 🇩🇲 +1
+				208 🇩🇴 +1
+				209 🇪🇨 +593
+				210 🇪🇬 +20
+				211 🇸🇻 +503
+				212 🇬🇶 +240
+				213 🇪🇷 +291
+				214 🇪🇪 +372
+				215 🇸🇿 +268
+				216 🇪🇹 +251
+				217 🇫🇯 +679
+				218 🇫🇮 +358
+				219 🇫🇷 +33
+				220 🇬🇦 +241
+				221 🇬🇲 +220
+				222 🇬🇪 +995
+				223 🇩🇪 +49
+				224 🇬🇭 +233
+				225 🇬🇷 +30
+				226 🇬🇩 +1
+				227 🇬🇹 +502
+				228 🇬🇳 +224
+				229 🇬🇼 +245
+				230 🇬🇾 +592
+				231 🇭🇹 +509
+				232 🇭🇳 +504
+				233 🇭🇰 +852
+				234 🇭🇺 +36
+				235 🇮🇸 +354
+				236 🇮🇳 +91
+				237 🇮🇩 +62
+				238 🇮🇷 +98
+				239 🇮🇶 +964
+				240 🇮🇪 +353
+				241 🇮🇱 +972
+				242 🇮🇹 +39
+				243 🇨🇮 +225
+				244 🇯🇲 +1
+				245 🇯🇵 +81
+				246 🇯🇴 +962
+				247 🇰🇿 +7
+				248 🇰🇪 +254
+				249 🇰🇮 +686
+				250 🇰🇼 +965
+				251 🇰🇬 +996
+				252 🇱🇦 +856
+				253 🇱🇻 +371
+				254 🇱🇧 +961
+				255 🇱🇸 +266
+				256 🇱🇷 +231
+				257 🇱🇾 +218
+				258 🇱🇮 +423
+				259 🇱🇹 +370
+				260 🇱🇺 +352
+				261 🇲🇴 +853
+				262 🇲🇬 +261
+				263 🇲🇼 +265
+				264 🇲🇾 +60
+				265 🇲🇻 +960
+				266 🇲🇱 +223
+				267 🇲🇹 +356
+				268 🇲🇭 +692
+				269 🇲🇷 +222
+				270 🇲🇺 +230
+				271 🇲🇽 +52
+				272 🇫🇲 +691
+				273 🇲🇩 +373
+				274 🇲🇨 +377
+				275 🇲🇳 +976
+				276 🇲🇪 +382
+				277 🇲🇦 +212
+				278 🇲🇿 +258
+				279 🇲🇲 +95
+				280 🇳🇦 +264
+				281 🇳🇷 +674
+				282 🇳🇵 +977
+				283 🇳🇱 +31
+				284 🇳🇿 +64
+				285 🇳🇮 +505
+				286 🇳🇪 +227
+				287 🇳🇬 +234
+				288 🇰🇵 +850
+				289 🇲🇰 +389
+				290 🇳🇴 +47
+				291 🇴🇲 +968
+				292 🇵🇰 +92
+				293 🇵🇼 +680
+				294 🇵🇸 +970
+				295 🇵🇦 +507
+				296 🇵🇬 +675
+				297 🇵🇾 +595
+				298 🇵🇪 +51
+				299 🇵🇭 +63
+				300 🇵🇱 +48
+				301 🇵🇹 +351
+				302 🇶🇦 +974
+				303 🇷🇴 +40
+				304 🇷🇺 +7
+				305 🇷🇼 +250
+				306 🇰🇳 +1
+				307 🇱🇨 +1
+				308 🇻🇨 +1
+				309 🇼🇸 +685
+				310 🇸🇲 +378
+				311 🇸🇹 +239
+				312 🇸🇦 +966
+				313 🇸🇳 +221
+				314 🇷🇸 +381
+				315 🇸🇨 +248
+				316 🇸🇱 +232
+				317 🇸🇬 +65
+				318 🇸🇰 +421
+				319 🇸🇮 +386
+				320 🇸🇧 +677
+				321 🇸🇴 +252
+				322 🇿🇦 +27
+				323 🇰🇷 +82
+				324 🇸🇸 +211
+				325 🇪🇸 +34
+				326 🇱🇰 +94
+				327 🇸🇩 +249
+				328 🇸🇷 +597
+				329 🇸🇪 +46
+				330 🇨🇭 +41
+				331 🇸🇾 +963
+				332 🇹🇼 +886
+				333 🇹🇯 +992
+				334 🇹🇿 +255
+				335 🇹🇭 +66
+				336 🇹🇱 +670
+				337 🇹🇬 +228
+				338 🇹🇴 +676
+				339 🇹🇹 +1
+				340 🇹🇳 +216
+				341 🇹🇷 +90
+				342 🇹🇲 +993
+				343 🇹🇻 +688
+				344 🇺🇬 +256
+				345 🇺🇦 +380
+				346 🇦🇪 +971
+				347 🇬🇧 +44
+				348 🇺🇸 +1
+				349 🇺🇾 +598
+				350 🇺🇿 +998
+				351 🇻🇺 +678
+				352 🇻🇦 +379
+				353 🇻🇪 +58
+				354 🇻🇳 +84
+				355 🇾🇪 +967
+				356 🇿🇲 +260
+				357 🇿🇼 +263
+		358 text field (settable)
+		359 text নির্বাচিত:
+		360 text +880
+		361 text নোট (ঐচ্ছিক)
+		362 text entry area (settable)
+		363 button চেকআউটে যান →
+		364 text আপনার যোগাযোগের তথ্য শুধু আমন্ত্রণ পৌঁছে দিতে ব্যবহার করা হবে।
+	104 link Description: Chat with us on WhatsApp, Value: wa.me/8801577348028?text=Hi!%20I%27m%20interested%20in%20a%20digital%20invitation%20from%20e-Nimontron.
+
+The focused UI element is 99 button এই আমন্ত্রণটি অর্ডার করুন
