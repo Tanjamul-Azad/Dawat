@@ -6,6 +6,8 @@ This is a researched source shortlist and curation brief, **not a completed visu
 
 ## Sources to curate
 
+20 October foundation addition: [Orbix dashboard portfolio](https://dribbble.com/orbixstudiodashboard) and [Orbix SaaS design](https://www.orbix.studio/services/saas-design) public page descriptions informed compact navigation and aligned operational rows. Existing Dawat typography/paper/forest palette remains the source of the original implementation. See [rendered foundation evidence](../build-evidence/client-foundation.md). This does not claim a complete new visual audit of every reference.
+
 | Candidate | Study question for the design pass |
 |---|---|
 | [Papelaire — Invitation Builder, Rezah Aurellia / Kretya Studio](https://dribbble.com/shots/26302401-Papelaire-Invitation-Builder) | How can a polished editor expose templates, content/media and desktop/mobile preview without overwhelming the owner? Page describes a design concept, not an audited production system. |

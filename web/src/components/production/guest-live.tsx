@@ -1,0 +1,231 @@
+'use client';
+import { useProductLocale } from './product-locale';
+import { useEffect, useRef, useState } from 'react';
+import type { GuestPayload } from '@/features/production/guests';
+import { api, RequestError } from '@/features/production/client';
+import type { Workspace, Guest } from '@/features/workspace/model';
+import { GuestInvitation } from '../guest-invitation';
+import type { ResponseTransport } from '../invitation-response';
+import { renderPhotos } from '@/features/production/media';
+export function GuestLive({
+  initial,
+  slug,
+  preview = false,
+  previewWeddingId,
+}: {
+  initial: GuestPayload;
+  slug: string;
+  preview?: boolean;
+  previewWeddingId?: string;
+}) {
+  const { tr } = useProductLocale();
+  const [payload, setPayload] = useState(initial);
+  const [unavailable, setUnavailable] = useState(false);
+  const [stale, setStale] = useState(false);
+  const pending = useRef<
+    Record<
+      string,
+      {
+        body: string;
+        key: string;
+      }
+    >
+  >({});
+  const refreshing = useRef(false);
+  const root = `/i/${slug}/h/${initial.guest.id}/api/`;
+  async function refresh() {
+    if (refreshing.current || preview) return;
+    refreshing.current = true;
+    try {
+      const next = await api<GuestPayload>(root);
+      setPayload((current) =>
+        next.responseRevision < current.responseRevision ||
+        next.householdRevision < current.householdRevision ||
+        next.policyRevision < current.policyRevision
+          ? current
+          : next,
+      );
+      setStale(false);
+    } catch (e) {
+      if (e instanceof RequestError && e.status === 404) setUnavailable(true);
+      else setStale(true);
+      throw e;
+    } finally {
+      refreshing.current = false;
+    }
+  }
+  useEffect(() => {
+    if (preview) return;
+    const check = () => {
+      if (!document.hidden) void refresh().catch(() => {});
+    };
+    const interval = window.setInterval(check, 30000);
+    window.addEventListener('focus', check);
+    document.addEventListener('visibilitychange', check);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('focus', check);
+      document.removeEventListener('visibilitychange', check);
+    };
+  }, [preview, root]);
+  async function send(kind: 'response' | 'wish', body: unknown) {
+    const serialized = JSON.stringify(body);
+    if (pending.current[kind]?.body !== serialized)
+      pending.current[kind] = { body: serialized, key: crypto.randomUUID() };
+    try {
+      const result = await api<{
+        responseRevision?: number;
+        confirmedAt: string;
+      }>(root, {
+        method: 'POST',
+        body,
+        key: pending.current[kind].key,
+      });
+      delete pending.current[kind];
+      return result;
+    } catch (e) {
+      if (e instanceof RequestError && e.status === 404) setUnavailable(true);
+      throw e;
+    }
+  }
+  const transport: ResponseTransport = {
+    allowances: Object.fromEntries(payload.scopes.map((e) => [e.eventId, e.maxPeople])),
+    policies: Object.fromEntries(payload.policies.map((p) => [p.eventId, p])),
+    refresh,
+    submitResponse: async (eventId, answer) => {
+      const r = await send('response', {
+        kind: 'response',
+        expectedPolicyRevision: payload.policyRevision,
+        expectedHouseholdRevision: payload.householdRevision,
+        expectedResponseRevision: payload.responseRevision,
+        answers: [
+          {
+            eventId,
+            attendance: answer.attendance,
+            adults: answer.adults,
+            children: answer.children,
+            note: answer.note,
+          },
+        ],
+      });
+      setPayload((p) =>
+        r.responseRevision! < p.responseRevision
+          ? p
+          : {
+              ...p,
+              responseRevision: r.responseRevision!,
+              guest: {
+                ...p.guest,
+                responses: { ...p.guest.responses, [eventId]: { ...answer, updatedAt: r.confirmedAt } },
+              },
+            },
+      );
+    },
+    submitWish: async (body) => {
+      await send('wish', { kind: 'wish', body });
+    },
+  };
+  if (unavailable)
+    return (
+      <main style={{ maxWidth: 540, margin: '12vh auto', padding: 24 }}>
+        <h1>{tr('This personal invitation is unavailable.')}</h1>
+        <p>
+          {tr(
+            '\u098F\u0987 \u09B2\u09BF\u0982\u0995\u099F\u09BF \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09BF\u09A4 \u09AC\u09BE \u09AC\u09A8\u09CD\u09A7 \u09B9\u09DF\u09C7\u099B\u09C7\u0964 Please ask the hosts for their current personal link.',
+          )}
+        </p>
+      </main>
+    );
+  const guest: Guest = {
+    ...payload.guest,
+    events: payload.scopes.map((e) => e.eventId),
+    allowance: Math.max(...payload.scopes.map((e) => e.maxPeople)),
+  };
+  const workspace: Workspace = {
+    version: 1,
+    order: null,
+    draft: renderPhotos(
+      payload.content,
+      preview ? `/api/weddings/${previewWeddingId}/media` : `/i/${slug}/h/${guest.id}/media`,
+    ),
+    published: renderPhotos(
+      payload.content,
+      preview ? `/api/weddings/${previewWeddingId}/media` : `/i/${slug}/h/${guest.id}/media`,
+    ),
+    guests: [guest],
+    wishes: [],
+  };
+  return (
+    <>
+      {stale && (
+        <p role="status" style={{ padding: 12, textAlign: 'center' }}>
+          {tr('Connection interrupted. Last loaded invitation shown; new replies need server confirmation.')}
+        </p>
+      )}
+      <GuestInvitation
+        workspace={workspace}
+        ready
+        update={() => false}
+        notify={() => {}}
+        authority={{
+          mode: preview ? 'householdPreview' : 'liveHousehold',
+          scope: `household-${guest.id}`,
+          guestId: guest.id,
+        }}
+        responseTransport={preview ? undefined : transport}
+      />
+    </>
+  );
+}
+export function GuestExchange({ slug }: { slug: string }) {
+  const { tr } = useProductLocale();
+  const [error, setError] = useState('');
+  const [busy, setBusy] = useState(true);
+  const started = useRef(false);
+  async function exchange() {
+    setBusy(true);
+    setError('');
+    try {
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      const token = parts.at(-1);
+      const r = await api<{
+        path: string;
+      }>('/api/guest/exchange/', {
+        method: 'POST',
+        body: { slug, token },
+      });
+      const lang = new URLSearchParams(window.location.search).get('lang');
+      window.location.replace(r.path + (lang === 'en' ? '?lang=en' : lang === 'bn' ? '?lang=bn' : ''));
+    } catch (e) {
+      setError((e as Error).message);
+      setBusy(false);
+    }
+  }
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    void exchange();
+  }, [slug]);
+  return (
+    <main style={{ maxWidth: 480, margin: '16vh auto', padding: 24, textAlign: 'center' }}>
+      <h1 style={{ fontFamily: 'var(--display)', fontWeight: 400 }}>
+        {tr('An invitation, especially for you.')}
+      </h1>
+      {busy ? (
+        <p role="status">
+          {tr(
+            '\u0986\u09AA\u09A8\u09BE\u09B0 \u0986\u09AE\u09A8\u09CD\u09A4\u09CD\u09B0\u09A3 \u09AA\u09CD\u09B0\u09B8\u09CD\u09A4\u09C1\u09A4 \u09B9\u099A\u09CD\u099B\u09C7\u2026 Preparing your invitation\u2026',
+          )}
+        </p>
+      ) : (
+        <>
+          <p role="alert">{error}</p>
+          <button className="button" onClick={exchange}>
+            {tr('Try again')}
+          </button>
+          <p>{tr('Please use the current personal link from your hosts.')}</p>
+        </>
+      )}
+    </main>
+  );
+}

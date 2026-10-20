@@ -2,13 +2,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createWorkspace, workspaceSchema, type Workspace } from './model';
 
-export function useWorkspace(key = 'dawat-studio-sandbox-v1') {
+export function useWorkspace(key = 'dawat-studio-sandbox-v1', enabled = true) {
   const [workspace, setWorkspace] = useState<Workspace>(createWorkspace);
   const [ready, setReady] = useState(false);
   const [storageError, setStorageError] = useState('');
   const current = useRef(workspace);
   const blocked = useRef(false);
   useEffect(() => {
+    if (!enabled) {
+      setReady(true);
+      return;
+    }
     function read() {
       try {
         const raw = localStorage.getItem(key);
@@ -31,10 +35,10 @@ export function useWorkspace(key = 'dawat-studio-sandbox-v1') {
     };
     window.addEventListener('storage', onStorage);
     return () => window.removeEventListener('storage', onStorage);
-  }, [key]);
+  }, [key, enabled]);
   const update = useCallback(
     (transform: (current: Workspace) => Workspace) => {
-      if (blocked.current) return false;
+      if (!enabled || blocked.current) return false;
       const next = workspaceSchema.parse(transform(current.current));
       try {
         localStorage.setItem(key, JSON.stringify(next));
@@ -49,9 +53,10 @@ export function useWorkspace(key = 'dawat-studio-sandbox-v1') {
         return false;
       }
     },
-    [key],
+    [key, enabled],
   );
   const reset = useCallback(() => {
+    if (!enabled) return false;
     const seed = createWorkspace();
     try {
       localStorage.setItem(key, JSON.stringify(seed));
@@ -64,6 +69,6 @@ export function useWorkspace(key = 'dawat-studio-sandbox-v1') {
       setStorageError('Browser storage is unavailable. The demo could not be reset.');
       return false;
     }
-  }, [key]);
+  }, [key, enabled]);
   return { workspace, update, ready, storageError, reset };
 }

@@ -1,0 +1,235 @@
+// @vitest-environment jsdom
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { afterEach, beforeAll, expect, it, vi } from 'vitest';
+import { WeddingDesk } from './wedding-desk';
+import { WorkspaceFrame } from './frame';
+import { ResponseEditor } from './response-editor';
+import { ProductLocale } from './product-locale';
+import { emptyDraft, type WeddingDetail } from '@/features/production/contracts';
+import type { HouseholdRow } from '@/features/production/guests';
+const wid = '20000000-0000-4000-8000-000000000001';
+const initial: WeddingDetail = {
+  wedding: {
+    id: wid,
+    title: 'রহমান পরিবার',
+    slug: wid,
+    visibility: 'private',
+    state: 'active',
+    publication_revision: 0,
+  },
+  content: emptyDraft(),
+  revision: 0,
+  updatedAt: '2026-10-20T10:00:00Z',
+  expiresAt: null,
+  termDays: 90,
+  publishedDraftRevision: null,
+};
+const json = (data: unknown) => new Response(JSON.stringify({ data }));
+const pause = async () => {
+  await act(async () => {
+    await Promise.resolve();
+  });
+};
+beforeAll(() => {
+  HTMLDialogElement.prototype.showModal = function () {
+    this.setAttribute('open', '');
+  };
+  HTMLDialogElement.prototype.close = function () {
+    this.removeAttribute('open');
+  };
+});
+afterEach(() => {
+  cleanup();
+  vi.useRealTimers();
+  vi.unstubAllGlobals();
+  document.cookie = 'dawat_ui=; Path=/; Max-Age=0';
+});
+function editor() {
+  render(
+    <ProductLocale>
+      <WeddingDesk initial={initial} email="test@example.test" />
+    </ProductLocale>,
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'নাম ও আমন্ত্রণ' }));
+  return screen.getByLabelText('প্রথম জন · মূল নাম') as HTMLInputElement;
+}
+
+it('preserves text entered during an autosave and acknowledges each exact snapshot', async () => {
+  vi.useFakeTimers();
+  let acknowledge!: (r: Response) => void;
+  const fetcher = vi
+    .fn()
+    .mockImplementationOnce(
+      () =>
+        new Promise<Response>((r) => {
+          acknowledge = r;
+        }),
+    )
+    .mockResolvedValue(json({ revision: 2, updatedAt: '2026-10-20T10:01:00Z' }));
+  vi.stubGlobal('fetch', fetcher);
+  const input = editor();
+  fireEvent.change(input, { target: { value: 'প্রথম লেখা' } });
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(2000);
+  });
+  expect(input.disabled).toBe(false);
+  fireEvent.change(input, { target: { value: 'নতুন লেখা' } });
+  await act(async () => {
+    acknowledge(json({ revision: 1, updatedAt: '2026-10-20T10:00:30Z' }));
+  });
+  expect(input.value).toBe('নতুন লেখা');
+  expect(screen.getByText(/অসংরক্ষিত পরিবর্তন/)).toBeTruthy();
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(2000);
+  });
+  expect(fetcher).toHaveBeenCalledTimes(2);
+  const second = JSON.parse(fetcher.mock.calls[1][1].body);
+  expect(second.expectedRevision).toBe(1);
+  expect(second.content.partnerOne).toBe('নতুন লেখা');
+  expect(screen.getByText(/সার্ভারে সংরক্ষিত/)).toBeTruthy();
+});
+it('pauses autosave after an uncertain failure and supports deliberate retry without discarding text', async () => {
+  vi.useFakeTimers();
+  const fetcher = vi
+    .fn()
+    .mockRejectedValueOnce(new TypeError('offline'))
+    .mockResolvedValue(json({ revision: 1, updatedAt: '2026-10-20T10:01:00Z' }));
+  vi.stubGlobal('fetch', fetcher);
+  const input = editor();
+  fireEvent.change(input, { target: { value: 'আমার লেখা' } });
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(2000);
+  });
+  expect(screen.getByRole('alert')).toBeTruthy();
+  fireEvent.change(input, { target: { value: 'আরও লেখা' } });
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(10000);
+  });
+  expect(fetcher).toHaveBeenCalledTimes(1);
+  expect(input.value).toBe('আরও লেখা');
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: 'খসড়া সংরক্ষণ' })));
+  expect(fetcher).toHaveBeenCalledTimes(2);
+  expect(screen.getByText(/সার্ভারে সংরক্ষিত/)).toBeTruthy();
+});
+it('requires deliberate save after keeping local edits over a conflicting remote version', async () => {
+  vi.useFakeTimers();
+  const fetcher = vi
+    .fn()
+    .mockResolvedValueOnce(
+      new Response(JSON.stringify({ code: 'PT409', message: 'The draft changed.' }), { status: 409 }),
+    )
+    .mockResolvedValueOnce(
+      json({ ...initial, revision: 7, content: { ...initial.content, partnerOne: 'অন্য সংস্করণ' } }),
+    )
+    .mockResolvedValue(json({ revision: 8, updatedAt: '2026-10-20T10:01:00Z' }));
+  vi.stubGlobal('fetch', fetcher);
+  const input = editor();
+  fireEvent.change(input, { target: { value: 'আমার সংস্করণ' } });
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(2000);
+  });
+  fireEvent.click(screen.getByRole('button', { name: 'আমার লেখা রেখে পর্যালোচনা করুন' }));
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(10000);
+  });
+  expect(fetcher).toHaveBeenCalledTimes(2);
+  expect(input.value).toBe('আমার সংস্করণ');
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: 'খসড়া সংরক্ষণ' })));
+  expect(JSON.parse(fetcher.mock.calls[2][1].body).expectedRevision).toBe(7);
+});
+it('marks the current contextual navigation instead of falsely selecting the wedding list', () => {
+  render(
+    <WorkspaceFrame wedding={{ id: wid, title: 'দীর্ঘ বাংলা আয়োজন', view: 'guests' }}>
+      <p>Content</p>
+    </WorkspaceFrame>,
+  );
+  expect(screen.getByRole('link', { name: 'অতিথি ও উত্তর' }).getAttribute('aria-current')).toBe('page');
+  expect(screen.getByRole('link', { name: 'আমার আয়োজন' }).hasAttribute('aria-current')).toBe(false);
+});
+it('requires confirmation before pausing and keeps the dialog open while the command is pending', async () => {
+  let finish!: (r: Response) => void;
+  const live = {
+    ...initial,
+    publishedDraftRevision: 0,
+    wedding: { ...initial.wedding, visibility: 'live', publication_revision: 1 },
+  };
+  const fetcher = vi
+    .fn()
+    .mockImplementationOnce(
+      () =>
+        new Promise<Response>((r) => {
+          finish = r;
+        }),
+    )
+    .mockResolvedValue(
+      json({ ...live, wedding: { ...live.wedding, visibility: 'paused', publication_revision: 2 } }),
+    );
+  vi.stubGlobal('fetch', fetcher);
+  render(
+    <ProductLocale>
+      <WeddingDesk initial={live} email="test@example.test" />
+    </ProductLocale>,
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'আমন্ত্রণ সাময়িক বন্ধ করুন' }));
+  expect(fetcher).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole('button', { name: 'সাময়িক বন্ধ করুন' }));
+  await pause();
+  expect(fetcher).toHaveBeenCalledTimes(1);
+  const dialog = screen.getByRole('dialog');
+  const cancel = new Event('cancel', { bubbles: false, cancelable: true });
+  fireEvent(dialog, cancel);
+  expect(cancel.defaultPrevented).toBe(true);
+  expect(dialog.hasAttribute('open')).toBe(true);
+  await act(async () => {
+    finish(json({ visibility: 'paused', publicationRevision: 2 }));
+  });
+  expect(screen.queryByRole('dialog')).toBeNull();
+  expect(screen.getByRole('button', { name: 'আবার চালু করুন' })).toBeTruthy();
+});
+it('does not submit a host correction until reason and allowance are valid, normalizes Bangla counts', async () => {
+  const row: HouseholdRow = {
+    id: wid,
+    name: 'রহমান পরিবার',
+    nameBn: '',
+    greeting: '',
+    greetingEn: '',
+    message: '',
+    messageEn: '',
+    privateNote: '',
+    events: [{ eventId: 'reception', maxPeople: 4 }],
+    revision: 1,
+    responseRevision: 0,
+    linkRevision: 0,
+    linkState: 'missing',
+    responses: {},
+  };
+  const fetcher = vi
+    .fn()
+    .mockResolvedValueOnce(json({ rows: [] }))
+    .mockResolvedValue(json({ responseRevision: 1 }));
+  vi.stubGlobal('fetch', fetcher);
+  const saved = vi.fn(async () => {});
+  render(
+    <ResponseEditor
+      wid={wid}
+      row={row}
+      eventId="reception"
+      policyRevision={1}
+      onClose={() => {}}
+      onSaved={saved}
+    />,
+  );
+  await pause();
+  fireEvent.change(screen.getByLabelText('প্রাপ্তবয়স্ক'), { target: { value: '৫' } });
+  fireEvent.change(screen.getByLabelText('সংশোধনের কারণ'), {
+    target: { value: 'ফোনে কথা বলে নিশ্চিত করা হয়েছে' },
+  });
+  fireEvent.submit(screen.getByRole('button', { name: 'সংশোধন সংরক্ষণ' }).closest('form')!);
+  await pause();
+  expect(fetcher).toHaveBeenCalledTimes(1);
+  fireEvent.change(screen.getByLabelText('প্রাপ্তবয়স্ক'), { target: { value: '৩' } });
+  fireEvent.submit(screen.getByRole('button', { name: 'সংশোধন সংরক্ষণ' }).closest('form')!);
+  await pause();
+  expect(saved).toHaveBeenCalledTimes(1);
+  expect(JSON.parse(fetcher.mock.calls[1][1].body).answer.adults).toBe(3);
+});

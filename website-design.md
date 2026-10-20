@@ -1,8 +1,10 @@
 # Product and dashboard design — Client V1
 
-Updated: **20 October 2026**. Design contract for the next slice; screen specifications below are proposed, not rendered/implemented screens. [Plan](plan.md) controls build order; [architecture](architecture.md) controls permissions.
+Updated: **20 October 2026**. Full target design contract. A compact subset of entry/overview/editor/review and seller orders/access now has [rendered local evidence](docs/build-evidence/client-foundation.md); the other screens/states below remain proposed. [Plan](plan.md) controls build order; [architecture](architecture.md) controls permissions.
 
 ## 1. Direction and references
+
+Latest implemented UI: compact contextual sidebar/mobile tabs, one primary edit action plus direct guest access per wedding, working seller name/email search, BDT price fields, sticky draft status/actions, human-readable conflict review, correction/history dialog, CSV export with retained error state and pause/resume impact confirmation. Loading and retry boundaries are Bengali-first. Existing Jamdani invitation remains intact. These are implemented/component-tested screens; fresh browser/device render qualification is pending because browser control remains disabled. [Workflow evidence](docs/build-evidence/client-dashboard-workflow.md).
 
 The guest invitation remains the hero product: a continuous illustrated, personal digital card. The management experience should feel like a calm Bengali wedding atelier: polished typography, precise spacing, practical forms and clear status, with the warmth of the template but less ornament around data entry.
 

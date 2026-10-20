@@ -4,6 +4,7 @@
 # Local dependencies, generated builds and deployment bindings
 **/node_modules/
 **/.next/
+**/.next-local/
 **/out/
 **/.sites-runtime/
 **/.openai/

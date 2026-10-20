@@ -4,6 +4,8 @@
 
 ## Confirmed product decisions
 
+Latest implementation choices: autosave uses acknowledged snapshots and pauses after uncertain failure/conflict; choosing local conflict data requires deliberate save. Corrections record the original/changed answer, actor, reason and explicit closed-policy override; scope/allowance cannot be overridden. CSV is generated privately on demand across full selected filters (bounded to 10,000, no silent truncation), not saved as a permanent public file. Publication pause/resume preserves records/links/term and invalidates stale policy commands. Customer prices are entered in BDT and converted exactly to integer paisa. SMTP sender identity does not automatically authorize seller access. [Evidence](build-evidence/client-dashboard-workflow.md).
+
 | ID  | Decision                                                                                                      | Consequence                                                      |
 | --- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | D01 | Invitation template is primary product; preserve liked Jamdani direction                                      | One excellent template before collection expansion               |
@@ -52,6 +54,12 @@ These are implementation recommendations within the existing brief, not provisio
 These do not block writing plans, synthetic development, UX or local integration fixtures. A pending commercial answer never counts as approval to invent a price, buy a service or publish customer policies. Ask only when the specific dependent implementation/release needs it; continue independent work.
 
 ## Changes since prior plans
+
+- Latest 20 October: user explicitly requires **all product surfaces Bangla-first**, English secondary; preserve entered names/content. SMTP sender changed to `valtube101@gmail.com` for now. Gmail SMTP saved but actual send fails with confirmed 535 BadCredentials; user is creating a proper App Password privately. Shared app-level SMTP serves all customers; no per-customer sender setup. Named guest sharing remains manual. Media migration now applied in Dawat Staging through Supabase plugin, with normal-role rollback proof. Original photos are decoded only in bounded memory and discarded; only sanitized private WebP derivatives persist. A separate server-only Storage processor credential is required, while ordinary data access retains user-session RLS. Full deployment/retention/recovery qualification remains open.
+
+- 20 October guest delivery: user asked to move online, created free **Dawat Staging** in Mumbai and explicitly approved both prepared migrations. Hosted normal-role rollback proof passed and all 17 public tables have RLS. App configuration now targets this staging database; frontend remains local. No SMTP provider yet, explicitly deferred by user: sign-in stays disabled (`AUTH_EMAIL_ENABLED=false`) until SMTP + code templates + real delivery are qualified. No service-role key, paid upgrade or external mail used. Offline and hosted guest-token encryption keys are separate; maintain both backups. Sessions expire after 12 hours and use per-household cookie paths. Remaining recovery/log/device/operations gates still apply.
+
+- Earlier 20 October foundation: user authorized local setup. Docker/Supabase remain available locally. Seller activates an already verified intended email directly; claims/delivery remain later. Explicit acknowledged save ships before autosave. Synthetic order terms are required input; this does not resolve commercial duration/retention policy. Production media remains unavailable; the later guest delivery checkpoint supersedes the earlier guest-reply limitation.
 
 - Build priority moves from template-only refinement to production delivery around the liked template; remaining template qualification continues as a parallel workstream, not a complete visual restart.
 - Old Node/pnpm/Tailwind/next-intl preferences are not compulsory migrations. Preserve working choices unless evidence justifies change.

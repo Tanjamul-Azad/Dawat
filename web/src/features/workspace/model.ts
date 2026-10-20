@@ -29,6 +29,9 @@ export const photoSchema = z.object({
     )
     .max(900000),
   alt: z.string().max(300),
+  thumbnailSrc: z.string().optional(),
+  fullSrc: z.string().optional(),
+  responsiveSrcSet: z.string().optional(),
   altBn: z.string().max(300).optional(),
   position: z.enum(['center', 'top', 'bottom']).optional(),
 });

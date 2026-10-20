@@ -1,73 +1,107 @@
-# Dawat Studio — functional Jamdani invitation template
+# Dawat application — backend and named guest delivery
 
-> **Planning update · 20 October 2026:** the app below is a local/static prototype. Current production-delivery plan is [Client V1](../plan.md), with [architecture](../architecture.md), [design](../website-design.md) and [tasks](../task.md). Backend, verified auth, tenant isolation and cross-device RSVP are not implemented by localStorage. Older run/checkpoint notes remain historical; this planning update changes no app behavior.
+20 October 2026. Next.js server deployment, Supabase Auth/PostgreSQL/Storage and the original Jamdani renderer. Backend, named guest links, RSVP/wishes/reports and private photo processing are implemented. **The product defaults to Bangla; English is secondary. Commercial launch is not yet qualified.** Latest evidence: [media/Bangla checkpoint](../docs/build-evidence/media-bangla-first.md). Remaining delivery: [task.md](../task.md).
 
-**Latest template — v6:** explicit sealed opening before chapters/navigation/forms render, host-created recipient name on cover/reply, no guest name fields and view-only general links. Long-name/photo-free/reception-only checks and real personal RSVP were exercised at 390/320px; 67 tests and typechecked export pass. [Current audit](../docs/build-evidence/personal-opening-v6.md) · [Gift/Pinterest research](../docs/design/pinterest-gift-reveal-v6.md). Primary preview now runs on `http://127.0.0.1:3000/invite/?lang=bn`; set `DAWAT_PREVIEW_PORT=3000` before `npm run preview` to use this port (default is 4173). Template first; real-device/performance/backend gates remain open. Historical checkpoints below are superseded.
+## Hosted staging (current configuration)
 
-Original wedding invitation studio built in Next.js/React/TypeScript. Working brand, fictional people and venues. **This is an interactive browser sandbox, not a paid customer service or a production backend.**
+The user-created **Dawat Staging** project (`zztiestaqjbsbjuzmbqp`, Mumbai/free) has all five migrations, applied using the connected Supabase plugin. Migration history matches repository versions. Hosted normal-role guest, media and response-tools proofs passed, with synthetic rows rolled back. The app targets hosted data on local port 3100; an independent offline QA server uses 3102. The website is not publicly deployed. No real customer orders, verified staff roles or paid upgrade were created.
 
-**Current product focus: continuous digital card v5.1.** `/invite/?lang=bn` presents the full illustrated invitation: original garden/vine, 1.8s woven folio, date ribbon, coordinated chapters and motion controls. Browser access restored; actual 390/320px Bangla-English opening-to-RSVP checks plus landscape, map/copy/calendar download and RSVP/error/edit checks are recorded. **56 tests** and the typechecked export pass. Event drafts, live deadline and observed visual defects are fixed. [Current audit/evidence](../docs/build-evidence/edge-case-audit-v5-1.md) · [Portable build](../.artifacts/jamdani-digital-card-v5-1-static.zip). Physical phones, exhaustive content variants, performance and production backend remain open. Further website work stays deferred.
+To select this or a fresh independently migrated hosted project, from `web`:
 
-Latest local version: **Figma UI adoption v4**, explicitly requested by the user. Fraunces/Instrument Sans with Noto Serif Bengali/Hind Siliguri, rebuilt Bangla/English storefront/catalogue, mobile maker preview controls, horizontal-tab workspace and shared woven-envelope opening retain our existing domain logic. See [current evidence](../docs/build-evidence/figma-ui-adoption-v4.md) and [portable preview](../.artifacts/dawat-figma-ui-v4-static.zip).
+```powershell
+npm run backend:connect -- https://PROJECT_REF.supabase.co sb_publishable_PUBLIC_KEY
+```
 
-## Run locally
+The helper preserves `.env.local.offline-backup`, writes a dedicated hosted key ring to `.env.hosted.local`, and selects `.env.local`; it retains a previously supplied media processor key. All are Git-ignored. Back up the hosted AES key ring securely and independently from the database before real invitations; losing it breaks owner recopy, while removing old key IDs breaks older encrypted credentials. Never reuse offline keys in production. **Only the isolated Storage processor needs `SUPABASE_MEDIA_SECRET_KEY`; ordinary account/guest data queries retain session RLS.** Supply that secret privately in the selected environment and `.env.hosted.local`, never chat/source/`NEXT_PUBLIC`. Rebuild/restart when switching environments; never run synthetic local signups against hosted configuration. To return offline, copy `.env.local.offline-backup` over `.env.local` and restart the app. Preserve `.env.hosted.local` for switching back.
 
-Use a supported Node LTS runtime. This checkout was built with Node 22.18.0 and npm 10; the commercial baseline prefers Node 24 LTS and must be reconciled in CI before launch.
+**SMTP delivery confirmed; hosted session verification pending.** Shared sender/username is `valtube101@gmail.com`, Gmail host `smtp.gmail.com`, port 465. Corrected App Password resolved the earlier 535 failure: hosted Auth accepted a test OTP and the user confirmed receipt. Both signup and sign-in templates use Bangla-first code-only email (`supabase/templates/code.html`, `{{ .Token }}`). `AUTH_EMAIL_ENABLED=true` in selected/saved hosted configuration enables private in-app verification. Successful hosted OTP/session/dashboard login still requires user verification. One Dawat SMTP sender serves all customers; clients need only a receiving email address, no separate SMTP account. Guest link sharing remains manual. Set real deployment Site URL/redirects, keep verification enabled, and qualify rate limits/retry/MFA. Never paste credentials into source/chat. [Supabase SMTP](https://supabase.com/docs/guides/auth/auth-smtp), [Google App Passwords](https://support.google.com/accounts/answer/185833).
+
+For a public deployment, use a Next.js server host, canonical HTTPS `APP_ORIGIN`, the same public Supabase URL/key and privately supplied guest key ring. Apply future migrations once through the normal release process. Configure proxy/hosting logs to redact `/i/*/g/*` bearer paths and omit request bodies/cookies; no personal-link analytics. Verify no-store/cookie/security headers and public OTP behavior in the actual deployment. Hosted seller-role provisioning and full operational/recovery gates remain pending.
+
+## Local setup
+
+Requirements: Node 22, npm, Docker Desktop running Linux containers. From `web`:
 
 ```powershell
 npm ci
+npm run backend:start
+npm run backend:env
 npm run dev
 ```
 
-Open `http://127.0.0.1:3000/`.
+The environment helper targets only local Supabase, writes `.env.local` once with public configuration, a fresh independent guest key ring and server-only local Storage processor key, and refuses overwrites. `APP_ORIGIN` must exactly match the browser origin/port; other mutation origins are rejected. Current hosted-config app uses **http://127.0.0.1:3100** because an existing process occupies 3000; use `npm run dev -- --port 3100` with matching configuration. Port 3102 currently runs independent offline QA with ignored `.env.qa.local` and `.next-local` build directory; it does not change hosted configuration.
 
-The completed first-template frontend is at `http://127.0.0.1:3000/invite/` (Bangla by default) or `/invite/?lang=en`.
+Local services:
 
-To inspect the production export after building, run `npm run preview` and open `http://127.0.0.1:4173/invite/`. This local-only Node server uses built-in modules; stop it with Ctrl+C. The user requested a running preview on 19 October; the retained task server is intentionally kept available for review.
+- App: `/auth/login/`, `/dashboard/`, `/admin/orders/`.
+- Email inbox: http://127.0.0.1:54324 (local Mailpit; no external email is sent).
+- Database studio: http://127.0.0.1:54323.
+- Backend status: `npm run backend:status`; stop without deleting data: `npm run backend:stop`.
+
+Sign in with a synthetic email, read its OTP in the local inbox and verify. Provision the first local seller:
+
+```powershell
+npm run backend:seller -- seller@example.test
+```
+
+This helper targets only the fixed local Docker database, requires an already verified account and records an audit event. Open `/admin/orders/`, enroll an authenticator and verify its code. Public signup metadata cannot grant seller access. Hosted staff provisioning must use an authorized database operator; this local helper never accepts a hosted connection.
+
+## Working delivery flow
+
+1. Seller records the intended email, actual agreed package, integer paisa amount and explicitly agreed hosting days.
+2. Seller verifies the actual payment reference/amount or records an explicit complimentary/test exception. Exception orders remain payment-pending.
+3. Confirm creates one wedding, empty draft, inactive grant and entitlement transactionally. Retry keys return the original result.
+4. Separately activate the matching, already verified customer. No claim token or automatic email delivery exists in this slice. The customer signs in at `/dashboard/` and refreshes access.
+5. Customer edits names/wording and stable Nikah/Reception events, saves incomplete drafts, reviews a shared-renderer preview and publishes valid content. Save is explicit and acknowledged; autosave is not implemented.
+6. General links show **only explicitly selected events**, are view-only, and use private/no-store responses. No selected events means unavailable. Existing publication survives draft changes and management suspension.
+7. Open **Guests & replies**, add a named household, select published events and separate per-event total allowances (1–50). Optional private notes stay host-only. Preview uses the shared renderer and cannot submit. The host supplies identity; guests never enter a name.
+8. Copy creates/reuses the same encrypted personal link. Share it manually; the app sends no message. Explicit Replace/ Revoke warns that old links and their sessions stop working while existing replies/wishes remain.
+9. Opening `/i/:slug/g/:token/` performs a POST exchange, then replaces it with `/i/:slug/h/:householdId/`. A 12-hour HttpOnly cookie is scoped to that path, so several household links work in separate tabs without a global current guest. Forwarded links carry household bearer access, not individual identity verification.
+10. RSVP uses actual server acknowledgments, expected policy/overlay/answer revisions and retry keys. Per-event accept/decline/count validation and deadlines are checked inside the transaction; a stale answer is a conflict. Wishes are private, idempotent, couple-addressed and independent of attendance. The dashboard shows event-specific pending/accepted/declined, adults/children, searchable 25-row pages and private wishes; cross-event totals are not unique people. Revoked households remain in invitation counts.
+
+The first publish starts the order's agreed term once. Republish cannot restart it. Prices, durations, retention and selling policies have **not** been chosen for the business; local verification uses synthetic terms only.
+
+## Private photos
+
+Use the **ছবি / Photographs** editor chapter. Select up to five JPEG/PNG/WebP photos, each up to 10 MiB and 20 million pixels. Convert HEIC/HEIF to JPEG first. Server validates actual decoding, rejects unsupported/animated/corrupt/decompression-heavy input, rotates EXIF orientation, strips EXIF/GPS/XMP and produces 480/960/1600 WebP variants without upscaling. Original input exists only in bounded memory. Top/center/bottom framing, ordering and Bangla/English descriptions reuse the original gallery/lightbox and deliberate cover opening.
+
+Reservation and upload are separate: `POST /api/weddings/:wid/media/` with `Idempotency-Key`, then raw-image `PUT /api/weddings/:wid/media/:id/`. Five active ready/reserved slots are enforced under wedding locks; expired unfinished reservations release capacity. Durable 2-minute leases and fingerprints support the same-file retry, with four attempts maximum. A shared cap allows four in-flight bodies/processes across instances; one native decoder per Node process bounds memory. Body buffering is limited to 10 MiB/30 seconds; transforms have bounded timeouts. Ready appears only after all private objects and the database commit acknowledge. Partial/uncertain failures never delete a possibly committed image; abandoned attempt objects become eligible for delayed cleanup.
+
+The `wedding-media` bucket is private. A restrictive policy blocks browser/anonymous direct Storage operations even if another permissive policy exists. The server supplies a secret only in the dedicated media module. Owners read `/api/weddings/:wid/media/:id/:size/`; general guests read `/i/:slug/media/:id/:size/`; named guests read `/i/:slug/h/:hid/media/:id/:size/`. Every request rechecks the current owner/guest gate or general publication and exact asset reference. Responses are private/no-store WebP; storage keys and signed URLs are not sent to guests. Link revocation blocks future scoped reads, while already downloaded images cannot be recalled.
+
+Draft save/publish rejects foreign, unready, removed, duplicate and arbitrary external/data-URL references. Photos remain private drafts until publication. Save a draft removal before removing an unused library photo; retained immutable publications pin their assets. Initial protective quotas: 30 reservations/wedding/24h and 50 ready assets including retained history, with explicit support errors; these are engineering bounds, not a commercial unlimited promise.
+
+`npm run media:cleanup` runs the bounded trusted cleanup script (25 eligible attempts per batch, minimum 24h delay). It removes only abandoned/superseded attempts or removed photos with no retained publication reference, then records an idempotent acknowledgement. Schedule/monitor this on the actual trusted server before launch; no recurring job has been provisioned here. Retention policy, backup/object/key restoration and load/device qualification remain release gates.
+
+## Security boundaries (ordinary application data)
+
+- All normal application queries use the customer's verified Supabase session and RLS. No server service-role bypass.
+- Direct writes to exposed tables are denied to anonymous/authenticated roles. Narrow transaction functions enforce identity, current membership, confirmed order/eligibility, active grant and unexpired entitlement.
+- Seller actions require a controlled staff row **and AAL2**, checked again in PostgreSQL.
+- Same-wedding composite publication pointer; one wedding/order; actor-scoped command replay; draft revision conflicts; immutable versions; private append-only audit/payment records.
+- HttpOnly, SameSite cookies, request-origin validation, bounded JSON, no-store private responses, provider OTP limits and database actor mutation limits.
+- Foreign/inactive workspace reads and writes return neutral unavailable errors. Banned/deleted accounts are denied even with a previously issued JWT.
+- Production builds ignore `NEXT_PUBLIC_APP_MODE=demo`. Missing configuration fails closed. `/studio/` and `/operator/` route to authenticated surfaces. `/invite/` remains a fictional read-only template sample with its original art, gallery, reveal and music.
+
+## Verification
 
 ```powershell
 npm run typecheck
 npm test
 npm run build
+npm run test:local
 ```
 
-The current `next.config.ts` exports static pages into `out/` for an owner-private design preview. Production server behavior requires changing this deployment mode when the real backend is integrated; static export cannot supply server-only owner authorization or verified payment callbacks.
+194 Vitest checks include PostgreSQL execution through PGlite with normal roles/RLS/media publication references, real sharp decoding/metadata/limits/concurrency, retained-key rotation, response acknowledgments/failures, photo retry state, acknowledged autosave/conflict recovery, corrections/CSV/visibility and Bangla defaults; no Docker is needed for these tests. `test:local` requires the running local Supabase stack AND app configured to that stack with a local media processor key; it refuses hosted configuration, creates unique synthetic accounts/orders, exercises actual OTP/MFA, seller search, concurrent photo processing/protected delivery, household RSVP/wishes, attributed correction/history/private CSV, pause/resume without term reset, revocation, concurrent saves and suspension. Set `APP_ORIGIN` for another local port. Latest HTTP/Storage run passed on 3102; browser media/device review remains pending.
 
-## Implemented preview
+Historical optional browser QA uses `DAWAT_BROWSER_MODULE` with Edge. It is not current UI evidence and must not be used to bypass disabled browser-control settings. Current browser interaction must use the enabled approved browser tools. Never store OTPs, TOTP secrets or sessions in evidence.
 
-- Editorial storefront with original ImageGen portrait artwork, SVG botanicals and a CSS envelope composition. Optimized artwork is 122KB/289KB WebP; the full original stays in `design-source/`, outside public output.
-- Collection: one Jamdani Ivory template, with three curated palettes inside the customizer.
-- Four-step editor: bilingual names/message; two events with bilingual titles/venues/addresses and dates/times; up to five photographs; curated palette. Photo controls support local resizing, removal, reordering, focal alignment and bilingual descriptions. Photo-free output has its own composed section.
-- Public customizer: Save draft, fast mobile live-preview dialog, read-only full preview and Review your order. Public buyers cannot publish.
-- `/order/`: browser-local request with contact fields, immutable ordered design snapshot and confirmation/activation timeline. No payment or message is sent.
-- `/operator/`: openly labelled internal UX simulation for confirmation, separate activation and revocation. Find it through About this preview. It is not protected admin authentication.
-- `/dashboard/`: locked until local confirmation and activation; first activation starts an empty preparing workspace. Publication is separate. Revoking/re-activating access preserves later client work.
-- Activated editor: explicit draft versus Update demo invitation publication; the guest card does not change on draft save. Read-only design previews never collect replies/wishes, even when a demo dashboard is active.
-- Host workspace: event-specific totals, pending versus declined, guest search/filters/details, scoped guest creation, personalized greeting/message, guest-event selection and CSV export.
-- Guest template: layered woven-envelope/seal opening (1.45s), skip and reduced-motion paths, complete Bangla/English guest copy and explicit customer translations, preserved language-switch form state, localized live countdown, editorial celebrations and framed photo sequence with lightbox/keyboard/swipe/failure fallback, no-photo edition, per-event Google Maps links/click-loaded map/address copy and UTF-8 calendar download, RSVP/edit/decline and independent wishes, woven forest closing. No competitor artwork or photographs are used.
-- Public `/invite/` is an interactive fictional sample. Its replies persist under `dawat-guest-sample-v1`, independently of customer orders/host data, and can be reset on the sample page. `?preview=design` remains read-only. `?live=1` uses the explicitly published browser-local customer invitation; personalized `?guest=...` uses that household's scope. No query parameter supplies real production authorization.
-- Publishing the bilingual template checks both names, wording, event translations and photograph descriptions. Older saved drafts remain loadable; fill missing translations before publishing. No automatic name translation occurs.
-- Browser storage with schema validation, save-failure feedback and a sample reset. Same-origin tabs receive storage changes.
-- Responsive layouts, semantic forms/native dialog focus behavior, keyboard controls and reduced-motion styles.
+Generated schema types: `npm run backend:types`. Migrations: `202610200001_foundation.sql`, `202610200002_guest_delivery.sql`, `202610200003_media.sql`, `20261020094118_host_response_tools.sql`, `20261020094619_publication_visibility.sql`. Hosted history matches these versions; do not rerun them. `supabase/tests/hosted_guest_smoke.sql`, `hosted_media_smoke.sql` and `hosted_response_tools_smoke.sql` are rollback-only normal-role proofs, passed on the intended staging database. Media SQL uses synthetic object metadata, not actual hosted image bytes. CI runs typecheck/tests/build. Use `npm run build` then `npm run preview -- --port 3100` with matching `APP_ORIGIN` for the optimized hosted-config local preview; avoid rebuilding while that preview is serving. The old static preview is historical.
 
-## Deliberate boundaries
+## Next slices / launch gates
 
-All data stays in the current browser. Personalized demo links do not transport a shared database to another device and do not implement real owner authentication, guest-token security, RLS, receipt ownership or multi-user concurrency. The UI says this explicitly. Use fictional data.
+Current stable previews: hosted configuration on 3100 (`npm run build`, then `npm run preview -- --port 3100`); separate offline production QA on 3102 (`npm run qa:build`, then `npm run qa:preview`, using the existing ignored `.env.qa.local`). Run `npm run test:runtime` against the preview for non-email login/assets/authorization checks. Run `node --env-file=.env.qa.local scripts/verify-local.mjs` against offline QA for real synthetic transactions/Storage. Stop a preview before rebuilding its build directory. Do not rely on a stale development handler as release evidence.
 
-No payment, email, WhatsApp message, server media upload or vendor integration is executed. Selected photographs are processed on the device into the browser-local draft. Production auth/persistence, transactional publishing/RSVP, verified gateway, secure media, audited operations, delivery, localization of the rest of the product, final art qualification, CI/load/recovery and real-device checks remain outstanding. Do not sell this static build as the production service.
+SMTP receipt is confirmed. First hosted OTP/session verification and intended-operator staff provisioning, hosted media key/real object flow, public deployment, claims/reassignment/outbox automation, archive/retention policy, fresh bilingual/device/accessibility/performance review, deployed abuse/log controls, full recovery drills and commercial policies remain. Correction/CSV, acknowledged autosave and pause/resume are implemented. Cleanup is a bounded command; scheduling/monitoring still need deployment qualification. Product copy is Bangla-first; customer-entered content is preserved.
 
-The [root plan](../plan.md), [production baseline](../docs/specs/production-engineering.md), [personalization contract](../docs/specs/personalized-invitations.md) and [task tracker](../task.md) govern the next implementation slices. The preview uses scoped plain CSS and CSS motion; Tailwind/Motion from the baseline are not dependencies just for their own sake. Runtime/npm and styling choices are recorded as first-slice differences, not silent changes to the commercial plan.
-
-## Source responsibilities
-
-`src/features/workspace/` owns typed sandbox data, validation/accounting and persistence. `src/components/` owns presentation and interaction by surface; nonmarketing surfaces are dynamically loaded. `src/app/` provides actual routes. No credentials belong in client code, source control or the browser store. `.env.example` records future integration names only; those integrations are not falsely stubbed as successful services.
-
-Fonts are self-hosted by Next's font build pipeline: Fraunces, Instrument Sans, Noto Serif Bengali and Hind Siliguri. Upstream SIL Open Font License notices are included in `public/licenses/`, from the [Google Fonts source repository](https://github.com/google/fonts). Artwork combines original ImageGen illustration/photography with code-native SVG/CSS, including authorized adaptation of the user's Figma stationery. No competitor artwork or forwarded vendor video imagery is served. See `design-source/README.md` for provenance and derivative sizes.
-
-## Verification
-
-43 tests pass across domain/content, guest interactions and product regressions in a simulated JSDOM document. New coverage includes public locale/data isolation, explicit locale during storage failure, envelope peek state, unsaved maker preview with draft-only save and reply-derived dashboard totals, alongside the previous opening/RSVP/maps/gallery checks. Strict typechecking, source formatting, optimized export and six static route smoke checks pass. The prior dependency audit reported zero vulnerabilities; dependencies were not changed in this presentation pass. Vitest is 5.0.5; tests require a compatible Node runtime, including the installed 22.18.0.
-
-Visual browser/mobile QA was unavailable because Work settings disabled local browser control. JSDOM does not verify CSS animation appearance, layout, external Google rendering, physical phones or actual canvas image decoding. The Sites connector returned `Sites project not found` for the existing project, blocking synchronization/publication. The existing hosted URL has not received this local update; its identity/configuration are preserved. Current handoff: the workspace's `docs/build-evidence/first-template-v3.md`.
-
-Sites helper installation/build invocation hit a Windows npm shim/path issue; native `npm.cmd` performed the successful install/build. The same Site ID in `.openai/hosting.json` must be reused; do not create a second project to retry deployment.
+The development-only legacy sandbox remains available with `NEXT_PUBLIC_APP_MODE=demo`; its localStorage mutations are demonstrations only. Historical template tests/evidence remain in [build evidence](../docs/build-evidence/README.md). Original artwork/font/audio licensing remains in `design-source/` and `public/licenses/` / `public/audio/CREDITS.txt`.

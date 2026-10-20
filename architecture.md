@@ -1,8 +1,10 @@
 # System architecture — Client V1
 
-Updated: **20 October 2026**. Proposed production design; only the local prototype and recorded evidence currently exist. Scope: [plan](plan.md). Entities/commands: [data/API](docs/specs/client-v1-data-api.md).
+Updated: **20 October 2026**. Backend/auth/RLS, seller transactions, publication, named guest delivery and [private media](docs/build-evidence/media-bangla-first.md) are implemented. Five migrations and normal-role proofs passed on Dawat Staging; actual image/Storage proof passed locally. Gmail OTP receipt is confirmed. Hosted processor credentials, first verified operator login and app hosting remain pending. Product defaults to Bangla with secondary English. Claims/outbox automation and remaining deployed operations are target architecture. Scope: [plan](plan.md). Entities/commands: [data/API](docs/specs/client-v1-data-api.md).
 
 ## 1. System shape
+
+Latest implemented workflow supersedes the earlier correction/export target status: five hosted migrations now include attributed `correct_response`, bounded transactional `export_households`, tenant-only `workspace_overview` and idempotent `set_invitation_visibility`. Management commands retain order → wedding → household lock ordering; guest writes share the wedding lock. CSV is generated on demand behind session/RLS, no public export object. Autosave acknowledges captured snapshots and never replaces newer local typing; failed/ambiguous writes pause automatic retry, and conflict resolution requires deliberate overwrite. SMTP email receipt is confirmed; hosted first sign-in, media credentials and public deployment remain pending. [Evidence](docs/build-evidence/client-dashboard-workflow.md).
 
 Use **one modular Next.js app**, PostgreSQL and managed storage/auth. Four presentation surfaces share a versioned invitation renderer. Do not create a project/deployment or duplicated card for each couple/guest.
 
@@ -44,7 +46,7 @@ Gift opening is presentation. Tenant policies, guest credentials and server-side
 | Hosting           | Server-capable commercial deployment + isolated staging/backend                | Vercel/Supabase proposed; tier/region/cost/quotas reviewed before provisioning      |
 | Verification      | Vitest, SQL/integration tests, supported browser E2E                           | Security and transaction tests, real-device evidence                                |
 
-Current `next.config.ts` has `output: 'export'`. Request-dependent cookies, authenticated handlers and dynamic wedding resolution require moving to server deployment. Static samples may remain deliberate demos. [Next export limitations](https://nextjs.org/docs/app/guides/static-exports).
+`next.config.ts` now uses server deployment; `output: 'export'` has been removed. Request-dependent cookies, authenticated handlers and wedding resolution are implemented. Static samples remain deliberate demos. [Next export limitations](https://nextjs.org/docs/app/guides/static-exports).
 
 Use current [Supabase server-client guidance](https://supabase.com/docs/guides/auth/server-side/creating-a-client?queryGroups=framework&framework=nextjs). Do not treat browser-supplied user IDs or unchecked cookies as verified identity. No tool/version migration solely because an older planning file preferred another stack.
 
@@ -132,6 +134,8 @@ Generate at least 32 random bytes per token. Store digest for verification and a
 
 Initial personal URL validates and exchanges into a short-lived scoped guest session; remove raw token from later visible navigation where feasible. Session design must support several households/weddings in one browser: explicit wedding/household-scoped requests, no global current-guest collision. Recheck credential revocation on subsequent requests.
 
+Implemented route: `/i/:slug/g/:token` renders a generic exchange shell; a POST creates a 12-hour session, then `location.replace` navigates to `/i/:slug/h/:householdId/`. The HttpOnly session cookie is scoped to that household path, including its `/api/` endpoint. Database digest, active credential revision, expiry, publication, entitlement and allowed published events are rechecked on reads/writes. Owner copy recovers the same AES-256-GCM encrypted token; explicit rotation/revocation invalidates all earlier sessions without deleting replies. Hosted and offline environments have separate, ignored key rings that need independent secure backup before real data intake.
+
 HTTPS, secure cookie flags, appropriate SameSite/HttpOnly, origin/CSRF checks, noindex, `Referrer-Policy: no-referrer`; no third-party guest analytics/session replay by default. Redact token paths/signed URLs/emails/wish bodies from app/hosting/error logs. GET/crawlers do not consume claims or submit replies.
 
 A forwarded link carries household bearer access; it does not verify individual identity. Revocation prevents future authorized requests, not screenshots or already downloaded files. Explain residual signed-media validity rather than promising remote erasure.
@@ -139,6 +143,10 @@ A forwarded link carries household bearer access; it does not verify individual 
 ## 9. Media and caches
 
 Reservation scoped to wedding → bounded upload → actual decode/format/dimension checks → orientation/metadata cleanup → responsive derivatives → ready/rejected. Publish only ready approved media. Maximum five photos; proposed initial limits 10MB/20MP each, JPEG/PNG/WebP, validated against processing budgets. Unsupported HEIC gets an actionable conversion message until support is qualified. Never silently drop a sixth photo.
+
+Implemented: raw image body enters a trusted Next Node processor after owner/RLS authorization and a shared database lease. Buffer ≤10 MiB/30s; real sharp decode ≤20MP; 480/960/1600 WebP outputs, EXIF auto-orientation and metadata removal. Originals are discarded from bounded memory. Maximum four shared leases, one native decoder per process, four attempts per reservation, same-file SHA256 binding and 2-minute crash recovery. Ready commits only after all scoped objects exist; uncertain acknowledgments retain possibly committed data. Five live slots include unexpired unfinished reservations; initial daily/history quotas bound abuse/storage.
+
+Storage bucket `wedding-media` is private with restrictive denial to anon/authenticated even under unrelated permissive policies. `SUPABASE_MEDIA_SECRET_KEY` is confined to the Storage processor; ordinary auth/owner/guest queries retain session RLS. Authorized image proxies recheck current publication/guest session and media references on every request and return private/no-store WebP. No bearer signed Storage URLs are exposed. Therefore revocation blocks future proxy reads, while downloaded bytes/screenshots remain beyond recall. Draft/publication triggers enforce ready same-wedding references; immutable publication-media rows pin removed library photos. Delayed orphan cleanup is bounded and implemented as a command; job scheduling, retention policy and restore/load/phone qualification remain pending.
 
 Private originals and restricted derivatives need protected reads/short-lived URLs. General-safe published art/derivatives may use versioned public paths; anything public is deliberately shareable and not instantly recallable. Cleanup checks all retained publication references; abandoned uploads use delayed orphan cleanup.
 

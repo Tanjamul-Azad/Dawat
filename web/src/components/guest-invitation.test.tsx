@@ -402,7 +402,7 @@ describe('personal invitation and explicit opening contract', () => {
     });
     const read = () => JSON.parse(localStorage.getItem('dawat-guest-sample-v1')!) as Workspace;
     await waitFor(() => expect(read().wishes.length).toBe(before + 1));
-    fireEvent.click(screen.getByRole('button', { name: words.en.wishAgain }));
+    fireEvent.click(await screen.findByRole('button', { name: words.en.wishAgain }));
     fireEvent.change(screen.getByLabelText(words.en.wish), { target: { value: 'One more thought' } });
     fireEvent.submit(screen.getByRole('button', { name: words.en.wishSend }).closest('form')!);
     await waitFor(() => expect(read().wishes.length).toBe(before + 2));

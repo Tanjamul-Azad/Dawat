@@ -2,6 +2,10 @@
 
 Updated: **20 October 2026 · Asia/Dhaka**. This is the current scope and build order; it supersedes archived phase lists. Planned production capabilities below are not claims of completed implementation.
 
+Implementation checkpoint: backend/auth/MFA, RLS, seller confirmation/activation/search, acknowledged autosave, publication pause/resume and [named guest links/RSVP/wishes/reports](docs/build-evidence/named-guest-delivery.md) are implemented. [Audited host corrections, private CSV and compact contextual dashboard](docs/build-evidence/client-dashboard-workflow.md) complete the latest workflow slice. Five migrations and normal-role proofs passed on hosted Dawat Staging; Gmail OTP receipt is confirmed. First hosted verified operator login, media secret, browser/device qualification and public website hosting remain. The phase descriptions remain the full target; incomplete release gates remain open in [task.md](task.md).
+
+Media checkpoint: [private media + Bangla-first product](docs/build-evidence/media-bangla-first.md) records actual local max-five processing/Storage and hosted normal-role media proof. Bangla is the product default, English secondary. Hosted processor credentials remain pending; neither public launch nor full device/operations qualification is claimed.
+
 ## 1. Outcome and next focus
 
 The invitation template is our product. Next build **the couple dashboard, a thin seller activation panel and their real backend together**. Finish the public sales website after this works end to end. Preserve the liked Jamdani direction; do not restart the template.

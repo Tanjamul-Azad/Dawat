@@ -1,5 +1,19 @@
 # First interactive build handoff
 
+Latest: [compact client dashboard workflow](client-dashboard-workflow.md) — acknowledged autosave/conflict recovery, host correction/history, private CSV, pause/resume, seller search/BDT inputs and contextual navigation. Hosted migrations/proofs and local real HTTP/Storage flow pass; fresh browser/device and deployment qualification remain.
+
+## Private photos and Bangla-first product — 20 October 2026
+
+[Media/Bangla checkpoint](media-bangla-first.md): 170 tests, strict typecheck/build, actual local upload/Storage/EXIF/tenant/session/publication proof and third migration + normal-role proof on Dawat Staging. Hosted processor key, Gmail App Password repair, fresh media visual/device review and release gates remain. Historical checkpoint counts below are unchanged.
+
+## Named guest delivery and hosted database — 20 October 2026
+
+[Named guest delivery](named-guest-delivery.md): stable encrypted links, scoped sessions, real RSVP/wishes, event reports and compact household management; 143 automated tests, local HTTP/Edge flow and hosted normal-role isolation proof. Dawat Staging migrations are applied. SMTP/customer sign-in, public app deployment and remaining release gates are explicitly pending. Historical checkpoints below retain their original test counts.
+
+## Current backend foundation — 20 October 2026
+
+[Client foundation implementation](client-foundation.md): real local Supabase auth/MFA, normal-role RLS isolation, seller confirmation/separate activation, persistent client editor and safe immutable general publication. 112 tests, actual local service flow and Edge responsive evidence. Remaining named replies/media/operations and launch gates are explicit. Historical template-only checkpoints follow.
+
 ## Latest template correction — version 6
 
 [Sealed personal invitation](personal-opening-v6.md): explicit gift opening before inner chapters render; no pre-open scroll/hash/navigation bypass, no guest name forms, host-addressed recipient and sender, general links view-only. 67 tests/typechecked export plus actual 390/320px normal/long-name/photo-free/reception-only/named-RSVP checks. [Gift/Pinterest research](../design/pinterest-gift-reveal-v6.md) records sources and access limits. Primary preview now uses port **3000**. Real-device/performance/backend gates remain open; website/dashboard expansion deferred.

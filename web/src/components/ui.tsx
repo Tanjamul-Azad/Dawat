@@ -1,12 +1,13 @@
 'use client';
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { X, ArrowUpRight } from 'lucide-react';
+import { useProductLocale } from './production/product-locale';
 
 export function Modal({
   title,
   children,
   onClose,
-  closeLabel = 'Close dialog',
+  closeLabel,
   className = '',
 }: {
   title: string;
@@ -15,6 +16,7 @@ export function Modal({
   closeLabel?: string;
   className?: string;
 }) {
+  const { locale } = useProductLocale();
   const dialog = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   useEffect(() => {
@@ -27,7 +29,10 @@ export function Modal({
       ref={dialog}
       className={`dialog ${className}`}
       aria-labelledby={titleId}
-      onCancel={onClose}
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -35,7 +40,11 @@ export function Modal({
       <div className="dialog-content">
         <div className="dialog-heading">
           <h2 id={titleId}>{title}</h2>
-          <button className="icon-button" aria-label={closeLabel} onClick={onClose}>
+          <button
+            className="icon-button"
+            aria-label={closeLabel ?? (locale === 'bn' ? 'বন্ধ করুন' : 'Close dialog')}
+            onClick={onClose}
+          >
             <X size={20} />
           </button>
         </div>

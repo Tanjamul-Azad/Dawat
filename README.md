@@ -2,7 +2,7 @@
 
 Updated: **20 October 2026 · Client V1**.
 
-Current Jamdani invitation is the product foundation. Next build **couple dashboard + thin seller activation panel + real backend**. Public sales polish follows the working delivery flow. The current app is a browser-local prototype, not a production multi-customer service.
+Current Jamdani invitation is the product foundation. **Backend/auth, wedding isolation, seller activation/search, acknowledged autosave, named guest links, RSVP/wishes, audited host corrections, private CSV, pause/resume and private photo processing are implemented. The product is Bangla-first; English is secondary.** Five migrations and normal-role proofs passed on hosted **Dawat Staging**. Actual max-five uploads, image decode/rotation/metadata stripping, protected reads, publication retention and the extended customer/guest flow passed against local Supabase/Storage. Gmail OTP receipt is confirmed. Hosted media credentials, first verified operator login, fresh browser/device qualification and public website deployment remain. See [dashboard workflow evidence](docs/build-evidence/client-dashboard-workflow.md) and [run guide](web/README.md). This is not full launch acceptance.
 
 ## Start here
 
@@ -12,7 +12,7 @@ Current Jamdani invitation is the product foundation. Next build **couple dashbo
 | [plan.md](plan.md)                                | Scope, build order, end-to-end milestone and gates                                         |
 | [architecture.md](architecture.md)                | Stack/migration, identity, tenancy, transactions, cache/media/jobs/recovery                |
 | [website-design.md](website-design.md)            | Mobile couple/seller screens, template preservation, type/layout/motion/states             |
-| [task.md](task.md)                                | Completed documentation tasks and 36 unstarted production tasks with dependencies/evidence |
+| [task.md](task.md)                                | Production implementation progress and remaining acceptance gates |
 | [Data/API](docs/specs/client-v1-data-api.md)      | Entities, constraints, metrics, endpoints, revisions/idempotency/export                    |
 | [Corner cases](docs/qa/client-v1-corner-cases.md) | 96 prioritized scenarios across the entire delivery flow                                   |
 | [Release gates](docs/qa/client-v1-release.md)     | Device/performance/security/recovery/commercial evidence                                   |
@@ -32,7 +32,7 @@ Public buyer gets no management before confirmation/activation. Guest never ente
 - [v6.3 gallery/opening](docs/build-evidence/gallery-colour-v6-3.md): max-five-photo reel, color/hierarchy, immediate scroll after deliberate opening.
 - [v6.1 performance](docs/build-evidence/template-qualification-v6-1.md): LCP3.46s misses2.5s; not latest-build measurement.
 - [Physical phone sheet](docs/qa/physical-phone-v6-1.md): LAN reachability confirmed; complete device/listening qualification pending.
-- [Source/run guide](web/README.md): static export/localStorage app; backend/auth/shared data unimplemented.
+- [Named guest delivery](docs/build-evidence/named-guest-delivery.md): 143 tests; actual local OTP/MFA, two-client HTTP/Edge RSVP/wishes, responsive management UI and hosted database proofs. [Source/run guide](web/README.md) covers local/hosted configuration and SMTP handoff.
 
 ## Retained supporting material
 
@@ -42,4 +42,4 @@ Public buyer gets no management before confirmation/activation. Guest never ente
 - [AI Studio prompt](docs/prompts/google-ai-studio-build.md), [Figma/Claude prompt](docs/prompts/figma-ai-claude-design.md), [artwork prompts](docs/prompts/imagegen-card-v5-assets.md). Older broad prompts are supplementary; current scope/architecture wins.
 - [Previous root snapshot](docs/archive/planning-before-client-v1-2026-10-20/INDEX.md), including deferred public-site details and historical task IDs. Old “current/latest” labels are historical.
 
-No application code, deployment, paid service or external message was created by this planning update.
+The user created the free Dawat Staging project and approved applying its migrations. No paid upgrade or external email/message was sent. Database provisioning does not mean the website has been publicly deployed or launch-qualified.

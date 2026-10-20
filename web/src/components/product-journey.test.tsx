@@ -126,7 +126,7 @@ describe('Figma presentation adoption preserves product behavior', () => {
     fireEvent.change(name, { target: { value: 'Ayesha' } });
     fireEvent.click(screen.getByRole('button', { name: 'Preview invitation' }));
     expect(within(screen.getByRole('dialog')).getByText('Ayesha')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: 'Close dialog' }));
+    fireEvent.click(screen.getByRole('button', { name: 'বন্ধ করুন' }));
     expect((name as HTMLInputElement).value).toBe('Ayesha');
     fireEvent.click(screen.getByRole('button', { name: 'Save draft' }));
     await waitFor(() => expect(workspace.draft.partnerOne).toBe('Ayesha'));

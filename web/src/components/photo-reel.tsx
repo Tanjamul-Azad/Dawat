@@ -135,6 +135,8 @@ export function PhotoReel({
             <img
               key={photo.src}
               src={photo.src}
+              srcSet={photo.responsiveSrcSet}
+              sizes="(max-width: 700px) 100vw, 640px"
               alt={locale === 'bn' ? photo.altBn || photo.alt : photo.alt}
               loading="lazy"
               decoding="async"
@@ -192,7 +194,7 @@ export function PhotoReel({
                 <span aria-hidden="true">✧</span>
               ) : (
                 <img
-                  src={item.src}
+                  src={item.thumbnailSrc || item.src}
                   alt=""
                   loading="lazy"
                   decoding="async"

@@ -1,0 +1,62 @@
+// Read-only/invalid-input checks only. Never sends an email or creates an account.
+import assert from 'node:assert/strict';
+const base = process.env.APP_ORIGIN ?? 'http://127.0.0.1:3100';
+const request = (path, options = {}) =>
+  fetch(new URL(path, base), { ...options, signal: AbortSignal.timeout(10000) });
+const login = await request('/auth/login/');
+const html = await login.text();
+assert.equal(login.status, 200);
+assert.ok(html.includes('lang="bn"'));
+assert.ok(html.includes('name="email"'));
+assert.match(login.headers.get('cache-control'), /no-store/);
+const assets = [
+  ...new Set(
+    [...html.matchAll(/(?:src|href)="([^" ]*\/_next\/static\/[^" ]+)"/g)].map((m) =>
+      m[1].replaceAll('&amp;', '&'),
+    ),
+  ),
+];
+assert.ok(assets.length > 0);
+let bytes = 0;
+await Promise.all(
+  assets.map(async (path) => {
+    const response = await request(path);
+    assert.equal(response.status, 200, path);
+    bytes += (await response.arrayBuffer()).byteLength;
+  }),
+);
+const id = '11111111-1111-4111-8111-111111111111';
+for (const path of [
+  `/api/weddings/${id}/export/?event=reception`,
+  `/api/weddings/${id}/households/${id}/responses/`,
+])
+  assert.equal((await request(path)).status, 401);
+assert.equal(
+  (
+    await request(`/api/weddings/${id}/visibility/`, {
+      method: 'POST',
+      headers: { Origin: 'https://invalid.example', 'Content-Type': 'application/json' },
+      body: '{}',
+    })
+  ).status,
+  403,
+);
+for (const path of ['/dashboard/', '/admin/orders/', `/weddings/${id}/guests/`]) {
+  const response = await request(path, { redirect: 'manual' });
+  assert.equal(response.status, 307);
+  assert.equal(new URL(response.headers.get('location'), base).searchParams.get('next'), path);
+  assert.match(response.headers.get('cache-control'), /no-store/);
+}
+console.log(
+  JSON.stringify({
+    login: 200,
+    bangla: true,
+    assets: assets.length,
+    assetBytes: bytes,
+    privateExportAndHistoryDenied: true,
+    foreignOriginVisibilityDenied: true,
+    anonymousProtectedRoutes: 307,
+    deepReturnPathPreserved: true,
+    noEmailSent: true,
+  }),
+);

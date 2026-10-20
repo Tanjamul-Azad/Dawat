@@ -3,6 +3,7 @@ import { Fraunces, Instrument_Sans, Hind_Siliguri } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import './product-ui.css';
+import { ProductLocale } from '@/components/production/product-locale';
 
 const display = Fraunces({
   subsets: ['latin'],
@@ -31,16 +32,17 @@ const bangla = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Dawat Studio — invitations with a little more soul',
-  description:
-    'An original desi wedding invitation studio. Explore a working design sandbox with personalized invitations and guest responses.',
+  title: 'দাওয়াত — ভালোবাসার বিয়ের আমন্ত্রণ',
+  description: 'আপনাদের গল্প, নাম ধরে আমন্ত্রণ ও অতিথিদের উত্তর—নিজস্ব জামদানি নকশায় বিয়ের আয়োজন।',
   robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${ui.variable} ${bangla.variable} ${banglaUi.variable}`}>
-      <body>{children}</body>
+    <html lang="bn" className={`${display.variable} ${ui.variable} ${bangla.variable} ${banglaUi.variable}`}>
+      <body>
+        <ProductLocale>{children}</ProductLocale>
+      </body>
     </html>
   );
 }

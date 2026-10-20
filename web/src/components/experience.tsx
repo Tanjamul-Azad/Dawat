@@ -15,7 +15,10 @@ const GuestInvitation = dynamic(() => import('./guest-invitation').then((module)
 export type View = 'home' | 'templates' | 'studio' | 'dashboard' | 'invite' | 'order' | 'operator';
 
 export function Experience({ view }: { view: View }) {
-  const store = useWorkspace();
+  const store = useWorkspace(
+    'dawat-studio-sandbox-v1',
+    process.env.NEXT_PUBLIC_APP_MODE === 'demo' && process.env.NODE_ENV !== 'production',
+  );
   const [menu, setMenu] = useState(false);
   const [notice, setNotice] = useState('');
   const [aboutDemo, setAboutDemo] = useState(false);

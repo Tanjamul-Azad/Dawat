@@ -13,7 +13,7 @@ import {
   type Locale,
 } from '@/features/invitation/content';
 import { CelebrationEvents, Countdown, DateKeepsake, Flourish, PhotoMoments } from './invitation-sections';
-import { InvitationResponse } from './invitation-response';
+import { InvitationResponse, type ResponseTransport } from './invitation-response';
 import { useInvitationMotion } from './use-invitation-motion';
 import { useInvitationMusic } from './use-invitation-music';
 import { WaxSeal, WovenPattern } from './stationery-art';
@@ -25,11 +25,24 @@ type Props = {
   update: (fn: (state: Workspace) => Workspace) => boolean;
   notify: (message: string) => void;
   storageError?: string;
+  authority?: {
+    mode: 'draftPreview' | 'liveGeneral' | 'liveHousehold' | 'householdPreview';
+    scope: string;
+    guestId?: string;
+  };
+  responseTransport?: ResponseTransport;
 };
 
-export function GuestInvitation({ workspace, ready, update, storageError = '' }: Props) {
+export function GuestInvitation({
+  workspace,
+  ready,
+  update,
+  storageError = '',
+  authority,
+  responseTransport,
+}: Props) {
   // Public sample replies never mutate an order, customer draft or the host workspace.
-  const sample = useWorkspace('dawat-guest-sample-v1');
+  const sample = useWorkspace('dawat-guest-sample-v1', !authority);
   const [query, setQuery] = useState<{
     guest: string | null;
     design: boolean;
@@ -44,20 +57,20 @@ export function GuestInvitation({ workspace, ready, update, storageError = '' }:
   const [motionPaused, setMotionPaused] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const seal = useRef<HTMLButtonElement>(null);
-  const scope = query?.guest
-    ? `guest-${query.guest}`
-    : query?.design
-      ? 'design'
-      : query?.live
-        ? 'live'
-        : 'sample';
+  const scope =
+    authority?.scope ??
+    (query?.guest ? `guest-${query.guest}` : query?.design ? 'design' : query?.live ? 'live' : 'sample');
   useEffect(() => {
     const search = new URLSearchParams(window.location.search);
     const next = {
-      guest: search.get('guest'),
-      design: search.get('preview') === 'design',
-      sampleGuest: search.get('sampleGuest'),
-      live: search.get('live') === '1',
+      guest: authority ? (authority.guestId ?? null) : search.get('guest'),
+      design: authority
+        ? ['draftPreview', 'householdPreview'].includes(authority.mode)
+        : search.get('preview') === 'design',
+      sampleGuest: authority ? null : search.get('sampleGuest'),
+      live: authority
+        ? ['liveGeneral', 'liveHousehold'].includes(authority.mode)
+        : search.get('live') === '1',
     };
     setQuery(next);
     let saved: null | string = null;
@@ -84,8 +97,8 @@ export function GuestInvitation({ workspace, ready, update, storageError = '' }:
       media?.removeEventListener?.('change', onMotion);
       if (timer.current) clearTimeout(timer.current);
     };
-  }, []);
-  const sampleMode = !!query && !query.design && query.guest === null && !query.live;
+  }, [authority?.mode]);
+  const sampleMode = !authority && !!query && !query.design && query.guest === null && !query.live;
   const state = sampleMode ? sample.workspace : workspace;
   const mutate = sampleMode ? sample.update : update;
   const invitation = query?.design ? state.draft : state.published;
@@ -208,7 +221,7 @@ export function GuestInvitation({ workspace, ready, update, storageError = '' }:
   if (
     !invitation ||
     (guestId != null && !guest) ||
-    (query.design && (query.guest !== null || query.live)) ||
+    (!authority && query.design && (query.guest !== null || query.live)) ||
     (query.live && query.sampleGuest !== null) ||
     !events.length
   )
@@ -244,7 +257,7 @@ export function GuestInvitation({ workspace, ready, update, storageError = '' }:
       lang={locale}
       data-motion={motionOff || motionPaused ? 'quiet' : 'full'}
     >
-      <div className={s.demoNote}>{query.design ? t.preview : t.demo}</div>
+      {(query.design || !authority) && <div className={s.demoNote}>{query.design ? t.preview : t.demo}</div>}
       {(sampleMode ? sample.storageError : storageError) && (
         <p className={s.feedback} role="alert">
           {t.storageProblem}
@@ -465,6 +478,7 @@ export function GuestInvitation({ workspace, ready, update, storageError = '' }:
                   events={events}
                   locale={locale}
                   update={mutate}
+                  remote={responseTransport}
                 />
               ) : (
                 <section id="rsvp" className={s.previewPanel} tabIndex={-1}>

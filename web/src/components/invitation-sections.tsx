@@ -321,7 +321,7 @@ export function PhotoMoments({ photos = [], locale }: { photos?: Invitation['pho
               </div>
             ) : (
               <img
-                src={selectedPhoto.src}
+                src={selectedPhoto.fullSrc || selectedPhoto.src}
                 alt={locale === 'bn' ? selectedPhoto.altBn || selectedPhoto.alt : selectedPhoto.alt}
                 style={{ objectPosition: selectedPhoto.position || 'center' }}
                 onError={() =>
