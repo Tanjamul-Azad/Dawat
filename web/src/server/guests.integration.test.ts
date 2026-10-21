@@ -129,6 +129,7 @@ describe('Named guest credentials, isolation and real transactional replies', ()
     await db.exec(readFileSync('supabase/migrations/202610200002_guest_delivery.sql', 'utf8'));
     await db.exec(readFileSync('supabase/migrations/20261020094118_host_response_tools.sql', 'utf8'));
     await db.exec(readFileSync('supabase/migrations/20261020094619_publication_visibility.sql', 'utf8'));
+    await db.exec(readFileSync('supabase/migrations/20261020204524_client_readiness_fixes.sql', 'utf8'));
     await db.query('insert into public.staff_roles(user_id) values($1)', [ids.staff]);
   }, 30000);
   afterAll(async () => db?.close());

@@ -26,7 +26,7 @@ export async function processImage(input: Buffer) {
         .webp({ quality: 82, effort: 4 })
         .timeout({ seconds: 15 })
         .toBuffer({ resolveWithObject: true });
-      if (!data.length || data.length > MAX_UPLOAD_BYTES)
+      if (!data.length || data.length > 3 * 1024 * 1024)
         throw new InvalidImage('This image could not be reduced safely. Choose another photo.');
       outputs.push({
         size,

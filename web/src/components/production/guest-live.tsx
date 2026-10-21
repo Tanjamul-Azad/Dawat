@@ -18,7 +18,7 @@ export function GuestLive({
   preview?: boolean;
   previewWeddingId?: string;
 }) {
-  const { tr } = useProductLocale();
+  const { tr, setLocale } = useProductLocale();
   const [payload, setPayload] = useState(initial);
   const [unavailable, setUnavailable] = useState(false);
   const [stale, setStale] = useState(false);
@@ -81,6 +81,12 @@ export function GuestLive({
         body,
         key: pending.current[kind].key,
       });
+      if (
+        !result ||
+        !Number.isFinite(Date.parse(result.confirmedAt)) ||
+        (kind === 'response' && (!Number.isInteger(result.responseRevision) || result.responseRevision! < 0))
+      )
+        throw new RequestError(502, 'INVALID_RESPONSE', tr('Could not complete this request. Please retry.'));
       delete pending.current[kind];
       return result;
     } catch (e) {
@@ -173,6 +179,7 @@ export function GuestLive({
           guestId: guest.id,
         }}
         responseTransport={preview ? undefined : transport}
+        onLocaleChange={setLocale}
       />
     </>
   );

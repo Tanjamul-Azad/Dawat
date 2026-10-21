@@ -1,10 +1,18 @@
 # Product delivery plan — Client V1
 
-Updated: **20 October 2026 · Asia/Dhaka**. This is the current scope and build order; it supersedes archived phase lists. Planned production capabilities below are not claims of completed implementation.
+Updated: **21 October 2026 · Asia/Dhaka**. This is the current scope and build order; it supersedes archived phase lists. Planned production capabilities below are not claims of completed implementation.
 
-Implementation checkpoint: backend/auth/MFA, RLS, seller confirmation/activation/search, acknowledged autosave, publication pause/resume and [named guest links/RSVP/wishes/reports](docs/build-evidence/named-guest-delivery.md) are implemented. [Audited host corrections, private CSV and compact contextual dashboard](docs/build-evidence/client-dashboard-workflow.md) complete the latest workflow slice. Five migrations and normal-role proofs passed on hosted Dawat Staging; Gmail OTP receipt is confirmed. First hosted verified operator login, media secret, browser/device qualification and public website hosting remain. The phase descriptions remain the full target; incomplete release gates remain open in [task.md](task.md).
+Current checkpoint: [21 October hardening and rehearsal](docs/build-evidence/client-pilot-hardening-2026-10-21.md). Core audit UI/logic fixes and six migrations are implemented. **224 tests / 23 files**, build/typecheck/runtime, fresh local HTTP/Auth/MFA/Storage and all three hosted rollback proofs pass. Separate hosted fictional rehearsal covered five photos, named RSVP/wish and revocation; original pilot remains untouched. Vercel **personal testing preview only** selected; private env/deployed flow still pending. Seller bootstrap, real devices, operations/recovery and commercial qualification remain open.
 
-Media checkpoint: [private media + Bangla-first product](docs/build-evidence/media-bangla-first.md) records actual local max-five processing/Storage and hosted normal-role media proof. Bangla is the product default, English secondary. Hosted processor credentials remain pending; neither public launch nor full device/operations qualification is claimed.
+## Immediate execution order after the audit
+
+1. **Implemented; regression verified — correct the client journey:** A01/A02/A11/A12 — one/two-event controls, meaningful required-text validation in UI + DB, publish-first guest state and correct live-vs-draft sharing. Add targeted regressions and any necessary forward migration; do not rewrite applied migrations.
+2. **Implemented; further user/device review — compact Bangla-first UX and recovery:** A06/A13/A14 — Bangla primary fields, optional English disclosure, consistent guest locale/errors, current-account visibility, reauthentication and useful incomplete-preview guidance. Preserve Jamdani artwork, deliberate opening and existing working behavior.
+3. **Hosted customer/media/guest rehearsal passed; seller AAL2 pending:** A03/A05 — isolated fictional X/Y workspaces, actual app photo pipeline, private guest reads/revoke, customer OTP and seller AAL2. No staff grant based on sender email, no test publication over a customer's draft.
+4. **External pilot gate:** A04/A07/A08/A09/A10/A16 — HTTPS frontend/canonical origins, intended client identity, backups/key/object restore, cleanup/alerts, privacy/term/support, real phones/accessibility/performance and deployment security. Manual activation/sharing is acceptable; claims/outbox/gateway automation need not delay a safe manual pilot.
+5. **Public sales website afterward:** template choice → demo → clear package/contact/manual order/status; automated payment only after its separate verified callback/reconciliation gates. Keep existing client/guest records and URLs stable.
+
+Findings A01–A16, severity, source evidence and acceptance criteria live in the audit. Technical tasks belong to development; account verification/approved staff identity, domain/hosting expense and commercial/retention decisions belong to the product owner. No speculative release date or paid tier is assumed.
 
 ## 1. Outcome and next focus
 
@@ -20,13 +28,13 @@ A dashboard that still saves only in the same browser does not meet this milesto
 
 | Area                         | Current evidence                                                                                                             | Next work                                                                                            |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Jamdani template             | Local bilingual sealed digital card, events/countdown/maps/calendar, max-five-photo reel, music, named guest and response UI | Preserve and connect to authoritative published data; finish device/performance gates                |
-| Public/seller/couple screens | Browser-local prototypes                                                                                                     | Verified identity, persistent multi-wedding records, real authorization and honest save/error states |
-| Data                         | `useWorkspace` / localStorage fixtures                                                                                       | PostgreSQL, migrations, RLS, Storage and server services                                             |
-| Sharing/RSVP                 | Local flow demonstration                                                                                                     | Server-filtered guest payload, recoverable scoped credentials, transactional replies across devices  |
-| Commercial operation         | Research and requirements                                                                                                    | Real activation/support flow, staging, recovery and eventual payment integration                     |
+| Jamdani template             | Preserved renderer connected to scoped server publications; sample opening/BN/EN and limited narrow layout inspected | One-event and hosted photos verified; long-content/device/performance qualification remains |
+| Seller/client screens       | Persistent authenticated dashboard/editor/guest hub and MFA-protected seller implementation | Hosted staff bootstrap; repeat user/device/state review and recovery |
+| Data                        | Six hosted migrations, normal-role RLS, private Storage, server-only image processor | Full deployed processing, justified query/index improvements and recovery/lifecycle operations |
+| Sharing/RSVP                | Recoverable named links, scoped sessions, transactional replies/wishes, correction/history/export | Actual HTTPS origin, second-device hosted rehearsal, log/cache and failure qualification |
+| Public sales/commercial     | Public prototype/demo and manual-order contact entry; no automated checkout | Finish client pilot first; then actual public sales journey and agreed commercial policy |
 
-Latest historical implementation evidence: [v6.4](docs/build-evidence/compact-music-v6-4.md), with 82 passing tests at that checkpoint. This documentation update does not rerun those tests. Both physical phones reached the LAN page; full-flow/listening qualification is pending. Older LCP 3.46s misses the 2.5s target and is not a v6.4 measurement.
+Historical template evidence: [v6.4](docs/build-evidence/compact-music-v6-4.md), 82 tests at that checkpoint. The current integrated audit reran 194 tests. Historical phone LAN reachability and older LCP 3.46s do not qualify today's full flow or performance.
 
 ## 3. Launch scope
 
@@ -35,7 +43,7 @@ Latest historical implementation evidence: [v6.4](docs/build-evidence/compact-mu
 - One original template; existing supported content/palette controls; UI languages only `bn` and `en`.
 - One order provisions one wedding. One verified primary owner per wedding initially. One account may own several separately scoped orders/workspaces.
 - Seller records orders, verifies payment or an explicit approved exception, confirms, assigns the intended customer, separately activates/revokes management and performs audited support actions.
-- Couple edits names/hosts/wording, events, maximum five photos, music/section options; saves incomplete drafts, previews, reviews and publishes valid content.
+- Couple edits names/hosts/wording, one/two stable events and maximum five photos; saves incomplete drafts, previews, reviews and publishes valid content. Current renderer has its established music controls; editor-level music/section/palette customization is not implemented and must not be sold as available.
 - Couple creates named households with per-event scope, total-person allowance and optional greeting/message; previews, recopies, shares, rotates or revokes existing links.
 - Guest sees the host-supplied name, deliberately opens the card, views only permitted published information, submits/edits attendance and sends private wishes for the couple.
 - Couple sees event-wise accepted/declined/pending records, adults/children totals, details, wishes, safe CSV export, refresh state and attributed manual corrections.

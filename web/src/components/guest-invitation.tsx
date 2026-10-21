@@ -31,6 +31,7 @@ type Props = {
     guestId?: string;
   };
   responseTransport?: ResponseTransport;
+  onLocaleChange?: (locale: Locale) => void;
 };
 
 export function GuestInvitation({
@@ -40,6 +41,7 @@ export function GuestInvitation({
   storageError = '',
   authority,
   responseTransport,
+  onLocaleChange,
 }: Props) {
   // Public sample replies never mutate an order, customer draft or the host workspace.
   const sample = useWorkspace('dawat-guest-sample-v1', !authority);
@@ -50,6 +52,9 @@ export function GuestInvitation({
     live: boolean;
   } | null>(null);
   const [locale, setLocale] = useState<Locale>('bn');
+  useEffect(() => {
+    if (query) onLocaleChange?.(locale);
+  }, [locale, onLocaleChange, query]);
   const [phase, setPhase] = useState<'closed' | 'opening' | 'open'>('closed');
   const hasOpened = phase !== 'closed';
   const [coverHeight, setCoverHeight] = useState<number>();

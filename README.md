@@ -1,8 +1,8 @@
 # Wedding invitation product — planning hub
 
-Updated: **20 October 2026 · Client V1**.
+Updated: **21 October 2026 · Client V1**.
 
-Current Jamdani invitation is the product foundation. **Backend/auth, wedding isolation, seller activation/search, acknowledged autosave, named guest links, RSVP/wishes, audited host corrections, private CSV, pause/resume and private photo processing are implemented. The product is Bangla-first; English is secondary.** Five migrations and normal-role proofs passed on hosted **Dawat Staging**. Actual max-five uploads, image decode/rotation/metadata stripping, protected reads, publication retention and the extended customer/guest flow passed against local Supabase/Storage. Gmail OTP receipt is confirmed. Hosted media credentials, first verified operator login, fresh browser/device qualification and public website deployment remain. See [dashboard workflow evidence](docs/build-evidence/client-dashboard-workflow.md) and [run guide](web/README.md). This is not full launch acceptance.
+Current Jamdani invitation is the product foundation. **Backend/auth, wedding isolation, seller workflow, autosave, named links, RSVP/wishes, corrections, private CSV, pause/resume and private photo processing are implemented. Bangla is primary; English is secondary.** [21 October hardening and rehearsal](docs/build-evidence/client-pilot-hardening-2026-10-21.md): 224 tests, typecheck/build/runtime, fresh isolated local HTTP/Auth/Storage and three hosted rollback proofs pass. One/two-event controls, meaningful publication validation, publish-first states, pinned sharing scope and session recovery are fixed. Actual hosted five-photo/RSVP/wish/revocation rehearsal passed on a separate fictional wedding. Vercel personal preview is being configured; private env/deployed user tests, intended seller AAL2, real phones/performance and recovery/operations remain. External commercial handoff is unqualified.
 
 ## Start here
 
@@ -42,4 +42,4 @@ Public buyer gets no management before confirmation/activation. Guest never ente
 - [AI Studio prompt](docs/prompts/google-ai-studio-build.md), [Figma/Claude prompt](docs/prompts/figma-ai-claude-design.md), [artwork prompts](docs/prompts/imagegen-card-v5-assets.md). Older broad prompts are supplementary; current scope/architecture wins.
 - [Previous root snapshot](docs/archive/planning-before-client-v1-2026-10-20/INDEX.md), including deferred public-site details and historical task IDs. Old “current/latest” labels are historical.
 
-The user created the free Dawat Staging project and approved applying its migrations. No paid upgrade or external email/message was sent. Database provisioning does not mean the website has been publicly deployed or launch-qualified.
+The user created free Dawat Staging and approved its migrations. OTP email delivery and real customer login are verified; one audited free test workspace is active and unpublished. No paid upgrade or guest messaging occurred. Hosted database provisioning does not mean the frontend is publicly deployed or launch-qualified.

@@ -132,6 +132,7 @@ describe('Media tenancy, trusted processing and publication references', () => {
       const i = ['foundation', 'guest_delivery', 'media'].indexOf(name) + 1;
       await db.exec(readFileSync(`supabase/migrations/20261020000${i}_${name}.sql`, 'utf8'));
     }
+    await db.exec(readFileSync('supabase/migrations/20261020204524_client_readiness_fixes.sql', 'utf8'));
     await db.query('insert into public.staff_roles(user_id) values($1)', [staff]);
   }, 30000);
   beforeEach(async () => {

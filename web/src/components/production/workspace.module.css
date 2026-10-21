@@ -162,6 +162,55 @@
   gap: 16px;
   font-size: 13px;
 }
+.accountMenu {
+  position: relative;
+}
+.accountMenu summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  min-height: 44px;
+  padding: 8px;
+  border-radius: 6px;
+}
+.accountMenu summary:focus-visible {
+  outline: 2px solid #6d2432;
+  outline-offset: 2px;
+}
+.accountPopover {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 40;
+  width: min(280px, calc(100vw - 32px));
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffef9;
+  box-shadow: 0 8px 24px #273c321a;
+  overflow-wrap: anywhere;
+}
+.eventChoices {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f5f4ef;
+}
+.eventChoices strong,
+.eventChoices small {
+  display: block;
+}
+.optionalFields {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  margin-top: 8px;
+}
+.optionalFields summary {
+  cursor: pointer;
+  padding: 10px 0;
+  font-weight: 500;
+}
 .account span {
   max-width: 220px;
   overflow: hidden;
@@ -434,8 +483,10 @@
 }
 .form .checkbox {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   gap: 10px;
+  min-height: 44px;
   font-weight: 400;
   line-height: 1.5;
 }

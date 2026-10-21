@@ -5,6 +5,7 @@ export class RequestError extends Error {
     public status: number,
     public code: string,
     message: string,
+    public retryAfter?: number,
   ) {
     super(message);
   }
@@ -46,6 +47,7 @@ export async function api<T>(
           locale(),
           result?.code,
         ),
+        Math.max(0, Math.min(300, Number(response.headers.get('Retry-After')) || 0)),
       );
     if (!result || !Object.hasOwn(result, 'data'))
       throw new RequestError(

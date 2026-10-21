@@ -30,17 +30,32 @@ export async function getWedding(id: string): Promise<WeddingDetail> {
       'This workspace is unavailable or its management access is inactive.',
     );
   let publishedDraftRevision: number | null = null;
+  let publishedGeneralEventIds: ('nikah' | 'reception')[] = [];
   if (w.data.live_version_id) {
     const v = await db
       .from('invitation_versions')
-      .select('draft_revision')
+      .select('draft_revision,content')
       .eq('wedding_id', id)
       .eq('id', w.data.live_version_id)
       .maybeSingle();
     dbError(v.error);
     publishedDraftRevision = v.data?.draft_revision ?? null;
+    if (v.data) publishedGeneralEventIds = draftContent.parse(v.data.content).generalEventIds;
+  }
+  const protectedEventIds: ('nikah' | 'reception')[] = [];
+  const eventIds = ['nikah', 'reception'] as const;
+  const replyChecks = await Promise.all(
+    eventIds.map((eventId) =>
+      db.from('responses').select('event_id').eq('wedding_id', id).eq('event_id', eventId).limit(1),
+    ),
+  );
+  for (const [index, replies] of replyChecks.entries()) {
+    dbError(replies.error);
+    if (replies.data?.length) protectedEventIds.push(eventIds[index]);
   }
   return {
+    publishedGeneralEventIds,
+    protectedEventIds,
     mediaAvailable: Boolean(process.env.SUPABASE_MEDIA_SECRET_KEY?.trim()),
     wedding: { ...w.data, state: g.data?.state ?? 'inactive' },
     content: Object.keys(d.data.content ?? {}).length ? draftContent.parse(d.data.content) : emptyDraft(),

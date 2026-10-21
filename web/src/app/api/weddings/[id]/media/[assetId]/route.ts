@@ -4,7 +4,7 @@ import { session } from '@/server/auth';
 import { uploadMedia } from '@/server/media';
 type Ctx = { params: Promise<{ id: string; assetId: string }> };
 export const runtime = 'nodejs';
-export const maxDuration = 60;
+export const maxDuration = 120;
 export async function PUT(request: Request, ctx: Ctx) {
   return endpoint(request, async () => {
     const p = await ctx.params;

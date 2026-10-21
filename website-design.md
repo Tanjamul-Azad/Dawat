@@ -1,5 +1,7 @@
 # Product and dashboard design — Client V1
 
+**21 October implementation audit:** [A01–A16 and evidence](docs/build-evidence/client-readiness-audit-2026-10-21.md). Next design pass keeps Jamdani art/rendering and concentrates on Bangla primary fields with optional English disclosure; one/two-event setup; explicit save/conflict/relogin; live-versus-draft sharing; publish-first guest empty state; compact mobile account identity and meaningful preview guidance. Browser access now works and partial authenticated/sample inspection is recorded; full device/accessibility/performance qualification remains open. Historical status notes below describe their dated checkpoint.
+
 Updated: **20 October 2026**. Full target design contract. A compact subset of entry/overview/editor/review and seller orders/access now has [rendered local evidence](docs/build-evidence/client-foundation.md); the other screens/states below remain proposed. [Plan](plan.md) controls build order; [architecture](architecture.md) controls permissions.
 
 ## 1. Direction and references

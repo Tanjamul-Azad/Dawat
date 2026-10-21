@@ -1,7 +1,13 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { Check, ArrowLeft, Eye, Save, ArrowUpRight, Circle, RefreshCw, Pause, Play } from 'lucide-react';
-import { type DraftContent, type WeddingDetail, publicationIssues } from '@/features/production/contracts';
+import {
+  type DraftContent,
+  type WeddingDetail,
+  emptyDraft,
+  publicationIssues,
+} from '@/features/production/contracts';
+import { meaningfulText } from '@/features/production/text';
 import { api, RequestError } from '@/features/production/client';
 import { WorkspaceFrame } from './frame';
 import { Modal } from '../ui';
@@ -24,6 +30,8 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
   const savingLock = useRef(false);
   const [mediaBusy, setMediaBusy] = useState(false);
   const [error, setError] = useState('');
+  const [needsSignIn, setNeedsSignIn] = useState(false);
+  const eventStash = useRef(new Map(initial.content.events.map((event) => [event.id, event])));
   const [notice, setNotice] = useState('');
   const [conflict, setConflict] = useState<WeddingDetail | null>(null);
   const { locale } = useProductLocale();
@@ -51,6 +59,28 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
     setContent((c) => ({ ...c, [key]: value }));
     setNotice('');
   }
+  function toggleEvent(id: 'nikah' | 'reception', include: boolean) {
+    const current = content.events.find((event) => event.id === id);
+    if (!include && (content.events.length === 1 || detail.protectedEventIds?.includes(id))) return;
+    if (current) eventStash.current.set(id, current);
+    setContent((draft) => ({
+      ...draft,
+      events: include
+        ? draft.events.some((event) => event.id === id)
+          ? draft.events
+          : [
+              ...draft.events,
+              eventStash.current.get(id) ?? emptyDraft().events.find((event) => event.id === id)!,
+            ]
+        : draft.events.length > 1
+          ? draft.events.filter((event) => event.id !== id)
+          : draft.events,
+      generalEventIds: include
+        ? draft.generalEventIds
+        : draft.generalEventIds.filter((eventId) => eventId !== id),
+    }));
+    setNotice('');
+  }
   async function loadServer() {
     return api<WeddingDetail>(`${root}/`);
   }
@@ -68,9 +98,19 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
         method: 'PATCH',
         body: { expectedRevision: detail.revision, content: snapshot },
       });
+      if (result?.revision !== detail.revision + 1 || !Number.isFinite(Date.parse(result?.updatedAt)))
+        throw new RequestError(
+          502,
+          'INVALID_RESPONSE',
+          t(
+            'Save confirmation was incomplete. Refresh and review before retrying.',
+            'সংরক্ষণের নিশ্চিত তথ্য পাওয়া যায়নি। রিফ্রেশ করে সংস্করণ দেখে আবার চেষ্টা করুন।',
+          ),
+        );
       setDetail((d) => ({ ...d, content: snapshot, revision: result.revision, updatedAt: result.updatedAt }));
       setConflict(null);
       setAutoPaused(false);
+      setNeedsSignIn(false);
       if (!automatic)
         setNotice(
           t(
@@ -80,6 +120,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
         );
     } catch (e) {
       setAutoPaused(true);
+      if (e instanceof RequestError && e.status === 401) setNeedsSignIn(true);
       setError((e as Error).message);
       if (e instanceof RequestError && e.status === 409) {
         try {
@@ -108,6 +149,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
         key: publishAttempt.current.key,
       });
       const fresh = await loadServer();
+      setNeedsSignIn(false);
       setDetail(fresh);
       setContent(fresh.content);
       publishAttempt.current = null;
@@ -125,6 +167,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
     setError('');
     try {
       const fresh = await loadServer();
+      setNeedsSignIn(false);
       if (dirty) setConflict(fresh);
       else {
         setDetail(fresh);
@@ -224,6 +267,28 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
         <p className={s.error} role="alert">
           {error}
         </p>
+      )}
+      {needsSignIn && (
+        <section className={s.panel} role="status">
+          <h2>{t('Sign in again to save.', 'সংরক্ষণ করতে আবার প্রবেশ করুন।')}</h2>
+          <p>
+            {t(
+              'Your edits remain in this tab. Sign in with the same account in a new tab, then return and refresh to review before saving.',
+              'আপনার লেখা এই ট্যাবেই আছে। নতুন ট্যাবে একই ইমেইলে প্রবেশ করে ফিরে আসুন; রিফ্রেশ চেপে সংস্করণ দেখে সংরক্ষণ করুন।',
+            )}
+          </p>
+          <a
+            className={s.secondary}
+            href={`/auth/login/?next=${encodeURIComponent(`/weddings/${detail.wedding.id}/`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t('Sign in in a new tab', 'নতুন ট্যাবে প্রবেশ করুন')}
+          </a>
+          <button className={s.secondary} disabled={busy || saving} onClick={refresh}>
+            {t('Review saved version', 'সংরক্ষিত সংস্করণ যাচাই করুন')}
+          </button>
+        </section>
       )}
       {notice && (
         <p className={s.notice} role="status">
@@ -343,7 +408,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                 </h2>
                 <ul className={s.checklist}>
                   <li>
-                    {content.partnerOne.trim() && content.partnerTwo.trim() ? (
+                    {meaningfulText(content.partnerOne) && meaningfulText(content.partnerTwo) ? (
                       <Check size={16} />
                     ) : (
                       <Circle size={16} />
@@ -366,7 +431,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                       setStep(
                         publishedCurrent
                           ? 'names'
-                          : !content.partnerOne.trim() || !content.partnerTwo.trim()
+                          : !meaningfulText(content.partnerOne) || !meaningfulText(content.partnerTwo)
                             ? 'names'
                             : issues.length
                               ? 'events'
@@ -397,7 +462,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                 <p>
                   {t(
                     `Hosting term: ${detail.termDays} days from first publication. Republish does not extend the term.`,
-                    `প্রথম প্রকাশ থেকে ${detail.termDays} দিনের মেয়াদ। পুনঃপ্রকাশে মেয়াদ বাড়বে না।`,
+                    `প্রথম প্রকাশ থেকে ${new Intl.NumberFormat('bn-BD').format(detail.termDays)} দিনের মেয়াদ। পুনঃপ্রকাশে মেয়াদ বাড়বে না।`,
                   )}
                 </p>
                 {detail.expiresAt && (
@@ -409,18 +474,22 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                     }).format(new Date(detail.expiresAt))}
                   </p>
                 )}
-                {isPublished && detail.content.generalEventIds.length > 0 && (
-                  <a
-                    href={`/i/${detail.wedding.slug}/`}
-                    className={s.secondary}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t('Open general invitation · view-only', 'সাধারণ আমন্ত্রণ দেখুন · উত্তর দেওয়া যাবে না')}
-                    <ArrowUpRight size={14} />
-                  </a>
-                )}
-                {!detail.content.generalEventIds.length && (
+                {isPublished &&
+                  (detail.publishedGeneralEventIds ?? detail.content.generalEventIds).length > 0 && (
+                    <a
+                      href={`/i/${detail.wedding.slug}/`}
+                      className={s.secondary}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t(
+                        'Open general invitation · view-only',
+                        'সাধারণ আমন্ত্রণ দেখুন · উত্তর দেওয়া যাবে না',
+                      )}
+                      <ArrowUpRight size={14} />
+                    </a>
+                  )}
+                {!(detail.publishedGeneralEventIds ?? detail.content.generalEventIds).length && (
                   <p>
                     {t(
                       'No events are selected for a general invitation. Select them in Celebrations before sharing a general link.',
@@ -458,7 +527,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
               <p>
                 {t(
                   'Write names exactly as you want guests to see them. Bangla names are optional; they fall back to the original names.',
-                  'অতিথিরা যেভাবে দেখবেন সেভাবেই নাম লিখুন। বাংলা নাম না দিলে মূল নাম দেখাবে।',
+                  'মূল নাম বাংলায় বা ইংরেজিতে লিখুন। আলাদা বানান ও ইংরেজি বার্তা ঐচ্ছিক অনুবাদে রাখতে পারবেন।',
                 )}
               </p>
               <fieldset disabled={busy} className={s.form}>
@@ -466,12 +535,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                   {textInput('partnerOne', t('First partner · original', 'প্রথম জন · মূল নাম'))}
                   {textInput('partnerTwo', t('Second partner · original', 'দ্বিতীয় জন · মূল নাম'))}
                 </div>
-                <div className={s.row}>
-                  {textInput('partnerOneBn', 'প্রথম জন · বাংলা')}
-                  {textInput('partnerTwoBn', 'দ্বিতীয় জন · বাংলা')}
-                </div>
                 {textInput('hosts', t('Hosted by · original', 'আয়োজক · মূল লেখা'))}
-                {textInput('hostsBn', 'আয়োজক · বাংলা')}
                 <label>
                   আমন্ত্রণের বার্তা · বাংলা
                   <textarea
@@ -481,15 +545,30 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                     onChange={(e) => field('message', e.target.value)}
                   />
                 </label>
-                <label>
-                  {t('Invitation message · English (optional)', 'আমন্ত্রণের বার্তা · ইংরেজি (ঐচ্ছিক)')}
-                  <textarea
-                    rows={5}
-                    maxLength={2000}
-                    value={content.messageEn ?? ''}
-                    onChange={(e) => field('messageEn', e.target.value)}
-                  />
-                </label>
+                <details className={s.optionalFields}>
+                  <summary>
+                    {t(
+                      'Optional translations & alternate Bangla spelling',
+                      'ঐচ্ছিক অনুবাদ ও আলাদা বাংলা বানান',
+                    )}
+                  </summary>
+                  <div className={s.form}>
+                    <div className={s.row}>
+                      {textInput('partnerOneBn', 'প্রথম জন · বাংলা')}
+                      {textInput('partnerTwoBn', 'দ্বিতীয় জন · বাংলা')}
+                    </div>
+                    {textInput('hostsBn', 'আয়োজক · বাংলা')}
+                    <label>
+                      {t('Invitation message · English (optional)', 'আমন্ত্রণের বার্তা · ইংরেজি (ঐচ্ছিক)')}
+                      <textarea
+                        rows={5}
+                        maxLength={2000}
+                        value={content.messageEn ?? ''}
+                        onChange={(e) => field('messageEn', e.target.value)}
+                      />
+                    </label>
+                  </div>
+                </details>
               </fieldset>
             </section>
           )}
@@ -503,6 +582,31 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                 )}
               </p>
               <fieldset disabled={busy} className={s.form}>
+                <div className={s.eventChoices}>
+                  <strong>{t('Choose your celebrations', 'যে অনুষ্ঠানগুলো থাকবে')}</strong>
+                  {(['nikah', 'reception'] as const).map((id) => (
+                    <label key={id} className={s.checkbox}>
+                      <input
+                        type="checkbox"
+                        checked={content.events.some((event) => event.id === id)}
+                        disabled={
+                          content.events.some((event) => event.id === id) &&
+                          (content.events.length === 1 || detail.protectedEventIds?.includes(id))
+                        }
+                        onChange={(event) => toggleEvent(id, event.target.checked)}
+                      />
+                      {id === 'nikah'
+                        ? t('Include Nikah', 'আকদ রাখুন')
+                        : t('Include Reception', 'সংবর্ধনা রাখুন')}
+                    </label>
+                  ))}
+                  <small>
+                    {t(
+                      'Keep at least one event. An event with saved replies cannot be removed; contact support to reconcile it.',
+                      'অন্তত একটি অনুষ্ঠান রাখুন। সংরক্ষিত উত্তর থাকা অনুষ্ঠান বাদ দেওয়া যাবে না; সহায়তার সঙ্গে যোগাযোগ করুন।',
+                    )}
+                  </small>
+                </div>
                 {content.events.map((event, index) => (
                   <fieldset key={event.id}>
                     <legend>
@@ -510,12 +614,10 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                       {event.id === 'nikah' ? t('Nikah', 'আকদ') : t('Reception', 'বিবাহোত্তর সংবর্ধনা')}
                     </legend>
                     <div className={s.form}>
-                      <div className={s.row}>
-                        {(['title', 'titleBn'] as const).map((key) => (
+                      <div className={s.form}>
+                        {(['title'] as const).map((key) => (
                           <label key={key}>
-                            {key === 'title'
-                              ? t('Celebration name · original', 'অনুষ্ঠানের নাম · মূল লেখা')
-                              : 'অনুষ্ঠানের নাম · বাংলা'}
+                            {t('Celebration name · original', 'অনুষ্ঠানের নাম · মূল লেখা')}
                             <input
                               value={event[key] ?? ''}
                               maxLength={160}
@@ -523,7 +625,15 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                                 field(
                                   'events',
                                   content.events.map((v, i) =>
-                                    i === index ? { ...v, [key]: e.target.value } : v,
+                                    i === index
+                                      ? {
+                                          ...v,
+                                          [key]: e.target.value,
+                                          ...(key === 'title' && v.titleBn === v.title
+                                            ? { titleBn: e.target.value }
+                                            : {}),
+                                        }
+                                      : v,
                                   ),
                                 )
                               }
@@ -550,7 +660,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                           </label>
                         ))}
                       </div>
-                      {(['venue', 'venueBn', 'address', 'addressBn'] as const).map((key) => (
+                      {(['venue', 'address'] as const).map((key) => (
                         <label key={key}>
                           {
                             {
@@ -574,6 +684,36 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                           />
                         </label>
                       ))}
+                      <details className={s.optionalFields}>
+                        <summary>
+                          {t('Alternate Bangla wording (optional)', 'আলাদা বাংলা বানান (ঐচ্ছিক)')}
+                        </summary>
+                        <div className={s.form}>
+                          {(['titleBn', 'venueBn', 'addressBn'] as const).map((key) => (
+                            <label key={key}>
+                              {
+                                {
+                                  titleBn: 'অনুষ্ঠানের নাম · বাংলা',
+                                  venueBn: 'স্থান · বাংলা',
+                                  addressBn: 'ঠিকানা · বাংলা',
+                                }[key]
+                              }
+                              <input
+                                value={event[key] ?? ''}
+                                maxLength={key === 'titleBn' ? 160 : key === 'venueBn' ? 200 : 500}
+                                onChange={(e) =>
+                                  field(
+                                    'events',
+                                    content.events.map((item, i) =>
+                                      i === index ? { ...item, [key]: e.target.value } : item,
+                                    ),
+                                  )
+                                }
+                              />
+                            </label>
+                          ))}
+                        </div>
+                      </details>
                       <label className={s.checkbox}>
                         <input
                           type="checkbox"
@@ -639,7 +779,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
               <p>
                 {t(
                   `First publication starts your ${detail.termDays}-day hosting term.`,
-                  `প্রথম প্রকাশের দিন থেকে ${detail.termDays} দিনের মেয়াদ শুরু হবে।`,
+                  `প্রথম প্রকাশের দিন থেকে ${new Intl.NumberFormat('bn-BD').format(detail.termDays)} দিনের মেয়াদ শুরু হবে।`,
                 )}
               </p>
               <p>
@@ -692,6 +832,14 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                 <button
                   className={s.secondary}
                   disabled={issues.length > 0 || busy}
+                  title={
+                    issues.length
+                      ? t(
+                          'Complete the names, date, time and venue to preview.',
+                          'প্রিভিউ দেখতে নাম, তারিখ, সময় ও স্থান পূরণ করুন।',
+                        )
+                      : undefined
+                  }
                   onClick={() => setPreview(true)}
                 >
                   <Eye size={15} />

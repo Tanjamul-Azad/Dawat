@@ -1,7 +1,16 @@
 'use client';
 import { useProductLocale } from './product-locale';
 import { useState } from 'react';
-import { ArrowUpRight, LayoutGrid, ShieldCheck, LogOut, Mail, NotebookPen, UsersRound } from 'lucide-react';
+import {
+  ArrowUpRight,
+  LayoutGrid,
+  ShieldCheck,
+  LogOut,
+  Mail,
+  NotebookPen,
+  UsersRound,
+  UserRound,
+} from 'lucide-react';
 import { api } from '@/features/production/client';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import s from './workspace.module.css';
@@ -48,12 +57,21 @@ export function WorkspaceFrame({
             {locale === 'bn' ? 'English' : 'বাংলা'}
           </button>
           {email && (
-            <span
-              title={`${locale === 'bn' ? 'প্রবেশ করা অ্যাকাউন্ট' : 'Signed-in account'}: ${email}`}
-              aria-label={`${locale === 'bn' ? 'প্রবেশ করা অ্যাকাউন্ট' : 'Signed-in account'}: ${email}`}
-            >
-              {email}
-            </span>
+            <details className={s.accountMenu}>
+              <summary aria-label={locale === 'bn' ? 'আপনার অ্যাকাউন্ট' : 'Your account'}>
+                <UserRound size={17} />
+                <span>{email}</span>
+              </summary>
+              <div className={s.accountPopover}>
+                <strong>{locale === 'bn' ? 'প্রবেশ করা অ্যাকাউন্ট' : 'Signed-in account'}</strong>
+                <p>{email}</p>
+                <p>
+                  {locale === 'bn'
+                    ? 'অন্য ইমেইলে প্রবেশ করতে আগে বেরিয়ে যান।'
+                    : 'Sign out before using a different email.'}
+                </p>
+              </div>
+            </details>
           )}
           {email && (
             <button className={s.quiet} onClick={logout} disabled={busy}>

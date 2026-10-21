@@ -280,6 +280,15 @@ export function errorText(text: string, locale: 'bn' | 'en' = 'bn', code = '') {
   if (banglaCopy[text]) return banglaCopy[text];
   const rules: [RegExp, string][] = [
     [
+      /verification is temporarily unavailable/i,
+      'প্রবেশাধিকার যাচাইয়ের সেবায় সাময়িক সমস্যা। আপনার লেখা অক্ষত আছে। একটু পরে চেষ্টা করুন।',
+    ],
+    [/request took too long/i, 'অনুরোধের সময়সীমা শেষ হয়েছে। আবার চেষ্টা করুন।'],
+    [
+      /event with replies cannot be removed/i,
+      'উত্তর থাকা অনুষ্ঠান বাদ দেওয়া যাবে না। সমাধানের জন্য সহায়তার সঙ্গে যোগাযোগ করুন।',
+    ],
+    [
       /request timed out/i,
       'অপেক্ষার সময় শেষ হয়েছে। পরিবর্তন সার্ভারে পৌঁছে থাকতে পারে। আবার চেষ্টা করার আগে পেজ রিফ্রেশ করে সর্বশেষ অবস্থা দেখুন।',
     ],
@@ -295,7 +304,7 @@ export function errorText(text: string, locale: 'bn' | 'en' = 'bn', code = '') {
     ],
     [/10 MB|too large/, 'সর্বোচ্চ ১০ MB-এর ছবি দিন।'],
     [
-      /20 megapixels|decoded|decode|still JPEG|JPEG, PNG|HEIC/,
+      /20 megapixels|decoded|decode|still JPEG|JPEG, PNG|HEIC|could not be reduced/,
       'সঠিক JPEG, PNG বা WebP ছবি দিন। প্রতিটি সর্বোচ্চ ১০ MB ও ২০ মেগাপিক্সেল; HEIC হলে আগে JPEG করুন।',
     ],
     [/same file|same photo/, 'আবার চেষ্টা করতে একই ছবিটি দিন।'],

@@ -77,6 +77,7 @@ describe('PostgreSQL foundation: real roles, RLS and transactions', () => {
         ('${bob}','bob@example.test',now(),null),('${unverified}','unverified@example.test',null,null);
     `);
     await db.exec(readFileSync('supabase/migrations/202610200001_foundation.sql', 'utf8'));
+    await db.exec(readFileSync('supabase/migrations/20261020204524_client_readiness_fixes.sql', 'utf8'));
     await db.query('insert into public.staff_roles(user_id) values($1)', [seller]);
   }, 30000);
   afterAll(async () => {
@@ -89,6 +90,18 @@ describe('PostgreSQL foundation: real roles, RLS and transactions', () => {
   it('rejects anonymous commands', async () => {
     await actor(alice, 'aal1', 'anon');
     await expect(command({ kind: 'create' })).rejects.toThrow(/permission denied/);
+  });
+  it('allows incomplete drafts but blocks invisible required names and venues on publication', async () => {
+    const f = await fixture();
+    await actor(alice);
+    const invisible = { ...valid, partnerOne: '\u200b' };
+    await save(f.weddingId, 0, invisible);
+    await expect(publish(f.weddingId, 1)).rejects.toThrow(/both names/);
+    const venue = { ...valid, events: [{ ...valid.events[0], venue: '\u200d' }] };
+    await save(f.weddingId, 1, venue);
+    await expect(publish(f.weddingId, 2)).rejects.toThrow(/celebration/);
+    await save(f.weddingId, 2, valid);
+    await expect(publish(f.weddingId, 3)).resolves.toBeDefined();
   });
   it('rejects customer escalation and seller without MFA', async () => {
     await actor(alice, 'aal2');

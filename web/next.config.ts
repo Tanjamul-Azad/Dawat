@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 
 const config: NextConfig = {
+  output: process.env.DAWAT_STANDALONE === '1' ? 'standalone' : undefined,
   distDir: process.env.DAWAT_LOCAL_QA === '1' ? '.next-local' : '.next',
   trailingSlash: true,
   images: { unoptimized: true },

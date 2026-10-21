@@ -38,15 +38,26 @@ export async function body<T>(request: Request, schema: z.ZodType<T>): Promise<T
   if (!reader) throw new HttpError(400, 'BODY', 'Missing request.');
   let size = 0;
   const chunks: Uint8Array[] = [];
-  while (true) {
-    const { value, done } = await reader.read();
-    if (done) break;
-    size += value.byteLength;
-    if (size > 80000) {
-      await reader.cancel();
-      throw new HttpError(413, 'BODY_TOO_LARGE', 'This request is too large.');
+  let timer: ReturnType<typeof setTimeout>;
+  const deadline = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => {
+      reject(new HttpError(408, 'BODY_TIMEOUT', 'This request took too long. Please retry.'));
+      void reader.cancel().catch(() => {});
+    }, 30_000);
+  });
+  try {
+    while (true) {
+      const { value, done } = await Promise.race([reader.read(), deadline]);
+      if (done) break;
+      size += value.byteLength;
+      if (size > 80000) {
+        void reader.cancel().catch(() => {});
+        throw new HttpError(413, 'BODY_TOO_LARGE', 'This request is too large.');
+      }
+      chunks.push(value);
     }
-    chunks.push(value);
+  } finally {
+    clearTimeout(timer!);
   }
   let json: unknown;
   try {

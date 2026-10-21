@@ -14,8 +14,30 @@ beforeEach(() => {
   vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', 'http://127.0.0.1:54321');
   vi.stubEnv('NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY', 'synthetic-publishable-key');
 });
-afterEach(() => vi.unstubAllEnvs());
+afterEach(() => {
+  vi.unstubAllEnvs();
+  vi.useRealTimers();
+});
 describe('HTTP security boundaries', () => {
+  it('cancels a stalled JSON body without waiting forever for its stream', async () => {
+    vi.useFakeTimers();
+    let cancelled = false;
+    const stream = new ReadableStream({
+      cancel() {
+        cancelled = true;
+      },
+    });
+    const req = new Request('http://127.0.0.1:3000/api/test', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: stream,
+      duplex: 'half',
+    } as RequestInit);
+    const pending = body(req, z.object({})).catch((error) => error);
+    await vi.advanceTimersByTimeAsync(30_000);
+    expect(await pending).toMatchObject({ status: 408, code: 'BODY_TIMEOUT' });
+    expect(cancelled).toBe(true);
+  });
   it('allows local production-build review but requires HTTPS for hosted origins', () => {
     vi.stubEnv('NODE_ENV', 'production');
     expect(config().origin).toBe('http://127.0.0.1:3000');

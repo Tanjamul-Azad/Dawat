@@ -6,6 +6,7 @@ import { MAX_PHOTOS, MAX_UPLOAD_BYTES, type MediaAsset } from '@/features/produc
 import type { DraftContent } from '@/features/production/contracts';
 import s from './workspace.module.css';
 import { errorText, productText } from '@/features/production/copy';
+import { preparePhoto } from '@/features/production/prepare-photo';
 export function PhotoLibrary({
   wid,
   photos,
@@ -66,6 +67,14 @@ export function PhotoLibrary({
     onWorking(true);
     setError('');
     try {
+      setStage(t('Preparing your photo…', 'ছবি প্রস্তুত হচ্ছে…'));
+      try {
+        attempt.file = await preparePhoto(attempt.file);
+      } catch (e) {
+        // Preparation failed before reserving a slot; retry requires choosing a valid input.
+        pending.current = null;
+        throw e;
+      }
       setStage(t('Reserving your photo…', 'ছবির জায়গা প্রস্তুত হচ্ছে…'));
       if (!attempt.id) {
         const row = await api<MediaAsset>(`${root}/`, { method: 'POST', key: attempt.key });
@@ -73,7 +82,7 @@ export function PhotoLibrary({
       }
       setStage(t('Uploading & preparing your photo…', 'ছবি আপলোড ও প্রস্তুত হচ্ছে…'));
       const response = await fetch(`${root}/${attempt.id}/`, {
-        signal: AbortSignal.timeout(120_000),
+        signal: AbortSignal.timeout(150_000),
         method: 'PUT',
         credentials: 'same-origin',
         headers: { 'Content-Type': attempt.file.type },
@@ -132,7 +141,11 @@ export function PhotoLibrary({
     <section className={`${s.panel} ${s.form}`}>
       <p className={s.eyebrow}>{t('A little of your story', 'আপনাদের গল্পের কিছু মুহূর্ত')}</p>
       <h2>
-        {t('Your photographs', 'আপনাদের ছবি')} <small>{photos.length}/5</small>
+        {t('Your photographs', 'আপনাদের ছবি')}{' '}
+        <small>
+          {new Intl.NumberFormat(locale === 'bn' ? 'bn-BD' : 'en-BD').format(photos.length)}/
+          {locale === 'bn' ? '৫' : '5'}
+        </small>
       </h2>
       {!available && (
         <p role="status" className={s.notice}>
@@ -247,7 +260,10 @@ export function PhotoLibrary({
               <div className={s.actions}>
                 <button
                   className={s.secondary}
-                  aria-label={`Move photo ${index + 1} earlier`}
+                  aria-label={t(
+                    `Move photo ${index + 1} earlier`,
+                    `ছবি ${new Intl.NumberFormat('bn-BD').format(index + 1)} আগে নিন`,
+                  )}
                   disabled={disabled || busy || index === 0}
                   onClick={() => move(index, -1)}
                 >
@@ -255,7 +271,10 @@ export function PhotoLibrary({
                 </button>
                 <button
                   className={s.secondary}
-                  aria-label={`Move photo ${index + 1} later`}
+                  aria-label={t(
+                    `Move photo ${index + 1} later`,
+                    `ছবি ${new Intl.NumberFormat('bn-BD').format(index + 1)} পরে নিন`,
+                  )}
                   disabled={disabled || busy || index === photos.length - 1}
                   onClick={() => move(index, 1)}
                 >

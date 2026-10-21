@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { productText } from '@/features/production/copy';
 type Locale = 'bn' | 'en';
 const Context = createContext({
@@ -12,10 +12,10 @@ export function ProductLocale({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (document.cookie.split(';').some((c) => c.trim() === 'dawat_ui=en')) update('en');
   }, []);
-  const setLocale = (next: Locale) => {
+  const setLocale = useCallback((next: Locale) => {
     update(next);
     document.cookie = `dawat_ui=${next}; Path=/; SameSite=Lax; Max-Age=31536000${location.protocol === 'https:' ? '; Secure' : ''}`;
-  };
+  }, []);
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);

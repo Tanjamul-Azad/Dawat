@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { mediaPhoto } from './media';
+import { meaningfulText } from './text';
 
 export const uuid = z.uuid();
 const text = (max: number) => z.string().max(max);
@@ -54,10 +55,10 @@ export function emptyDraft(): DraftContent {
     photos: [],
     generalEventIds: [],
     events: [
-      { id: 'nikah', title: 'Nikah', titleBn: 'আকদ', date: '', time: '', venue: '', address: '' },
+      { id: 'nikah', title: 'আকদ', titleBn: 'আকদ', date: '', time: '', venue: '', address: '' },
       {
         id: 'reception',
-        title: 'Reception',
+        title: 'বিবাহোত্তর সংবর্ধনা',
         titleBn: 'বিবাহোত্তর সংবর্ধনা',
         date: '',
         time: '',
@@ -69,12 +70,12 @@ export function emptyDraft(): DraftContent {
 }
 export function publicationIssues(c: DraftContent): string[] {
   const errors: string[] = [];
-  if (!c.partnerOne.trim() || !c.partnerTwo.trim()) errors.push('Add both names.');
+  if (!meaningfulText(c.partnerOne) || !meaningfulText(c.partnerTwo)) errors.push('Add both names.');
   for (const e of c.events) {
     const date = new Date(`${e.date}T00:00:00Z`);
     if (
-      !e.title.trim() ||
-      !e.venue.trim() ||
+      !meaningfulText(e.title) ||
+      !meaningfulText(e.venue) ||
       !/^\d{4}-\d{2}-\d{2}$/.test(e.date) ||
       !Number.isFinite(date.getTime()) ||
       date.toISOString().slice(0, 10) !== e.date ||
@@ -127,6 +128,8 @@ export type WeddingSummary = {
   publication_revision: number;
 };
 export type WeddingDetail = {
+  publishedGeneralEventIds?: ('nikah' | 'reception')[];
+  protectedEventIds?: ('nikah' | 'reception')[];
   mediaAvailable?: boolean;
   wedding: WeddingSummary;
   content: DraftContent;

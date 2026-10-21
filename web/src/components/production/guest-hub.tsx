@@ -229,7 +229,11 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
             <ArrowLeft size={12} /> {title}
           </a>
           <h1>{tr('People make the celebration.')}</h1>
-          <p>নাম ধরে আমন্ত্রণ। প্রতিটি পরিবারের জন্য নিজস্ব লিংক, অনুষ্ঠান ও মোট লোকসংখ্যার অনুমতি।</p>
+          <p>
+            {locale === 'bn'
+              ? 'নাম ধরে আমন্ত্রণ। প্রতিটি পরিবারের জন্য নিজস্ব লিংক, অনুষ্ঠান ও মোট লোকসংখ্যার অনুমতি।'
+              : 'Invite each household by name, with its own link, celebrations and party allowance.'}
+          </p>
         </div>
         <div className={s.actions}>
           <button
@@ -248,7 +252,7 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
       </div>
       {error && editing === undefined && !danger && (
         <p className={s.error} role="alert">
-          {error}
+          {errorText(error, locale)}
           {stale ? tr(' Last successful results remain below.') : ''}
         </p>
       )}
@@ -271,7 +275,19 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
           {tr('Private wishes')}
         </button>
       </nav>
-      {panel === 'guests' ? (
+      {!events.length ? (
+        <section className={s.panel}>
+          <h2>{locale === 'bn' ? 'আগে আমন্ত্রণটি প্রকাশ করুন।' : 'Publish your invitation first.'}</h2>
+          <p>
+            {locale === 'bn'
+              ? 'নাম, অনুষ্ঠান ও স্থান পূরণ করে প্রিভিউ দেখুন। প্রকাশের পর পরিবার যোগ করা, ব্যক্তিগত লিংক এবং উত্তর নেওয়া চালু হবে।'
+              : 'Complete names, celebrations and venues, then preview and publish. You can then add households, generate personal links and collect replies.'}
+          </p>
+          <a className={s.button} href={`/weddings/${wid}/`}>
+            {locale === 'bn' ? 'আমন্ত্রণ সম্পাদনায় যান' : 'Continue editing'}
+          </a>
+        </section>
+      ) : panel === 'guests' ? (
         <>
           <div className={s.panel}>
             <div className={s.actions} style={{ justifyContent: 'space-between', marginBottom: 20 }}>
@@ -319,10 +335,7 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
               <strong>{count(data.summary.adults + data.summary.children)}</strong>
               {tr('confirmed people')}{' '}
               <span>
-                {count(data.summary.adults)}
-                {tr('adults +')}
-                {count(data.summary.children)}
-                {tr('children')}
+                {count(data.summary.adults)} {tr('adults +')} {count(data.summary.children)} {tr('children')}
               </span>
             </p>
             <p className={s.muted}>
@@ -636,7 +649,7 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
         >
           {error && (
             <p role="alert" className={s.error}>
-              {error}
+              {errorText(error, locale)}
             </p>
           )}
           <p>
@@ -698,7 +711,7 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
           >
             {error && (
               <p className={s.error} role="alert">
-                {error}
+                {errorText(error, locale)}
               </p>
             )}
             <label className={s.checkbox}>
@@ -771,7 +784,16 @@ function HouseholdEditor({
     };
     const valid = householdInput.safeParse(value);
     if (!valid.success) {
-      setError(valid.error.issues[0].message);
+      const issue = valid.error.issues[0];
+      setError(
+        locale === 'bn'
+          ? issue.path[0] === 'events'
+            ? 'অন্তত একটি অনুষ্ঠান বেছে নিন। নির্বাচিত অনুষ্ঠানে ১ থেকে ৫০ জনের অনুমতি দিন।'
+            : issue.path[0] === 'name'
+              ? 'অতিথি বা পরিবারের নাম লিখুন; সর্বোচ্চ ১২০ অক্ষর। অদৃশ্য বা নিয়ন্ত্রণ অক্ষর দেওয়া যাবে না।'
+              : 'লেখাটি বেশি বড় হয়েছে। নির্ধারিত সীমার মধ্যে লিখুন।'
+          : issue.message,
+      );
       return;
     }
     const body = { id: id.current, expectedRevision: row?.revision ?? 0, household: valid.data };
@@ -798,7 +820,7 @@ function HouseholdEditor({
     >
       {error && (
         <p role="alert" className={s.error}>
-          {error}
+          {errorText(error, locale)}
         </p>
       )}
       <p>
@@ -820,16 +842,10 @@ function HouseholdEditor({
               )}
             />
           </label>
-          <label>
-            {tr('\u09A8\u09BE\u09AE \u00B7 \u09AC\u09BE\u0982\u09B2\u09BE (optional)')}
-            <input name="nameBn" maxLength={120} defaultValue={row?.nameBn} />
-          </label>
           {(
             [
               ['greeting', 'সম্বোধন · বাংলা', 300],
-              ['greetingEn', tr('Greeting \u00B7 English'), 300],
               ['message', 'ব্যক্তিগত বার্তা · বাংলা', 500],
-              ['messageEn', tr('Personal message \u00B7 English'), 500],
             ] as const
           ).map(([key, label, max]) => (
             <label key={key}>
@@ -837,6 +853,30 @@ function HouseholdEditor({
               <textarea name={key} rows={2} maxLength={max} defaultValue={row?.[key]} />
             </label>
           ))}
+          <details className={s.optionalFields}>
+            <summary>
+              {locale === 'bn'
+                ? 'ঐচ্ছিক অনুবাদ ও আলাদা বাংলা বানান'
+                : 'Optional translations & alternate Bangla spelling'}
+            </summary>
+            <div className={s.form}>
+              <label>
+                {tr('\u09A8\u09BE\u09AE \u00B7 \u09AC\u09BE\u0982\u09B2\u09BE (optional)')}
+                <input name="nameBn" maxLength={120} defaultValue={row?.nameBn} />
+              </label>
+              {(
+                [
+                  ['greetingEn', tr('Greeting \u00B7 English'), 300],
+                  ['messageEn', tr('Personal message \u00B7 English'), 500],
+                ] as const
+              ).map(([key, label, max]) => (
+                <label key={key}>
+                  {label}
+                  <textarea name={key} rows={2} maxLength={max} defaultValue={row?.[key]} />
+                </label>
+              ))}
+            </div>
+          </details>
           <fieldset>
             <legend>{tr('Celebrations & total people')}</legend>
             {events.map((ev) => (
@@ -873,7 +913,7 @@ function HouseholdEditor({
             )}
           </p>
           <button className={s.button} disabled={busy}>
-            {busy ? 'Saving…' : row ? tr('Save household') : tr('Create household')}
+            {busy ? tr('Please wait…') : row ? tr('Save household') : tr('Create household')}
           </button>
         </fieldset>
       </form>

@@ -4,6 +4,7 @@ import { afterEach, beforeAll, expect, it, vi } from 'vitest';
 import { WeddingDesk } from './wedding-desk';
 import { WorkspaceFrame } from './frame';
 import { ResponseEditor } from './response-editor';
+import { GuestHub } from './guest-hub';
 import { ProductLocale } from './product-locale';
 import { emptyDraft, type WeddingDetail } from '@/features/production/contracts';
 import type { HouseholdRow } from '@/features/production/guests';
@@ -54,6 +55,125 @@ function editor() {
   return screen.getByLabelText('প্রথম জন · মূল নাম') as HTMLInputElement;
 }
 
+it('saves a reception-only setup, clears its removed general scope and restores stashed event details', async () => {
+  const fetcher = vi.fn().mockResolvedValue(json({ revision: 1, updatedAt: '2026-10-21T10:00:00Z' }));
+  vi.stubGlobal('fetch', fetcher);
+  render(
+    <ProductLocale>
+      <WeddingDesk
+        initial={{ ...initial, content: { ...initial.content, generalEventIds: ['nikah'] } }}
+        email="owner@example.test"
+      />
+    </ProductLocale>,
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'অনুষ্ঠান' }));
+  fireEvent.change(screen.getAllByLabelText('স্থান · মূল লেখা')[0], { target: { value: 'ঢাকা বাগান' } });
+  fireEvent.click(screen.getByLabelText('আকদ রাখুন'));
+  expect((screen.getByLabelText('সংবর্ধনা রাখুন') as HTMLInputElement).disabled).toBe(true);
+  fireEvent.click(screen.getByRole('button', { name: 'খসড়া সংরক্ষণ' }));
+  await pause();
+  const sent = JSON.parse(fetcher.mock.calls[0][1].body).content;
+  expect(sent.events.map((event: { id: string }) => event.id)).toEqual(['reception']);
+  expect(sent.generalEventIds).toEqual([]);
+  fireEvent.click(screen.getByLabelText('আকদ রাখুন'));
+  expect(
+    screen
+      .getAllByLabelText('স্থান · মূল লেখা')
+      .some((input) => (input as HTMLInputElement).value === 'ঢাকা বাগান'),
+  ).toBe(true);
+});
+it('does not allow removing a celebration with saved replies', () => {
+  render(
+    <ProductLocale>
+      <WeddingDesk initial={{ ...initial, protectedEventIds: ['nikah'] }} email="owner@example.test" />
+    </ProductLocale>,
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'অনুষ্ঠান' }));
+  expect((screen.getByLabelText('আকদ রাখুন') as HTMLInputElement).disabled).toBe(true);
+});
+it('shows the current published general link even when the saved draft has no general events', () => {
+  render(
+    <ProductLocale>
+      <WeddingDesk
+        initial={{
+          ...initial,
+          wedding: { ...initial.wedding, visibility: 'live' },
+          publishedDraftRevision: 1,
+          revision: 2,
+          publishedGeneralEventIds: ['reception'],
+        }}
+        email="owner@example.test"
+      />
+    </ProductLocale>,
+  );
+  expect(screen.getByRole('link', { name: 'সাধারণ আমন্ত্রণ দেখুন · উত্তর দেওয়া যাবে না' })).toBeTruthy();
+});
+it('gives an unpublished guest workspace a direct editing action without live report controls', () => {
+  render(
+    <ProductLocale>
+      <GuestHub
+        wid={wid}
+        slug={wid}
+        title="টেস্ট আয়োজন"
+        email="owner@example.test"
+        events={[]}
+        initialEvent="reception"
+        initial={{
+          rows: [],
+          nextCursor: null,
+          summary: { invited: 0, accepted: 0, declined: 0, pending: 0, adults: 0, children: 0 },
+          policies: [],
+          policyRevision: 0,
+          asOf: '2026-10-21T00:00:00Z',
+        }}
+      />
+    </ProductLocale>,
+  );
+  expect(screen.getByRole('link', { name: 'আমন্ত্রণ সম্পাদনায় যান' })).toBeTruthy();
+  expect(screen.queryByRole('combobox', { name: 'অনুষ্ঠান' })).toBeNull();
+  expect(screen.queryByText('উত্তর নেওয়া চালু')).toBeNull();
+  expect(screen.queryByRole('button', { name: 'CSV নামান' })).toBeNull();
+});
+
+it('explains missing household scope in Bangla before any server write', () => {
+  const fetcher = vi.fn();
+  vi.stubGlobal('fetch', fetcher);
+  render(
+    <ProductLocale>
+      <GuestHub
+        wid={wid}
+        slug={wid}
+        title="কাল্পনিক আয়োজন"
+        email="owner@example.test"
+        events={[
+          {
+            id: 'reception',
+            title: 'সংবর্ধনা',
+            date: '2026-12-12',
+            time: '19:00',
+            venue: 'ঢাকা',
+            address: '',
+          },
+        ]}
+        initialEvent="reception"
+        initial={{
+          rows: [],
+          nextCursor: null,
+          summary: { invited: 0, accepted: 0, declined: 0, pending: 0, adults: 0, children: 0 },
+          policies: [],
+          policyRevision: 0,
+          asOf: '2026-10-21T00:00:00Z',
+        }}
+      />
+    </ProductLocale>,
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'পরিবার যোগ করুন' }));
+  fireEvent.change(screen.getByLabelText('অতিথি বা পরিবারের নাম'), { target: { value: 'কাল্পনিক পরিবার' } });
+  fireEvent.submit(screen.getByRole('dialog').querySelector('form')!);
+  expect(screen.getByRole('alert').textContent).toContain('অন্তত একটি অনুষ্ঠান');
+  expect(fetcher).not.toHaveBeenCalled();
+});
+
 it('preserves text entered during an autosave and acknowledges each exact snapshot', async () => {
   vi.useFakeTimers();
   let acknowledge!: (r: Response) => void;
@@ -87,6 +207,19 @@ it('preserves text entered during an autosave and acknowledges each exact snapsh
   expect(second.expectedRevision).toBe(1);
   expect(second.content.partnerOne).toBe('নতুন লেখা');
   expect(screen.getByText(/সার্ভারে সংরক্ষিত/)).toBeTruthy();
+});
+it('does not mark local edits saved when a successful response lacks a matching revision receipt', async () => {
+  vi.useFakeTimers();
+  const fetcher = vi.fn().mockResolvedValue(json({ revision: 99, updatedAt: 'not-a-date' }));
+  vi.stubGlobal('fetch', fetcher);
+  const input = editor();
+  fireEvent.change(input, { target: { value: 'অক্ষত লেখা' } });
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(2000);
+  });
+  expect(input.value).toBe('অক্ষত লেখা');
+  expect(screen.getByRole('alert')).toBeTruthy();
+  expect(screen.getByText(/স্বয়ংক্রিয় সংরক্ষণ বন্ধ/)).toBeTruthy();
 });
 it('pauses autosave after an uncertain failure and supports deliberate retry without discarding text', async () => {
   vi.useFakeTimers();

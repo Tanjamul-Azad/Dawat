@@ -8,6 +8,12 @@ import { safeReturnPath } from '@/features/production/navigation';
 export async function session() {
   const db = await database();
   const { data, error } = await db.auth.getUser();
+  if (error && ((error.status ?? 0) >= 500 || error.name === 'AuthRetryableFetchError'))
+    throw new HttpError(
+      503,
+      'AUTH_UNAVAILABLE',
+      'Sign-in verification is temporarily unavailable. Your edits are still here. Please retry.',
+    );
   if (error || !data.user?.email_confirmed_at)
     throw new HttpError(401, 'AUTH_REQUIRED', 'Sign in with your verified email to continue.');
   return { db, user: data.user };

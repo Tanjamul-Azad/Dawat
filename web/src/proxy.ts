@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import { safeReturnPath } from '@/features/production/navigation';
+import { serverFetch } from '@/server/bounded-fetch';
 
 export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
@@ -8,6 +9,7 @@ export async function proxy(request: NextRequest) {
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
   if (url && key) {
     const db = createServerClient(url, key, {
+      global: { fetch: serverFetch },
       cookieOptions: {
         httpOnly: true,
         secure: process.env.APP_ORIGIN?.startsWith('https://') ?? true,
@@ -23,8 +25,14 @@ export async function proxy(request: NextRequest) {
         },
       },
     });
-    const { data } = await db.auth.getClaims();
-    if (!data?.claims && /^\/(dashboard|weddings|admin)(\/|$)/.test(request.nextUrl.pathname)) {
+    const { data, error } = await db.auth.getClaims();
+    // An upstream outage is not evidence of sign-out. The page/API still verifies the user.
+    const unavailable = error && ((error.status ?? 0) >= 500 || error.name === 'AuthRetryableFetchError');
+    if (
+      !data?.claims &&
+      !unavailable &&
+      /^\/(dashboard|weddings|admin)(\/|$)/.test(request.nextUrl.pathname)
+    ) {
       const login = new URL('/auth/login/', request.url);
       login.searchParams.set('next', safeReturnPath(request.nextUrl.pathname));
       const redirect = NextResponse.redirect(login);

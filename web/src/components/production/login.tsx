@@ -1,8 +1,8 @@
 'use client';
 import { useProductLocale } from './product-locale';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowRight, LockKeyhole } from 'lucide-react';
-import { api } from '@/features/production/client';
+import { api, RequestError } from '@/features/production/client';
 import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
 import { latinDigits } from '@/features/production/copy';
@@ -13,19 +13,31 @@ export function Login({ next, available = true }: { next: string; available?: bo
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [retryAt, setRetryAt] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  useEffect(() => {
+    const tick = () => setSeconds(Math.max(0, Math.ceil((retryAt - Date.now()) / 1000)));
+    tick();
+    if (retryAt <= Date.now()) return;
+    const timer = setInterval(tick, 1000);
+    return () => clearInterval(timer);
+  }, [retryAt]);
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (busy || (!sent && retryAt > Date.now())) return;
     setBusy(true);
     setError('');
     try {
       if (!sent) {
         await api('/api/auth/login/', { method: 'POST', body: { email: email.trim() } });
         setSent(true);
+        setRetryAt(Date.now() + 60_000);
       } else {
         await api('/api/auth/verify/', { method: 'POST', body: { email: email.trim(), token } });
         window.location.assign(safeReturnPath(next));
       }
     } catch (e) {
+      if (e instanceof RequestError && e.status === 429) setRetryAt(Date.now() + (e.retryAfter || 60) * 1000);
       setError((e as Error).message);
     } finally {
       setBusy(false);
@@ -102,10 +114,17 @@ export function Login({ next, available = true }: { next: string; available?: bo
                   </label>
                 </>
               )}
-              <button className={s.button} disabled={busy}>
+              <button className={s.button} disabled={busy || (!sent && seconds > 0)}>
                 {busy ? tr('Please wait\u2026') : sent ? tr('Verify & continue') : tr('Email me a code')}
                 <ArrowRight size={16} />
               </button>
+              {seconds > 0 && (
+                <p role="status">
+                  {locale === 'bn'
+                    ? `${new Intl.NumberFormat('bn-BD').format(seconds)} সেকেন্ড পর নতুন কোড চাইতে পারবেন।`
+                    : `You can request another code in ${seconds} seconds.`}
+                </p>
+              )}
               {sent && (
                 <button
                   type="button"
