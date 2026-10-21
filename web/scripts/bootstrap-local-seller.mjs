@@ -1,5 +1,7 @@
 import { execFileSync } from 'node:child_process';
 const email = process.argv[2]?.trim().toLowerCase();
+const recovery = process.argv[3] === '--recovery';
+if (process.argv[3] && !recovery) throw new Error('Unknown local target.');
 if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254)
   throw new Error('Usage: npm run backend:seller -- verified-email@example.com');
 const literal = email.replaceAll("'", "''");
@@ -15,7 +17,7 @@ execFileSync(
   [
     'exec',
     '-i',
-    'supabase_db_dawat-local',
+    recovery ? 'supabase_db_dawat-recovery' : 'supabase_db_dawat-local',
     'psql',
     '-U',
     'postgres',

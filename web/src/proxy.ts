@@ -3,8 +3,17 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { safeReturnPath } from '@/features/production/navigation';
 import { serverFetch } from '@/server/bounded-fetch';
 import { deploymentSurface, routeAllowed } from '@/features/production/surface';
+import { deploymentEnvironment } from '@/server/config';
 
 export async function proxy(request: NextRequest) {
+  try {
+    deploymentEnvironment();
+  } catch {
+    return NextResponse.json(
+      { code: 'UNAVAILABLE', message: 'সেবাটি কনফিগার করা হচ্ছে। পরে আবার চেষ্টা করুন।' },
+      { status: 503, headers: { 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex, nofollow' } },
+    );
+  }
   if (!routeAllowed(deploymentSurface(), request.nextUrl.pathname))
     return NextResponse.json(
       { code: 'NOT_FOUND', message: 'পৃষ্ঠা পাওয়া যায়নি।' },

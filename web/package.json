@@ -24,7 +24,13 @@
     "qa:build": "node scripts/local-qa.mjs build",
     "qa:preview": "node scripts/local-qa.mjs start",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "backup:create": "node scripts/recovery/backup.mjs",
+    "recovery:start": "node scripts/recovery/start-drill.mjs",
+    "recovery:restore": "node scripts/recovery/restore-drill.mjs",
+    "recovery:build": "node scripts/recovery/app.mjs build",
+    "recovery:app": "node scripts/recovery/app.mjs start",
+    "recovery:verify": "node scripts/recovery/app.mjs verify"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -45,6 +51,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "jsdom": "^26.1.0",
+    "pg": "8.16.3",
     "prettier": "^3.6.2",
     "supabase": "^2.121.0",
     "typescript": "^5.9.0",

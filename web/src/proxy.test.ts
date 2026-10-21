@@ -2,6 +2,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
 const { getClaims } = vi.hoisted(() => ({ getClaims: vi.fn() }));
 vi.mock('@supabase/ssr', () => ({ createServerClient: () => ({ auth: { getClaims } }) }));
+vi.mock('server-only', () => ({}));
 import { proxy } from './proxy';
 afterEach(() => vi.unstubAllEnvs());
 function setup() {
@@ -42,4 +43,16 @@ it('blocks the pilot operator API before refreshing an identity', async () => {
   expect(r.status).toBe(404);
   expect(getClaims).not.toHaveBeenCalled();
   expect(r.headers.get('cache-control')).toContain('no-store');
+});
+it('refuses production credentials on a deploy preview before any Auth network request', async () => {
+  vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', 'https://zztiestaqjbsbjuzmbqp.supabase.co');
+  vi.stubEnv('APP_ORIGIN', 'https://dawat-client-pilot.netlify.app');
+  vi.stubEnv('DAWAT_ENVIRONMENT', 'production');
+  vi.stubEnv('DAWAT_SURFACE', 'pilot');
+  vi.stubEnv('CONTEXT', 'deploy-preview');
+  getClaims.mockClear();
+  const result = await proxy(new NextRequest('https://preview.example/dashboard/'));
+  expect(result.status).toBe(503);
+  expect(getClaims).not.toHaveBeenCalled();
+  expect(result.headers.get('cache-control')).toContain('no-store');
 });

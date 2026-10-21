@@ -5,16 +5,21 @@ import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import sharp from 'sharp';
 const origin = process.env.APP_ORIGIN ?? 'http://127.0.0.1:3100';
+const recovery = process.env.DAWAT_RECOVERY_QA === '1';
+const expectedApi = recovery ? 'http://127.0.0.1:55321' : 'http://127.0.0.1:54321';
+const inboxOrigin = recovery ? 'http://127.0.0.1:55324' : 'http://127.0.0.1:54324';
+const container = recovery ? 'supabase_db_dawat-recovery' : 'supabase_db_dawat-local';
+if (recovery && origin !== 'http://127.0.0.1:3104') throw new Error('Recovery origin mismatch.');
 if (!/^http:\/\/127\.0\.0\.1:\d+$/.test(origin)) throw new Error('Local verification only.');
 const activeConfig = readFileSync('.env.local', 'utf8');
 const databaseUrl =
   process.env.NEXT_PUBLIC_SUPABASE_URL ?? activeConfig.match(/^NEXT_PUBLIC_SUPABASE_URL=(.*)$/m)?.[1]?.trim();
-if (!/^http:\/\/127\.0\.0\.1:54321$/.test(databaseUrl ?? ''))
+if (databaseUrl !== expectedApi)
   throw new Error(
     'Local verification requires the local database configuration. Restore the offline environment and restart the app first.',
   );
 const run = Date.now().toString(36);
-const artifactDir = '../.artifacts/client-foundation';
+const artifactDir = recovery ? '../.artifacts/recovery-sandbox/e2e' : '../.artifacts/client-foundation';
 mkdirSync(artifactDir, { recursive: true });
 function client() {
   const cookies = new Map();
@@ -56,10 +61,10 @@ async function login(email) {
   assert.equal(sent.status, 200, `OTP send failed: ${sent.raw}`);
   let code;
   for (let i = 0; i < 30; i++) {
-    const inbox = await fetch('http://127.0.0.1:54324/api/v1/messages').then((r) => r.json());
+    const inbox = await fetch(`${inboxOrigin}/api/v1/messages`).then((r) => r.json());
     const message = inbox.messages.find((m) => m.To?.some((t) => t.Address === email));
     if (message) {
-      const full = await fetch(`http://127.0.0.1:54324/api/v1/message/${message.ID}`).then((r) => r.json());
+      const full = await fetch(`${inboxOrigin}/api/v1/message/${message.ID}`).then((r) => r.json());
       code = (full.Text + ' ' + full.HTML).match(/\b\d{6}\b/)?.[0];
       if (code) break;
     }
@@ -93,7 +98,7 @@ const seller = await login(sellerEmail);
 const alice = await login(`alice-${run}@example.test`);
 const bob = await login(`bob-${run}@example.test`);
 assert.equal((await alice.request('/api/admin/orders/')).status, 403);
-execFileSync(process.execPath, ['scripts/bootstrap-local-seller.mjs', sellerEmail], {
+execFileSync(process.execPath, ['scripts/bootstrap-local-seller.mjs', sellerEmail, ...(recovery ? ['--recovery'] : [])], {
   stdio: ['ignore', 'pipe', 'pipe'],
 });
 assert.equal((await seller.request('/api/admin/orders/')).status, 403, 'Seller access must require MFA.');
@@ -107,7 +112,7 @@ const secret = execFileSync(
   'docker',
   [
     'exec',
-    'supabase_db_dawat-local',
+    container,
     'psql',
     '-U',
     'postgres',
