@@ -48,3 +48,13 @@ it('offers manual selection when the clipboard fails and labels the general URL 
   expect(screen.getByRole('status').textContent).toContain('নির্বাচন করে নিজে কপি');
   expect(screen.getByText(/এই লিংকে উত্তর দেওয়া যায় না/)).toBeTruthy();
 });
+it('guides a paused invitation back to its existing links instead of starting publication again', () => {
+  render(
+    <ProductLocale>
+      <HandoffLinks workspaceUrl={workspaceUrl} weddingId="fictional" live={false} paused />
+    </ProductLocale>,
+  );
+  expect(screen.getByText(/আগের ব্যক্তিগত লিংকগুলো কাজ করবে/)).toBeTruthy();
+  expect(screen.queryByText(/আগে আমন্ত্রণ প্রকাশ করুন/)).toBeNull();
+  expect(screen.queryByLabelText('সাধারণ আমন্ত্রণের লিংক')).toBeNull();
+});

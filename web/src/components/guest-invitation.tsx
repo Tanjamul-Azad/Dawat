@@ -449,11 +449,21 @@ export function GuestInvitation({
             <section id="rsvp" className={s.previewPanel} tabIndex={-1}>
               <Heart size={25} />
               <h2>{t.previewTitle}</h2>
-              <p>{t.previewNote}</p>
-              <a href="/studio/" className={s.primary}>
-                {t.customize}
-                <ArrowRight size={16} />
-              </a>
+              {authority ? (
+                <p>
+                  {locale === 'bn'
+                    ? 'এটি আপনার ব্যক্তিগত প্রিভিউ। বন্ধ করে তথ্য সম্পাদনা করুন। আমন্ত্রণ প্রকাশের পর অতিথিদের ব্যক্তিগত লিংক থেকে উত্তর ও শুভেচ্ছা নেওয়া যাবে।'
+                    : 'This is your private preview. Close it to edit the details. After publishing, guests can reply and leave wishes through their personal invitation links.'}
+                </p>
+              ) : (
+                <>
+                  <p>{t.previewNote}</p>
+                  <a href="/studio/" className={s.primary}>
+                    {t.customize}
+                    <ArrowRight size={16} />
+                  </a>
+                </>
+              )}
             </section>
           ) : (
             <>

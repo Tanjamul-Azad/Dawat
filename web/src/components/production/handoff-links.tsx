@@ -10,11 +10,13 @@ export function HandoffLinks({
   guestUrl,
   weddingId,
   live,
+  paused = false,
 }: {
   workspaceUrl: string;
   guestUrl?: string | null;
   weddingId: string;
   live: boolean;
+  paused?: boolean;
 }) {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
@@ -65,10 +67,15 @@ export function HandoffLinks({
                   'পরিবার যোগ করে প্রত্যেকের ব্যক্তিগত লিংক দিন। সেই লিংকেই তাঁরা উত্তর ও শুভেচ্ছা জানাবেন।',
                   'Add households and share each personal link for replies and private wishes.',
                 )
-              : t(
-                  'আগে আমন্ত্রণ প্রকাশ করুন। তারপর পরিবার যোগ করে ব্যক্তিগত লিংক দিতে পারবেন।',
-                  'Publish first, then add households and share personal links.',
-                )}
+              : paused
+                ? t(
+                    'আমন্ত্রণ আবার চালু করলে আগের ব্যক্তিগত লিংকগুলো কাজ করবে। সংরক্ষিত উত্তর ও শুভেচ্ছা অক্ষত আছে।',
+                    'Resume the invitation to use the existing personal links. Saved replies and wishes are retained.',
+                  )
+                : t(
+                    'আগে আমন্ত্রণ প্রকাশ করুন। তারপর পরিবার যোগ করে ব্যক্তিগত লিংক দিতে পারবেন।',
+                    'Publish first, then add households and share personal links.',
+                  )}
           </p>
           <a className={s.secondary} href={`/weddings/${weddingId}/guests/`}>
             {t('অতিথির লিংক পরিচালনা', 'Manage guest links')}

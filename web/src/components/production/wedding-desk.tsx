@@ -488,6 +488,7 @@ export function WeddingDesk({
                   guestUrl={isPublished ? detail.generalInvitationUrl : null}
                   weddingId={detail.wedding.id}
                   live={isPublished}
+                  paused={isPaused}
                 />
               )}
               <section className={s.panel}>

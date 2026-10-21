@@ -57,6 +57,24 @@ afterEach(() => {
 });
 
 describe('personal invitation and explicit opening contract', () => {
+  it.each(['draftPreview', 'householdPreview'] as const)(
+    'keeps an authorized %s focused on editing and sharing rather than a new order',
+    (mode) => {
+      const { container } = render(
+        <GuestInvitation
+          workspace={createWorkspace()}
+          ready
+          update={() => false}
+          notify={() => {}}
+          authority={{ mode, scope: 'synthetic-owner-preview' }}
+        />,
+      );
+      open();
+      expect(screen.getByText(/এটি আপনার ব্যক্তিগত প্রিভিউ/)).toBeTruthy();
+      expect(screen.queryByText(words.bn.previewNote)).toBeNull();
+      expect(container.querySelector('a[href="/studio/"], form')).toBeNull();
+    },
+  );
   it.each(['liveGeneral', 'liveHousehold'] as const)(
     'never labels a loading %s invitation as a sample',
     (mode) => {
