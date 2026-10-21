@@ -68,6 +68,9 @@ async function login(email) {
   assert.ok(code, 'Local inbox did not receive an OTP.');
   const verified = await c.request('/api/auth/verify/', { method: 'POST', body: { email, token: code } });
   assert.equal(verified.status, 200, `OTP verification failed: ${verified.raw}`);
+  const returning = await c.request('/auth/login/?next=%2Fdashboard%2F');
+  assert.equal(returning.status, 307, 'An existing verified session must not request another OTP.');
+  assert.equal(returning.headers.get('location'), '/dashboard/');
   return c;
 }
 function totp(secret) {
@@ -672,6 +675,7 @@ writeFileSync(
       publicPath,
       checks: [
         'email OTP',
+        'existing verified session skips OTP form',
         'seller MFA',
         'authorized seller search and literal wildcard escaping',
         'transactional confirmation',
