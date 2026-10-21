@@ -1,4 +1,4 @@
-Current checkpoint: [21 October hardening and rehearsal](../docs/build-evidence/client-pilot-hardening-2026-10-21.md); 224 tests/23 files, six migrations, fresh local HTTP/Auth/Storage and hosted fictional media/guest rehearsal pass. Vercel personal preview setup is in progress, not commercial launch.
+Current checkpoint: [21 October hardening and rehearsal](../docs/build-evidence/client-pilot-hardening-2026-10-21.md); 225 tests/23 files, seven migrations, fresh local HTTP/Auth/Storage and hosted fictional media/guest rehearsal pass. Vercel personal preview setup is in progress, not commercial launch.
 # Dawat web application
 
 **Current readiness:** see the [21 October audit](../docs/build-evidence/client-readiness-audit-2026-10-21.md), [96-case matrix](../docs/qa/client-v1-audit-matrix-2026-10-21.md) and [execution order](../plan.md). Hosted customer OTP login and media key/private Storage dependency roundtrip now work. Full hosted application photo processing, external HTTPS hosting, staff handoff, physical-device/performance and restore qualification remain.

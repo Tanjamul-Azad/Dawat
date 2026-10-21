@@ -1,10 +1,10 @@
 # First interactive build handoff
 
-- [Client pilot hardening and rehearsal — 21 October](client-pilot-hardening-2026-10-21.md): 224 tests, six migrations, hosted five-photo/RSVP/wish/revoke and fresh local end-to-end proof; Vercel personal preview in progress.
+- [Client pilot hardening and rehearsal — 21 October](client-pilot-hardening-2026-10-21.md): 225 tests, seven migrations, hosted five-photo/RSVP/wish/revoke and fresh local end-to-end proof; Vercel personal preview in progress.
 
 ## Current readiness audit — 21 October 2026
 
-[Full client readiness audit](client-readiness-audit-2026-10-21.md) records fresh tests, successful remote CI, three hosted rollback proofs, actual private Storage dependency roundtrip, user-verified hosted login and partial authenticated browser review. It identifies A01–A16 with acceptance criteria and links the [96-case evidence matrix](../qa/client-v1-audit-matrix-2026-10-21.md). Configured media credentials are verified; full hosted app processing, external deployment, devices/performance/recovery and confirmed editor/state defects remain. Older pending-login/key/remote-CI claims below are historical. External client handoff is not qualified yet.
+[Full client readiness audit](client-readiness-audit-2026-10-21.md) records fresh tests, successful remote CI, four hosted rollback proofs, actual private Storage dependency roundtrip, user-verified hosted login and partial authenticated browser review. It identifies A01–A16 with acceptance criteria and links the [96-case evidence matrix](../qa/client-v1-audit-matrix-2026-10-21.md). Configured media credentials are verified; full hosted app processing, external deployment, devices/performance/recovery and confirmed editor/state defects remain. Older pending-login/key/remote-CI claims below are historical. External client handoff is not qualified yet.
 
 Latest: [compact client dashboard workflow](client-dashboard-workflow.md) — acknowledged autosave/conflict recovery, host correction/history, private CSV, pause/resume, seller search/BDT inputs and contextual navigation. Hosted migrations/proofs and local real HTTP/Storage flow pass; fresh browser/device and deployment qualification remain.
 

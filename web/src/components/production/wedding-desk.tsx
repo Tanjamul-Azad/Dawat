@@ -602,8 +602,8 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                   ))}
                   <small>
                     {t(
-                      'Keep at least one event. An event with saved replies cannot be removed; contact support to reconcile it.',
-                      'অন্তত একটি অনুষ্ঠান রাখুন। সংরক্ষিত উত্তর থাকা অনুষ্ঠান বাদ দেওয়া যাবে না; সহায়তার সঙ্গে যোগাযোগ করুন।',
+                      'Keep at least one event. Reassign invited households before removing their event; contact support if they have already replied.',
+                      'অন্তত একটি অনুষ্ঠান রাখুন। অতিথি যুক্ত থাকা অনুষ্ঠান বাদ দেওয়ার আগে তাঁদের অনুষ্ঠানের অনুমতি সমন্বয় করুন। উত্তর থাকলে সহায়তা নিন।',
                     )}
                   </small>
                 </div>

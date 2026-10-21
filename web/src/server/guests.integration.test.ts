@@ -130,12 +130,34 @@ describe('Named guest credentials, isolation and real transactional replies', ()
     await db.exec(readFileSync('supabase/migrations/20261020094118_host_response_tools.sql', 'utf8'));
     await db.exec(readFileSync('supabase/migrations/20261020094619_publication_visibility.sql', 'utf8'));
     await db.exec(readFileSync('supabase/migrations/20261020204524_client_readiness_fixes.sql', 'utf8'));
+    await db.exec(
+      readFileSync('supabase/migrations/20261021054738_preserve_household_event_scope.sql', 'utf8'),
+    );
     await db.query('insert into public.staff_roles(user_id) values($1)', [ids.staff]);
   }, 30000);
   afterAll(async () => db?.close());
   beforeEach(async () => {
     await db.exec('reset role');
     await db.exec('truncate private.rate_limits');
+  });
+  it('keeps pending households reachable when an event is removed, until their scope is reconciled', async () => {
+    const f = await fixture();
+    await actor();
+    const removed = { ...content, events: content.events.filter((e) => e.id === 'nikah') };
+    await rpc('save_draft', [f.wid, 1, removed]);
+    await expect(rpc('publish_invitation', [f.wid, 2, crypto.randomUUID()])).rejects.toThrow(
+      /invited households/,
+    );
+    await rpc('save_household', [
+      f.wid,
+      f.hid,
+      1,
+      crypto.randomUUID(),
+      { ...household, events: [{ eventId: 'nikah', maxPeople: 5 }] },
+    ]);
+    await rpc('publish_invitation', [f.wid, 2, crypto.randomUUID()]);
+    await actor(ids.alice, 'aal1', 'anon');
+    expect((await read(f)).content.events.map((e) => e.id)).toEqual(['nikah']);
   });
   it('pauses and resumes guest access without resetting replies, links or hosting term', async () => {
     const f = await fixture();

@@ -2,7 +2,7 @@
 
 Updated: **21 October 2026 · Asia/Dhaka**. This is the current scope and build order; it supersedes archived phase lists. Planned production capabilities below are not claims of completed implementation.
 
-Current checkpoint: [21 October hardening and rehearsal](docs/build-evidence/client-pilot-hardening-2026-10-21.md). Core audit UI/logic fixes and six migrations are implemented. **224 tests / 23 files**, build/typecheck/runtime, fresh local HTTP/Auth/MFA/Storage and all three hosted rollback proofs pass. Separate hosted fictional rehearsal covered five photos, named RSVP/wish and revocation; original pilot remains untouched. Vercel **personal testing preview only** selected; private env/deployed flow still pending. Seller bootstrap, real devices, operations/recovery and commercial qualification remain open.
+Current checkpoint: [21 October hardening and rehearsal](docs/build-evidence/client-pilot-hardening-2026-10-21.md). Core audit UI/logic fixes and seven migrations are implemented. **225 tests / 23 files**, build/typecheck/runtime, fresh local HTTP/Auth/MFA/Storage and all four hosted rollback proofs pass. Separate hosted fictional rehearsal covered five photos, named RSVP/wish and revocation; original pilot remains untouched. Vercel **personal testing preview only** selected; private env/deployed flow still pending. Seller bootstrap, real devices, operations/recovery and commercial qualification remain open.
 
 ## Immediate execution order after the audit
 
@@ -30,7 +30,7 @@ A dashboard that still saves only in the same browser does not meet this milesto
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Jamdani template             | Preserved renderer connected to scoped server publications; sample opening/BN/EN and limited narrow layout inspected | One-event and hosted photos verified; long-content/device/performance qualification remains |
 | Seller/client screens       | Persistent authenticated dashboard/editor/guest hub and MFA-protected seller implementation | Hosted staff bootstrap; repeat user/device/state review and recovery |
-| Data                        | Six hosted migrations, normal-role RLS, private Storage, server-only image processor | Full deployed processing, justified query/index improvements and recovery/lifecycle operations |
+| Data                        | Seven hosted migrations, normal-role RLS, private Storage, server-only image processor | Full deployed processing, justified query/index improvements and recovery/lifecycle operations |
 | Sharing/RSVP                | Recoverable named links, scoped sessions, transactional replies/wishes, correction/history/export | Actual HTTPS origin, second-device hosted rehearsal, log/cache and failure qualification |
 | Public sales/commercial     | Public prototype/demo and manual-order contact entry; no automated checkout | Finish client pilot first; then actual public sales journey and agreed commercial policy |
 

@@ -18,7 +18,7 @@ Before client delivery, verify actual deployment: OTP/session → correct single
 
 ## Vercel personal preview
 
-Project shell: `dawat-client-preview`, scope `imtanjamul-3836s-projects`, root `web`, Next.js. Owner will import private environment variables; no paid upgrade authorized. Confirm the assigned `.vercel.app` domain before setting APP_ORIGIN. Keep the current AES key IDs and values. Public Supabase URL/key are build-time values; the media secret and AES ring stay server-only. Never import `.env.qa.local` or local Docker URLs. After any env change, redeploy and run actual hosted user journeys; importing env alone does not update an existing deployment.
+Project shell: `dawat-client-preview`, scope `imtanjamul-3836s-projects`, root `web`, Next.js. Owner imported private environment variables; no paid upgrade authorized. Confirm the assigned `.vercel.app` domain before setting APP_ORIGIN. Keep the current AES key IDs and values. Import the five private variables as Secret, then the three NEXT_PUBLIC variables separately as Config: this Vercel UI rejects public prefixes in Secret mode. Never change all variables to Config or remove required public prefixes. Public Supabase URL/key are build-time values; the media secret and AES ring stay server-only. Never import `.env.qa.local` or local Docker URLs. After any env change, redeploy and run actual hosted user journeys; importing env alone does not update an existing deployment.
 
 ## Operate media cleanup
 

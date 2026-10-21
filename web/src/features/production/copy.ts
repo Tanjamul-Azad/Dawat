@@ -280,6 +280,10 @@ export function errorText(text: string, locale: 'bn' | 'en' = 'bn', code = '') {
   if (banglaCopy[text]) return banglaCopy[text];
   const rules: [RegExp, string][] = [
     [
+      /event with invited households cannot be removed/i,
+      'এই অনুষ্ঠানে পরিবারকে আমন্ত্রণ দেওয়া আছে। আগে অতিথি তালিকায় তাঁদের অনুষ্ঠানের অনুমতি সমন্বয় করুন।',
+    ],
+    [
       /verification is temporarily unavailable/i,
       'প্রবেশাধিকার যাচাইয়ের সেবায় সাময়িক সমস্যা। আপনার লেখা অক্ষত আছে। একটু পরে চেষ্টা করুন।',
     ],

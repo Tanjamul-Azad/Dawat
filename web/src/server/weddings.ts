@@ -46,7 +46,7 @@ export async function getWedding(id: string): Promise<WeddingDetail> {
   const eventIds = ['nikah', 'reception'] as const;
   const replyChecks = await Promise.all(
     eventIds.map((eventId) =>
-      db.from('responses').select('event_id').eq('wedding_id', id).eq('event_id', eventId).limit(1),
+      db.from('household_events').select('event_id').eq('wedding_id', id).eq('event_id', eventId).limit(1),
     ),
   );
   for (const [index, replies] of replyChecks.entries()) {
