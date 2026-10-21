@@ -921,7 +921,20 @@
   }
   .savebar {
     bottom: max(8px, env(safe-area-inset-bottom));
-    flex-wrap: wrap;
+    display: grid;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .savebar .actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: 8px;
+  }
+  .savebar .actions button {
+    min-width: 0;
+    padding: 10px 6px;
+    font-size: 13px;
+    gap: 5px;
   }
   .steps {
     gap: 0;
