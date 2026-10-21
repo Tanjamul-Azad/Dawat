@@ -55,6 +55,14 @@ function editor() {
   return screen.getByLabelText('প্রথম জন · মূল নাম') as HTMLInputElement;
 }
 
+it('switches between the three workspace destinations without dropping unsaved editor text', () => {
+  const input = editor();
+  fireEvent.change(input, { target: { value: 'অক্ষত নাম' } });
+  fireEvent.click(screen.getByRole('link', { name: 'সারসংক্ষেপ' }));
+  fireEvent.click(screen.getByRole('link', { name: 'আমন্ত্রণ সম্পাদনা' }));
+  expect((screen.getByLabelText('প্রথম জন · মূল নাম') as HTMLInputElement).value).toBe('অক্ষত নাম');
+});
+
 it('saves a reception-only setup, clears its removed general scope and restores stashed event details', async () => {
   const fetcher = vi.fn().mockResolvedValue(json({ revision: 1, updatedAt: '2026-10-21T10:00:00Z' }));
   vi.stubGlobal('fetch', fetcher);

@@ -27,3 +27,19 @@ it('redirects genuinely missing identity with its safe return path', async () =>
     '/weddings/11111111-1111-4111-8111-111111111111/guests/',
   );
 });
+it('preserves an explicit editor section during sign-in', async () => {
+  setup();
+  getClaims.mockResolvedValue({ data: null, error: { name: 'AuthSessionMissingError', status: 400 } });
+  const path = '/weddings/11111111-1111-4111-8111-111111111111/?section=events';
+  const r = await proxy(new NextRequest('http://127.0.0.1:3100' + path));
+  expect(new URL(r.headers.get('location')!).searchParams.get('next')).toBe(path);
+});
+it('blocks the pilot operator API before refreshing an identity', async () => {
+  setup();
+  vi.stubEnv('DAWAT_SURFACE', 'pilot');
+  getClaims.mockClear();
+  const r = await proxy(new NextRequest('http://127.0.0.1:3100/api/admin/orders/'));
+  expect(r.status).toBe(404);
+  expect(getClaims).not.toHaveBeenCalled();
+  expect(r.headers.get('cache-control')).toContain('no-store');
+});

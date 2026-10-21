@@ -13,17 +13,22 @@ import {
 } from 'lucide-react';
 import { api } from '@/features/production/client';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
+import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
 export function WorkspaceFrame({
   children,
   email,
   seller = false,
   wedding,
+  onOverview,
+  onEdit,
 }: {
   children: React.ReactNode;
   email?: string;
   seller?: boolean;
-  wedding?: { id: string; title: string; view: 'editor' | 'guests' };
+  wedding?: { id: string; title: string; view: 'overview' | 'editor' | 'guests' };
+  onOverview?: () => void;
+  onEdit?: () => void;
 }) {
   const { tr, locale, setLocale } = useProductLocale();
   const [error, setError] = useState('');
@@ -32,7 +37,8 @@ export function WorkspaceFrame({
     setBusy(true);
     try {
       await api('/api/auth/logout/', { method: 'POST', body: {} });
-      window.location.assign('/auth/login/');
+      const next = safeReturnPath(window.location.pathname + window.location.search);
+      window.location.assign(`/auth/login/?next=${encodeURIComponent(next)}`);
     } catch (e) {
       setError((e as Error).message);
       setBusy(false);
@@ -70,6 +76,14 @@ export function WorkspaceFrame({
                     ? 'অন্য ইমেইলে প্রবেশ করতে আগে বেরিয়ে যান।'
                     : 'Sign out before using a different email.'}
                 </p>
+                <a className={s.quiet} href={seller ? '/admin/orders/' : '/dashboard/?all=1'}>
+                  <LayoutGrid size={16} />
+                  {seller ? tr('Orders & access') : tr('My weddings')}
+                </a>
+                <a className={s.quiet} href={DAWAT_CONTACT_HREF}>
+                  <Mail size={16} />
+                  {locale === 'bn' ? 'সহায়তা ও যোগাযোগ' : 'Help & contact'}
+                </a>
               </div>
             </details>
           )}
@@ -82,9 +96,16 @@ export function WorkspaceFrame({
         </div>
       </header>
       <div className={s.layout}>
-        <nav className={s.sidebar} aria-label={tr('Workspace navigation')}>
+        <nav
+          className={`${s.sidebar} ${wedding ? s.weddingNavigation : ''}`}
+          aria-label={tr('Workspace navigation')}
+        >
           <p>{seller ? tr('Operations') : tr('Your workspace')}</p>
-          <a href={seller ? '/admin/orders/' : '/dashboard/'} aria-current={!wedding ? 'page' : undefined}>
+          <a
+            className={wedding ? s.secondaryNav : undefined}
+            href={seller ? '/admin/orders/' : '/dashboard/?all=1'}
+            aria-current={!wedding ? 'page' : undefined}
+          >
             {seller ? <ShieldCheck size={18} /> : <LayoutGrid size={18} />}{' '}
             {seller ? tr('Orders & access') : tr('My weddings')}
           </a>
@@ -93,6 +114,29 @@ export function WorkspaceFrame({
               <p className={s.navWedding}>{wedding.title}</p>
               <a
                 href={`/weddings/${wedding.id}/`}
+                onClick={
+                  onOverview
+                    ? (event) => {
+                        event.preventDefault();
+                        onOverview();
+                      }
+                    : undefined
+                }
+                aria-current={wedding.view === 'overview' ? 'page' : undefined}
+              >
+                <LayoutGrid size={18} />
+                {locale === 'bn' ? 'সারসংক্ষেপ' : 'Overview'}
+              </a>
+              <a
+                href={`/weddings/${wedding.id}/?section=names`}
+                onClick={
+                  onEdit
+                    ? (event) => {
+                        event.preventDefault();
+                        onEdit();
+                      }
+                    : undefined
+                }
                 aria-current={wedding.view === 'editor' ? 'page' : undefined}
               >
                 <NotebookPen size={18} />
@@ -107,12 +151,11 @@ export function WorkspaceFrame({
               </a>
             </>
           )}
-          <a href="/invite/">
-            <Mail size={18} />
-            {tr('View sample')}
-            <ArrowUpRight size={13} />
-          </a>
-          <a href={DAWAT_CONTACT_HREF} title={DAWAT_CONTACT_EMAIL}>
+          <a
+            className={wedding ? s.secondaryNav : undefined}
+            href={DAWAT_CONTACT_HREF}
+            title={DAWAT_CONTACT_EMAIL}
+          >
             <Mail size={18} />
             {locale === 'bn' ? 'সহায়তা ও যোগাযোগ' : 'Help & contact'}
           </a>

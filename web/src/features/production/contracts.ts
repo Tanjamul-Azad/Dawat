@@ -128,6 +128,8 @@ export type WeddingSummary = {
   publication_revision: number;
 };
 export type WeddingDetail = {
+  workspaceUrl?: string;
+  generalInvitationUrl?: string | null;
   publishedGeneralEventIds?: ('nikah' | 'reception')[];
   protectedEventIds?: ('nikah' | 'reception')[];
   mediaAvailable?: boolean;

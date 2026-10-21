@@ -2,6 +2,8 @@
 
 21 October 2026 · Asia/Dhaka. **Current execution plan**, requested after the audience/separation review. User budget: **BDT 0 for new hosting/services**. Preserve the working Jamdani invitation, real backend, issued identifiers and customer records. This document schedules future work; unchecked tasks are not implemented or deployed.
 
+Implementation update: [direct client entry, pilot route controls and Netlify preparation](../build-evidence/client-entry-netlify-preparation-2026-10-21.md) are locally verified with244 tests. Netlify account/repo configuration is prepared; owner will paste env personally. Deployment/native-host qualification and full runtime separation remain open. Testing uses the owner's existing account before any external client.
+
 ## 1. Outcome and constraints
 
 Deliver one usable wedding first: the seller assigns the intended client, the client signs in and edits/publishes, sends household invitations, and sees correct replies/private wishes. Then finish the public buying journey. Four audiences have distinct navigation, layout, session and API responsibilities. One repository and versioned renderer are shared; a new deployment/database is not created for each wedding.

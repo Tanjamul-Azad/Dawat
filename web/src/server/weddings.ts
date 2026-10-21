@@ -7,6 +7,7 @@ import {
 } from '@/features/production/contracts';
 import { session, staffSession } from './auth';
 import { dbError, HttpError } from './http';
+import { config } from './config';
 
 export async function listWeddings(): Promise<WeddingSummary[]> {
   const { db } = await session();
@@ -54,6 +55,11 @@ export async function getWedding(id: string): Promise<WeddingDetail> {
     if (replies.data?.length) protectedEventIds.push(eventIds[index]);
   }
   return {
+    workspaceUrl: `${config().origin}/weddings/${id}/`,
+    generalInvitationUrl:
+      w.data.visibility === 'live' && publishedGeneralEventIds.length
+        ? `${config().origin}/i/${w.data.slug}/`
+        : null,
     publishedGeneralEventIds,
     protectedEventIds,
     mediaAvailable: Boolean(process.env.SUPABASE_MEDIA_SECRET_KEY?.trim()),

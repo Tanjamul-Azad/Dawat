@@ -1,15 +1,7 @@
 'use client';
 import { useProductLocale } from './product-locale';
 import { useState } from 'react';
-import {
-  ArrowRight,
-  RefreshCw,
-  LockKeyhole,
-  NotebookPen,
-  UsersRound,
-  ArrowUpRight,
-  Search,
-} from 'lucide-react';
+import { ArrowRight, RefreshCw, LockKeyhole, NotebookPen, UsersRound, Search } from 'lucide-react';
 import type { WeddingSummary } from '@/features/production/contracts';
 import { api } from '@/features/production/client';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
@@ -148,11 +140,12 @@ export function ClientDashboard({ initial, email }: { initial: WeddingSummary[];
             <li>{tr('03 \u00B7 Preview, review & publish')}</li>
           </ol>
           <p>{tr('Your draft stays private until you publish.')}</p>
-          <div className={s.line} />
-          <a className={s.quiet} href="/invite/" target="_blank" rel="noopener noreferrer">
-            {t('জামদানি নমুনা দেখুন', 'See the Jamdani sample')}
-            <ArrowUpRight size={14} />
-          </a>
+          <p>
+            {t(
+              'নিজের কর্মপরিসরের লিংক ব্যক্তিগত রাখুন। অতিথিদের জন্য আলাদা আমন্ত্রণের লিংক তৈরি করবেন।',
+              'Keep your workspace link private. Create separate invitation links for guests.',
+            )}
+          </p>
         </aside>
       </div>
     </WorkspaceFrame>

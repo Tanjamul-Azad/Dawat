@@ -15,12 +15,22 @@ import { InvitationPreview } from './invitation-preview';
 import { PhotoLibrary } from './photo-library';
 import { useProductLocale } from './product-locale';
 import { errorText } from '@/features/production/copy';
+import { type EditorSection } from '@/features/production/navigation';
+import { HandoffLinks } from './handoff-links';
 import s from './workspace.module.css';
 
-export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email: string }) {
+export function WeddingDesk({
+  initial,
+  email,
+  initialSection = 'overview',
+}: {
+  initial: WeddingDetail;
+  email: string;
+  initialSection?: EditorSection;
+}) {
   const [detail, setDetail] = useState(initial);
   const [content, setContent] = useState(initial.content);
-  const [step, setStep] = useState('overview');
+  const [step, setStep] = useState<EditorSection>(initialSection);
   const [preview, setPreview] = useState(false);
   const [visibilityConfirm, setVisibilityConfirm] = useState<boolean | null>(null);
   const visibilityAttempt = useRef<{ signature: string; key: string } | null>(null);
@@ -230,16 +240,24 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
   return (
     <WorkspaceFrame
       email={email}
-      wedding={{ id: detail.wedding.id, title: detail.wedding.title, view: 'editor' }}
+      wedding={{
+        id: detail.wedding.id,
+        title: detail.wedding.title,
+        view: step === 'overview' ? 'overview' : 'editor',
+      }}
+      onOverview={() => setStep('overview')}
+      onEdit={() => setStep('names')}
     >
       <div className={s.intro}>
         <div>
-          <a className={s.eyebrow} href="/dashboard/">
+          <a className={s.eyebrow} href="/dashboard/?all=1">
             <ArrowLeft size={12} /> {t('My weddings', 'আমার আয়োজন')}
           </a>
           <h1>
             {content.partnerOne && content.partnerTwo
-              ? `${content.partnerOne} & ${content.partnerTwo}`
+              ? locale === 'bn'
+                ? `${content.partnerOneBn || content.partnerOne} ও ${content.partnerTwoBn || content.partnerTwo}`
+                : `${content.partnerOne} & ${content.partnerTwo}`
               : detail.wedding.title}
           </h1>
           <p>
@@ -375,7 +393,7 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
           <button
             key={id}
             disabled={busy || mediaBusy}
-            onClick={() => setStep(id)}
+            onClick={() => setStep(id as EditorSection)}
             aria-current={step === id ? 'step' : undefined}
           >
             {label}
@@ -413,20 +431,35 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                     ) : (
                       <Circle size={16} />
                     )}{' '}
-                    {t('Couple & families', 'বর-কনে ও পরিবার')}
+                    <button className={s.quiet} onClick={() => setStep('names')}>
+                      {t('Couple & families', 'বর-কনে ও পরিবার')}
+                    </button>
                   </li>
                   <li>
-                    {!issues.length ? <Check size={16} /> : <Circle size={16} />}{' '}
-                    {t('Dates, times & venues', 'তারিখ, সময় ও স্থান')}
+                    {!issues.some((issue) => issue.startsWith('Complete ')) ? (
+                      <Check size={16} />
+                    ) : (
+                      <Circle size={16} />
+                    )}{' '}
+                    <button className={s.quiet} onClick={() => setStep('events')}>
+                      {t('Dates, times & venues', 'তারিখ, সময় ও স্থান')}
+                    </button>
                   </li>
                   <li>
                     {publishedCurrent ? <Check size={16} /> : <Circle size={16} />}{' '}
-                    {t('Review & publication', 'পর্যালোচনা ও প্রকাশ')}
+                    <button className={s.quiet} onClick={() => setStep('review')}>
+                      {t('Review publication', 'প্রকাশের আগে যাচাই')}
+                    </button>
                   </li>
                 </ul>
                 <div className={s.actions} style={{ marginTop: 20 }}>
+                  {isPublished && publishedCurrent && (
+                    <a className={s.button} href={`/weddings/${detail.wedding.id}/guests/`}>
+                      {t('Invite your guests', 'অতিথিদের আমন্ত্রণ দিন')}
+                    </a>
+                  )}
                   <button
-                    className={s.button}
+                    className={isPublished && publishedCurrent ? s.secondary : s.button}
                     onClick={() =>
                       setStep(
                         publishedCurrent
@@ -449,6 +482,14 @@ export function WeddingDesk({ initial, email }: { initial: WeddingDetail; email:
                   </button>
                 </div>
               </section>
+              {detail.workspaceUrl && (
+                <HandoffLinks
+                  workspaceUrl={detail.workspaceUrl}
+                  guestUrl={isPublished ? detail.generalInvitationUrl : null}
+                  weddingId={detail.wedding.id}
+                  live={isPublished}
+                />
+              )}
               <section className={s.panel}>
                 <h2>{t('Publication & sharing', 'প্রকাশনা ও শেয়ারিং')}</h2>
                 {isPaused && (

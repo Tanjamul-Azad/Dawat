@@ -171,6 +171,8 @@
   gap: 8px;
   cursor: pointer;
   min-height: 44px;
+  min-width: 44px;
+  justify-content: center;
   padding: 8px;
   border-radius: 6px;
 }
@@ -375,6 +377,24 @@
   height: 1px;
   background: var(--line);
   margin: 24px 0;
+}
+.handoffRow {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.handoffRow p {
+  margin: 6px 0 12px;
+}
+.handoffRow input {
+  min-width: 0;
+  width: 100%;
+  font-size: 14px;
+}
+.handoffRow > svg {
+  margin-top: 4px;
 }
 .badge {
   display: inline-flex;
@@ -863,6 +883,23 @@
     flex-shrink: 0;
     margin: 0;
     padding: 8px 10px;
+  }
+  .weddingNavigation {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+  }
+  .weddingNavigation a {
+    min-width: 0;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px 4px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .weddingNavigation .secondaryNav {
+    display: none;
   }
   .main {
     padding: 26px 16px 64px;

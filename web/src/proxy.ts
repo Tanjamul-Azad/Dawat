@@ -2,8 +2,17 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 import { safeReturnPath } from '@/features/production/navigation';
 import { serverFetch } from '@/server/bounded-fetch';
+import { deploymentSurface, routeAllowed } from '@/features/production/surface';
 
 export async function proxy(request: NextRequest) {
+  if (!routeAllowed(deploymentSurface(), request.nextUrl.pathname))
+    return NextResponse.json(
+      { code: 'NOT_FOUND', message: 'পৃষ্ঠা পাওয়া যায়নি।' },
+      {
+        status: 404,
+        headers: { 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex, nofollow' },
+      },
+    );
   let response = NextResponse.next({ request });
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
@@ -34,7 +43,7 @@ export async function proxy(request: NextRequest) {
       /^\/(dashboard|weddings|admin)(\/|$)/.test(request.nextUrl.pathname)
     ) {
       const login = new URL('/auth/login/', request.url);
-      login.searchParams.set('next', safeReturnPath(request.nextUrl.pathname));
+      login.searchParams.set('next', safeReturnPath(request.nextUrl.pathname + request.nextUrl.search));
       const redirect = NextResponse.redirect(login);
       for (const cookie of response.cookies.getAll()) redirect.cookies.set(cookie);
       redirect.headers.set('Cache-Control', 'private, no-store');
@@ -54,5 +63,9 @@ export const config = {
     '/auth/:path*',
     '/api/:path*',
     '/i/:path*',
+    '/operator/:path*',
+    '/studio/:path*',
+    '/templates/:path*',
+    '/order/:path*',
   ],
 };
