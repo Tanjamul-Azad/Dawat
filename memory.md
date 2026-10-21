@@ -112,3 +112,5 @@ Fresh pre-push verification: 82 tests passed and TypeScript typecheck passed on 
 ## Resume
 
 Read current contracts, inspect actual code/config and applicable `AGENTS.md`, verify active environment. Foundation and named guest delivery are implemented; follow remaining task boundaries instead of restarting CV01. User deferred SMTP. Preserve local/hosted keys and cumulative uncommitted changes. Ask only for actual blocking dependencies; distinguish implemented behavior from full launch qualification.
+
+21 October final closeout: 9d14dc6 deployed Ready, CI39554097281 success, 228/228 tests and HTTPS smoke pass. Synthetic Vercel QA b1e81265 paused/grant revoked/member inactive with audit; all records retained. Real pilot e2c385fd remains revision0/unpublished/active. Final Docker manifest4b64af82 passes non-root runtime; test container stopped. Hosted local3100 runs session72276. User live dashboard tab6 marked deliverable.
