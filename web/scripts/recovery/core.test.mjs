@@ -12,8 +12,22 @@ import {
   verifyBackup,
   policyRoles,
   command,
+  assertLoopbackBindings,
 } from './core.mjs';
 const temporary = [];
+it('rejects wildcard or missing recovery port bindings', () => {
+  expect(() =>
+    assertLoopbackBindings({ '8000/tcp': [{ HostIp: '127.0.0.1', HostPort: '55321' }] }),
+  ).not.toThrow();
+  for (const HostIp of ['0.0.0.0', '::', '', '192.168.1.1'])
+    expect(() => assertLoopbackBindings({ '8000/tcp': [{ HostIp }] })).toThrow();
+  expect(() => assertLoopbackBindings({})).toThrow();
+});
+it('retains complete dump output before reporting subprocess completion', async () => {
+  const output = await command(process.execPath, ['-e', 'process.stdout.write(Buffer.alloc(1048576, 97))']);
+  expect(output.length).toBe(1048576);
+  expect(hash(output)).toBe(hash(Buffer.alloc(1048576, 97)));
+});
 it('does not mark a killed database subprocess as successful', async () => {
   await expect(
     command(process.execPath, ['-e', 'setInterval(() => {}, 1000)'], { timeout: 100 }),

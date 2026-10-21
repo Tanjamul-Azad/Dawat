@@ -8,6 +8,8 @@ import { createClient } from '@supabase/supabase-js';
 
 export const SOURCE_REF = 'zztiestaqjbsbjuzmbqp';
 export const SOURCE_URL = `https://${SOURCE_REF}.supabase.co`;
+const DUMP_IMAGE =
+  'public.ecr.aws/supabase/postgres@sha256:b15d862126dd2dac02da524696ccfde2dcce2ceaee0a58973b2727befe492706';
 const MAGIC = Buffer.from('DAWATBK1');
 const CAP = 256 * 1024 * 1024;
 export const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -65,6 +67,26 @@ export function assertDrillTarget(config) {
   )
     throw Error('Restore only accepts the isolated loopback recovery target.');
 }
+export function assertLoopbackBindings(ports) {
+  const bindings = Object.values(ports ?? {}).flatMap((p) => p ?? []);
+  if (!bindings.length || bindings.some((p) => !['127.0.0.1', '::1'].includes(p.HostIp)))
+    throw Error('Recovery requires explicit loopback port bindings.');
+}
+export async function verifyDrillBindings() {
+  for (const name of ['kong', 'db', 'inbucket']) {
+    const ports = JSON.parse(
+      (
+        await command('docker', [
+          'inspect',
+          '--format',
+          '{{json .NetworkSettings.Ports}}',
+          `supabase_${name}_dawat-recovery`,
+        ])
+      ).toString(),
+    );
+    assertLoopbackBindings(ports);
+  }
+}
 export function assertChild(root, child) {
   const rel = relative(resolve(root), resolve(child));
   if (!rel || rel.startsWith('..') || resolve(child) === resolve(root)) throw Error('Unsafe backup path.');
@@ -92,7 +114,7 @@ export function command(file, args, { env = {}, input, timeout = 180000 } = {}) 
       clearTimeout(timer);
       no(Error('Recovery subprocess unavailable.'));
     });
-    child.on('exit', (code) => {
+    child.on('close', (code) => {
       clearTimeout(timer);
       // Never forward pg_dump/psql output: it can contain table contents or credentials.
       if (code !== 0 || size > CAP)
@@ -198,11 +220,6 @@ export async function backup({ recoveryEnv, deploymentEnv }) {
       ),
     );
     add('roles.json', Buffer.from(JSON.stringify(roles)));
-    await command('docker', [
-      'cp',
-      resolve('recovery/supabase-ca.crt'),
-      'supabase_db_dawat-local:/tmp/dawat-backup-ca.crt',
-    ]);
     const pgEnv = {
       PGHOST: env.DAWAT_DB_HOST,
       PGPORT: '5432',
@@ -213,10 +230,21 @@ export async function backup({ recoveryEnv, deploymentEnv }) {
       PGSSLROOTCERT: '/tmp/dawat-backup-ca.crt',
     };
     const docker = [
-      'exec',
+      'run',
+      '--rm',
+      '--read-only',
+      '--user',
+      'postgres',
+      '--cap-drop',
+      'ALL',
+      '--security-opt',
+      'no-new-privileges=true',
+      '--mount',
+      `type=bind,source=${resolve('recovery/supabase-ca.crt')},target=/tmp/dawat-backup-ca.crt,readonly`,
       ...Object.keys(pgEnv).flatMap((k) => ['--env', k]),
-      'supabase_db_dawat-local',
+      '--entrypoint',
       'pg_dump',
+      DUMP_IMAGE,
       '--no-owner',
       '--quote-all-identifiers',
       `--snapshot=${snapshot}`,
@@ -275,6 +303,7 @@ export async function backup({ recoveryEnv, deploymentEnv }) {
       postgresVersion: version,
       sourceRevision,
       nodeVersion: process.version,
+      dumpImage: DUMP_IMAGE,
       entries,
       tables: inventory,
       authColumns: columns,

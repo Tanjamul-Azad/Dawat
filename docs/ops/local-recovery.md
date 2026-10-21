@@ -5,7 +5,7 @@
 ## Installed operation
 
 - Production is Supabase `zztiestaqjbsbjuzmbqp` (Dawat Production), served only by `https://dawat-client-pilot.netlify.app`.
-- Development uses local project `dawat-local`, ports54321–54324. Recovery uses a separate disposable local project `dawat-recovery`, ports55321–55324 and app3104. Local SMTP goes only to the recovery inbox; never point a restored app at production SMTP.
+- Development uses local project `dawat-local`, ports54321–54324. Recovery uses a separate disposable local project `dawat-recovery`, ports55321–55324 and app3104. Its bridge has a loopback binding; on Windows a project-scoped Docker CLI adapter also supplies explicit127.0.0.1port mappings before containers are created, because Docker Desktop ignored the bridge default during verification. The adapter uses the already-installed .NET compiler, inherits streams/arguments without a shell and changes neither global PATH nor Docker settings. Startup and restore inspect actual API/DB/inbox port bindings and refuse wildcards. Local SMTP goes only to the recovery inbox; never point a restored app at production SMTP.
 - Windows task **Dawat Local Encrypted Backup** runs daily19:00, with missed-start recovery, overlap prevention and a15-minute limit. It runs as the existing signed-in Windows user, without storing that user's password. Docker Desktop must be running. This is a local Task Scheduler job, not a cloud job.
 - Backup directory: `C:\Users\User\Documents\DawatBackups`. Each complete directory has encrypted manifest/payloads and a non-sensitive `receipt.json`. `status.json` reports the most recent attempt. A failed attempt never deletes the previous complete backup. No automatic pruning.
 - Master key: `C:\Users\User\.dawat\backup-master.key`,32rawbytes. Directory/key/database-password file have Windows ACLs for this user and SYSTEM only. Keep the key separately from any copied encrypted archive. Losing it loses recovery capability. Local-only copies do not survive loss of this computer; this is the owner's explicit current choice.
@@ -13,7 +13,7 @@
 
 ## Backup manually and inspect
 
-From `web`, run `npm run backup:create`. It uses a certificate-verified TLS session pooler connection, an exported read-only PostgreSQL snapshot, PostgreSQL17pg_dump and the existing local Docker database image. It never puts the database password in command arguments.
+From `web`, run `npm run backup:create`. It uses a certificate-verified TLS session pooler connection, an exported read-only PostgreSQL snapshot, PostgreSQL17pg_dump in an ephemeral digest-pinned official Docker image. The runner has no published ports, a read-only filesystem, no Linux capabilities and no-new-privileges; ordinary development containers do not need to be running. It never puts the database password in command arguments.
 
 The snapshot contains application schema/data, Auth data, database migration history, Storage bucket/policies and actual object bytes, all retained guest AES key versions, deployment configuration and migration files. New archives record the Git source revision and Node version. Every encrypted file is authenticated and checked on disk before `.partial` is renamed complete. AES256GCM uses independent nonces and filename-associated authentication. Object count20,000/transfer1GiB and individual dump256MiB bounds prevent unbounded runs; review these against the free egress budget before larger use.
 
@@ -32,8 +32,10 @@ An interrupted run can leave `backup.lock` and `.partial`. Read its PID and conf
 
 ## Scope and known limits
 
-The executed drill recovered55tables,36private objects/2,947,804bytes and3retained guest credentials, followed by the complete local HTTP user journey. No production data was overwritten. Copying database rows alone is not a photo backup.
+The final executed drill recovered55tables,39private objects/3,875,910bytes and4retained guest credentials, followed by the complete local HTTP user journey. No production data was overwritten. Copying database rows alone is not a photo backup.
 
 Supabase-managed Auth/SMTP/project settings and the Gmail App Password are not database contents. Re-enter the shared SMTP credential privately if the hosted project is lost; retain current Bangla OTP template/config instructions in the existing runbook. Hosted JWT signing/root keys are provider-managed; clients must sign in again after a new-project disaster recovery. Vault secrets or Auth MFA factors cause this backup tool to fail closed until a platform-root-key recovery procedure is added; the current customer production project has neither. Local synthetic seller MFA does not imply a hosted seller account has been provisioned.
 
 Daily local backup is installed and tested, but does not establish hosted point-in-time recovery, offsite durability, guaranteed RPO/RTO or actual physical-phone compatibility. Those promises must not be made to a customer.
+
+After a drill, stop the local recovery app and run `supabase stop --workdir ../.artifacts/recovery-sandbox --project-id dawat-recovery --no-backup` from `web` to discard only this disposable restored-data volume. Preserve the encrypted archive, master key and non-sensitive proof files. Never use `--all` or target production.

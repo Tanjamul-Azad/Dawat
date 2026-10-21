@@ -13,6 +13,7 @@ import {
   policyRoles,
   tableInventory,
   verifyBackup,
+  verifyDrillBindings,
 } from './core.mjs';
 
 const target = {
@@ -28,6 +29,7 @@ const env = loadPrivate('.env.recovery.local');
 // Authenticate every encrypted file before making any target mutation.
 const archive = verifyBackup(resolve(directory), env.DAWAT_BACKUP_KEY_FILE);
 const { manifest, read } = archive;
+await verifyDrillBindings();
 const started = Date.now();
 const status = parseEnv(
   (
