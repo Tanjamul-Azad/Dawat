@@ -174,6 +174,53 @@ it('explains missing household scope in Bangla before any server write', () => {
   expect(fetcher).not.toHaveBeenCalled();
 });
 
+it('does not describe a pending wishes request as an empty result', async () => {
+  let finish!: (value: Response) => void;
+  vi.stubGlobal(
+    'fetch',
+    vi.fn(
+      () =>
+        new Promise<Response>((resolve) => {
+          finish = resolve;
+        }),
+    ),
+  );
+  render(
+    <ProductLocale>
+      <GuestHub
+        wid={wid}
+        slug={wid}
+        title="কাল্পনিক আয়োজন"
+        email="owner@example.test"
+        events={[
+          {
+            id: 'reception',
+            title: 'সংবর্ধনা',
+            date: '2026-12-12',
+            time: '19:00',
+            venue: 'ঢাকা',
+            address: '',
+          },
+        ]}
+        initialEvent="reception"
+        initial={{
+          rows: [],
+          nextCursor: null,
+          summary: { invited: 0, accepted: 0, declined: 0, pending: 0, adults: 0, children: 0 },
+          policies: [],
+          policyRevision: 0,
+          asOf: '2026-10-21T00:00:00Z',
+        }}
+      />
+    </ProductLocale>,
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'ব্যক্তিগত শুভেচ্ছা' }));
+  expect(screen.getByRole('status').textContent).toContain('লোড হচ্ছে');
+  expect(screen.queryByText('এই পাতায় এখনও কোনো শুভেচ্ছা নেই।')).toBeNull();
+  await act(async () => finish(json({ rows: [], nextCursor: null })));
+  expect(screen.getByText('এই পাতায় এখনও কোনো শুভেচ্ছা নেই।')).toBeTruthy();
+});
+
 it('preserves text entered during an autosave and acknowledges each exact snapshot', async () => {
   vi.useFakeTimers();
   let acknowledge!: (r: Response) => void;

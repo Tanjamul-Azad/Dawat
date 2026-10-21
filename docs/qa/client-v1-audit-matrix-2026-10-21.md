@@ -1,6 +1,6 @@
 # E001–E096 audit matrix — 21 October 2026
 
-This table preserves the initial audit baseline (194 tests). Implementation findings A01/A02/A06/A11/A12/A13/A14 have since received fixes and targeted regressions; hosted five-photo/RSVP/wish/revocation and fresh local end-to-end rehearsals pass. See [hardening follow-up](../build-evidence/client-pilot-hardening-2026-10-21.md), 225 tests. Remaining device/deployment/recovery gates are not blanket passes.
+This table preserves the initial audit baseline (194 tests). Implementation findings A01/A02/A06/A11/A12/A13/A14 have since received fixes and targeted regressions; hosted five-photo/RSVP/wish/revocation and fresh local end-to-end rehearsals pass. See [hardening follow-up](../build-evidence/client-pilot-hardening-2026-10-21.md), 228 tests. Remaining device/deployment/recovery gates are not blanket passes.
 
 Source commit: `85dddfb`. Main [readiness audit](../build-evidence/client-readiness-audit-2026-10-21.md) contains findings A01–A16 and fresh evidence. Scenario definitions remain in [corner cases](client-v1-corner-cases.md).
 

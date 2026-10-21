@@ -561,7 +561,15 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
               </li>
             ))}
           </ul>
-          {!wishesLoaded && <p className={s.muted}>{tr('Private wishes have not loaded yet.')}</p>}
+          {!wishesLoaded && (
+            <p role="status" className={s.muted}>
+              {busy
+                ? locale === 'bn'
+                  ? 'শুভেচ্ছাগুলো লোড হচ্ছে…'
+                  : 'Loading private wishes…'
+                : tr('Private wishes have not loaded yet.')}
+            </p>
+          )}
           {wishesLoaded && !wishRows.length && <p className={s.muted}>{tr('No wishes on this page yet.')}</p>}
           {wishNext && (
             <button className={s.secondary} disabled={busy} onClick={() => loadWishes(wishNext)}>

@@ -193,7 +193,7 @@ export function GuestInvitation({
   if (!ready || !query || !sample.ready)
     return (
       <div className={s.page} lang={locale} data-motion="quiet">
-        <div className={s.demoNote}>{t.demo}</div>
+        {!authority && <div className={s.demoNote}>{t.demo}</div>}
         <header key="reader" className={s.topbar}>
           <span>{t.edition}</span>
           <div className={s.readerControls}>

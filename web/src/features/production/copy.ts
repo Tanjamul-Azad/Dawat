@@ -215,7 +215,7 @@ export const banglaCopy: Record<string, string> = {
   'For the couple, with love.': 'নবদম্পতির জন্য, ভালোবাসায়।',
   'Wishes are private and do not count as attendance.':
     'শুভেচ্ছা ব্যক্তিগত; এটি উপস্থিতির হিসাবে যোগ হবে না।',
-  'Private wishes have not loaded yet.': 'ব্যক্তিগত শুভেচ্ছাগুলো এখনও আসেনি।',
+  'Private wishes have not loaded yet.': 'ব্যক্তিগত শুভেচ্ছার তথ্য এখনও লোড হয়নি।',
   'No wishes on this page yet.': 'এই পাতায় এখনও কোনো শুভেচ্ছা নেই।',
   'Next 25 wishes': 'পরের ২৫টি শুভেচ্ছা',
   'Household saved. Personal name, scope and allowance are live immediately; base invitation remains unchanged.':

@@ -1,6 +1,6 @@
 # First interactive build handoff
 
-- [Client pilot hardening and rehearsal — 21 October](client-pilot-hardening-2026-10-21.md): 225 tests, seven migrations, hosted five-photo/RSVP/wish/revoke and fresh local end-to-end proof; Vercel personal preview in progress.
+- [Client pilot hardening and rehearsal — 21 October](client-pilot-hardening-2026-10-21.md): 228 tests, seven migrations, hosted five-photo/RSVP/wish/revoke and fresh local end-to-end proof; Vercel personal preview in progress.
 
 ## Current readiness audit — 21 October 2026
 

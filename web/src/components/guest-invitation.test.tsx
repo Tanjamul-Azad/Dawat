@@ -57,6 +57,22 @@ afterEach(() => {
 });
 
 describe('personal invitation and explicit opening contract', () => {
+  it.each(['liveGeneral', 'liveHousehold'] as const)(
+    'never labels a loading %s invitation as a sample',
+    (mode) => {
+      render(
+        <GuestInvitation
+          workspace={createWorkspace()}
+          ready={false}
+          update={() => false}
+          notify={() => {}}
+          authority={{ mode, scope: 'synthetic-live' }}
+        />,
+      );
+      expect(screen.getByRole('status').textContent).toBe(words.bn.loading);
+      expect(screen.queryByText(words.bn.demo)).toBeNull();
+    },
+  );
   it('shows a sealed, non-interactive folio while personal details are loading', () => {
     const { container } = render(
       <GuestInvitation workspace={createWorkspace()} ready={false} update={() => true} notify={() => {}} />,
