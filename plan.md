@@ -6,6 +6,8 @@ Current checkpoint: [21 October hardening and rehearsal](docs/build-evidence/cli
 
 ## Immediate execution order after the audit
 
+**21 October audience/security review:** [Surface separation proposal](docs/design/surface-separation-review-2026-10-21.md) records the current shared origin, concrete prototype-navigation ambiguity, target storefront/client/invitation/operator boundaries and migration acceptance. This is a recommendation pending implementation, not an approved/provisioned domain split. Preserve existing client/guest URLs and working renderer; isolate sessions/routes/secrets as well as appearance before public commercial expansion.
+
 1. **Implemented; regression verified — correct the client journey:** A01/A02/A11/A12 — one/two-event controls, meaningful required-text validation in UI + DB, publish-first guest state and correct live-vs-draft sharing. Add targeted regressions and any necessary forward migration; do not rewrite applied migrations.
 2. **Implemented; further user/device review — compact Bangla-first UX and recovery:** A06/A13/A14 — Bangla primary fields, optional English disclosure, consistent guest locale/errors, current-account visibility, reauthentication and useful incomplete-preview guidance. Preserve Jamdani artwork, deliberate opening and existing working behavior.
 3. **Hosted customer/media/guest rehearsal passed; seller AAL2 pending:** A03/A05 — isolated fictional X/Y workspaces, actual app photo pipeline, private guest reads/revoke, customer OTP and seller AAL2. No staff grant based on sender email, no test publication over a customer's draft.

@@ -1,5 +1,7 @@
 # System architecture — Client V1
 
+**21 October topology review:** the current personal Vercel deployment is still one application/origin. [Audience and origin separation proposal](docs/design/surface-separation-review-2026-10-21.md) recommends distinct storefront/client/guest/operator applications in one repository, retaining shared pure contracts/renderer and tenant-secured backend. It qualifies the older “one modular app” default below; the split has not been implemented. Current delivery status is in the [hardening evidence](docs/build-evidence/client-pilot-hardening-2026-10-21.md).
+
 Updated: **20 October 2026**. Backend/auth/RLS, seller transactions, publication, named guest delivery and [private media](docs/build-evidence/media-bangla-first.md) are implemented. Five migrations and normal-role proofs passed on Dawat Staging; actual image/Storage proof passed locally. Gmail OTP receipt is confirmed. Hosted processor credentials, first verified operator login and app hosting remain pending. Product defaults to Bangla with secondary English. Claims/outbox automation and remaining deployed operations are target architecture. Scope: [plan](plan.md). Entities/commands: [data/API](docs/specs/client-v1-data-api.md).
 
 ## 1. System shape
