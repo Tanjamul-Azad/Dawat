@@ -104,3 +104,7 @@ Source commit: `85dddfb`. Main [readiness audit](../build-evidence/client-readin
 | E094 | P1 | Latest build exceeds payload/LCP or opening responsiveness budgets | Unmeasured | Runtime asset smoke passed; no fresh cold-mobile lab/interaction measurements. **Next:** A10: exact-build performance budgets, not historical Lighthouse score. |
 | E095 | P1 | Preview deployment accidentally uses production integrations | Partial | Separate ignored hosted/offline configs and fixed-loopback QA guards exist. **Next:** A04/A09: actual staging/production deployments, mail recipients and key checks. |
 | E096 | P1 | Hosting term, costs, support/deletion policy not decided | Owner decision pending | Free test pilot term is not a commercial policy. **Next:** A16: written hosting/retention/support/package terms before paid claims. |
+
+## Netlify authenticated follow-up · 21 October2026
+
+See [hosted user-journey evidence](../build-evidence/netlify-authenticated-journey-2026-10-21.md):252 current tests and genuine-session Netlify editing/photo/publish/link/RSVP/wish/report/revoke/pause proof. Native orientation/metadata stripping, max-five UI,5.18MB browser preparation and immutable prior photo publication were checked. Owner and guest fixture access were closed afterward; original pilot unchanged.320/390px client controls and390/768/1366px report overflow checked; physical-phone/zoom/assistive checks remain partial. This supplement does not upgrade all96 cases, cross-household CDN tests, recovery/production separation or load/abuse measurements to Pass.

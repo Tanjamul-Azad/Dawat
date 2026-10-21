@@ -55,3 +55,7 @@ The intended seller must verify their own email, receive an explicitly authorize
 Customer gets their own verified email membership and the HTTPS dashboard entry; management URL is not a credential. One order/wedding by default. Manual payment verification or explicit free exception precedes separate activation. Support can suspend management independently of guest publication. Reassignment is a separate reviewed identity/ownership operation, not changing a displayed email.
 
 Before real personal-data intake, agree term, retention/deletion/export, forwarded-link privacy, support window and cancellation/refund policy. Synthetic 1/90-day test terms are not commercial promises.
+
+## Latest Netlify rehearsal
+
+Authenticated own-account rehearsal and native private photo processing now pass on Netlify; badge-Off is visually verified. See [hosted evidence and remaining release gates](../build-evidence/netlify-authenticated-journey-2026-10-21.md). The synthetic wedding/link/grant/membership were closed after the loop, with replies/wish retained and original pilot unchanged. No repeated OTP was needed while the verified session remained valid. Record observed credits with the delayed billing count and reserve15credits per additional production publication; use `[skip netlify]` for documentation-only evidence commits.

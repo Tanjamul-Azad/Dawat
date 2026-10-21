@@ -2,7 +2,7 @@
 
 21 October 2026 · Asia/Dhaka. **Current execution plan**, requested after the audience/separation review. User budget: **BDT 0 for new hosting/services**. Preserve the working Jamdani invitation, real backend, issued identifiers and customer records. This document schedules future work; unchecked tasks are not implemented or deployed.
 
-Implementation update: [direct client entry, pilot route controls and Netlify deployment](../build-evidence/client-entry-netlify-preparation-2026-10-21.md) are locally verified with244 tests. Owner pasted env; corrected Next.js runtime deployment now passes live anonymous login/assets/API-denial checks. Authenticated native-host qualification, quota inspection and full runtime separation remain open. Testing uses the owner's existing account before any external client.
+Implementation update:252 tests now pass. The owner's genuine saved session completed an authenticated Netlify rehearsal: five-photo upload, a5.18MB selection, native orientation/EXIF removal, event editing, publication, named links, RSVP/wishes, owner reports and revoke/pause. Client preview/pause wording and mobile save/account-menu defects were fixed and deployed. See [hosted journey evidence](../build-evidence/netlify-authenticated-journey-2026-10-21.md). The real revision0 pilot is unchanged. Runtime separation, production environment, recovery drill, physical-phone/zoom testing and complete host-limit/transfer qualification remain open before external-client release.
 
 ## 1. Outcome and constraints
 
