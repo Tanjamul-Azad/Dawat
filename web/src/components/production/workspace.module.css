@@ -37,6 +37,12 @@
   font-weight: 500;
   display: block;
   margin-top: 8px;
+  font-family: var(--font-bangla), var(--font-bangla-ui), serif;
+  line-height: 1.4;
+  font-variant-numeric: normal;
+  font-feature-settings: normal;
+  letter-spacing: 0;
+  white-space: nowrap;
 }
 .confirmed {
   display: flex;
@@ -47,7 +53,11 @@
 }
 .confirmed strong {
   font-size: 42px;
-  font-family: var(--display);
+  font-family: var(--font-bangla), var(--font-bangla-ui), serif;
+  font-variant-numeric: normal;
+  font-feature-settings: normal;
+  line-height: 1.4;
+  letter-spacing: 0;
   font-weight: 400;
 }
 .confirmed span {
@@ -83,6 +93,10 @@
   .table {
     min-width: 0;
     display: block;
+  }
+  .table caption {
+    display: block;
+    width: 100%;
   }
   .table thead {
     position: absolute;
@@ -558,6 +572,192 @@
   color: var(--muted);
   font-size: 13px;
 }
+.saveState {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 24px;
+}
+.saveState svg {
+  flex-shrink: 0;
+}
+.wordingCard {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8f7f0;
+  padding: 16px 18px;
+  display: grid;
+  gap: 12px;
+}
+.wordingCard .sectionHeader {
+  margin: 0;
+  gap: 12px;
+}
+.wordingCard .sectionHeader strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+.wordingCard p {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 16px;
+}
+.wordingCard small {
+  color: var(--muted);
+}
+.guestTable {
+  table-layout: fixed;
+  min-width: 0;
+  width: 100%;
+}
+.guestTable caption {
+  text-align: left;
+  padding: 0 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.guestTable th:nth-child(1) {
+  width: 28%;
+}
+.guestTable th:nth-child(2) {
+  width: 16%;
+}
+.guestTable th:nth-child(3) {
+  width: 16%;
+}
+.guestTable th:nth-child(4) {
+  width: 13%;
+}
+.guestTable th:nth-child(5) {
+  width: 27%;
+}
+.guestTable td {
+  vertical-align: top;
+  padding: 18px 10px;
+  overflow-wrap: anywhere;
+}
+.guestTable td strong,
+.guestTable td small {
+  display: block;
+}
+.guestTable td > strong {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.guestTable small {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.countLegend {
+  display: block;
+  font-weight: 400;
+}
+.guestTable .countNumber {
+  font-family: var(--font-bangla), serif;
+  font-size: 20px;
+  line-height: 1.4;
+  font-feature-settings: normal;
+  white-space: nowrap;
+}
+.guestTable .countNumber small {
+  display: inline;
+  font-size: 14px;
+}
+.guestTable .actions {
+  gap: 6px;
+}
+.guestTable .actions button {
+  min-height: 44px;
+  padding: 8px 10px;
+  font-size: 13px;
+}
+.replyStatus {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.acceptedStatus {
+  color: #28533d;
+  background: #e8efe4;
+}
+.declinedStatus {
+  color: #7f454a;
+  background: #f4e7e6;
+}
+.pendingStatus {
+  color: #7d6434;
+  background: #f4eddc;
+}
+.linkStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.rowDetails {
+  margin-top: 8px;
+}
+.rowDetails summary {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 8px 0;
+  min-height: 36px;
+  color: var(--muted);
+}
+.rowDetails[open] {
+  padding-bottom: 8px;
+}
+@media (max-width: 1000px) and (min-width: 701px) {
+  .guestTable th:nth-child(1) {
+    width: 25%;
+  }
+  .guestTable th:nth-child(2) {
+    width: 17%;
+  }
+  .guestTable th:nth-child(3) {
+    width: 17%;
+  }
+  .guestTable th:nth-child(4) {
+    width: 13%;
+  }
+  .guestTable th:nth-child(5) {
+    width: 28%;
+  }
+  .guestTable td {
+    padding: 14px 6px;
+  }
+}
+@media (max-width: 700px) {
+  .guestTable {
+    table-layout: auto;
+  }
+  .guestTable td {
+    padding: 6px 0;
+  }
+  .guestTable td:first-child::before {
+    display: none;
+  }
+  .guestTable td:nth-child(4) {
+    grid-column: 1 / -1;
+  }
+  .guestTable td:last-child .actions button {
+    width: auto;
+  }
+  .wordingCard {
+    padding: 14px;
+  }
+  .wordingCard .sectionHeader {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
 .preview {
   display: grid;
   justify-items: center;
@@ -935,8 +1135,14 @@
   }
   .savebar .actions {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1.3fr);
     gap: 8px;
+  }
+  .savebar .saveNow span {
+    display: none;
+  }
+  .savebar .saveNow {
+    order: 0;
   }
   .savebar .actions button {
     min-width: 0;

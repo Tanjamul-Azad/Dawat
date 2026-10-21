@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeAll, expect, it, vi } from 'vitest';
 import { WeddingDesk } from './wedding-desk';
 import { WorkspaceFrame } from './frame';
@@ -8,6 +8,7 @@ import { GuestHub } from './guest-hub';
 import { ProductLocale } from './product-locale';
 import { emptyDraft, type WeddingDetail } from '@/features/production/contracts';
 import type { HouseholdRow } from '@/features/production/guests';
+import { templateWording } from '@/features/production/template-wording';
 const wid = '20000000-0000-4000-8000-000000000001';
 const initial: WeddingDetail = {
   wedding: {
@@ -52,15 +53,130 @@ function editor() {
     </ProductLocale>,
   );
   fireEvent.click(screen.getByRole('button', { name: 'নাম ও আমন্ত্রণ' }));
-  return screen.getByLabelText('প্রথম জন · মূল নাম') as HTMLInputElement;
+  return screen.getByLabelText('প্রথম জনের নাম') as HTMLInputElement;
 }
+
+it('provides ready wording behind an edit action while leaving personal details empty', () => {
+  const input = editor();
+  expect(input.value).toBe('');
+  expect(screen.getByText(templateWording.message)).toBeTruthy();
+  expect(screen.queryByLabelText('আমন্ত্রণের লেখা')).toBeNull();
+  fireEvent.click(screen.getByRole('button', { name: 'লেখা সম্পাদনা করুন' }));
+  expect((screen.getByLabelText('আমন্ত্রণের লেখা') as HTMLTextAreaElement).value).toBe(
+    templateWording.message,
+  );
+  expect(initial.content.events.every((event) => !event.venue && !event.date && !event.time)).toBe(true);
+});
+
+it('keeps a saved personal message and does not save simply for opening the editor', async () => {
+  vi.useFakeTimers();
+  const fetcher = vi.fn();
+  vi.stubGlobal('fetch', fetcher);
+  render(
+    <ProductLocale>
+      <WeddingDesk
+        initial={{
+          ...initial,
+          content: { ...initial.content, hosts: 'আমাদের পরিবারের পক্ষ থেকে', message: 'আমাদের নিজের লেখা' },
+        }}
+        email="test@example.test"
+        initialSection="names"
+      />
+    </ProductLocale>,
+  );
+  expect(screen.getByText('আমাদের নিজের লেখা')).toBeTruthy();
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(4000);
+  });
+  expect(fetcher).not.toHaveBeenCalled();
+  fireEvent.click(screen.getByRole('button', { name: 'লেখা সম্পাদনা করুন' }));
+  expect((screen.getByLabelText('আমন্ত্রণের লেখা') as HTMLTextAreaElement).value).toBe('আমাদের নিজের লেখা');
+});
+
+it('lists households with event-specific replies and keeps controls usable during quiet refresh', async () => {
+  vi.useFakeTimers();
+  const fetcher = vi.fn((_input: unknown) => new Promise<Response>(() => {}));
+  vi.stubGlobal('fetch', fetcher);
+  const row: HouseholdRow = {
+    id: wid,
+    name: 'কাল্পনিক পরিবার',
+    nameBn: '',
+    greeting: '',
+    greetingEn: '',
+    message: '',
+    messageEn: '',
+    privateNote: '',
+    events: [
+      { eventId: 'reception', maxPeople: 4 },
+      { eventId: 'nikah', maxPeople: 2 },
+    ],
+    revision: 1,
+    responseRevision: 1,
+    linkRevision: 1,
+    linkState: 'active',
+    responses: {
+      reception: {
+        attendance: 'accepted',
+        adults: 2,
+        children: 1,
+        note: '',
+        updatedAt: '2026-10-21T00:00:00Z',
+      },
+      nikah: { attendance: 'declined', adults: 0, children: 0, note: '', updatedAt: '2026-10-21T00:00:00Z' },
+    },
+  };
+  render(
+    <ProductLocale>
+      <GuestHub
+        wid={wid}
+        slug={wid}
+        title="টেস্ট"
+        email="test@example.test"
+        events={[
+          {
+            id: 'reception',
+            title: 'বিয়ের ভোজ',
+            date: '2026-12-12',
+            time: '19:00',
+            venue: 'ঢাকা',
+            address: '',
+          },
+        ]}
+        initialEvent="reception"
+        initial={{
+          rows: [row],
+          nextCursor: null,
+          summary: { invited: 1, accepted: 1, declined: 0, pending: 0, adults: 2, children: 1 },
+          policies: [],
+          policyRevision: 0,
+          asOf: '2026-10-21T00:00:00Z',
+        }}
+      />
+    </ProductLocale>,
+  );
+  const table = screen.getByRole('table');
+  expect(within(table).getByRole('columnheader', { name: 'পরিবার ও আমন্ত্রণ' })).toBeTruthy();
+  expect(within(table).getByText('বিয়ের ভোজ (৪) · আকদ (২)')).toBeTruthy();
+  expect(within(table).getByText('আসবেন')).toBeTruthy();
+  expect(within(table).queryByText('আসবেন না')).toBeNull();
+  const copy = within(table).getByRole('button', { name: 'লিংক কপি করুন' }) as HTMLButtonElement;
+  fireEvent.change(screen.getByRole('textbox', { name: 'পরিবার খুঁজুন' }), {
+    target: { value: 'এখনও জমা দিইনি' },
+  });
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(30000);
+  });
+  expect(fetcher).toHaveBeenCalledTimes(1);
+  expect(String(fetcher.mock.calls[0][0])).toContain('search=&');
+  expect(copy.disabled).toBe(false);
+});
 
 it('switches between the three workspace destinations without dropping unsaved editor text', () => {
   const input = editor();
   fireEvent.change(input, { target: { value: 'অক্ষত নাম' } });
   fireEvent.click(screen.getByRole('link', { name: 'সারসংক্ষেপ' }));
   fireEvent.click(screen.getByRole('link', { name: 'আমন্ত্রণ সম্পাদনা' }));
-  expect((screen.getByLabelText('প্রথম জন · মূল নাম') as HTMLInputElement).value).toBe('অক্ষত নাম');
+  expect((screen.getByLabelText('প্রথম জনের নাম') as HTMLInputElement).value).toBe('অক্ষত নাম');
 });
 
 it('saves a reception-only setup, clears its removed general scope and restores stashed event details', async () => {
@@ -75,7 +191,7 @@ it('saves a reception-only setup, clears its removed general scope and restores 
     </ProductLocale>,
   );
   fireEvent.click(screen.getByRole('button', { name: 'অনুষ্ঠান' }));
-  fireEvent.change(screen.getAllByLabelText('স্থান · মূল লেখা')[0], { target: { value: 'ঢাকা বাগান' } });
+  fireEvent.change(screen.getAllByLabelText('অনুষ্ঠানের স্থান')[0], { target: { value: 'ঢাকা বাগান' } });
   fireEvent.click(screen.getByLabelText('আকদ রাখুন'));
   expect((screen.getByLabelText('সংবর্ধনা রাখুন') as HTMLInputElement).disabled).toBe(true);
   fireEvent.click(screen.getByRole('button', { name: 'খসড়া সংরক্ষণ' }));
@@ -86,7 +202,7 @@ it('saves a reception-only setup, clears its removed general scope and restores 
   fireEvent.click(screen.getByLabelText('আকদ রাখুন'));
   expect(
     screen
-      .getAllByLabelText('স্থান · মূল লেখা')
+      .getAllByLabelText('অনুষ্ঠানের স্থান')
       .some((input) => (input as HTMLInputElement).value === 'ঢাকা বাগান'),
   ).toBe(true);
 });

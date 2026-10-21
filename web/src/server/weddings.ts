@@ -15,8 +15,11 @@ export async function listWeddings(): Promise<WeddingSummary[]> {
   dbError(result.error);
   return result.data as unknown as WeddingSummary[];
 }
-export async function getWedding(id: string): Promise<WeddingDetail> {
-  const { db } = await session();
+export async function getWedding(
+  id: string,
+  verified?: Awaited<ReturnType<typeof session>>,
+): Promise<WeddingDetail> {
+  const { db } = verified ?? (await session());
   const [w, d, g, e] = await Promise.all([
     db.from('weddings').select('*').eq('id', id).maybeSingle(),
     db.from('invitation_drafts').select('*').eq('wedding_id', id).maybeSingle(),

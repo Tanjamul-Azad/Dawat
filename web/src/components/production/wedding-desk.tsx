@@ -1,6 +1,18 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { Check, ArrowLeft, Eye, Save, ArrowUpRight, Circle, RefreshCw, Pause, Play } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import {
+  Check,
+  ArrowLeft,
+  Eye,
+  Save,
+  ArrowUpRight,
+  Circle,
+  RefreshCw,
+  Pause,
+  Play,
+  PencilLine,
+} from 'lucide-react';
 import {
   type DraftContent,
   type WeddingDetail,
@@ -9,15 +21,18 @@ import {
 } from '@/features/production/contracts';
 import { meaningfulText } from '@/features/production/text';
 import { api, RequestError } from '@/features/production/client';
-import { WorkspaceFrame } from './frame';
+import { WorkspaceFrame, WorkspaceLink } from './frame';
+import { withTemplateWording } from '@/features/production/template-wording';
 import { Modal } from '../ui';
-import { InvitationPreview } from './invitation-preview';
 import { PhotoLibrary } from './photo-library';
 import { useProductLocale } from './product-locale';
 import { errorText } from '@/features/production/copy';
 import { type EditorSection } from '@/features/production/navigation';
 import { HandoffLinks } from './handoff-links';
 import s from './workspace.module.css';
+const InvitationPreview = dynamic(() => import('./invitation-preview').then((m) => m.InvitationPreview), {
+  loading: () => <p role="status">প্রিভিউ তৈরি হচ্ছে…</p>,
+});
 
 export function WeddingDesk({
   initial,
@@ -30,6 +45,14 @@ export function WeddingDesk({
 }) {
   const [detail, setDetail] = useState(initial);
   const [content, setContent] = useState(initial.content);
+  const wording = withTemplateWording(content);
+  const [wordingEditing, setWordingEditing] = useState(false);
+  const contentRef = useRef(content);
+  const detailRef = useRef(detail);
+  contentRef.current = content;
+  detailRef.current = detail;
+  const saveTask = useRef<Promise<boolean> | null>(null);
+  const allowLeave = useRef(false);
   const [step, setStep] = useState<EditorSection>(initialSection);
   const [preview, setPreview] = useState(false);
   const [visibilityConfirm, setVisibilityConfirm] = useState<boolean | null>(null);
@@ -57,7 +80,7 @@ export function WeddingDesk({
   }, [content, detail.revision, dirty, busy, saving, mediaBusy, conflict, autoPaused]);
   useEffect(() => {
     const beforeUnload = (event: BeforeUnloadEvent) => {
-      if (dirty || mediaBusy || saving) {
+      if (!allowLeave.current && (dirty || mediaBusy || saving)) {
         event.preventDefault();
         event.returnValue = '';
       }
@@ -66,7 +89,7 @@ export function WeddingDesk({
     return () => window.removeEventListener('beforeunload', beforeUnload);
   }, [dirty, mediaBusy, saving]);
   function field<K extends keyof DraftContent>(key: K, value: DraftContent[K]) {
-    setContent((c) => ({ ...c, [key]: value }));
+    setContent((c) => ({ ...withTemplateWording(c), [key]: value }));
     setNotice('');
   }
   function toggleEvent(id: 'nikah' | 'reception', include: boolean) {
@@ -94,21 +117,31 @@ export function WeddingDesk({
   async function loadServer() {
     return api<WeddingDetail>(`${root}/`);
   }
-  async function save(automatic = false) {
-    if (busy || mediaBusy || savingLock.current || conflict) return;
+  function save(automatic = false): Promise<boolean> {
+    if (saveTask.current) return saveTask.current;
+    const task = saveSnapshot(automatic);
+    saveTask.current = task;
+    void task.finally(() => {
+      if (saveTask.current === task) saveTask.current = null;
+    });
+    return task;
+  }
+  async function saveSnapshot(automatic: boolean): Promise<boolean> {
+    if (busy || mediaBusy || savingLock.current || conflict) return false;
     savingLock.current = true;
     setSaving(true);
     if (!automatic) setBusy(true);
     setError('');
     setNotice('');
     // The acknowledgement covers this snapshot; edits typed during autosave stay dirty.
-    const snapshot = content;
+    const snapshot = contentRef.current;
+    const revision = detailRef.current.revision;
     try {
       const result = await api<{ revision: number; updatedAt: string }>(`${root}/draft/`, {
         method: 'PATCH',
-        body: { expectedRevision: detail.revision, content: snapshot },
+        body: { expectedRevision: revision, content: snapshot },
       });
-      if (result?.revision !== detail.revision + 1 || !Number.isFinite(Date.parse(result?.updatedAt)))
+      if (result?.revision !== revision + 1 || !Number.isFinite(Date.parse(result?.updatedAt)))
         throw new RequestError(
           502,
           'INVALID_RESPONSE',
@@ -117,17 +150,18 @@ export function WeddingDesk({
             'সংরক্ষণের নিশ্চিত তথ্য পাওয়া যায়নি। রিফ্রেশ করে সংস্করণ দেখে আবার চেষ্টা করুন।',
           ),
         );
-      setDetail((d) => ({ ...d, content: snapshot, revision: result.revision, updatedAt: result.updatedAt }));
+      const acknowledged = {
+        ...detailRef.current,
+        content: snapshot,
+        revision: result.revision,
+        updatedAt: result.updatedAt,
+      };
+      detailRef.current = acknowledged;
+      setDetail(acknowledged);
       setConflict(null);
       setAutoPaused(false);
       setNeedsSignIn(false);
-      if (!automatic)
-        setNotice(
-          t(
-            'Draft saved. Guests still see the last published version.',
-            'খসড়া সংরক্ষিত। অতিথিরা আগের প্রকাশিত আমন্ত্রণই দেখবেন।',
-          ),
-        );
+      return true;
     } catch (e) {
       setAutoPaused(true);
       if (e instanceof RequestError && e.status === 401) setNeedsSignIn(true);
@@ -139,11 +173,29 @@ export function WeddingDesk({
           /* Keep the original conflict and local draft. */
         }
       }
+      return false;
     } finally {
       savingLock.current = false;
       setSaving(false);
       if (!automatic) setBusy(false);
     }
+  }
+  async function saveBeforeLeaving() {
+    if (busy || mediaBusy || conflict || autoPaused) return false;
+    setBusy(true);
+    if (saveTask.current && !(await saveTask.current)) {
+      setBusy(false);
+      return false;
+    }
+    if (
+      JSON.stringify(contentRef.current) !== JSON.stringify(detailRef.current.content) &&
+      !(await save(true))
+    ) {
+      setBusy(false);
+      return false;
+    }
+    allowLeave.current = true;
+    return true;
   }
   async function publish() {
     if (busy || mediaBusy || savingLock.current || dirty || issues.length) return;
@@ -247,12 +299,13 @@ export function WeddingDesk({
       }}
       onOverview={() => setStep('overview')}
       onEdit={() => setStep('names')}
+      navigationGuard={{ pending: dirty || saving || mediaBusy, save: saveBeforeLeaving }}
     >
       <div className={s.intro}>
         <div>
-          <a className={s.eyebrow} href="/dashboard/?all=1">
+          <WorkspaceLink className={s.eyebrow} href="/dashboard/?all=1">
             <ArrowLeft size={12} /> {t('My weddings', 'আমার আয়োজন')}
-          </a>
+          </WorkspaceLink>
           <h1>
             {content.partnerOne && content.partnerTwo
               ? locale === 'bn'
@@ -268,9 +321,9 @@ export function WeddingDesk({
           </p>
         </div>
         <div className={s.actions}>
-          <a className={s.secondary} href={`/weddings/${detail.wedding.id}/guests/`}>
+          <WorkspaceLink className={s.secondary} href={`/weddings/${detail.wedding.id}/guests/`}>
             {t('Guests & replies', 'অতিথি ও উত্তর')}
-          </a>
+          </WorkspaceLink>
           <span className={s.badge}>
             {isPaused
               ? t('Paused', 'সাময়িক বন্ধ')
@@ -295,14 +348,14 @@ export function WeddingDesk({
               'আপনার লেখা এই ট্যাবেই আছে। নতুন ট্যাবে একই ইমেইলে প্রবেশ করে ফিরে আসুন; রিফ্রেশ চেপে সংস্করণ দেখে সংরক্ষণ করুন।',
             )}
           </p>
-          <a
+          <WorkspaceLink
             className={s.secondary}
             href={`/auth/login/?next=${encodeURIComponent(`/weddings/${detail.wedding.id}/`)}`}
             target="_blank"
             rel="noopener noreferrer"
           >
             {t('Sign in in a new tab', 'নতুন ট্যাবে প্রবেশ করুন')}
-          </a>
+          </WorkspaceLink>
           <button className={s.secondary} disabled={busy || saving} onClick={refresh}>
             {t('Review saved version', 'সংরক্ষিত সংস্করণ যাচাই করুন')}
           </button>
@@ -454,9 +507,9 @@ export function WeddingDesk({
                 </ul>
                 <div className={s.actions} style={{ marginTop: 20 }}>
                   {isPublished && publishedCurrent && (
-                    <a className={s.button} href={`/weddings/${detail.wedding.id}/guests/`}>
+                    <WorkspaceLink className={s.button} href={`/weddings/${detail.wedding.id}/guests/`}>
                       {t('Invite your guests', 'অতিথিদের আমন্ত্রণ দিন')}
-                    </a>
+                    </WorkspaceLink>
                   )}
                   <button
                     className={isPublished && publishedCurrent ? s.secondary : s.button}
@@ -518,7 +571,7 @@ export function WeddingDesk({
                 )}
                 {isPublished &&
                   (detail.publishedGeneralEventIds ?? detail.content.generalEventIds).length > 0 && (
-                    <a
+                    <WorkspaceLink
                       href={`/i/${detail.wedding.slug}/`}
                       className={s.secondary}
                       target="_blank"
@@ -529,7 +582,7 @@ export function WeddingDesk({
                         'সাধারণ আমন্ত্রণ দেখুন · উত্তর দেওয়া যাবে না',
                       )}
                       <ArrowUpRight size={14} />
-                    </a>
+                    </WorkspaceLink>
                   )}
                 {!(detail.publishedGeneralEventIds ?? detail.content.generalEventIds).length && (
                   <p>
@@ -569,24 +622,48 @@ export function WeddingDesk({
               <p>
                 {t(
                   'Write names exactly as you want guests to see them. Bangla names are optional; they fall back to the original names.',
-                  'মূল নাম বাংলায় বা ইংরেজিতে লিখুন। আলাদা বানান ও ইংরেজি বার্তা ঐচ্ছিক অনুবাদে রাখতে পারবেন।',
+                  'দুজনের নাম লিখলেই শুরু। আমন্ত্রণের লেখা তৈরি আছে; চাইলে নিজের মতো বদলে নিন। পরিবর্তন নিজে থেকেই সংরক্ষিত হবে।',
                 )}
               </p>
               <fieldset disabled={busy} className={s.form}>
                 <div className={s.row}>
-                  {textInput('partnerOne', t('First partner · original', 'প্রথম জন · মূল নাম'))}
-                  {textInput('partnerTwo', t('Second partner · original', 'দ্বিতীয় জন · মূল নাম'))}
+                  {textInput('partnerOne', t('First partner’s name', 'প্রথম জনের নাম'))}
+                  {textInput('partnerTwo', t('Second partner’s name', 'দ্বিতীয় জনের নাম'))}
                 </div>
-                {textInput('hosts', t('Hosted by · original', 'আয়োজক · মূল লেখা'))}
-                <label>
-                  আমন্ত্রণের বার্তা · বাংলা
-                  <textarea
-                    rows={5}
-                    maxLength={2000}
-                    value={content.message}
-                    onChange={(e) => field('message', e.target.value)}
-                  />
-                </label>
+                <div className={s.wordingCard}>
+                  <div className={s.sectionHeader}>
+                    <strong>{t('Your invitation wording', 'কার্ডে যে লেখা থাকবে')}</strong>
+                    <button
+                      type="button"
+                      className={s.quiet}
+                      aria-expanded={wordingEditing}
+                      onClick={() => setWordingEditing(!wordingEditing)}
+                    >
+                      <PencilLine size={15} />{' '}
+                      {wordingEditing ? t('Done', 'সম্পাদনা শেষ') : t('Edit wording', 'লেখা সম্পাদনা করুন')}
+                    </button>
+                  </div>
+                  {!wordingEditing && (
+                    <>
+                      <small>{content.hostsBn || wording.hosts}</small>
+                      <p>{locale === 'en' ? wording.messageEn || wording.message : wording.message}</p>
+                    </>
+                  )}
+                  {wordingEditing && (
+                    <>
+                      {textInput('hosts', t('From the families', 'কার পক্ষ থেকে আমন্ত্রণ'))}
+                      <label>
+                        আমন্ত্রণের লেখা
+                        <textarea
+                          rows={5}
+                          maxLength={2000}
+                          value={content.message}
+                          onChange={(e) => field('message', e.target.value)}
+                        />
+                      </label>
+                    </>
+                  )}
+                </div>
                 <details className={s.optionalFields}>
                   <summary>
                     {t(
@@ -659,7 +736,7 @@ export function WeddingDesk({
                       <div className={s.form}>
                         {(['title'] as const).map((key) => (
                           <label key={key}>
-                            {t('Celebration name · original', 'অনুষ্ঠানের নাম · মূল লেখা')}
+                            {t('Celebration name · original', 'অনুষ্ঠানের নাম')}
                             <input
                               value={event[key] ?? ''}
                               maxLength={160}
@@ -706,9 +783,9 @@ export function WeddingDesk({
                         <label key={key}>
                           {
                             {
-                              venue: t('Venue · original', 'স্থান · মূল লেখা'),
+                              venue: t('Venue · original', 'অনুষ্ঠানের স্থান'),
                               venueBn: 'স্থান · বাংলা',
-                              address: t('Address · original', 'ঠিকানা · মূল লেখা'),
+                              address: t('Address · original', 'ঠিকানা'),
                               addressBn: 'ঠিকানা · বাংলা',
                             }[key]
                           }
@@ -850,24 +927,18 @@ export function WeddingDesk({
           )}
           {(step !== 'overview' || dirty) && (
             <div className={s.savebar}>
-              <small aria-live="polite">
+              <small className={s.saveState}>
+                <Check size={14} aria-hidden="true" />
                 {saving
-                  ? t('Saving draft…', 'খসড়া সংরক্ষণ হচ্ছে…')
+                  ? t('Saving automatically…', 'নিজে থেকেই সংরক্ষণ হচ্ছে…')
                   : busy
                     ? t('Working…', 'কাজ চলছে…')
                     : dirty
-                      ? t('Unsaved changes', 'অসংরক্ষিত পরিবর্তন')
+                      ? t('Changes queued for autosave', 'অসংরক্ষিত পরিবর্তন · নিজে থেকেই সংরক্ষিত হবে')
                       : t('Saved on server', 'সার্ভারে সংরক্ষিত')}{' '}
                 {autoPaused && dirty && !conflict
                   ? ' · ' +
                     t('Autosave paused; save to retry', 'স্বয়ংক্রিয় সংরক্ষণ বন্ধ; সংরক্ষণ চেপে চেষ্টা করুন')
-                  : ''}
-                {detail.updatedAt && !dirty && !busy
-                  ? ' · ' +
-                    new Intl.DateTimeFormat(locale === 'bn' ? 'bn-BD' : 'en-GB', {
-                      timeStyle: 'short',
-                      timeZone: 'Asia/Dhaka',
-                    }).format(new Date(detail.updatedAt))
                   : ''}
               </small>
               <div className={s.actions}>
@@ -888,13 +959,26 @@ export function WeddingDesk({
                   {t('Preview', 'প্রিভিউ')}
                 </button>
                 <button
-                  className={s.button}
+                  className={`${s.quiet} ${s.saveNow}`}
+                  aria-label={t('Save draft', 'খসড়া সংরক্ষণ')}
+                  title={t('Save now', 'এখনই সংরক্ষণ')}
                   onClick={() => void save()}
                   disabled={busy || saving || mediaBusy || !dirty || !!conflict}
                 >
                   <Save size={15} />
-                  {t('Save draft', 'খসড়া সংরক্ষণ')}
+                  <span>{t('Save now', 'এখনই সংরক্ষণ')}</span>
                 </button>
+                {step !== 'review' && (
+                  <button
+                    className={s.button}
+                    disabled={busy || mediaBusy}
+                    onClick={() =>
+                      setStep(step === 'names' ? 'events' : step === 'events' ? 'photos' : 'review')
+                    }
+                  >
+                    {t('Continue', 'পরের ধাপ')} <ArrowUpRight size={14} />
+                  </button>
+                )}
               </div>
             </div>
           )}

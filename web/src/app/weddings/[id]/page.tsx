@@ -21,7 +21,7 @@ export default async function Page({
   if (!s) return <SetupRequired />;
   try {
     return (
-      <WeddingDesk initial={await getWedding(p.id)} email={s.user.email ?? ''} initialSection={section} />
+      <WeddingDesk initial={await getWedding(p.id, s)} email={s.user.email ?? ''} initialSection={section} />
     );
   } catch (e) {
     if (e instanceof HttpError && e.status === 404) notFound();

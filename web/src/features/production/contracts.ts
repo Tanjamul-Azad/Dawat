@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { mediaPhoto } from './media';
 import { meaningfulText } from './text';
+import { templateWording } from './template-wording';
 
 export const uuid = z.uuid();
 const text = (max: number) => z.string().max(max);
@@ -49,8 +50,9 @@ export function emptyDraft(): DraftContent {
   return {
     partnerOne: '',
     partnerTwo: '',
-    hosts: '',
-    message: '',
+    hosts: templateWording.hosts,
+    message: templateWording.message,
+    messageEn: templateWording.messageEn,
     theme: 'jamdani',
     photos: [],
     generalEventIds: [],

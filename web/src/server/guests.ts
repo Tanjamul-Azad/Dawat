@@ -95,8 +95,9 @@ export async function report(
   after: string | null,
   search: string,
   status: string,
+  verified?: Awaited<ReturnType<typeof session>>,
 ): Promise<HouseholdReport> {
-  const { db } = await session();
+  const { db } = verified ?? (await session());
   const r = await db.rpc('household_report', {
     p_wedding_id: wid,
     p_event_id: eventId,

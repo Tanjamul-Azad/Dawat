@@ -1,6 +1,7 @@
 'use client';
 import { useProductLocale } from './product-locale';
 import { useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import {
   ArrowLeft,
   Copy,
@@ -27,11 +28,13 @@ import {
 import { api } from '@/features/production/client';
 import { downloadCsv } from '@/features/production/download';
 import { errorText } from '@/features/production/copy';
-import { WorkspaceFrame } from './frame';
+import { WorkspaceFrame, WorkspaceLink } from './frame';
 import { Modal, copyText } from '../ui';
-import { GuestLive } from './guest-live';
 import { ResponseEditor } from './response-editor';
 import s from './workspace.module.css';
+const GuestLive = dynamic(() => import('./guest-live').then((m) => m.GuestLive), {
+  loading: () => <p role="status">প্রিভিউ তৈরি হচ্ছে…</p>,
+});
 type Props = {
   wid: string;
   slug: string;
@@ -83,10 +86,19 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
   const failures = useRef(0);
   const policy = data.policies.find((p) => p.eventId === eventId);
   const count = (n: number) => new Intl.NumberFormat(locale === 'bn' ? 'bn-BD' : 'en-BD').format(n);
-  async function refresh(after: string | null = cursor.current, filters = { eventId, search, status }) {
+  const eventTitle = (id: string) => {
+    const event = events.find((e) => e.id === id);
+    return event ? (locale === 'bn' ? event.titleBn || event.title : event.title) : tr(id);
+  };
+  async function refresh(
+    after: string | null = cursor.current,
+    filters = { eventId, search, status },
+    quiet = false,
+  ) {
+    if (quiet && busy) return;
     if (JSON.stringify(appliedFilters.current) !== JSON.stringify(filters)) after = null;
     const generation = ++serial.current;
-    setBusy(true);
+    if (!quiet) setBusy(true);
     setError('');
     const query = new URLSearchParams({
       event: filters.eventId,
@@ -111,12 +123,13 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
         retryAt.current = Date.now() + Math.min(300000, 30000 * 2 ** failures.current);
       }
     } finally {
-      if (generation === serial.current) setBusy(false);
+      if (!quiet && generation === serial.current) setBusy(false);
     }
   }
-  async function loadWishes(after: string | null = wishCursor.current) {
+  async function loadWishes(after: string | null = wishCursor.current, quiet = false) {
+    if (quiet && busy) return;
     const generation = ++wishSerial.current;
-    setBusy(true);
+    if (!quiet) setBusy(true);
     setError('');
     try {
       const r = await api<{
@@ -138,7 +151,7 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
       failures.current++;
       retryAt.current = Date.now() + Math.min(300000, 30000 * 2 ** failures.current);
     } finally {
-      if (mounted.current && generation === wishSerial.current) setBusy(false);
+      if (!quiet && mounted.current && generation === wishSerial.current) setBusy(false);
     }
   }
   useEffect(() => {
@@ -160,8 +173,8 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
         !correcting &&
         Date.now() >= retryAt.current
       ) {
-        if (panel === 'wishes') void loadWishes();
-        else void refresh();
+        if (panel === 'wishes') void loadWishes(wishCursor.current, true);
+        else void refresh(cursor.current, appliedFilters.current, true);
       }
     };
     const timer = setInterval(check, 30000);
@@ -172,7 +185,7 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
       window.removeEventListener('focus', check);
       document.removeEventListener('visibilitychange', check);
     };
-  }, [eventId, status, search, editing, danger, preview, panel, policyOpen, correcting]);
+  }, [eventId, status, search, editing, danger, preview, panel, policyOpen, correcting, busy]);
   async function link(row: HouseholdRow, kind: 'copy' | 'rotate' | 'revoke') {
     if (busy) return;
     setBusy(true);
@@ -225,9 +238,9 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
     <WorkspaceFrame email={email} wedding={{ id: wid, title, view: 'guests' }}>
       <div className={s.intro}>
         <div>
-          <a href={`/weddings/${wid}/`} className={s.eyebrow}>
+          <WorkspaceLink href={`/weddings/${wid}/`} className={s.eyebrow}>
             <ArrowLeft size={12} /> {title}
-          </a>
+          </WorkspaceLink>
           <h1>{tr('People make the celebration.')}</h1>
           <p>
             {locale === 'bn'
@@ -269,7 +282,7 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
           aria-current={panel === 'wishes' ? 'step' : undefined}
           onClick={() => {
             setPanel('wishes');
-            void loadWishes();
+            if (!wishesLoaded) void loadWishes();
           }}
         >
           {tr('Private wishes')}
@@ -283,9 +296,9 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
               ? 'নাম, অনুষ্ঠান ও স্থান পূরণ করে প্রিভিউ দেখুন। প্রকাশের পর পরিবার যোগ করা, ব্যক্তিগত লিংক এবং উত্তর নেওয়া চালু হবে।'
               : 'Complete names, celebrations and venues, then preview and publish. You can then add households, generate personal links and collect replies.'}
           </p>
-          <a className={s.button} href={`/weddings/${wid}/`}>
+          <WorkspaceLink className={s.button} href={`/weddings/${wid}/`}>
             {locale === 'bn' ? 'আমন্ত্রণ সম্পাদনায় যান' : 'Continue editing'}
-          </a>
+          </WorkspaceLink>
         </section>
       ) : panel === 'guests' ? (
         <>
@@ -314,7 +327,7 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
             </div>
             <p className={s.eyebrow}>{tr('All invited households \u00B7 selected event')}</p>
             <p className={s.muted}>
-              {locale === 'bn' ? 'দেখানো রিপোর্ট' : 'Displayed report'}: {tr(reportEventId)} ·{' '}
+              {locale === 'bn' ? 'দেখানো রিপোর্ট' : 'Displayed report'}: {eventTitle(reportEventId)} ·{' '}
               {tr(appliedFilters.current.status)}
               {appliedFilters.current.search ? ' · ' + appliedFilters.current.search : ''}
             </p>
@@ -425,90 +438,141 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
                 {tr('Apply search')}
               </button>
             </form>
-            <ul className={s.list}>
-              {rows.map((row) => {
-                const answer = row.responses[reportEventId];
-                const allowance = row.events.find((e) => e.eventId === reportEventId)?.maxPeople;
-                return (
-                  <li key={row.id} className={s.householdRow}>
-                    <div style={{ minWidth: 0 }}>
-                      <strong>{row.name}</strong>
-                      <small>
-                        {row.nameBn && row.nameBn !== row.name ? row.nameBn + ' · ' : ''}
-                        {row.events.map((e) => `${tr(e.eventId)} (${count(e.maxPeople)})`).join(' · ')}
-                        <br />
-                        {tr('Link')}
-                        {tr(row.linkState)} · {allowance === undefined ? '—' : count(allowance)}
-                        {tr('people maximum')}
+            <div className={s.tableWrap} aria-busy={busy}>
+              <table className={`${s.table} ${s.guestTable}`}>
+                <caption>
+                  {locale === 'bn'
+                    ? 'নির্বাচিত অনুষ্ঠান ও ফিল্টার অনুযায়ী পরিবার · প্রতি পাতায় সর্বোচ্চ ২৫টি'
+                    : 'Households for the selected celebration and filters · up to 25 per page'}
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{locale === 'bn' ? 'পরিবার ও আমন্ত্রণ' : 'Household'}</th>
+                    <th scope="col">{tr('Reply status')}</th>
+                    <th scope="col">
+                      {locale === 'bn' ? 'অতিথি' : 'People'}
+                      <small className={s.countLegend}>
+                        {locale === 'bn' ? 'নিশ্চিত / অনুমতি' : 'Confirmed / allowance'}
                       </small>
-                      <p className={s.muted}>
-                        {answer
-                          ? `${tr(answer.attendance)} · ${count(answer.adults)} ${tr('adults +')} ${count(answer.children)} ${tr('children')}`
-                          : tr('Pending \u00B7 no reply yet')}
-                      </p>
-                      {answer?.note && (
-                        <p className={s.muted}>
-                          {tr('Guest note:')}
-                          {answer.note}
-                        </p>
-                      )}
-                      <details>
-                        <summary>{tr('Personal details & link actions')}</summary>
-                        <p className={s.muted}>
-                          {tr('Private host note:')}
-                          {row.privateNote || '—'}
-                        </p>
-                        <div className={s.actions}>
-                          <button className={s.secondary} disabled={busy} onClick={() => setCorrecting(row)}>
-                            <PencilLine size={14} />
-                            {locale === 'bn' ? 'উত্তর সংশোধন ও ইতিহাস' : 'Correct reply & history'}
-                          </button>
-                          <button className={s.secondary} disabled={busy} onClick={() => setEditing(row)}>
-                            {tr('Edit household')}
-                          </button>
-                          {row.linkState !== 'missing' && (
-                            <>
+                    </th>
+                    <th scope="col">{tr('Link')}</th>
+                    <th scope="col">{locale === 'bn' ? 'পরিচালনা' : 'Actions'}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row) => {
+                    const answer = row.responses[reportEventId];
+                    const allowance = row.events.find((e) => e.eventId === reportEventId)?.maxPeople;
+                    return (
+                      <tr key={row.id}>
+                        <td data-label={locale === 'bn' ? 'পরিবার' : 'Household'}>
+                          <strong>{row.name}</strong>
+                          <small>
+                            {row.nameBn && row.nameBn !== row.name ? row.nameBn + ' · ' : ''}
+                            {row.events
+                              .map((e) => `${eventTitle(e.eventId)} (${count(e.maxPeople)})`)
+                              .join(' · ')}
+                          </small>
+                          {answer?.note && (
+                            <p className={s.muted}>
+                              {tr('Guest note:')}
+                              {answer.note}
+                            </p>
+                          )}
+                        </td>
+                        <td data-label={tr('Reply status')}>
+                          <span
+                            className={`${s.replyStatus} ${answer?.attendance === 'accepted' ? s.acceptedStatus : answer?.attendance === 'declined' ? s.declinedStatus : s.pendingStatus}`}
+                          >
+                            {tr(answer?.attendance ?? 'pending')}
+                          </span>
+                        </td>
+                        <td data-label={locale === 'bn' ? 'অতিথি' : 'People'}>
+                          <strong className={s.countNumber}>
+                            {answer ? count(answer.adults + answer.children) : '—'}
+                            <small> / {allowance === undefined ? '—' : count(allowance)}</small>
+                          </strong>
+                          {answer && (
+                            <small>
+                              {count(answer.adults)} {tr('adults +')} {count(answer.children)}{' '}
+                              {tr('children')}
+                            </small>
+                          )}
+                        </td>
+                        <td data-label={tr('Link')}>
+                          <span className={s.linkStatus}>
+                            <Link2 size={13} /> {tr(row.linkState)}
+                          </span>
+                        </td>
+                        <td data-label={locale === 'bn' ? 'পরিচালনা' : 'Actions'}>
+                          <div className={s.actions}>
+                            <button
+                              className={s.secondary}
+                              disabled={busy}
+                              onClick={() => openPreview(row)}
+                              aria-label={`${tr('Preview')} · ${row.name}`}
+                              title={tr('Preview')}
+                            >
+                              <Eye size={15} />
+                            </button>
+                            <button
+                              className={s.secondary}
+                              disabled={busy || row.linkState === 'revoked'}
+                              onClick={() => link(row, 'copy')}
+                            >
+                              <Copy size={14} />
+                              {row.linkState === 'missing' ? tr('Create & copy') : tr('Copy link')}
+                            </button>
+                          </div>
+                          <details className={s.rowDetails}>
+                            <summary>{tr('Personal details & link actions')}</summary>
+                            <p className={s.muted}>
+                              {tr('Private host note:')}
+                              {row.privateNote || '—'}
+                            </p>
+                            <div className={s.actions}>
                               <button
                                 className={s.secondary}
                                 disabled={busy}
-                                onClick={() => setDanger({ row, kind: 'rotate' })}
+                                onClick={() => setCorrecting(row)}
                               >
-                                <RotateCcw size={14} />
-                                {tr('Replace link')}
+                                <PencilLine size={14} />
+                                {locale === 'bn' ? 'উত্তর সংশোধন ও ইতিহাস' : 'Correct reply & history'}
                               </button>
-                              {row.linkState === 'active' && (
-                                <button
-                                  className={s.secondary}
-                                  disabled={busy}
-                                  onClick={() => setDanger({ row, kind: 'revoke' })}
-                                >
-                                  <ShieldOff size={14} />
-                                  {tr('Revoke link')}
-                                </button>
+                              <button className={s.secondary} disabled={busy} onClick={() => setEditing(row)}>
+                                {tr('Edit household')}
+                              </button>
+                              {row.linkState !== 'missing' && (
+                                <>
+                                  <button
+                                    className={s.secondary}
+                                    disabled={busy}
+                                    onClick={() => setDanger({ row, kind: 'rotate' })}
+                                  >
+                                    <RotateCcw size={14} />
+                                    {tr('Replace link')}
+                                  </button>
+                                  {row.linkState === 'active' && (
+                                    <button
+                                      className={s.secondary}
+                                      disabled={busy}
+                                      onClick={() => setDanger({ row, kind: 'revoke' })}
+                                    >
+                                      <ShieldOff size={14} />
+                                      {tr('Revoke link')}
+                                    </button>
+                                  )}
+                                </>
                               )}
-                            </>
-                          )}
-                        </div>
-                      </details>
-                    </div>
-                    <div className={s.actions}>
-                      <button className={s.secondary} disabled={busy} onClick={() => openPreview(row)}>
-                        <Eye size={14} />
-                        {tr('Preview')}
-                      </button>
-                      <button
-                        className={s.secondary}
-                        disabled={busy || row.linkState === 'revoked'}
-                        onClick={() => link(row, 'copy')}
-                      >
-                        <Copy size={14} />
-                        {row.linkState === 'missing' ? tr('Create & copy') : tr('Copy link')}
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+                            </div>
+                          </details>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
             {!rows.length && (
               <div className={s.empty}>
                 <Send size={25} />
