@@ -2,6 +2,8 @@
 
 Updated: **21 October 2026 · Client V1**.
 
+**Latest plan: BDT0 for new hosting/services.** [Free-first design, onboarding and delivery](docs/plans/free-first-product-delivery-2026-10-21.md) specifies four product surfaces, direct client handoff, compact Bangla hierarchy, ordered implementation batches and release/usage limits. Netlify Free is the first commercial-compatible hosting candidate to qualify; current Vercel remains personal preview. No migration, new account or paid purchase is claimed by this planning update.
+
 Current Jamdani invitation is the product foundation. **Backend/auth, wedding isolation, seller workflow, autosave, named links, RSVP/wishes, corrections, private CSV, pause/resume and private photo processing are implemented. Bangla is primary; English is secondary.** [21 October hardening and rehearsal](docs/build-evidence/client-pilot-hardening-2026-10-21.md): 228 tests, typecheck/build/runtime, fresh isolated local HTTP/Auth/Storage and four hosted rollback proofs pass. One/two-event controls, meaningful publication validation, publish-first states, pinned sharing scope and session recovery are fixed. Actual hosted five-photo/RSVP/wish/revocation rehearsal passed on a separate fictional wedding. [Vercel personal preview is live](https://dawat-client-preview.vercel.app/dashboard/): actual customer OTP/session, large photo upload, publish, named RSVP/wish and revocation were verified. Intended seller AAL2, real phones/performance and recovery/operations remain. External commercial handoff is unqualified.
 
 ## Start here

@@ -16,13 +16,15 @@ Latest implementation choices: autosave uses acknowledged snapshots and pauses a
 | D06 | Couple/families are the senders; wishes addressed to them                                                     | No fictional provider signature or guest identity form           |
 | D07 | Maximum five photos, framed reel/manual controls, purposeful motion/music                                     | Zero/one/five variants and media fallbacks qualified             |
 | D08 | Original premium design inspired by TDY, e-Nimontron service, Figma typography and Pinterest/Dribbble studies | Preserve provenance; no copying competitor assets/code           |
+| D09 | 21 October: user sets BDT0 budget for new hosting/services | Free tiers/provider URLs first; no upgrade, top-up, auto-converting trial or new-domain purchase |
+| D10 | User requests detailed design/onboarding/separation execution plan | [Current plan](plans/free-first-product-delivery-2026-10-21.md); three client nav destinations, four audience boundaries, staged host qualification |
 
 ## Architecture defaults for the next build
 
 | ID  | Default                                                                         | Why / consequence                                                       |
 | --- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | A01 | Couple dashboard + thin seller panel + backend before public redesign           | Proves actual product delivery first                                    |
-| A02 | One modular Next app; existing npm/CSS modules; managed PostgreSQL/auth/storage | Focused migration, fewer unnecessary dependencies                       |
+| A02 | One repository with bounded surface apps, shared pure renderer/contracts; retain npm/CSS and tenant-secured backend | Incremental extraction after host compatibility proof; current single app remains working baseline |
 | A03 | One order/one wedding; one primary verified owner at launch                     | Simpler access model; multiple workspaces per account still supported   |
 | A04 | Immutable published base + live household overlay                               | No duplicated website per guest; clear publish/live-impact boundaries   |
 | A05 | Named-response mode only; general link view-only                                | Accurate pending/declined and personalized welcome                      |
@@ -31,6 +33,7 @@ Latest implementation choices: autosave uses acknowledged snapshots and pauses a
 | A08 | Manual verified-order pilot before automatic gateway, if needed                 | Commercial flow can be proven without pretending checkout is integrated |
 | A09 | No mandatory realtime; bounded refresh + timestamps                             | Correctness stays server-authoritative with simpler operations          |
 | A10 | Private originals/restricted media; intentional general-safe caching            | Do not mix guest privacy with public CDN assumptions                    |
+| A11 | Netlify Free first compatibility candidate; Vercel Hobby remains personal preview | Commercial-use allowance verified; exact app/credits/native processing still require proof, no migration claimed |
 
 These are implementation recommendations within the existing brief, not provisioned infrastructure or paid account selections. If a later discovery changes one, update owning files before divergent code is introduced.
 
@@ -44,8 +47,8 @@ These are implementation recommendations within the existing brief, not provisio
 | O04 | Draft/response/wish/media retention, deletion/export terms   | Explicit periods and archive/erasure rules, not indefinite retention by accident  | Live personal-data intake and cleanup jobs; product owner, verified policy advice if needed |
 | O05 | Customer verification/recovery contact                       | Email OTP/session default; SMS/phone OTP not assumed                              | Auth delivery/account recovery; product owner confirms contact practicality                 |
 | O06 | Merchant/provider and manual verification evidence           | Manual verified pilot possible; gateway chosen after eligibility/cost review      | Automated checkout/live merchant operation; product owner                                   |
-| O07 | Hosting/backend region, tiers, quotas and monthly budget     | Server-capable commercial deployment near database; measure Bangladesh latency    | Provisioning; product owner approves expense, developer benchmarks                          |
-| O08 | Backup/recovery cost/objectives                              | Proposed RPO1h/RTO4h; fund and demonstrate or revise explicitly                   | Paid launch; product owner + developer                                                      |
+| O07 | Actual free-host compatibility, region, quota and production environment | Budget fixed at0; Netlify Free first candidate, measure Bangladesh latency and actual account usage | Host acceptance/cutover; no paid fallback authorized |
+| O08 | Backup/recovery cost/objectives                              | Earlier RPO1h/RTO4h were proposals; revise to an achievable zero-spend schedule and demonstrate DB/object/key restore | Real client intake; explicit support/recovery agreement, no unfunded recovery promise |
 | O09 | Support response window and cancellation/refund flow         | Human seller handles initial pilot through published support channel              | Paid launch/public policy; product owner                                                    |
 | O10 | Privacy level of general invitation/photos/event details     | General-visible events explicitly selected; personal response data always private | Publication defaults/real content intake; product owner + developer                         |
 | O11 | Exact input/upload/package limits                            | Proposed bounds in data/API; qualify phone formats and resource use               | Schema/publish/upload UI and package promises; developer + product owner                    |

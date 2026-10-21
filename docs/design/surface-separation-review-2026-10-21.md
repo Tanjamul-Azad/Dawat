@@ -2,6 +2,8 @@
 
 21 October 2026 · Asia/Dhaka. Architecture/UX review requested by the product owner. **Recommendation, not an implemented domain/deployment split.** Existing personal Vercel preview remains unchanged.
 
+**Subsequent owner decision:** zero budget for new services. [Detailed free-first execution plan](../plans/free-first-product-delivery-2026-10-21.md) now schedules this target incrementally, starting with exact-app Netlify Free qualification, onboarding and prototype cleanup. Four origins do not imply four paid servers or four independent quota allowances. DNS/account/runtime changes remain unperformed.
+
 ## Finding
 
 The four audiences can belong to one product and link to one another deliberately. A URL, hidden navigation item or different page design is not an authorization boundary. A shared code repository does not require a shared browser origin, session or deployment. Conversely, different subdomains do not remove the need for tenant checks.

@@ -2,6 +2,8 @@
 
 Updated: **21 October 2026 · Asia/Dhaka**. This is the current scope and build order; it supersedes archived phase lists. Planned production capabilities below are not claims of completed implementation.
 
+**Latest owner instruction — zero new spend:** [Detailed free-first delivery plan](docs/plans/free-first-product-delivery-2026-10-21.md) now controls the **next execution batches**, design boundaries, direct-client onboarding, hosting qualification and acceptance. First qualify Netlify Free against the exact working app while cleaning prototype entry/CTA confusion, then implement direct-wedding onboarding, separate client/guest/operator surfaces, compact UI, recovery/quota qualification and one controlled pilot; finish public sales afterward. Netlify is a candidate, not a completed migration. Existing Vercel Hobby remains personal testing only. No paid upgrade/top-up/trial/new domain; free provider URLs first. The earlier phase list below is the feature/dependency reference, not an instruction to restart completed foundation work.
+
 Current checkpoint: [21 October hardening and rehearsal](docs/build-evidence/client-pilot-hardening-2026-10-21.md). Core audit UI/logic fixes and seven migrations are implemented. **228 tests / 23 files**, build/typecheck/runtime, fresh local HTTP/Auth/MFA/Storage and all four hosted rollback proofs pass. Separate hosted fictional rehearsal covered five photos, named RSVP/wish and revocation; original pilot remains untouched. Vercel **personal testing preview only** is live, including signed-in upload/publish/guest/revoke rehearsal. Seller bootstrap, real devices, operations/recovery and commercial qualification remain open.
 
 ## Immediate execution order after the audit
@@ -32,11 +34,11 @@ A dashboard that still saves only in the same browser does not meet this milesto
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Jamdani template             | Preserved renderer connected to scoped server publications; sample opening/BN/EN and limited narrow layout inspected | One-event and hosted photos verified; long-content/device/performance qualification remains |
 | Seller/client screens       | Persistent authenticated dashboard/editor/guest hub and MFA-protected seller implementation | Hosted staff bootstrap; repeat user/device/state review and recovery |
-| Data                        | Seven hosted migrations, normal-role RLS, private Storage, server-only image processor | Full deployed processing, justified query/index improvements and recovery/lifecycle operations |
+| Data                        | Seven hosted migrations, normal-role RLS, private Storage, actual Vercel image pipeline | New free-host qualification, justified query/index improvements and recovery/lifecycle operations |
 | Sharing/RSVP                | Recoverable named links, scoped sessions, transactional replies/wishes, correction/history/export | HTTPS runtime verified; physical second-device, log/abuse and recovery qualification |
 | Public sales/commercial     | Public prototype/demo and manual-order contact entry; no automated checkout | Finish client pilot first; then actual public sales journey and agreed commercial policy |
 
-Historical template evidence: [v6.4](docs/build-evidence/compact-music-v6-4.md), 82 tests at that checkpoint. The current integrated audit reran 194 tests. Historical phone LAN reachability and older LCP 3.46s do not qualify today's full flow or performance.
+Historical template evidence: [v6.4](docs/build-evidence/compact-music-v6-4.md), 82 tests at that checkpoint. The initial integrated audit had194 tests; current hardening has228. Historical phone LAN reachability and older LCP3.46s do not qualify today's full flow or performance.
 
 ## 3. Launch scope
 
@@ -70,7 +72,7 @@ Design first: Overview → edit section → save/draft preview → review/publis
 ### Phase 1 — real foundation and isolation
 
 1. Preserve sample mode behind an explicit development adapter; never fall through to sample data in production.
-2. Enable a server-capable Next deployment; current `output: 'export'` cannot implement request-dependent auth and writes.
+2. Server-capable Next deployment is implemented; preserve it during host qualification. Static export cannot implement the current request-dependent auth and writes.
 3. Set up isolated environments, migrations, generated types, server-only clients and sanitized configuration examples.
 4. Add verified email login, safe return paths, wedding memberships and active dashboard grants. Signing in grants no automatic management rights.
 5. Create order/wedding/grant records and row/storage policies before most dashboard UI.

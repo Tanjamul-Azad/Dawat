@@ -4,6 +4,20 @@ Updated: **21 October 2026**. Build order: [plan](plan.md). Acceptance: [E001–
 
 ## Current readiness and next work
 
+**Latest budget/design instruction:** BDT0 for new services. [Authoritative next-batch plan](docs/plans/free-first-product-delivery-2026-10-21.md) supersedes the older first-session sequence. The implementation items below remain unchecked until evidence exists.
+
+- [x] PLAN07 — Record four-audience design, direct-client onboarding and zero-spend hosting/release/operations constraints, with current official provider sources.
+- [ ] FT01 / UX01 — Exact-app Netlify Free compatibility proof and usage budget; remove stale prototype/simulation entry confusion and review entry/overview composition.
+- [ ] UX02–UX04 — Direct wedding login return, wrong-account/access states, resumable first-publish checklist and clear private-vs-guest handoff.
+- [ ] SEP01–SEP03 — Client/guest boundaries, validated origins/session/route/secret isolation and issued-link compatibility.
+- [ ] UI01–UI03 — Compact overview/editor/guest management, mobile hierarchy and complete pending/error/conflict/share states.
+- [ ] ADM01–ADM03 — Separate operator, intended seller/MFA bootstrap, recipient review, activation and audited copyable handoff.
+- [ ] FREE01 / OPS01–OPS03 — Measured quota envelope, encrypted DB/object/key restore, cleanup/alerts/manual operating checklist and physical-device proof.
+- [ ] PILOT01 — Full split-host synthetic loop, cleanup, then one intended-client pilot only after acceptance.
+- [ ] PUB01–PUB03 — One-template public catalogue/demo/manual order/status/support/policies after client pilot.
+
+No new host/project/domain or runtime split is provisioned by this planning pass. Existing228-test/Vercel evidence remains the baseline, not proof of future host compatibility.
+
 [21 October hardening and rehearsal](docs/build-evidence/client-pilot-hardening-2026-10-21.md). **228 tests / 23 files**, typecheck/build/runtime, fresh local HTTP/Auth/MFA/Storage and four hosted rollback proofs pass. Core journey/state/recovery fixes and hosted fictional five-photo/RSVP/wish/revoke rehearsal are verified. Original pilot remains revision0/unpublished. Vercel personal HTTPS preview and repeated user review pass; commercial/external handoff remains unqualified.
 
 | Order | Work | Status / completion gate |
@@ -83,7 +97,9 @@ Foundation implementation started on 20 October 2026. [Evidence](docs/build-evid
 | CV35 | Automated gateway if selected                                                 | CV30, CV34; O06                   | Verified callbacks/replay/reconciliation/refunds; seller activation separate                   |
 | CV36 | Expansion evaluated from pilot needs                                          | CV33                              | Evidence-based backlog; more templates not automatic next task                                 |
 
-## First implementation session
+## Historical foundation sequence — already started, do not restart
+
+The following records the initial foundation sequence. The FT01/UX01 and subsequent batches at the top of this file are the next work.
 
 1. Inspect actual code and applicable `AGENTS.md`; preserve cumulative local work.
 2. Start CV01–CV04: adapter boundary, server configuration, migrations and negative authorization tests. Sketch CV10 entry/overview/editor/add-guest flows alongside this work; this does not assume extra agents.

@@ -1,6 +1,8 @@
 # Client pilot deployment and recovery
 
-21 October 2026. This is an executable preparation/runbook, not evidence that a host, job, backup or restore has been provisioned. See the current implementation evidence and open readiness gates. No paid tier is chosen.
+21 October 2026. Existing personal Vercel deployment evidence is recorded in the hardening report. This runbook does not establish that a new host, job, backup or restore has been provisioned. Open readiness gates still apply. No paid tier is chosen.
+
+**Latest budget constraint:** user requires zero new spend. Follow [free-first hosting/release plan](../plans/free-first-product-delivery-2026-10-21.md) before the older single-origin instructions below. Netlify Free is the first compatibility candidate, not yet deployed; Vercel Hobby is personal preview only. Inspect actual account quotas, shared-site pause behavior and native photo/runtime limits; use local tests/preview promotions and no paid recharge. Existing single APP_ORIGIN instructions apply to today's app until explicit multi-surface origins/session/legacy-link migration is implemented. Free plans do not qualify backup/restore, monitoring, term/privacy or physical-device gates by themselves.
 
 ## Deploy one server-capable app
 
