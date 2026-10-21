@@ -1,6 +1,6 @@
 # Direct client entry and Netlify preparation
 
-21 October 2026, Asia/Dhaka. Implementation/local evidence, not a completed Netlify release. Extends the [free-first plan](../plans/free-first-product-delivery-2026-10-21.md).
+21 October 2026, Asia/Dhaka. Implementation and initial live Netlify evidence. This is not full external-client qualification. Extends the [free-first plan](../plans/free-first-product-delivery-2026-10-21.md).
 
 ## Implemented and checked
 
@@ -23,7 +23,15 @@ Local fixture: `6f00dd33-c942-4867-82bd-78758679ec2c`; new household credential 
 
 ## Hosting state and next acceptance
 
-Netlify team `tanjamul-azad` showed Free,300/300 credits and no card. Repo `Tanjamul-Azad/Dawat`, main; available name `dawat-client-pilot`; base `web`; build `npm run build`; publish `.next`. Deployment has **not** run. Native Sharp, cold start, consumption and HTTPS end-to-end proof remain open.
+Netlify team `tanjamul-azad` showed Free,300/300 credits and no card before deployment. Repo `Tanjamul-Azad/Dawat`, main; project `dawat-client-pilot`; base `web`; build `npm run build`; publish `.next`. Owner pasted the9-variable file. Values were checked for exact match without printing credentials. The two private keys were marked Secret before initial deploy; their nonproduction contexts were then cleared, with both entries verified as1value/1context (Production), local access empty. Public config stays ordinary config; the boolean email flag and public key-version identifier are not credentials. No paid upgrade or top-up.
+
+First deploy `6ad8b26f09418b24f4f4397f` published source `a1d97c5`, but runtime was Not set and `.next` was uploaded without working server routes. This was caught through actual dashboard/health404 checks. Enabled the official Next.js runtime in project Build settings, made deploy logs private, selected Node22 and rebuilt without cache. Corrected deploy `6ad8b3dac4442ee91a4ae519` logged Next.js Runtime v5.16.3 and serves the canonical [client dashboard](https://dawat-client-pilot.netlify.app/dashboard/). No framework downgrade or static-export workaround.
+
+Owner explicitly approved opening Production visitor access while retaining Private previews. The saved UI showed Production Public / Deploy Preview Private. Application OTP/membership/guest authority remain separate from the provider's visitor gate.
+
+Live anonymous smoke passed: health200 with redacted `status:ok`; root307/dashboard; Bangla login200; all9 referenced public JS/CSS assets200 (736,769 uncompressed fetched bytes, not a whole invitation transfer measurement); no media/AES secret in those assets; anonymous wedding/export/history/media APIs401; admin/storefront/studio/order/operator/MFA404; foreign-Origin visibility mutation403; invalid email422 without sending mail. Source-bundle/server-manifest/env paths and unknown invitation404. Private responses no-store. First sequential health/login samples around4seconds are observations, not a qualified cold-start benchmark. Evidence in ignored `.artifacts/client-handoff/netlify-live-smoke.json`.
+
+Browser control subsequently reported disabled, including after the owner supplied a screenshot showing the switch on. Live authenticated UI/photo processing, current provider credits/region and complete hosted journey remain unverified on this host. Do not equate health with database access, SMTP delivery or native Sharp processing. No real pilot edits or new access grants occurred.
 
 Owner chose to paste config personally from ignored `web/.env.netlify.pilot.local`, then test their existing verified account. Do not import `.env.qa.local`, print values, create another customer or transfer the wedding to the SMTP sender. Use the existing media secret and every current AES version; no rotation. Follow the [runbook](../ops/client-pilot-runbook.md#netlify-client-pilot-preparation).
 
