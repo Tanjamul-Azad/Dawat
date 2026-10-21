@@ -820,8 +820,8 @@ export function WeddingDesk({
               )}
               <p>
                 {t(
-                  `First publication starts your ${detail.termDays}-day hosting term.`,
-                  `প্রথম প্রকাশের দিন থেকে ${new Intl.NumberFormat('bn-BD').format(detail.termDays)} দিনের মেয়াদ শুরু হবে।`,
+                  `Hosting lasts ${detail.termDays} days from first publication. Republishing does not extend the term.`,
+                  `প্রথম প্রকাশ থেকে ${new Intl.NumberFormat('bn-BD').format(detail.termDays)} দিনের মেয়াদ। পুনঃপ্রকাশে মেয়াদ বাড়বে না।`,
                 )}
               </p>
               <p>

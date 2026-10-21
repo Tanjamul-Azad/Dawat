@@ -1,6 +1,7 @@
 // Read-only/invalid-input checks only. Never sends an email or creates an account.
 import assert from 'node:assert/strict';
 const base = process.env.APP_ORIGIN ?? 'http://127.0.0.1:3100';
+const pilot = process.env.DAWAT_SURFACE === 'pilot';
 const request = (path, options = {}) =>
   fetch(new URL(path, base), { ...options, signal: AbortSignal.timeout(10000) });
 const login = await request('/auth/login/');
@@ -43,9 +44,18 @@ assert.equal(
 );
 for (const path of ['/dashboard/', '/admin/orders/', `/weddings/${id}/guests/`]) {
   const response = await request(path, { redirect: 'manual' });
+  if (pilot && path === '/admin/orders/') {
+    assert.equal(response.status, 404);
+    continue;
+  }
   assert.equal(response.status, 307);
   assert.equal(new URL(response.headers.get('location'), base).searchParams.get('next'), path);
   assert.match(response.headers.get('cache-control'), /no-store/);
+}
+if (pilot) {
+  for (const path of ['/operator/', '/studio/', '/templates/', '/order/', '/api/admin/orders/'])
+    assert.equal((await request(path)).status, 404, path);
+  assert.equal((await request('/health/')).status, 200);
 }
 console.log(
   JSON.stringify({
@@ -58,5 +68,6 @@ console.log(
     anonymousProtectedRoutes: 307,
     deepReturnPathPreserved: true,
     noEmailSent: true,
+    pilotStaffAndStorefrontBlocked: pilot,
   }),
 );
