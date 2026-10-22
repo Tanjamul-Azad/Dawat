@@ -18,6 +18,7 @@ import { useInvitationMotion } from './use-invitation-motion';
 import { useInvitationMusic } from './use-invitation-music';
 import { WaxSeal, WovenPattern } from './stationery-art';
 import s from './jamdani.module.css';
+import { withTemplateWording } from '@/features/production/template-wording';
 
 type Props = {
   workspace: Workspace;
@@ -249,9 +250,9 @@ export function GuestInvitation({
     );
   const names = localNames(invitation, locale);
   const recipient = guest ? guestText(guest, locale) : null;
-  const hosts =
-    locale === 'bn' ? invitation.hostsBn || invitation.hosts || t.hosts : invitation.hosts || t.hosts;
-  const message = locale === 'bn' ? invitation.message : invitation.messageEn || invitation.message;
+  const wording = withTemplateWording(invitation);
+  const hosts = locale === 'bn' ? invitation.hostsBn || wording.hosts : wording.hosts;
+  const message = locale === 'bn' ? wording.message : wording.messageEn || wording.message;
   const primaryEvent = events.find((event) => event.id === 'reception') ?? events[0];
   const primaryDate = primaryEvent.date;
   const place = eventText(primaryEvent, locale).address;
@@ -431,10 +432,7 @@ export function GuestInvitation({
               <br />
               <em>{t.welcomeEm}</em>
             </h2>
-            <p
-              className={s.invitationMessage}
-              lang={locale === 'en' && !invitation.messageEn ? 'bn' : locale}
-            >
+            <p className={s.invitationMessage} lang={locale === 'en' && !wording.messageEn ? 'bn' : locale}>
               {message}
             </p>
             {recipient?.message && <p className={s.personalNote}>{recipient.message}</p>}

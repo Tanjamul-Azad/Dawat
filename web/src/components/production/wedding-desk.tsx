@@ -637,7 +637,10 @@ export function WeddingDesk({
                       type="button"
                       className={s.quiet}
                       aria-expanded={wordingEditing}
-                      onClick={() => setWordingEditing(!wordingEditing)}
+                      onClick={() => {
+                        if (!wordingEditing) setContent((current) => withTemplateWording(current));
+                        setWordingEditing(!wordingEditing);
+                      }}
                     >
                       <PencilLine size={15} />{' '}
                       {wordingEditing ? t('Done', 'সম্পাদনা শেষ') : t('Edit wording', 'লেখা সম্পাদনা করুন')}

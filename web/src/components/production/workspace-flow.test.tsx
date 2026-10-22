@@ -93,6 +93,25 @@ it('keeps a saved personal message and does not save simply for opening the edit
   expect((screen.getByLabelText('আমন্ত্রণের লেখা') as HTMLTextAreaElement).value).toBe('আমাদের নিজের লেখা');
 });
 
+it('opens the displayed default as editable text for a legacy blank draft', () => {
+  render(
+    <ProductLocale>
+      <WeddingDesk
+        initial={{
+          ...initial,
+          content: { ...initial.content, hosts: '', message: '', messageEn: undefined },
+        }}
+        email="test@example.test"
+        initialSection="names"
+      />
+    </ProductLocale>,
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'লেখা সম্পাদনা করুন' }));
+  expect((screen.getByLabelText('আমন্ত্রণের লেখা') as HTMLTextAreaElement).value).toBe(
+    templateWording.message,
+  );
+});
+
 it('lists households with event-specific replies and keeps controls usable during quiet refresh', async () => {
   vi.useFakeTimers();
   const fetcher = vi.fn((_input: unknown) => new Promise<Response>(() => {}));

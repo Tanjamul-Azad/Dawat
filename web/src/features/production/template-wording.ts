@@ -9,11 +9,17 @@ export const templateWording = {
 };
 
 // Fill only missing wording. Never replace a couple's saved personal text.
-export function withTemplateWording(content: DraftContent): DraftContent {
+export function withTemplateWording<T extends Pick<DraftContent, 'hosts' | 'message' | 'messageEn'>>(
+  content: T,
+): T {
   return {
     ...content,
     hosts: content.hosts.trim() ? content.hosts : templateWording.hosts,
     message: content.message.trim() ? content.message : templateWording.message,
-    messageEn: content.messageEn?.trim() ? content.messageEn : templateWording.messageEn,
+    messageEn: content.messageEn?.trim()
+      ? content.messageEn
+      : content.message.trim()
+        ? content.messageEn
+        : templateWording.messageEn,
   };
 }

@@ -10,4 +10,6 @@ This release addresses repetitive draft-saving feedback, unclear wording fields,
 
 Validation before deployment: **267 tests / 29 files** passed, including five added regression cases covering default/custom text, household status/filter refresh, departure during an in-flight save and failed-save departure. Optimized local QA build and complete synthetic local backend verification passed (OTP, isolation, save/publish, guest link/RSVP/wishes, max-five private photo processing, revocation and retained publication media). Local desktop, 390px and 320px browser checks caught and corrected a narrow mobile table caption; no horizontal document overflow observed. These are browser viewport checks, not claims of physical iPhone/Android testing.
 
+Live verification found an additional legacy-empty-message mismatch: editor fallback wording also needs to render in both the preview and guest card. The shared fallback now handles all three surfaces, preserving custom wording and any supplied translation; opening wording edit populates exactly the displayed defaults. Four further regressions cover this boundary. Final validation: **271 tests / 30 files**, optimized build passed.
+
 Deployment and subsequent live read-only screenshots/results are retained in ignored `.artifacts/client-handoff/`. No original pilot content is rewritten for verification.
