@@ -20,39 +20,33 @@ export async function getWedding(
   verified?: Awaited<ReturnType<typeof session>>,
 ): Promise<WeddingDetail> {
   const { db } = verified ?? (await session());
-  const [w, d, g, e] = await Promise.all([
-    db.from('weddings').select('*').eq('id', id).maybeSingle(),
-    db.from('invitation_drafts').select('*').eq('wedding_id', id).maybeSingle(),
-    db.from('dashboard_grants').select('state').eq('wedding_id', id).maybeSingle(),
-    db.from('entitlements').select('*').eq('wedding_id', id).maybeSingle(),
+  const eventIds = ['nikah', 'reception'] as const;
+  // Embed through the existing same-wedding FKs. Every joined row still uses the caller's RLS.
+  const [w, replyChecks] = await Promise.all([
+    db
+      .from('weddings')
+      .select(
+        '*,draft:invitation_drafts!invitation_drafts_wedding_id_fkey(*),grant:dashboard_grants!dashboard_grants_wedding_id_fkey(state),entitlement:entitlements!entitlements_wedding_id_fkey(*),live:invitation_versions!live_version_same_wedding(draft_revision,content)',
+      )
+      .eq('id', id)
+      .maybeSingle(),
+    Promise.all(
+      eventIds.map((eventId) =>
+        db.from('household_events').select('event_id').eq('wedding_id', id).eq('event_id', eventId).limit(1),
+      ),
+    ),
   ]);
-  for (const r of [w, d, g, e]) dbError(r.error);
-  if (!w.data || !d.data || !e.data)
+  dbError(w.error);
+  if (!w.data || !w.data.draft || !w.data.entitlement)
     throw new HttpError(
       404,
       'WORKSPACE_UNAVAILABLE',
       'This workspace is unavailable or its management access is inactive.',
     );
-  let publishedDraftRevision: number | null = null;
-  let publishedGeneralEventIds: ('nikah' | 'reception')[] = [];
-  if (w.data.live_version_id) {
-    const v = await db
-      .from('invitation_versions')
-      .select('draft_revision,content')
-      .eq('wedding_id', id)
-      .eq('id', w.data.live_version_id)
-      .maybeSingle();
-    dbError(v.error);
-    publishedDraftRevision = v.data?.draft_revision ?? null;
-    if (v.data) publishedGeneralEventIds = draftContent.parse(v.data.content).generalEventIds;
-  }
+  const { draft, grant, entitlement, live, ...wedding } = w.data;
+  const publishedDraftRevision = live?.draft_revision ?? null;
+  const publishedGeneralEventIds = live ? draftContent.parse(live.content).generalEventIds : [];
   const protectedEventIds: ('nikah' | 'reception')[] = [];
-  const eventIds = ['nikah', 'reception'] as const;
-  const replyChecks = await Promise.all(
-    eventIds.map((eventId) =>
-      db.from('household_events').select('event_id').eq('wedding_id', id).eq('event_id', eventId).limit(1),
-    ),
-  );
   for (const [index, replies] of replyChecks.entries()) {
     dbError(replies.error);
     if (replies.data?.length) protectedEventIds.push(eventIds[index]);
@@ -66,12 +60,12 @@ export async function getWedding(
     publishedGeneralEventIds,
     protectedEventIds,
     mediaAvailable: Boolean(process.env.SUPABASE_MEDIA_SECRET_KEY?.trim()),
-    wedding: { ...w.data, state: g.data?.state ?? 'inactive' },
-    content: Object.keys(d.data.content ?? {}).length ? draftContent.parse(d.data.content) : emptyDraft(),
-    revision: d.data.revision,
-    updatedAt: d.data.updated_at,
-    expiresAt: e.data.expires_at,
-    termDays: e.data.term_days,
+    wedding: { ...wedding, state: grant?.state ?? 'inactive' },
+    content: Object.keys(draft.content ?? {}).length ? draftContent.parse(draft.content) : emptyDraft(),
+    revision: draft.revision,
+    updatedAt: draft.updated_at,
+    expiresAt: entitlement.expires_at,
+    termDays: entitlement.term_days,
     publishedDraftRevision,
   };
 }

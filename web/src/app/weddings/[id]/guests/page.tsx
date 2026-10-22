@@ -12,19 +12,14 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const s = await pageSession(`/weddings/${id}/guests/`);
   if (!s) return <SetupRequired />;
   try {
-    const w = await s.db.from('weddings').select('id,slug,title,live_version_id').eq('id', id).maybeSingle();
+    const w = await s.db
+      .from('weddings')
+      .select('id,slug,title,live:invitation_versions!live_version_same_wedding(content)')
+      .eq('id', id)
+      .maybeSingle();
     dbError(w.error);
     if (!w.data) notFound();
-    const version = w.data?.live_version_id
-      ? await s.db
-          .from('invitation_versions')
-          .select('content')
-          .eq('wedding_id', id)
-          .eq('id', w.data.live_version_id)
-          .maybeSingle()
-      : { data: null, error: null };
-    dbError(version.error);
-    const events = version.data ? draftContent.parse(version.data.content).events : [];
+    const events = w.data.live ? draftContent.parse(w.data.live.content).events : [];
     const event = events.find((e) => e.id === 'reception')?.id ?? events[0]?.id ?? 'reception';
     return (
       <GuestHub
@@ -35,6 +30,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         events={events}
         initial={await report(id, event, null, '', 'all', s)}
         initialEvent={event}
+        refreshOnMount
       />
     );
   } catch (e) {

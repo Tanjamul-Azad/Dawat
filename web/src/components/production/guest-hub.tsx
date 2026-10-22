@@ -43,8 +43,18 @@ type Props = {
   events: Invitation['events'];
   initial: HouseholdReport;
   initialEvent: string;
+  refreshOnMount?: boolean;
 };
-export function GuestHub({ wid, slug, title, email, events, initial, initialEvent }: Props) {
+export function GuestHub({
+  wid,
+  slug,
+  title,
+  email,
+  events,
+  initial,
+  initialEvent,
+  refreshOnMount = false,
+}: Props) {
   const { tr, locale } = useProductLocale();
   const root = `/api/weddings/${wid}`;
   const [data, setData] = useState(initial);
@@ -156,6 +166,11 @@ export function GuestHub({ wid, slug, title, email, events, initial, initialEven
   }
   useEffect(() => {
     mounted.current = true;
+    // Prefetched reports render immediately, then revalidate older counts without locking controls.
+    if (refreshOnMount && events.length && Date.now() - Date.parse(initial.asOf) > 10_000) {
+      setStale(true);
+      void refresh(null, appliedFilters.current, true);
+    }
     return () => {
       mounted.current = false;
       serial.current++;

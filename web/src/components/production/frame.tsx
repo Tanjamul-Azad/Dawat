@@ -2,6 +2,7 @@
 import { useProductLocale } from './product-locale';
 import { createContext, useContext, useState, type ComponentProps } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
   ArrowUpRight,
   LayoutGrid,
@@ -19,15 +20,16 @@ import s from './workspace.module.css';
 const NavigationGuard = createContext<{ pending: boolean; save: () => Promise<boolean> } | null>(null);
 export function WorkspaceLink(props: ComponentProps<typeof Link>) {
   const guard = useContext(NavigationGuard);
+  const router = useRouter();
   return (
     <Link
       {...props}
-      prefetch={false}
+      prefetch={typeof props.href === 'string' && /^\/weddings\/[a-f0-9-]+\/guests\/$/.test(props.href)}
       onNavigate={(event) => {
         if (!guard?.pending) return;
         event.preventDefault();
         void guard.save().then((saved) => {
-          if (saved) window.location.assign(String(props.href));
+          if (saved) router.push(String(props.href));
         });
       }}
     />

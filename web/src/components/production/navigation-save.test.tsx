@@ -5,6 +5,7 @@ import type { ReactNode } from 'react';
 import { WeddingDesk } from './wedding-desk';
 import { ProductLocale } from './product-locale';
 import { emptyDraft, type WeddingDetail } from '@/features/production/contracts';
+vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }) }));
 
 // Exercise the editor's real departure guard while keeping navigation inside the test.
 const departure = vi.hoisted(() => ({ result: undefined as boolean | undefined }));

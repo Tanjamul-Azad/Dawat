@@ -98,9 +98,13 @@ const seller = await login(sellerEmail);
 const alice = await login(`alice-${run}@example.test`);
 const bob = await login(`bob-${run}@example.test`);
 assert.equal((await alice.request('/api/admin/orders/')).status, 403);
-execFileSync(process.execPath, ['scripts/bootstrap-local-seller.mjs', sellerEmail, ...(recovery ? ['--recovery'] : [])], {
-  stdio: ['ignore', 'pipe', 'pipe'],
-});
+execFileSync(
+  process.execPath,
+  ['scripts/bootstrap-local-seller.mjs', sellerEmail, ...(recovery ? ['--recovery'] : [])],
+  {
+    stdio: ['ignore', 'pipe', 'pipe'],
+  },
+);
 assert.equal((await seller.request('/api/admin/orders/')).status, 403, 'Seller access must require MFA.');
 // Enrollment API intentionally returns QR only; recover synthetic secret from local Auth API using the session cookie.
 const enrollment = await seller.request('/api/auth/mfa-enroll/', { method: 'POST', body: {} });
@@ -311,6 +315,12 @@ const published = await alice.request(`/api/weddings/${x.weddingId}/publish/`, {
 });
 assert.equal(published.status, 200, published.raw);
 const detail = (await alice.request(`/api/weddings/${x.weddingId}/`)).json.data;
+const guestWorkspace = await alice.request(`/weddings/${x.weddingId}/guests/`);
+assert.equal(guestWorkspace.status, 200);
+assert.ok(
+  guestWorkspace.raw.includes('আপনজনেই আয়োজন পূর্ণ'),
+  'Joined live-version read must render the guest workspace, not a streamed error.',
+);
 const publicPath = `/i/${detail.wedding.slug}/`;
 const publicPage = await client().request(publicPath);
 assert.equal(publicPage.status, 200);

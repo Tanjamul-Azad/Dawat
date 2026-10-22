@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 import {
   Check,
   ArrowLeft,
@@ -43,6 +44,7 @@ export function WeddingDesk({
   email: string;
   initialSection?: EditorSection;
 }) {
+  const router = useRouter();
   const [detail, setDetail] = useState(initial);
   const [content, setContent] = useState(initial.content);
   const wording = withTemplateWording(content);
@@ -216,6 +218,8 @@ export function WeddingDesk({
       setContent(fresh.content);
       publishAttempt.current = null;
       setNotice(t('Your invitation is published.', 'আপনার আমন্ত্রণ প্রকাশিত হয়েছে।'));
+      // Drop prefetched reports from the previous publication before the next navigation.
+      router.refresh();
       setStep('overview');
     } catch (e) {
       setError((e as Error).message);
