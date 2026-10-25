@@ -64,8 +64,8 @@ export function HandoffLinks({
           <p>
             {live
               ? t(
-                  'পরিবার যোগ করে প্রত্যেকের ব্যক্তিগত লিংক দিন। সেই লিংকেই তাঁরা উত্তর ও শুভেচ্ছা জানাবেন।',
-                  'Add households and share each personal link for replies and private wishes.',
+                  'অতিথি বা দল যোগ করে প্রত্যেকের ব্যক্তিগত লিংক দিন। সেই লিংকেই তাঁরা উত্তর ও শুভেচ্ছা জানাবেন।',
+                  'Add guests or groups and share each personal link for replies and private wishes.',
                 )
               : paused
                 ? t(
@@ -73,8 +73,8 @@ export function HandoffLinks({
                     'Resume the invitation to use the existing personal links. Saved replies and wishes are retained.',
                   )
                 : t(
-                    'আগে আমন্ত্রণ প্রকাশ করুন। তারপর পরিবার যোগ করে ব্যক্তিগত লিংক দিতে পারবেন।',
-                    'Publish first, then add households and share personal links.',
+                    'আগে আমন্ত্রণ প্রকাশ করুন। তারপর অতিথি বা দল যোগ করে ব্যক্তিগত লিংক দিতে পারবেন।',
+                    'Publish first, then add guests or groups and share personal links.',
                   )}
           </p>
           <a className={s.secondary} href={`/weddings/${weddingId}/guests/`}>

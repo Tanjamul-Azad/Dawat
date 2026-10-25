@@ -98,7 +98,7 @@ const read = (f: Awaited<ReturnType<typeof fixture>>) =>
     responseRevision: number;
     policyRevision: number;
     content: typeof content;
-    guest: { name: string };
+    guest: { name: string; responses: Record<string, { adults: number; children: number }> };
     scopes: unknown[];
   }>('guest_invitation', [f.slug, f.hid, f.session]);
 const command = (f: Awaited<ReturnType<typeof fixture>>, body: unknown, key = crypto.randomUUID()) =>
@@ -139,6 +139,73 @@ describe('Named guest credentials, isolation and real transactional replies', ()
   beforeEach(async () => {
     await db.exec('reset role');
     await db.exec('truncate private.rate_limits');
+  });
+  it('pages through 1000 individual/group invitations without duplicates or unbounded result sets', async () => {
+    const f = await fixture();
+    const added = Array.from({ length: 999 }, (_, index) => ({
+      id: crypto.randomUUID(),
+      name: `Scale guest ${String(index).padStart(4, '0')}`,
+    }));
+    await db.exec('reset role');
+    await db.query(
+      'insert into public.households(id,wedding_id,name) select id,$1,name from jsonb_to_recordset($2::jsonb) as x(id uuid,name text)',
+      [f.wid, JSON.stringify(added)],
+    );
+    await db.query(
+      "insert into public.household_events(wedding_id,household_id,event_id,max_people) select wedding_id,id,'reception',1 from public.households where wedding_id=$1 and id<>$2",
+      [f.wid, f.hid],
+    );
+    await actor();
+    const seen = new Set<string>();
+    let cursor: string | null = null;
+    let pages = 0;
+    do {
+      const report: { rows: { id: string }[]; nextCursor: string | null; summary: { invited: number } } =
+        await rpc<{
+          rows: { id: string }[];
+          nextCursor: string | null;
+          summary: { invited: number };
+        }>('household_report', [f.wid, 'reception', cursor, '', 'all']);
+      expect(report.summary.invited).toBe(1000);
+      expect(report.rows).toHaveLength(25);
+      for (const row of report.rows) {
+        expect(seen.has(row.id)).toBe(false);
+        seen.add(row.id);
+      }
+      cursor = report.nextCursor;
+      pages++;
+      if (pages > 40) throw Error('Pagination did not terminate');
+    } while (cursor);
+    expect(pages).toBe(40);
+    expect(seen.size).toBe(1000);
+    const match = await rpc<{ rows: { name: string }[] }>('household_report', [
+      f.wid,
+      'reception',
+      null,
+      'Scale guest 0998',
+      'pending',
+    ]);
+    expect(match.rows.map((row) => row.name)).toEqual(['Scale guest 0998']);
+  }, 30000);
+
+  it('supports an individual invitation with one person and rejects an extra guest', async () => {
+    const f = await fixture();
+    await actor();
+    await rpc('save_household', [
+      f.wid,
+      f.hid,
+      1,
+      crypto.randomUUID(),
+      { ...household, name: 'সাবিহা রহমান', events: [{ eventId: 'reception', maxPeople: 1 }] },
+    ]);
+    await actor(ids.alice, 'aal1', 'anon');
+    const body = await replyBody(f);
+    body.answers[0].adults = 1;
+    body.answers[0].children = 1;
+    await expect(command(f, body)).rejects.toThrow(/allowance|party|people/i);
+    body.answers[0].children = 0;
+    await command(f, body);
+    expect((await read(f)).guest.responses.reception.adults).toBe(1);
   });
   it('keeps pending households reachable when an event is removed, until their scope is reconciled', async () => {
     const f = await fixture();

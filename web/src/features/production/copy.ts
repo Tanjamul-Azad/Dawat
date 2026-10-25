@@ -170,7 +170,7 @@ export const banglaCopy: Record<string, string> = {
   'Link revoked. Existing replies and wishes have been retained.':
     'লিংক বন্ধ হয়েছে। আগের উত্তর ও শুভেচ্ছা অক্ষত আছে।',
   'People make the celebration.': 'আপনজনেই আয়োজন পূর্ণ।',
-  'Add household': 'পরিবার যোগ করুন',
+  'Add household': 'অতিথি যোগ করুন',
   ' Last successful results remain below.': ' সর্বশেষ সফলভাবে পাওয়া তথ্য নিচে আছে।',
   'Guest management': 'অতিথি পরিচালনা',
   'Invitations & replies': 'আমন্ত্রণ ও উত্তর',
@@ -179,8 +179,8 @@ export const banglaCopy: Record<string, string> = {
   'Replies open': 'উত্তর নেওয়া চালু',
   'Replies closed': 'উত্তর নেওয়া বন্ধ',
   'Reply settings': 'উত্তরের সেটিংস',
-  'All invited households · selected event': 'নির্বাচিত অনুষ্ঠানের সব আমন্ত্রিত পরিবার',
-  'Invited households': 'আমন্ত্রিত পরিবার',
+  'All invited households · selected event': 'নির্বাচিত অনুষ্ঠানের সব আমন্ত্রণ',
+  'Invited households': 'মোট আমন্ত্রণ',
   'confirmed people': 'নিশ্চিত অতিথি',
   'adults +': 'প্রাপ্তবয়স্ক +',
   children: 'শিশু',
@@ -188,8 +188,8 @@ export const banglaCopy: Record<string, string> = {
   'As of': 'তথ্য পাওয়া গেছে',
   '· Asia/Dhaka. Totals refer to this event, not unique people across celebrations.':
     '· ঢাকা সময়। হিসাব শুধু এই অনুষ্ঠানের; একাধিক অনুষ্ঠানের স্বতন্ত্র মানুষের মোট নয়।',
-  'Search households': 'পরিবার খুঁজুন',
-  'Name or family': 'নাম বা পরিবার',
+  'Search households': 'নাম দিয়ে খুঁজুন',
+  'Name or family': 'ব্যক্তি, পরিবার বা দলের নাম',
   'Reply status': 'উত্তরের অবস্থা',
   'Apply search': 'খুঁজুন',
   Link: 'লিংক',
@@ -198,19 +198,19 @@ export const banglaCopy: Record<string, string> = {
   'Guest note:': 'অতিথির কথা:',
   'Personal details & link actions': 'ব্যক্তিগত বিবরণ ও লিংকের কাজ',
   'Private host note:': 'আপনার ব্যক্তিগত নোট:',
-  'Edit household': 'পরিবারের তথ্য বদলান',
+  'Edit household': 'আমন্ত্রণ বদলান',
   'Replace link': 'নতুন লিংক তৈরি করুন',
   'Revoke link': 'লিংক বন্ধ করুন',
   Preview: 'প্রিভিউ',
   'Create & copy': 'তৈরি করে কপি করুন',
   'Copy link': 'লিংক কপি করুন',
-  'No households match these filters.': 'এই বাছাইয়ে কোনো পরিবার পাওয়া যায়নি।',
+  'No households match these filters.': 'এই বাছাইয়ে কোনো আমন্ত্রণ পাওয়া যায়নি।',
   'A personal welcome starts here.': 'নাম ধরে আমন্ত্রণের শুরু এখানেই।',
   'Create a named household and choose its celebrations and allowance. Copying a link never creates another household.':
-    'পরিবারের নাম লিখে অনুষ্ঠান ও লোকসংখ্যার অনুমতি বেছে নিন। লিংক কপি করলে নতুন পরিবার তৈরি হবে না।',
+    'একজন অতিথি বা দলের নাম লিখে অনুষ্ঠান ও লোকসংখ্যা বেছে নিন। লিংক কপি করলে নতুন আমন্ত্রণ তৈরি হবে না।',
   'Publish the invitation first, then add named households.':
-    'আগে আমন্ত্রণ প্রকাশ করুন, তারপর নাম ধরে পরিবার যোগ করুন।',
-  'Next 25 households': 'পরের ২৫টি পরিবার',
+    'আগে আমন্ত্রণ প্রকাশ করুন, তারপর নাম ধরে অতিথি যোগ করুন।',
+  'Next 25 households': 'পরের পাতা',
   'Back to first page': 'প্রথম পাতায় ফিরুন',
   'For the couple, with love.': 'নবদম্পতির জন্য, ভালোবাসায়।',
   'Wishes are private and do not count as attendance.':
@@ -219,9 +219,9 @@ export const banglaCopy: Record<string, string> = {
   'No wishes on this page yet.': 'এই পাতায় এখনও কোনো শুভেচ্ছা নেই।',
   'Next 25 wishes': 'পরের ২৫টি শুভেচ্ছা',
   'Household saved. Personal name, scope and allowance are live immediately; base invitation remains unchanged.':
-    'পরিবারের তথ্য সংরক্ষিত। নাম, অনুষ্ঠান ও অনুমতি এখনই কার্যকর; মূল আমন্ত্রণ অপরিবর্তিত আছে।',
+    'আমন্ত্রণ সংরক্ষিত। নাম, অনুষ্ঠান ও লোকসংখ্যা এখনই কার্যকর; মূল কার্ড অপরিবর্তিত আছে।',
   'This link grants bearer access to this household’s invitation and replies. Anyone it is forwarded to can use that access. Keep the dashboard link private.':
-    'এই লিংক থাকলে পরিবারটির আমন্ত্রণ দেখা ও উত্তর দেওয়া যাবে। যাঁকে ফরওয়ার্ড করবেন তিনিও এটি ব্যবহার করতে পারবেন। নিজের পরিচালনার লিংক ব্যক্তিগত রাখুন।',
+    'এই লিংক থাকলে এই আমন্ত্রণ দেখা ও এর হয়ে উত্তর দেওয়া যাবে। যাঁকে ফরওয়ার্ড করবেন তিনিও এটি ব্যবহার করতে পারবেন। নিজের পরিচালনার লিংক ব্যক্তিগত রাখুন।',
   'Selectable personal URL': 'কপি করার ব্যক্তিগত লিংক',
   'Personal link copied.': 'ব্যক্তিগত লিংক কপি হয়েছে।',
   'Clipboard unavailable. Select and copy the URL above.':
@@ -243,7 +243,7 @@ export const banglaCopy: Record<string, string> = {
   'A welcome, just for them.': 'শুধু তাঁদের জন্য আমন্ত্রণ।',
   'Guests see the host-supplied name. They never enter their own name. Changes here update this personal invitation immediately.':
     'অতিথি আপনার দেওয়া নাম দেখবেন; তাঁকে নিজের নাম লিখতে হবে না। এখানকার পরিবর্তন ব্যক্তিগত আমন্ত্রণে এখনই কার্যকর হবে।',
-  'Guest or family name': 'অতিথি বা পরিবারের নাম',
+  'Guest or family name': 'অতিথি বা দলের নাম',
   'Rahman Family / রহমান পরিবার': 'রহমান পরিবার',
   'নাম · বাংলা (optional)': 'নাম · বাংলা (ঐচ্ছিক)',
   'Greeting · English': 'সম্বোধন · ইংরেজি (ঐচ্ছিক)',
@@ -252,9 +252,9 @@ export const banglaCopy: Record<string, string> = {
   'Total allowance': 'মোট অনুমোদিত লোকসংখ্যা',
   'Private host note · never shown to guests': 'আপনার ব্যক্তিগত নোট · অতিথি দেখবেন না',
   'Allowances include all adults and children. A responded event cannot be removed, or its allowance lowered below a saved party, without reconciliation. Duplicate names remain separate households.':
-    'লোকসংখ্যার মধ্যে প্রাপ্তবয়স্ক ও শিশু সবাই থাকবে। উত্তর আসা অনুষ্ঠান সরানো বা নিশ্চিত লোকসংখ্যার নিচে অনুমতি কমানো যাবে না। একই নামের পরিবারও আলাদা থাকবে।',
-  'Save household': 'পরিবারের তথ্য সংরক্ষণ করুন',
-  'Create household': 'পরিবার তৈরি করুন',
+    'একজনের জন্য ১ দিন; দল হলে নামের ব্যক্তিসহ প্রাপ্তবয়স্ক ও শিশু সবাই গুনুন। আলাদা উত্তর চাইলে আলাদা আমন্ত্রণ করুন। একই নামের আমন্ত্রণ এক হয়ে যাবে না—চিনতে নিজের নোট দিন। সংরক্ষিত উত্তরের নিচে লোকসংখ্যা কমানো যাবে না।',
+  'Save household': 'আমন্ত্রণ সংরক্ষণ করুন',
+  'Create household': 'আমন্ত্রণ তৈরি করুন',
   Cancel: 'বাতিল',
   Save: 'সংরক্ষণ করুন',
   'This personal invitation is unavailable.': 'এই ব্যক্তিগত আমন্ত্রণ পাওয়া যাচ্ছে না।',
@@ -268,8 +268,29 @@ export const banglaCopy: Record<string, string> = {
   'Please use the current personal link from your hosts.':
     'আয়োজকের দেওয়া বর্তমান ব্যক্তিগত লিংকটি ব্যবহার করুন।',
 };
+const neutralEnglish: Record<string, string> = {
+  'Add household': 'Add guest',
+  'All invited households · selected event': 'All invitations · selected celebration',
+  'Invited households': 'Invitations',
+  'Search households': 'Search guests',
+  'Name or family': 'Person, family or group name',
+  'Edit household': 'Edit invitation',
+  'No households match these filters.': 'No invitations match these filters.',
+  'Create a named household and choose its celebrations and allowance. Copying a link never creates another household.':
+    'Add a person or group and choose celebrations and total people. Copying a link never creates another invitation.',
+  'Publish the invitation first, then add named households.': 'Publish first, then add guests or groups.',
+  'Next 25 households': 'Next page',
+  'Save household': 'Save invitation',
+  'Create household': 'Create invitation',
+  'Allowances include all adults and children. A responded event cannot be removed, or its allowance lowered below a saved party, without reconciliation. Duplicate names remain separate households.':
+    'Use 1 for an individual, or count everyone in the group including the named guest and children. Use separate invitations for independent replies. Duplicate names stay separate; add a private note to distinguish them. Saved attendance cannot exceed a reduced allowance.',
+  'Household saved. Personal name, scope and allowance are live immediately; base invitation remains unchanged.':
+    'Invitation saved. Name, celebrations and allowance update immediately; the base card is unchanged.',
+  'This link grants bearer access to this household’s invitation and replies. Anyone it is forwarded to can use that access. Keep the dashboard link private.':
+    'Anyone with this link can view and reply to this invitation. Share it only with the intended guest or group. Keep your dashboard link private.',
+};
 export function productText(text: string, locale: 'bn' | 'en' = 'bn') {
-  return locale === 'en' ? text : (banglaCopy[text] ?? text);
+  return locale === 'en' ? (neutralEnglish[text] ?? text) : (banglaCopy[text] ?? text);
 }
 export function latinDigits(value: string) {
   return value.replace(/[০-৯]/g, (d) => String(d.charCodeAt(0) - '০'.charCodeAt(0)));
@@ -281,7 +302,7 @@ export function errorText(text: string, locale: 'bn' | 'en' = 'bn', code = '') {
   const rules: [RegExp, string][] = [
     [
       /event with invited households cannot be removed/i,
-      'এই অনুষ্ঠানে পরিবারকে আমন্ত্রণ দেওয়া আছে। আগে অতিথি তালিকায় তাঁদের অনুষ্ঠানের অনুমতি সমন্বয় করুন।',
+      'এই অনুষ্ঠানে অতিথিদের আমন্ত্রণ দেওয়া আছে। আগে অতিথি তালিকায় তাঁদের অনুষ্ঠানের অনুমতি সমন্বয় করুন।',
     ],
     [
       /verification is temporarily unavailable/i,

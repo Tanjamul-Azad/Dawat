@@ -613,8 +613,8 @@ export function WeddingDesk({
                 )}
                 <p>
                   {t(
-                    'Create named households, share their personal links and view confirmed replies in Guests & replies.',
-                    'অতিথি ও উত্তর বিভাগে পরিবারের আমন্ত্রণ, ব্যক্তিগত লিংক ও সংরক্ষিত উত্তর দেখুন।',
+                    'Add guests or groups, share their personal links and view confirmed replies in Guests & replies.',
+                    'অতিথি ও উত্তর বিভাগে অতিথিদের আমন্ত্রণ, ব্যক্তিগত লিংক ও সংরক্ষিত উত্তর দেখুন।',
                   )}
                 </p>
               </section>

@@ -175,12 +175,16 @@ it('lists households with event-specific replies and keeps controls usable durin
     </ProductLocale>,
   );
   const table = screen.getByRole('table');
-  expect(within(table).getByRole('columnheader', { name: 'পরিবার ও আমন্ত্রণ' })).toBeTruthy();
-  expect(within(table).getByText('বিয়ের ভোজ (৪) · আকদ (২)')).toBeTruthy();
-  expect(within(table).getByText('আসবেন')).toBeTruthy();
+  expect(within(table).getByRole('columnheader', { name: 'অতিথি / দল' })).toBeTruthy();
+  expect(within(table).queryByText('বিয়ের ভোজ · ৪ জন / আকদ · ২ জন')).toBeNull();
+  fireEvent.click(within(table).getByRole('button', { name: 'কাল্পনিক পরিবার' }));
+  expect(within(table).getByText('বিয়ের ভোজ · ৪ জন / আকদ · ২ জন')).toBeTruthy();
+  expect(within(table).getAllByText(/আসবেন/).length).toBeGreaterThan(0);
   expect(within(table).queryByText('আসবেন না')).toBeNull();
-  const copy = within(table).getByRole('button', { name: 'লিংক কপি করুন' }) as HTMLButtonElement;
-  fireEvent.change(screen.getByRole('textbox', { name: 'পরিবার খুঁজুন' }), {
+  const copy = within(table).getByRole('button', {
+    name: 'লিংক কপি করুন · কাল্পনিক পরিবার',
+  }) as HTMLButtonElement;
+  fireEvent.change(screen.getByRole('textbox', { name: 'নাম দিয়ে খুঁজুন' }), {
     target: { value: 'এখনও জমা দিইনি' },
   });
   await act(async () => {
@@ -311,8 +315,8 @@ it('explains missing household scope in Bangla before any server write', () => {
       />
     </ProductLocale>,
   );
-  fireEvent.click(screen.getByRole('button', { name: 'পরিবার যোগ করুন' }));
-  fireEvent.change(screen.getByLabelText('অতিথি বা পরিবারের নাম'), { target: { value: 'কাল্পনিক পরিবার' } });
+  fireEvent.click(screen.getByRole('button', { name: 'অতিথি যোগ করুন' }));
+  fireEvent.change(screen.getByLabelText('অতিথি বা দলের নাম'), { target: { value: 'কাল্পনিক পরিবার' } });
   fireEvent.submit(screen.getByRole('dialog').querySelector('form')!);
   expect(screen.getByRole('alert').textContent).toContain('অন্তত একটি অনুষ্ঠান');
   expect(fetcher).not.toHaveBeenCalled();

@@ -2,20 +2,7 @@
 import { useProductLocale } from './product-locale';
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import {
-  ArrowLeft,
-  Copy,
-  Eye,
-  Plus,
-  RefreshCw,
-  Send,
-  Link2,
-  RotateCcw,
-  ShieldOff,
-  Heart,
-  Download,
-  PencilLine,
-} from 'lucide-react';
+import { ArrowLeft, Plus, RefreshCw, Send, Link2, Heart, Download } from 'lucide-react';
 import type { Invitation } from '@/features/workspace/model';
 import {
   householdInput,
@@ -27,7 +14,8 @@ import {
 } from '@/features/production/guests';
 import { api } from '@/features/production/client';
 import { downloadCsv } from '@/features/production/download';
-import { errorText } from '@/features/production/copy';
+import { errorText, latinDigits } from '@/features/production/copy';
+import { GuestList } from './guest-list';
 import { WorkspaceFrame, WorkspaceLink } from './frame';
 import { Modal, copyText } from '../ui';
 import { ResponseEditor } from './response-editor';
@@ -70,6 +58,7 @@ export function GuestHub({
   const [busy, setBusy] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [stale, setStale] = useState(false);
+  const [pageTrail, setPageTrail] = useState<(string | null)[]>([null]);
   const [editing, setEditing] = useState<HouseholdRow | null | undefined>(undefined);
   const [preview, setPreview] = useState<GuestPayload | null>(null);
   const [shared, setShared] = useState<{
@@ -102,7 +91,7 @@ export function GuestHub({
   };
   async function refresh(
     after: string | null = cursor.current,
-    filters = { eventId, search, status },
+    filters = appliedFilters.current,
     quiet = false,
   ) {
     if (quiet && busy) return;
@@ -119,6 +108,11 @@ export function GuestHub({
     try {
       const result = await api<HouseholdReport>(`${root}/households/?${query}`);
       if (!mounted.current || generation !== serial.current) return;
+      setPageTrail((trail) => {
+        if (!after) return [null];
+        const known = trail.indexOf(after);
+        return known < 0 ? [...trail, after] : trail.slice(0, known + 1);
+      });
       appliedFilters.current = { ...filters };
       setData(result);
       cursor.current = after;
@@ -259,8 +253,8 @@ export function GuestHub({
           <h1>{tr('People make the celebration.')}</h1>
           <p>
             {locale === 'bn'
-              ? 'নাম ধরে আমন্ত্রণ। প্রতিটি পরিবারের জন্য নিজস্ব লিংক, অনুষ্ঠান ও মোট লোকসংখ্যার অনুমতি।'
-              : 'Invite each household by name, with its own link, celebrations and party allowance.'}
+              ? 'একজন অতিথি, দম্পতি, পরিবার বা দল—নাম ধরে আমন্ত্রণ ও আলাদা লিংক।'
+              : 'Invite a person, couple, family or group by name, each with a personal link.'}
           </p>
         </div>
         <div className={s.actions}>
@@ -308,8 +302,8 @@ export function GuestHub({
           <h2>{locale === 'bn' ? 'আগে আমন্ত্রণটি প্রকাশ করুন।' : 'Publish your invitation first.'}</h2>
           <p>
             {locale === 'bn'
-              ? 'নাম, অনুষ্ঠান ও স্থান পূরণ করে প্রিভিউ দেখুন। প্রকাশের পর পরিবার যোগ করা, ব্যক্তিগত লিংক এবং উত্তর নেওয়া চালু হবে।'
-              : 'Complete names, celebrations and venues, then preview and publish. You can then add households, generate personal links and collect replies.'}
+              ? 'নাম, অনুষ্ঠান ও স্থান পূরণ করে প্রিভিউ দেখুন। প্রকাশের পর অতিথি বা দল যোগ করে ব্যক্তিগত লিংক ও উত্তর নেওয়া চালু হবে।'
+              : 'Complete names, celebrations and venues, then publish to add guests or groups and collect replies.'}
           </p>
           <WorkspaceLink className={s.button} href={`/weddings/${wid}/`}>
             {locale === 'bn' ? 'আমন্ত্রণ সম্পাদনায় যান' : 'Continue editing'}
@@ -325,7 +319,7 @@ export function GuestHub({
                   value={eventId}
                   onChange={(e) => {
                     setEventId(e.target.value);
-                    void refresh(null, { eventId: e.target.value, search, status });
+                    void refresh(null, { ...appliedFilters.current, eventId: e.target.value });
                   }}
                 >
                   {events.map((e) => (
@@ -336,7 +330,7 @@ export function GuestHub({
                 </select>
               </label>
               <span className={s.badge}>{policy?.isOpen ? tr('Replies open') : tr('Replies closed')}</span>
-              <button className={s.quiet} onClick={() => setPolicyOpen(true)}>
+              <button className={s.quiet} disabled={busy} onClick={() => setPolicyOpen(true)}>
                 {tr('Reply settings')}
               </button>
             </div>
@@ -381,13 +375,13 @@ export function GuestHub({
               <h2>{locale === 'bn' ? 'অতিথি তালিকা' : 'Guest list'}</h2>
               <button
                 className={s.secondary}
-                disabled={exporting}
+                disabled={exporting || busy}
                 onClick={async () => {
                   setExporting(true);
                   setError('');
                   try {
                     await downloadCsv(
-                      `${root}/export/?${new URLSearchParams({ event: eventId, search, status })}`,
+                      `${root}/export/?${new URLSearchParams({ event: appliedFilters.current.eventId, search: appliedFilters.current.search, status: appliedFilters.current.status })}`,
                     );
                   } catch (e) {
                     setError(
@@ -414,14 +408,14 @@ export function GuestHub({
             </div>
             <p className={s.muted}>
               {locale === 'bn'
-                ? 'CSV-তে নির্বাচিত অনুষ্ঠান, নাম ও অবস্থার ফিল্টার অনুযায়ী সব পরিবার থাকবে; শুধু এই পেজ নয়। ব্যক্তিগত লিংক ও আয়োজকের নোট থাকবে না।'
-                : 'CSV includes every household matching the selected event, name and status, across all pages. Private links and host notes are excluded.'}
+                ? 'CSV-তে প্রয়োগ করা খোঁজ ও ফিল্টারের সব আমন্ত্রণ থাকবে; শুধু এই পাতা নয়। ব্যক্তিগত লিংক ও আপনার নোট থাকবে না।'
+                : 'CSV includes all invitations matching the applied search and filters, across all pages. Private links and host notes are excluded.'}
             </p>
             <form
               className={`${s.form} ${s.filters}`}
               onSubmit={(e) => {
                 e.preventDefault();
-                void refresh(null);
+                void refresh(null, { eventId, search: search.trim(), status });
               }}
             >
               <label>
@@ -439,7 +433,7 @@ export function GuestHub({
                   value={status}
                   onChange={(e) => {
                     setStatus(e.target.value);
-                    void refresh(null, { eventId, search, status: e.target.value });
+                    void refresh(null, { ...appliedFilters.current, status: e.target.value });
                   }}
                 >
                   {['all', 'accepted', 'declined', 'pending'].map((v) => (
@@ -452,149 +446,56 @@ export function GuestHub({
               <button className={s.secondary} disabled={busy}>
                 {tr('Apply search')}
               </button>
+              {(appliedFilters.current.search || appliedFilters.current.status !== 'all') && (
+                <button
+                  type="button"
+                  className={s.quiet}
+                  disabled={busy}
+                  onClick={() => {
+                    setSearch('');
+                    setStatus('all');
+                    void refresh(null, {
+                      eventId: appliedFilters.current.eventId,
+                      search: '',
+                      status: 'all',
+                    });
+                  }}
+                >
+                  {locale === 'bn' ? 'বাছাই মুছুন' : 'Clear filters'}
+                </button>
+              )}
             </form>
-            <div className={s.tableWrap} aria-busy={busy}>
-              <table className={`${s.table} ${s.guestTable}`}>
-                <caption>
-                  {locale === 'bn'
-                    ? 'নির্বাচিত অনুষ্ঠান ও ফিল্টার অনুযায়ী পরিবার · প্রতি পাতায় সর্বোচ্চ ২৫টি'
-                    : 'Households for the selected celebration and filters · up to 25 per page'}
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">{locale === 'bn' ? 'পরিবার ও আমন্ত্রণ' : 'Household'}</th>
-                    <th scope="col">{tr('Reply status')}</th>
-                    <th scope="col">
-                      {locale === 'bn' ? 'অতিথি' : 'People'}
-                      <small className={s.countLegend}>
-                        {locale === 'bn' ? 'নিশ্চিত / অনুমতি' : 'Confirmed / allowance'}
-                      </small>
-                    </th>
-                    <th scope="col">{tr('Link')}</th>
-                    <th scope="col">{locale === 'bn' ? 'পরিচালনা' : 'Actions'}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((row) => {
-                    const answer = row.responses[reportEventId];
-                    const allowance = row.events.find((e) => e.eventId === reportEventId)?.maxPeople;
-                    return (
-                      <tr key={row.id}>
-                        <td data-label={locale === 'bn' ? 'পরিবার' : 'Household'}>
-                          <strong>{row.name}</strong>
-                          <small>
-                            {row.nameBn && row.nameBn !== row.name ? row.nameBn + ' · ' : ''}
-                            {row.events
-                              .map((e) => `${eventTitle(e.eventId)} (${count(e.maxPeople)})`)
-                              .join(' · ')}
-                          </small>
-                          {answer?.note && (
-                            <p className={s.muted}>
-                              {tr('Guest note:')}
-                              {answer.note}
-                            </p>
-                          )}
-                        </td>
-                        <td data-label={tr('Reply status')}>
-                          <span
-                            className={`${s.replyStatus} ${answer?.attendance === 'accepted' ? s.acceptedStatus : answer?.attendance === 'declined' ? s.declinedStatus : s.pendingStatus}`}
-                          >
-                            {tr(answer?.attendance ?? 'pending')}
-                          </span>
-                        </td>
-                        <td data-label={locale === 'bn' ? 'অতিথি' : 'People'}>
-                          <strong className={s.countNumber}>
-                            {answer ? count(answer.adults + answer.children) : '—'}
-                            <small> / {allowance === undefined ? '—' : count(allowance)}</small>
-                          </strong>
-                          {answer && (
-                            <small>
-                              {count(answer.adults)} {tr('adults +')} {count(answer.children)}{' '}
-                              {tr('children')}
-                            </small>
-                          )}
-                        </td>
-                        <td data-label={tr('Link')}>
-                          <span className={s.linkStatus}>
-                            <Link2 size={13} /> {tr(row.linkState)}
-                          </span>
-                        </td>
-                        <td data-label={locale === 'bn' ? 'পরিচালনা' : 'Actions'}>
-                          <div className={s.actions}>
-                            <button
-                              className={s.secondary}
-                              disabled={busy}
-                              onClick={() => openPreview(row)}
-                              aria-label={`${tr('Preview')} · ${row.name}`}
-                              title={tr('Preview')}
-                            >
-                              <Eye size={15} />
-                            </button>
-                            <button
-                              className={s.secondary}
-                              disabled={busy || row.linkState === 'revoked'}
-                              onClick={() => link(row, 'copy')}
-                            >
-                              <Copy size={14} />
-                              {row.linkState === 'missing' ? tr('Create & copy') : tr('Copy link')}
-                            </button>
-                          </div>
-                          <details className={s.rowDetails}>
-                            <summary>{tr('Personal details & link actions')}</summary>
-                            <p className={s.muted}>
-                              {tr('Private host note:')}
-                              {row.privateNote || '—'}
-                            </p>
-                            <div className={s.actions}>
-                              <button
-                                className={s.secondary}
-                                disabled={busy}
-                                onClick={() => setCorrecting(row)}
-                              >
-                                <PencilLine size={14} />
-                                {locale === 'bn' ? 'উত্তর সংশোধন ও ইতিহাস' : 'Correct reply & history'}
-                              </button>
-                              <button className={s.secondary} disabled={busy} onClick={() => setEditing(row)}>
-                                {tr('Edit household')}
-                              </button>
-                              {row.linkState !== 'missing' && (
-                                <>
-                                  <button
-                                    className={s.secondary}
-                                    disabled={busy}
-                                    onClick={() => setDanger({ row, kind: 'rotate' })}
-                                  >
-                                    <RotateCcw size={14} />
-                                    {tr('Replace link')}
-                                  </button>
-                                  {row.linkState === 'active' && (
-                                    <button
-                                      className={s.secondary}
-                                      disabled={busy}
-                                      onClick={() => setDanger({ row, kind: 'revoke' })}
-                                    >
-                                      <ShieldOff size={14} />
-                                      {tr('Revoke link')}
-                                    </button>
-                                  )}
-                                </>
-                              )}
-                            </div>
-                          </details>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+            {search.trim() !== appliedFilters.current.search && (
+              <p className={s.muted}>
+                {locale === 'bn'
+                  ? 'নতুন নাম খুঁজতে Enter বা “খুঁজুন” চাপুন।'
+                  : 'Press Enter or Search to apply the new name.'}
+              </p>
+            )}
+            <GuestList
+              key={reportEventId + ':' + (cursor.current ?? 'first')}
+              rows={rows}
+              eventId={reportEventId}
+              busy={busy}
+              eventTitle={eventTitle}
+              onCopy={(row) => void link(row, 'copy')}
+              onPreview={(row) => void openPreview(row)}
+              onEdit={setEditing}
+              onCorrect={setCorrecting}
+              onRotate={(row) => setDanger({ row, kind: 'rotate' })}
+              onRevoke={(row) => setDanger({ row, kind: 'revoke' })}
+            />
             {!rows.length && (
               <div className={s.empty}>
                 <Send size={25} />
                 <h2>
-                  {search || status !== 'all'
-                    ? tr('No households match these filters.')
-                    : tr('A personal welcome starts here.')}
+                  {pageTrail.length > 1
+                    ? locale === 'bn'
+                      ? 'এই পাতায় আর আমন্ত্রণ নেই।'
+                      : 'No invitations remain on this page.'
+                    : appliedFilters.current.search || appliedFilters.current.status !== 'all'
+                      ? tr('No households match these filters.')
+                      : tr('A personal welcome starts here.')}
                 </h2>
                 <p>
                   {events.length
@@ -605,16 +506,37 @@ export function GuestHub({
                 </p>
               </div>
             )}
-            <div className={s.actions}>
-              {data.nextCursor && (
-                <button className={s.secondary} disabled={busy} onClick={() => refresh(data.nextCursor!)}>
-                  {tr('Next 25 households')}
+            <nav
+              className={s.guestPagination}
+              aria-label={locale === 'bn' ? 'আমন্ত্রণের পাতাগুলো' : 'Invitation pages'}
+            >
+              <small role="status">
+                {locale === 'bn'
+                  ? `পাতা ${count(pageTrail.length)} · এই পাতায় ${count(rows.length)}টি`
+                  : `Page ${pageTrail.length} · ${rows.length} on this page`}
+              </small>
+              <div className={s.actions}>
+                <button
+                  className={s.secondary}
+                  disabled={busy || pageTrail.length < 2}
+                  onClick={() => refresh(pageTrail[pageTrail.length - 2])}
+                >
+                  {locale === 'bn' ? 'আগের পাতা' : 'Previous page'}
                 </button>
-              )}
-              <button className={s.quiet} disabled={busy} onClick={() => refresh(null)}>
-                {tr('Back to first page')}
-              </button>
-            </div>
+                {data.nextCursor && (
+                  <button className={s.secondary} disabled={busy} onClick={() => refresh(data.nextCursor!)}>
+                    {tr('Next 25 households')}
+                  </button>
+                )}
+                <button
+                  className={s.quiet}
+                  disabled={busy || pageTrail.length < 2}
+                  onClick={() => refresh(null)}
+                >
+                  {tr('Back to first page')}
+                </button>
+              </div>
+            </nav>
           </section>
         </>
       ) : (
@@ -848,6 +770,7 @@ function HouseholdEditor({
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const id = useRef(row?.id ?? crypto.randomUUID());
+  const [included, setIncluded] = useState(() => new Set(row?.events.map((event) => event.eventId) ?? []));
   const attempt = useRef<{
     body: string;
     key: string;
@@ -866,8 +789,8 @@ function HouseholdEditor({
       messageEn: text('messageEn'),
       privateNote: text('privateNote'),
       events: events
-        .filter((ev) => f.has(`event-${ev.id}`))
-        .map((ev) => ({ eventId: ev.id, maxPeople: Number(text(`allowance-${ev.id}`)) })),
+        .filter((ev) => included.has(ev.id))
+        .map((ev) => ({ eventId: ev.id, maxPeople: Number(latinDigits(text(`allowance-${ev.id}`))) })),
     };
     const valid = householdInput.safeParse(value);
     if (!valid.success) {
@@ -877,7 +800,7 @@ function HouseholdEditor({
           ? issue.path[0] === 'events'
             ? 'অন্তত একটি অনুষ্ঠান বেছে নিন। নির্বাচিত অনুষ্ঠানে ১ থেকে ৫০ জনের অনুমতি দিন।'
             : issue.path[0] === 'name'
-              ? 'অতিথি বা পরিবারের নাম লিখুন; সর্বোচ্চ ১২০ অক্ষর। অদৃশ্য বা নিয়ন্ত্রণ অক্ষর দেওয়া যাবে না।'
+              ? 'অতিথি বা দলের নাম লিখুন; সর্বোচ্চ ১২০ অক্ষর। অদৃশ্য বা নিয়ন্ত্রণ অক্ষর দেওয়া যাবে না।'
               : 'লেখাটি বেশি বড় হয়েছে। নির্ধারিত সীমার মধ্যে লিখুন।'
           : issue.message,
       );
@@ -924,22 +847,31 @@ function HouseholdEditor({
               required
               maxLength={120}
               defaultValue={row?.name}
-              placeholder={tr(
-                'Rahman Family / \u09B0\u09B9\u09AE\u09BE\u09A8 \u09AA\u09B0\u09BF\u09AC\u09BE\u09B0',
-              )}
+              placeholder={
+                locale === 'bn'
+                  ? 'সাবিহা রহমান / রহমান পরিবার / অফিসের বন্ধু'
+                  : 'Sabiha Rahman / Rahman family / Office friends'
+              }
             />
           </label>
-          {(
-            [
-              ['greeting', 'সম্বোধন · বাংলা', 300],
-              ['message', 'ব্যক্তিগত বার্তা · বাংলা', 500],
-            ] as const
-          ).map(([key, label, max]) => (
-            <label key={key}>
-              {label}
-              <textarea name={key} rows={2} maxLength={max} defaultValue={row?.[key]} />
-            </label>
-          ))}
+          <details className={s.optionalFields}>
+            <summary>
+              {locale === 'bn'
+                ? 'ব্যক্তিগত সম্বোধন ও বার্তা (ঐচ্ছিক)'
+                : 'Personal greeting & message (optional)'}
+            </summary>
+            {(
+              [
+                ['greeting', 'সম্বোধন · বাংলা', 300],
+                ['message', 'ব্যক্তিগত বার্তা · বাংলা', 500],
+              ] as const
+            ).map(([key, label, max]) => (
+              <label key={key}>
+                {label}
+                <textarea name={key} rows={2} maxLength={max} defaultValue={row?.[key]} />
+              </label>
+            ))}
+          </details>
           <details className={s.optionalFields}>
             <summary>
               {locale === 'bn'
@@ -972,18 +904,29 @@ function HouseholdEditor({
                   <input
                     type="checkbox"
                     name={`event-${ev.id}`}
-                    defaultChecked={!!row?.events.some((e) => e.eventId === ev.id)}
+                    checked={included.has(ev.id)}
+                    disabled={!!row?.responses[ev.id]}
+                    onChange={(e) =>
+                      setIncluded((current) => {
+                        const next = new Set(current);
+                        if (e.target.checked) next.add(ev.id);
+                        else next.delete(ev.id);
+                        return next;
+                      })
+                    }
                   />
                   {locale === 'bn' ? ev.titleBn || ev.title : ev.title}
                 </label>
                 <label>
                   {tr('Total allowance')}
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9০-৯]+"
+                    required={included.has(ev.id)}
+                    disabled={!included.has(ev.id)}
                     name={`allowance-${ev.id}`}
-                    min={1}
-                    max={50}
-                    step={1}
+                    maxLength={2}
                     defaultValue={row?.events.find((e) => e.eventId === ev.id)?.maxPeople ?? 1}
                   />
                 </label>
@@ -992,7 +935,17 @@ function HouseholdEditor({
           </fieldset>
           <label>
             {tr('Private host note \u00B7 never shown to guests')}
-            <textarea name="privateNote" rows={2} maxLength={1000} defaultValue={row?.privateNote} />
+            <textarea
+              name="privateNote"
+              rows={2}
+              maxLength={1000}
+              defaultValue={row?.privateNote}
+              placeholder={
+                locale === 'bn'
+                  ? 'যেমন: অফিসের সাবিহা / খুলনার মামা—নিজের চেনার সুবিধায়'
+                  : 'For example: Sabiha from work / Uncle from Khulna'
+              }
+            />
           </label>
           <p className={s.muted}>
             {tr(

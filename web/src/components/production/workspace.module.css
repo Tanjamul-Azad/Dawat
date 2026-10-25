@@ -605,73 +605,6 @@
 .wordingCard small {
   color: var(--muted);
 }
-.guestTable {
-  table-layout: fixed;
-  min-width: 0;
-  width: 100%;
-}
-.guestTable caption {
-  text-align: left;
-  padding: 0 0 12px;
-  color: var(--muted);
-  font-size: 13px;
-}
-.guestTable th:nth-child(1) {
-  width: 28%;
-}
-.guestTable th:nth-child(2) {
-  width: 16%;
-}
-.guestTable th:nth-child(3) {
-  width: 16%;
-}
-.guestTable th:nth-child(4) {
-  width: 13%;
-}
-.guestTable th:nth-child(5) {
-  width: 27%;
-}
-.guestTable td {
-  vertical-align: top;
-  padding: 18px 10px;
-  overflow-wrap: anywhere;
-}
-.guestTable td strong,
-.guestTable td small {
-  display: block;
-}
-.guestTable td > strong {
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-.guestTable small {
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--muted);
-}
-.countLegend {
-  display: block;
-  font-weight: 400;
-}
-.guestTable .countNumber {
-  font-family: var(--font-bangla), serif;
-  font-size: 20px;
-  line-height: 1.4;
-  font-feature-settings: normal;
-  white-space: nowrap;
-}
-.guestTable .countNumber small {
-  display: inline;
-  font-size: 14px;
-}
-.guestTable .actions {
-  gap: 6px;
-}
-.guestTable .actions button {
-  min-height: 44px;
-  padding: 8px 10px;
-  font-size: 13px;
-}
 .replyStatus {
   display: inline-flex;
   align-items: center;
@@ -700,72 +633,10 @@
   font-size: 13px;
   color: var(--muted);
 }
-.rowDetails {
-  margin-top: 8px;
-}
-.rowDetails summary {
-  cursor: pointer;
-  font-size: 12px;
-  line-height: 1.5;
-  padding: 8px 0;
-  min-height: 36px;
-  color: var(--muted);
-}
-.rowDetails[open] {
-  padding-bottom: 8px;
-}
-@media (max-width: 1000px) and (min-width: 701px) {
-  .guestTable th:nth-child(1) {
-    width: 25%;
-  }
-  .guestTable th:nth-child(2) {
-    width: 17%;
-  }
-  .guestTable th:nth-child(3) {
-    width: 17%;
-  }
-  .guestTable th:nth-child(4) {
-    width: 13%;
-  }
-  .guestTable th:nth-child(5) {
-    width: 28%;
-  }
-  .guestTable td {
-    padding: 14px 6px;
-  }
-}
 @media (max-width: 700px) {
-  .guestTable {
-    table-layout: auto;
-  }
-  .guestTable td {
-    padding: 6px 0;
-  }
-  .guestTable td:first-child::before {
-    display: none;
-  }
-  .guestTable td:nth-child(4) {
-    grid-column: 1 / -1;
-  }
-  .guestTable td:last-child .actions button {
-    width: auto;
-  }
   .wordingCard {
     padding: 14px;
   }
-  .wordingCard .sectionHeader {
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-.preview {
-  display: grid;
-  justify-items: center;
-  text-align: center;
-  background: #e8ecdf;
-  padding: 28px 20px;
-  border: 1px solid #d3dbc8;
-  border-radius: 10px;
 }
 .previewImage {
   width: 100%;
@@ -948,6 +819,196 @@
 }
 .tableWrap {
   overflow-x: auto;
+}
+.compactGuests {
+  table-layout: fixed;
+}
+.compactGuests th:nth-child(1) {
+  width: 35%;
+}
+.compactGuests th:nth-child(2) {
+  width: 18%;
+}
+.compactGuests th:nth-child(3) {
+  width: 18%;
+}
+.compactGuests th:nth-child(4) {
+  width: 12%;
+}
+.compactGuests th:nth-child(5) {
+  width: 17%;
+}
+.compactGuests caption {
+  text-align: left;
+  font-size: 12px;
+  color: var(--muted);
+  padding-bottom: 12px;
+}
+.compactGuests .compactGuestRow td {
+  padding: 7px 10px;
+  vertical-align: middle;
+}
+.guestNameButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  min-height: 44px;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 14px;
+}
+.guestNameButton svg {
+  flex-shrink: 0;
+}
+[data-expanded='true'] .guestNameButton svg {
+  transform: rotate(180deg);
+}
+.guestName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.compactGuests .guestName small {
+  margin: 0;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.guestCopy {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 6px 10px;
+  color: var(--ink);
+  font-size: 13px;
+}
+.guestCount {
+  white-space: nowrap;
+  font-family: var(--font-bangla), serif;
+}
+.compactGuests .guestCount small {
+  display: inline;
+  margin: 0;
+  font: inherit;
+  color: var(--muted);
+}
+.guestDetailRow > td {
+  padding: 0 10px 14px;
+  background: #f8f7f1;
+}
+.guestDetail {
+  padding: 16px;
+}
+.guestDetail > strong {
+  overflow-wrap: anywhere;
+  font-size: 15px;
+  font-weight: 500;
+}
+.guestDetail dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+  margin: 14px 0;
+}
+.guestDetail dt {
+  font-size: 12px;
+  color: var(--muted);
+}
+.guestDetail dd {
+  margin: 3px 0 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+.guestDetail .actions {
+  gap: 8px;
+}
+.guestDetail .actions button {
+  min-height: 44px;
+  padding: 7px 10px;
+  font-size: 13px;
+}
+.guestPagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+.guestPagination small {
+  font-size: 13px;
+  color: var(--muted);
+}
+@media (max-width: 700px) {
+  .compactGuests .compactGuestRow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 66px 64px;
+    gap: 4px 6px;
+    padding: 8px 10px;
+  }
+  .compactGuests .compactGuestRow td {
+    padding: 0;
+    align-self: center;
+    border: 0;
+    min-width: 0;
+  }
+  .compactGuests .compactGuestRow td[data-label]::before {
+    display: none;
+  }
+  .compactGuests .compactGuestRow td:first-child {
+    grid-column: 1 / 3;
+    order: 1;
+  }
+  .compactGuests .compactGuestRow td:last-child {
+    grid-column: 3;
+    order: 2;
+  }
+  .compactGuests .compactGuestRow td:nth-child(2) {
+    order: 3;
+  }
+  .compactGuests .compactGuestRow td:nth-child(3) {
+    order: 4;
+  }
+  .compactGuests .compactGuestRow td:nth-child(4) {
+    order: 5;
+  }
+  .compactGuests .compactGuestRow .guestCopy {
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+  }
+  .compactGuests .compactGuestRow .guestCopy span {
+    display: none;
+  }
+  .compactGuests .compactGuestRow td:last-child {
+    justify-self: end;
+  }
+  .compactGuests .guestDetailRow {
+    display: block;
+    border: 0;
+    padding: 0;
+  }
+  .compactGuests .guestDetailRow > td {
+    display: block;
+    padding: 0;
+  }
+  .guestDetail {
+    padding: 12px;
+  }
+  .guestDetail dl {
+    grid-template-columns: 1fr;
+  }
 }
 .order {
   min-width: 0;
