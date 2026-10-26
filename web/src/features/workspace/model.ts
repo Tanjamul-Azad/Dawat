@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { templateIds } from '../production/catalog';
 
 const eventSchema = z.object({
   id: z.enum(['nikah', 'reception']),
@@ -47,6 +48,7 @@ export const invitationSchema = z.object({
   photos: z.array(photoSchema).max(5).optional(),
   rsvpClosesAt: z.iso.datetime().optional(),
   theme: z.enum(['jamdani', 'garden', 'holud']),
+  templateId: z.enum(templateIds).optional(),
   events: z.array(eventSchema).length(2),
 });
 const answerSchema = z.object({

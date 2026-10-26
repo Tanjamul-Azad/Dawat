@@ -1,5 +1,7 @@
 # Project memory — current handoff
 
+**LATEST · 26 October2026:** Public storefront/manual commerce supersedes older pilot-only scope below; [current evidence](docs/build-evidence/storefront-commerce-2026-10-26.md). Imagegen before new UI; compact Bangladesh UX; Normal500/Premium750/Customized1500 BDT; no gateway; manual transaction review; WhatsApp01606092143. **Final admin valtube101@gmail.com**, verified/staff active; i.m.tanjamul staff deactivated. SMTP/contact stays valtube. Owner MFA and receiving account confirmation pending. Auto guest messaging deferred.293 tests/35files and full synthetic HTTP journey pass. Hosted migrations applied; Netlify all-surface save initiated, live publication still needs verification. No new spend/domain/provider migration.
+
 Consolidated: **21 October 2026 · Asia/Dhaka**. Planning revision: **Client V1**. Read this first; [archived notes](docs/archive/planning-before-client-v1-2026-10-20/INDEX.md) preserve history but do not override current contracts.
 
 ## Latest request and work done

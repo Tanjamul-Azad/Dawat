@@ -1,5 +1,7 @@
 # Product delivery plan — Client V1
 
+**Current scope · 26 October2026:** User authorized full public storefront/manual sale completion, replacing the earlier pilot-first sequence. Imagegen precedes new frontend design. See [implementation/evidence](docs/build-evidence/storefront-commerce-2026-10-26.md) for completed work and remaining deployment/owner setup. Final admin and OTP sender both valtube101@gmail.com. Prices500/750/1500 BDT, WhatsApp01606092143, no gateway. No new spend/provider/domain change.
+
 Updated: **21 October 2026 · Asia/Dhaka**. This is the current scope and build order; it supersedes archived phase lists. Planned production capabilities below are not claims of completed implementation.
 
 **Latest owner instruction — zero new spend:** [Detailed free-first delivery plan](docs/plans/free-first-product-delivery-2026-10-21.md) now controls the **next execution batches**, design boundaries, direct-client onboarding, hosting qualification and acceptance. First qualify Netlify Free against the exact working app while cleaning prototype entry/CTA confusion, then implement direct-wedding onboarding, separate client/guest/operator surfaces, compact UI, recovery/quota qualification and one controlled pilot; finish public sales afterward. Netlify is a candidate, not a completed migration. Existing Vercel Hobby remains personal testing only. No paid upgrade/top-up/trial/new domain; free provider URLs first. The earlier phase list below is the feature/dependency reference, not an instruction to restart completed foundation work.

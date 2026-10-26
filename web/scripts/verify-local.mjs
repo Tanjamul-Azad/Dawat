@@ -138,6 +138,98 @@ async function command(body, key = crypto.randomUUID()) {
   assert.equal(r.status, 200, r.raw);
   return r.json.data;
 }
+// Storefront -> accepted quote -> manual payment -> activated customer portal.
+const buyer = await login(`buyer-${run}@example.test`);
+async function sales(client, body, payment = false, key = crypto.randomUUID()) {
+  const r = await client.request(payment ? '/api/sales/payments/' : '/api/sales/', {
+    method: 'POST',
+    body,
+    key,
+  });
+  assert.equal(r.status, 200, r.raw);
+  return r.json.data;
+}
+let enquiry = await sales(buyer, {
+  kind: 'request',
+  name: 'Synthetic storefront buyer',
+  templateId: 'midnight',
+  eventDate: '2027-02-14',
+  brief: 'Synthetic end-to-end collection order; no real payment.',
+});
+assert.equal(enquiry.customer_email, `buyer-${run}@example.test`);
+assert.equal(
+  (await bob.request('/api/sales/')).json.data.requests.some((r) => r.id === enquiry.id),
+  false,
+);
+enquiry = await sales(seller, {
+  kind: 'quote',
+  id: enquiry.id,
+  expectedRevision: 0,
+  packageName: 'Moonlit',
+  amountMinor: 75000,
+  termDays: 90,
+  notes: 'Synthetic 90-day hosting, no external transfer. Local QA only.',
+});
+enquiry = await sales(buyer, { kind: 'accept', id: enquiry.id, expectedRevision: enquiry.revision });
+enquiry = await sales(seller, { kind: 'convert', id: enquiry.id, expectedRevision: enquiry.revision });
+const receiptKey = crypto.randomUUID();
+const paymentBody = {
+  kind: 'submit',
+  requestId: enquiry.id,
+  method: 'bKash',
+  reference: `LOCAL-${run}`,
+  sender: 'Synthetic local sender',
+};
+const payment = await sales(buyer, paymentBody, true, receiptKey);
+assert.equal((await sales(buyer, paymentBody, true, receiptKey)).id, payment.id);
+assert.equal(
+  (await buyer.request('/api/sales/')).json.data.progress.find((p) => p.requestId === enquiry.id)
+    .paymentStatus,
+  'pending',
+);
+assert.equal(
+  (
+    await buyer.request('/api/sales/payments/', {
+      method: 'POST',
+      body: { kind: 'verify', id: payment.id, reason: 'Customer must not verify payment.' },
+      key: crypto.randomUUID(),
+    })
+  ).status,
+  403,
+);
+await sales(
+  seller,
+  { kind: 'verify', id: payment.id, reason: 'Synthetic test ledger matched; no real transfer.' },
+  true,
+);
+const paidList = await seller.request('/api/admin/requests/');
+assert.equal(
+  paidList.json.data.progress.find((p) => p.requestId === enquiry.id).paymentStatus,
+  'manually_verified',
+);
+const agreed = await command({
+  kind: 'confirm',
+  orderId: enquiry.order_id,
+  expectedRevision: 1,
+  reason: 'Synthetic paid order confirmed for local QA.',
+});
+await command({
+  kind: 'activate',
+  orderId: enquiry.order_id,
+  expectedRevision: 2,
+  reason: 'Synthetic verified buyer portal activation.',
+});
+const buyerPage = await buyer.request('/order/requests/');
+assert.equal(buyerPage.status, 200, buyerPage.raw.slice(0, 300));
+const progress = (await buyer.request('/api/sales/')).json.data.progress.find(
+  (p) => p.requestId === enquiry.id,
+);
+assert.equal(progress.access, 'active');
+assert.equal(progress.weddingId, agreed.weddingId);
+const purchasedDraft = await buyer.request(`/api/weddings/${agreed.weddingId}/`);
+assert.equal(purchasedDraft.json.data.content.templateId, 'midnight');
+assert.equal((await bob.request(`/api/weddings/${agreed.weddingId}/`)).status, 404);
+console.log('Storefront sales/payment/activation HTTP journey passed.');
 async function provision(name, email) {
   const createKey = crypto.randomUUID();
   const b = { kind: 'create', email, name, packageName: 'Synthetic local QA', amountMinor: 0, termDays: 90 };
@@ -689,6 +781,7 @@ writeFileSync(
       weddingY: y.weddingId,
       publicPath,
       checks: [
+        'storefront intake, quote acceptance, manual transaction review and template-bound activation',
         'email OTP',
         'existing verified session skips OTP form',
         'seller MFA',

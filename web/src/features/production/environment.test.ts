@@ -14,12 +14,13 @@ it('accepts only the approved production project/origin/context', () => {
     { origin: 'http://127.0.0.1:3000' },
     { origin: 'https://preview.vercel.app' },
     { backend: 'https://other.supabase.co' },
-    { surface: 'all' },
+    { surface: 'unknown' },
     { context: 'deploy-preview' },
     { context: 'branch-deploy' },
     { context: 'dev' },
   ])
     expect(() => assertEnvironment({ ...production, ...change })).toThrow();
+  expect(() => assertEnvironment({ ...production, surface: 'all', context: 'production' })).not.toThrow();
 });
 it('keeps recovery and development on distinct local services', () => {
   expect(() =>

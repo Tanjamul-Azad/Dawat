@@ -76,6 +76,120 @@
   --wine: #825319;
   --cream: #fbf0d6;
 }
+.page[data-template='ivory'] {
+  --wine: #48443b;
+  --cream: #faf8ef;
+  --paper: #fffdf6;
+  --brass: #756b58;
+  --rule: #c8c0ae;
+}
+.page[data-template='holud'] {
+  --wine: #965221;
+  --cream: #fbefd4;
+  --paper: #fff5df;
+  --brass: #8c5c22;
+}
+.page[data-template='garden'] {
+  --wine: #345344;
+  --cream: #f5f3e9;
+  --paper: #fbfaf1;
+  --brass: #6f7954;
+  --design-art: url('/brand/template-garden.webp');
+}
+.page[data-template='rose'] {
+  --wine: #814253;
+  --cream: #fbefea;
+  --paper: #fff5f0;
+  --brass: #a16d58;
+  --design-art: url('/brand/template-rose.webp');
+}
+.page[data-template='midnight'] {
+  --wine: #203b4d;
+  --cream: #f4f1e6;
+  --brass: #896c31;
+  --design-art: url('/brand/template-midnight.webp');
+}
+.page[data-template='ivory'] :is(.gateLeft, .gateRight) {
+  background: #faf8ef;
+}
+.page[data-template='ivory'] :is(.gateLeft, .gateRight):after,
+.page[data-template='ivory'] :is(.gateLeft, .gateRight) > svg,
+.page[data-template='ivory'] .heroBackdrop,
+.page[data-template='holud'] .heroBackdrop {
+  display: none;
+}
+.page[data-template='ivory'] .gateLeft:before,
+.page[data-template='ivory'] .gateRight:before {
+  border-radius: 0;
+  border-color: #b9ad93;
+}
+.page[data-template='ivory'] :is(.openingScene, .recipientLabel, .openingHint, .quietOpen, .fromCouple) {
+  color: #48443b;
+}
+.page[data-template='holud'] :is(.gateLeft, .gateRight) {
+  background: #995120;
+}
+.page:is([data-template='garden'], [data-template='rose'], [data-template='midnight'])
+  :is(.gateLeft, .gateRight) {
+  background-image: var(--design-art);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+}
+.page:is([data-template='garden'], [data-template='rose'], [data-template='midnight']) .gateLeft {
+  background-position: left center;
+}
+.page:is([data-template='garden'], [data-template='rose'], [data-template='midnight']) .gateRight {
+  background-position: right center;
+}
+.page:is([data-template='garden'], [data-template='rose'], [data-template='midnight'])
+  :is(.gateLeft, .gateRight):after,
+.page:is([data-template='garden'], [data-template='rose'], [data-template='midnight'])
+  :is(.gateLeft, .gateRight)
+  > svg {
+  display: none;
+}
+.page:is([data-template='garden'], [data-template='rose'])
+  :is(.openingScene, .recipientLabel, .openingHint, .quietOpen, .fromCouple) {
+  color: var(--wine);
+}
+.page:is([data-template='garden'], [data-template='rose'], [data-template='midnight']) .heroBackdrop:after {
+  background: none;
+}
+.page[data-template='midnight'] .hero[data-phase='open'],
+.page[data-template='midnight'] .hero[data-phase='opening'] {
+  --wine: #ead399;
+  --ink: #ead399;
+  --faded: #dbc59a;
+  --brass: #e1bf79;
+  --cream: #102736;
+}
+.page[data-template='midnight'] .heroBackdrop {
+  background: #102736;
+}
+.page[data-template='midnight'] :is(.names, .heroDate, .heroLocation, .cardContent .kicker, .wedding) {
+  color: #ead399;
+}
+.page[data-template='midnight'] .heroDate {
+  background: #102736eb;
+}
+.page[data-template='midnight'] .heroLocation {
+  background: #102736eb;
+}
+.page[data-template='midnight'] .heroBottom :is(a, button) {
+  color: #203b4d;
+}
+.page[data-template='ivory'] .hero[data-phase='opening'] :is(.gateLeft, .gateRight) {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.page[data-template='rose'] .hero[data-phase='opening'] .gateLeft {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.page[data-template='rose'] .hero[data-phase='opening'] .gateRight {
+  transform: translateX(100%);
+  opacity: 0;
+}
 .demoNote {
   text-align: center;
   font-size: 10px;

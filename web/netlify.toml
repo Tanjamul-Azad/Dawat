@@ -6,6 +6,6 @@
   NODE_VERSION = "22"
   NEXT_TELEMETRY_DISABLED = "1"
 
-# Set DAWAT_SURFACE=pilot in the Netlify UI, for build AND function runtime.
+# Set DAWAT_SURFACE=all in the Netlify UI, for build AND function runtime.
 # Private keys belong in that project's private env settings, never this file.
 # Native image processing stays in Node route handlers, never middleware/Edge.

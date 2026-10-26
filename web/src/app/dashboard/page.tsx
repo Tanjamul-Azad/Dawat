@@ -12,6 +12,11 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ a
   const listRequested = (await searchParams).all === '1';
   const s = await pageSession(`/dashboard/${listRequested ? '?all=1' : ''}`);
   if (!s) return <SetupRequired />;
+  if (!listRequested) {
+    const staff = await s.db.from('staff_roles').select('active').eq('user_id', s.user.id).maybeSingle();
+    if (staff.error) throw new Error('Unable to load account access. Please retry.');
+    if (staff.data?.active) redirect('/admin/requests/');
+  }
   const weddings = await listWeddings();
   const destination = singleWeddingDestination(weddings, listRequested);
   if (destination) redirect(destination);

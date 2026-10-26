@@ -8,10 +8,17 @@ export function safeReturnPath(value: unknown): string {
   const [pathname, query, extra] = value.split('?');
   if (
     extra !== undefined ||
-    !/^\/(dashboard\/?|admin\/orders\/?|weddings\/[0-9a-f-]{36}(?:\/guests)?\/?|auth\/mfa\/?)$/.test(pathname)
+    !/^\/(dashboard\/?|admin\/(?:orders|requests)\/?|order\/requests\/?|weddings\/[0-9a-f-]{36}(?:\/guests)?\/?|auth\/mfa\/?)$/.test(
+      pathname,
+    )
   )
     return '/dashboard/';
   if (!query) return pathname;
+  if (
+    /^\/order\/requests\/?$/.test(pathname) &&
+    /^template=(jamdani|ivory|holud|garden|midnight|rose|custom)$/.test(query)
+  )
+    return `${pathname}?${query}`;
   if (/^\/dashboard\/?$/.test(pathname) && query === 'all=1') return `${pathname}?all=1`;
   if (
     /^\/weddings\/[0-9a-f-]{36}\/?$/.test(pathname) &&

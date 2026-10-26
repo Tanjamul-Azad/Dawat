@@ -20,6 +20,9 @@ it('takes only an unambiguous active single-wedding account straight to its work
     expect(singleWeddingDestination([{ ...wedding, state }], false)).toBeNull();
 });
 it('retains only explicit internal editor/list state through login', () => {
+  expect(safeReturnPath('/order/requests/?template=rose')).toBe('/order/requests/?template=rose');
+  expect(safeReturnPath('/admin/requests/')).toBe('/admin/requests/');
+  expect(safeReturnPath('/order/requests/?template=rose&next=//evil.test')).toBe('/dashboard/');
   expect(safeReturnPath(`/weddings/${id}/?section=photos`)).toBe(`/weddings/${id}/?section=photos`);
   expect(safeReturnPath('/dashboard/?all=1')).toBe('/dashboard/?all=1');
   for (const value of [

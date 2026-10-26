@@ -12,7 +12,9 @@ import {
   NotebookPen,
   UsersRound,
   UserRound,
+  MessageCircle,
 } from 'lucide-react';
+import { whatsappLink } from '@/features/production/catalog';
 import { api } from '@/features/production/client';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import { safeReturnPath } from '@/features/production/navigation';
@@ -132,6 +134,16 @@ export function WorkspaceFrame({
               {seller ? <ShieldCheck size={18} /> : <LayoutGrid size={18} />}{' '}
               {seller ? tr('Orders & access') : tr('My weddings')}
             </WorkspaceLink>
+            <WorkspaceLink href={seller ? '/admin/requests/' : '/order/requests/'} className={s.secondaryNav}>
+              <NotebookPen size={18} />
+              {locale === 'bn'
+                ? seller
+                  ? 'অনুরোধ ও কোটেশন'
+                  : 'আমার অর্ডার'
+                : seller
+                  ? 'Requests & quotes'
+                  : 'My orders'}
+            </WorkspaceLink>
             {wedding && (
               <>
                 <p className={s.navWedding}>{wedding.title}</p>
@@ -197,6 +209,15 @@ export function WorkspaceFrame({
             {children}
           </main>
         </div>
+        <a
+          className={s.whatsappSupport}
+          href={whatsappLink()}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="WhatsApp support"
+        >
+          <MessageCircle size={22} />
+        </a>
       </div>
     </NavigationGuard.Provider>
   );

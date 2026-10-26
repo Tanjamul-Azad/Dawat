@@ -19,6 +19,7 @@ import { useInvitationMusic } from './use-invitation-music';
 import { WaxSeal, WovenPattern } from './stationery-art';
 import s from './jamdani.module.css';
 import { withTemplateWording } from '@/features/production/template-wording';
+import { findTemplate } from '@/features/production/catalog';
 
 type Props = {
   workspace: Workspace;
@@ -256,11 +257,13 @@ export function GuestInvitation({
   const primaryEvent = events.find((event) => event.id === 'reception') ?? events[0];
   const primaryDate = primaryEvent.date;
   const place = eventText(primaryEvent, locale).address;
+  const design = findTemplate(invitation.templateId);
   return (
     <div
       ref={page}
       className={`${s.page} ${s[invitation.theme] ?? ''}`}
       lang={locale}
+      data-template={design.id}
       data-motion={motionOff || motionPaused ? 'quiet' : 'full'}
     >
       {(query.design || !authority) && <div className={s.demoNote}>{query.design ? t.preview : t.demo}</div>}
@@ -275,7 +278,7 @@ export function GuestInvitation({
         </a>
       )}
       <header key="reader" className={s.topbar}>
-        <span>{t.edition}</span>
+        <span>{locale === 'bn' ? `${design.name} সংস্করণ` : `${design.en} edition`}</span>
         <div className={s.readerControls}>
           {musicControl}
           <button
@@ -313,12 +316,12 @@ export function GuestInvitation({
         {phase !== 'closed' && (
           <picture className={s.heroBackdrop} aria-hidden="true">
             <source
-              srcSet="/artwork/jamdani-garden-v5-640.webp 640w, /artwork/jamdani-garden-v5-1024.webp 1024w"
+              srcSet={design.art || '/artwork/jamdani-garden-v5-640.webp'}
               sizes="(max-width: 680px) 100vw, 680px"
               type="image/webp"
             />
             <img
-              src="/artwork/jamdani-garden-v5-1024.webp"
+              src={design.art || '/artwork/jamdani-garden-v5-1024.webp'}
               alt=""
               width={1024}
               height={1536}
@@ -447,7 +450,7 @@ export function GuestInvitation({
             <section id="rsvp" className={s.previewPanel} tabIndex={-1}>
               <Heart size={25} />
               <h2>{t.previewTitle}</h2>
-              {authority ? (
+              {authority && authority.scope !== 'public-sample' ? (
                 <p>
                   {locale === 'bn'
                     ? 'এটি আপনার ব্যক্তিগত প্রিভিউ। বন্ধ করে তথ্য সম্পাদনা করুন। আমন্ত্রণ প্রকাশের পর অতিথিদের ব্যক্তিগত লিংক থেকে উত্তর ও শুভেচ্ছা নেওয়া যাবে।'
@@ -456,7 +459,7 @@ export function GuestInvitation({
               ) : (
                 <>
                   <p>{t.previewNote}</p>
-                  <a href="/studio/" className={s.primary}>
+                  <a href={`/order/?template=${design.id}`} className={s.primary}>
                     {t.customize}
                     <ArrowRight size={16} />
                   </a>

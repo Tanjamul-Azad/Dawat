@@ -61,7 +61,9 @@ export async function getWedding(
     protectedEventIds,
     mediaAvailable: Boolean(process.env.SUPABASE_MEDIA_SECRET_KEY?.trim()),
     wedding: { ...wedding, state: grant?.state ?? 'inactive' },
-    content: Object.keys(draft.content ?? {}).length ? draftContent.parse(draft.content) : emptyDraft(),
+    content: Object.keys(draft.content ?? {}).length
+      ? draftContent.parse(draft.content)
+      : { ...emptyDraft(), templateId: w.data.template_id as ReturnType<typeof emptyDraft>['templateId'] },
     revision: draft.revision,
     updatedAt: draft.updated_at,
     expiresAt: entitlement.expires_at,

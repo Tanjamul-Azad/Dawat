@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { mediaPhoto } from './media';
 import { meaningfulText } from './text';
 import { templateWording } from './template-wording';
+import { templateIds } from './catalog';
 
 export const uuid = z.uuid();
 const text = (max: number) => z.string().max(max);
@@ -29,6 +30,7 @@ export const draftContent = z
     message: text(2000),
     messageEn: text(2000).optional(),
     theme: z.literal('jamdani'),
+    templateId: z.enum(templateIds).optional(),
     photos: z
       .array(mediaPhoto)
       .max(5)

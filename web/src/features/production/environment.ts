@@ -13,7 +13,11 @@ export function assertEnvironment(input: {
   if (!['development', 'staging', 'recovery', 'production'].includes(environment))
     throw new Error('Unknown deployment environment.');
   if (input.backend === productionBackend) {
-    if (environment !== 'production' || input.origin !== productionOrigin || input.surface !== 'pilot')
+    if (
+      environment !== 'production' ||
+      input.origin !== productionOrigin ||
+      !['pilot', 'all'].includes(input.surface ?? '')
+    )
       throw new Error('Production backend requires its dedicated production deployment.');
     if (input.context && input.context !== 'production')
       throw new Error('Production credentials are forbidden in preview and development contexts.');
