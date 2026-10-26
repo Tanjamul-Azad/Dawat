@@ -161,6 +161,8 @@ Private originals and restricted derivatives need protected reads/short-lived UR
 | Personalized HTML/DTO, draft, management, responses, exports, claim/copy | Private/no-store; no cross-household cache               |
 | Signed media URLs                                                        | Scoped/short-lived; remaining validity explained         |
 
+Link previews (Open Graph/Twitter) read only the live general publication via `resolve_general_invitation`: couple names, earliest general-visible date and template. Personal routes (`/g/:token`, `/h/:householdId`) use the same slug-only data and emit no `og:url`; paused, revoked, expired, household-only or unavailable invitations get generic Dawat metadata. `/i/:slug/og.jpg` rechecks publication on every fetch (private/no-store); storefront/template images (`/og/*.jpg`) are built at deploy. Images are composed with sharp (Pango/HarfBuzz) and a bundled Bengali-only font because `next/og` does not shape Bengali; text the font cannot draw is left off the image.
+
 No private service-worker/offline caching in V1. Dirty edits remain visible in memory on network failure; any local recovery is explicitly scoped, cleared on sign-out and excludes wholesale sensitive DTO copies.
 
 ## 10. Jobs, performance and recovery

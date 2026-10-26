@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import './product-ui.css';
 import { ProductLocale } from '@/components/production/product-locale';
+import { appOrigin, brandShare, storefrontMetadata } from '@/features/production/share';
 
 const display = Fraunces({
   subsets: ['latin'],
@@ -32,8 +33,9 @@ const bangla = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'দাওয়াত — ভালোবাসার বিয়ের আমন্ত্রণ',
-  description: 'আপনাদের গল্প, নাম ধরে আমন্ত্রণ ও অতিথিদের উত্তর—নিজস্ব জামদানি নকশায় বিয়ের আয়োজন।',
+  // APP_ORIGIN makes preview images and og:url absolute for link crawlers.
+  metadataBase: appOrigin(),
+  ...storefrontMetadata({ ...brandShare, path: '/' }),
   robots: { index: false, follow: false },
 };
 

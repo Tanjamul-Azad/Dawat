@@ -2,18 +2,17 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { draftContent, uuid } from '@/features/production/contracts';
 import { InvitationPreview } from '@/components/production/invitation-preview';
+import { invitationMetadata } from '@/features/production/share';
 import { backendConfigured } from '@/server/config';
-import { database } from '@/server/supabase';
-export const metadata: Metadata = {
-  title: 'বিয়ের আমন্ত্রণ',
-  description: 'নবদম্পতি ও তাঁদের পরিবারের ভালোবাসার আমন্ত্রণ।',
-  robots: { index: false, follow: false },
-};
+import { publishedShare, resolveGeneralInvitation } from '@/server/share';
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  return invitationMetadata(slug, await publishedShare(slug), 'general');
+}
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   if (!backendConfigured() || !uuid.safeParse(slug).success) notFound();
-  const db = await database();
-  const r = await db.rpc('resolve_general_invitation', { p_slug: slug });
+  const r = await resolveGeneralInvitation(slug);
   if (r.error?.code === 'PT404') notFound();
   if (r.error) throw new Error('Invitation service unavailable.');
   return (
