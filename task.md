@@ -1,6 +1,6 @@
 # Execution tracker — Client V1
 
-**Payment closeout · 26 October2026:** Owner confirmed bKash Personal01606092143; number/reference/TrxID instructions implemented,296 tests and full local journey pass. Final live publication verification pending this push. No payment receiving information remains missing.
+**Payment closeout · 26 October2026:** Owner confirmed bKash Personal01606092143; number/reference/TrxID instructions live in commitf461015.296 tests, full local journey, live smoke and CI40326239582 pass. No payment receiving information remains missing. Admin manually checks funds before verification/activation.
 
 **26 October storefront update:** [current evidence](docs/build-evidence/storefront-commerce-2026-10-26.md) supersedes historical pilot-only work. Public UI, six designs, sales/payment APIs and admin/customer linkage live.293 tests/35files, optimized build, full local HTTP journey, live smoke and remote CI pass. Owner completed MFA and showed genuine seller panel for valtube101@gmail.com. Remaining: confirmed receiving payment details. Automatic guest messaging deferred.
 
