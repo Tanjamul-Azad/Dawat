@@ -57,6 +57,40 @@ if (pilot) {
     assert.equal((await request(path)).status, 404, path);
   assert.equal((await request('/health/')).status, 200);
 }
+if (!pilot) {
+  for (const path of ['/', '/templates/', '/pricing/', '/contact/', '/policies/']) {
+    const response = await request(path);
+    assert.equal(response.status, 200, path);
+    const content = await response.text();
+    assert.ok(content.includes('https://wa.me/8801606092143'), `${path}: support link`);
+    assert.ok(content.includes('index, follow'), `${path}: public index metadata`);
+  }
+  for (const template of ['jamdani', 'ivory', 'holud', 'garden', 'midnight', 'rose']) {
+    const response = await request(`/invite/?template=${template}`);
+    assert.equal(response.status, 200, template);
+    // The invitation hydrates from a loading cover; inspect its serialized server prop here.
+    assert.ok(
+      (await response.text()).replaceAll('\\', '').includes(`"templateId":"${template}"`),
+      `${template}: selected design prop`,
+    );
+  }
+  const selected = await request('/order/requests/?template=midnight', { redirect: 'manual' });
+  assert.equal(selected.status, 307);
+  assert.equal(
+    new URL(selected.headers.get('location'), base).searchParams.get('next'),
+    '/order/requests/?template=midnight',
+  );
+  for (const path of ['/api/sales/', '/api/admin/requests/'])
+    assert.equal((await request(path)).status, 401, path);
+  for (const path of ['/api/sales/', '/api/sales/payments/']) {
+    const response = await request(path, {
+      method: 'POST',
+      headers: { Origin: 'https://invalid.example', 'Content-Type': 'application/json' },
+      body: '{}',
+    });
+    assert.equal(response.status, 403, `${path}: origin enforcement`);
+  }
+}
 console.log(
   JSON.stringify({
     login: 200,
@@ -69,5 +103,6 @@ console.log(
     deepReturnPathPreserved: true,
     noEmailSent: true,
     pilotStaffAndStorefrontBlocked: pilot,
+    publicCollectionAndSalesGuards: !pilot,
   }),
 );

@@ -14,10 +14,11 @@
 
 ## Handoff and deployment checkpoint
 
-- Netlify `DAWAT_SURFACE` changed from pilot to all and Save clicked; last observed UI saving. Persisted value/newest deployment must be verified before claiming publication. Retain project URL to preserve guest links.
-- Local browser use subsequently disabled in Work settings, blocking Netlify UI verification. No Netlify API credential available locally. Git push/build remain available via GitHub.
-- Owner must privately enroll/verify authenticator at `/auth/mfa/`. No verified factor at latest database check; no MFA bypass.
+- Commit `6c4e7fb4f39347d9ee5c4af969d0f4cf7efbc86a` pushed and public website live at https://dawat-client-pilot.netlify.app/. Root200 with new storefront content proves all-surface runtime. Main URL retained to preserve guest links. GitHub verification40324105565 succeeded.
+- Live read-only smoke passes: public home/templates/pricing/contact/policies200, support link/index metadata, all six serialized preview design props, selected-template login return path, unauthenticated sales/admin denial, foreign-origin write denial, private export/history denial and nine login assets405329 bytes. No email or live account created by smoke.
+- Local browser use subsequently reported disabled despite enabled switches in owner screenshots. Netlify UI/deploy ID and a fresh live visual capture could not be inspected by agent. This did not prevent direct live HTTP verification; no browser restrictions bypassed.
+- Owner privately completed authenticator setup and verification, replied done and supplied a screenshot of the genuine `valtube101@gmail.com` seller panel with orders loaded. Hosted authenticated admin read is therefore owner-observed. No MFA bypass. Old retained QA/pilot records visible there are historical fixtures, not fabricated customer sales.
 - Receiving payment number/method awaits owner. Quotes must supply explicit payment instructions; customer can confirm via WhatsApp. Support number is not assumed to be a receiving account.
 - Automatic WhatsApp/email guest delivery explicitly deferred.
 
-This checkpoint does not claim unresolved publication, receiving-account configuration or owner MFA completion.
+Remaining business configuration: confirmed receiving payment account. Actual provider funds must always be checked by the seller before verification. No real payment transaction was performed as part of QA.

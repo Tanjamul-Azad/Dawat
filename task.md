@@ -1,6 +1,6 @@
 # Execution tracker — Client V1
 
-**26 October storefront update:** [current evidence](docs/build-evidence/storefront-commerce-2026-10-26.md) supersedes historical pilot-only work. Public UI, six designs, real sales/payment APIs and admin/customer linkage implemented.293 tests/35 files, optimized build and full synthetic HTTP journey pass. Remaining: verify live deployment after push, owner MFA enrollment, confirmed receiving payment details. Final administrator is valtube101@gmail.com. Automatic guest messaging deferred.
+**26 October storefront update:** [current evidence](docs/build-evidence/storefront-commerce-2026-10-26.md) supersedes historical pilot-only work. Public UI, six designs, sales/payment APIs and admin/customer linkage live.293 tests/35files, optimized build, full local HTTP journey, live smoke and remote CI pass. Owner completed MFA and showed genuine seller panel for valtube101@gmail.com. Remaining: confirmed receiving payment details. Automatic guest messaging deferred.
 
 Updated: **21 October 2026**. Build order: [plan](plan.md). Acceptance: [E001–E096](docs/qa/client-v1-corner-cases.md); current [96-case audit matrix](docs/qa/client-v1-audit-matrix-2026-10-21.md). Historical prototype/task IDs: [archive](docs/archive/planning-before-client-v1-2026-10-20/INDEX.md).
 
