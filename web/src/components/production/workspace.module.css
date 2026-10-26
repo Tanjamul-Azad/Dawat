@@ -1697,13 +1697,18 @@
   max-width: 1000px;
   width: calc(100% - 64px);
   margin: 65px auto;
-  padding: 44px 50px 55px 54%;
+  display: grid;
+  grid-template-columns: 47% minmax(0, 1fr);
+  column-gap: 42px;
+  align-content: start;
+  padding: 100px 40px 45px;
   min-height: 590px;
   border: 1px solid #e6d3b7;
   border-radius: 14px;
   background: url('/brand/paper-grain.svg'), linear-gradient(100deg, #f7eddb, #fffaf2);
   box-shadow: 0 7px 25px #6e482d0a;
 }
+.login > :not(.loginHeader):not(.loginStory) { grid-column: 2; }
 .login:before {
   content: '';
   position: absolute;
@@ -1761,7 +1766,7 @@
   margin: 0;
 }
 .login .loginHeader + .eyebrow {
-  margin-top: 30px;
+  margin-top: 0;
 }
 .login > .brand {
   margin-bottom: 35px;
@@ -1835,8 +1840,9 @@
   }
   .login {
     width: calc(100% - 48px);
-    padding-right: 30px;
-    padding-left: 51%;
+    grid-template-columns: 45% minmax(0, 1fr);
+    column-gap: 25px;
+    padding: 95px 30px 40px;
     min-height: 570px;
   }
   .login:before {
@@ -1984,6 +1990,7 @@
   }
   .login {
     width: calc(100% - 28px);
+    display: block;
     min-height: 0;
     margin: 26px auto;
     padding: 100px 22px 30px;
