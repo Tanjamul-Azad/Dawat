@@ -1,5 +1,7 @@
 # Execution tracker — Client V1
 
+**Visual update · 26 October 2026:** Reference-based home, six-card collection, payment, customer/seller/auth styling and generated floral assets deployed (`3035442`).296 tests, build/typecheck, isolated end-to-end sales/guest/media journey, live smoke and CI40349255588 pass. Browser access restored; actual desktop/mobile/live customer screenshots saved. [Evidence](docs/build-evidence/visual-reference-match-2026-10-26.md). Owner may request further visual refinement; no pixel-diff or physical-device certification claimed. Payment account settled; automated guest messaging remains deferred.
+
 **Payment closeout · 26 October2026:** Owner confirmed bKash Personal01606092143; number/reference/TrxID instructions live in commitf461015.296 tests, full local journey, live smoke and CI40326239582 pass. No payment receiving information remains missing. Admin manually checks funds before verification/activation.
 
 **26 October storefront update:** [current evidence](docs/build-evidence/storefront-commerce-2026-10-26.md) supersedes historical pilot-only work. Public UI, six designs, sales/payment APIs and admin/customer linkage live.293 tests/35files, optimized build, full local HTTP journey, live smoke and remote CI pass. Owner completed MFA and showed genuine seller panel for valtube101@gmail.com. Remaining: confirmed receiving payment details. Automatic guest messaging deferred.

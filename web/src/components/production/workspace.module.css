@@ -1708,7 +1708,9 @@
   background: url('/brand/paper-grain.svg'), linear-gradient(100deg, #f7eddb, #fffaf2);
   box-shadow: 0 7px 25px #6e482d0a;
 }
-.login > :not(.loginHeader):not(.loginStory) { grid-column: 2; }
+.login > :not(.loginHeader):not(.loginStory) {
+  grid-column: 2;
+}
 .login:before {
   content: '';
   position: absolute;
