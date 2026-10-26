@@ -2127,3 +2127,59 @@
   text-underline-offset: 3px;
   white-space: nowrap;
 }
+/* Card actions: equal-width buttons wherever a card appears. */
+.cardButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.cardButtonsSingle {
+  display: grid;
+  padding: 0 4px;
+}
+.cardButtonsSingle a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  border: 1px solid #a96d62;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--wine);
+}
+/* Order intro: preview beside the details on desktop; details first on phones. */
+.orderIntro {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+  margin-top: 28px;
+}
+.orderDetails h2 {
+  margin-top: 0;
+}
+.orderDetails .primary {
+  margin-block: 6px 4px;
+}
+@media (max-width: 760px) {
+  .orderIntro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    margin-top: 18px;
+  }
+  .orderDetails {
+    order: -1;
+  }
+  .orderDetails .primary {
+    width: 100%;
+    justify-content: center;
+  }
+  .orderPreview {
+    width: min(100%, 260px);
+    margin-inline: auto;
+  }
+  /* Keep the floating WhatsApp button off the last line of content. */
+  .site main {
+    padding-bottom: 72px;
+  }
+}

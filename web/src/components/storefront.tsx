@@ -114,7 +114,14 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
     </MotionConfig>
   );
 }
-export function TemplateCard({ template }: { template: (typeof templates)[number] }) {
+export function TemplateCard({
+  template,
+  selected = false,
+}: {
+  template: (typeof templates)[number];
+  /** Already chosen (order page): only offer the live preview. */
+  selected?: boolean;
+}) {
   const { locale } = useProductLocale();
   const bn = locale === 'bn';
   const reduceMotion = useReducedMotion();
@@ -159,13 +166,15 @@ export function TemplateCard({ template }: { template: (typeof templates)[number
         {bn ? template.mood : template.moodEn}{' '}
         <span>· {template.tier === 'premium' ? 'Premium' : 'Normal'}</span>
       </p>
-      <div className={s.cardButtons}>
+      <div className={selected ? s.cardButtonsSingle : s.cardButtons}>
         <a href={`/invite/?template=${template.id}`}>
           {bn ? 'নমুনা খুলুন' : 'Live preview'} <ArrowUpRight size={14} />
         </a>
-        <a href={`/order/?template=${template.id}`}>
-          {bn ? 'এটি বেছে নিন' : 'Choose design'} <ArrowRight size={14} />
-        </a>
+        {!selected && (
+          <a href={`/order/?template=${template.id}`}>
+            {bn ? 'এটি বেছে নিন' : 'Choose design'} <ArrowRight size={14} />
+          </a>
+        )}
       </div>
     </motion.article>
   );

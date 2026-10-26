@@ -117,11 +117,11 @@ export function OrderIntro({ templateId }: { templateId?: string }) {
           {t('আপনার আমন্ত্রণ, আর এক ধাপ দূরে', 'YOUR INVITATION, ONE STEP CLOSER')}
         </span>
         <h1>{t('আপনার আয়োজন শুরু হোক।', 'Let’s make it yours.')}</h1>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 45 }}>
-          <div style={{ maxWidth: 310 }}>
-            <TemplateCard template={template} />
+        <div className={s.orderIntro}>
+          <div className={s.orderPreview}>
+            <TemplateCard template={template} selected />
           </div>
-          <div>
+          <div className={s.orderDetails}>
             <h2>
               {locale === 'bn' ? template.name : template.en} · {taka(prices[template.tier], locale)}
             </h2>
