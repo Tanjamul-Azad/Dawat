@@ -18,8 +18,11 @@ import { templates, prices, whatsappLink } from '@/features/production/catalog';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import s from './storefront.module.css';
 import { ManualPayment } from './manual-payment';
-import { LotusMark } from './brand-mark';
+import { BrandLockup, LotusMark } from './brand-mark';
 import { motion, MotionConfig, useReducedMotion } from 'motion/react';
+
+export const taka = (amount: number, locale: 'bn' | 'en') =>
+  `৳${new Intl.NumberFormat(locale === 'bn' ? 'bn-BD' : 'en-BD').format(amount)}`;
 
 export function StorefrontFrame({ children }: { children: ReactNode }) {
   const { locale, setLocale } = useProductLocale();
@@ -33,10 +36,7 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
         </a>
         <header className={s.header}>
           <a className={s.brand} href="/">
-            <LotusMark size={38} />
-            <span className={s.brandWord}>
-              dawat.<small>DIGITAL BENGALI INVITATIONS</small>
-            </span>
+            <BrandLockup locale={locale} size={38} wordClassName={s.brandWord} />
           </a>
           <nav
             id="public-navigation"
@@ -71,7 +71,7 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
         <footer className={s.footer}>
           <div>
             <a className={s.brand} href="/">
-              dawat.
+              Dawat.
             </a>
             <p>
               {t('আমাদের উৎসব, আমাদের মতো।', 'Made for the way we celebrate.')}
@@ -153,7 +153,7 @@ export function TemplateCard({ template }: { template: (typeof templates)[number
       </a>
       <div className={s.cardTitle}>
         <h3>{bn ? template.name : template.en}</h3>
-        <strong>৳{prices[template.tier]}</strong>
+        <strong>{taka(prices[template.tier], locale)}</strong>
       </div>
       <p>
         {bn ? template.mood : template.moodEn}{' '}
@@ -185,7 +185,7 @@ export function TemplateCollection({ full = false }: { full?: boolean }) {
         <div>
           <span className={s.eyebrow}>
             {full
-              ? 'TIMELESS TRADITIONS, BEAUTIFULLY YOURS'
+              ? t('চিরায়ত ঐতিহ্য, একান্ত আপনার', 'TIMELESS TRADITIONS, BEAUTIFULLY YOURS')
               : t('আমাদের নকশার সংগ্রহ', 'THE DAWAT COLLECTION')}
           </span>
           <h2>
@@ -231,8 +231,8 @@ export function TemplateCollection({ full = false }: { full?: boolean }) {
       <div className={s.filters} role="group" aria-label={t('নকশার ধরন', 'Design category')}>
         {[
           ['all', t('সব নকশা', 'All designs')],
-          ['normal', 'Normal · ৳500'],
-          ['premium', 'Premium · ৳750'],
+          ['normal', `Normal · ${taka(prices.normal, locale)}`],
+          ['premium', `Premium · ${taka(prices.premium, locale)}`],
         ].map(([id, title]) => (
           <button key={id} onClick={() => setFilter(id)} aria-pressed={filter === id}>
             {title}
@@ -271,7 +271,13 @@ export function TemplateCollection({ full = false }: { full?: boolean }) {
     </section>
   );
 }
-export function Pricing({ standalone = false }: { standalone?: boolean }) {
+export function Pricing({
+  standalone = false,
+  paymentDetails = true,
+}: {
+  standalone?: boolean;
+  paymentDetails?: boolean;
+}) {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   return (
@@ -292,30 +298,30 @@ export function Pricing({ standalone = false }: { standalone?: boolean }) {
         {[
           [
             'Normal',
-            '500',
+            taka(prices.normal, locale),
             t('চেনা ঐতিহ্য, নিজের মতো।', 'Beautiful essentials, made personal.'),
             t('৩টি নকশা থেকে নির্বাচন', 'Choose from 3 designs'),
             '/templates/',
           ],
           [
             'Premium',
-            '750',
+            taka(prices.premium, locale),
             t('বিশেষ দিনের বিশেষ নকশা।', 'A little more extraordinary.'),
-            t('৩টি সমৃদ্ধ artwork-এর নকশা', '3 designs with rich original artwork'),
+            t('মৌলিক শিল্পকর্মে সাজানো ৩টি নকশা', '3 designs with rich original artwork'),
             '/templates/',
           ],
           [
             'Customized',
-            '1500',
+            taka(prices.custom, locale),
             t('আপনার ভাবনা থেকে শুরু।', 'Beginning with your vision.'),
-            t('আলোচনা করে নির্ধারিত custom design', 'A custom design with agreed scope'),
+            t('আলোচনা করে নির্ধারিত কাস্টম নকশা', 'A custom design with agreed scope'),
             whatsappLink('Customized ৳১,৫০০ প্যাকেজটি সম্পর্কে জানতে চাই।'),
           ],
         ].map(([name, price, note, feature, href]) => (
           <article key={name} className={name === 'Premium' ? s.featuredPrice : undefined}>
             <span>{name}</span>
             <h3>
-              ৳{price}
+              {price}
               <small>{t('/ আয়োজন', '/ celebration')}</small>
             </h3>
             <p>{note}</p>
@@ -325,7 +331,7 @@ export function Pricing({ standalone = false }: { standalone?: boolean }) {
                 t('বাংলা ও ইংরেজি আমন্ত্রণ', 'Bengali & English invitation'),
                 t('নিজের নাম, অনুষ্ঠান ও সর্বোচ্চ ৫টি ছবি', 'Your names, events & up to 5 photos'),
                 t('নাম ধরে ব্যক্তিগত লিংক ও অতিথির উত্তর', 'Named links & guest replies'),
-                t('নিজস্ব customer portal', 'Your own customer portal'),
+                t('নিজস্ব কাস্টমার পোর্টাল', 'Your own customer portal'),
               ].map((item) => (
                 <li key={item}>
                   <Check size={15} />
@@ -346,7 +352,17 @@ export function Pricing({ standalone = false }: { standalone?: boolean }) {
           </article>
         ))}
       </div>
-      <ManualPayment />
+      {paymentDetails ? (
+        <ManualPayment />
+      ) : (
+        <p className={s.paymentNote}>
+          {t(
+            'অর্ডার নিশ্চিত হওয়ার পর বিকাশে ম্যানুয়ালি পেমেন্ট করবেন। নম্বর ও নির্দেশনা আপনার অর্ডারের পেমেন্ট ধাপে পাবেন।',
+            'Pay manually by bKash after your order is confirmed. The number and instructions appear in your order’s payment step.',
+          )}{' '}
+          <a href="/pricing/#payment">{t('পেমেন্টের বিস্তারিত', 'Payment details')}</a>
+        </p>
+      )}
       {standalone && <FAQ />}
     </section>
   );
@@ -357,7 +373,7 @@ export function FAQ() {
   return (
     <section className={s.faq}>
       <div>
-        <span className={s.eyebrow}>A LITTLE CLARITY</span>
+        <span className={s.eyebrow}>{t('জেনে রাখুন', 'A LITTLE CLARITY')}</span>
         <h2>{t('কিছু প্রশ্ন, সহজ উত্তর।', 'A few questions, answered.')}</h2>
       </div>
       <div>
@@ -372,7 +388,7 @@ export function FAQ() {
           [
             t('পেমেন্টের পরই কি পোর্টাল খুলবে?', 'Does payment immediately unlock my portal?'),
             t(
-              'Transaction ID জমা দেওয়ার পর আমাদের টিম আসল লেনদেন মিলিয়ে দেখবে। যাচাই ও activation সম্পন্ন হলে আপনার অ্যাকাউন্টে পোর্টাল খুলবে।',
+              'Transaction ID জমা দেওয়ার পর আমাদের টিম আসল লেনদেন মিলিয়ে দেখবে। যাচাই শেষে পোর্টাল চালু হলে আপনার অ্যাকাউন্টে তা খুলবে।',
               'After you submit the transaction ID, our team checks the actual transfer. Your portal opens after verification and activation.',
             ),
           ],
@@ -386,7 +402,7 @@ export function FAQ() {
           [
             t('নকশা ও তথ্য কি বদলানো যাবে?', 'Can I edit my invitation?'),
             t(
-              'পোর্টাল থেকে নাম, অনুষ্ঠান, ছবি ও বক্তব্য সম্পাদনা করে প্রিভিউ দেখতে পারবেন। প্রকাশ করার পরেই পরিবর্তন অতিথিদের কাছে যাবে। কাস্টম artwork-এর পরিবর্তন আলোচনা করে নির্ধারিত হবে।',
+              'পোর্টাল থেকে নাম, অনুষ্ঠান, ছবি ও বক্তব্য সম্পাদনা করে প্রিভিউ দেখতে পারবেন। প্রকাশ করার পরেই পরিবর্তন অতিথিদের কাছে যাবে। কাস্টম শিল্পকর্মের পরিবর্তন আলোচনা করে নির্ধারিত হবে।',
               'Edit names, events, photographs and wording in your portal, then preview. Guests see changes only after publication. Custom artwork revisions follow the agreed scope.',
             ),
           ],
@@ -568,10 +584,10 @@ export function StorefrontHome() {
         </div>
         <LotusMark size={105} />
       </section>
-      <Pricing />
+      <Pricing paymentDetails={false} />
       <FAQ />
       <section className={s.finalCta}>
-        <span>WITH LOVE, DAWAT.</span>
+        <span>{t('ভালোবাসায়, Dawat.', 'WITH LOVE, DAWAT.')}</span>
         <h2>{t('আপনাদের গল্পটা শুরু হোক।', 'Let your story begin.')}</h2>
         <a className={s.primary} href="/templates/">
           {t('নকশার সংগ্রহ দেখুন', 'Explore the collection')} <ArrowRight size={16} />

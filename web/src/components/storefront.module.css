@@ -1031,7 +1031,6 @@
 }
 .brandWord {
   display: block;
-  text-transform: capitalize;
 }
 .brand small {
   font-size: 7px;
@@ -1135,15 +1134,6 @@
   position: absolute;
 }
 .heroArt figcaption {
-  display: none;
-}
-.site:has(.hero) .header .brand > svg {
-  display: none;
-}
-.site:has(.hero) .header .brandWord {
-  text-transform: none;
-}
-.site:has(.hero) .header .brand small {
   display: none;
 }
 .values {
@@ -2112,4 +2102,28 @@
   .featureStories article h2 {
     font-size: 21px;
   }
+}
+
+/* Bangla taglines need a readable size and no tracking. */
+.brand small:lang(bn) {
+  font-size: 10px;
+  letter-spacing: 0;
+}
+@media (max-width: 760px) {
+  .brand small:lang(bn) {
+    font-size: 8px;
+  }
+}
+.paymentNote {
+  max-width: 720px;
+  margin: 34px auto 0 !important;
+  text-align: center;
+  font-size: 14px;
+  color: #6b4a33;
+}
+.paymentNote a {
+  color: var(--wine);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
 }

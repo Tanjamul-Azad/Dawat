@@ -21,3 +21,26 @@ export function LotusMark({ size = 34, style }: { size?: number; style?: CSSProp
     </svg>
   );
 }
+
+/** The one Dawat lockup: lotus, "Dawat." wordmark and a tagline in the reader's language. */
+export function BrandLockup({
+  locale,
+  size = 34,
+  wordClassName,
+}: {
+  locale: 'bn' | 'en';
+  size?: number;
+  wordClassName?: string;
+}) {
+  return (
+    <>
+      <LotusMark size={size} />
+      <span className={wordClassName}>
+        Dawat.
+        <small lang={locale}>
+          {locale === 'bn' ? 'বাঙালি ডিজিটাল আমন্ত্রণ' : 'DIGITAL BENGALI INVITATIONS'}
+        </small>
+      </span>
+    </>
+  );
+}

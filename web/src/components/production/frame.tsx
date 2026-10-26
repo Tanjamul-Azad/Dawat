@@ -19,7 +19,7 @@ import { api } from '@/features/production/client';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
-import { LotusMark } from '../brand-mark';
+import { BrandLockup } from '../brand-mark';
 const NavigationGuard = createContext<{ pending: boolean; save: () => Promise<boolean> } | null>(null);
 export function WorkspaceLink(props: ComponentProps<typeof Link>) {
   const guard = useContext(NavigationGuard);
@@ -79,11 +79,7 @@ export function WorkspaceFrame({
         </a>
         <header className={s.topbar}>
           <WorkspaceLink href="/dashboard/" className={s.brand}>
-            <LotusMark size={34} />
-            <span>
-              {tr('dawat.')}
-              <small>DIGITAL BENGALI INVITATIONS</small>
-            </span>
+            <BrandLockup locale={locale} size={34} />
           </WorkspaceLink>
           <small>{seller ? tr('Seller workspace') : tr('Your wedding, thoughtfully arranged')}</small>
           <div className={s.account}>

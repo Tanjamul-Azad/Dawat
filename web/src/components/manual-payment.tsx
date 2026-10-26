@@ -60,7 +60,8 @@ export function ManualPayment({
     <section
       className={s.panel}
       data-embedded={embedded}
-      aria-label={t('bKash পেমেন্টের নির্দেশনা', 'bKash payment instructions')}
+      id="payment"
+      aria-label={t('বিকাশ পেমেন্টের নির্দেশনা', 'bKash payment instructions')}
     >
       <div className={s.infoBox}>
         <div className={s.heading}>
@@ -88,13 +89,13 @@ export function ManualPayment({
             <strong className={s.method}>bKash Personal</strong>
           </div>
           <CopyDetail
-            label={t('বিকাশ personal নম্বর', 'bKash personal number')}
+            label={t('বিকাশ পার্সোনাল নম্বর', 'bKash personal number')}
             value={manualPayment.number}
           />
           {reference && (
             <CopyDetail
               key={reference}
-              label={t('Reference-এ লিখুন', 'Transfer reference')}
+              label={t('রেফারেন্সে লিখুন', 'Transfer reference')}
               value={reference}
             />
           )}
@@ -117,7 +118,7 @@ export function ManualPayment({
             <li>
               <strong>{t('বিকাশে টাকা পাঠান', 'Send Money through bKash')}</strong>
               {t(
-                `bKash Personal ${manualPayment.number}-এ Send Money করুন। Reference-এ ${reference} লিখুন।`,
+                `বিকাশ পার্সোনাল ${manualPayment.number} নম্বরে Send Money করুন। রেফারেন্সে ${reference} লিখুন।`,
                 `Use Send Money to bKash Personal ${manualPayment.number}. Enter ${reference} as the reference and check the number and amount.`,
               )}
             </li>
@@ -134,7 +135,7 @@ export function ManualPayment({
         <>
           <p className={s.note}>
             {t(
-              'অর্ডারের মূল্য, মেয়াদ ও শর্ত নিশ্চিত হওয়ার পর এই personal নম্বরে Send Money করুন। আপনার অর্ডারের পেমেন্ট ধাপে নিজের reference এবং Transaction ID জমা দেওয়ার ফর্ম পাবেন।',
+              'অর্ডারের মূল্য, মেয়াদ ও শর্ত নিশ্চিত হওয়ার পর এই পার্সোনাল নম্বরে Send Money করুন। আপনার অর্ডারের পেমেন্ট ধাপে নিজের রেফারেন্স এবং Transaction ID জমা দেওয়ার ফর্ম পাবেন।',
               'After agreeing your order price, term and scope, use Send Money to this personal number. Your order’s payment step provides your reference and the transaction ID form.',
             )}
           </p>
@@ -147,7 +148,7 @@ export function ManualPayment({
       {!embedded && (
         <p className={s.note}>
           {t(
-            'টাকা পাঠানোর পর আমাদের টিম আসল লেনদেন মিলিয়ে যাচাই করবে। যাচাই ও activation সম্পন্ন হলে পোর্টাল খুলবে।',
+            'টাকা পাঠানোর পর আমাদের টিম আসল লেনদেন মিলিয়ে যাচাই করবে। যাচাই শেষে পোর্টাল চালু হলে তা খুলবে।',
             'Our team manually matches the actual transfer. Your portal opens after verification and activation.',
           )}
         </p>

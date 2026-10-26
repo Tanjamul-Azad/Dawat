@@ -1,6 +1,6 @@
 'use client';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-import { StorefrontFrame, TemplateCard } from './storefront';
+import { StorefrontFrame, TemplateCard, taka } from './storefront';
 import { findTemplate, prices, whatsappLink } from '@/features/production/catalog';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import { useProductLocale } from './production/product-locale';
@@ -12,7 +12,7 @@ export function ContactPage() {
   return (
     <StorefrontFrame>
       <section className={s.simple}>
-        <span className={s.eyebrow}>LET’S MAKE SOMETHING PERSONAL</span>
+        <span className={s.eyebrow}>{t('চলুন, ব্যক্তিগত কিছু গড়ি', 'LET’S MAKE SOMETHING PERSONAL')}</span>
         <h1>{t('আপনার আয়োজনের কথা বলুন।', 'Tell us about your celebration.')}</h1>
         <p>
           {t(
@@ -30,7 +30,7 @@ export function ContactPage() {
         <h2>{t('ইতোমধ্যে অর্ডার করেছেন?', 'Already have an order?')}</h2>
         <p>
           {t(
-            'আপনার verified ইমেইল দিয়ে অর্ডারের পৃষ্ঠায় প্রবেশ করুন। অনুরোধ, কোটেশন ও পেমেন্টের অবস্থা সেখানেই পাবেন।',
+            'যাচাই করা ইমেইল দিয়ে অর্ডারের পৃষ্ঠায় প্রবেশ করুন। অনুরোধ, কোটেশন ও পেমেন্টের অবস্থা সেখানেই পাবেন।',
             'Sign in with your verified email to see your request, quote and payment progress.',
           )}
         </p>
@@ -49,7 +49,7 @@ export function PoliciesPage() {
   return (
     <StorefrontFrame>
       <section className={s.simple}>
-        <span className={s.eyebrow}>CLEAR EXPECTATIONS</span>
+        <span className={s.eyebrow}>{t('স্পষ্ট শর্ত', 'CLEAR EXPECTATIONS')}</span>
         <h1>{t('সেবার শর্ত ও গোপনীয়তা', 'Service & privacy')}</h1>
         <p>
           {t(
@@ -113,7 +113,9 @@ export function OrderIntro({ templateId }: { templateId?: string }) {
   return (
     <StorefrontFrame>
       <section className={s.simple}>
-        <span className={s.eyebrow}>YOUR INVITATION, ONE STEP CLOSER</span>
+        <span className={s.eyebrow}>
+          {t('আপনার আমন্ত্রণ, আর এক ধাপ দূরে', 'YOUR INVITATION, ONE STEP CLOSER')}
+        </span>
         <h1>{t('আপনার আয়োজন শুরু হোক।', 'Let’s make it yours.')}</h1>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 45 }}>
           <div style={{ maxWidth: 310 }}>
@@ -121,11 +123,11 @@ export function OrderIntro({ templateId }: { templateId?: string }) {
           </div>
           <div>
             <h2>
-              {locale === 'bn' ? template.name : template.en} · ৳{prices[template.tier]}
+              {locale === 'bn' ? template.name : template.en} · {taka(prices[template.tier], locale)}
             </h2>
             <p>
               {t(
-                'নিজের ইমেইল যাচাই করে আয়োজনের তথ্য দিন। মূল্য, hosting মেয়াদ ও কাজের শর্ত দেখেই অর্ডারে সম্মতি দেবেন। এরপর পেমেন্টের নির্দেশনা ও transaction ID জমা দেওয়ার সুযোগ পাবেন।',
+                'নিজের ইমেইল যাচাই করে আয়োজনের তথ্য দিন। মূল্য, লিংক চালু থাকার মেয়াদ ও কাজের শর্ত দেখেই অর্ডারে সম্মতি দেবেন। এরপর পেমেন্টের নির্দেশনা ও Transaction ID জমা দেওয়ার সুযোগ পাবেন।',
                 'Verify your own email and share your event details. Review the price, hosting term and scope before accepting. Then follow the payment instructions and submit your transaction ID.',
               )}
             </p>
@@ -135,7 +137,7 @@ export function OrderIntro({ templateId }: { templateId?: string }) {
             </a>
             <p>
               {t(
-                'অ্যাকাউন্ট খুললেই payment নেওয়া হয় না। আপনার ইমেইলেই আপনার অর্ডার ও পোর্টাল থাকবে।',
+                'অ্যাকাউন্ট খুললেই পেমেন্ট নেওয়া হয় না। আপনার ইমেইলেই আপনার অর্ডার ও পোর্টাল থাকবে।',
                 'Creating an account does not take payment. Your own email keeps your order and portal together.',
               )}
             </p>

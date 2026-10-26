@@ -36,7 +36,6 @@ export const banglaCopy: Record<string, string> = {
   RETRY_UPLOAD: 'আবার আপলোড করুন',
   INVALID_IMAGE: 'ছবিটি গ্রহণ করা যায়নি',
   'Skip to content': 'মূল অংশে যান',
-  'dawat.': 'দাওয়াত',
   'Seller workspace': 'বিক্রেতার কর্মপরিসর',
   'Your wedding, thoughtfully arranged': 'আপনার বিয়ের আয়োজন, যত্নে সাজানো',
   'Sign out': 'বেরিয়ে যান',

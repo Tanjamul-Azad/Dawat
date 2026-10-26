@@ -6,7 +6,7 @@ import { api, RequestError } from '@/features/production/client';
 import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
 import { latinDigits } from '@/features/production/copy';
-import { LotusMark } from '../brand-mark';
+import { BrandLockup } from '../brand-mark';
 function LoginStory() {
   const { locale } = useProductLocale();
   return (
@@ -73,11 +73,7 @@ export function Login({ next, available = true }: { next: string; available?: bo
         <LoginStory />
         <div className={s.loginHeader}>
           <a href="/" className={s.brand}>
-            <LotusMark size={37} />
-            <span>
-              {tr('dawat.')}
-              <small>DIGITAL BENGALI INVITATIONS</small>
-            </span>
+            <BrandLockup locale={locale} size={37} />
           </a>
           <button className={s.quiet} onClick={() => setLocale(locale === 'bn' ? 'en' : 'bn')}>
             {locale === 'bn' ? 'English' : 'বাংলা'}
@@ -179,7 +175,7 @@ export function Login({ next, available = true }: { next: string; available?: bo
   );
 }
 export function Mfa({ existingFactor }: { existingFactor: string | null }) {
-  const { tr } = useProductLocale();
+  const { tr, locale } = useProductLocale();
   const [factorId, setFactorId] = useState(existingFactor);
   const [qr, setQr] = useState('');
   const [code, setCode] = useState('');
@@ -222,11 +218,7 @@ export function Mfa({ existingFactor }: { existingFactor: string | null }) {
       <main className={s.login}>
         <LoginStory />
         <a href="/dashboard/" className={s.brand}>
-          <LotusMark size={37} />
-          <span>
-            {tr('dawat.')}
-            <small>DIGITAL BENGALI INVITATIONS</small>
-          </span>
+          <BrandLockup locale={locale} size={37} />
         </a>
         <h1>{tr('One more check.')}</h1>
         <p>{tr('Seller controls require an authenticator code.')}</p>

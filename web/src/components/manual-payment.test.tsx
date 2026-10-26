@@ -11,10 +11,10 @@ it('copies the owner-confirmed receiving number and offers selection on clipboar
   const copy = vi.fn().mockResolvedValueOnce(undefined).mockRejectedValueOnce(new Error('Denied'));
   vi.stubGlobal('navigator', { clipboard: { writeText: copy } });
   render(<ManualPayment requestId="20000000-0000-4000-8000-000000000123" amountMinor={75000} />);
-  fireEvent.click(screen.getByRole('button', { name: 'বিকাশ personal নম্বর কপি করুন' }));
+  fireEvent.click(screen.getByRole('button', { name: 'বিকাশ পার্সোনাল নম্বর কপি করুন' }));
   await screen.findByText('কপি হয়েছে।');
   expect(copy).toHaveBeenLastCalledWith('01606092143');
-  fireEvent.click(screen.getByRole('button', { name: 'Reference-এ লিখুন কপি করুন' }));
+  fireEvent.click(screen.getByRole('button', { name: 'রেফারেন্সে লিখুন কপি করুন' }));
   await screen.findByText('নিচের নির্বাচিত লেখাটি নিজে কপি করুন।');
   const field = screen.getByDisplayValue('DW-00000123') as HTMLInputElement;
   expect(document.activeElement).toBe(field);
