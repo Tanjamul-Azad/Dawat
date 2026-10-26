@@ -2065,13 +2065,12 @@
   }
 }
 
-/* Bangla taglines need a readable size and no tracking. */
-.brand small:lang(bn) {
-  font-size: 9px;
-  letter-spacing: 0;
+/* Brand tagline: readable at every size; Bangla needs more size and no tracking. */
+.brand small {
+  font-size: 9px !important;
+  letter-spacing: 0.1em !important;
 }
-@media (max-width: 760px) {
-  .brand small:lang(bn) {
-    font-size: 8px;
-  }
+.brand small:lang(bn) {
+  font-size: 11px !important;
+  letter-spacing: 0 !important;
 }
