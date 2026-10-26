@@ -6,6 +6,30 @@ import { api, RequestError } from '@/features/production/client';
 import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
 import { latinDigits } from '@/features/production/copy';
+import { LotusMark } from '../brand-mark';
+function LoginStory() {
+  const { locale } = useProductLocale();
+  return (
+    <div className={s.loginStory} aria-hidden="true">
+      <h2>
+        {locale === 'bn' ? (
+          <>
+            আপনার আমন্ত্রণ
+            <br />
+            সবসময় আপনার সঙ্গে
+          </>
+        ) : (
+          <>
+            Your invitation.
+            <br />
+            Always with you.
+          </>
+        )}
+      </h2>
+      <p>{locale === 'bn' ? 'ভালোবাসার আয়োজন, যত্নে সাজানো।' : 'A celebration arranged with care.'}</p>
+    </div>
+  );
+}
 export function Login({ next, available = true }: { next: string; available?: boolean }) {
   const { tr, locale, setLocale } = useProductLocale();
   const [email, setEmail] = useState('');
@@ -46,9 +70,14 @@ export function Login({ next, available = true }: { next: string; available?: bo
   return (
     <div className={s.shell}>
       <main className={s.login}>
+        <LoginStory />
         <div className={s.loginHeader}>
           <a href="/" className={s.brand}>
-            {tr('dawat.')}
+            <LotusMark size={37} />
+            <span>
+              {tr('dawat.')}
+              <small>DIGITAL BENGALI INVITATIONS</small>
+            </span>
           </a>
           <button className={s.quiet} onClick={() => setLocale(locale === 'bn' ? 'en' : 'bn')}>
             {locale === 'bn' ? 'English' : 'বাংলা'}
@@ -191,8 +220,13 @@ export function Mfa({ existingFactor }: { existingFactor: string | null }) {
   return (
     <div className={s.shell}>
       <main className={s.login}>
+        <LoginStory />
         <a href="/dashboard/" className={s.brand}>
-          {tr('dawat.')}
+          <LotusMark size={37} />
+          <span>
+            {tr('dawat.')}
+            <small>DIGITAL BENGALI INVITATIONS</small>
+          </span>
         </a>
         <h1>{tr('One more check.')}</h1>
         <p>{tr('Seller controls require an authenticator code.')}</p>

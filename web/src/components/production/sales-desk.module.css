@@ -219,6 +219,235 @@
 .cancel summary {
   cursor: pointer;
 }
+.paymentPaper {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 38px 34px;
+  margin: 26px -4px 0;
+  border: 1px solid #e5d5bc;
+  border-radius: 18px;
+  background: url('/brand/paper-grain.svg'), linear-gradient(110deg, #fffcf5, #f8efdf);
+  box-shadow: 0 8px 28px #73512a08;
+  color: #2b231f;
+}
+.quoteSummary {
+  border-block: 1px solid #dfcdb3;
+  padding: 12px 0;
+  font-size: 13px;
+  color: #6b2635;
+}
+.quoteSummary summary {
+  cursor: pointer;
+}
+.quoteSummary p {
+  margin: 12px 0 0;
+}
+.paymentPaper:before,
+.paymentPaper:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  width: 180px;
+  height: 210px;
+  background: url('/brand/botanical-gold-match.webp') center/contain no-repeat;
+  filter: sepia(1) saturate(0.65);
+  opacity: 0.58;
+}
+.paymentPaper:before {
+  right: -30px;
+  top: 6px;
+  transform: rotate(180deg);
+}
+.paymentPaper:after {
+  left: -78px;
+  bottom: 0;
+  transform: rotate(-20deg);
+  opacity: 0.42;
+}
+.paymentEyebrow {
+  display: block;
+  color: #a28460;
+  font: 600 11px var(--font-ui);
+  letter-spacing: 2.5px;
+  margin-bottom: 15px;
+}
+.paymentPaper .paymentTitle {
+  font:
+    600 clamp(25px, 2.7vw, 38px) / 1.45 var(--font-bangla),
+    var(--font-display),
+    serif;
+  color: #741126;
+  margin: 0 0 12px;
+  max-width: 90%;
+}
+.paymentPaper .paymentIntro {
+  color: #29241f;
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 85%;
+  margin-bottom: 24px;
+}
+.paymentPaper .paymentFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.paymentFields > h3,
+.paymentFields > p,
+.paymentFields > button,
+.paymentFields > .paymentReassurance {
+  grid-column: 1/-1;
+}
+.paymentFields h3 {
+  border-top: 1px solid #dac4a4;
+  padding-top: 16px;
+  margin: 3px 0 1px;
+  font:
+    600 23px/1.5 var(--font-bangla),
+    var(--font-display),
+    serif;
+  color: #741126;
+}
+.paymentFields label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #322a22;
+  gap: 6px;
+}
+.paymentPaper .paymentFields input {
+  background: #fffaf1a6;
+  border: 1px solid #bcae99;
+  border-radius: 5px;
+  min-height: 43px;
+  padding: 9px 12px;
+  color: #27211a;
+  font-size: 15px;
+}
+.paymentFields > p {
+  font-size: 11px !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+.paymentFields > button {
+  width: 100%;
+  margin-top: 1px;
+  background: linear-gradient(110deg, #85162e, #650c20);
+  border-color: #741126;
+  border-radius: 5px;
+  font-size: 14px;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
+.paymentReassurance {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 17px;
+  border: 1px solid #b8c29b;
+  border-radius: 8px;
+  background: #e8ebd8;
+  color: #274b21;
+  margin-top: -3px;
+}
+.paymentReassurance > svg {
+  flex-shrink: 0;
+}
+.paymentReassurance strong {
+  font-weight: 600;
+  font-size: 13px;
+}
+.paymentPaper .paymentReassurance p {
+  font-size: 12px;
+  color: #343d27;
+  line-height: 1.6;
+  margin: 2px 0 0;
+}
+.paymentHelp {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 18px;
+  border-bottom: 1px solid #bfa17b;
+  padding-bottom: 4px;
+  font-size: 12px;
+  color: #791b2d;
+}
+@media (max-width: 760px) {
+  .paymentPaper {
+    padding: 23px 18px;
+    margin: 22px -6px 0;
+    border-radius: 15px;
+  }
+  .paymentPaper:before {
+    width: 130px;
+    height: 150px;
+    right: -28px;
+    top: 0;
+    opacity: 0.35;
+  }
+  .paymentPaper:after {
+    width: 100px;
+    height: 150px;
+    left: -48px;
+  }
+  .paymentEyebrow {
+    font-size: 9px;
+    margin-bottom: 10px;
+    letter-spacing: 1.7px;
+  }
+  .paymentPaper .paymentTitle {
+    font-size: 27px;
+    margin-bottom: 8px;
+    max-width: 100%;
+  }
+  .paymentPaper .paymentIntro {
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 100%;
+    margin-bottom: 18px;
+  }
+  .paymentPaper .paymentFields {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .paymentFields h3 {
+    font-size: 21px;
+    padding-top: 15px;
+  }
+  .paymentFields > p {
+    font-size: 10px !important;
+  }
+  .paymentFields label {
+    font-size: 12px;
+  }
+  .paymentPaper .paymentFields input {
+    font-size: 16px;
+    min-height: 42px;
+  }
+  .paymentFields > button {
+    font-size: 13px;
+    padding: 11px 14px;
+  }
+  .paymentReassurance {
+    align-items: flex-start;
+    padding: 11px 12px;
+    gap: 10px;
+  }
+  .paymentReassurance strong {
+    font-size: 12px;
+  }
+  .paymentPaper .paymentReassurance p {
+    font-size: 11px;
+  }
+  .paymentHelp {
+    font-size: 11px;
+  }
+}
 .support {
   position: fixed;
   bottom: 20px;

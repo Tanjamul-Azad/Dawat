@@ -19,6 +19,7 @@ import { api } from '@/features/production/client';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
+import { LotusMark } from '../brand-mark';
 const NavigationGuard = createContext<{ pending: boolean; save: () => Promise<boolean> } | null>(null);
 export function WorkspaceLink(props: ComponentProps<typeof Link>) {
   const guard = useContext(NavigationGuard);
@@ -45,6 +46,7 @@ export function WorkspaceFrame({
   onOverview,
   onEdit,
   navigationGuard,
+  section,
 }: {
   children: React.ReactNode;
   email?: string;
@@ -53,6 +55,7 @@ export function WorkspaceFrame({
   onOverview?: () => void;
   onEdit?: () => void;
   navigationGuard?: { pending: boolean; save: () => Promise<boolean> };
+  section?: 'requests';
 }) {
   const { tr, locale, setLocale } = useProductLocale();
   const [error, setError] = useState('');
@@ -76,7 +79,11 @@ export function WorkspaceFrame({
         </a>
         <header className={s.topbar}>
           <WorkspaceLink href="/dashboard/" className={s.brand}>
-            {tr('dawat.')}
+            <LotusMark size={34} />
+            <span>
+              {tr('dawat.')}
+              <small>DIGITAL BENGALI INVITATIONS</small>
+            </span>
           </WorkspaceLink>
           <small>{seller ? tr('Seller workspace') : tr('Your wedding, thoughtfully arranged')}</small>
           <div className={s.account}>
@@ -113,9 +120,9 @@ export function WorkspaceFrame({
               </details>
             )}
             {email && (
-              <button className={s.quiet} onClick={logout} disabled={busy}>
+              <button className={s.quiet} onClick={logout} disabled={busy} aria-label={tr('Sign out')}>
                 <LogOut size={16} />
-                {tr('Sign out')}
+                <span>{tr('Sign out')}</span>
               </button>
             )}
           </div>
@@ -129,12 +136,16 @@ export function WorkspaceFrame({
             <WorkspaceLink
               className={wedding ? s.secondaryNav : undefined}
               href={seller ? '/admin/orders/' : '/dashboard/?all=1'}
-              aria-current={!wedding ? 'page' : undefined}
+              aria-current={!wedding && section !== 'requests' ? 'page' : undefined}
             >
               {seller ? <ShieldCheck size={18} /> : <LayoutGrid size={18} />}{' '}
               {seller ? tr('Orders & access') : tr('My weddings')}
             </WorkspaceLink>
-            <WorkspaceLink href={seller ? '/admin/requests/' : '/order/requests/'} className={s.secondaryNav}>
+            <WorkspaceLink
+              href={seller ? '/admin/requests/' : '/order/requests/'}
+              className={s.secondaryNav}
+              aria-current={!wedding && section === 'requests' ? 'page' : undefined}
+            >
               <NotebookPen size={18} />
               {locale === 'bn'
                 ? seller

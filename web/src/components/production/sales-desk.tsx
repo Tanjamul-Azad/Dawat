@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { ArrowRight, Check, Clock3, FileText, MessageCircle, Plus, RefreshCw } from 'lucide-react';
+import { ArrowRight, Check, Clock3, FileText, MessageCircle, Plus, RefreshCw, Info } from 'lucide-react';
 import { api } from '@/features/production/client';
 import {
   findTemplate,
@@ -164,7 +164,7 @@ export function SalesDesk({
         : r.state === filter),
   );
   return (
-    <WorkspaceFrame email={email} seller={seller}>
+    <WorkspaceFrame email={email} seller={seller} section="requests">
       <div className={s.intro}>
         <div>
           <p className={s.eyebrow}>
@@ -347,22 +347,24 @@ export function SalesDesk({
                 )}
               </button>
             ))}
-            <div className={s.actions}>
-              <button
-                className={s.secondary}
-                disabled={busy || cursors.length < 2}
-                onClick={() => void reload(cursors[cursors.length - 2], cursors.slice(0, -1))}
-              >
-                {t('আগের', 'Previous')}
-              </button>
-              <button
-                className={s.secondary}
-                disabled={busy || !page.nextCursor}
-                onClick={() => void reload(page.nextCursor!, [...cursors, page.nextCursor!])}
-              >
-                {t('পরের', 'Next')}
-              </button>
-            </div>
+            {(page.nextCursor || cursors.length > 1) && (
+              <div className={s.actions}>
+                <button
+                  className={s.secondary}
+                  disabled={busy || cursors.length < 2}
+                  onClick={() => void reload(cursors[cursors.length - 2], cursors.slice(0, -1))}
+                >
+                  {t('আগের', 'Previous')}
+                </button>
+                <button
+                  className={s.secondary}
+                  disabled={busy || !page.nextCursor}
+                  onClick={() => void reload(page.nextCursor!, [...cursors, page.nextCursor!])}
+                >
+                  {t('পরের', 'Next')}
+                </button>
+              </div>
+            )}
           </aside>
           {current && (
             <section key={current.id} className={`${s.panel} ${c.detail}`}>
@@ -395,7 +397,7 @@ export function SalesDesk({
                   </li>
                 ))}
               </ol>
-              <div className={c.brief}>
+              <div className={c.brief} hidden={current.state === 'ordered'}>
                 <strong>
                   {current.template_id === 'custom'
                     ? 'Customized'
@@ -406,7 +408,20 @@ export function SalesDesk({
                 </strong>
                 <p>{current.brief}</p>
               </div>
-              {current.package_name && (
+              {current.package_name && current.state === 'ordered' && (
+                <details className={c.quoteSummary}>
+                  <summary>
+                    {t('সম্মত কোটেশন', 'Agreed quote')} · {current.package_name} ·{' '}
+                    {amount(current.amount_minor!)}
+                  </summary>
+                  <p>
+                    {current.term_days} {t('দিন · প্রথম প্রকাশ থেকে', 'days · from first publication')}
+                  </p>
+                  <p className={c.prewrap}>{current.quote_notes}</p>
+                  <p>{current.brief}</p>
+                </details>
+              )}
+              {current.package_name && current.state !== 'ordered' && (
                 <div className={c.quote}>
                   <span className={s.eyebrow}>{t('আপনার কোটেশন', 'YOUR QUOTE')}</span>
                   <h3>{current.package_name}</h3>
@@ -548,12 +563,25 @@ export function SalesDesk({
                 </p>
               )}
               {current.state === 'ordered' && (
-                <div className={c.quote}>
-                  <h3>{t('পেমেন্ট ও পোর্টাল', 'Payment & portal')}</h3>
+                <div className={c.paymentPaper}>
+                  <span className={c.paymentEyebrow}>ORDER DETAILS</span>
+                  <h3 className={c.paymentTitle}>
+                    {progress?.paymentStatus === 'manually_verified'
+                      ? t('পেমেন্ট ও পোর্টাল', 'Payment & portal')
+                      : t('পেমেন্টের নির্দেশনা', 'Payment instructions')}
+                  </h3>
+                  {progress?.paymentStatus !== 'manually_verified' && (
+                    <p className={c.paymentIntro}>
+                      {t(
+                        'আপনার অর্ডারের জন্য নিচের নির্দেশনা অনুযায়ী বিকাশে ম্যানুয়াল পেমেন্ট করুন।',
+                        'Follow the instructions below to pay for your order through bKash.',
+                      )}
+                    </p>
+                  )}
                   {progress?.status === 'reviewing' &&
                     progress.paymentStatus === 'pending' &&
                     !payments.some((p) => p.state === 'pending') && (
-                      <ManualPayment requestId={current.id} amountMinor={current.amount_minor!} />
+                      <ManualPayment embedded requestId={current.id} amountMinor={current.amount_minor!} />
                     )}
                   {!seller && payments.some((p) => p.state === 'pending') && (
                     <p className={s.notice}>
@@ -563,15 +591,6 @@ export function SalesDesk({
                       )}
                     </p>
                   )}
-                  <a
-                    className={s.secondary}
-                    href={whatsappLink(`অর্ডার DW-${current.id.slice(-8).toUpperCase()} নিয়ে সাহায্য চাই।`)}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <MessageCircle size={15} />
-                    {t('পেমেন্ট সহায়তা', 'Payment help')}
-                  </a>
                   {payments.map((p) => (
                     <div className={c.payment} key={p.id}>
                       <div>
@@ -634,7 +653,7 @@ export function SalesDesk({
                     progress.status === 'reviewing' &&
                     !payments.some((p) => p.state === 'pending') && (
                       <form
-                        className={s.form}
+                        className={`${s.form} ${c.paymentForm}`}
                         onSubmit={(e) => {
                           const v = formValues(e);
                           void command(
@@ -649,9 +668,8 @@ export function SalesDesk({
                           );
                         }}
                       >
-                        <fieldset className={s.form} disabled={busy}>
-                          <h3>{t('টাকা পাঠানোর পরে', 'After your transfer')}</h3>
-                          <p className={s.muted}>bKash Personal · Send Money</p>
+                        <fieldset className={`${s.form} ${c.paymentFields}`} disabled={busy}>
+                          <h3>{t('পেমেন্টের তথ্য দিন', 'Your payment details')}</h3>
                           <label>
                             {t('যে বিকাশ নম্বর থেকে পাঠিয়েছেন', 'Sender bKash number')}
                             <input
@@ -665,12 +683,6 @@ export function SalesDesk({
                               required
                             />
                           </label>
-                          <p className={s.muted}>
-                            {t(
-                              `বিকাশের সফল লেনদেনের TrxID লিখুন। ${orderPaymentReference(current.id)} অর্ডারের reference; এটি Transaction ID নয়।`,
-                              `Enter the TrxID of the successful bKash transfer. ${orderPaymentReference(current.id)} is your order reference, not the transaction ID.`,
-                            )}
-                          </p>
                           <label>
                             Transaction ID
                             <input
@@ -687,13 +699,37 @@ export function SalesDesk({
                           </label>
                           <p className={s.muted}>
                             {t(
+                              `সফল বিকাশ লেনদেনের TrxID লিখুন। ${orderPaymentReference(current.id)} অর্ডারের reference; এটি Transaction ID নয়।`,
+                              `Use the successful bKash transfer’s TrxID. ${orderPaymentReference(current.id)} is your order reference, not the transaction ID.`,
+                            )}
+                          </p>
+                          <p className={s.muted}>
+                            {t(
                               'জমা দেওয়া মানে paid হওয়া নয়। আমরা আসল লেনদেন মিলিয়ে দেখব।',
                               'Submission is not payment confirmation. We will verify the actual transfer.',
                             )}
                           </p>
                           <button className={s.button} disabled={busy}>
                             {t('যাচাইয়ের জন্য জমা দিন', 'Submit for verification')}
+                            <ArrowRight size={17} />
                           </button>
+                          <div className={c.paymentReassurance}>
+                            <Info size={23} />
+                            <div>
+                              <strong>
+                                {t(
+                                  'ম্যানুয়াল যাচাইয়ের পর আপনার পোর্টাল অ্যাক্টিভ করা হবে',
+                                  'Your portal opens after manual verification',
+                                )}
+                              </strong>
+                              <p>
+                                {t(
+                                  'আমাদের টিম লেনদেন মিলিয়ে যাচাই করবে। অর্ডারের অবস্থা এখান থেকেই দেখতে পারবেন।',
+                                  'Our team will match the actual transfer. Follow the order status here.',
+                                )}
+                              </p>
+                            </div>
+                          </div>
                         </fieldset>
                       </form>
                     )}
@@ -716,6 +752,15 @@ export function SalesDesk({
                       <ArrowRight size={16} />
                     </a>
                   )}
+                  <a
+                    className={c.paymentHelp}
+                    href={whatsappLink(`অর্ডার ${orderPaymentReference(current.id)} নিয়ে সাহায্য চাই।`)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <MessageCircle size={15} />
+                    {t('পেমেন্ট সহায়তা', 'Payment help')}
+                  </a>
                 </div>
               )}
               {!seller && ['requested', 'quoted'].includes(current.state) && (

@@ -190,6 +190,61 @@
   transform: translateX(100%);
   opacity: 0;
 }
+.page[data-template='jamdani'] {
+  --design-art: url('/brand/template-jamdani-match.webp');
+}
+.page[data-template='ivory'] {
+  --design-art: url('/brand/template-ivory-match.webp');
+}
+.page[data-template='holud'] {
+  --design-art: url('/brand/template-holud-match.webp');
+}
+.page:is([data-template='jamdani'], [data-template='ivory'], [data-template='holud'])
+  :is(.gateLeft, .gateRight) {
+  background-image: var(--design-art);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+}
+.page:is([data-template='jamdani'], [data-template='ivory'], [data-template='holud']) .gateLeft {
+  background-position: left center;
+}
+.page:is([data-template='jamdani'], [data-template='ivory'], [data-template='holud']) .gateRight {
+  background-position: right center;
+}
+.page:is([data-template='jamdani'], [data-template='ivory'], [data-template='holud'])
+  :is(.gateLeft, .gateRight):before,
+.page:is([data-template='jamdani'], [data-template='ivory'], [data-template='holud'])
+  :is(.gateLeft, .gateRight):after,
+.page:is([data-template='jamdani'], [data-template='ivory'], [data-template='holud'])
+  :is(.gateLeft, .gateRight)
+  > svg {
+  display: none;
+}
+.page:is([data-template='ivory'], [data-template='holud']) .heroBackdrop {
+  display: block;
+}
+.page:is([data-template='jamdani'], [data-template='ivory'], [data-template='holud']) .heroBackdrop:after {
+  background: none;
+}
+.page:is([data-template='jamdani'], [data-template='holud']) .hero[data-phase='open'],
+.page:is([data-template='jamdani'], [data-template='holud']) .hero[data-phase='opening'] {
+  --wine: #f2d28d;
+  --ink: #f2d28d;
+  --faded: #efcf9a;
+  --brass: #e7c37c;
+}
+.page:is([data-template='jamdani'], [data-template='holud']) .heroDate,
+.page:is([data-template='jamdani'], [data-template='holud']) .heroLocation {
+  background: #68121d9c;
+  color: #ffe1a2;
+}
+.page:is([data-template='jamdani'], [data-template='holud'])
+  :is(.openingScene, .recipientLabel, .openingHint, .quietOpen, .fromCouple) {
+  color: #ffe1a2;
+}
+.page:is([data-template='jamdani'], [data-template='holud']) .heroBottom :is(a, button) {
+  color: #6b1d2a;
+}
 .demoNote {
   text-align: center;
   font-size: 10px;

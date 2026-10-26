@@ -44,62 +44,92 @@ function CopyDetail({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function ManualPayment({ requestId, amountMinor }: { requestId?: string; amountMinor?: number }) {
+export function ManualPayment({
+  requestId,
+  amountMinor,
+  embedded = false,
+}: {
+  requestId?: string;
+  amountMinor?: number;
+  embedded?: boolean;
+}) {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   const reference = requestId ? orderPaymentReference(requestId) : null;
   return (
-    <section className={s.panel} aria-label={t('bKash পেমেন্টের নির্দেশনা', 'bKash payment instructions')}>
-      <div className={s.heading}>
-        <div>
-          <span className={s.eyebrow}>{t('সহজ, সরাসরি পেমেন্ট', 'SIMPLE, DIRECT PAYMENT')}</span>
-          <h3>{t('বিকাশে টাকা পাঠান', 'Pay with bKash')}</h3>
+    <section
+      className={s.panel}
+      data-embedded={embedded}
+      aria-label={t('bKash পেমেন্টের নির্দেশনা', 'bKash payment instructions')}
+    >
+      <div className={s.infoBox}>
+        <div className={s.heading}>
+          <div>
+            {!embedded && (
+              <span className={s.eyebrow}>{t('সহজ, সরাসরি পেমেন্ট', 'SIMPLE, DIRECT PAYMENT')}</span>
+            )}
+            <h3>{t('পরিশোধের তথ্য', 'Payment details')}</h3>
+          </div>
+          {amountMinor !== undefined && (
+            <p className={s.amount}>
+              {t('মোট পরিশোধযোগ্য', 'Order amount')}{' '}
+              <strong>
+                ৳
+                {new Intl.NumberFormat(locale === 'bn' ? 'bn-BD' : 'en-BD', {
+                  maximumFractionDigits: 2,
+                }).format(amountMinor / 100)}
+              </strong>
+            </p>
+          )}
         </div>
-        <span className={s.method}>bKash Personal</span>
-      </div>
-      {amountMinor !== undefined && (
-        <p className={s.amount}>
-          {t('অর্ডারের মূল্য', 'Order amount')}{' '}
-          <strong>
-            {new Intl.NumberFormat(locale === 'bn' ? 'bn-BD' : 'en-BD', {
-              style: 'currency',
-              currency: 'BDT',
-              maximumFractionDigits: 2,
-            }).format(amountMinor / 100)}
-          </strong>
-        </p>
-      )}
-      <div className={s.details}>
-        <CopyDetail label={t('বিকাশ personal নম্বর', 'bKash personal number')} value={manualPayment.number} />
-        {reference && (
+        <div className={s.details}>
+          <div className={s.methodColumn}>
+            <span>{t('পেমেন্ট মাধ্যম', 'Payment method')}</span>
+            <strong className={s.method}>bKash Personal</strong>
+          </div>
           <CopyDetail
-            key={reference}
-            label={t('Reference-এ লিখুন', 'Transfer reference')}
-            value={reference}
+            label={t('বিকাশ personal নম্বর', 'bKash personal number')}
+            value={manualPayment.number}
           />
-        )}
+          {reference && (
+            <CopyDetail
+              key={reference}
+              label={t('Reference-এ লিখুন', 'Transfer reference')}
+              value={reference}
+            />
+          )}
+        </div>
       </div>
       {reference ? (
-        <ol className={s.steps}>
-          <li>
-            {t(
-              'বিকাশ অ্যাপে Send Money খুলে উপরের personal নম্বর ও অর্ডারের মূল্য দিন।',
-              'In the bKash app, open Send Money and enter the personal number and order amount above.',
-            )}
-          </li>
-          <li>
-            {t(
-              'Reference ঘরে উপরের অর্ডার reference দিন। নম্বর ও পরিমাণ মিলিয়ে অ্যাপে টাকা পাঠানো সম্পন্ন করুন।',
-              'Enter the order reference above in the Reference field. Check the number and amount, then complete the transfer in the app.',
-            )}
-          </li>
-          <li>
-            {t(
-              'সফল হলে বিকাশের SMS বা transaction details থেকে TrxID কপি করুন। নিচের ফর্মে প্রেরকের নম্বর ও Transaction ID জমা দিন।',
-              'After a successful transfer, copy the TrxID from the bKash SMS or transaction details. Submit it below with the sender number.',
-            )}
-          </li>
-        </ol>
+        <>
+          <h3 className={s.sectionTitle}>
+            {t('পেমেন্ট করার নিয়ম', 'How to pay')}
+            <span />
+          </h3>
+          <ol className={s.steps}>
+            <li>
+              <strong>{t('কোটেশন/অর্ডার নিশ্চিত করুন', 'Confirm your quote and order')}</strong>
+              {t(
+                'সম্মত নকশা, মূল্য ও মেয়াদ মিলিয়ে নিন।',
+                'Review your agreed design, scope, price and hosting term.',
+              )}
+            </li>
+            <li>
+              <strong>{t('বিকাশে টাকা পাঠান', 'Send Money through bKash')}</strong>
+              {t(
+                `bKash Personal ${manualPayment.number}-এ Send Money করুন। Reference-এ ${reference} লিখুন।`,
+                `Use Send Money to bKash Personal ${manualPayment.number}. Enter ${reference} as the reference and check the number and amount.`,
+              )}
+            </li>
+            <li>
+              <strong>{t('লেনদেনের তথ্য জমা দিন', 'Submit your transaction details')}</strong>
+              {t(
+                'সফল লেনদেনের প্রেরক নম্বর ও বিকাশের SMS থেকে পাওয়া Transaction ID নিচে দিন।',
+                'After a successful transfer, copy the TrxID from the bKash SMS or transaction details. Submit it below with the sender number.',
+              )}
+            </li>
+          </ol>
+        </>
       ) : (
         <>
           <p className={s.note}>
@@ -114,12 +144,14 @@ export function ManualPayment({ requestId, amountMinor }: { requestId?: string; 
           </a>
         </>
       )}
-      <p className={s.note}>
-        {t(
-          'টাকা পাঠানোর পর আমাদের টিম আসল লেনদেন মিলিয়ে যাচাই করবে। যাচাই ও activation সম্পন্ন হলে পোর্টাল খুলবে।',
-          'Our team manually matches the actual transfer. Your portal opens after verification and activation.',
-        )}
-      </p>
+      {!embedded && (
+        <p className={s.note}>
+          {t(
+            'টাকা পাঠানোর পর আমাদের টিম আসল লেনদেন মিলিয়ে যাচাই করবে। যাচাই ও activation সম্পন্ন হলে পোর্টাল খুলবে।',
+            'Our team manually matches the actual transfer. Your portal opens after verification and activation.',
+          )}
+        </p>
+      )}
     </section>
   );
 }

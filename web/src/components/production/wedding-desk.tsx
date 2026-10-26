@@ -30,6 +30,7 @@ import { useProductLocale } from './product-locale';
 import { errorText } from '@/features/production/copy';
 import { type EditorSection } from '@/features/production/navigation';
 import { HandoffLinks } from './handoff-links';
+import { findTemplate } from '@/features/production/catalog';
 import s from './workspace.module.css';
 const InvitationPreview = dynamic(() => import('./invitation-preview').then((m) => m.InvitationPreview), {
   loading: () => <p role="status">প্রিভিউ তৈরি হচ্ছে…</p>,
@@ -48,6 +49,7 @@ export function WeddingDesk({
   const [detail, setDetail] = useState(initial);
   const [content, setContent] = useState(initial.content);
   const wording = withTemplateWording(content);
+  const design = findTemplate(content.templateId);
   const [wordingEditing, setWordingEditing] = useState(false);
   const contentRef = useRef(content);
   const detailRef = useRef(detail);
@@ -481,7 +483,7 @@ export function WeddingDesk({
                       ? t('Your invitation is ready to open.', 'আপনার আমন্ত্রণ প্রস্তুত।')
                       : t('Bring the details together.', 'বিবরণগুলো একসঙ্গে সাজান।')}
                 </h2>
-                <ul className={s.checklist}>
+                <ul className={`${s.checklist} ${s.setupCards}`}>
                   <li>
                     {meaningfulText(content.partnerOne) && meaningfulText(content.partnerTwo) ? (
                       <Check size={16} />
@@ -491,6 +493,7 @@ export function WeddingDesk({
                     <button className={s.quiet} onClick={() => setStep('names')}>
                       {t('Couple & families', 'বর-কনে ও পরিবার')}
                     </button>
+                    <span>{t('Names, hosts and your story.', 'নাম, পরিবার ও আপনাদের গল্প।')}</span>
                   </li>
                   <li>
                     {!issues.some((issue) => issue.startsWith('Complete ')) ? (
@@ -501,12 +504,16 @@ export function WeddingDesk({
                     <button className={s.quiet} onClick={() => setStep('events')}>
                       {t('Dates, times & venues', 'তারিখ, সময় ও স্থান')}
                     </button>
+                    <span>{t('Arrange every part of the celebration.', 'আয়োজনের প্রতিটি তথ্য সাজান।')}</span>
                   </li>
                   <li>
                     {publishedCurrent ? <Check size={16} /> : <Circle size={16} />}{' '}
                     <button className={s.quiet} onClick={() => setStep('review')}>
                       {t('Review publication', 'প্রকাশের আগে যাচাই')}
                     </button>
+                    <span>
+                      {t('Preview and publish when ready.', 'প্রিভিউ দেখে প্রস্তুত হলে প্রকাশ করুন।')}
+                    </span>
                   </li>
                 </ul>
                 <div className={s.actions} style={{ marginTop: 20 }}>
@@ -991,23 +998,22 @@ export function WeddingDesk({
           )}
         </div>
         <aside className={`${s.preview} ${s.sticky}`}>
-          <img
-            className={s.previewImage}
-            src="/artwork/jamdani-garden-v5-640.webp"
-            alt="Original Jamdani botanical stationery"
-            width={260}
-            height={325}
-          />
-          <p className={s.eyebrow} style={{ marginTop: 24 }}>
-            {t('Jamdani · The original collection', 'জামদানি · মূল সংগ্রহ')}
+          <div className={s.designPreview} style={{ color: design.color, background: design.paper }}>
+            <img src={design.art} alt="" width={260} height={429} />
+            <div>
+              <small>{t('THE WEDDING OF', 'শুভ বিবাহ')}</small>
+              <h3>
+                {content.partnerOneBn || content.partnerOne || t('Your name', 'আপনার নাম')}
+                <br />
+                <i>&</i>
+                <br />
+                {content.partnerTwoBn || content.partnerTwo || t('Their name', 'অপর জনের নাম')}
+              </h3>
+            </div>
+          </div>
+          <p className={s.eyebrow} style={{ marginTop: 18 }}>
+            {t(design.en, design.name)} · {t('Your selected design', 'আপনার নির্বাচিত নকশা')}
           </p>
-          <h3>
-            {content.partnerOneBn || content.partnerOne || t('Your name', 'আপনার নাম')}
-            <br />
-            <i>&</i>
-            <br />
-            {content.partnerTwoBn || content.partnerTwo || t('Their name', 'অপর জনের নাম')}
-          </h3>
           <p>{t('Rooted in home. Shared with love.', 'শিকড়ের মায়া। ভালোবাসার আমন্ত্রণ।')}</p>
           <button
             className={s.secondary}

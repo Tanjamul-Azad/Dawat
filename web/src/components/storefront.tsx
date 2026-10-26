@@ -18,99 +18,114 @@ import { templates, prices, whatsappLink } from '@/features/production/catalog';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import s from './storefront.module.css';
 import { ManualPayment } from './manual-payment';
+import { LotusMark } from './brand-mark';
+import { motion, MotionConfig, useReducedMotion } from 'motion/react';
 
 export function StorefrontFrame({ children }: { children: ReactNode }) {
   const { locale, setLocale } = useProductLocale();
   const [menu, setMenu] = useState(false);
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   return (
-    <div className={s.site} lang={locale}>
-      <a className="skip-link" href="#public-main">
-        {t('মূল বিষয়বস্তু', 'Skip to content')}
-      </a>
-      <header className={s.header}>
-        <a className={s.brand} href="/">
-          dawat<span>.</span>
-          <small>DIGITAL WEDDING INVITATIONS</small>
+    <MotionConfig reducedMotion="user" transition={{ duration: 0.22, ease: 'easeOut' }}>
+      <div className={s.site} lang={locale}>
+        <a className="skip-link" href="#public-main">
+          {t('মূল বিষয়বস্তু', 'Skip to content')}
         </a>
-        <nav
-          id="public-navigation"
-          className={menu ? s.openNav : s.nav}
-          aria-label={t('মূল মেনু', 'Main navigation')}
-          onClick={() => setMenu(false)}
-        >
-          <a href="/templates/">{t('নকশার সংগ্রহ', 'The collection')}</a>
-          <a href="/#how-it-works">{t('যেভাবে কাজ করে', 'How it works')}</a>
-          <a href="/pricing/">{t('প্যাকেজ ও মূল্য', 'Pricing')}</a>
-          <a href="/contact/">{t('যোগাযোগ', 'Contact')}</a>
-        </nav>
-        <div className={s.headerActions}>
-          <button className={s.language} onClick={() => setLocale(locale === 'bn' ? 'en' : 'bn')}>
-            {locale === 'bn' ? 'EN' : 'বাংলা'}
-          </button>
-          <a className={s.signin} href="/dashboard/">
-            {t('আমার পোর্টাল', 'My portal')} <ArrowUpRight size={14} />
-          </a>
-          <button
-            className={s.menu}
-            aria-label={t('মেনু', 'Menu')}
-            aria-expanded={menu}
-            aria-controls="public-navigation"
-            onClick={() => setMenu(!menu)}
-          >
-            {menu ? <X /> : <Menu />}
-          </button>
-        </div>
-      </header>
-      <main id="public-main">{children}</main>
-      <footer className={s.footer}>
-        <div>
+        <header className={s.header}>
           <a className={s.brand} href="/">
-            dawat.
+            <LotusMark size={38} />
+            <span className={s.brandWord}>
+              dawat.<small>DIGITAL BENGALI INVITATIONS</small>
+            </span>
           </a>
-          <p>
-            {t('আমাদের উৎসব, আমাদের মতো।', 'Made for the way we celebrate.')}
-            <br />
-            {t('বাংলাদেশ থেকে, ভালোবাসায়।', 'From Bangladesh, with love.')}
-          </p>
-        </div>
-        <div>
-          <strong>{t('আপনার আয়োজন', 'Your celebration')}</strong>
-          <a href="/templates/">{t('নকশা দেখুন', 'Explore designs')}</a>
-          <a href="/order/requests/">{t('অর্ডারের অবস্থা', 'Order status')}</a>
-          <a href="/pricing/">{t('প্যাকেজ ও মূল্য', 'Packages')}</a>
-        </div>
-        <div>
-          <strong>{t('পাশে আছি', 'Here to help')}</strong>
-          <a href={whatsappLink()} target="_blank" rel="noreferrer">
-            WhatsApp · 01606 092143
-          </a>
-          <a href={DAWAT_CONTACT_HREF}>{DAWAT_CONTACT_EMAIL}</a>
-          <a href="/policies/">{t('সেবার শর্ত ও গোপনীয়তা', 'Service & privacy')}</a>
-        </div>
-        <div className={s.footerBottom}>
-          <span>© {new Date().getFullYear()} Dawat</span>
-          <span>{t('একটি সুন্দর আমন্ত্রণ থেকেই শুরু।', 'Every celebration begins with an invitation.')}</span>
-        </div>
-      </footer>
-      <a
-        className={s.whatsapp}
-        href={whatsappLink()}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={t('WhatsApp-এ যোগাযোগ করুন', 'Contact us on WhatsApp')}
-      >
-        <MessageCircle size={25} />
-        <span>{t('কথা বলুন', 'Let’s talk')}</span>
-      </a>
-    </div>
+          <nav
+            id="public-navigation"
+            className={menu ? s.openNav : s.nav}
+            aria-label={t('মূল মেনু', 'Main navigation')}
+            onClick={() => setMenu(false)}
+          >
+            <a href="/templates/">{t('নকশার সংগ্রহ', 'The collection')}</a>
+            <a href="/#how-it-works">{t('যেভাবে কাজ করে', 'How it works')}</a>
+            <a href="/pricing/">{t('প্যাকেজ ও মূল্য', 'Pricing')}</a>
+            <a href="/contact/">{t('যোগাযোগ', 'Contact')}</a>
+          </nav>
+          <div className={s.headerActions}>
+            <button className={s.language} onClick={() => setLocale(locale === 'bn' ? 'en' : 'bn')}>
+              {locale === 'bn' ? 'EN' : 'বাংলা'}
+            </button>
+            <a className={s.signin} href="/dashboard/">
+              {t('আমার পোর্টাল', 'My portal')} <ArrowUpRight size={14} />
+            </a>
+            <button
+              className={s.menu}
+              aria-label={t('মেনু', 'Menu')}
+              aria-expanded={menu}
+              aria-controls="public-navigation"
+              onClick={() => setMenu(!menu)}
+            >
+              {menu ? <X /> : <Menu />}
+            </button>
+          </div>
+        </header>
+        <main id="public-main">{children}</main>
+        <footer className={s.footer}>
+          <div>
+            <a className={s.brand} href="/">
+              dawat.
+            </a>
+            <p>
+              {t('আমাদের উৎসব, আমাদের মতো।', 'Made for the way we celebrate.')}
+              <br />
+              {t('বাংলাদেশ থেকে, ভালোবাসায়।', 'From Bangladesh, with love.')}
+            </p>
+          </div>
+          <div>
+            <strong>{t('আপনার আয়োজন', 'Your celebration')}</strong>
+            <a href="/templates/">{t('নকশা দেখুন', 'Explore designs')}</a>
+            <a href="/order/requests/">{t('অর্ডারের অবস্থা', 'Order status')}</a>
+            <a href="/pricing/">{t('প্যাকেজ ও মূল্য', 'Packages')}</a>
+          </div>
+          <div>
+            <strong>{t('পাশে আছি', 'Here to help')}</strong>
+            <a href={whatsappLink()} target="_blank" rel="noreferrer">
+              WhatsApp · 01606 092143
+            </a>
+            <a href={DAWAT_CONTACT_HREF}>{DAWAT_CONTACT_EMAIL}</a>
+            <a href="/policies/">{t('সেবার শর্ত ও গোপনীয়তা', 'Service & privacy')}</a>
+          </div>
+          <div className={s.footerBottom}>
+            <span>© {new Date().getFullYear()} Dawat</span>
+            <span>
+              {t('একটি সুন্দর আমন্ত্রণ থেকেই শুরু।', 'Every celebration begins with an invitation.')}
+            </span>
+          </div>
+        </footer>
+        <a
+          className={s.whatsapp}
+          href={whatsappLink()}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={t('WhatsApp-এ যোগাযোগ করুন', 'Contact us on WhatsApp')}
+        >
+          <MessageCircle size={25} />
+          <span>{t('কথা বলুন', 'Let’s talk')}</span>
+        </a>
+      </div>
+    </MotionConfig>
   );
 }
 export function TemplateCard({ template }: { template: (typeof templates)[number] }) {
   const { locale } = useProductLocale();
   const bn = locale === 'bn';
+  const reduceMotion = useReducedMotion();
   return (
-    <article className={s.templateCard}>
+    <motion.article
+      className={s.templateCard}
+      layout="position"
+      initial={false}
+      whileHover={reduceMotion ? undefined : { y: -3 }}
+      whileTap={reduceMotion ? undefined : { scale: 0.99 }}
+    >
       <a
         href={`/invite/?template=${template.id}`}
         className={`${s.templateArt} ${s[template.id] ?? ''}`}
@@ -152,7 +167,7 @@ export function TemplateCard({ template }: { template: (typeof templates)[number
           {bn ? 'এটি বেছে নিন' : 'Choose design'} <ArrowRight size={14} />
         </a>
       </div>
-    </article>
+    </motion.article>
   );
 }
 export function TemplateCollection({ full = false }: { full?: boolean }) {
@@ -160,13 +175,35 @@ export function TemplateCollection({ full = false }: { full?: boolean }) {
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   const [filter, setFilter] = useState('all');
   const rail = useRef<HTMLDivElement>(null);
-  const list = templates.filter((x) => filter === 'all' || x.tier === filter);
+  const collectionOrder = ['jamdani', 'garden', 'midnight', 'holud', 'rose', 'ivory'];
+  const list = [...templates]
+    .sort((a, b) => collectionOrder.indexOf(a.id) - collectionOrder.indexOf(b.id))
+    .filter((x) => filter === 'all' || x.tier === filter);
   return (
-    <section className={s.collection} id="collection">
+    <section className={`${s.collection} ${full ? s.fullCollection : ''}`} id="collection">
       <div className={s.sectionHeading}>
         <div>
-          <span className={s.eyebrow}>{t('আমাদের নকশার সংগ্রহ', 'THE DAWAT COLLECTION')}</span>
-          <h2>{t('আপনার গল্পের সঙ্গে মানানসই।', 'Find the one that feels like you.')}</h2>
+          <span className={s.eyebrow}>
+            {full
+              ? 'TIMELESS TRADITIONS, BEAUTIFULLY YOURS'
+              : t('আমাদের নকশার সংগ্রহ', 'THE DAWAT COLLECTION')}
+          </span>
+          <h2>
+            {full ? (
+              <>
+                {t('আপনার বিশেষ দিনের', 'For your special day,')}
+                <br />
+                {t('ডিজিটাল আমন্ত্রণ, একেবারে আপনাদের মতো', 'an invitation that feels like you.')}
+              </>
+            ) : (
+              t('আপনার গল্পের সঙ্গে মানানসই।', 'Find the one that feels like you.')
+            )}
+          </h2>
+          {full && (
+            <span className={s.headingOrnament} aria-hidden="true">
+              <Flower2 size={16} />
+            </span>
+          )}
           <p>
             {t(
               'প্রতিটি নকশা খুলে দেখুন। পছন্দের আমন্ত্রণে জুড়ে দিন আপনাদের গল্প।',
@@ -384,13 +421,13 @@ export function StorefrontHome() {
             {t('শিকড়ে ঐতিহ্য · আমন্ত্রণে ভালোবাসা', 'ROOTED IN TRADITION. SENT WITH LOVE.')}
           </span>
           <h1>
-            {t('একটি আমন্ত্রণ।', 'An invitation.')}
+            {t('একটি নিমন্ত্রণপত্র।', 'An invitation.')}
             <br />
-            <em>{t('একটু বেশি আপন।', 'A little more personal.')}</em>
+            <em>{t('আরও একটু ব্যক্তিগত।', 'A little more personal.')}</em>
           </h1>
           <p>
             {t(
-              'আপনাদের গল্প, প্রিয় মানুষের নাম আর বাঙালিয়ানার মায়া। বিয়ের ডিজিটাল আমন্ত্রণ হোক ঠিক আপনাদের মতো।',
+              'আপনাদের গল্প, আমাদের নকশা। ঐতিহ্যবাহী বাঙালি নান্দনিকতায় তৈরি ডিজিটাল আমন্ত্রণ—বিশেষ দিনকে আরও অর্থপূর্ণ করে তুলুন।',
               'Your story, their name, and a little piece of home. Digital wedding invitations made for the way you celebrate.',
             )}
           </p>
@@ -399,7 +436,7 @@ export function StorefrontHome() {
               {t('আপনার নকশা খুঁজুন', 'Find your invitation')} <ArrowRight size={17} />
             </a>
             <a className={s.textLink} href="/invite/">
-              {t('একটি আমন্ত্রণ খুলে দেখুন', 'Open an invitation')} <ArrowUpRight size={16} />
+              {t('নমুনা দেখুন', 'View a sample')} <ArrowUpRight size={16} />
             </a>
           </div>
           <small>
@@ -411,13 +448,13 @@ export function StorefrontHome() {
         </div>
         <figure className={s.heroArt}>
           <img
-            src="/brand/dawat-digital-stationery.webp"
+            src="/brand/storefront-hero-match.webp"
             alt={t(
               'জামদানি-অনুপ্রাণিত ডিজিটাল আমন্ত্রণের শিল্পিত উপস্থাপনা',
               'An artistic presentation of a Jamdani-inspired digital invitation',
             )}
-            width="1200"
-            height="800"
+            width="1600"
+            height="900"
             fetchPriority="high"
           />
           <figcaption>
@@ -439,52 +476,41 @@ export function StorefrontHome() {
           {t('উত্তর ও শুভেচ্ছা আপনার কাছে', 'Replies & wishes, just for you')}
         </span>
       </div>
-      <TemplateCollection />
-      <section className={s.story}>
-        <div className={s.storyVisual}>
-          <span className={s.eyebrow}>
-            {t('প্রিয়জনের কাছে, ব্যক্তিগতভাবে', 'A LITTLE NOTE, JUST FOR THEM')}
-          </span>
-          <Flower2 size={42} />
-          <p>{t('প্রিয় রহমান পরিবার,', 'Dear Rahman family,')}</p>
-          <h2>
-            {t('আপনাদের উপস্থিতিতেই', 'It would mean the world')}
-            <br />
-            <em>{t('পূর্ণ হোক আমাদের দিন।', 'to have you there.')}</em>
-          </h2>
-          <span>{t('মেহরিন ও আরিব · নমুনা আয়োজন', 'Mehrin & Arib · sample celebration')}</span>
-        </div>
-        <div>
-          <span className={s.eyebrow}>{t('শুধু একটি লিংকের চেয়ে বেশি', 'MORE THAN A LINK')}</span>
-          <h2>{t('একসঙ্গে আয়োজন। আলাদা আলাদা আমন্ত্রণ।', 'One celebration. Every invitation personal.')}</h2>
-          <p>
-            {t(
-              'কার জন্য কোন অনুষ্ঠান, কতজন আসবেন, কে উত্তর দিয়েছেন—সবকিছু এক জায়গায়। অতিথিরা নিজের লিংক খুলেই উপস্থিতি জানাতে ও শুভেচ্ছা পাঠাতে পারবেন।',
-              'Choose who is invited to which event, set their allowance, and see who has replied. Guests open their own link to respond and leave a wish.',
-            )}
-          </p>
-          <ul className={s.storyList}>
-            <li>
-              01{' '}
-              <span>
-                {t(
-                  'নাম ধরে ব্যক্তি, দম্পতি বা পরিবারকে আমন্ত্রণ',
-                  'Invite a person, couple or family by name',
-                )}
-              </span>
-            </li>
-            <li>
-              02{' '}
-              <span>
-                {t('আলাদা অনুষ্ঠানের আলাদা উপস্থিতির হিসাব', 'Keep replies organised for each event')}
-              </span>
-            </li>
-            <li>
-              03 <span>{t('সাজান, প্রিভিউ দেখুন, তারপর প্রকাশ করুন', 'Edit, preview, then publish')}</span>
-            </li>
-          </ul>
-        </div>
+      <section className={s.featureStories}>
+        <article>
+          <img src="/brand/storefront-hero-match.webp" alt="" width="300" height="300" loading="lazy" />
+          <div>
+            <h2>{t('নামে নিমন্ত্রণপত্র', 'A personal invitation')}</h2>
+            <p>
+              {t(
+                'আপনার অতিথিদের নামসহ ব্যক্তিগত আমন্ত্রণ, যত্ন এবং ঐতিহ্যের সৌন্দর্যে।',
+                'Every invitation, addressed by name—with care and the beauty of tradition.',
+              )}
+            </p>
+            <a className={s.textLink} href="/invite/">
+              {t('আরও জানুন', 'Discover more')}
+              <ArrowRight size={15} />
+            </a>
+          </div>
+        </article>
+        <article>
+          <img src="/brand/feature-rsvp.webp" alt="" width="300" height="300" loading="lazy" />
+          <div>
+            <h2>{t('ব্যক্তিগত উত্তর', 'Replies, beautifully arranged')}</h2>
+            <p>
+              {t(
+                'সহজ এবং সুন্দরভাবে আপনার অতিথিদের উপস্থিতি নিশ্চিত করুন। উত্তর ও শুভেচ্ছা রাখুন এক জায়গায়।',
+                'Make it easy for your guests to reply. Keep attendance and wishes together in one place.',
+              )}
+            </p>
+            <a className={s.textLink} href="/#how-it-works">
+              {t('আরও জানুন', 'See how it works')}
+              <ArrowRight size={15} />
+            </a>
+          </div>
+        </article>
       </section>
+      <TemplateCollection />
       <section id="how-it-works" className={s.steps}>
         <span className={s.eyebrow}>{t('শুরু থেকে শুভক্ষণ', 'FROM FIRST LOOK TO YOUR BIG DAY')}</span>
         <h2>{t('তিন ধাপে সুন্দর শুরু।', 'Three steps to something lovely.')}</h2>
@@ -519,6 +545,28 @@ export function StorefrontHome() {
             </article>
           ))}
         </div>
+      </section>
+      <section className={s.specialPackage}>
+        <img src="/brand/feature-weave.webp" alt="" width="600" height="400" loading="lazy" />
+        <div>
+          <h2>{t('একটি বিশেষ প্যাকেজ', 'Something especially yours')}</h2>
+          <p>
+            {t(
+              'নকশা, নাম ধরে আমন্ত্রণ, অতিথিদের উত্তর এবং নিজের পোর্টাল—আপনাদের জন্য একটি সম্পূর্ণ আয়োজন। কাস্টম নকশার ভাবনাও জানান আমাদের।',
+              'A considered design, named invitations, guest replies and your own portal. Tell us about your custom design ideas, too.',
+            )}
+          </p>
+          <a
+            className={s.primary}
+            href={whatsappLink('Customized ৳১,৫০০ invitation নিয়ে আলোচনা করতে চাই।')}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t('কাস্টম অর্ডার করুন', 'Start a custom order')}
+            <ArrowRight size={16} />
+          </a>
+        </div>
+        <LotusMark size={105} />
       </section>
       <Pricing />
       <FAQ />
