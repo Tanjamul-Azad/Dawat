@@ -17,6 +17,7 @@ import { useProductLocale } from './production/product-locale';
 import { templates, prices, whatsappLink } from '@/features/production/catalog';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import s from './storefront.module.css';
+import { ManualPayment } from './manual-payment';
 
 export function StorefrontFrame({ children }: { children: ReactNode }) {
   const { locale, setLocale } = useProductLocale();
@@ -308,6 +309,7 @@ export function Pricing({ standalone = false }: { standalone?: boolean }) {
           </article>
         ))}
       </div>
+      <ManualPayment />
       {standalone && <FAQ />}
     </section>
   );

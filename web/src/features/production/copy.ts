@@ -1,4 +1,6 @@
 export const banglaCopy: Record<string, string> = {
+  'Enter the bKash transaction ID from your successful transfer, not the order reference.':
+    'সফল বিকাশ লেনদেনের Transaction ID দিন। অর্ডারের reference এই ঘরে দেবেন না।',
   all: 'সব',
   accepted: 'আসবেন',
   declined: 'আসবেন না',

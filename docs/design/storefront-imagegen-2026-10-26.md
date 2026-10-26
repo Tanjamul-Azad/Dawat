@@ -4,6 +4,8 @@ User preference: use built-in Imagegen before designing each new frontend surfac
 
 Six original images were generated before implementation. Prompt briefs below are reconstructed summaries, not verbatim transcripts:
 
+Payment follow-up: generated `dawat-bkash-payment-direction.png` before implementing the final payment instructions. Brief: coordinated compact desktop/mobile Dawat payment panels, ivory/burgundy, bKash Personal01606092143, agreed amount, copy number/reference, numbered Send Money instructions, sender and actual transaction ID fields, manual verification before activation. Uses live HTML/inputs rather than a raster payment screen.
+
 | Output | Generation brief |
 | --- | --- |
 | `dawat-storefront-direction.png` | Desktop/mobile wedding invitation storefront; editorial ivory paper, burgundy typography, Bangla-first, compact navigation, premium phone/stationery hero, scrolling templates, prices and WhatsApp. |

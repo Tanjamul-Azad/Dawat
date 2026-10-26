@@ -74,6 +74,9 @@ if (!pilot) {
       `${template}: selected design prop`,
     );
   }
+  const pricingContent = await (await request('/pricing/')).text();
+  for (const value of ['01606092143', 'bKash Personal', 'Send Money', 'Transaction ID'])
+    assert.ok(pricingContent.includes(value), `Pricing: ${value}`);
   const selected = await request('/order/requests/?template=midnight', { redirect: 'manual' });
   assert.equal(selected.status, 307);
   assert.equal(

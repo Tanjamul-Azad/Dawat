@@ -180,6 +180,28 @@ const paymentBody = {
   reference: `LOCAL-${run}`,
   sender: 'Synthetic local sender',
 };
+const paymentScreen = await buyer.request('/order/requests/');
+assert.equal(paymentScreen.status, 200);
+assert.ok(
+  paymentScreen.raw.includes('value="01606092143"'),
+  'The actual order page must show the owner-confirmed receiving account.',
+);
+const orderReference = `DW-${enquiry.id.slice(-8).toUpperCase()}`;
+assert.ok(
+  paymentScreen.raw.includes(orderReference),
+  'The actual order page must show this request reference.',
+);
+for (const wrong of [
+  { ...paymentBody, reference: orderReference },
+  { ...paymentBody, method: 'Nagad' },
+]) {
+  const rejected = await buyer.request('/api/sales/payments/', {
+    method: 'POST',
+    body: wrong,
+    key: crypto.randomUUID(),
+  });
+  assert.equal(rejected.status, 422, rejected.raw);
+}
 const payment = await sales(buyer, paymentBody, true, receiptKey);
 assert.equal((await sales(buyer, paymentBody, true, receiptKey)).id, payment.id);
 assert.equal(

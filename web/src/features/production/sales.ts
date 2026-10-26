@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { uuid } from './contracts';
 import { templateIds } from './catalog';
+import { manualPayment, orderPaymentReference } from './payment';
 
 const identity = { id: uuid, expectedRevision: z.number().int().min(0) };
 export const salesCommand = z.discriminatedUnion('kind', [
@@ -59,13 +60,18 @@ export type PaymentSubmission = {
   created_at: string;
 };
 export const paymentCommand = z.discriminatedUnion('kind', [
-  z.object({
-    kind: z.literal('submit'),
-    requestId: uuid,
-    method: z.enum(['bKash', 'Nagad', 'Bank']),
-    reference: z.string().trim().min(3).max(80),
-    sender: z.string().trim().min(5).max(80),
-  }),
+  z
+    .object({
+      kind: z.literal('submit'),
+      requestId: uuid,
+      method: z.literal(manualPayment.method),
+      reference: z.string().trim().min(3).max(80),
+      sender: z.string().trim().min(5).max(80),
+    })
+    .refine((value) => value.reference.toUpperCase() !== orderPaymentReference(value.requestId), {
+      path: ['reference'],
+      message: 'Enter the bKash transaction ID from your successful transfer, not the order reference.',
+    }),
   z.object({ kind: z.enum(['verify', 'reject']), id: uuid, reason: z.string().trim().min(10).max(1000) }),
 ]);
 export type PaymentCommand = z.infer<typeof paymentCommand>;

@@ -5,6 +5,7 @@ import { findTemplate, prices, whatsappLink } from '@/features/production/catalo
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import { useProductLocale } from './production/product-locale';
 import s from './storefront.module.css';
+import { ManualPayment } from './manual-payment';
 export function ContactPage() {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
@@ -37,6 +38,7 @@ export function ContactPage() {
           {t('আমার অর্ডার দেখুন', 'View my orders')}
           <ArrowRight size={16} />
         </a>
+        <ManualPayment />
       </section>
     </StorefrontFrame>
   );

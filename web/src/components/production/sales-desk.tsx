@@ -14,6 +14,8 @@ import { useProductLocale } from './product-locale';
 import { WorkspaceFrame } from './frame';
 import s from './workspace.module.css';
 import c from './sales-desk.module.css';
+import { ManualPayment } from '../manual-payment';
+import { manualPayment, orderPaymentReference } from '@/features/production/payment';
 
 export function SalesDesk({
   initial,
@@ -496,8 +498,8 @@ export function SalesDesk({
                     </div>
                     <label>
                       {t(
-                        'কাজের পরিধি, delivery, সংশোধন, cancellation/refund ও payment নির্দেশনা',
-                        'Scope, delivery, revisions, cancellation/refund & payment instructions',
+                        'কাজের পরিধি, delivery, সংশোধন ও cancellation/refund শর্ত',
+                        'Scope, delivery, revisions & cancellation/refund terms',
                       )}
                       <textarea
                         name="notes"
@@ -507,8 +509,8 @@ export function SalesDesk({
                         required
                         defaultValue={current.quote_notes ?? ''}
                         placeholder={t(
-                          'সম্মত শর্ত স্পষ্ট লিখুন। কোন মাধ্যমে কোথায় টাকা পাঠাবেন তা জানান।',
-                          'State the agreed terms clearly, including where and how to send payment.',
+                          'সম্মত কাজ ও শর্ত স্পষ্ট লিখুন। bKash নম্বর ও payment reference গ্রাহক স্বয়ংক্রিয়ভাবে দেখতে পাবেন।',
+                          'State the agreed scope and terms clearly. The customer will see the bKash number and payment reference automatically.',
                         )}
                       />
                     </label>
@@ -548,16 +550,19 @@ export function SalesDesk({
               {current.state === 'ordered' && (
                 <div className={c.quote}>
                   <h3>{t('পেমেন্ট ও পোর্টাল', 'Payment & portal')}</h3>
-                  <p>
-                    {t('রেফারেন্সে লিখুন:', 'Transfer reference:')}{' '}
-                    <strong>DW-{current.id.slice(-8).toUpperCase()}</strong>
-                  </p>
-                  <p>
-                    {t(
-                      'উপরের কোটেশনের payment নির্দেশনা অনুসরণ করুন। নম্বর বা মাধ্যম পরিষ্কার না হলে টাকা পাঠানোর আগে WhatsApp-এ নিশ্চিত করুন।',
-                      'Follow the payment instructions in your quote. If the account or method is unclear, confirm on WhatsApp before transferring.',
+                  {progress?.status === 'reviewing' &&
+                    progress.paymentStatus === 'pending' &&
+                    !payments.some((p) => p.state === 'pending') && (
+                      <ManualPayment requestId={current.id} amountMinor={current.amount_minor!} />
                     )}
-                  </p>
+                  {!seller && payments.some((p) => p.state === 'pending') && (
+                    <p className={s.notice}>
+                      {t(
+                        'লেনদেনের তথ্য পেয়েছি—যাচাই চলছে। একই পেমেন্টের জন্য আবার টাকা পাঠাবেন না।',
+                        'Your transaction details are received and awaiting review. Do not send the same payment again.',
+                      )}
+                    </p>
+                  )}
                   <a
                     className={s.secondary}
                     href={whatsappLink(`অর্ডার DW-${current.id.slice(-8).toUpperCase()} নিয়ে সাহায্য চাই।`)}
@@ -636,7 +641,7 @@ export function SalesDesk({
                             {
                               kind: 'submit',
                               requestId: current.id,
-                              method: v('method') as 'bKash' | 'Nagad' | 'Bank',
+                              method: manualPayment.method,
                               reference: v('reference'),
                               sender: v('sender'),
                             },
@@ -646,18 +651,26 @@ export function SalesDesk({
                       >
                         <fieldset className={s.form} disabled={busy}>
                           <h3>{t('টাকা পাঠানোর পরে', 'After your transfer')}</h3>
+                          <p className={s.muted}>bKash Personal · Send Money</p>
                           <label>
-                            {t('পেমেন্টের মাধ্যম', 'Payment method')}
-                            <select name="method">
-                              <option>bKash</option>
-                              <option>Nagad</option>
-                              <option>Bank</option>
-                            </select>
+                            {t('যে বিকাশ নম্বর থেকে পাঠিয়েছেন', 'Sender bKash number')}
+                            <input
+                              name="sender"
+                              type="tel"
+                              inputMode="tel"
+                              autoComplete="tel"
+                              minLength={11}
+                              maxLength={20}
+                              placeholder="01XXXXXXXXX"
+                              required
+                            />
                           </label>
-                          <label>
-                            {t('যে নম্বর/অ্যাকাউন্ট থেকে পাঠিয়েছেন', 'Sender number/account')}
-                            <input name="sender" minLength={5} maxLength={80} required />
-                          </label>
+                          <p className={s.muted}>
+                            {t(
+                              `বিকাশের সফল লেনদেনের TrxID লিখুন। ${orderPaymentReference(current.id)} অর্ডারের reference; এটি Transaction ID নয়।`,
+                              `Enter the TrxID of the successful bKash transfer. ${orderPaymentReference(current.id)} is your order reference, not the transaction ID.`,
+                            )}
+                          </p>
                           <label>
                             Transaction ID
                             <input
@@ -667,6 +680,9 @@ export function SalesDesk({
                               required
                               autoCapitalize="characters"
                               autoComplete="off"
+                              spellCheck={false}
+                              dir="ltr"
+                              placeholder={t('সফল লেনদেনের TrxID', 'TrxID from the successful transfer')}
                             />
                           </label>
                           <p className={s.muted}>
