@@ -31,6 +31,7 @@ import { errorText } from '@/features/production/copy';
 import { type EditorSection } from '@/features/production/navigation';
 import { HandoffLinks } from './handoff-links';
 import { findTemplate } from '@/features/production/catalog';
+import { formatDhaka } from '@/features/production/dates';
 import s from './workspace.module.css';
 const InvitationPreview = dynamic(() => import('./invitation-preview').then((m) => m.InvitationPreview), {
   loading: () => <p role="status">প্রিভিউ তৈরি হচ্ছে…</p>,
@@ -573,11 +574,7 @@ export function WeddingDesk({
                 </p>
                 {detail.expiresAt && (
                   <p>
-                    {t('Expires', 'মেয়াদ শেষ')}:{' '}
-                    {new Intl.DateTimeFormat(locale === 'bn' ? 'bn-BD' : 'en-GB', {
-                      dateStyle: 'long',
-                      timeZone: 'Asia/Dhaka',
-                    }).format(new Date(detail.expiresAt))}
+                    {t('Expires', 'মেয়াদ শেষ')}: {formatDhaka(detail.expiresAt, locale, { date: 'long' })}
                   </p>
                 )}
                 {isPublished &&
