@@ -13,5 +13,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ template?: string }> }) {
-  return <DemoInvitation templateId={findTemplate((await searchParams).template).id} />;
+  const template = findTemplate((await searchParams).template);
+  return (
+    <>
+      {template.art && <link rel="preload" as="image" href={template.art} fetchPriority="high" />}
+      <DemoInvitation templateId={template.id} />
+    </>
+  );
 }

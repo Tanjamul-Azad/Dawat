@@ -226,6 +226,12 @@
     background-color 0.25s,
     border-color 0.25s;
 }
+/* The build keeps only the -webkit- form above, so state the standard property again where it survives. */
+@supports (backdrop-filter: blur(2px)) {
+  .header:not([data-clear]) {
+    backdrop-filter: saturate(1.4) blur(12px);
+  }
+}
 /* Over the home hero the bar is see-through until the visitor scrolls. */
 .header[data-clear] {
   border-bottom-color: transparent;
@@ -611,8 +617,9 @@
 .artBg {
   position: absolute;
   inset: 0;
-  background-position: center;
-  background-size: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.7s ease-out;
 }
 .templateArt:hover .artBg {
@@ -1281,6 +1288,8 @@
     color: var(--ink);
   }
   .nav > a[aria-current='page'] {
+    border-radius: 0;
+    box-shadow: inset 0 -2px 0 var(--wine);
     color: var(--wine);
     font-weight: 600;
   }

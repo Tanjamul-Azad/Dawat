@@ -60,10 +60,16 @@ export function TemplateCard({
         aria-label={`${bn ? 'লাইভ নমুনা খুলুন' : 'Open live sample'} · ${label}`}
       >
         {template.art && (
-          <span
+          <img
             className={s.artBg}
-            style={{ backgroundImage: `url('${template.art}')` }}
-            aria-hidden="true"
+            src={template.art.replace('.webp', '-480.webp')}
+            srcSet={`${template.art.replace('.webp', '-480.webp')} 480w, ${template.art} 960w`}
+            sizes="(min-width: 1200px) 200px, (min-width: 768px) 30vw, 46vw"
+            width={960}
+            height={1440}
+            alt=""
+            loading={selected ? 'eager' : 'lazy'}
+            decoding="async"
           />
         )}
         {template.tier === 'premium' && <span className={s.tierBadge}>{packageName('premium', locale)}</span>}
@@ -394,6 +400,8 @@ export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentRev
         <figure className={s.heroArt}>
           <img
             src="/brand/storefront-hero-match.webp"
+            srcSet="/brand/storefront-hero-match-900.webp 900w, /brand/storefront-hero-match.webp 1600w"
+            sizes="100vw"
             alt={t('জামদানি নকশার ডিজিটাল আমন্ত্রণের ছবি', 'A Jamdani-inspired digital invitation')}
             width="1600"
             height="900"

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { InvitationEntry } from './invitation-entry';
 import { useProductLocale } from './production/product-locale';
@@ -30,11 +30,10 @@ function seedSample(templateId: TemplateId) {
 /** A full sample invitation with a working RSVP. Nothing is sent to any server. */
 export function DemoInvitation({ templateId }: { templateId: TemplateId }) {
   const { locale } = useProductLocale();
-  const [ready, setReady] = useState(false);
-  useEffect(() => {
-    seedSample(templateId);
-    setReady(true);
-  }, [templateId]);
+  // Runs once on the first client render, before the invitation reads its sample. The server skips it.
+  useState(() => {
+    if (typeof window !== 'undefined') seedSample(templateId);
+  });
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   return (
     <>
@@ -52,7 +51,7 @@ export function DemoInvitation({ templateId }: { templateId: TemplateId }) {
           {t('এই নকশা বেছে নিন', 'Choose this design')} <ArrowRight size={16} aria-hidden="true" />
         </a>
       </div>
-      {ready ? <InvitationEntry /> : <div aria-busy="true" style={{ minHeight: '60vh' }} />}
+      <InvitationEntry />
     </>
   );
 }
