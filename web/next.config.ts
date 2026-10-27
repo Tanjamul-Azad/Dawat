@@ -19,6 +19,15 @@ const config: NextConfig = {
         : '.next',
   trailingSlash: true,
   images: { unoptimized: true },
+  // Link-preview images read the Bengali font and template art from disk at request time.
+  outputFileTracingIncludes: {
+    '/og/*': ['./assets/og/**/*', './public/brand/*.webp'],
+    '/i/*/og.jpg': ['./assets/og/**/*', './public/brand/*.webp'],
+  },
+  outputFileTracingExcludes: {
+    '/og/*': ['./public/{audio,artwork,fonts,licenses}/**/*'],
+    '/i/*/og.jpg': ['./public/{audio,artwork,fonts,licenses}/**/*'],
+  },
   poweredByHeader: false,
   devIndicators: false,
   async headers() {
