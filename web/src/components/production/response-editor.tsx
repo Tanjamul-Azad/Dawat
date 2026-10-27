@@ -4,6 +4,7 @@ import type { HouseholdRow, ResponseHistory } from '@/features/production/guests
 import { correctionInput } from '@/features/production/guests';
 import { api } from '@/features/production/client';
 import { latinDigits } from '@/features/production/copy';
+import { formatDhaka } from '@/features/production/dates';
 import { Modal } from '../ui';
 import { useProductLocale } from './product-locale';
 import s from './workspace.module.css';
@@ -233,13 +234,7 @@ export function ResponseEditor({
                     ? t('আয়োজকের সংশোধন', 'Host correction')
                     : t('অতিথির উত্তর', 'Guest response')}
                 </strong>
-                <small>
-                  {new Intl.DateTimeFormat(locale === 'bn' ? 'bn-BD' : 'en-GB', {
-                    dateStyle: 'medium',
-                    timeStyle: 'short',
-                    timeZone: 'Asia/Dhaka',
-                  }).format(new Date(h.created_at))}
-                </small>
+                <small>{formatDhaka(h.created_at, locale, { date: 'medium', time: 'short' })}</small>
                 <p>
                   {t('আগে', 'Before')}: {describeAnswer(h.previous)} → {t('এখন', 'After')}:{' '}
                   {describeAnswer(h.current_value)}

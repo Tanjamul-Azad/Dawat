@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { Copy, Check, ArrowRight } from 'lucide-react';
 import { useProductLocale } from './production/product-locale';
 import { manualPayment, orderPaymentReference } from '@/features/production/payment';
+import { takaFromPaisa } from '@/features/production/money';
 import s from './manual-payment.module.css';
 
 function CopyDetail({ label, value }: { label: string; value: string }) {
@@ -73,13 +74,7 @@ export function ManualPayment({
           </div>
           {amountMinor !== undefined && (
             <p className={s.amount}>
-              {t('মোট পরিশোধযোগ্য', 'Order amount')}{' '}
-              <strong>
-                ৳
-                {new Intl.NumberFormat(locale === 'bn' ? 'bn-BD' : 'en-BD', {
-                  maximumFractionDigits: 2,
-                }).format(amountMinor / 100)}
-              </strong>
+              {t('মোট পরিশোধযোগ্য', 'Order amount')} <strong>{takaFromPaisa(amountMinor, locale)}</strong>
             </p>
           )}
         </div>

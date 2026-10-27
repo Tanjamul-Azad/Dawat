@@ -4,7 +4,8 @@ import { useRef, useState } from 'react';
 import { ArrowRight, Plus, RefreshCw, ShieldCheck } from 'lucide-react';
 import type { SellerOrder, SellerCommand } from '@/features/production/contracts';
 import { api } from '@/features/production/client';
-import { parseBDT } from '@/features/production/money';
+import { parseBDT, takaFromPaisa } from '@/features/production/money';
+import { formatDhaka } from '@/features/production/dates';
 import { latinDigits } from '@/features/production/copy';
 import { WorkspaceFrame } from './frame';
 import { Modal } from '../ui';
@@ -37,10 +38,7 @@ export function SellerOrders({ initial, email }: { initial: Page; email: string 
     body: string;
     key: string;
   } | null>(null);
-  const money = (minor: number) =>
-    new Intl.NumberFormat(locale === 'bn' ? 'bn-BD' : 'en-BD', { style: 'currency', currency: 'BDT' }).format(
-      minor / 100,
-    );
+  const money = (minor: number) => takaFromPaisa(minor, locale);
   async function refresh(cursor?: string) {
     if (search !== appliedSearch.current.search || searchField !== appliedSearch.current.field)
       cursor = undefined;
@@ -375,11 +373,7 @@ export function SellerOrders({ initial, email }: { initial: Page; email: string 
                         <small>
                           {e.reason}
                           <br />
-                          {new Intl.DateTimeFormat(locale === 'bn' ? 'bn-BD' : 'en-GB', {
-                            dateStyle: 'medium',
-                            timeStyle: 'short',
-                            timeZone: 'Asia/Dhaka',
-                          }).format(new Date(e.created_at))}{' '}
+                          {formatDhaka(e.created_at, locale, { date: 'medium', time: 'short' })}{' '}
                           {tr('\u00B7 actor')}
                           {e.actor_id.slice(0, 8)}
                         </small>

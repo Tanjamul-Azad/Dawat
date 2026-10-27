@@ -1,6 +1,7 @@
 'use client';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-import { StorefrontFrame, TemplateCard, taka } from './storefront';
+import { StorefrontFrame, TemplateCard } from './storefront';
+import { taka } from '@/features/production/money';
 import { findTemplate, prices, whatsappLink } from '@/features/production/catalog';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import { useProductLocale } from './production/product-locale';

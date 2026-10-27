@@ -16,6 +16,7 @@ import s from './workspace.module.css';
 import c from './sales-desk.module.css';
 import { ManualPayment } from '../manual-payment';
 import { manualPayment, orderPaymentReference } from '@/features/production/payment';
+import { taka, takaFromPaisa } from '@/features/production/money';
 
 export function SalesDesk({
   initial,
@@ -75,12 +76,7 @@ export function SalesDesk({
   const current = page.requests.find((r) => r.id === selected);
   const progress = page.progress.find((p) => p.requestId === selected);
   const payments = page.payments.filter((p) => p.request_id === selected);
-  const amount = (n: number) =>
-    new Intl.NumberFormat(locale === 'bn' ? 'bn-BD' : 'en-BD', {
-      style: 'currency',
-      currency: 'BDT',
-      maximumFractionDigits: 2,
-    }).format(n / 100);
+  const amount = (n: number) => takaFromPaisa(n, locale);
   const state = (value: string) =>
     ({
       requested: t('কোটেশনের অপেক্ষায়', 'Awaiting quote'),
@@ -254,10 +250,10 @@ export function SalesDesk({
                 <select value={chosen} onChange={(e) => setChosen(e.target.value as typeof chosen)}>
                   {templates.map((d) => (
                     <option value={d.id} key={d.id}>
-                      {locale === 'bn' ? d.name : d.en} · ৳{prices[d.tier]}
+                      {locale === 'bn' ? d.name : d.en} · {taka(prices[d.tier], locale)}
                     </option>
                   ))}
-                  <option value="custom">Customized · ৳1500</option>
+                  <option value="custom">Customized · {taka(1500, locale)}</option>
                 </select>
               </label>
               <label>

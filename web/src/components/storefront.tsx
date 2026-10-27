@@ -18,13 +18,11 @@ import {
 import { useProductLocale } from './production/product-locale';
 import { templates, prices, whatsappLink } from '@/features/production/catalog';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
+import { taka } from '@/features/production/money';
 import s from './storefront.module.css';
 import { ManualPayment } from './manual-payment';
 import { BrandLockup, LotusMark } from './brand-mark';
 import { motion, MotionConfig, useReducedMotion } from 'motion/react';
-
-export const taka = (amount: number, locale: 'bn' | 'en') =>
-  `৳${new Intl.NumberFormat(locale === 'bn' ? 'bn-BD' : 'en-BD').format(amount)}`;
 
 export function StorefrontFrame({ children }: { children: ReactNode }) {
   const { locale, setLocale } = useProductLocale();

@@ -15,6 +15,7 @@ import {
 import { api } from '@/features/production/client';
 import { downloadCsv } from '@/features/production/download';
 import { errorText, latinDigits } from '@/features/production/copy';
+import { formatDhaka } from '@/features/production/dates';
 import { GuestList } from './guest-list';
 import { WorkspaceFrame, WorkspaceLink } from './frame';
 import { Modal, copyText } from '../ui';
@@ -362,11 +363,7 @@ export function GuestHub({
             </p>
             <p className={s.muted}>
               {stale ? tr('Stale \u00B7 ') : ''}
-              {tr('As of')}{' '}
-              {new Intl.DateTimeFormat(locale === 'bn' ? 'bn-BD' : 'en-GB', {
-                timeStyle: 'medium',
-                timeZone: 'Asia/Dhaka',
-              }).format(new Date(data.asOf))}{' '}
+              {tr('As of')} {formatDhaka(data.asOf, locale, { time: 'medium' })}{' '}
               {tr('\u00B7 Asia/Dhaka. Totals refer to this event, not unique people across celebrations.')}
             </p>
           </div>
@@ -551,13 +548,7 @@ export function GuestHub({
                     <Heart size={14} /> {w.name}
                   </strong>
                   <p style={{ whiteSpace: 'pre-wrap' }}>{w.body}</p>
-                  <small>
-                    {new Intl.DateTimeFormat(locale === 'bn' ? 'bn-BD' : 'en-GB', {
-                      dateStyle: 'medium',
-                      timeStyle: 'short',
-                      timeZone: 'Asia/Dhaka',
-                    }).format(new Date(w.createdAt))}
-                  </small>
+                  <small>{formatDhaka(w.createdAt, locale, { date: 'medium', time: 'short' })}</small>
                 </div>
               </li>
             ))}
