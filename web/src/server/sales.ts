@@ -66,3 +66,16 @@ export async function listSales(staff = false, cursor?: string): Promise<SalesPa
     nextCursor: rows.length > 25 ? `${rows[24].created_at}|${rows[24].id}` : null,
   };
 }
+
+export type AdminCounts = { requests: number; payments: number };
+/** What needs the team's attention: custom requests awaiting a quote, and payments to check. */
+export async function adminCounts(): Promise<AdminCounts> {
+  const { db } = await staffSession();
+  const [requests, payments] = await Promise.all([
+    db.from('sales_requests').select('id', { count: 'exact', head: true }).eq('state', 'requested'),
+    db.from('payment_submissions').select('id', { count: 'exact', head: true }).eq('state', 'pending'),
+  ]);
+  dbError(requests.error);
+  dbError(payments.error);
+  return { requests: requests.count ?? 0, payments: payments.count ?? 0 };
+}

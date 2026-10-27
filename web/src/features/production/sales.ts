@@ -2,6 +2,21 @@ import { z } from 'zod';
 import { uuid } from './contracts';
 import { templateIds } from './catalog';
 import { manualPayment, orderPaymentReference } from './payment';
+import { normalizePhone } from './phone';
+
+// Optional. Empty means "no number"; anything else must be a usable WhatsApp number.
+const optionalPhone = z
+  .string()
+  .trim()
+  .max(40)
+  .transform((value, ctx) => {
+    if (!value) return undefined;
+    const phone = normalizePhone(value);
+    if (!phone)
+      ctx.addIssue({ code: 'custom', message: 'Enter a valid WhatsApp number, or leave it empty.' });
+    return phone ?? undefined;
+  })
+  .optional();
 
 const identity = { id: uuid, expectedRevision: z.number().int().min(0) };
 export const salesCommand = z.discriminatedUnion('kind', [
@@ -11,6 +26,7 @@ export const salesCommand = z.discriminatedUnion('kind', [
     name: z.string().trim().min(1).max(120),
     brief: z.string().trim().min(10).max(2000),
     eventDate: z.union([z.literal(''), z.iso.date()]),
+    phone: optionalPhone,
   }),
   z.object({
     kind: z.literal('quote'),
@@ -27,6 +43,7 @@ export type SalesRequest = {
   id: string;
   user_id: string;
   customer_email: string;
+  customer_phone: string | null;
   customer_name: string;
   template_id: (typeof templateIds)[number] | 'custom';
   event_date: string | null;
@@ -72,7 +89,13 @@ export const paymentCommand = z.discriminatedUnion('kind', [
       path: ['reference'],
       message: 'Enter the bKash transaction ID from your successful transfer, not the order reference.',
     }),
-  z.object({ kind: z.enum(['verify', 'reject']), id: uuid, reason: z.string().trim().min(10).max(1000) }),
+  z.object({
+    kind: z.enum(['verify', 'reject']),
+    id: uuid,
+    reason: z.string().trim().min(10).max(1000),
+    // Verify, confirm the order and open the customer's page in one transaction.
+    activate: z.boolean().optional(),
+  }),
 ]);
 export type PaymentCommand = z.infer<typeof paymentCommand>;
 export type SalesPage = {

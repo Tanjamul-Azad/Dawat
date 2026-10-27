@@ -268,6 +268,12 @@ export const banglaCopy: Record<string, string> = {
   'Payment pending': 'যাচাই বাকি',
   'Email sign-in is being prepared. Please contact the Dawat team.':
     'ইমেইল দিয়ে লগইন এখনো চালু হয়নি। সাহায্য লাগলে দাওয়াত টিমকে জানান।',
+  'Payment verified, order confirmed and access opened. Tell the customer below.':
+    'পেমেন্ট যাচাই হয়েছে, অর্ডার নিশ্চিত হয়েছে আর গ্রাহকের আয়োজনের পাতা চালু হয়েছে। নিচে গ্রাহককে জানান।',
+  'Also confirm the order and open the customer’s page right now':
+    'সঙ্গে সঙ্গে অর্ডার নিশ্চিত করে আয়োজনের পাতা চালু করুন',
+  'Enter a valid WhatsApp number, or leave it empty.':
+    'WhatsApp নম্বরটা ঠিক মনে হচ্ছে না। 01XXXXXXXXX লিখুন, অথবা ঘরটা খালি রাখুন।',
 };
 const neutralEnglish: Record<string, string> = {
   'Seller workspace': 'Dawat team desk',

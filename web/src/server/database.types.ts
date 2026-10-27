@@ -656,6 +656,7 @@ export type Database = {
           brief: string;
           created_at: string;
           customer_email: string;
+          customer_phone: string | null;
           customer_name: string;
           event_date: string | null;
           id: string;
@@ -674,6 +675,7 @@ export type Database = {
           brief: string;
           created_at?: string;
           customer_email: string;
+          customer_phone?: string | null;
           customer_name: string;
           event_date?: string | null;
           id?: string;
@@ -692,6 +694,7 @@ export type Database = {
           brief?: string;
           created_at?: string;
           customer_email?: string;
+          customer_phone?: string | null;
           customer_name?: string;
           event_date?: string | null;
           id?: string;

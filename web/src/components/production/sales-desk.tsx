@@ -6,6 +6,8 @@ import { findTemplate, templates, whatsappLink, type TemplateId } from '@/featur
 import type { SalesPage, SalesRequest, SalesCommand, PaymentCommand } from '@/features/production/sales';
 import { useProductLocale } from './product-locale';
 import { WorkspaceFrame } from './frame';
+import { NotifyCustomer } from './notify-customer';
+import { displayPhone, whatsappChatUrl } from '@/features/production/phone';
 import s from './workspace.module.css';
 import c from './sales-desk.module.css';
 import { ManualPayment } from '../manual-payment';
@@ -18,27 +20,41 @@ export function SalesDesk({
   email,
   seller = false,
   templateId,
+  names,
 }: {
   initial: SalesPage;
   email: string;
   seller?: boolean;
   templateId?: string;
+  /** Couple names carried over from the public site's name preview (`?names=`). */
+  names?: string;
 }) {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   const [page, setPage] = useState(initial);
   const [selected, setSelected] = useState<string | null>(initial.requests[0]?.id ?? null);
   // An existing open request is shown first, so a reload never looks like a lost submission.
-  const [creating, setCreating] = useState(!seller && !initial.requests.some((r) => r.state !== 'cancelled'));
+  const namesNote = names
+    ? `${locale === 'bn' ? 'বর-কনের নাম' : 'Couple names'}: ${names}
+`
+    : '';
+  const [creating, setCreating] = useState(
+    !seller && (!!names || !initial.requests.some((r) => r.state !== 'cancelled')),
+  );
   const [errorAt, setErrorAt] = useState<string | null>(null);
+  const [reviewDecision, setReviewDecision] = useState('');
+  // Needed to write the customer's page address; known only in the browser.
+  const [origin, setOrigin] = useState('');
+  useEffect(() => setOrigin(window.location.origin), []);
   const [dirty, setDirty] = useState(false);
   const [restoredDraft, setRestoredDraft] = useState(false);
   const [draft, setDraft] = useState<{
     name: string;
     date: string;
     brief: string;
+    phone: string;
     template: TemplateId | 'custom';
-  } | null>(null);
+  } | null>(names ? { name: '', date: '', brief: namesNote, phone: '', template: 'jamdani' } : null);
   const draftKey = `dawat:request-draft:${email}`;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -92,7 +108,14 @@ export function SalesDesk({
           saved.template === 'custom' || templates.some((d) => d.id === saved.template)
             ? saved.template
             : initialTemplate;
-        setDraft({ name: saved.name, date: saved.date, brief: saved.brief, template });
+        setDraft({
+          name: saved.name,
+          date: saved.date,
+          // The names the visitor just typed on the public site win over an older, empty draft.
+          brief: saved.brief || namesNote,
+          phone: typeof saved.phone === 'string' ? saved.phone : '',
+          template,
+        });
         setChosen(template);
         setDirty(true);
         setRestoredDraft(true);
@@ -115,6 +138,7 @@ export function SalesDesk({
       name: String(f.get('name') ?? ''),
       date: String(f.get('date') ?? ''),
       brief: String(f.get('brief') ?? ''),
+      phone: String(f.get('phone') ?? ''),
       template,
     };
     setDraft(value);
@@ -145,6 +169,7 @@ export function SalesDesk({
   // Details always belong to a row the current filter shows.
   const current = filtered.find((r) => r.id === selected) ?? filtered[0];
   const progress = page.progress.find((p) => p.requestId === current?.id);
+  useEffect(() => setReviewDecision(''), [current?.id]);
   const payments = page.payments.filter((p) => p.request_id === current?.id);
   const paymentPending = payments.some((p) => p.state === 'pending');
   const paymentRejected =
@@ -263,23 +288,29 @@ export function SalesDesk({
       if (!payment) setSelected(result.id);
       if (body.kind === 'request') clearDraft();
       setFilter('all');
+      setReviewDecision('');
       setNotice(
-        body.kind === 'request'
+        body.kind === 'request' && result.state === 'quoted'
           ? t(
-              'অনুরোধ জমা হয়েছে। নিচে এর অবস্থা ও পরের ধাপ দেখুন—এই পেজে যেকোনো সময় ফিরে আসতে পারবেন।',
-              'Request sent. Its status and next step are below—you can come back to this page any time.',
+              'অনুরোধ জমা হয়েছে, আর আপনার দাম ও শর্ত তৈরি। নিচে পড়ে সম্মতি দিন।',
+              'Request sent, and your price and terms are ready. Read them below and accept.',
             )
-          : body.kind === 'accept'
+          : body.kind === 'request'
             ? t(
-                'সম্মতি পেয়েছি। এখন নিচের নির্দেশনা মেনে পেমেন্ট করুন।',
-                'Agreed. Now pay using the steps below.',
+                'অনুরোধ জমা হয়েছে। নিচে এর অবস্থা ও পরের ধাপ দেখুন—এই পেজে যেকোনো সময় ফিরে আসতে পারবেন।',
+                'Request sent. Its status and next step are below—you can come back to this page any time.',
               )
-            : body.kind === 'submit'
+            : body.kind === 'accept'
               ? t(
-                  'লেনদেনের তথ্য জমা হয়েছে। আমরা যাচাই করছি।',
-                  'Transaction details sent. We are verifying them.',
+                  'সম্মতি পেয়েছি। এখন নিচের নির্দেশনা মেনে পেমেন্ট করুন।',
+                  'Agreed. Now pay using the steps below.',
                 )
-              : t('সংরক্ষিত হয়েছে।', 'Saved.'),
+              : body.kind === 'submit'
+                ? t(
+                    'লেনদেনের তথ্য জমা হয়েছে। আমরা যাচাই করছি।',
+                    'Transaction details sent. We are verifying them.',
+                  )
+                : t('সংরক্ষিত হয়েছে।', 'Saved.'),
       );
       try {
         await refresh();
@@ -400,6 +431,7 @@ export function SalesDesk({
                   templateId: chosen,
                   eventDate: v('date'),
                   brief: v('brief'),
+                  phone: v('phone'),
                 },
                 false,
                 'request',
@@ -417,6 +449,25 @@ export function SalesDesk({
                   value={draft?.name ?? ''}
                   onChange={(e) => saveDraft(e.currentTarget.form!)}
                 />
+              </label>
+              <label>
+                {t('WhatsApp নম্বর · ঐচ্ছিক', 'WhatsApp number · optional')}
+                <input
+                  name="phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  maxLength={40}
+                  placeholder="01XXXXXXXXX"
+                  value={draft?.phone ?? ''}
+                  onChange={(e) => saveDraft(e.currentTarget.form!)}
+                />
+                <small className={s.muted}>
+                  {t(
+                    'পেমেন্ট মিললে বা আপনার পাতা চালু হলে এই নম্বরে WhatsApp-এ জানাব। না দিলেও চলবে।',
+                    'We will message this number on WhatsApp when your payment is confirmed or your page opens. You can leave it empty.',
+                  )}
+                </small>
               </label>
               <label>
                 {t('পছন্দের নকশা', 'Selected design')}
@@ -558,7 +609,21 @@ export function SalesDesk({
                 <div>
                   <span className={s.eyebrow}>DW-{current.id.slice(-8).toUpperCase()}</span>
                   <h2>{current.customer_name}</h2>
-                  <p>{current.customer_email}</p>
+                  <p>
+                    {current.customer_email}
+                    {seller && current.customer_phone && (
+                      <>
+                        {' · '}
+                        <a
+                          href={whatsappChatUrl(current.customer_phone, '')}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          WhatsApp {displayPhone(current.customer_phone)}
+                        </a>
+                      </>
+                    )}
+                  </p>
                 </div>
                 <span className={c.badge}>{state(current.state)}</span>
               </div>
@@ -779,7 +844,14 @@ export function SalesDesk({
                           onSubmit={(e) => {
                             const v = formValues(e);
                             void command(
-                              { kind: v('decision') as 'verify' | 'reject', id: p.id, reason: v('reason') },
+                              {
+                                kind: v('decision') as 'verify' | 'reject',
+                                id: p.id,
+                                reason: v('reason'),
+                                ...(v('decision') === 'verify' && v('activate') === 'on'
+                                  ? { activate: true }
+                                  : {}),
+                              },
                               true,
                               'review',
                             );
@@ -788,7 +860,12 @@ export function SalesDesk({
                           <fieldset className={s.form} disabled={busy}>
                             <label>
                               {t('সিদ্ধান্ত', 'Decision')}
-                              <select name="decision" required defaultValue="">
+                              <select
+                                name="decision"
+                                required
+                                value={reviewDecision}
+                                onChange={(e) => setReviewDecision(e.target.value)}
+                              >
                                 <option value="" disabled>
                                   {t('বেছে নিন…', 'Choose…')}
                                 </option>
@@ -807,6 +884,15 @@ export function SalesDesk({
                               )}
                               <textarea name="reason" minLength={10} maxLength={1000} required rows={2} />
                             </label>
+                            {reviewDecision === 'verify' && progress?.status === 'reviewing' && (
+                              <label className={c.consent}>
+                                <input type="checkbox" name="activate" defaultChecked />
+                                {t(
+                                  'সঙ্গে সঙ্গে অর্ডার নিশ্চিত করে আয়োজনের পাতা চালু করুন',
+                                  'Also confirm the order and open the customer’s page right now',
+                                )}
+                              </label>
+                            )}
                             <label className={c.consent}>
                               <input type="checkbox" required />
                               {t(
@@ -834,6 +920,18 @@ export function SalesDesk({
                   )}
                 </div>
               )}
+              {current.state === 'ordered' &&
+                seller &&
+                origin &&
+                progress?.access === 'active' &&
+                progress.weddingId && (
+                  <NotifyCustomer
+                    name={current.customer_name}
+                    email={current.customer_email}
+                    phone={current.customer_phone}
+                    url={`${origin}/weddings/${progress.weddingId}/`}
+                  />
+                )}
               {current.state === 'ordered' && !seller && (
                 <div className={c.paymentPaper}>
                   <span className={c.paymentEyebrow}>{t('পেমেন্ট', 'PAYMENT')}</span>

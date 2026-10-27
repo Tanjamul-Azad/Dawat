@@ -39,3 +39,11 @@ export function config() {
   }
   return c;
 }
+/**
+ * Hosting term, in days from first publication, that fixed-price packages are quoted with.
+ * Owner decision A: 90 unless STANDARD_TERM_DAYS says otherwise (1–365).
+ */
+export function standardTermDays() {
+  const value = Number(process.env.STANDARD_TERM_DAYS?.trim());
+  return Number.isInteger(value) && value >= 1 && value <= 365 ? value : 90;
+}

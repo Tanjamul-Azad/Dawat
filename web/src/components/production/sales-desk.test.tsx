@@ -11,6 +11,7 @@ const row: SalesRequest = {
   id: '20000000-0000-4000-8000-000000000001',
   user_id: '20000000-0000-4000-8000-000000000002',
   customer_email: 'buyer@example.test',
+  customer_phone: null,
   customer_name: 'Test buyer',
   template_id: 'garden',
   event_date: null,

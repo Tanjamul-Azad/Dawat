@@ -118,6 +118,15 @@ export const sellerCommand = z.discriminatedUnion('kind', [
   z
     .object({ kind: z.literal('confirm'), ...updateOrder, exception: z.literal('approved').optional() })
     .strict(),
+  z
+    .object({
+      kind: z.literal('verify-confirm-activate'),
+      ...updateOrder,
+      method: z.string().trim().min(1).max(80),
+      reference: z.string().trim().min(3).max(160),
+      amountMinor: z.number().int().min(0).max(1000000000),
+    })
+    .strict(),
   z.object({ kind: z.literal('activate'), ...updateOrder }).strict(),
   z.object({ kind: z.literal('suspend'), ...updateOrder }).strict(),
   z.object({ kind: z.literal('revoke'), ...updateOrder }).strict(),
@@ -160,4 +169,6 @@ export type SellerOrder = {
   created_at: string;
   weddingId: string | null;
   access: string;
+  /** E.164 number from the customer's request, when they gave one. Staff only. */
+  customerPhone?: string | null;
 };

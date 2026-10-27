@@ -36,7 +36,7 @@ function LoginStory() {
 // When sign-in starts from an order, say what is being ordered and why the email is checked.
 function OrderContext({ next }: { next: string }) {
   const { locale } = useProductLocale();
-  const id = /^\/order\/requests\/?\?template=([a-z]+)$/.exec(next)?.[1];
+  const id = /^\/order\/requests\/?\?template=([a-z]+)(?:&names=[^&]*)?$/.exec(next)?.[1];
   if (!id) return null;
   const custom = id === 'custom';
   const design = findTemplate(id);

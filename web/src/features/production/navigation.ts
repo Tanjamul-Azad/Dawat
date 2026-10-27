@@ -16,7 +16,7 @@ export function safeReturnPath(value: unknown): string {
   if (!query) return pathname;
   if (
     /^\/order\/requests\/?$/.test(pathname) &&
-    /^template=(jamdani|ivory|holud|garden|midnight|rose|custom)$/.test(query)
+    /^(template=(jamdani|ivory|holud|garden|midnight|rose|custom))?(&?names=[^&#]{1,400})?$/.test(query)
   )
     return `${pathname}?${query}`;
   if (/^\/dashboard\/?$/.test(pathname) && query === 'all=1') return `${pathname}?all=1`;
@@ -28,4 +28,17 @@ export function safeReturnPath(value: unknown): string {
   )
     return `${pathname}?${query}`;
   return '/dashboard/';
+}
+
+/** Couple names handed over from the public site (`?names=`): short plain text, never markup. */
+export function couplePrefill(value: unknown): string {
+  if (typeof value !== 'string') return '';
+  return (
+    value
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\u0000-\u001f\u007f<>]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 120)
+  );
 }

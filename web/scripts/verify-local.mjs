@@ -149,27 +149,49 @@ async function sales(client, body, payment = false, key = crypto.randomUUID()) {
   assert.equal(r.status, 200, r.raw);
   return r.json.data;
 }
-let enquiry = await sales(buyer, {
+// A fixed-price package is quoted on the spot; a malformed WhatsApp number is refused.
+const premiumRequest = {
   kind: 'request',
   name: 'Synthetic storefront buyer',
   templateId: 'midnight',
   eventDate: '2027-02-14',
   brief: 'Synthetic end-to-end collection order; no real payment.',
-});
+};
+assert.equal(
+  (
+    await buyer.request('/api/sales/', {
+      method: 'POST',
+      body: { ...premiumRequest, phone: 'call me maybe' },
+      key: crypto.randomUUID(),
+    })
+  ).status,
+  422,
+);
+let enquiry = await sales(buyer, { ...premiumRequest, phone: '০১৭১২৩৪৫৬৭৮' });
 assert.equal(enquiry.customer_email, `buyer-${run}@example.test`);
+assert.equal(enquiry.customer_phone, '+8801712345678', 'The number is stored as E.164.');
+assert.equal(enquiry.state, 'quoted', 'Premium is quoted immediately.');
+assert.equal(enquiry.amount_minor, 75000);
+assert.equal(enquiry.term_days, 90, 'STANDARD_TERM_DAYS defaults to 90.');
+assert.match(enquiry.package_name, /^প্রিমিয়াম/);
 assert.equal(
   (await bob.request('/api/sales/')).json.data.requests.some((r) => r.id === enquiry.id),
   false,
 );
-enquiry = await sales(seller, {
+// A custom request still waits for a manual quote.
+const customRequest = await sales(buyer, { ...premiumRequest, templateId: 'custom', phone: '' });
+assert.equal(customRequest.state, 'requested');
+assert.equal(customRequest.customer_phone, null);
+const customQuoted = await sales(seller, {
   kind: 'quote',
-  id: enquiry.id,
+  id: customRequest.id,
   expectedRevision: 0,
-  packageName: 'Moonlit',
-  amountMinor: 75000,
+  packageName: 'নিজের মতো',
+  amountMinor: 150000,
   termDays: 90,
-  notes: 'Synthetic 90-day hosting, no external transfer. Local QA only.',
+  notes: 'Synthetic custom quote, local QA only.',
 });
+assert.equal(customQuoted.state, 'quoted');
 // Accepting the published quote opens the unpaid order; no separate seller step.
 enquiry = await sales(buyer, { kind: 'accept', id: enquiry.id, expectedRevision: enquiry.revision });
 assert.equal(enquiry.state, 'ordered');
@@ -221,9 +243,18 @@ assert.equal(
   ).status,
   403,
 );
+// One click: verify the transfer, confirm the order and open the customer's page.
+const countsBefore = (await seller.request('/api/admin/counts/')).json.data;
+assert.ok(countsBefore.payments >= 1, 'The pending payment is counted for the team.');
+assert.equal((await buyer.request('/api/admin/counts/')).status, 403);
 await sales(
   seller,
-  { kind: 'verify', id: payment.id, reason: 'Synthetic test ledger matched; no real transfer.' },
+  {
+    kind: 'verify',
+    id: payment.id,
+    reason: 'Synthetic test ledger matched; no real transfer.',
+    activate: true,
+  },
   true,
 );
 const paidList = await seller.request('/api/admin/requests/');
@@ -231,18 +262,13 @@ assert.equal(
   paidList.json.data.progress.find((p) => p.requestId === enquiry.id).paymentStatus,
   'manually_verified',
 );
-const agreed = await command({
-  kind: 'confirm',
-  orderId: enquiry.order_id,
-  expectedRevision: 1,
-  reason: 'Synthetic paid order confirmed for local QA.',
-});
-await command({
-  kind: 'activate',
-  orderId: enquiry.order_id,
-  expectedRevision: 2,
-  reason: 'Synthetic verified buyer portal activation.',
-});
+const phoneOrders = await seller.request(
+  `/api/admin/orders/?field=email&search=${encodeURIComponent(`buyer-${run}@example.test`)}`,
+);
+assert.equal(phoneOrders.json.data.orders[0].customerPhone, '+8801712345678');
+assert.equal(phoneOrders.json.data.orders[0].status, 'confirmed');
+assert.equal(phoneOrders.json.data.orders[0].access, 'active');
+const agreed = { weddingId: phoneOrders.json.data.orders[0].weddingId };
 const buyerPage = await buyer.request('/order/requests/');
 assert.equal(buyerPage.status, 200, buyerPage.raw.slice(0, 300));
 const progress = (await buyer.request('/api/sales/')).json.data.progress.find(
