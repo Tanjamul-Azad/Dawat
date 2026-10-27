@@ -106,6 +106,7 @@
 }
 .detail {
   min-width: 0;
+  container-type: inline-size;
 }
 .detailHeader {
   display: flex;
@@ -327,7 +328,7 @@ label.consent {
   margin: 0 0 8px;
   color: var(--wine);
   font:
-    600 clamp(24px, 2.2vw + 16px, 36px) / 1.45 var(--font-bangla),
+    600 clamp(24px, 1vw + 18px, 32px) / 1.45 var(--font-bangla),
     var(--font-display),
     serif;
 }
@@ -422,10 +423,6 @@ label.consent {
     gap: 8px;
     font-size: 14px;
   }
-  .paymentPaper .paymentFields {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px 20px;
-  }
 }
 
 /* ---------- 768px+ ---------- */
@@ -449,6 +446,14 @@ label.consent {
   }
   .quote {
     padding: 24px;
+  }
+}
+
+/* The payment paper follows the width of the detail column, not the viewport. */
+@container (min-width: 560px) {
+  .paymentPaper .paymentFields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 20px;
   }
   .paymentPaper {
     padding: 34px 32px;
