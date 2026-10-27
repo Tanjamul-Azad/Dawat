@@ -1,0 +1,476 @@
+/*
+ * Public storefront sections added on top of storefront.module.css:
+ * how it works, promise, reviews, founder, RSVP demo, name preview.
+ * Colour tokens (--wine, --ink, ...) come from the .site wrapper.
+ */
+
+.how,
+.promise,
+.reviews,
+.founder,
+.rsvp,
+.namePreview {
+  width: 100%;
+  max-width: calc(var(--container) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--section) var(--gutter) 0;
+  scroll-margin-top: calc(var(--header-h) + 8px);
+}
+
+/* ---------- How it works ---------- */
+.howHead {
+  max-width: 640px;
+}
+.howHead p {
+  margin-top: 10px;
+}
+.stepList {
+  position: relative;
+  display: grid;
+  gap: 32px;
+  margin-top: 32px !important;
+}
+/* The line that fills while scrolling: down the left on phones, across the top from 1024px. */
+.stepList::before,
+.stepList::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 19px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--line);
+}
+.stepList::after {
+  background: var(--wine);
+  transform: scaleY(var(--progress, 0));
+  transform-origin: top;
+}
+.stepList li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 12px 16px;
+  align-items: start;
+}
+.stepList b {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 2px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--wine);
+  font-size: 17px;
+  font-weight: 600;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    color 0.3s;
+}
+.stepList li[data-reached] b {
+  border-color: var(--wine);
+  background: var(--wine);
+  color: #fffaf2;
+}
+.stepText h3 {
+  font-size: 20px;
+}
+.stepText p {
+  margin-top: 6px;
+  font-size: 15px;
+}
+.stepList .phone {
+  grid-column: 2;
+}
+.howCta {
+  display: flex;
+  margin-top: 32px;
+}
+
+/* Phone frame around an app screenshot. */
+.phone {
+  position: relative;
+  width: 200px;
+  max-width: 100%;
+  overflow: hidden;
+  border: 6px solid #2d231c;
+  border-radius: 28px;
+  background: #2d231c;
+  box-shadow: var(--shadow);
+}
+.phone::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 6px;
+  left: 50%;
+  width: 44px;
+  height: 5px;
+  border-radius: 999px;
+  background: #2d231c;
+  transform: translateX(-50%);
+}
+.phone img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  background: var(--surface-2);
+}
+
+/* ---------- Promise ---------- */
+.promise h2 {
+  margin-bottom: 20px;
+}
+.promise ul {
+  display: grid;
+  gap: 12px;
+}
+.promise li {
+  display: flex;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.promise li > svg {
+  margin-top: 3px;
+  color: var(--gold);
+}
+.promise h3 {
+  font-size: 18px;
+}
+.promise li p {
+  margin-top: 4px;
+  font-size: 15px;
+}
+.promiseLine {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px !important;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  background: var(--wine-soft);
+  color: var(--wine-strong) !important;
+  font-weight: 600;
+}
+
+/* ---------- Reviews and founder: render only with real data ---------- */
+.reviews ul {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+.reviews li {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.reviews blockquote {
+  margin: 0;
+  color: var(--ink);
+  font-size: 17px;
+}
+.reviews li p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+.founder {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+.founder img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.founder p {
+  margin: 8px 0 10px;
+}
+.founder strong {
+  color: var(--ink);
+}
+
+/* ---------- RSVP demo ---------- */
+.rsvpIntro {
+  max-width: 600px;
+}
+.rsvpIntro p {
+  margin-top: 10px;
+}
+.rsvpBoard {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+.rsvpCard,
+.rsvpList {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.rsvpCard small,
+.rsvpList small {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+}
+.rsvpCard h3 {
+  font-size: 19px;
+}
+.rsvpButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+.rsvpButtons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 48px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--wine);
+  font-weight: 600;
+  transition:
+    background-color 0.18s,
+    border-color 0.18s;
+}
+.rsvpButtons button:hover {
+  border-color: var(--wine);
+}
+.rsvpButtons button[aria-pressed='true'] {
+  border-color: var(--wine);
+  background: var(--wine);
+  color: #fffaf2;
+}
+.rsvpReset {
+  min-height: 44px;
+  margin-top: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--wine);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.rsvpArrow {
+  display: none;
+  align-self: center;
+  color: var(--gold);
+}
+.rsvpList ul {
+  display: grid;
+  gap: 8px;
+}
+.rsvpList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 15px;
+}
+.rsvpList li em {
+  color: var(--ink-2);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+}
+.rsvpList li[data-state='yes'] em {
+  color: #1d6b3f;
+}
+.rsvpList li[data-state='no'] em {
+  color: var(--wine);
+}
+.rsvpList li[data-fresh] {
+  animation: rowIn 0.35s ease-out;
+  outline: 2px solid var(--gold-soft);
+}
+.rsvpTotals {
+  margin-top: 12px !important;
+  color: var(--ink-2) !important;
+  font-size: 14px;
+  font-weight: 600;
+}
+@keyframes rowIn {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+}
+
+/* ---------- Name preview ---------- */
+.namePreview {
+  padding-top: 0;
+}
+.nameCard {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.nameCard h2 {
+  font-size: 22px;
+}
+.nameCard > p {
+  margin-top: -6px;
+  font-size: 15px;
+}
+.nameFields {
+  display: grid;
+  gap: 12px;
+}
+.nameFields label {
+  display: grid;
+  gap: 6px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+.nameFields input {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  font-size: 16px;
+  font-weight: 400;
+}
+.nameFields input::placeholder {
+  color: #7a6b5c;
+}
+.nameNote {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ---------- Live demo page bar ---------- */
+.demoBar {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 6px var(--gutter, 16px);
+  background: #2d231c;
+  color: #fffaf2;
+  font-size: 14px;
+}
+.demoBar span {
+  display: none;
+}
+.demoBar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: #fffaf2;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.demoBar a:focus-visible {
+  outline: 2px solid #f2d28d;
+  outline-offset: 2px;
+}
+
+@media (min-width: 600px) {
+  .demoBar span {
+    display: inline;
+  }
+  .nameFields {
+    grid-template-columns: 1fr 1fr;
+  }
+  .promise ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .promise li {
+    flex-direction: column;
+  }
+  .reviews ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .rsvpBoard {
+    grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr);
+    gap: 20px;
+  }
+  .rsvpArrow {
+    display: block;
+  }
+  .nameCard {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    align-items: center;
+    gap: 24px;
+    padding: 24px 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stepList {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .stepList::before,
+  .stepList::after {
+    top: 19px;
+    right: calc(25% - 38px);
+    bottom: auto;
+    left: 20px;
+    width: auto;
+    height: 2px;
+  }
+  .stepList::after {
+    transform: scaleX(var(--progress, 0));
+    transform-origin: left;
+  }
+  .stepList li {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto;
+    gap: 16px;
+  }
+  .stepList .phone {
+    grid-column: 1;
+    width: 190px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepList::after,
+  .stepList b,
+  .rsvpButtons button {
+    transition: none;
+  }
+  .rsvpList li[data-fresh] {
+    animation: none;
+  }
+}

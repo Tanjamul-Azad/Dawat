@@ -1,24 +1,27 @@
 'use client';
 import { ArrowRight, MessageCircle } from 'lucide-react';
-import { StorefrontFrame, TemplateCard } from './storefront';
+import { TemplateCard } from './storefront';
+import { StorefrontFrame } from './storefront-chrome';
 import { taka } from '@/features/production/money';
-import { findTemplate, prices, whatsappLink } from '@/features/production/catalog';
+import { findTemplate, packageName, prices, whatsappLink } from '@/features/production/catalog';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
 import { useProductLocale } from './production/product-locale';
 import s from './storefront.module.css';
 import { ManualPayment } from './manual-payment';
+import { withNames, type CoupleNames } from './storefront-names';
+
 export function ContactPage() {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   return (
     <StorefrontFrame>
       <section className={s.simple}>
-        <span className={s.eyebrow}>{t('চলুন, ব্যক্তিগত কিছু গড়ি', 'LET’S MAKE SOMETHING PERSONAL')}</span>
-        <h1>{t('আপনার আয়োজনের কথা বলুন।', 'Tell us about your celebration.')}</h1>
+        <span className={s.eyebrow}>{t('চলুন, কথা বলি', 'LET’S TALK')}</span>
+        <h1>{t('আপনার আয়োজনের কথা বলুন।', 'Tell us about your celebration.')}</h1>
         <p>
           {t(
-            'নকশা পছন্দ করা থেকে কাস্টম আমন্ত্রণ, অর্ডার বা পেমেন্টের সহায়তা—WhatsApp-এ কথা বলুন।',
-            'From choosing a design to a custom invitation, order or payment question, talk to us on WhatsApp.',
+            'নকশা বাছা, নিজের মতো নকশা, অর্ডার বা পেমেন্ট নিয়ে যা জানার আছে, WhatsApp-এ লিখুন।',
+            'About choosing a design, a custom design, your order or a payment: write to us on WhatsApp.',
           )}
         </p>
         <a className={s.primary} href={whatsappLink()} target="_blank" rel="noreferrer">
@@ -28,11 +31,11 @@ export function ContactPage() {
         <a className={s.textLink} href={DAWAT_CONTACT_HREF}>
           {DAWAT_CONTACT_EMAIL}
         </a>
-        <h2>{t('ইতোমধ্যে অর্ডার করেছেন?', 'Already have an order?')}</h2>
+        <h2>{t('আগেই অর্ডার করেছেন?', 'Already placed an order?')}</h2>
         <p>
           {t(
-            'যাচাই করা ইমেইল দিয়ে অর্ডারের পৃষ্ঠায় প্রবেশ করুন। অনুরোধ, কোটেশন ও পেমেন্টের অবস্থা সেখানেই পাবেন।',
-            'Sign in with your verified email to see your request, quote and payment progress.',
+            'যে ইমেইলে অর্ডার করেছেন, সেটা দিয়ে লগইন করুন। অনুরোধ, দাম ও শর্ত আর পেমেন্টের অবস্থা সেখানেই দেখবেন।',
+            'Log in with the email you ordered with. Your request, price and terms, and payment status are all there.',
           )}
         </p>
         <a className={s.textLink} href="/order/requests/">
@@ -44,58 +47,66 @@ export function ContactPage() {
     </StorefrontFrame>
   );
 }
+
 export function PoliciesPage() {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
+  const price = (tier: 'normal' | 'premium' | 'custom') =>
+    `${packageName(tier, locale)} ${taka(prices[tier], locale)}`;
   return (
     <StorefrontFrame>
       <section className={s.simple}>
         <span className={s.eyebrow}>{t('স্পষ্ট শর্ত', 'CLEAR EXPECTATIONS')}</span>
-        <h1>{t('সেবার শর্ত ও গোপনীয়তা', 'Service & privacy')}</h1>
+        <h1>{t('সেবার শর্ত ও গোপনীয়তা', 'Terms of service and privacy')}</h1>
         <p>
           {t(
-            'প্রযোজ্য: ২৬ অক্টোবর ২০২৬। অর্ডারের লিখিত সম্মতিতে আপনার নির্দিষ্ট কাজের পরিধি, মূল্য ও মেয়াদ দেওয়া থাকবে।',
-            'Effective 26 October 2026. Your written order agreement specifies your scope, price and hosting term.',
+            'শেষ বদল: ২৮ অক্টোবর ২০২৬। আপনার অর্ডারে লেখা সম্মতিতে কাজের পরিধি, দাম আর মেয়াদ আলাদা করে দেওয়া থাকে।',
+            'Last changed: 28 October 2026. The agreement you accept in your order states your scope, price and term.',
           )}
         </p>
         {[
           [
+            'terms',
             t('কী পাবেন', 'What you receive'),
             t(
-              'এটি ডিজিটাল বিয়ের আমন্ত্রণের সেবা। প্যাকেজে নির্বাচিত নকশা, নিজের তথ্য সম্পাদনা, সর্বোচ্চ পাঁচটি ছবি, ব্যক্তিগত অতিথি লিংক ও উত্তর ব্যবস্থাপনা থাকে। ছাপানো কার্ড, স্বয়ংক্রিয় মেসেজ পাঠানো ও custom domain অন্তর্ভুক্ত নয়। কাস্টম নকশার কাজ ও সংশোধনের পরিধি অর্ডারে নির্ধারিত হবে।',
-              'This is a digital wedding invitation service with your selected design, editable details, up to five photos, personal guest links and reply management. Printed cards, automated messaging and custom domains are not included. Custom design scope and revisions are agreed in your order.',
+              'এটা ডিজিটাল বিয়ের আমন্ত্রণের সেবা। প্যাকেজে থাকে বেছে নেওয়া নকশা, নিজের তথ্য এডিট করার সুযোগ, সর্বোচ্চ পাঁচটি ছবি, অতিথির ব্যক্তিগত লিংক আর উত্তরের হিসাব। ছাপানো কার্ড আর নিজের ডোমেইন এতে নেই। WhatsApp-এ সম্পূর্ণ স্বয়ংক্রিয় বার্তাও নেই: আপনি নিজের WhatsApp থেকে এক ট্যাপে পাঠান। নিজের মতো নকশার কাজ আর কতবার বদলানো যাবে, তা অর্ডারে ঠিক করা হয়।',
+              'This is a digital wedding invitation service. A package includes your chosen design, editing your own details, up to five photos, personal guest links and reply tracking. Printed cards and custom domains are not included. Fully automatic WhatsApp messages are not included either: you send from your own WhatsApp in one tap. The scope and number of changes for a custom design are agreed in your order.',
             ),
           ],
           [
-            t('মূল্য, পেমেন্ট ও activation', 'Pricing, payment & activation'),
+            'pricing',
+            t('দাম, পেমেন্ট আর আয়োজনের পাতা চালু হওয়া', 'Price, payment and opening your page'),
             t(
-              'Normal ৳৫০০, Premium ৳৭৫০, Customized ৳১,৫০০। অর্ডারের মূল্য, মেয়াদ ও নির্দেশনা নিশ্চিত হওয়ার আগে টাকা পাঠাবেন না। Transaction ID জমা দেওয়া পেমেন্ট যাচাইয়ের সমান নয়। বিক্রেতা আসল লেনদেন মিলিয়ে দেখার পরে order confirmation এবং portal activation করবেন।',
-              'Normal ৳500, Premium ৳750, Customized ৳1,500. Confirm the order amount, term and payment instructions before transferring. A submitted transaction ID does not verify payment. The seller checks the actual transfer before order confirmation and portal activation.',
+              `${price('normal')}, ${price('premium')}, ${price('custom')}। অর্ডারে দাম, মেয়াদ আর পেমেন্টের নির্দেশনা দেখে নেওয়ার আগে টাকা পাঠাবেন না। Transaction ID জমা দিলেই পেমেন্ট যাচাই হয়ে যায় না। দাওয়াত টিম আসল লেনদেন মিলিয়ে দেখার পরে অর্ডার নিশ্চিত করে আর আপনার আয়োজনের পাতা চালু করে।`,
+              `${price('normal')}, ${price('premium')}, ${price('custom')}. Check the price, term and payment instructions in your order before you send any money. Submitting a transaction ID does not verify a payment. The Dawat team checks the actual transfer, then confirms your order and opens your page.`,
             ),
           ],
           [
-            t('মেয়াদ, পরিবর্তন ও বাতিল', 'Term, changes & cancellation'),
+            'refund',
+            t('মেয়াদ, বদল, বাতিল আর টাকা ফেরত', 'Term, changes, cancellation and refunds'),
             t(
-              'মেয়াদ প্রথম প্রকাশ থেকে শুরু হয়; republish করলে বাড়ে না। অগ্রহণ করা অনুরোধ নিজে বাতিল করতে পারবেন। গ্রহণ করা বা paid অর্ডারের পরিবর্তন, বাতিল ও refund বিষয়ে অর্ডার reference-সহ আমাদের সঙ্গে যোগাযোগ করুন। প্রযোজ্য শর্ত payment-এর আগে লিখিত quote-এ সম্মত হবে; স্বয়ংক্রিয় refund নেই।',
-              'The term begins on first publication and does not restart on republishing. You can cancel an unaccepted request. For changes, cancellation or refund of accepted or paid orders, contact us with your reference. Applicable terms must be agreed in the written quote before payment; refunds are not automatic.',
+              'মেয়াদ শুরু হয় প্রথমবার চালু করার দিন থেকে। আবার প্রকাশ করলে মেয়াদ বাড়ে না। যে অনুরোধে এখনো সম্মতি দেননি, সেটা নিজেই বাতিল করতে পারবেন। সম্মতি দেওয়া বা পেমেন্ট করা অর্ডারের বদল, বাতিল বা টাকা ফেরতের জন্য অর্ডার নম্বর দিয়ে আমাদের জানান। পেমেন্টের আগে দাম ও শর্তের লেখায় এসব নিয়ম মেনে নিতে হয়। টাকা নিজে থেকে ফেরত হয় না।',
+              'The term starts the day you first open the invitation to guests, and publishing again does not extend it. You can cancel a request you have not yet accepted. For changes, cancellation or a refund on an accepted or paid order, contact us with your order number. These rules are agreed in the written price and terms before you pay. Refunds are not automatic.',
             ),
           ],
           [
+            'privacy',
             t('আপনার তথ্য', 'Your information'),
             t(
-              'সেবা দিতে আপনার ইমেইল, অর্ডারের তথ্য, আমন্ত্রণের লেখা ও ছবি, অতিথির নাম এবং তাঁদের উত্তর সংরক্ষিত হয়। অতিথির উত্তর, ব্যক্তিগত নোট ও শুভেচ্ছা public collection-এ দেখানো হয় না। লগইন ও ভাষা পছন্দের জন্য প্রয়োজনীয় cookies ব্যবহার হয়। এই site-এ বিজ্ঞাপন tracking যোগ করা হয়নি।',
-              'We store your email, order details, invitation content and photos, guest names and replies to provide the service. Guest replies, private notes and wishes do not appear in the public collection. Essential cookies support login and language preference. No advertising tracking has been added.',
+              'সেবা দেওয়ার জন্য আমরা আপনার ইমেইল, অর্ডারের তথ্য, আমন্ত্রণের লেখা ও ছবি, অতিথির নাম আর তাঁদের উত্তর রাখি। অতিথির উত্তর, ব্যক্তিগত নোট আর শুভেচ্ছা সবার জন্য খোলা কোথাও দেখানো হয় না। অতিথির ফোন নম্বর বা ইমেইল শুধু আমন্ত্রণ পাঠানোর জন্য রাখা হয় আর অতিথির পাতায় দেখানো হয় না। বিয়ের মেয়াদ শেষের ৩০ দিন পরে এই যোগাযোগের তথ্য মুছে ফেলা হয়। লগইন আর ভাষা মনে রাখার জন্য শুধু দরকারি কুকি ব্যবহার হয়। এই সাইটে বিজ্ঞাপনের ট্র্যাকিং নেই।',
+              'To provide the service we keep your email, order details, invitation text and photos, guest names and their replies. Guest replies, private notes and wishes are never shown publicly. A guest’s phone number or email is kept only to send the invitation and is never shown on the guest’s page. This contact information is deleted 30 days after the wedding term ends. Only essential cookies are used, for login and language. There is no advertising tracking on this site.',
             ),
           ],
           [
-            t('লিংক শেয়ার ও তথ্য অপসারণ', 'Sharing & data removal'),
+            'sharing',
+            t('লিংক শেয়ার আর তথ্য মোছা', 'Sharing links and removing data'),
             t(
-              'ব্যক্তিগত invitation link যার কাছে থাকবে তিনি সেই আমন্ত্রণের উত্তর দিতে পারবেন, তাই সতর্কভাবে শেয়ার করুন। পোর্টাল থেকে লিংক বাতিল করা যায়। তথ্য দেখা, সংশোধন বা অপসারণের অনুরোধে verified ইমেইল থেকে যোগাযোগ করুন। প্রয়োজনীয় order/audit records-এর retention ও অপসারণের সময়সীমা support-এর সঙ্গে নিশ্চিত করুন।',
-              'Anyone holding a personal invitation link can reply for that invitation, so share it carefully. Links can be revoked from your portal. Contact us from your verified email to request access, correction or removal of data. Confirm retention of necessary order/audit records and removal timing with support.',
+              'ব্যক্তিগত লিংক যাঁর কাছে থাকবে, তিনিই সেই আমন্ত্রণের উত্তর দিতে পারবেন। তাই লিংক সাবধানে পাঠান। আপনার আয়োজনের পাতা থেকে লিংক বন্ধ করা যায়। আপনার তথ্য দেখতে, ঠিক করতে বা মুছতে চাইলে যাচাই করা ইমেইল থেকে আমাদের লিখুন। অর্ডার আর হিসাবের যেসব রেকর্ড রাখা জরুরি, সেগুলো কতদিন রাখা হবে আর কবে মোছা হবে, তা আমাদের কাছ থেকে জেনে নিন।',
+              'Anyone who holds a personal link can reply to that invitation, so share it carefully. You can turn a link off from your page. To see, correct or delete your data, write to us from your verified email. For the order and accounting records we must keep, ask us how long they are kept and when they are deleted.',
             ),
           ],
-        ].map(([heading, body]) => (
-          <div key={heading}>
+        ].map(([id, heading, body]) => (
+          <div key={id} id={id}>
             <h2>{heading}</h2>
             <p>{body}</p>
           </div>
@@ -107,20 +118,19 @@ export function PoliciesPage() {
     </StorefrontFrame>
   );
 }
-export function OrderIntro({ templateId }: { templateId?: string }) {
+
+export function OrderIntro({ templateId, names }: { templateId?: string; names?: CoupleNames }) {
   const template = findTemplate(templateId);
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   return (
     <StorefrontFrame>
       <section className={s.simple}>
-        <span className={s.eyebrow}>
-          {t('আপনার আমন্ত্রণ, আর এক ধাপ দূরে', 'YOUR INVITATION, ONE STEP CLOSER')}
-        </span>
-        <h1>{t('আপনার আয়োজন শুরু হোক।', 'Let’s make it yours.')}</h1>
+        <span className={s.eyebrow}>{t('আর এক ধাপ বাকি', 'ONE STEP LEFT')}</span>
+        <h1>{t('আপনার আয়োজন শুরু করি।', 'Let’s start your celebration.')}</h1>
         <div className={s.orderIntro}>
           <div className={s.orderPreview}>
-            <TemplateCard template={template} selected />
+            <TemplateCard template={template} selected names={names} />
           </div>
           <div className={s.orderDetails}>
             <h2>
@@ -128,23 +138,28 @@ export function OrderIntro({ templateId }: { templateId?: string }) {
             </h2>
             <p>
               {t(
-                'নিজের ইমেইল যাচাই করে আয়োজনের তথ্য দিন। মূল্য, লিংক চালু থাকার মেয়াদ ও কাজের শর্ত দেখেই অর্ডারে সম্মতি দেবেন। এরপর পেমেন্টের নির্দেশনা ও Transaction ID জমা দেওয়ার সুযোগ পাবেন।',
-                'Verify your own email and share your event details. Review the price, hosting term and scope before accepting. Then follow the payment instructions and submit your transaction ID.',
+                'নিজের ইমেইল দিয়ে লগইন করুন আর আয়োজনের তথ্য দিন। দাম, মেয়াদ আর কাজের শর্ত দেখে সম্মতি দিন। তারপর পেমেন্টের নির্দেশনা পাবেন, সেখানে Transaction ID জমা দেবেন।',
+                'Log in with your own email and add your event details. Check the price, term and scope, then agree. You will then get the payment steps and submit your transaction ID there.',
               )}
             </p>
-            <a className={s.primary} href={`/order/requests/?template=${template.id}`}>
+            <a
+              className={s.primary}
+              href={withNames(`/order/requests/?template=${template.id}`, names ?? { first: '', second: '' })}
+            >
               {t('অর্ডার শুরু করুন', 'Start your order')}
               <ArrowRight size={16} />
             </a>
             <p>
               {t(
-                'অ্যাকাউন্ট খুললেই পেমেন্ট নেওয়া হয় না। আপনার ইমেইলেই আপনার অর্ডার ও পোর্টাল থাকবে।',
-                'Creating an account does not take payment. Your own email keeps your order and portal together.',
+                'লগইন করলেই টাকা কাটা হয় না। আপনার অর্ডার আর আয়োজনের পাতা আপনার ইমেইলেই থাকবে।',
+                'Logging in does not charge you. Your order and your page stay under your own email.',
               )}
             </p>
             <a
               className={s.textLink}
-              href={whatsappLink(`${template.en} (৳${prices[template.tier]}) নকশাটি নিয়ে জানতে চাই।`)}
+              href={whatsappLink(
+                `${template.name} (${taka(prices[template.tier], 'bn')}) নকশাটি নিয়ে জানতে চাই।`,
+              )}
               target="_blank"
               rel="noreferrer"
             >
