@@ -170,8 +170,10 @@ enquiry = await sales(seller, {
   termDays: 90,
   notes: 'Synthetic 90-day hosting, no external transfer. Local QA only.',
 });
+// Accepting the published quote opens the unpaid order; no separate seller step.
 enquiry = await sales(buyer, { kind: 'accept', id: enquiry.id, expectedRevision: enquiry.revision });
-enquiry = await sales(seller, { kind: 'convert', id: enquiry.id, expectedRevision: enquiry.revision });
+assert.equal(enquiry.state, 'ordered');
+assert.ok(enquiry.order_id);
 const receiptKey = crypto.randomUUID();
 const paymentBody = {
   kind: 'submit',

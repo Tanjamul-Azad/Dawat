@@ -113,7 +113,7 @@ it('creates a single-person invitation with Bangla digits and leaves unchecked e
   mount();
   fireEvent.click(screen.getByRole('button', { name: 'অতিথি যোগ করুন' }));
   fireEvent.change(screen.getByLabelText('অতিথি বা দলের নাম'), { target: { value: 'সাবিহা রহমান' } });
-  fireEvent.click(screen.getByRole('checkbox', { name: 'সংবর্ধনা' }));
+  expect((screen.getByRole('checkbox', { name: 'সংবর্ধনা' }) as HTMLInputElement).checked).toBe(true);
   fireEvent.change(screen.getByLabelText('মোট অনুমোদিত লোকসংখ্যা'), { target: { value: '১' } });
   await act(async () => fireEvent.submit(screen.getByRole('dialog').querySelector('form')!));
   const sent = JSON.parse(fetcher.mock.calls[0][1].body).household;
@@ -149,4 +149,155 @@ it('retains an answered event when its protected checkbox is disabled during edi
   expect(JSON.parse(fetcher.mock.calls[0][1].body).household.events).toEqual([
     { eventId: 'reception', maxPeople: 1 },
   ]);
+});
+
+it('copies a personal link without opening a dialog when the clipboard works', async () => {
+  const writeText = vi.fn(async () => {});
+  vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText } });
+  const fetcher = vi
+    .fn()
+    .mockResolvedValueOnce(json({ url: 'https://example.test/i/x/h/1' }))
+    .mockResolvedValueOnce(json(first));
+  vi.stubGlobal('fetch', fetcher);
+  mount();
+  await act(async () =>
+    fireEvent.click(screen.getAllByRole('button', { name: /তৈরি করে কপি করুন · অতিথি 1/ })[0]),
+  );
+  expect(writeText).toHaveBeenCalledWith('https://example.test/i/x/h/1');
+  expect(screen.queryByRole('dialog')).toBeNull();
+  expect(screen.getAllByRole('status').some((n) => n.textContent?.includes('অতিথি 1-এর লিংক কপি'))).toBe(
+    true,
+  );
+  // The page notice can be off-screen on a phone; the row's own button confirms the copy.
+  expect(screen.getAllByRole('button', { name: /কপি করুন · অতিথি 1$/ })[0].textContent).toContain('কপি হয়েছে');
+});
+
+it('adds pasted families one by one with the event preselected', async () => {
+  const fetcher = vi.fn(async (_url: string, init?: RequestInit) =>
+    init?.method === 'POST' ? json({ revision: 1 }) : json(first),
+  );
+  vi.stubGlobal('fetch', fetcher);
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: 'একসঙ্গে অনেক পরিবার' }));
+  fireEvent.change(screen.getByLabelText('পরিবারের তালিকা'), {
+    target: { value: 'রহমান পরিবার, ৪\nসাবিহা আপা\n\nঅনেক বড় দল, 99' },
+  });
+  expect(screen.getByText(/২টি প্রস্তুত|2টি প্রস্তুত/)).toBeTruthy();
+  expect((screen.getByRole('button', { name: /টি পরিবার যোগ করুন/ }) as HTMLButtonElement).disabled).toBe(
+    true,
+  );
+  expect(fetcher).not.toHaveBeenCalled();
+  fireEvent.change(screen.getByLabelText('পরিবারের তালিকা'), {
+    target: { value: 'রহমান পরিবার, ৪\nসাবিহা আপা' },
+  });
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: /টি পরিবার যোগ করুন/ })));
+  const posts = fetcher.mock.calls.filter((c) => (c[1] as RequestInit | undefined)?.method === 'POST');
+  expect(posts).toHaveLength(2);
+  expect(JSON.parse(String((posts[0][1] as RequestInit).body)).household).toMatchObject({
+    name: 'রহমান পরিবার',
+    events: [{ eventId: 'reception', maxPeople: 4 }],
+  });
+  expect(JSON.parse(String((posts[1][1] as RequestInit).body)).household.events).toEqual([
+    { eventId: 'reception', maxPeople: 1 },
+  ]);
+});
+
+it('retries an uncertain batch row with the same ID and idempotency key without replaying saved rows', async () => {
+  let posts = 0;
+  const fetcher = vi.fn(async (_url: string, init?: RequestInit) => {
+    if (init?.method !== 'POST') return json(first);
+    posts++;
+    if (posts === 2) throw new TypeError('connection lost after server commit');
+    return json({ revision: 1 });
+  });
+  vi.stubGlobal('fetch', fetcher);
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: 'একসঙ্গে অনেক পরিবার' }));
+  fireEvent.change(screen.getByLabelText('পরিবারের তালিকা'), {
+    target: { value: 'প্রথম পরিবার, 4\nদ্বিতীয় পরিবার, 2\nতৃতীয় পরিবার, 3' },
+  });
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: /টি পরিবার যোগ করুন/ })));
+  expect(screen.getByRole('alert').textContent).toContain('1টি নিশ্চিতভাবে');
+  expect((screen.getByLabelText('পরিবারের তালিকা') as HTMLTextAreaElement).disabled).toBe(true);
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: 'বাকিগুলো আবার চেষ্টা করুন' })));
+  const requests = fetcher.mock.calls.filter((call) => call[1]?.method === 'POST');
+  expect(requests).toHaveLength(4);
+  expect(requests[2][1]?.body).toBe(requests[1][1]?.body);
+  expect(requests[2][1]?.headers).toEqual(requests[1][1]?.headers);
+  expect(requests[0][1]?.body).not.toBe(requests[2][1]?.body);
+  expect(screen.queryByRole('dialog')).toBeNull();
+});
+
+it('rejects over 100 pasted families without silently truncating the list', () => {
+  const fetcher = vi.fn();
+  vi.stubGlobal('fetch', fetcher);
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: 'একসঙ্গে অনেক পরিবার' }));
+  fireEvent.change(screen.getByLabelText('পরিবারের তালিকা'), {
+    target: { value: Array.from({ length: 101 }, (_, i) => `পরিবার ${i}, 2`).join('\n') },
+  });
+  expect(screen.getByRole('alert').textContent).toContain('১০০টির বেশি');
+  expect((screen.getByRole('button', { name: /টি পরিবার যোগ করুন/ }) as HTMLButtonElement).disabled).toBe(
+    true,
+  );
+  expect(fetcher).not.toHaveBeenCalled();
+});
+
+it.each(['100', '-1', '1.5', 'abc'])(
+  'rejects malformed bulk allowance %s instead of treating it as part of the name',
+  (count) => {
+    const fetcher = vi.fn();
+    vi.stubGlobal('fetch', fetcher);
+    mount();
+    fireEvent.click(screen.getByRole('button', { name: 'একসঙ্গে অনেক পরিবার' }));
+    fireEvent.change(screen.getByLabelText('পরিবারের তালিকা'), { target: { value: `পরিবার, ${count}` } });
+    expect((screen.getByRole('button', { name: /টি পরিবার যোগ করুন/ }) as HTMLButtonElement).disabled).toBe(
+      true,
+    );
+    expect(fetcher).not.toHaveBeenCalled();
+  },
+);
+
+it('checks duplicate names beyond the first search page', async () => {
+  const fetcher = vi
+    .fn()
+    .mockResolvedValueOnce(json(report(1, 25, 'cursor-a')))
+    .mockResolvedValueOnce(
+      json({ ...report(26, 1, null), rows: [{ ...makeRow(26), name: 'রহমান পরিবার' }] }),
+    );
+  vi.stubGlobal('fetch', fetcher);
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: 'অতিথি যোগ করুন' }));
+  const input = screen.getByLabelText('অতিথি বা দলের নাম');
+  fireEvent.change(input, { target: { value: 'রহমান পরিবার' } });
+  await act(async () => fireEvent.blur(input));
+  expect(query(fetcher, 1).get('after')).toBe('cursor-a');
+  expect(screen.getByText(/নামে আগেই একটি পরিবার আছে/)).toBeTruthy();
+});
+
+it('retains an unsaved bulk list when closing is cancelled and warns before leaving', () => {
+  const confirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: 'একসঙ্গে অনেক পরিবার' }));
+  fireEvent.change(screen.getByLabelText('পরিবারের তালিকা'), { target: { value: 'রহমান পরিবার, 4' } });
+  fireEvent.click(screen.getByRole('button', { name: 'বন্ধ করুন' }));
+  expect(confirm).toHaveBeenCalledOnce();
+  expect((screen.getByLabelText('পরিবারের তালিকা') as HTMLTextAreaElement).value).toBe('রহমান পরিবার, 4');
+  const leaving = new Event('beforeunload', { cancelable: true });
+  window.dispatchEvent(leaving);
+  expect(leaving.defaultPrevented).toBe(true);
+});
+
+it('keeps the editor open for the next family after "save & add another"', async () => {
+  const fetcher = vi
+    .fn()
+    .mockResolvedValueOnce(json({ revision: 1 }))
+    .mockResolvedValueOnce(json(first));
+  vi.stubGlobal('fetch', fetcher);
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: 'অতিথি যোগ করুন' }));
+  fireEvent.change(screen.getByLabelText('অতিথি বা দলের নাম'), { target: { value: 'প্রথম পরিবার' } });
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: 'সংরক্ষণ করে পরেরটি যোগ করুন' })));
+  expect(screen.getByRole('dialog')).toBeTruthy();
+  expect((screen.getByLabelText('অতিথি বা দলের নাম') as HTMLInputElement).value).toBe('');
 });

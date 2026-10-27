@@ -39,7 +39,8 @@ export async function pageSession(path: string, staff = false) {
   } catch (e) {
     if (e instanceof HttpError && e.status === 401)
       redirect(`/auth/login/?next=${encodeURIComponent(safeReturnPath(path))}`);
-    if (e instanceof HttpError && e.code === 'MFA_REQUIRED') redirect('/auth/mfa/');
+    if (e instanceof HttpError && e.code === 'MFA_REQUIRED')
+      redirect(`/auth/mfa/?next=${encodeURIComponent(safeReturnPath(path))}`);
     if (e instanceof HttpError && e.status === 403) redirect('/dashboard/');
     throw e;
   }

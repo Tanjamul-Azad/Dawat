@@ -10,6 +10,8 @@ assertEnvironment({
 });
 
 const config: NextConfig = {
+  // Keep the isolated local rehearsal usable alongside its Docker database.
+  experimental: process.env.DAWAT_LOCAL_QA === '1' ? { cpus: 1 } : undefined,
   output: process.env.DAWAT_STANDALONE === '1' ? 'standalone' : undefined,
   distDir:
     process.env.DAWAT_RECOVERY_QA === '1'

@@ -33,14 +33,24 @@ export function SalesDesk({
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   const [page, setPage] = useState(initial);
   const [selected, setSelected] = useState<string | null>(initial.requests[0]?.id ?? null);
-  const [creating, setCreating] = useState(!seller && (!!templateId || !initial.requests.length));
+  // An existing open request is shown first, so a reload never looks like a lost submission.
+  const [creating, setCreating] = useState(!seller && !initial.requests.some((r) => r.state !== 'cancelled'));
+  const [errorAt, setErrorAt] = useState<string | null>(null);
+  const [dirty, setDirty] = useState(false);
+  const [restoredDraft, setRestoredDraft] = useState(false);
+  const [draft, setDraft] = useState<{
+    name: string;
+    date: string;
+    brief: string;
+    template: TemplateId | 'custom';
+  } | null>(null);
+  const draftKey = `dawat:request-draft:${email}`;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [filter, setFilter] = useState('all');
-  const [chosen, setChosen] = useState<TemplateId | 'custom'>(
-    templateId === 'custom' ? 'custom' : findTemplate(templateId).id,
-  );
+  const initialTemplate = templateId === 'custom' ? 'custom' : findTemplate(templateId).id;
+  const [chosen, setChosen] = useState<TemplateId | 'custom'>(initialTemplate);
   const [cursors, setCursors] = useState<(string | undefined)[]>([undefined]);
   const attempt = useRef<{ signature: string; key: string } | null>(null);
   const lock = useRef(false);
@@ -73,9 +83,133 @@ export function SalesDesk({
       document.removeEventListener('visibilitychange', focus);
     };
   }, [seller, cursors, busy]);
-  const current = page.requests.find((r) => r.id === selected);
-  const progress = page.progress.find((p) => p.requestId === selected);
-  const payments = page.payments.filter((p) => p.request_id === selected);
+  useEffect(() => {
+    if (seller) return;
+    try {
+      const saved = JSON.parse(localStorage.getItem(draftKey) ?? 'null');
+      if (
+        saved &&
+        typeof saved.name === 'string' &&
+        typeof saved.date === 'string' &&
+        typeof saved.brief === 'string'
+      ) {
+        const template =
+          saved.template === 'custom' || templates.some((d) => d.id === saved.template)
+            ? saved.template
+            : initialTemplate;
+        setDraft({ name: saved.name, date: saved.date, brief: saved.brief, template });
+        setChosen(template);
+        setDirty(true);
+        setRestoredDraft(true);
+        // An unfinished request would otherwise sit hidden behind "New request".
+        if (saved.name || saved.date || saved.brief) setCreating(true);
+      }
+    } catch {
+      /* Storage can be unavailable; the form still works without a draft. */
+    }
+  }, [seller, draftKey, initialTemplate]);
+  useEffect(() => {
+    if (!dirty) return;
+    const warn = (e: BeforeUnloadEvent) => e.preventDefault();
+    window.addEventListener('beforeunload', warn);
+    return () => window.removeEventListener('beforeunload', warn);
+  }, [dirty]);
+  function saveDraft(form: HTMLFormElement, template = chosen) {
+    const f = new FormData(form);
+    const value = {
+      name: String(f.get('name') ?? ''),
+      date: String(f.get('date') ?? ''),
+      brief: String(f.get('brief') ?? ''),
+      template,
+    };
+    setDraft(value);
+    setDirty(!!(value.name.trim() || value.date || value.brief.trim() || template !== initialTemplate));
+    try {
+      localStorage.setItem(draftKey, JSON.stringify(value));
+    } catch {
+      /* Ignore storage failures. */
+    }
+  }
+  function clearDraft() {
+    setDirty(false);
+    setRestoredDraft(false);
+    setDraft(null);
+    try {
+      localStorage.removeItem(draftKey);
+    } catch {
+      /* Ignore storage failures. */
+    }
+  }
+  const filtered = page.requests.filter(
+    (r) =>
+      filter === 'all' ||
+      (filter === 'payments'
+        ? page.payments.some((p) => p.request_id === r.id && p.state === 'pending')
+        : r.state === filter),
+  );
+  // Details always belong to a row the current filter shows.
+  const current = filtered.find((r) => r.id === selected) ?? filtered[0];
+  const progress = page.progress.find((p) => p.requestId === current?.id);
+  const payments = page.payments.filter((p) => p.request_id === current?.id);
+  const paymentPending = payments.some((p) => p.state === 'pending');
+  const paymentRejected =
+    progress?.paymentStatus === 'pending' &&
+    progress.status === 'reviewing' &&
+    progress.access !== 'active' &&
+    !paymentPending &&
+    !payments.some((p) => p.state === 'verified') &&
+    payments.some((p) => p.state === 'rejected');
+  function nextStep(r: SalesRequest) {
+    const ours = t('এখন আমাদের পালা', 'Our turn');
+    const yours = t('এখন আপনার পালা', 'Your turn');
+    const [who, what, more] =
+      r.state === 'cancelled'
+        ? [t('বাতিল', 'Cancelled'), t('এই অনুরোধ বাতিল হয়েছে।', 'This request was cancelled.'), '']
+        : r.state === 'requested'
+          ? [
+              ours,
+              t('আমরা দাম ও শর্ত পাঠাব', 'We will send the price and terms'),
+              t(
+                'পাঠালে এই পেজেই দেখাবে। জমা দেওয়া হয়ে গেছে, আবার অনুরোধ করার দরকার নেই।',
+                'They will appear on this page. Your request is saved; no need to send it again.',
+              ),
+            ]
+          : r.state === 'quoted'
+            ? [yours, t('নিচে দাম ও শর্ত পড়ে সম্মতি দিন', 'Review the price and terms below and accept'), '']
+            : r.state === 'accepted'
+              ? [
+                  ours,
+                  t('আমরা অর্ডার তৈরি করছি', 'We are creating your order'),
+                  t('তারপর পেমেন্টের ধাপ খুলবে।', 'Payment opens next.'),
+                ]
+              : progress?.access === 'active'
+                ? [yours, t('পোর্টাল খুলে কার্ড সাজান', 'Open your portal and set up your card'), '']
+                : progress?.paymentStatus === 'manually_verified'
+                  ? [ours, t('আমরা আপনার পোর্টাল চালু করছি', 'We are opening your portal'), '']
+                  : paymentPending
+                    ? [
+                        ours,
+                        t('আমরা আপনার লেনদেন যাচাই করছি', 'We are checking your transfer'),
+                        t('আর টাকা পাঠাবেন না।', 'Do not send money again.'),
+                      ]
+                    : paymentRejected
+                      ? [yours, t('সঠিক Transaction ID দিন', 'Enter the correct Transaction ID'), '']
+                      : [
+                          yours,
+                          t(
+                            'bKash-এ টাকা পাঠিয়ে Transaction ID দিন',
+                            'Pay through bKash and enter the Transaction ID',
+                          ),
+                          '',
+                        ];
+    return (
+      <div className={c.nextStep}>
+        <span>{who}</span>
+        <strong>{what}</strong>
+        {more && <p>{more}</p>}
+      </div>
+    );
+  }
   const amount = (n: number) => takaFromPaisa(n, locale);
   const state = (value: string) =>
     ({
@@ -110,11 +244,12 @@ export function SalesDesk({
       lock.current = false;
     }
   }
-  async function command(body: SalesCommand | PaymentCommand, payment = false) {
+  async function command(body: SalesCommand | PaymentCommand, payment = false, origin: string | null = null) {
     if (lock.current) return;
     lock.current = true;
     setBusy(true);
     setError('');
+    setErrorAt(null);
     setNotice('');
     const signature = JSON.stringify({ body, payment });
     if (attempt.current?.signature !== signature) attempt.current = { signature, key: crypto.randomUUID() };
@@ -127,7 +262,26 @@ export function SalesDesk({
       attempt.current = null;
       setCreating(false);
       if (!payment) setSelected(result.id);
-      setNotice(t('সফলভাবে সংরক্ষিত হয়েছে।', 'Saved successfully.'));
+      if (body.kind === 'request') clearDraft();
+      setFilter('all');
+      setNotice(
+        body.kind === 'request'
+          ? t(
+              'অনুরোধ জমা হয়েছে। নিচে এর অবস্থা ও পরের ধাপ দেখুন—এই পেজে যেকোনো সময় ফিরে আসতে পারবেন।',
+              'Request sent. Its status and next step are below—you can come back to this page any time.',
+            )
+          : body.kind === 'accept'
+            ? t(
+                'সম্মতি পেয়েছি। এখন নিচের নির্দেশনা মেনে পেমেন্ট করুন।',
+                'Agreed. Now pay using the steps below.',
+              )
+            : body.kind === 'submit'
+              ? t(
+                  'লেনদেনের তথ্য জমা হয়েছে। আমরা যাচাই করছি।',
+                  'Transaction details sent. We are verifying them.',
+                )
+              : t('সংরক্ষিত হয়েছে।', 'Saved.'),
+      );
       try {
         await refresh();
         setCursors([undefined]);
@@ -141,24 +295,25 @@ export function SalesDesk({
       }
     } catch (e) {
       setError((e as Error).message);
+      setErrorAt(origin);
     } finally {
       setBusy(false);
       lock.current = false;
     }
   }
+  // Errors show beside the button that caused them, so they are seen on a phone.
+  const inlineError = (origin: string) =>
+    error && errorAt === origin ? (
+      <p className={s.error} role="alert">
+        {error}
+      </p>
+    ) : null;
   function formValues(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const f = new FormData(event.currentTarget);
     return (key: string) => String(f.get(key) ?? '').trim();
   }
   const basic = (r: SalesRequest) => ({ id: r.id, expectedRevision: r.revision });
-  const filtered = page.requests.filter(
-    (r) =>
-      filter === 'all' ||
-      (filter === 'payments'
-        ? page.payments.some((p) => p.request_id === r.id && p.state === 'pending')
-        : r.state === filter),
-  );
   return (
     <WorkspaceFrame email={email} seller={seller} section="requests">
       <div className={s.intro}>
@@ -205,7 +360,7 @@ export function SalesDesk({
           )}
         </div>
       </div>
-      {error && (
+      {error && !errorAt && (
         <p className={s.error} role="alert">
           {error}
         </p>
@@ -213,6 +368,14 @@ export function SalesDesk({
       {notice && (
         <p className={s.notice} role="status">
           {notice}
+        </p>
+      )}
+      {!seller && !creating && !notice && templateId && page.requests.length > 0 && (
+        <p className={s.notice} role="status">
+          {t(
+            'আপনার আগের অনুরোধ নিচে আছে। আরেকটি আলাদা অর্ডার চাইলে "নতুন অর্ডার" চাপুন।',
+            'Your existing request is below. For a separate order, choose "New request".',
+          )}
         </p>
       )}
       {creating && (
@@ -231,23 +394,41 @@ export function SalesDesk({
             className={s.form}
             onSubmit={(e) => {
               const v = formValues(e);
-              void command({
-                kind: 'request',
-                name: v('name'),
-                templateId: chosen,
-                eventDate: v('date'),
-                brief: v('brief'),
-              });
+              void command(
+                {
+                  kind: 'request',
+                  name: v('name'),
+                  templateId: chosen,
+                  eventDate: v('date'),
+                  brief: v('brief'),
+                },
+                false,
+                'request',
+              );
             }}
           >
             <fieldset className={s.form} disabled={busy}>
               <label>
                 {t('আপনার নাম', 'Your name')}
-                <input name="name" maxLength={120} required autoComplete="name" />
+                <input
+                  name="name"
+                  maxLength={120}
+                  required
+                  autoComplete="name"
+                  value={draft?.name ?? ''}
+                  onChange={(e) => saveDraft(e.currentTarget.form!)}
+                />
               </label>
               <label>
                 {t('পছন্দের নকশা', 'Selected design')}
-                <select value={chosen} onChange={(e) => setChosen(e.target.value as typeof chosen)}>
+                <select
+                  value={chosen}
+                  onChange={(e) => {
+                    const template = e.target.value as typeof chosen;
+                    setChosen(template);
+                    saveDraft(e.currentTarget.form!, template);
+                  }}
+                >
                   {templates.map((d) => (
                     <option value={d.id} key={d.id}>
                       {locale === 'bn' ? d.name : d.en} · {taka(prices[d.tier], locale)}
@@ -258,7 +439,12 @@ export function SalesDesk({
               </label>
               <label>
                 {t('আয়োজনের তারিখ · জানা থাকলে', 'Event date · if known')}
-                <input type="date" name="date" />
+                <input
+                  type="date"
+                  name="date"
+                  value={draft?.date ?? ''}
+                  onChange={(e) => saveDraft(e.currentTarget.form!)}
+                />
               </label>
               <label>
                 {t('আয়োজন ও প্রয়োজনের কথা', 'About your celebration')}
@@ -268,13 +454,21 @@ export function SalesDesk({
                   minLength={10}
                   maxLength={2000}
                   required
+                  value={draft?.brief ?? ''}
+                  onChange={(e) => saveDraft(e.currentTarget.form!)}
                   placeholder={t(
                     'অনুষ্ঠান, কতদিন লিংক প্রয়োজন, বিশেষ কোনো ভাবনা…',
                     'Events, how long you need the link, anything special…',
                   )}
                 />
               </label>
+              {restoredDraft && (
+                <p className={s.muted}>
+                  {t('আগের অসম্পূর্ণ লেখা ফিরিয়ে আনা হয়েছে।', 'Your unfinished text was restored.')}
+                </p>
+              )}
               <p className={s.muted}>{email}</p>
+              {inlineError('request')}
               <button className={s.button} disabled={busy}>
                 {busy ? t('সংরক্ষণ হচ্ছে…', 'Saving…') : t('অর্ডারের অনুরোধ পাঠান', 'Send your request')}
                 <ArrowRight size={16} />
@@ -326,7 +520,7 @@ export function SalesDesk({
                   setError('');
                   setNotice('');
                 }}
-                aria-pressed={r.id === selected}
+                aria-pressed={r.id === current?.id}
               >
                 <span className={c.reference}>DW-{r.id.slice(-8).toUpperCase()}</span>
                 <strong>{r.customer_name}</strong>
@@ -393,6 +587,7 @@ export function SalesDesk({
                   </li>
                 ))}
               </ol>
+              {!seller && nextStep(current)}
               <div className={c.brief} hidden={current.state === 'ordered'}>
                 <strong>
                   {current.template_id === 'custom'
@@ -430,9 +625,10 @@ export function SalesDesk({
                   <p className={c.prewrap}>{current.quote_notes}</p>
                   {!seller && current.state === 'quoted' && (
                     <form
+                      key={current.revision}
                       onSubmit={(e) => {
                         e.preventDefault();
-                        void command({ kind: 'accept', ...basic(current) });
+                        void command({ kind: 'accept', ...basic(current) }, false, 'accept');
                       }}
                     >
                       <label className={c.consent}>
@@ -442,9 +638,10 @@ export function SalesDesk({
                           'I have reviewed and accept the price, term and terms above.',
                         )}
                       </label>
+                      {inlineError('accept')}
                       <button className={s.button} disabled={busy}>
                         <Check size={16} />
-                        {t('কোটেশন গ্রহণ করুন', 'Accept quote')}
+                        {t('সম্মতি দিন ও পেমেন্টে যান', 'Accept & continue to payment')}
                       </button>
                     </form>
                   )}
@@ -459,14 +656,18 @@ export function SalesDesk({
                       current.template_id === 'custom'
                         ? 1500
                         : prices[findTemplate(current.template_id).tier];
-                    void command({
-                      kind: 'quote',
-                      ...basic(current),
-                      packageName: v('package'),
-                      amountMinor: price * 100,
-                      termDays: Number(v('term')),
-                      notes: v('notes'),
-                    });
+                    void command(
+                      {
+                        kind: 'quote',
+                        ...basic(current),
+                        packageName: v('package'),
+                        amountMinor: price * 100,
+                        termDays: Number(v('term')),
+                        notes: v('notes'),
+                      },
+                      false,
+                      'quote',
+                    );
                   }}
                 >
                   <h3>{t('কোটেশন ও নির্দেশনা', 'Quote & instructions')}</h3>
@@ -525,6 +726,7 @@ export function SalesDesk({
                         )}
                       />
                     </label>
+                    {inlineError('quote')}
                     <button className={s.button} disabled={busy}>
                       {t('কোটেশন সংরক্ষণ করুন', 'Save quote')}
                     </button>
@@ -558,35 +760,26 @@ export function SalesDesk({
                   )}
                 </p>
               )}
-              {current.state === 'ordered' && (
+              {current.state === 'ordered' && seller && (
                 <div className={c.paymentPaper}>
-                  <span className={c.paymentEyebrow}>ORDER DETAILS</span>
+                  <span className={c.paymentEyebrow}>{t('পেমেন্ট যাচাই', 'PAYMENT REVIEW')}</span>
                   <h3 className={c.paymentTitle}>
-                    {progress?.paymentStatus === 'manually_verified'
-                      ? t('পেমেন্ট ও পোর্টাল', 'Payment & portal')
-                      : t('পেমেন্টের নির্দেশনা', 'Payment instructions')}
+                    {progress?.paymentStatus === 'manually_verified' ||
+                    payments.some((p) => p.state === 'verified')
+                      ? t('পেমেন্ট যাচাই হয়েছে', 'Payment verified')
+                      : paymentPending
+                        ? t('গ্রাহকের লেনদেন মিলিয়ে দেখুন', "Check the customer's transfer")
+                        : t(
+                            'গ্রাহকের লেনদেনের তথ্যের অপেক্ষা',
+                            "Waiting for the customer's transfer details",
+                          )}
                   </h3>
-                  {progress?.paymentStatus !== 'manually_verified' && (
-                    <p className={c.paymentIntro}>
-                      {t(
-                        'আপনার অর্ডারের জন্য নিচের নির্দেশনা অনুযায়ী বিকাশে ম্যানুয়াল পেমেন্ট করুন।',
-                        'Follow the instructions below to pay for your order through bKash.',
-                      )}
-                    </p>
-                  )}
-                  {progress?.status === 'reviewing' &&
-                    progress.paymentStatus === 'pending' &&
-                    !payments.some((p) => p.state === 'pending') && (
-                      <ManualPayment embedded requestId={current.id} amountMinor={current.amount_minor!} />
+                  <p className={c.paymentIntro}>
+                    {t(
+                      `bKash অ্যাপে ${amount(current.amount_minor!)}, নিচের TrxID ও প্রেরকের নম্বর মিলিয়ে দেখুন। শুধু আসল লেনদেন দেখলে যাচাই করুন।`,
+                      `In the bKash app, match ${amount(current.amount_minor!)}, the TrxID and the sender below. Verify only when you see the actual transfer.`,
                     )}
-                  {!seller && payments.some((p) => p.state === 'pending') && (
-                    <p className={s.notice}>
-                      {t(
-                        'লেনদেনের তথ্য পেয়েছি—যাচাই চলছে। একই পেমেন্টের জন্য আবার টাকা পাঠাবেন না।',
-                        'Your transaction details are received and awaiting review. Do not send the same payment again.',
-                      )}
-                    </p>
-                  )}
+                  </p>
                   {payments.map((p) => (
                     <div className={c.payment} key={p.id}>
                       <div>
@@ -601,7 +794,7 @@ export function SalesDesk({
                         {t('প্রেরক:', 'Sender:')} {p.sender}
                       </p>
                       {p.review_note && <p className={c.prewrap}>{p.review_note}</p>}
-                      {seller && p.state === 'pending' && (
+                      {p.state === 'pending' && (
                         <form
                           className={s.form}
                           onSubmit={(e) => {
@@ -609,22 +802,28 @@ export function SalesDesk({
                             void command(
                               { kind: v('decision') as 'verify' | 'reject', id: p.id, reason: v('reason') },
                               true,
+                              'review',
                             );
                           }}
                         >
                           <fieldset className={s.form} disabled={busy}>
                             <label>
                               {t('সিদ্ধান্ত', 'Decision')}
-                              <select name="decision">
-                                <option value="verify">
-                                  {t('আসল লেনদেন মিলেছে — Verify', 'Actual transfer matched — Verify')}
+                              <select name="decision" required defaultValue="">
+                                <option value="" disabled>
+                                  {t('বেছে নিন…', 'Choose…')}
                                 </option>
-                                <option value="reject">{t('মেলেনি — Reject', 'Not matched — Reject')}</option>
+                                <option value="verify">
+                                  {t('আসল লেনদেন মিলেছে — যাচাই করুন', 'Actual transfer matched — Verify')}
+                                </option>
+                                <option value="reject">
+                                  {t('মেলেনি — বাতিল করুন', 'Not matched — Reject')}
+                                </option>
                               </select>
                             </label>
                             <label>
                               {t(
-                                'যাচাইয়ের বিবরণ / গ্রাহককে জানানোর কারণ',
+                                'যাচাইয়ের বিবরণ / গ্রাহককে জানানোর কারণ',
                                 'Verification evidence / reason visible to customer',
                               )}
                               <textarea name="reason" minLength={10} maxLength={1000} required rows={2} />
@@ -632,10 +831,11 @@ export function SalesDesk({
                             <label className={c.consent}>
                               <input type="checkbox" required />
                               {t(
-                                'প্রদানকারীর আসল transaction record দেখে সিদ্ধান্ত নিচ্ছি।',
-                                'I checked the actual provider transaction record.',
+                                'bKash অ্যাপে আসল লেনদেন দেখে সিদ্ধান্ত নিচ্ছি।',
+                                'I checked the actual transfer in the bKash app.',
                               )}
                             </label>
+                            {inlineError('review')}
                             <button className={s.button} disabled={busy}>
                               {t('সিদ্ধান্ত সংরক্ষণ করুন', 'Save review decision')}
                             </button>
@@ -644,10 +844,84 @@ export function SalesDesk({
                       )}
                     </div>
                   ))}
+                  {current.order_id && (
+                    <a className={s.button} href={`/admin/orders/?order=${current.order_id}`}>
+                      {t('এই অর্ডার নিশ্চিত ও পোর্টাল চালু করুন', 'Confirm this order & activate portal')}
+                      <ArrowRight size={16} />
+                    </a>
+                  )}
+                </div>
+              )}
+              {current.state === 'ordered' && !seller && (
+                <div className={c.paymentPaper}>
+                  <span className={c.paymentEyebrow}>{t('পেমেন্ট', 'PAYMENT')}</span>
+                  <h3 className={c.paymentTitle}>
+                    {progress?.paymentStatus === 'manually_verified'
+                      ? t('পেমেন্ট ও পোর্টাল', 'Payment & portal')
+                      : paymentPending
+                        ? t('আপনার লেনদেন যাচাই হচ্ছে', 'Your transfer is being checked')
+                        : paymentRejected
+                          ? t('লেনদেনের তথ্য মেলেনি', 'Transfer details did not match')
+                          : t('পেমেন্টের নির্দেশনা', 'Payment instructions')}
+                  </h3>
+                  {paymentPending && (
+                    <p className={s.notice}>
+                      <Clock3 size={16} />
+                      {t(
+                        'লেনদেনের তথ্য পেয়েছি—যাচাই চলছে। আর টাকা পাঠাবেন না; যাচাই হলে এখানেই জানতে পারবেন।',
+                        'Your transaction details are received and being checked. Do not send money again; the result will show here.',
+                      )}
+                    </p>
+                  )}
+                  {paymentRejected && (
+                    <p className={s.error}>
+                      {t(
+                        'আগে টাকা পাঠিয়ে থাকলে আবার পাঠাবেন না। bKash SMS থেকে সঠিক Transaction ID ও প্রেরকের নম্বর আবার দিন। সমস্যা হলে নিচের পেমেন্ট সহায়তায় যোগাযোগ করুন।',
+                        'If you already sent the money, do not send it again. Enter the correct Transaction ID and sender number from your bKash SMS. Contact payment help below if unsure.',
+                      )}
+                    </p>
+                  )}
+                  {progress?.status === 'reviewing' &&
+                    progress.paymentStatus === 'pending' &&
+                    !paymentPending &&
+                    (paymentRejected ? (
+                      <details>
+                        <summary>
+                          {t('এখনো টাকা পাঠাননি? নির্দেশনা দেখুন', 'Not sent yet? See how to pay')}
+                        </summary>
+                        <ManualPayment embedded requestId={current.id} amountMinor={current.amount_minor!} />
+                      </details>
+                    ) : (
+                      <>
+                        <p className={c.paymentIntro}>
+                          {t(
+                            'নিচের নির্দেশনা অনুযায়ী বিকাশে Send Money করুন, তারপর লেনদেনের তথ্য দিন।',
+                            'Send Money through bKash as shown below, then enter the transfer details.',
+                          )}
+                        </p>
+                        <ManualPayment embedded requestId={current.id} amountMinor={current.amount_minor!} />
+                      </>
+                    ))}
+                  {payments.map((p) => (
+                    <div className={c.payment} key={p.id}>
+                      <div>
+                        <strong>
+                          {p.method} · {p.reference}
+                        </strong>
+                        <span>
+                          {state(p.state)} · {amount(p.amount_minor)}
+                        </span>
+                      </div>
+                      <p>
+                        {t('প্রেরক:', 'Sender:')} {p.sender}
+                      </p>
+                      {p.review_note && <p className={c.prewrap}>{p.review_note}</p>}
+                    </div>
+                  ))}
                   {!seller &&
                     progress?.paymentStatus === 'pending' &&
                     progress.status === 'reviewing' &&
-                    !payments.some((p) => p.state === 'pending') && (
+                    !paymentPending && (
                       <form
                         className={`${s.form} ${c.paymentForm}`}
                         onSubmit={(e) => {
@@ -661,6 +935,7 @@ export function SalesDesk({
                               sender: v('sender'),
                             },
                             true,
+                            'payment',
                           );
                         }}
                       >
@@ -705,6 +980,7 @@ export function SalesDesk({
                               'Submission is not payment confirmation. We will verify the actual transfer.',
                             )}
                           </p>
+                          {inlineError('payment')}
                           <button className={s.button} disabled={busy}>
                             {t('যাচাইয়ের জন্য জমা দিন', 'Submit for verification')}
                             <ArrowRight size={17} />
@@ -729,11 +1005,14 @@ export function SalesDesk({
                         </fieldset>
                       </form>
                     )}
-                  {!seller && progress?.paymentStatus === 'manually_verified' && (
+                  {progress?.paymentStatus === 'manually_verified' && (
                     <p className={s.notice}>
-                      {t('পেমেন্ট যাচাই হয়েছে।', 'Payment verified.')}{' '}
+                      {t('পেমেন্ট যাচাই হয়েছে।', 'Payment verified.')}{' '}
                       {progress.access !== 'active' &&
-                        t('পোর্টাল activation-এর খবর এখানেই পাবেন।', 'Portal activation will appear here.')}
+                        t(
+                          'আমরা এখন আপনার পোর্টাল চালু করছি; চালু হলে এখানে বোতাম আসবে।',
+                          'We are now opening your portal; a button will appear here.',
+                        )}
                     </p>
                   )}
                   {progress?.access === 'active' && progress.weddingId && (
@@ -742,20 +1021,14 @@ export function SalesDesk({
                       <ArrowRight size={16} />
                     </a>
                   )}
-                  {seller && (
-                    <a className={s.button} href="/admin/orders/">
-                      {t('অর্ডার confirm ও portal activate করুন', 'Confirm order & activate portal')}
-                      <ArrowRight size={16} />
-                    </a>
-                  )}
                   <a
                     className={c.paymentHelp}
-                    href={whatsappLink(`অর্ডার ${orderPaymentReference(current.id)} নিয়ে সাহায্য চাই।`)}
+                    href={whatsappLink(`অর্ডার ${orderPaymentReference(current.id)} নিয়ে সাহায্য চাই।`)}
                     target="_blank"
                     rel="noreferrer"
                   >
                     <MessageCircle size={15} />
-                    {t('পেমেন্ট সহায়তা', 'Payment help')}
+                    {t('পেমেন্ট সহায়তা', 'Payment help')}
                   </a>
                 </div>
               )}

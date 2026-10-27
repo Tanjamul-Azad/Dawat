@@ -20,6 +20,8 @@ export function safeReturnPath(value: unknown): string {
   )
     return `${pathname}?${query}`;
   if (/^\/dashboard\/?$/.test(pathname) && query === 'all=1') return `${pathname}?all=1`;
+  if (/^\/admin\/orders\/?$/.test(pathname) && /^order=[0-9a-f-]{36}$/i.test(query))
+    return `${pathname}?${query}`;
   if (
     /^\/weddings\/[0-9a-f-]{36}\/?$/.test(pathname) &&
     /^section=(names|events|photos|review|overview)$/.test(query)

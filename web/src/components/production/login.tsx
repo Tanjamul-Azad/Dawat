@@ -7,6 +7,8 @@ import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
 import { latinDigits } from '@/features/production/copy';
 import { BrandLockup } from '../brand-mark';
+import { findTemplate, prices } from '@/features/production/catalog';
+import { taka } from '@/features/production/money';
 function LoginStory() {
   const { locale } = useProductLocale();
   return (
@@ -27,6 +29,31 @@ function LoginStory() {
         )}
       </h2>
       <p>{locale === 'bn' ? 'ভালোবাসার আয়োজন, যত্নে সাজানো।' : 'A celebration arranged with care.'}</p>
+    </div>
+  );
+}
+// When sign-in starts from an order, say what is being ordered and why the email is checked.
+function OrderContext({ next }: { next: string }) {
+  const { locale } = useProductLocale();
+  const id = /^\/order\/requests\/?\?template=([a-z]+)$/.exec(next)?.[1];
+  if (!id) return null;
+  const custom = id === 'custom';
+  const design = findTemplate(id);
+  const name = custom ? 'Customized' : locale === 'bn' ? design.name : design.en;
+  const price = taka(custom ? 1500 : prices[design.tier], locale);
+  return (
+    <div className={s.panel} role="note" style={{ display: 'grid', gap: 6 }}>
+      <p className={s.eyebrow}>{locale === 'bn' ? 'আপনার অর্ডার' : 'YOUR ORDER'}</p>
+      <p>
+        <strong>
+          {name} · {price}
+        </strong>
+      </p>
+      <p className={s.muted}>
+        {locale === 'bn'
+          ? 'অর্ডারটি আপনার ইমেইলে থাকবে, তাই একবার ইমেইল যাচাই করছি। কোড দেওয়ার পর সরাসরি অর্ডারের পেজে যাবেন।'
+          : 'Your order belongs to your email, so we check it once. After the code you go straight to your order.'}
+      </p>
     </div>
   );
 }
@@ -90,6 +117,7 @@ export function Login({ next, available = true }: { next: string; available?: bo
             ? 'ইমেইল যাচাই করে আপনার আমন্ত্রণের কাজ শুরু করুন।'
             : 'Verify your email to start working on your invitation.'}
         </p>
+        <OrderContext next={next} />
         <div className={s.panel}>
           {error && (
             <p className={s.error} role="alert">
@@ -174,7 +202,13 @@ export function Login({ next, available = true }: { next: string; available?: bo
     </div>
   );
 }
-export function Mfa({ existingFactor }: { existingFactor: string | null }) {
+export function Mfa({
+  existingFactor,
+  next = '/admin/orders/',
+}: {
+  existingFactor: string | null;
+  next?: string;
+}) {
   const { tr, locale } = useProductLocale();
   const [factorId, setFactorId] = useState(existingFactor);
   const [qr, setQr] = useState('');
@@ -206,7 +240,7 @@ export function Mfa({ existingFactor }: { existingFactor: string | null }) {
     setError('');
     try {
       await api('/api/auth/mfa-verify/', { method: 'POST', body: { factorId, code } });
-      window.location.assign('/admin/orders/');
+      window.location.assign(safeReturnPath(next));
     } catch (e) {
       setError((e as Error).message);
     } finally {

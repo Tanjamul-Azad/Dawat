@@ -1,6 +1,6 @@
 'use client';
 import { Fragment, useState } from 'react';
-import { ChevronDown, Copy, Eye, PencilLine, RotateCcw, ShieldOff } from 'lucide-react';
+import { Check, ChevronDown, Copy, Eye, PencilLine, RotateCcw, ShieldOff } from 'lucide-react';
 import type { HouseholdRow } from '@/features/production/guests';
 import { useProductLocale } from './product-locale';
 import s from './workspace.module.css';
@@ -11,6 +11,7 @@ export function GuestList({
   eventId,
   busy,
   eventTitle,
+  copiedId,
   onCopy,
   onPreview,
   onEdit,
@@ -22,6 +23,7 @@ export function GuestList({
   eventId: string;
   busy: boolean;
   eventTitle: (id: string) => string;
+  copiedId?: string;
   onCopy: Action;
   onPreview: Action;
   onEdit: Action;
@@ -120,8 +122,14 @@ export function GuestList({
                           : tr('Copy link')
                       }
                     >
-                      <Copy size={14} />
-                      <span>{row.linkState === 'missing' ? t('তৈরি করুন', 'Create') : t('কপি', 'Copy')}</span>
+                      {row.id === copiedId ? <Check size={14} /> : <Copy size={14} />}
+                      <span>
+                        {row.id === copiedId
+                          ? t('কপি হয়েছে', 'Copied')
+                          : row.linkState === 'missing'
+                            ? t('তৈরি করুন', 'Create')
+                            : t('কপি', 'Copy')}
+                      </span>
                     </button>
                   </td>
                 </tr>

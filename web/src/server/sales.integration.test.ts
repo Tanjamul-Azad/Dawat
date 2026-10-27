@@ -45,9 +45,7 @@ async function order() {
     notes: 'Synthetic terms and payment instructions for verification only.',
   });
   await actor(alice);
-  r = await command({ kind: 'accept', id: r.id, expectedRevision: r.revision });
-  await actor(seller, 'aal2');
-  return command({ kind: 'convert', id: r.id, expectedRevision: r.revision });
+  return command({ kind: 'accept', id: r.id, expectedRevision: r.revision });
 }
 beforeAll(async () => {
   db = new PGlite();
@@ -62,6 +60,7 @@ insert into auth.users(id,email,email_confirmed_at) values('${seller}','seller@e
     '20261020204524_client_readiness_fixes.sql',
     '20261026054154_sales_requests.sql',
     '20261026054200_manual_payment_submissions.sql',
+    '20261027120000_accept_opens_order.sql',
   ]) {
     try {
       await db.exec(readFileSync('supabase/migrations/' + file, 'utf8'));
@@ -154,9 +153,10 @@ it('rejects stale agreement and seller acceptance on customer behalf', async () 
   await actor(alice);
   await expect(command({ kind: 'accept', id: r.id, expectedRevision: 0 })).rejects.toThrow(/changed/);
 });
-it('converts only accepted quotes once without fabricating payment or access', async () => {
+it('opens the unpaid order on acceptance once, without fabricating payment or access', async () => {
   const r = await order();
   expect(r.state).toBe('ordered');
+  await actor(seller, 'aal2');
   const rows = await db.query<any>('select * from public.orders where id=$1', [r.order_id]);
   expect(rows.rows[0]).toMatchObject({
     amount_minor: 75000,
@@ -167,9 +167,23 @@ it('converts only accepted quotes once without fabricating payment or access', a
   expect((await db.query('select * from public.weddings where order_id=$1', [r.order_id])).rows).toHaveLength(
     0,
   );
+  await actor(alice);
+  await expect(command({ kind: 'accept', id: r.id, expectedRevision: r.revision })).rejects.toThrow(
+    /no quote/,
+  );
+  await actor(seller, 'aal2');
   await expect(command({ kind: 'convert', id: r.id, expectedRevision: r.revision })).rejects.toThrow(
     /accept/,
   );
+  await db.exec('reset role');
+  expect(
+    (
+      await db.query('select count(*)::int n from public.orders where customer_email=$1 and id=$2', [
+        'alice@example.test',
+        r.order_id,
+      ])
+    ).rows[0],
+  ).toEqual({ n: 1 });
 });
 it('submits evidence without granting paid state; staff verifies then confirms and activates separately', async () => {
   const r = await order();

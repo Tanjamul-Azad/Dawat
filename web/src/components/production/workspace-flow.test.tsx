@@ -317,6 +317,10 @@ it('explains missing household scope in Bangla before any server write', () => {
   );
   fireEvent.click(screen.getByRole('button', { name: 'অতিথি যোগ করুন' }));
   fireEvent.change(screen.getByLabelText('অতিথি বা দলের নাম'), { target: { value: 'কাল্পনিক পরিবার' } });
+  // The event being viewed starts selected; clearing it must still be caught before saving.
+  const scope = screen.getByRole('checkbox', { name: 'সংবর্ধনা' }) as HTMLInputElement;
+  expect(scope.checked).toBe(true);
+  fireEvent.click(scope);
   fireEvent.submit(screen.getByRole('dialog').querySelector('form')!);
   expect(screen.getByRole('alert').textContent).toContain('অন্তত একটি অনুষ্ঠান');
   expect(fetcher).not.toHaveBeenCalled();

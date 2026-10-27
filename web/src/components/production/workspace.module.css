@@ -1408,6 +1408,14 @@ label.photoUpload {
   background: #1f8a4c;
   box-shadow: 0 4px 14px rgb(24 57 37 / 0.22);
   color: #fff;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.whatsappTucked {
+  transform: translateY(140px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---------- Sign-in and loading (floral arch beside the form) ---------- */

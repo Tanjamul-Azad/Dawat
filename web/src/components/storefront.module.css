@@ -1147,20 +1147,54 @@
 }
 
 /* ---------- Small laptop: hero copy beside the artwork ---------- */
-@media (min-width: 900px) and (max-width: 1199px) {
+/* Full-bleed hero: the photo fills the band, copy sits on its left. */
+@media (min-width: 900px) {
   .hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    position: relative;
+    display: flex;
     align-items: center;
-    gap: 40px;
-    padding-block: 40px 8px;
+    max-width: none;
+    min-height: clamp(480px, 44vw, 660px);
+    padding: 0;
+    isolation: isolate;
+  }
+  .heroCopy {
+    width: 100%;
+    max-width: calc(var(--container) + 2 * var(--gutter));
+    margin-inline: auto;
+    padding: 56px var(--gutter);
+  }
+  .heroCopy > * {
+    max-width: 520px;
+  }
+  .heroCopy > p {
+    max-width: 400px;
   }
   .heroArt {
-    margin-top: 0;
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    margin: 0;
+    border-radius: 0;
+  }
+  .heroArt::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgb(244 235 222 / 0.92) 0%,
+      rgb(244 235 222 / 0.6) 32%,
+      transparent 52%
+    );
   }
   .heroArt img {
-    aspect-ratio: 4 / 5;
-    object-position: 70% center;
+    height: 100%;
+    aspect-ratio: auto;
+    object-position: right center;
+  }
+  .values {
+    margin-top: 0 !important;
   }
 }
 
@@ -1249,50 +1283,6 @@
 
 /* ---------- Desktop: copy sits over the left of the hero artwork ---------- */
 @media (min-width: 1200px) {
-  .hero {
-    position: relative;
-    display: flex;
-    align-items: center;
-    max-width: none;
-    min-height: clamp(540px, 40vw, 660px);
-    padding: 0;
-    isolation: isolate;
-  }
-  .heroCopy {
-    width: 100%;
-    max-width: calc(var(--container) + 2 * var(--gutter));
-    margin-inline: auto;
-    padding: 56px var(--gutter);
-  }
-  .heroCopy > * {
-    max-width: 520px;
-  }
-  .heroArt {
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    margin: 0;
-    border-radius: 0;
-  }
-  .heroArt::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      90deg,
-      rgb(244 235 222 / 0.92) 0%,
-      rgb(244 235 222 / 0.6) 32%,
-      transparent 52%
-    );
-  }
-  .heroArt img {
-    height: 100%;
-    aspect-ratio: auto;
-    object-position: right center;
-  }
-  .values {
-    margin-top: 0 !important;
-  }
   .templateRail {
     grid-auto-columns: calc((100% - 5 * 14px) / 6);
     overflow: visible;

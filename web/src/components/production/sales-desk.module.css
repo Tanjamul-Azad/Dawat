@@ -489,3 +489,25 @@ label.consent {
     gap: 24px;
   }
 }
+.nextStep {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--wine, currentColor);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+.nextStep span {
+  color: var(--muted);
+  font-size: 13px;
+}
+.nextStep strong {
+  font-size: 16px;
+}
+.nextStep p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}

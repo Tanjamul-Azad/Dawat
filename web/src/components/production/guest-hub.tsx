@@ -2,7 +2,7 @@
 import { useProductLocale } from './product-locale';
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { ArrowLeft, Plus, RefreshCw, Send, Link2, Heart, Download } from 'lucide-react';
+import { ArrowLeft, Plus, RefreshCw, Send, Link2, Heart, Download, ListPlus } from 'lucide-react';
 import type { Invitation } from '@/features/workspace/model';
 import {
   householdInput,
@@ -71,6 +71,10 @@ export function GuestHub({
     kind: 'rotate' | 'revoke';
   } | null>(null);
   const [policyOpen, setPolicyOpen] = useState(false);
+  const [bulkOpen, setBulkOpen] = useState(false);
+  const [editorRound, setEditorRound] = useState(0);
+  // The page notice can be far off-screen on a phone, so the copied row says so too.
+  const [copiedId, setCopiedId] = useState('');
   const [correcting, setCorrecting] = useState<HouseholdRow | null>(null);
   const serial = useRef(0);
   const wishSerial = useRef(0);
@@ -216,13 +220,25 @@ export function GuestHub({
       actionAttempt.current = null;
       setDanger(null);
       if (r.url) {
-        setShared({ name: row.name, url: r.url });
+        let copied = false;
         try {
           await copyText(r.url);
-          setNotice(tr('Personal link copied. No message has been sent.'));
+          copied = true;
         } catch {
-          setNotice(tr('The link is ready. Copy it from the selectable field below.'));
+          copied = false;
         }
+        if (!copied || kind === 'rotate') setShared({ name: row.name, url: r.url });
+        if (copied) {
+          setCopiedId(row.id);
+          window.setTimeout(() => setCopiedId((id) => (id === row.id ? '' : id)), 4000);
+        }
+        setNotice(
+          copied
+            ? locale === 'bn'
+              ? `${row.name}-এর লিংক কপি হয়েছে। এখন WhatsApp-এ পেস্ট করে পাঠান; কোনো বার্তা নিজে থেকে যায়নি।`
+              : `Link for ${row.name} copied. Paste it into WhatsApp; no message has been sent.`
+            : tr('The link is ready. Copy it from the selectable field below.'),
+        );
       } else setNotice(tr('Link revoked. Existing replies and wishes have been retained.'));
       await refresh();
     } catch (e) {
@@ -266,6 +282,10 @@ export function GuestHub({
           >
             <RefreshCw size={15} />
             {busy ? tr('Please wait…') : tr('Refresh')}
+          </button>
+          <button className={s.secondary} disabled={busy || !events.length} onClick={() => setBulkOpen(true)}>
+            <ListPlus size={16} />
+            {locale === 'bn' ? 'একসঙ্গে অনেক পরিবার' : 'Add many at once'}
           </button>
           <button className={s.button} disabled={busy || !events.length} onClick={() => setEditing(null)}>
             <Plus size={16} />
@@ -475,6 +495,7 @@ export function GuestHub({
               eventId={reportEventId}
               busy={busy}
               eventTitle={eventTitle}
+              copiedId={copiedId}
               onCopy={(row) => void link(row, 'copy')}
               onPreview={(row) => void openPreview(row)}
               onEdit={setEditing}
@@ -572,18 +593,47 @@ export function GuestHub({
       )}
       {editing !== undefined && (
         <HouseholdEditor
+          key={editorRound}
           row={editing}
           wid={wid}
           events={events}
+          defaultEvent={eventId}
           onClose={() => setEditing(undefined)}
-          onSaved={async () => {
-            setEditing(undefined);
-            setNotice(
-              tr(
-                'Household saved. Personal name, scope and allowance are live immediately; base invitation remains unchanged.',
-              ),
-            );
+          onSaved={async (another, name) => {
+            if (another) {
+              setEditorRound((n) => n + 1);
+              setNotice(
+                locale === 'bn'
+                  ? `${name} সংরক্ষিত হয়েছে। এবার পরের পরিবারের নাম লিখুন।`
+                  : `${name} saved. Enter the next family.`,
+              );
+            } else {
+              setEditing(undefined);
+              setNotice(
+                tr(
+                  'Household saved. Personal name, scope and allowance are live immediately; base invitation remains unchanged.',
+                ),
+              );
+            }
             await refresh();
+          }}
+        />
+      )}
+      {bulkOpen && (
+        <BulkHouseholds
+          wid={wid}
+          events={events}
+          defaultEvent={eventId}
+          onClose={async (created) => {
+            setBulkOpen(false);
+            if (created) {
+              setNotice(
+                locale === 'bn'
+                  ? `${count(created)}টি পরিবার যোগ হয়েছে।`
+                  : `${count(created)} families added.`,
+              );
+              await refresh();
+            }
           }}
         />
       )}
@@ -748,20 +798,85 @@ function HouseholdEditor({
   row,
   wid,
   events,
+  defaultEvent,
   onClose,
   onSaved,
 }: {
   row: HouseholdRow | null;
   wid: string;
   events: Invitation['events'];
+  defaultEvent: string;
   onClose: () => void;
-  onSaved: () => Promise<void>;
+  onSaved: (another: boolean, name: string) => Promise<void>;
 }) {
   const { tr, locale } = useProductLocale();
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [dirty, setDirty] = useState(false);
+  const [duplicate, setDuplicate] = useState('');
   const id = useRef(row?.id ?? crypto.randomUUID());
-  const [included, setIncluded] = useState(() => new Set(row?.events.map((event) => event.eventId) ?? []));
+  const another = useRef(false);
+  // A new family starts in the event the host is looking at (or the only event).
+  const [included, setIncluded] = useState(
+    () =>
+      new Set(
+        row
+          ? row.events.map((event) => event.eventId)
+          : events.length === 1
+            ? [events[0].id]
+            : events.some((ev) => ev.id === defaultEvent)
+              ? [defaultEvent]
+              : [],
+      ),
+  );
+  function close() {
+    if (busy) return;
+    if (
+      dirty &&
+      !window.confirm(
+        locale === 'bn'
+          ? 'লেখা এখনো সংরক্ষণ হয়নি। তবুও বন্ধ করবেন?'
+          : 'Your changes are not saved. Close anyway?',
+      )
+    )
+      return;
+    onClose();
+  }
+  // Names are checked across every family, not only the visible page.
+  const duplicateCheck = useRef(0);
+  async function checkDuplicate(name: string) {
+    const check = ++duplicateCheck.current;
+    const wanted = name.trim().toLowerCase();
+    setDuplicate('');
+    if (!wanted) return;
+    try {
+      for (const event of events) {
+        let cursor: string | null = null;
+        do {
+          const query = new URLSearchParams({ event: event.id, search: name.trim(), status: 'all' });
+          if (cursor) query.set('after', cursor);
+          const r = await api<HouseholdReport>(`/api/weddings/${wid}/households/?${query}`);
+          if (check !== duplicateCheck.current) return;
+          const same = r.rows.find(
+            (h) =>
+              h.id !== row?.id &&
+              (h.name.trim().toLowerCase() === wanted || h.nameBn?.trim().toLowerCase() === wanted),
+          );
+          if (same) {
+            setDuplicate(
+              locale === 'bn'
+                ? `"${same.name}" নামে আগেই একটি পরিবার আছে। একই পরিবার হলে ওটাই সম্পাদনা করুন; আলাদা হলে নোটে পার্থক্য লিখে রাখুন।`
+                : `A family named "${same.name}" already exists. Edit that one if it is the same family; otherwise add a note to tell them apart.`,
+            );
+            return;
+          }
+          cursor = r.nextCursor;
+        } while (cursor);
+      }
+    } catch {
+      /* The check is advisory; saving still works. */
+    }
+  }
   const attempt = useRef<{
     body: string;
     key: string;
@@ -805,7 +920,8 @@ function HouseholdEditor({
     setError('');
     try {
       await api(`/api/weddings/${wid}/households/`, { method: 'POST', body, key: attempt.current.key });
-      await onSaved();
+      setDirty(false);
+      await onSaved(another.current, valid.data.name);
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -813,12 +929,7 @@ function HouseholdEditor({
     }
   }
   return (
-    <Modal
-      title={row ? tr('Edit personal invitation') : tr('A welcome, just for them.')}
-      onClose={() => {
-        if (!busy) onClose();
-      }}
-    >
+    <Modal title={row ? tr('Edit personal invitation') : tr('A welcome, just for them.')} onClose={close}>
       {error && (
         <p role="alert" className={s.error}>
           {errorText(error, locale)}
@@ -829,7 +940,7 @@ function HouseholdEditor({
           'Guests see the host-supplied name. They never enter their own name. Changes here update this personal invitation immediately.',
         )}
       </p>
-      <form className={s.form} onSubmit={submit}>
+      <form className={s.form} onSubmit={submit} onInput={() => setDirty(true)}>
         <fieldset disabled={busy} className={s.form}>
           <label>
             {tr('Guest or family name')}
@@ -837,6 +948,8 @@ function HouseholdEditor({
               name="name"
               required
               maxLength={120}
+              autoFocus={!row}
+              onBlur={(e) => void checkDuplicate(e.target.value)}
               defaultValue={row?.name}
               placeholder={
                 locale === 'bn'
@@ -845,6 +958,11 @@ function HouseholdEditor({
               }
             />
           </label>
+          {duplicate && (
+            <p className={s.notice} role="status">
+              {duplicate}
+            </p>
+          )}
           <details className={s.optionalFields}>
             <summary>
               {locale === 'bn'
@@ -943,11 +1061,237 @@ function HouseholdEditor({
               'Allowances include all adults and children. A responded event cannot be removed, or its allowance lowered below a saved party, without reconciliation. Duplicate names remain separate households.',
             )}
           </p>
-          <button className={s.button} disabled={busy}>
-            {busy ? tr('Please wait…') : row ? tr('Save household') : tr('Create household')}
-          </button>
+          <div className={s.actions}>
+            <button className={s.button} disabled={busy} onClick={() => (another.current = false)}>
+              {busy ? tr('Please wait…') : row ? tr('Save household') : tr('Create household')}
+            </button>
+            {!row && (
+              <button className={s.secondary} disabled={busy} onClick={() => (another.current = true)}>
+                {locale === 'bn' ? 'সংরক্ষণ করে পরেরটি যোগ করুন' : 'Save & add another'}
+              </button>
+            )}
+          </div>
         </fieldset>
       </form>
+    </Modal>
+  );
+}
+// Paste many families at once: one per line, "name, people". Each line becomes an
+// ordinary household through the same API, so validation and limits are unchanged.
+function BulkHouseholds({
+  wid,
+  events,
+  defaultEvent,
+  onClose,
+}: {
+  wid: string;
+  events: Invitation['events'];
+  defaultEvent: string;
+  onClose: (created: number) => Promise<void>;
+}) {
+  const { locale } = useProductLocale();
+  const bn = locale === 'bn';
+  const [text, setText] = useState('');
+  const [included, setIncluded] = useState(
+    () =>
+      new Set(
+        events.length === 1
+          ? [events[0].id]
+          : events.some((ev) => ev.id === defaultEvent)
+            ? [defaultEvent]
+            : [],
+      ),
+  );
+  const [busy, setBusy] = useState(false);
+  const [done, setDone] = useState(0);
+  const [error, setError] = useState('');
+  const batch = useRef<
+    { body: { id: string; expectedRevision: number; household: HouseholdInput }; key: string }[] | null
+  >(null);
+  const completed = useRef(0);
+  const running = useRef(false);
+  const [started, setStarted] = useState(false);
+  const lines = text
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const tooMany = lines.length > 100;
+  useEffect(() => {
+    if (!text.trim()) return;
+    const warn = (event: BeforeUnloadEvent) => {
+      if (completed.current >= lines.length) return;
+      event.preventDefault();
+      event.returnValue = '';
+    };
+    window.addEventListener('beforeunload', warn);
+    return () => window.removeEventListener('beforeunload', warn);
+  }, [text, lines.length]);
+  const parsed = lines.map((line) => {
+    const match = /^(.*?)(?:[,،;|\t]\s*([^,،;|\t]+))?$/.exec(line);
+    const name = (match?.[1] ?? line).trim();
+    const people = Number(latinDigits(match?.[2] ?? '1'));
+    const household: HouseholdInput = {
+      name,
+      nameBn: '',
+      greeting: '',
+      greetingEn: '',
+      message: '',
+      messageEn: '',
+      privateNote: '',
+      events: events.filter((ev) => included.has(ev.id)).map((ev) => ({ eventId: ev.id, maxPeople: people })),
+    };
+    return { line, name, people, valid: householdInput.safeParse(household), household };
+  });
+  const ready = parsed.filter((p) => p.valid.success);
+  async function create() {
+    if (running.current || !ready.length || tooMany || ready.length !== parsed.length) return;
+    running.current = true;
+    if (!batch.current)
+      batch.current = ready.map((item) => ({
+        body: { id: crypto.randomUUID(), expectedRevision: 0, household: item.household },
+        key: crypto.randomUUID(),
+      }));
+    setStarted(true);
+    setBusy(true);
+    setError('');
+    try {
+      for (const item of batch.current.slice(completed.current)) {
+        await api(`/api/weddings/${wid}/households/`, { method: 'POST', body: item.body, key: item.key });
+        completed.current++;
+        setDone(completed.current);
+      }
+      await onClose(completed.current);
+    } catch (e) {
+      setError(
+        (bn
+          ? `${completed.current}টি নিশ্চিতভাবে যোগ হয়েছে। একই তালিকা আবার জমা দেবেন না; এখান থেকেই বাকি অংশ চেষ্টা করুন: `
+          : `${completed.current} confirmed added. Do not submit the list again; retry the remaining items here: `) +
+          errorText((e as Error).message, locale),
+      );
+    } finally {
+      running.current = false;
+      setBusy(false);
+    }
+  }
+  return (
+    <Modal
+      title={bn ? 'একসঙ্গে অনেক পরিবার যোগ করুন' : 'Add many families at once'}
+      onClose={() => {
+        if (running.current) return;
+        if (
+          text.trim() &&
+          completed.current < lines.length &&
+          !window.confirm(
+            bn
+              ? 'তালিকার সব পরিবার সংরক্ষিত হয়নি। বন্ধ করলে বাকি কাজের অবস্থান হারাবে। বন্ধ করতে OK, এখান থেকে আবার চেষ্টা করতে Cancel চাপুন।'
+              : 'Not all families are saved. Closing loses the remaining batch progress. Stay here to retry, or choose OK to close.',
+          )
+        )
+          return;
+        void onClose(completed.current);
+      }}
+    >
+      <p>
+        {bn
+          ? 'প্রতি লাইনে একটি পরিবার: নাম, তারপর কমা দিয়ে মোট কতজন। সংখ্যা না দিলে ১ জন ধরা হবে। একবারে সর্বোচ্চ ১০০টি।'
+          : 'One family per line: the name, then a comma and the total people. No number means 1. Up to 100 at a time.'}
+      </p>
+      {error && (
+        <p role="alert" className={s.error}>
+          {error}
+        </p>
+      )}
+      {tooMany && (
+        <p className={s.error} role="alert">
+          {bn
+            ? '১০০টির বেশি পরিবার দেওয়া হয়েছে। কোনো নাম বাদ দেওয়া হয়নি; সর্বোচ্চ ১০০টি রেখে আবার চেষ্টা করুন।'
+            : 'More than 100 families supplied. No rows were discarded; keep at most 100 and try again.'}
+        </p>
+      )}
+      <div className={s.form}>
+        <label>
+          {bn ? 'পরিবারের তালিকা' : 'Families'}
+          <textarea
+            rows={8}
+            value={text}
+            disabled={busy || started}
+            onChange={(e) => setText(e.target.value)}
+            placeholder={
+              bn
+                ? 'রহমান পরিবার, 4\nসাবিহা আপা, 2\nঅফিসের বন্ধুরা, 6'
+                : 'Rahman family, 4\nSabiha, 2\nOffice friends, 6'
+            }
+          />
+        </label>
+        <fieldset>
+          <legend>{bn ? 'কোন অনুষ্ঠানে দাওয়াত' : 'Invited to'}</legend>
+          {events.map((ev) => (
+            <label className={s.checkbox} key={ev.id}>
+              <input
+                type="checkbox"
+                checked={included.has(ev.id)}
+                disabled={busy || started}
+                onChange={(e) =>
+                  setIncluded((current) => {
+                    const next = new Set(current);
+                    if (e.target.checked) next.add(ev.id);
+                    else next.delete(ev.id);
+                    return next;
+                  })
+                }
+              />
+              {bn ? ev.titleBn || ev.title : ev.title}
+            </label>
+          ))}
+        </fieldset>
+        {lines.length > 0 && (
+          <p className={s.muted} role="status">
+            {bn
+              ? `${ready.length}টি প্রস্তুত${parsed.length > ready.length ? `, ${parsed.length - ready.length}টিতে সমস্যা` : ''}।`
+              : `${ready.length} ready${parsed.length > ready.length ? `, ${parsed.length - ready.length} need fixing` : ''}.`}
+          </p>
+        )}
+        {parsed.some((p) => !p.valid.success) && (
+          <ul className={s.list}>
+            {parsed
+              .filter((p) => !p.valid.success)
+              .slice(0, 5)
+              .map((p, i) => (
+                <li key={i}>
+                  {p.line} —{' '}
+                  {!included.size
+                    ? bn
+                      ? 'অন্তত একটি অনুষ্ঠান বেছে নিন'
+                      : 'choose at least one event'
+                    : !Number.isInteger(p.people) || p.people < 1 || p.people > 50
+                      ? bn
+                        ? 'সংখ্যা ১ থেকে ৫০ এর মধ্যে দিন'
+                        : 'use 1 to 50 people'
+                      : bn
+                        ? 'নাম ঠিক করুন'
+                        : 'fix the name'}
+                </li>
+              ))}
+          </ul>
+        )}
+        <button
+          className={s.button}
+          disabled={busy || !ready.length || tooMany || ready.length !== parsed.length}
+          onClick={() => void create()}
+        >
+          {busy
+            ? bn
+              ? `যোগ হচ্ছে… ${done}/${ready.length}`
+              : `Adding… ${done}/${ready.length}`
+            : started
+              ? bn
+                ? 'বাকিগুলো আবার চেষ্টা করুন'
+                : 'Retry the rest'
+              : bn
+                ? `${ready.length}টি পরিবার যোগ করুন`
+                : `Add ${ready.length} families`}
+        </button>
+      </div>
     </Modal>
   );
 }

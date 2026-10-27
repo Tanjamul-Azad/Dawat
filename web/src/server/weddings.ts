@@ -71,10 +71,16 @@ export async function getWedding(
     publishedDraftRevision,
   };
 }
-export async function listOrders(cursor?: string, search = '', field: 'name' | 'email' = 'name') {
+export async function listOrders(
+  cursor?: string,
+  search = '',
+  field: 'name' | 'email' = 'name',
+  id?: string,
+) {
   const { db } = await staffSession();
   let query = db.from('orders').select('*').order('id').limit(26);
   if (cursor) query = query.gt('id', cursor);
+  if (id) query = query.eq('id', id);
   if (search)
     query = query.ilike(
       field === 'email' ? 'customer_email' : 'customer_name',

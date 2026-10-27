@@ -1,6 +1,6 @@
 'use client';
 import { useProductLocale } from './product-locale';
-import { createContext, useContext, useState, type ComponentProps } from 'react';
+import { createContext, useContext, useEffect, useState, type ComponentProps } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
@@ -60,6 +60,19 @@ export function WorkspaceFrame({
   const { tr, locale, setLocale } = useProductLocale();
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  // The support bubble sits over row actions on a phone, so it steps aside while the page scrolls down.
+  const [tucked, setTucked] = useState(false);
+  useEffect(() => {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - last) < 8) return;
+      setTucked(y > last && y > 160);
+      last = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   async function logout() {
     setBusy(true);
     try {
@@ -217,7 +230,8 @@ export function WorkspaceFrame({
           </main>
         </div>
         <a
-          className={s.whatsappSupport}
+          className={`${s.whatsappSupport} ${tucked ? s.whatsappTucked : ''}`}
+          tabIndex={tucked ? -1 : undefined}
           href={whatsappLink()}
           target="_blank"
           rel="noreferrer"

@@ -1,7 +1,7 @@
 'use client';
 import { useProductLocale } from './product-locale';
-import { useRef, useState } from 'react';
-import { ArrowRight, Plus, RefreshCw, ShieldCheck } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowRight, Copy, Plus, RefreshCw, ShieldCheck } from 'lucide-react';
 import type { SellerOrder, SellerCommand } from '@/features/production/contracts';
 import { api } from '@/features/production/client';
 import { parseBDT, takaFromPaisa } from '@/features/production/money';
@@ -20,7 +20,15 @@ type Timeline = {
   created_at: string;
   actor_id: string;
 }[];
-export function SellerOrders({ initial, email }: { initial: Page; email: string }) {
+export function SellerOrders({
+  initial,
+  email,
+  focus,
+}: {
+  initial: Page;
+  email: string;
+  focus?: SellerOrder;
+}) {
   const { tr, locale } = useProductLocale();
   const [page, setPage] = useState(initial);
   const [selected, setSelected] = useState<SellerOrder | null>(null);
@@ -28,6 +36,9 @@ export function SellerOrders({ initial, email }: { initial: Page; email: string 
   const [action, setAction] = useState<SellerCommand['kind'] | null>(null);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  // After activation: the customer's own portal address, ready to copy and send.
+  const [handoff, setHandoff] = useState<{ url: string; email: string } | null>(null);
+  const [copied, setCopied] = useState(false);
   const [busy, setBusy] = useState(false);
   const [timeline, setTimeline] = useState<Timeline>([]);
   const [search, setSearch] = useState('');
@@ -70,6 +81,31 @@ export function SellerOrders({ initial, email }: { initial: Page; email: string 
       if (generation === timelineSerial.current) setTimeline(result);
     } catch (e) {
       if (generation === timelineSerial.current) setError((e as Error).message);
+    }
+  }
+  useEffect(() => {
+    // Search-parameter navigation can reuse this component for another order.
+    // Never carry an open action or its retry key into that new selection.
+    setAction(null);
+    setCreating(false);
+    setNotice('');
+    setHandoff(null);
+    setCopied(false);
+    attempt.current = null;
+    if (focus) void open(focus);
+    else {
+      ++timelineSerial.current;
+      setSelected(null);
+      setTimeline([]);
+    }
+  }, [focus?.id]);
+  async function copyHandoff() {
+    if (!handoff) return;
+    try {
+      await navigator.clipboard.writeText(handoff.url);
+      setCopied(true);
+    } catch {
+      setCopied(false);
     }
   }
   async function submit(event: React.FormEvent<HTMLFormElement>) {
@@ -117,8 +153,20 @@ export function SellerOrders({ initial, email }: { initial: Page; email: string 
     setBusy(true);
     setError('');
     setNotice('');
+    setHandoff(null);
+    setCopied(false);
     try {
-      await api('/api/admin/orders/', { method: 'POST', body: command, key: attempt.current.key });
+      const result = await api<{ weddingId: string | null }>('/api/admin/orders/', {
+        method: 'POST',
+        body: command,
+        key: attempt.current.key,
+      });
+      const weddingId = result?.weddingId ?? (selected?.weddingId || null);
+      if (command.kind === 'activate' && weddingId && selected)
+        setHandoff({
+          url: `${window.location.origin}/weddings/${weddingId}/`,
+          email: selected.customer_email,
+        });
       attempt.current = null;
       setAction(null);
       setCreating(false);
@@ -176,8 +224,32 @@ export function SellerOrders({ initial, email }: { initial: Page; email: string 
       )}
       {notice && (
         <p className={s.notice} role="status">
-          {notice} <a href="/dashboard/">{tr('Customer entry: /dashboard/')}</a>
+          {notice}
         </p>
+      )}
+      {handoff && (
+        <section
+          className={s.panel}
+          aria-label={locale === 'bn' ? 'গ্রাহকের পোর্টাল লিংক' : 'Customer portal link'}
+        >
+          <h2>{locale === 'bn' ? 'গ্রাহকের নিজস্ব পোর্টাল লিংক' : "Customer's own portal link"}</h2>
+          <p className={s.muted}>
+            {locale === 'bn'
+              ? `এই লিংক ${handoff.email}-কে পাঠান। তিনি এই ইমেইলের কোড দিয়ে লগইন করলেই সরাসরি তাঁর আমন্ত্রণ খুলবে। কোনো বার্তা স্বয়ংক্রিয়ভাবে পাঠানো হয়নি।`
+              : `Send this link to ${handoff.email}. Signing in with that email opens their invitation directly. No message has been sent automatically.`}
+          </p>
+          <p className={s.code}>{handoff.url}</p>
+          <button className={s.button} onClick={() => void copyHandoff()}>
+            <Copy size={15} />
+            {copied
+              ? locale === 'bn'
+                ? 'কপি হয়েছে'
+                : 'Copied'
+              : locale === 'bn'
+                ? 'লিংক কপি করুন'
+                : 'Copy link'}
+          </button>
+        </section>
       )}
       <section className={s.panel}>
         <form
@@ -326,6 +398,32 @@ export function SellerOrders({ initial, email }: { initial: Page; email: string 
                 </dd>
               </div>
             </dl>
+            {selected.access === 'active' && selected.weddingId && (
+              <div className={s.detail}>
+                <p className={s.muted}>
+                  {locale === 'bn' ? 'গ্রাহকের নিজস্ব পোর্টাল লিংক' : "Customer's own portal link"}
+                </p>
+                <p
+                  className={s.code}
+                >{`${typeof window === 'undefined' ? '' : window.location.origin}/weddings/${selected.weddingId}/`}</p>
+                <button
+                  className={s.secondary}
+                  onClick={() => {
+                    setHandoff({
+                      url: `${window.location.origin}/weddings/${selected.weddingId}/`,
+                      email: selected.customer_email,
+                    });
+                    void navigator.clipboard
+                      .writeText(`${window.location.origin}/weddings/${selected.weddingId}/`)
+                      .then(() => setCopied(true))
+                      .catch(() => setCopied(false));
+                  }}
+                >
+                  <Copy size={15} />
+                  {locale === 'bn' ? 'লিংক কপি করুন' : 'Copy link'}
+                </button>
+              </div>
+            )}
             <div className={s.actions}>
               {selected.payment_status === 'pending' && (
                 <button className={s.secondary} onClick={() => setAction('verify-payment')}>
