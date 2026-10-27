@@ -1128,17 +1128,19 @@ label.photoUpload {
   table-layout: fixed;
 }
 .compactGuests th:nth-child(1) {
-  width: 35%;
+  width: 32%;
 }
-.compactGuests th:nth-child(2),
+.compactGuests th:nth-child(2) {
+  width: 17%;
+}
 .compactGuests th:nth-child(3) {
-  width: 18%;
+  width: 15%;
 }
 .compactGuests th:nth-child(4) {
-  width: 12%;
+  width: 14%;
 }
 .compactGuests th:nth-child(5) {
-  width: 17%;
+  width: 22%;
 }
 .compactGuests .compactGuestRow td {
   padding: 4px 10px;
@@ -1188,6 +1190,7 @@ label.photoUpload {
   background: var(--surface);
   color: var(--ink);
   font-size: 14px;
+  white-space: nowrap;
 }
 .guestCopy:hover:not(:disabled) {
   border-color: var(--wine);
@@ -1732,11 +1735,6 @@ label.photoUpload {
   .sticky {
     position: sticky;
     top: calc(var(--topbar-h) + 16px);
-  }
-  .steps {
-    position: sticky;
-    z-index: 10;
-    top: calc(var(--topbar-h) + 8px);
   }
 }
 
