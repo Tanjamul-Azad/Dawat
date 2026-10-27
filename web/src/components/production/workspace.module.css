@@ -859,7 +859,7 @@ label.dashboardSearch {
   padding: 10px 12px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  background: rgb(255 253 249 / 0.97);
+  background: var(--surface);
   box-shadow: 0 -6px 24px -12px rgb(70 40 20 / 0.28);
 }
 .saveState {
