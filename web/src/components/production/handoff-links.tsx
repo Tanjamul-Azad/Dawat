@@ -37,17 +37,17 @@ export function HandoffLinks({
       <div className={s.handoffRow}>
         <LockKeyhole size={18} aria-hidden="true" />
         <div>
-          <strong>{t('আপনার ব্যক্তিগত কর্মপরিসর', 'Your private workspace')}</strong>
+          <strong>{t('আপনার আয়োজনের পাতা', 'Your private workspace')}</strong>
           <p>
             {t(
-              'শুধু আপনার জন্য। অতিথিদের পাঠাবেন না। খুলতে নির্ধারিত ইমেইলে প্রবেশ করতে হবে।',
+              'শুধু আপনার জন্য। অতিথিদের পাঠাবেন না। খুলতে অর্ডারের ইমেইল দিয়ে লগইন করতে হবে।',
               'For you only. Do not send this to guests. Sign in with the assigned account to open it.',
             )}
           </p>
           <details className={s.optionalFields}>
-            <summary>{t('নিজের প্রবেশের লিংক রাখুন', 'Keep your workspace link')}</summary>
+            <summary>{t('আমার আয়োজনের লিংক রাখুন', 'Keep your wedding page link')}</summary>
             <label className={s.form}>
-              {t('কর্মপরিসরের লিংক', 'Workspace link')}
+              {t('আমার আয়োজনের লিংক', 'Workspace link')}
               <input readOnly value={workspaceUrl} onFocus={(e) => e.target.select()} />
             </label>
             <button className={s.quiet} onClick={() => copy(workspaceUrl)}>
@@ -73,7 +73,7 @@ export function HandoffLinks({
                     'Resume the invitation to use the existing personal links. Saved replies and wishes are retained.',
                   )
                 : t(
-                    'আগে আমন্ত্রণ প্রকাশ করুন। তারপর অতিথি বা দল যোগ করে ব্যক্তিগত লিংক দিতে পারবেন।',
+                    'আগে আমন্ত্রণ অতিথিদের জন্য চালু করুন। তারপর অতিথি বা দল যোগ করে ব্যক্তিগত লিংক দিতে পারবেন।',
                     'Publish first, then add guests or groups and share personal links.',
                   )}
           </p>
@@ -82,7 +82,12 @@ export function HandoffLinks({
           </a>
           {live && guestUrl && (
             <details className={s.optionalFields}>
-              <summary>{t('সাধারণ লিংক · শুধু দেখার জন্য', 'General link · view-only')}</summary>
+              <summary>
+                {t(
+                  'সবার জন্য লিংক (শুধু দেখা যাবে, উত্তর দেওয়া যাবে না)',
+                  'Link for everyone (view only, no replies)',
+                )}
+              </summary>
               <p>
                 {t(
                   'এই লিংকে উত্তর দেওয়া যায় না। নির্বাচিত সাধারণ অনুষ্ঠানের বিবরণ লিংকধারী সবাই দেখতে পারবেন।',
@@ -95,7 +100,7 @@ export function HandoffLinks({
               </label>
               <button className={s.quiet} onClick={() => copy(guestUrl)}>
                 <Copy size={14} />
-                {t('সাধারণ লিংক কপি করুন', 'Copy general link')}
+                {t('সবার জন্য লিংক কপি করুন', 'Copy link for everyone')}
               </button>
             </details>
           )}

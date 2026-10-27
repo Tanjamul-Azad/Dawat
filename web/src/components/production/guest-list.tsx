@@ -55,7 +55,7 @@ export function GuestList({
             <th scope="col">{tr('Reply status')}</th>
             <th scope="col">
               {t('লোকসংখ্যা', 'People')}
-              <small>{t('নিশ্চিত / অনুমতি', 'Confirmed / allowed')}</small>
+              <small>{t('আসবেন / দাওয়াত', 'Coming / invited')}</small>
             </th>
             <th scope="col">{tr('Link')}</th>
             <th scope="col">{t('কাজ', 'Actions')}</th>
@@ -150,7 +150,7 @@ export function GuestList({
                             </div>
                           )}
                           <div>
-                            <dt>{t('অনুষ্ঠান ও অনুমতি', 'Celebrations & allowance')}</dt>
+                            <dt>{t('অনুষ্ঠান ও দাওয়াত কতজনের', 'Celebrations & people invited')}</dt>
                             <dd>
                               {row.events
                                 .map(

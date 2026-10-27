@@ -230,9 +230,9 @@ export function SellerOrders({
       {handoff && (
         <section
           className={s.panel}
-          aria-label={locale === 'bn' ? 'গ্রাহকের পোর্টাল লিংক' : 'Customer portal link'}
+          aria-label={locale === 'bn' ? 'গ্রাহকের আয়োজনের পাতার লিংক' : 'Customer’s wedding page link'}
         >
-          <h2>{locale === 'bn' ? 'গ্রাহকের নিজস্ব পোর্টাল লিংক' : "Customer's own portal link"}</h2>
+          <h2>{locale === 'bn' ? 'গ্রাহকের আয়োজনের পাতার লিংক' : 'Customer’s wedding page link'}</h2>
           <p className={s.muted}>
             {locale === 'bn'
               ? `এই লিংক ${handoff.email}-কে পাঠান। তিনি এই ইমেইলের কোড দিয়ে লগইন করলেই সরাসরি তাঁর আমন্ত্রণ খুলবে। কোনো বার্তা স্বয়ংক্রিয়ভাবে পাঠানো হয়নি।`
@@ -306,7 +306,9 @@ export function SellerOrders({
                     </small>
                   </td>
                   <td data-label={tr('Payment')}>
-                    {o.payment_status === 'manually_verified' ? tr('Manually verified') : tr('Pending')}
+                    {o.payment_status === 'manually_verified'
+                      ? tr('Manually verified')
+                      : tr('Payment pending')}
                     {o.exception_reason && <small>{tr('Approved exception')}</small>}
                   </td>
                   <td data-label={tr('Management')}>
@@ -388,7 +390,10 @@ export function SellerOrders({
               <div>
                 <dt>{tr('Payment')}</dt>
                 <dd>
-                  {tr(selected.payment_status)} · {money(selected.amount_minor)}
+                  {selected.payment_status === 'pending'
+                    ? tr('Payment pending')
+                    : tr(selected.payment_status)}{' '}
+                  · {money(selected.amount_minor)}
                 </dd>
               </div>
               <div>
@@ -401,7 +406,7 @@ export function SellerOrders({
             {selected.access === 'active' && selected.weddingId && (
               <div className={s.detail}>
                 <p className={s.muted}>
-                  {locale === 'bn' ? 'গ্রাহকের নিজস্ব পোর্টাল লিংক' : "Customer's own portal link"}
+                  {locale === 'bn' ? 'গ্রাহকের আয়োজনের পাতার লিংক' : 'Customer’s wedding page link'}
                 </p>
                 <p
                   className={s.code}

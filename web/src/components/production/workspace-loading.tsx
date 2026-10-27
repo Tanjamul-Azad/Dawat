@@ -17,7 +17,7 @@ export function WorkspaceLoading() {
           <p className={s.muted}>
             <ProductText
               en="Checking your access and saved information."
-              bn="প্রবেশাধিকার ও সংরক্ষিত তথ্য যাচাই করা হচ্ছে।"
+              bn="আপনার অ্যাক্সেস আর সেভ করা তথ্য দেখা হচ্ছে।"
             />
           </p>
         </div>

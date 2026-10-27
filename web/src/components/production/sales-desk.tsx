@@ -2,13 +2,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ArrowRight, Check, Clock3, FileText, MessageCircle, Plus, RefreshCw, Info } from 'lucide-react';
 import { api } from '@/features/production/client';
-import {
-  findTemplate,
-  templates,
-  prices,
-  whatsappLink,
-  type TemplateId,
-} from '@/features/production/catalog';
+import { findTemplate, templates, whatsappLink, type TemplateId } from '@/features/production/catalog';
 import type { SalesPage, SalesRequest, SalesCommand, PaymentCommand } from '@/features/production/sales';
 import { useProductLocale } from './product-locale';
 import { WorkspaceFrame } from './frame';
@@ -17,6 +11,7 @@ import c from './sales-desk.module.css';
 import { ManualPayment } from '../manual-payment';
 import { manualPayment, orderPaymentReference } from '@/features/production/payment';
 import { taka, takaFromPaisa } from '@/features/production/money';
+import { choiceLabel, packageName, packagePrice, quotePackageName } from '@/features/production/packages';
 
 export function SalesDesk({
   initial,
@@ -183,9 +178,13 @@ export function SalesDesk({
                   t('তারপর পেমেন্টের ধাপ খুলবে।', 'Payment opens next.'),
                 ]
               : progress?.access === 'active'
-                ? [yours, t('পোর্টাল খুলে কার্ড সাজান', 'Open your portal and set up your card'), '']
+                ? [
+                    yours,
+                    t('আমার আয়োজন খুলে কার্ড সাজান', 'Open your wedding page and set up your card'),
+                    '',
+                  ]
                 : progress?.paymentStatus === 'manually_verified'
-                  ? [ours, t('আমরা আপনার পোর্টাল চালু করছি', 'We are opening your portal'), '']
+                  ? [ours, t('আমরা আপনার আয়োজনের পাতা চালু করছি', 'We are opening your wedding page'), '']
                   : paymentPending
                     ? [
                         ours,
@@ -213,8 +212,8 @@ export function SalesDesk({
   const amount = (n: number) => takaFromPaisa(n, locale);
   const state = (value: string) =>
     ({
-      requested: t('কোটেশনের অপেক্ষায়', 'Awaiting quote'),
-      quoted: t('কোটেশন এসেছে', 'Quote ready'),
+      requested: t('দাম ও শর্তের অপেক্ষায়', 'Awaiting price & terms'),
+      quoted: t('দাম ও শর্ত এসেছে', 'Price & terms ready'),
       accepted: t('সম্মতি দেওয়া হয়েছে', 'Accepted'),
       ordered: t('অর্ডার তৈরি', 'Order placed'),
       cancelled: t('বাতিল', 'Cancelled'),
@@ -333,11 +332,11 @@ export function SalesDesk({
           <p>
             {t(
               seller
-                ? 'কোটেশন দিন, লেনদেন মিলিয়ে দেখুন, তারপর গ্রাহকের পোর্টাল চালু করুন।'
-                : 'নকশা, সম্মত মূল্য, পেমেন্ট ও পোর্টাল—প্রতিটি ধাপের খবর এখানে।',
+                ? 'দাম ও শর্ত পাঠান, লেনদেন মিলিয়ে দেখুন, তারপর গ্রাহকের আয়োজনের পাতা চালু করুন।'
+                : 'নকশা, দাম, পেমেন্ট আর আমার আয়োজন—প্রতিটি ধাপের খবর এখানে।',
               seller
-                ? 'Quote, check the actual transfer, then activate the customer portal.'
-                : 'Your design, agreed price, payment and portal—follow every step here.',
+                ? 'Send the price and terms, check the actual transfer, then open the customer’s page.'
+                : 'Your design, price, payment and your wedding page—follow every step here.',
             )}
           </p>
         </div>
@@ -354,7 +353,7 @@ export function SalesDesk({
           )}
           {seller && (
             <a className={s.button} href="/admin/orders/">
-              {t('অর্ডার ও activation', 'Orders & activation')}
+              {t('অর্ডার ও অ্যাক্সেস চালু', 'Orders & access')}
               <ArrowRight size={15} />
             </a>
           )}
@@ -385,8 +384,8 @@ export function SalesDesk({
             <h2>{t('আয়োজনের কথা জানান', 'Tell us about your celebration')}</h2>
             <p className={s.muted}>
               {t(
-                'আপনার verified ইমেইল এই অর্ডারের মালিক থাকবে। এই ধাপে পেমেন্ট নেওয়া হচ্ছে না।',
-                'Your verified email owns this order. No payment is taken at this step.',
+                'যে ইমেইলে লগইন করেছেন, সেটাই এই অর্ডারের মালিক হবে। এই ধাপে পেমেন্ট নেওয়া হচ্ছে না।',
+                'The email you signed in with owns this order. No payment is taken at this step.',
               )}
             </p>
           </div>
@@ -431,10 +430,13 @@ export function SalesDesk({
                 >
                   {templates.map((d) => (
                     <option value={d.id} key={d.id}>
-                      {locale === 'bn' ? d.name : d.en} · {taka(prices[d.tier], locale)}
+                      {locale === 'bn' ? d.name : d.en} · {packageName(d.id, locale)} ·{' '}
+                      {taka(packagePrice(d.id), locale)}
                     </option>
                   ))}
-                  <option value="custom">Customized · {taka(1500, locale)}</option>
+                  <option value="custom">
+                    {packageName('custom', locale)} · {taka(packagePrice('custom'), locale)}
+                  </option>
                 </select>
               </label>
               <label>
@@ -481,7 +483,7 @@ export function SalesDesk({
         {[
           ['all', t('সব', 'All')],
           ['requested', t('নতুন', 'New')],
-          ['quoted', t('কোটেশন', 'Quoted')],
+          ['quoted', t('দাম ও শর্ত', 'Price & terms')],
           ['accepted', t('গ্রহণ করা', 'Accepted')],
           ['payments', t('পেমেন্ট যাচাই', 'Payment review')],
           ['ordered', t('অর্ডার', 'Ordered')],
@@ -498,7 +500,7 @@ export function SalesDesk({
           <p className={s.muted}>
             {t(
               seller
-                ? 'নতুন customer request এখানে দেখা যাবে।'
+                ? 'গ্রাহকের নতুন অনুরোধ এখানে দেখা যাবে।'
                 : 'পছন্দের নকশা বেছে প্রথম অনুরোধটি তৈরি করুন।',
               seller
                 ? 'New customer requests will appear here.'
@@ -524,16 +526,10 @@ export function SalesDesk({
               >
                 <span className={c.reference}>DW-{r.id.slice(-8).toUpperCase()}</span>
                 <strong>{r.customer_name}</strong>
-                <span>
-                  {r.template_id === 'custom'
-                    ? 'Customized'
-                    : locale === 'bn'
-                      ? findTemplate(r.template_id).name
-                      : findTemplate(r.template_id).en}
-                </span>
+                <span>{choiceLabel(r.template_id, locale)}</span>
                 <small>{state(r.state)}</small>
                 {seller && page.payments.some((p) => p.request_id === r.id && p.state === 'pending') && (
-                  <em>{t('পেমেন্ট অপেক্ষমাণ', 'Payment pending')}</em>
+                  <em>{t('পেমেন্ট যাচাই বাকি', 'Payment to check')}</em>
                 )}
               </button>
             ))}
@@ -571,7 +567,7 @@ export function SalesDesk({
                   t('অনুরোধ', 'Request'),
                   t('সম্মতি', 'Agreement'),
                   t('পেমেন্ট', 'Payment'),
-                  t('পোর্টাল', 'Portal'),
+                  t('আমার আয়োজন', 'Your page'),
                 ].map((label, i) => (
                   <li
                     key={label}
@@ -590,11 +586,7 @@ export function SalesDesk({
               {!seller && nextStep(current)}
               <div className={c.brief} hidden={current.state === 'ordered'}>
                 <strong>
-                  {current.template_id === 'custom'
-                    ? 'Customized'
-                    : locale === 'bn'
-                      ? findTemplate(current.template_id).name
-                      : findTemplate(current.template_id).en}
+                  {choiceLabel(current.template_id, locale)}
                   {current.event_date && ` · ${current.event_date}`}
                 </strong>
                 <p>{current.brief}</p>
@@ -602,7 +594,7 @@ export function SalesDesk({
               {current.package_name && current.state === 'ordered' && (
                 <details className={c.quoteSummary}>
                   <summary>
-                    {t('সম্মত কোটেশন', 'Agreed quote')} · {current.package_name} ·{' '}
+                    {t('সম্মত দাম ও শর্ত', 'Agreed price & terms')} · {current.package_name} ·{' '}
                     {amount(current.amount_minor!)}
                   </summary>
                   <p>
@@ -614,7 +606,7 @@ export function SalesDesk({
               )}
               {current.package_name && current.state !== 'ordered' && (
                 <div className={c.quote}>
-                  <span className={s.eyebrow}>{t('আপনার কোটেশন', 'YOUR QUOTE')}</span>
+                  <span className={s.eyebrow}>{t('আপনার দাম ও শর্ত', 'YOUR PRICE & TERMS')}</span>
                   <h3>{current.package_name}</h3>
                   <div className={c.quotePrice}>
                     <strong>{amount(current.amount_minor!)}</strong>
@@ -652,10 +644,7 @@ export function SalesDesk({
                   className={s.form}
                   onSubmit={(e) => {
                     const v = formValues(e);
-                    const price =
-                      current.template_id === 'custom'
-                        ? 1500
-                        : prices[findTemplate(current.template_id).tier];
+                    const price = packagePrice(current.template_id);
                     void command(
                       {
                         kind: 'quote',
@@ -670,7 +659,7 @@ export function SalesDesk({
                     );
                   }}
                 >
-                  <h3>{t('কোটেশন ও নির্দেশনা', 'Quote & instructions')}</h3>
+                  <h3>{t('দাম, শর্ত ও নির্দেশনা', 'Price, terms & instructions')}</h3>
                   <fieldset className={s.form} disabled={busy}>
                     <label>
                       {t('প্যাকেজের নাম', 'Package name')}
@@ -678,26 +667,16 @@ export function SalesDesk({
                         name="package"
                         required
                         maxLength={160}
-                        defaultValue={
-                          current.package_name ??
-                          `${current.template_id === 'custom' ? 'Customized' : findTemplate(current.template_id).en} · Dawat`
-                        }
+                        defaultValue={current.package_name ?? quotePackageName(current.template_id)}
                       />
                     </label>
                     <div className={s.row}>
                       <label>
-                        {t('নির্ধারিত মূল্য', 'Published price')}
-                        <input
-                          readOnly
-                          value={amount(
-                            (current.template_id === 'custom'
-                              ? 1500
-                              : prices[findTemplate(current.template_id).tier]) * 100,
-                          )}
-                        />
+                        {t('প্রকাশিত দাম', 'Published price')}
+                        <input readOnly value={amount(packagePrice(current.template_id) * 100)} />
                       </label>
                       <label>
-                        {t('সম্মত hosting মেয়াদ · দিন', 'Agreed hosting term · days')}
+                        {t('মেয়াদ · দিন', 'Term · days')}
                         <input
                           name="term"
                           type="number"
@@ -710,7 +689,7 @@ export function SalesDesk({
                     </div>
                     <label>
                       {t(
-                        'কাজের পরিধি, delivery, সংশোধন ও cancellation/refund শর্ত',
+                        'কাজের পরিধি, ডেলিভারি, সংশোধন এবং বাতিল ও টাকা ফেরতের শর্ত',
                         'Scope, delivery, revisions & cancellation/refund terms',
                       )}
                       <textarea
@@ -728,7 +707,7 @@ export function SalesDesk({
                     </label>
                     {inlineError('quote')}
                     <button className={s.button} disabled={busy}>
-                      {t('কোটেশন সংরক্ষণ করুন', 'Save quote')}
+                      {t('দাম ও শর্ত পাঠান', 'Send price & terms')}
                     </button>
                   </fieldset>
                 </form>
@@ -737,7 +716,7 @@ export function SalesDesk({
                 <div className={c.quote}>
                   <p>
                     {t(
-                      'গ্রাহক এই মূল্য ও শর্ত গ্রহণ করেছেন। একই তথ্য দিয়ে অর্ডার তৈরি হবে; এখনো paid বা active হবে না।',
+                      'গ্রাহক এই দাম ও শর্তে রাজি হয়েছেন। একই তথ্য দিয়ে অর্ডার তৈরি হবে। এখনো পেমেন্ট বা অ্যাক্সেস চালু হবে না।',
                       'The customer accepted these terms. The order will retain them; it will not be marked paid or active.',
                     )}
                   </p>
@@ -846,7 +825,10 @@ export function SalesDesk({
                   ))}
                   {current.order_id && (
                     <a className={s.button} href={`/admin/orders/?order=${current.order_id}`}>
-                      {t('এই অর্ডার নিশ্চিত ও পোর্টাল চালু করুন', 'Confirm this order & activate portal')}
+                      {t(
+                        'এই অর্ডার নিশ্চিত করে আয়োজনের পাতা চালু করুন',
+                        'Confirm this order & open the wedding page',
+                      )}
                       <ArrowRight size={16} />
                     </a>
                   )}
@@ -857,7 +839,7 @@ export function SalesDesk({
                   <span className={c.paymentEyebrow}>{t('পেমেন্ট', 'PAYMENT')}</span>
                   <h3 className={c.paymentTitle}>
                     {progress?.paymentStatus === 'manually_verified'
-                      ? t('পেমেন্ট ও পোর্টাল', 'Payment & portal')
+                      ? t('পেমেন্ট ও আমার আয়োজন', 'Payment & your wedding page')
                       : paymentPending
                         ? t('আপনার লেনদেন যাচাই হচ্ছে', 'Your transfer is being checked')
                         : paymentRejected
@@ -976,7 +958,7 @@ export function SalesDesk({
                           </p>
                           <p className={s.muted}>
                             {t(
-                              'জমা দেওয়া মানে paid হওয়া নয়। আমরা আসল লেনদেন মিলিয়ে দেখব।',
+                              'তথ্য জমা দিলেই পেমেন্ট নিশ্চিত হয় না। আমরা আসল লেনদেন মিলিয়ে দেখব।',
                               'Submission is not payment confirmation. We will verify the actual transfer.',
                             )}
                           </p>
@@ -990,8 +972,8 @@ export function SalesDesk({
                             <div>
                               <strong>
                                 {t(
-                                  'ম্যানুয়াল যাচাইয়ের পর আপনার পোর্টাল অ্যাক্টিভ করা হবে',
-                                  'Your portal opens after manual verification',
+                                  'যাচাইয়ের পর আপনার আয়োজনের পাতা চালু হবে',
+                                  'Your wedding page opens after we check the payment',
                                 )}
                               </strong>
                               <p>
@@ -1010,14 +992,14 @@ export function SalesDesk({
                       {t('পেমেন্ট যাচাই হয়েছে।', 'Payment verified.')}{' '}
                       {progress.access !== 'active' &&
                         t(
-                          'আমরা এখন আপনার পোর্টাল চালু করছি; চালু হলে এখানে বোতাম আসবে।',
-                          'We are now opening your portal; a button will appear here.',
+                          'আমরা এখন আপনার আয়োজনের পাতা চালু করছি। চালু হলে এখানে বোতাম আসবে।',
+                          'We are now opening your wedding page; a button will appear here.',
                         )}
                     </p>
                   )}
                   {progress?.access === 'active' && progress.weddingId && (
                     <a className={s.button} href={`/weddings/${progress.weddingId}/`}>
-                      {t('আপনার পোর্টাল খুলুন', 'Open your portal')}
+                      {t('আমার আয়োজন খুলুন', 'Open your wedding page')}
                       <ArrowRight size={16} />
                     </a>
                   )}

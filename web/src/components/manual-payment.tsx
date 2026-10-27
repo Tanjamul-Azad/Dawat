@@ -104,7 +104,9 @@ export function ManualPayment({
           </h3>
           <ol className={s.steps}>
             <li>
-              <strong>{t('কোটেশন/অর্ডার নিশ্চিত করুন', 'Confirm your quote and order')}</strong>
+              <strong>
+                {t('দাম ও শর্ত দেখে অর্ডার নিশ্চিত করুন', 'Confirm the price, terms and order')}
+              </strong>
               {t(
                 'সম্মত নকশা, মূল্য ও মেয়াদ মিলিয়ে নিন।',
                 'Review your agreed design, scope, price and hosting term.',

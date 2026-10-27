@@ -62,7 +62,7 @@ it('provides ready wording behind an edit action while leaving personal details 
   expect(input.value).toBe('');
   expect(screen.getByText(templateWording.message)).toBeTruthy();
   expect(screen.queryByLabelText('আমন্ত্রণের লেখা')).toBeNull();
-  fireEvent.click(screen.getByRole('button', { name: 'লেখা সম্পাদনা করুন' }));
+  fireEvent.click(screen.getByRole('button', { name: 'লেখা এডিট করুন' }));
   expect((screen.getByLabelText('আমন্ত্রণের লেখা') as HTMLTextAreaElement).value).toBe(
     templateWording.message,
   );
@@ -90,7 +90,7 @@ it('keeps a saved personal message and does not save simply for opening the edit
     await vi.advanceTimersByTimeAsync(4000);
   });
   expect(fetcher).not.toHaveBeenCalled();
-  fireEvent.click(screen.getByRole('button', { name: 'লেখা সম্পাদনা করুন' }));
+  fireEvent.click(screen.getByRole('button', { name: 'লেখা এডিট করুন' }));
   expect((screen.getByLabelText('আমন্ত্রণের লেখা') as HTMLTextAreaElement).value).toBe('আমাদের নিজের লেখা');
 });
 
@@ -107,7 +107,7 @@ it('opens the displayed default as editable text for a legacy blank draft', () =
       />
     </ProductLocale>,
   );
-  fireEvent.click(screen.getByRole('button', { name: 'লেখা সম্পাদনা করুন' }));
+  fireEvent.click(screen.getByRole('button', { name: 'লেখা এডিট করুন' }));
   expect((screen.getByLabelText('আমন্ত্রণের লেখা') as HTMLTextAreaElement).value).toBe(
     templateWording.message,
   );
@@ -199,7 +199,7 @@ it('switches between the three workspace destinations without dropping unsaved e
   const input = editor();
   fireEvent.change(input, { target: { value: 'অক্ষত নাম' } });
   fireEvent.click(screen.getByRole('link', { name: 'সারসংক্ষেপ' }));
-  fireEvent.click(screen.getByRole('link', { name: 'আমন্ত্রণ সম্পাদনা' }));
+  fireEvent.click(screen.getByRole('link', { name: 'আমন্ত্রণ এডিট করুন' }));
   expect((screen.getByLabelText('প্রথম জনের নাম') as HTMLInputElement).value).toBe('অক্ষত নাম');
 });
 
@@ -277,7 +277,7 @@ it('gives an unpublished guest workspace a direct editing action without live re
       />
     </ProductLocale>,
   );
-  expect(screen.getByRole('link', { name: 'আমন্ত্রণ সম্পাদনায় যান' })).toBeTruthy();
+  expect(screen.getByRole('link', { name: 'আমন্ত্রণ এডিট করতে যান' })).toBeTruthy();
   expect(screen.queryByRole('combobox', { name: 'অনুষ্ঠান' })).toBeNull();
   expect(screen.queryByText('উত্তর নেওয়া চালু')).toBeNull();
   expect(screen.queryByRole('button', { name: 'CSV নামান' })).toBeNull();

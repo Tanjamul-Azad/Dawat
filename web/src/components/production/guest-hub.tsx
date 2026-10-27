@@ -320,14 +320,16 @@ export function GuestHub({
       </nav>
       {!events.length ? (
         <section className={s.panel}>
-          <h2>{locale === 'bn' ? 'আগে আমন্ত্রণটি প্রকাশ করুন।' : 'Publish your invitation first.'}</h2>
+          <h2>
+            {locale === 'bn' ? 'আগে আমন্ত্রণটি অতিথিদের জন্য চালু করুন।' : 'Publish your invitation first.'}
+          </h2>
           <p>
             {locale === 'bn'
               ? 'নাম, অনুষ্ঠান ও স্থান পূরণ করে প্রিভিউ দেখুন। প্রকাশের পর অতিথি বা দল যোগ করে ব্যক্তিগত লিংক ও উত্তর নেওয়া চালু হবে।'
               : 'Complete names, celebrations and venues, then publish to add guests or groups and collect replies.'}
           </p>
           <WorkspaceLink className={s.button} href={`/weddings/${wid}/`}>
-            {locale === 'bn' ? 'আমন্ত্রণ সম্পাদনায় যান' : 'Continue editing'}
+            {locale === 'bn' ? 'আমন্ত্রণ এডিট করতে যান' : 'Continue editing'}
           </WorkspaceLink>
         </section>
       ) : panel === 'guests' ? (
@@ -865,7 +867,7 @@ function HouseholdEditor({
           if (same) {
             setDuplicate(
               locale === 'bn'
-                ? `"${same.name}" নামে আগেই একটি পরিবার আছে। একই পরিবার হলে ওটাই সম্পাদনা করুন; আলাদা হলে নোটে পার্থক্য লিখে রাখুন।`
+                ? `"${same.name}" নামে আগেই একটি পরিবার আছে। একই পরিবার হলে ওটাই এডিট করুন; আলাদা হলে নোটে পার্থক্য লিখে রাখুন।`
                 : `A family named "${same.name}" already exists. Edit that one if it is the same family; otherwise add a note to tell them apart.`,
             );
             return;
@@ -907,7 +909,7 @@ function HouseholdEditor({
             ? 'অন্তত একটি অনুষ্ঠান বেছে নিন। নির্বাচিত অনুষ্ঠানে ১ থেকে ৫০ জনের অনুমতি দিন।'
             : issue.path[0] === 'name'
               ? 'অতিথি বা দলের নাম লিখুন; সর্বোচ্চ ১২০ অক্ষর। অদৃশ্য বা নিয়ন্ত্রণ অক্ষর দেওয়া যাবে না।'
-              : 'লেখাটি বেশি বড় হয়েছে। নির্ধারিত সীমার মধ্যে লিখুন।'
+              : 'লেখাটি বেশি বড় হয়েছে। সীমার মধ্যে লিখুন।'
           : issue.message,
       );
       return;

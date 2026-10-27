@@ -453,7 +453,7 @@ export function GuestInvitation({
               {authority && authority.scope !== 'public-sample' ? (
                 <p>
                   {locale === 'bn'
-                    ? 'এটি আপনার ব্যক্তিগত প্রিভিউ। বন্ধ করে তথ্য সম্পাদনা করুন। আমন্ত্রণ প্রকাশের পর অতিথিদের ব্যক্তিগত লিংক থেকে উত্তর ও শুভেচ্ছা নেওয়া যাবে।'
+                    ? 'এটি আপনার ব্যক্তিগত প্রিভিউ। বন্ধ করে তথ্য এডিট করুন। অতিথিদের জন্য চালু করার পর তাঁরা নিজের লিংক থেকে উত্তর ও শুভেচ্ছা পাঠাতে পারবেন।'
                     : 'This is your private preview. Close it to edit the details. After publishing, guests can reply and leave wishes through their personal invitation links.'}
                 </p>
               ) : (

@@ -7,7 +7,8 @@ import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
 import { latinDigits } from '@/features/production/copy';
 import { BrandLockup } from '../brand-mark';
-import { findTemplate, prices } from '@/features/production/catalog';
+import { findTemplate } from '@/features/production/catalog';
+import { packageName, packagePrice } from '@/features/production/packages';
 import { taka } from '@/features/production/money';
 function LoginStory() {
   const { locale } = useProductLocale();
@@ -39,8 +40,10 @@ function OrderContext({ next }: { next: string }) {
   if (!id) return null;
   const custom = id === 'custom';
   const design = findTemplate(id);
-  const name = custom ? 'Customized' : locale === 'bn' ? design.name : design.en;
-  const price = taka(custom ? 1500 : prices[design.tier], locale);
+  const name = custom
+    ? packageName(id, locale)
+    : `${locale === 'bn' ? design.name : design.en} · ${packageName(id, locale)}`;
+  const price = taka(packagePrice(id), locale);
   return (
     <div className={s.panel} role="note" style={{ display: 'grid', gap: 6 }}>
       <p className={s.eyebrow}>{locale === 'bn' ? 'আপনার অর্ডার' : 'YOUR ORDER'}</p>
@@ -125,11 +128,7 @@ export function Login({ next, available = true }: { next: string; available?: bo
             </p>
           )}
           {!available ? (
-            <p role="status">
-              {tr(
-                'Email sign-in is being prepared. Please contact your seller before trying to access a customer workspace. \u0987\u09AE\u09C7\u0987\u09B2 \u09B8\u09BE\u0987\u09A8-\u0987\u09A8 \u09AA\u09CD\u09B0\u09B8\u09CD\u09A4\u09C1\u09A4 \u09B9\u09B2\u09C7 \u098F\u0996\u09BE\u09A8\u09C7 \u09AA\u09CD\u09B0\u09AC\u09C7\u09B6 \u0995\u09B0\u09BE \u09AF\u09BE\u09AC\u09C7\u0964',
-              )}
-            </p>
+            <p role="status">{tr('Email sign-in is being prepared. Please contact the Dawat team.')}</p>
           ) : (
             <form className={s.form} onSubmit={submit} aria-busy={busy}>
               <label>

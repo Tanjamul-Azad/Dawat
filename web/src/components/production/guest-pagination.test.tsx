@@ -114,7 +114,7 @@ it('creates a single-person invitation with Bangla digits and leaves unchecked e
   fireEvent.click(screen.getByRole('button', { name: 'অতিথি যোগ করুন' }));
   fireEvent.change(screen.getByLabelText('অতিথি বা দলের নাম'), { target: { value: 'সাবিহা রহমান' } });
   expect((screen.getByRole('checkbox', { name: 'সংবর্ধনা' }) as HTMLInputElement).checked).toBe(true);
-  fireEvent.change(screen.getByLabelText('মোট অনুমোদিত লোকসংখ্যা'), { target: { value: '১' } });
+  fireEvent.change(screen.getByLabelText('দাওয়াত কতজনের'), { target: { value: '১' } });
   await act(async () => fireEvent.submit(screen.getByRole('dialog').querySelector('form')!));
   const sent = JSON.parse(fetcher.mock.calls[0][1].body).household;
   expect(sent.name).toBe('সাবিহা রহমান');
@@ -169,7 +169,9 @@ it('copies a personal link without opening a dialog when the clipboard works', a
     true,
   );
   // The page notice can be off-screen on a phone; the row's own button confirms the copy.
-  expect(screen.getAllByRole('button', { name: /কপি করুন · অতিথি 1$/ })[0].textContent).toContain('কপি হয়েছে');
+  expect(screen.getAllByRole('button', { name: /কপি করুন · অতিথি 1$/ })[0].textContent).toContain(
+    'কপি হয়েছে',
+  );
 });
 
 it('adds pasted families one by one with the event preselected', async () => {

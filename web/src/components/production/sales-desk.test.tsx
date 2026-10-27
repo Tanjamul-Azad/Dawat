@@ -187,7 +187,7 @@ it.each([null, 'active'])(
     expect(screen.getByText('bKash · FINALVERIFIED')).toBeTruthy();
     expect(screen.queryByText(/আগে টাকা পাঠিয়ে থাকলে আবার পাঠাবেন না/)).toBeNull();
     expect(screen.queryByRole('button', { name: 'যাচাইয়ের জন্য জমা দিন' })).toBeNull();
-    if (access) expect(screen.getByRole('link', { name: 'আপনার পোর্টাল খুলুন' })).toBeTruthy();
+    if (access) expect(screen.getByRole('link', { name: 'আমার আয়োজন খুলুন' })).toBeTruthy();
   },
 );
 it('shows verified server progress without offering customer verification controls', async () => {
@@ -210,7 +210,7 @@ it('shows verified server progress without offering customer verification contro
   await act(async () => {
     window.dispatchEvent(new Event('focus'));
   });
-  expect((await screen.findByRole('link', { name: 'আপনার পোর্টাল খুলুন' })).getAttribute('href')).toBe(
+  expect((await screen.findByRole('link', { name: 'আমার আয়োজন খুলুন' })).getAttribute('href')).toBe(
     `/weddings/${row.id}/`,
   );
   expect(screen.queryByRole('button', { name: 'সিদ্ধান্ত সংরক্ষণ করুন' })).toBeNull();
@@ -256,7 +256,7 @@ it('submits actual bKash evidence and hides transfer instructions while review i
     sender: '01700000000',
   });
   expect(screen.queryByDisplayValue('01606092143')).toBeNull();
-  expect(screen.queryByRole('link', { name: 'আপনার পোর্টাল খুলুন' })).toBeNull();
+  expect(screen.queryByRole('link', { name: 'আমার আয়োজন খুলুন' })).toBeNull();
 });
 it('rejects an order reference used as a transaction ID and unconfigured payment methods', () => {
   const input = {
@@ -296,7 +296,7 @@ it('hides details when the selected filter has no matching request', () => {
     </ProductLocale>,
   );
   expect(screen.getByText('Test buyer', { selector: 'h2' })).toBeTruthy();
-  fireEvent.click(screen.getByRole('button', { name: 'কোটেশন' }));
+  fireEvent.click(screen.getByRole('button', { name: 'দাম ও শর্ত' }));
   expect(screen.queryByText('Test buyer', { selector: 'h2' })).toBeNull();
 });
 it('makes the seller choose a payment decision and links to that exact order', () => {

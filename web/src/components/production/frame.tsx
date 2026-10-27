@@ -110,11 +110,11 @@ export function WorkspaceFrame({
                   <span>{email}</span>
                 </summary>
                 <div className={s.accountPopover}>
-                  <strong>{locale === 'bn' ? 'প্রবেশ করা অ্যাকাউন্ট' : 'Signed-in account'}</strong>
+                  <strong>{locale === 'bn' ? 'লগইন করা অ্যাকাউন্ট' : 'Signed-in account'}</strong>
                   <p>{email}</p>
                   <p>
                     {locale === 'bn'
-                      ? 'অন্য ইমেইলে প্রবেশ করতে আগে বেরিয়ে যান।'
+                      ? 'অন্য ইমেইলে লগইন করতে আগে লগআউট করুন।'
                       : 'Sign out before using a different email.'}
                   </p>
                   <WorkspaceLink className={s.quiet} href={seller ? '/admin/orders/' : '/dashboard/?all=1'}>
@@ -158,10 +158,10 @@ export function WorkspaceFrame({
               <NotebookPen size={18} />
               {locale === 'bn'
                 ? seller
-                  ? 'অনুরোধ ও কোটেশন'
+                  ? 'অনুরোধ, দাম ও শর্ত'
                   : 'আমার অর্ডার'
                 : seller
-                  ? 'Requests & quotes'
+                  ? 'Requests, prices & terms'
                   : 'My orders'}
             </WorkspaceLink>
             {wedding && (
@@ -195,7 +195,7 @@ export function WorkspaceFrame({
                   aria-current={wedding.view === 'editor' ? 'page' : undefined}
                 >
                   <NotebookPen size={18} />
-                  {locale === 'bn' ? 'আমন্ত্রণ সম্পাদনা' : 'Edit invitation'}
+                  {locale === 'bn' ? 'আমন্ত্রণ এডিট করুন' : 'Edit invitation'}
                 </WorkspaceLink>
                 <WorkspaceLink
                   href={`/weddings/${wedding.id}/guests/`}

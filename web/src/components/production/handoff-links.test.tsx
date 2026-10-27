@@ -23,8 +23,8 @@ it('keeps the private workspace distinct from guest links before publication', a
       />
     </ProductLocale>,
   );
-  fireEvent.click(screen.getByText('নিজের প্রবেশের লিংক রাখুন'));
-  expect((screen.getByLabelText('কর্মপরিসরের লিংক') as HTMLInputElement).readOnly).toBe(true);
+  fireEvent.click(screen.getByText('আমার আয়োজনের লিংক রাখুন'));
+  expect((screen.getByLabelText('আমার আয়োজনের লিংক') as HTMLInputElement).readOnly).toBe(true);
   expect(screen.getByText(/অতিথিদের পাঠাবেন না/)).toBeTruthy();
   expect(screen.queryByLabelText('সাধারণ আমন্ত্রণের লিংক')).toBeNull();
   await act(async () => fireEvent.click(screen.getByRole('button', { name: 'নিজের লিংক কপি করুন' })));
@@ -43,8 +43,8 @@ it('offers manual selection when the clipboard fails and labels the general URL 
       />
     </ProductLocale>,
   );
-  fireEvent.click(screen.getByText('সাধারণ লিংক · শুধু দেখার জন্য'));
-  await act(async () => fireEvent.click(screen.getByRole('button', { name: 'সাধারণ লিংক কপি করুন' })));
+  fireEvent.click(screen.getByText('সবার জন্য লিংক (শুধু দেখা যাবে, উত্তর দেওয়া যাবে না)'));
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: 'সবার জন্য লিংক কপি করুন' })));
   expect(screen.getByRole('status').textContent).toContain('নির্বাচন করে নিজে কপি');
   expect(screen.getByText(/এই লিংকে উত্তর দেওয়া যায় না/)).toBeTruthy();
 });
