@@ -19,3 +19,13 @@ Branch: `claude/app-onboarding-dcfad8`. কিছু push বা deploy হয�
 - ব্রাউজারে ৩৭৫px/১২৮০px স্ক্রিনশট চেক হয়নি।
 - **ধাপ ৩ (অতিথিকে পাঠানো) আর ধাপ ৪ক (ইমেইল, `docs/ops/email-setup-bn.md`) শুরুই হয়নি।** ব্যবহার-সীমা শেষ হয়ে গেছে।
 - সীমাবদ্ধতা: `termDays` ক্লায়েন্ট থেকে আসে, DB শুধু ১–৩৬৫ বাঁধে (দাম DB-তেই ঠিক করা)। প্যাকেজের নাম catalog-এর `prices.normal/premium/custom` থেকে পড়ে; পাবলিক সেশন ওই কী বদলালে `packages.ts` ভাঙবে (tsc ধরবে)।
+
+## নতুন স্কোপ (spec `production-implementation-spec-2026-10-28.md`) — কিছুই শুরু হয়নি
+- ইমেইল (ধাপ ৪ক) বাদ। ক্রম: ধাপ ৩ (WhatsApp ব্যক্তিগত লিংক, `contact_phone`, `household_deliveries`, `guest-send.tsx`, `invite-settings`) → ধাপ ৩খ (সবার জন্য একটি লিংক, `/i/[slug]/o/[token]`) → ধাপ ২ মিলিয়ে নেওয়া।
+- আমার ধাপ ২ স্পেক থেকে যেভাবে আলাদা (মেলানো বাকি):
+  - Migration নাম `20261028090000_access_onboarding.sql`; স্পেকে `20261028120000_access_simplify.sql`। দাম SQL-এ ঠিক করা, `catalog_prices` টেবিল ও catalog contract test নেই।
+  - `seller_command` ভেঙে `private.seller_step` + নতুন `verify-confirm-activate` kind (স্পেক চেয়েছে `payment_submission_command`-এ activate, সেটাও আছে)।
+  - অ্যাডমিন সংখ্যা `/api/admin/counts/` (স্পেক: `/api/admin/summary/` ও `admin_summary()` RPC)।
+  - `packages.ts` এ প্যাকেজের নাম হার্ডকোড; স্পেক বলে catalog থেকে পড়তে হবে (public-site সেশন নাম বদলালে মেলাতে হবে)।
+  - `phone.ts` আছে, কিন্তু `null` ফেরায় (স্পেক: invalid হলে throw)।
+- সবই `git log` এর commit `11c0fa4` পর্যন্ত; push হয়নি।
