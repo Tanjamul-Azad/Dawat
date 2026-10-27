@@ -16,9 +16,9 @@
   overflow-x: clip;
   color: var(--ink);
   background:
-    radial-gradient(#9d7c3f09 0.7px, transparent 0.8px) 0 0/4px 4px,
+    radial-gradient(var(--grain, #9d7c3f09) 0.7px, transparent 0.8px) 0 0/4px 4px,
     var(--cream);
-  box-shadow: 0 0 0 100vmax #35242a;
+  box-shadow: 0 0 0 100vmax var(--surround, #35242a);
   font:
     16px/1.8 var(--font-ui),
     var(--font-bangla-ui),
@@ -34,8 +34,11 @@
   width: 7px;
   z-index: 12;
   pointer-events: none;
-  border-inline: 1px solid #8c4c4d50;
-  background: repeating-linear-gradient(45deg, transparent 0 5px, #8c4c4d45 5px 6px, transparent 6px 11px);
+  border-inline: 1px solid var(--frame-line, #8c4c4d50);
+  background: var(
+    --frame-pattern,
+    repeating-linear-gradient(45deg, transparent 0 5px, #8c4c4d45 5px 6px, transparent 6px 11px)
+  );
 }
 .page:before {
   left: 9px;
@@ -76,38 +79,338 @@
   --wine: #825319;
   --cream: #fbf0d6;
 }
+/* Body palettes: each design continues its cover past the opening fold.
+   Jamdani uses the literal fallbacks written at each var() site below. */
+.page:not([data-template='jamdani']) {
+  --closing-art: var(--design-art);
+  --closing-size: 100% auto;
+  --legend: var(--faded);
+}
+.page:is([data-template='ivory'], [data-template='garden'], [data-template='rose']) {
+  /* The cover's own border art, pressed into the section margins. */
+  --ornament: var(--design-art);
+  --ornament-size: auto 100%;
+  --ornament-position: 100px center;
+  --ornament-blend: darken;
+  --ornament-opacity: 0.8;
+  --ornament-mask:
+    linear-gradient(transparent, #000 18% 82%, transparent), linear-gradient(90deg, #000 70%, transparent);
+}
 .page[data-template='ivory'] {
   --wine: #48443b;
-  --cream: #faf8ef;
-  --paper: #fffdf6;
-  --brass: #756b58;
+  --cream: #f8f2e6;
+  --paper: #fffaf1;
+  --ink: #3d3933;
+  --faded: #5c564b;
+  --brass: #6b6352;
   --rule: #c8c0ae;
+  --grain: #6b62500b;
+  --surround: #302d28;
+  --frame-line: #48443b45;
+  --frame-pattern: linear-gradient(90deg, transparent 3px, #48443b40 3px 4px, transparent 4px);
+  --note-bg: #ece6d9;
+  --note-ink: #555046;
+  --pill-bg: #fffaf199;
+  --pill-line: #48443b30;
+  --on-wine: #fbf7ee;
+  --hairline: #8a826f75;
+  --line-soft: #8a826f30;
+  --petal: #8a826f66;
+  --nav-bg: #fbf6ecf2;
+  --nav-line: #8a826f80;
+  --nav-shadow: #2b282422;
+  --tint-welcome: #e9e2d480;
+  --tint-countdown: #ebe6daa6;
+  --tint-fade: #f8f2e644;
+  --event-a: #e8e1d24d;
+  --event-b: #efeae05c;
+  --chip-a: #e8e1d2;
+  --chip-a-ink: #3d3933;
+  --chip-b: #efeae0;
+  --chip-b-ink: #3d3933;
+  --tint-rsvp: #ebe4d780;
+  --line-rsvp: #48443b2b;
+  --tint-wish: #ebe6dc66;
+  --panel: #eee8dc;
+  --highlight: #cfc6b388;
+  --medallion-line: #8a826f;
+  --medallion-a: #fffcf5;
+  --medallion-b: #ece5d7;
+  --medallion-shadow: #2b282480;
+  --well: #e9e2d4;
+  --moments-a: #ebe6db;
+  --moments-b: #f3ede2;
+  --moments-c: var(--cream);
+  --moments-ink: #3d3933;
+  --frame-paper: #fffcf5;
+  --frame-edge: #8a826f66;
+  --frame-shadow: #2b282460;
+  --frame-offset: #cfc6b344;
+  --reel-button: #48443bec;
+  --reel-button-ink: #fbf7ee;
+  --reel-button-edge: #fffcf599;
+  --reel-ink: #555046;
+  --field: #fffcf580;
+  --field-line: #8a826f99;
+  --field-focus: #fffcf5;
+  --backdrop: #24221edb;
+  --closing-fade: linear-gradient(var(--cream) 34%, transparent 64%);
 }
 .page[data-template='holud'] {
-  --wine: #965221;
+  --wine: #8f4a1b;
   --cream: #fbefd4;
   --paper: #fff5df;
-  --brass: #8c5c22;
+  --ink: #4a2e1a;
+  --faded: #6b4a2e;
+  --brass: #82521d;
+  --rule: #dfbf8a;
+  --grain: #b5620f0e;
+  --surround: #4a1f0e;
+  --frame-line: #b34d1e5c;
+  --frame-pattern: repeating-linear-gradient(45deg, transparent 0 5px, #d0861f66 5px 6px, transparent 6px 11px);
+  --note-bg: #f6e1b6;
+  --note-ink: #6b4a2e;
+  --pill-bg: #fff5df99;
+  --pill-line: #c9821f4a;
+  --on-wine: #fff5df;
+  --hairline: #c9821f85;
+  --line-soft: #c9821f33;
+  --petal: #e8901c99;
+  --nav-bg: #fff5e0f2;
+  --nav-line: #c9821f80;
+  --nav-shadow: #4a1f0e22;
+  --ornament: url('/brand/botanical-gold-match.webp');
+  --ornament-filter: sepia(0.5) saturate(2) hue-rotate(-12deg);
+  --ornament-opacity: 0.75;
+  --tint-welcome: #f6d29a75;
+  --tint-countdown: #f8dfaea6;
+  --tint-fade: #fbefd444;
+  --event-a: #f3d39a4d;
+  --event-b: #f8e2b45c;
+  --chip-a: #f4d6a0;
+  --chip-a-ink: #4a2e1a;
+  --chip-b: #fae3bb;
+  --chip-b-ink: #5a3412;
+  --tint-rsvp: #f6d7ad80;
+  --line-rsvp: #b34d1e2b;
+  --tint-wish: #f8e0b066;
+  --panel: #f6e2bd;
+  --highlight: #f2b65a77;
+  --medallion-line: #b98a3c;
+  --medallion-a: #fff8e6;
+  --medallion-b: #f6deae;
+  --medallion-shadow: #6b2e0f80;
+  --well: #f1dcb4;
+  --moments-a: #f8dcaa;
+  --moments-b: #fbe8c6;
+  --moments-c: var(--cream);
+  --moments-ink: #7a3f16;
+  --frame-paper: #fff8e6;
+  --frame-edge: #b98a3c66;
+  --frame-shadow: #6b2e0f60;
+  --frame-offset: #f2b65a44;
+  --reel-button: #a8481bec;
+  --reel-button-ink: #fff5df;
+  --reel-button-edge: #fff5df99;
+  --reel-ink: #6b4a2e;
+  --field: #fff8e680;
+  --field-line: #c9821f99;
+  --field-focus: #fff8e6;
+  --backdrop: #2e1409db;
+  /* Only the cover's marigold border band shows beneath the farewell. */
+  --closing-fade: linear-gradient(var(--cream) 68%, transparent 80%);
 }
 .page[data-template='garden'] {
   --wine: #345344;
-  --cream: #f5f3e9;
-  --paper: #fbfaf1;
-  --brass: #6f7954;
+  --cream: #f6f0e3;
+  --paper: #fcf9f0;
+  --ink: #363f33;
+  --faded: #535d4a;
+  --brass: #5b6644;
+  --rule: #c4c7ad;
   --design-art: url('/brand/template-garden.webp');
+  --grain: #4f6a3f0b;
+  --surround: #1f2e25;
+  --frame-line: #4f6a3f55;
+  --frame-pattern: repeating-linear-gradient(45deg, transparent 0 5px, #6f875f50 5px 6px, transparent 6px 11px);
+  --note-bg: #e5e8d6;
+  --note-ink: #4d5744;
+  --pill-bg: #fcf9f099;
+  --pill-line: #6f795455;
+  --on-wine: #f6f0e3;
+  --hairline: #7d8a6380;
+  --line-soft: #7d8a6333;
+  --petal: #9fb48a99;
+  --nav-bg: #fbf8eef2;
+  --nav-line: #7d8a6380;
+  --nav-shadow: #1f2e2522;
+  --tint-welcome: #dfe8d475;
+  --tint-countdown: #e2e9d6a6;
+  --tint-fade: #f6f0e344;
+  --event-a: #e2e9d64d;
+  --event-b: #eef0e05c;
+  --chip-a: #dde6d1;
+  --chip-a-ink: #2f4a3a;
+  --chip-b: #ece9d8;
+  --chip-b-ink: #3d4a32;
+  --tint-rsvp: #e0e8d580;
+  --line-rsvp: #34534430;
+  --tint-wish: #e6ebd966;
+  --panel: #e8ead9;
+  --highlight: #bfd3ae88;
+  --medallion-line: #8c9a6e;
+  --medallion-a: #fffdf5;
+  --medallion-b: #e9ecd9;
+  --medallion-shadow: #2a3d2c80;
+  --well: #e3e6d3;
+  --moments-a: #dde7d3;
+  --moments-b: #eef0e2;
+  --moments-c: var(--cream);
+  --moments-ink: #2f4a3a;
+  --frame-paper: #fffdf5;
+  --frame-edge: #7d8a6366;
+  --frame-shadow: #2a3d2c80;
+  --frame-offset: #b4bf9c55;
+  --reel-button: #345344ec;
+  --reel-button-ink: #f6f0e3;
+  --reel-button-edge: #fffdf599;
+  --reel-ink: #3d4a32;
+  --field: #fffdf580;
+  --field-line: #7d8a6399;
+  --field-focus: #fffdf5;
+  --backdrop: #18231cdb;
+  --closing-fade: linear-gradient(var(--cream) 36%, transparent 70%);
 }
 .page[data-template='rose'] {
   --wine: #814253;
-  --cream: #fbefea;
-  --paper: #fff5f0;
-  --brass: #a16d58;
+  --cream: #f9f0ea;
+  --paper: #fff7f2;
+  --ink: #4a3236;
+  --faded: #694a4e;
+  --brass: #8c5545;
+  --rule: #e0c4bb;
   --design-art: url('/brand/template-rose.webp');
+  --grain: #a14d5a0b;
+  --surround: #3d1f27;
+  --frame-line: #81425355;
+  --frame-pattern: repeating-linear-gradient(45deg, transparent 0 5px, #c7848f5c 5px 6px, transparent 6px 11px);
+  --note-bg: #f3dfd8;
+  --note-ink: #694a4e;
+  --pill-bg: #fff7f299;
+  --pill-line: #a16d584a;
+  --on-wine: #fff4ef;
+  --hairline: #b98a8080;
+  --line-soft: #b98a8033;
+  --petal: #d98c9a99;
+  --nav-bg: #fff7f2f2;
+  --nav-line: #b98a8080;
+  --nav-shadow: #3d1f2722;
+  --tint-welcome: #f3d1cc75;
+  --tint-countdown: #f6dfdaa6;
+  --tint-fade: #f9f0ea44;
+  --event-a: #f2d8d24d;
+  --event-b: #f7e6df5c;
+  --chip-a: #f2d6cf;
+  --chip-a-ink: #5c2f3a;
+  --chip-b: #f7e6de;
+  --chip-b-ink: #6b3b33;
+  --tint-rsvp: #f1d5ce80;
+  --line-rsvp: #8142532b;
+  --tint-wish: #f6e2dc66;
+  --panel: #f4e1da;
+  --highlight: #e8b4b788;
+  --medallion-line: #b98a80;
+  --medallion-a: #fffaf7;
+  --medallion-b: #f4e0d9;
+  --medallion-shadow: #5c2f3a80;
+  --well: #f1e0da;
+  --moments-a: #f3dcd6;
+  --moments-b: #f9ece6;
+  --moments-c: var(--cream);
+  --moments-ink: #6d3445;
+  --frame-paper: #fffaf7;
+  --frame-edge: #b98a8066;
+  --frame-shadow: #5c2f3a60;
+  --frame-offset: #e8b4b744;
+  --reel-button: #814253ec;
+  --reel-button-ink: #fff4ef;
+  --reel-button-edge: #fffaf799;
+  --reel-ink: #694a4e;
+  --field: #fffaf780;
+  --field-line: #b98a8099;
+  --field-focus: #fffaf7;
+  --backdrop: #2a1418db;
+  --closing-fade: linear-gradient(var(--cream) 36%, transparent 70%);
 }
 .page[data-template='midnight'] {
-  --wine: #203b4d;
-  --cream: #f4f1e6;
-  --brass: #896c31;
+  /* Night body: ivory text on the cover's navy, gold for accents (AA checked). */
+  color-scheme: dark;
+  --wine: #e4c682;
+  --cream: #0c1d31;
+  --paper: #12263b;
+  --ink: #ede5d1;
+  --faded: #c8bea6;
+  --brass: #d2b071;
+  --rule: #d2b07150;
   --design-art: url('/brand/template-midnight.webp');
+  --grain: #e4c6820d;
+  --surround: #050e18;
+  --frame-line: #d2b07166;
+  --frame-pattern: repeating-linear-gradient(45deg, transparent 0 5px, #d2b07155 5px 6px, transparent 6px 11px);
+  --note-bg: #081626;
+  --note-ink: #c8bea6;
+  --pill-bg: #ffffff0d;
+  --pill-line: #d2b0714d;
+  --on-wine: #0c1d31;
+  --hairline: #d2b07175;
+  --line-soft: #d2b07133;
+  --petal: #e4c68299;
+  --nav-bg: #0c1d31f0;
+  --nav-line: #d2b07180;
+  --nav-shadow: #00000066;
+  --ornament: url('/brand/botanical-gold-match.webp');
+  --ornament-opacity: 0.6;
+  --tint-welcome: #1e3a5a80;
+  --tint-countdown: #15304ca6;
+  --tint-fade: #0c1d3144;
+  --event-a: #17304a80;
+  --event-b: #10263d80;
+  --chip-a: #1d3a57;
+  --chip-a-ink: #f1dca6;
+  --chip-b: #142f45;
+  --chip-b-ink: #e8dcc0;
+  --tint-rsvp: #17304a80;
+  --line-rsvp: #d2b07133;
+  --tint-wish: #15304c66;
+  --panel: #142c45;
+  --highlight: #2c4d74;
+  --medallion-line: #d2b071;
+  --medallion-a: #1b3550;
+  --medallion-b: #0e2238;
+  --medallion-shadow: #00000080;
+  --well: #0a1828;
+  --moments-a: #132c45;
+  --moments-b: #0f2238;
+  --moments-c: var(--cream);
+  --moments-ink: #e4c682;
+  --frame-paper: #12263b;
+  --frame-edge: #d2b07166;
+  --frame-shadow: #00000080;
+  --frame-offset: #d2b07122;
+  --reel-button: #e4c682ee;
+  --reel-button-ink: #0c1d31;
+  --reel-button-edge: #0c1d3199;
+  --reel-ink: #c8bea6;
+  --field: #ffffff0a;
+  --field-line: #d2b07199;
+  --field-focus: #ffffff14;
+  --backdrop: #030a12e0;
+  --error: #ffb3a8;
+  --closing-fade: linear-gradient(var(--cream) 30%, transparent 62%);
+}
+.page[data-template='midnight'] .hero {
+  /* The sealed cover keeps its navy seal; the body palette starts once it opens. */
+  --wine: #203b4d;
 }
 .page[data-template='ivory'] :is(.gateLeft, .gateRight) {
   background: #faf8ef;
@@ -249,8 +552,8 @@
   text-align: center;
   font-size: 10px;
   padding: 7px 24px;
-  background: #e9dfca;
-  color: #65584b;
+  background: var(--note-bg, #e9dfca);
+  color: var(--note-ink, #65584b);
   line-height: 1.6;
 }
 .skipLink {
@@ -304,8 +607,8 @@
 .languages {
   display: flex;
   padding: 2px;
-  background: #fff8ea99;
-  border: 1px solid #b69a684a;
+  background: var(--pill-bg, #fff8ea99);
+  border: 1px solid var(--pill-line, #b69a684a);
   border-radius: 50px;
 }
 .languages button {
@@ -318,7 +621,7 @@
   color: var(--faded);
 }
 .languages button[aria-pressed='true'] {
-  color: #fff4dd;
+  color: var(--on-wine, #fff4dd);
   background: var(--wine);
 }
 .kicker {
@@ -457,7 +760,7 @@
 }
 .flourish > span {
   width: 40px;
-  border-top: 1px solid #a5854b70;
+  border-top: 1px solid var(--hairline, #a5854b70);
 }
 .heroDate {
   font:
@@ -725,7 +1028,7 @@
   width: 8px;
   height: 14px;
   border-radius: 80% 5% 70% 5%;
-  background: #8e344080;
+  background: var(--petal, #8e344080);
   opacity: 0;
 }
 .petals i:nth-child(2) {
@@ -764,10 +1067,10 @@
   align-items: center;
   gap: clamp(8px, 2vw, 22px);
   padding: 3px 20px;
-  background: #fbf4e6f2;
-  border: 1px solid #ad8d5e80;
+  background: var(--nav-bg, #fbf4e6f2);
+  border: 1px solid var(--nav-line, #ad8d5e80);
   border-radius: 50px;
-  box-shadow: 0 7px 30px #33231f22;
+  box-shadow: 0 7px 30px var(--nav-shadow, #33231f22);
 }
 .chapterNav a {
   display: inline-flex;
@@ -813,9 +1116,14 @@
   height: 400px;
   left: -100px;
   top: 40px;
-  background: url('/artwork/jamdani-vine-v5.webp') top center / contain no-repeat;
+  background: var(--ornament, url('/artwork/jamdani-vine-v5.webp')) var(--ornament-position, top center) /
+    var(--ornament-size, contain) no-repeat;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: var(--ornament-opacity, 0.55);
+  filter: var(--ornament-filter, none);
+  mix-blend-mode: var(--ornament-blend, normal);
+  mask-image: var(--ornament-mask, none);
+  mask-composite: intersect;
   z-index: -1;
 }
 .events:before {
@@ -885,42 +1193,42 @@
 }
 .welcome h2 em,
 .rsvpIntro em {
-  background: linear-gradient(transparent 65%, #d6b7a577 65%);
+  background: linear-gradient(transparent 65%, var(--highlight, #d6b7a577) 65%);
   padding-inline: 4px;
 }
 .welcome {
-  background: radial-gradient(ellipse at 50% 15%, #f0d8cc75, transparent 70%);
+  background: radial-gradient(ellipse at 50% 15%, var(--tint-welcome, #f0d8cc75), transparent 70%);
 }
 .countdown {
-  background: linear-gradient(170deg, #e2e6d2a6, #f7efdf44);
-  border-block: 1px solid #78806130;
+  background: linear-gradient(170deg, var(--tint-countdown, #e2e6d2a6), var(--tint-fade, #f7efdf44));
+  border-block: 1px solid var(--line-soft, #78806130);
 }
 .event:nth-child(odd) {
-  background: linear-gradient(180deg, #e6d7b94d, transparent 85%);
+  background: linear-gradient(180deg, var(--event-a, #e6d7b94d), transparent 85%);
 }
 .event:nth-child(even) {
-  background: linear-gradient(180deg, #d8e1d15c, transparent 85%);
+  background: linear-gradient(180deg, var(--event-b, #d8e1d15c), transparent 85%);
 }
 .eventDate p {
-  background: #e8d7b8;
-  color: #4b3527;
+  background: var(--chip-a, #e8d7b8);
+  color: var(--chip-a-ink, #4b3527);
   padding: 7px 14px;
   border-radius: 3px;
   font-weight: 600;
 }
 .event:nth-child(even) .eventDate p {
-  background: #dce4d3;
-  color: #354430;
+  background: var(--chip-b, #dce4d3);
+  color: var(--chip-b-ink, #354430);
 }
 .rsvp {
-  background: linear-gradient(#eedbd280, #f7efdf33);
-  border-block: 1px solid #9b65582b;
+  background: linear-gradient(var(--tint-rsvp, #eedbd280), var(--tint-fade, #f7efdf33));
+  border-block: 1px solid var(--line-rsvp, #9b65582b);
 }
 .wish {
-  background: linear-gradient(#e1e6d466, transparent);
+  background: linear-gradient(var(--tint-wish, #e1e6d466), transparent);
 }
 .replyIdentity {
-  background: #ece2cc;
+  background: var(--panel, #ece2cc);
   padding: 16px;
   border-inline: 2px solid color-mix(in srgb, var(--wine) 40%, transparent);
 }
@@ -944,16 +1252,16 @@
   width: min(270px, 100%);
   height: 320px;
   margin: 22px auto;
-  border: 1px solid #ab8b53;
+  border: 1px solid var(--medallion-line, #ab8b53);
   border-radius: 150px 150px 12px 12px;
-  background: radial-gradient(ellipse at 40% 25%, #fff9e8, #eee2c9);
-  box-shadow: 0 16px 35px -30px #55342080;
+  background: radial-gradient(ellipse at 40% 25%, var(--medallion-a, #fff9e8), var(--medallion-b, #eee2c9));
+  box-shadow: 0 16px 35px -30px var(--medallion-shadow, #55342080);
 }
 .dateMedallion:before {
   content: '';
   position: absolute;
   inset: 8px;
-  border: 1px solid #ab8b5355;
+  border: 1px solid color-mix(in srgb, var(--medallion-line, #ab8b53) 33%, transparent);
   border-radius: inherit;
   pointer-events: none;
 }
@@ -1009,7 +1317,7 @@
     var(--wine),
     color-mix(in srgb, var(--wine) 80%, #201620)
   );
-  color: #fff1d3;
+  color: var(--on-wine, #fff1d3);
   display: flex;
   gap: 12px;
   align-items: center;
@@ -1024,7 +1332,7 @@
 }
 .dateRibbon:focus-visible {
   outline-offset: -7px;
-  outline-color: #fff1d3;
+  outline-color: var(--on-wine, #fff1d3);
 }
 .dateMedallion[data-unfolded='true'] .datePrint {
   opacity: 1;
@@ -1139,7 +1447,7 @@
   position: relative;
   padding: 28px 0 32px;
   text-align: center;
-  border-block: 1px solid #ae8d5860;
+  border-block: 1px solid var(--hairline, #ae8d5860);
 }
 .event:before {
   content: '❋';
@@ -1166,7 +1474,7 @@
   display: none;
 }
 .eventDate > span {
-  border: 1px solid #a5854b70;
+  border: 1px solid var(--hairline, #a5854b70);
   border-radius: 50%;
   width: 28px;
   height: 28px;
@@ -1227,7 +1535,7 @@
   min-height: 44px;
   padding: 6px 0;
   border: 0;
-  border-bottom: 1px solid #a5854b70;
+  border-bottom: 1px solid var(--hairline, #a5854b70);
   background: none;
   color: var(--wine);
   font-size: 13px;
@@ -1250,7 +1558,7 @@
   width: 100%;
   height: 260px;
   border: 1px solid var(--rule);
-  background: #e7ddca;
+  background: var(--well, #e7ddca);
 }
 .map small {
   display: block;
@@ -1271,11 +1579,11 @@
 }
 .moments {
   padding-block: 40px;
-  background: linear-gradient(165deg, #e1e7d6, #f4e5d8 62%, #f7efdf);
-  border-block: 1px solid #78806130;
+  background: linear-gradient(165deg, var(--moments-a, #e1e7d6), var(--moments-b, #f4e5d8) 62%, var(--moments-c, #f7efdf));
+  border-block: 1px solid var(--line-soft, #78806130);
 }
 .moments .sectionHead h2 {
-  color: #3d513e;
+  color: var(--moments-ink, #3d513e);
 }
 .photoReel {
   max-width: 470px;
@@ -1285,12 +1593,12 @@
 .reelStage {
   position: relative;
   padding: 10px 10px 28px;
-  background: #fff9eb;
-  border: 1px solid #9b805f66;
+  background: var(--frame-paper, #fff9eb);
+  border: 1px solid var(--frame-edge, #9b805f66);
   border-radius: 43% 43% 4px 4px / 22% 22% 4px 4px;
   box-shadow:
-    0 18px 34px -24px #34452e80,
-    7px 7px 0 #b4bf9c44;
+    0 18px 34px -24px var(--frame-shadow, #34452e80),
+    7px 7px 0 var(--frame-offset, #b4bf9c44);
   touch-action: pan-y pinch-zoom;
 }
 .reelPhoto {
@@ -1302,7 +1610,7 @@
   position: relative;
   aspect-ratio: 4 / 5;
   border-radius: 45% 45% 2px 2px / 24% 24% 2px 2px;
-  background: #e5d8bf;
+  background: var(--well, #e5d8bf);
 }
 .reelPhoto > img {
   display: block;
@@ -1324,10 +1632,10 @@
   height: 44px;
   display: grid;
   place-items: center;
-  border: 1px solid #fff4dc99;
+  border: 1px solid var(--reel-button-edge, #fff4dc99);
   border-radius: 50%;
-  color: #fff7e5;
-  background: #344730ec;
+  color: var(--reel-button-ink, #fff7e5);
+  background: var(--reel-button, #344730ec);
   box-shadow: 0 3px 14px #1c271a33;
 }
 .reelPrevious {
@@ -1343,7 +1651,7 @@
   font-size: 11px;
   font-variant-numeric: tabular-nums;
   letter-spacing: 2px;
-  color: #4d593c;
+  color: var(--reel-ink, #4d593c);
 }
 .reelCaption {
   display: flex;
@@ -1351,7 +1659,7 @@
   justify-content: space-between;
   gap: 10px;
   margin: 14px 0;
-  color: #4d593c;
+  color: var(--reel-ink, #4d593c);
   font-size: 11px;
 }
 .reelCaption button {
@@ -1377,8 +1685,8 @@
   aspect-ratio: 1;
   padding: 3px;
   position: relative;
-  background: #fff9eb;
-  border: 1px solid #7d856450;
+  background: var(--frame-paper, #fff9eb);
+  border: 1px solid var(--frame-edge, #7d856450);
   border-radius: 4px;
   transition:
     border-color 180ms,
@@ -1400,8 +1708,8 @@
   bottom: 3px;
   right: 3px;
   padding: 0 4px;
-  color: #fff8e9;
-  background: #344730;
+  color: var(--reel-button-ink, #fff8e9);
+  background: var(--reel-button, #344730);
   font-size: 10px;
 }
 .srOnly {
@@ -1430,9 +1738,9 @@
   height: 40px;
   display: grid;
   place-items: center;
-  border: 1px solid #a5854b50;
+  border: 1px solid var(--hairline, #a5854b50);
   border-radius: 50%;
-  background: #fff4dfe8;
+  background: var(--nav-bg, #fff4dfe8);
   color: var(--wine);
 }
 .photoFallback {
@@ -1457,7 +1765,7 @@
   font-family: var(--font-ui), var(--font-bangla-ui), sans-serif;
 }
 .photoDialog:global(::backdrop) {
-  background: #251a19db;
+  background: var(--backdrop, #251a19db);
 }
 .photoDialog :global(.dialog-content) {
   padding: clamp(18px, 4vw, 36px);
@@ -1480,7 +1788,7 @@
   height: auto;
   max-height: min(62svh, 680px);
   object-fit: contain;
-  background: #e9deca;
+  background: var(--well, #e9deca);
 }
 .lightbox > div {
   display: flex;
@@ -1497,6 +1805,7 @@
   background: none;
   border: 1px solid var(--rule);
   border-radius: 50%;
+  color: var(--wine);
 }
 .lightbox > div > span {
   font-size: 12px;
@@ -1571,7 +1880,7 @@
   padding: 32px 0 0;
   margin: 32px auto 0;
   max-width: 480px;
-  border-top: 1px solid #a5854b85;
+  border-top: 1px solid var(--hairline, #a5854b85);
 }
 .formPaper:before {
   content: '✧';
@@ -1609,9 +1918,9 @@
   width: 100%;
   min-width: 0;
   min-height: 48px;
-  background: #fff9ec80;
+  background: var(--field, #fff9ec80);
   border: 0;
-  border-bottom: 1px solid #ad8d5e99;
+  border-bottom: 1px solid var(--field-line, #ad8d5e99);
   border-radius: 0;
   padding: 12px 10px;
   margin: 9px 0 24px;
@@ -1625,7 +1934,7 @@
 .form :is(input, textarea):focus,
 .formPaper select:focus {
   border-color: var(--wine);
-  background: #fff8e9;
+  background: var(--field-focus, #fff8e9);
 }
 .form textarea {
   resize: vertical;
@@ -1659,6 +1968,7 @@
   margin-bottom: 25px;
 }
 .choices legend {
+  color: var(--legend, #756953);
   font-size: 14px;
   margin-bottom: 12px;
 }
@@ -1668,7 +1978,7 @@
   align-items: center;
   gap: 10px;
   min-height: 52px;
-  border: 1px solid #ad8d5e70;
+  border: 1px solid var(--field-line, #ad8d5e70);
   padding: 12px;
   font-size: 14px;
   cursor: pointer;
@@ -1690,7 +2000,7 @@
 .choices .chosen {
   border-color: var(--wine);
   color: var(--wine);
-  background: #702c3908;
+  background: color-mix(in srgb, var(--wine) 3%, transparent);
 }
 .countFields {
   display: grid;
@@ -1708,7 +2018,7 @@
   border: 1px solid var(--wine);
   border-radius: 2px;
   background: var(--wine);
-  color: #fff2d6;
+  color: var(--on-wine, #fff2d6);
   font-size: 14px;
   line-height: 1.7;
 }
@@ -1728,7 +2038,7 @@
   line-height: 1.9;
 }
 .error {
-  color: #9a3538;
+  color: var(--error, #9a3538);
   font-size: 13px;
   padding: 12px 0;
 }
@@ -1817,13 +2127,14 @@
   text-align: center;
   padding: 38px 36px 230px;
   color: var(--wine);
-  background: url('/artwork/jamdani-garden-v5-1024.webp') center bottom / cover no-repeat;
+  background: var(--closing-art, url('/artwork/jamdani-garden-v5-1024.webp')) var(--closing-position, center bottom) /
+    var(--closing-size, cover) no-repeat;
 }
 .closing:before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(var(--cream), transparent 35%);
+  background: var(--closing-fade, linear-gradient(var(--cream), transparent 35%));
 }
 .closingPattern {
   display: none;
@@ -2012,7 +2323,7 @@
   padding: 8px 24px;
   text-align: center;
   color: var(--wine);
-  background: #eadfc9;
+  background: var(--note-bg, #eadfc9);
   font-size: 12px;
 }
 .musicSlot {
@@ -2026,10 +2337,10 @@
   top: max(12px, env(safe-area-inset-top));
   right: max(20px, calc((100vw - 680px) / 2 + 24px));
   z-index: 45;
-  border: 1px solid #ad8d5e80;
+  border: 1px solid var(--nav-line, #ad8d5e80);
   border-radius: 50%;
-  background: #fbf4e6f2;
-  box-shadow: 0 4px 14px #33231f16;
+  background: var(--nav-bg, #fbf4e6f2);
+  box-shadow: 0 4px 14px var(--nav-shadow, #33231f16);
 }
 .page:not([data-cover-visible='false']) .musicDock {
   position: static;
@@ -2050,7 +2361,7 @@
   padding: 12px;
 }
 .musicCredit p {
-  background: #fbf4e6df;
+  background: var(--nav-bg, #fbf4e6df);
   padding: 10px;
   border-radius: 4px;
 }
