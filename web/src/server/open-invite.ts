@@ -6,7 +6,7 @@ import { database } from './supabase';
 import { session } from './auth';
 import { config } from './config';
 import { dbError } from './http';
-import { decryptLink, digest, encryptLink, secret } from './guest-crypto';
+import { decryptLink, derivedSecret, digest, encryptLink, secret } from './guest-crypto';
 import { guestPath } from './guests';
 const stored = z.object({ wedding_id: z.uuid(), enabled: z.boolean(), ciphertext: z.string(), key_id: z.string(), revision: z.number(), event_ids: z.array(z.enum(['nikah', 'reception'])), max_people: z.number(), greeting_bn: z.string(), greeting_en: z.string(), ask_phone: z.boolean() });
 function settings(data: unknown, slug: string): OpenInviteSettings {
@@ -44,8 +44,7 @@ export async function joinOpenInvitation(slug: string, token: string, input: z.i
   const device = existing && /^[A-Za-z0-9_-]{43}$/.test(existing) ? existing : secret();
   const secure = config().origin.startsWith('https://');
   const ip = headers.get('x-nf-client-connection-ip')?.trim() || headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
-  const salt = process.env.OPEN_INVITE_IP_SALT || (secure ? '' : 'dawat-local-open-invite');
-  if (!salt) throw new Error('OPEN_INVITE_IP_SALT must be configured.');
+  const salt = process.env.OPEN_INVITE_IP_SALT || derivedSecret('open-invite-ip-salt');
   const rawSession = secret();
   const linkToken = secret();
   const hid = crypto.randomUUID();

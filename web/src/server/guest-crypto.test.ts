@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 vi.mock('server-only', () => ({}));
-import { digest, encryptLink, decryptLink, secret } from './guest-crypto';
+import { derivedSecret, digest, encryptLink, decryptLink, secret } from './guest-crypto';
 afterEach(() => vi.unstubAllEnvs());
 describe('Recoverable, identity-bound guest credentials', () => {
   const setup = () => {
@@ -15,6 +15,13 @@ describe('Recoverable, identity-bound guest credentials', () => {
     expect(digest(token)).toMatch(/^[a-f0-9]{64}$/);
     expect(enc.ciphertext).not.toContain(token);
     expect(decryptLink(enc.ciphertext, enc.keyId, 'wedding-a', 'household-a')).toBe(token);
+  });
+  it('derives a stable, purpose-bound secret from the current key without exposing it', () => {
+    setup();
+    const salt = derivedSecret('open-invite-ip-salt');
+    expect(salt).toBe(derivedSecret('open-invite-ip-salt'));
+    expect(salt).not.toBe(derivedSecret('another-purpose'));
+    expect(salt).not.toContain(Buffer.alloc(32, 42).toString('base64'));
   });
   it('rejects swapped tenant/household/key identities and modified ciphertext', () => {
     setup();

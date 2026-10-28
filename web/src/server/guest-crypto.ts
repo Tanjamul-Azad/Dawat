@@ -1,5 +1,5 @@
 import 'server-only';
-import { createHash, randomBytes, createCipheriv, createDecipheriv } from 'node:crypto';
+import { createHash, createHmac, randomBytes, createCipheriv, createDecipheriv } from 'node:crypto';
 export const secret = () => randomBytes(32).toString('base64url');
 export const digest = (token: string) => createHash('sha256').update(token, 'utf8').digest('hex');
 function keyRing() {
@@ -12,6 +12,11 @@ function keyRing() {
   if (!current || Buffer.from(current, 'base64').length !== 32)
     throw new Error('Guest link encryption requires 32-byte keys.');
   return { id, keys };
+}
+// A purpose-bound secret derived from the current guest-link key, so small server secrets need no extra env.
+export function derivedSecret(label: string) {
+  const { id, keys } = keyRing();
+  return createHmac('sha256', Buffer.from(keys[id], 'base64')).update(`dawat:${label}:v1`).digest('base64url');
 }
 const aad = (wid: string, hid: string, id: string, purpose: string) => Buffer.from(`dawat:${purpose}:v1:${wid}:${hid}:${id}`);
 export function encryptLink(token: string, wid: string, hid: string, purpose = 'guest-link') {
