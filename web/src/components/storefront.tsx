@@ -418,11 +418,6 @@ export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentRev
               {t('লাইভ নমুনা দেখুন', 'See a live sample')} <ArrowUpRight size={16} />
             </a>
           </div>
-          <ul className={s.heroFacts}>
-            <li>{t(`${taka(prices.normal, 'bn')} থেকে`, `From ${taka(prices.normal, 'en')}`)}</li>
-            <li>{t('বাংলা ও ইংরেজি', 'Bengali and English')}</li>
-            <li>{t('WhatsApp-এ এক ট্যাপে পাঠান', 'Send in one tap on WhatsApp')}</li>
-          </ul>
         </div>
         <figure className={s.heroArt}>
           <img
