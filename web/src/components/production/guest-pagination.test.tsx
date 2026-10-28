@@ -4,6 +4,7 @@ import { afterEach, beforeAll, expect, it, vi } from 'vitest';
 import { GuestHub } from './guest-hub';
 import type { HouseholdReport, HouseholdRow } from '@/features/production/guests';
 import { downloadCsv } from '@/features/production/download';
+vi.mock('./open-invite', () => ({ OpenInviteCard: () => null, HostWhatsappSettings: () => null }));
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }) }));
 vi.mock('@/features/production/download', () => ({ downloadCsv: vi.fn(async () => {}) }));
 const wid = '20000000-0000-4000-8000-000000000001';
@@ -302,4 +303,19 @@ it('keeps the editor open for the next family after "save & add another"', async
   await act(async () => fireEvent.click(screen.getByRole('button', { name: 'সংরক্ষণ করে পরেরটি যোগ করুন' })));
   expect(screen.getByRole('dialog')).toBeTruthy();
   expect((screen.getByLabelText('অতিথি বা দলের নাম') as HTMLInputElement).value).toBe('');
+});
+
+it('normalizes the optional third bulk column and blocks all rows when one phone is invalid', async () => {
+  const fetcher = vi.fn(async () => json(first));
+  vi.stubGlobal('fetch', fetcher);
+  mount();
+  fireEvent.click(screen.getByRole('button', { name: 'একসঙ্গে অনেক পরিবার' }));
+  const input = screen.getByRole('textbox', { name: 'পরিবারের তালিকা' });
+  fireEvent.change(input, { target: { value: 'পরিবার এক, ২, ০১৭০০০০০০০১\nপরিবার দুই, ১, 0171234' } });
+  expect(screen.getByRole('button', { name: /পরিবার যোগ করুন/ }).hasAttribute('disabled')).toBe(true);
+  expect(fetcher).not.toHaveBeenCalled();
+  fireEvent.change(input, { target: { value: 'পরিবার এক, ২, ০১৭০০০০০০০১' } });
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: /পরিবার যোগ করুন/ })));
+  const writes = fetcher.mock.calls.filter((call: any[]) => call[1]?.method === 'POST');
+  expect(JSON.parse((writes[0] as any)[1].body).household.contactPhone).toBe('+8801700000001');
 });

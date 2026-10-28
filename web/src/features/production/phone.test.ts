@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { displayPhone, normalizePhone, whatsappChatUrl, whatsappDigits } from './phone';
+import { displayPhone, normalizePhone, parsePhone, whatsappChatUrl, whatsappDigits } from './phone';
 
 describe('normalizePhone', () => {
   it.each([
@@ -24,7 +24,10 @@ describe('normalizePhone', () => {
     '0171234567a',
     '+0123456789',
     '00880171234567',
-  ])('rejects %s', (input) => expect(normalizePhone(input)).toBeNull());
+  ])('rejects %s', (input) => {
+    expect(parsePhone(input)).toBeNull();
+    if (input) expect(() => normalizePhone(input)).toThrow(/WhatsApp/);
+  });
 });
 
 describe('wa.me links', () => {

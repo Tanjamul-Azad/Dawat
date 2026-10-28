@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { uuid } from './contracts';
 import { templateIds } from './catalog';
 import { manualPayment, orderPaymentReference } from './payment';
-import { normalizePhone } from './phone';
+import { parsePhone } from './phone';
 
 // Optional. Empty means "no number"; anything else must be a usable WhatsApp number.
 const optionalPhone = z
@@ -11,7 +11,7 @@ const optionalPhone = z
   .max(40)
   .transform((value, ctx) => {
     if (!value) return undefined;
-    const phone = normalizePhone(value);
+    const phone = parsePhone(value);
     if (!phone)
       ctx.addIssue({ code: 'custom', message: 'Enter a valid WhatsApp number, or leave it empty.' });
     return phone ?? undefined;

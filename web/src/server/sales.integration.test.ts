@@ -62,6 +62,7 @@ insert into auth.users(id,email,email_confirmed_at) values('${seller}','seller@e
     '20261026054200_manual_payment_submissions.sql',
     '20261027120000_accept_opens_order.sql',
     '20261028090000_access_onboarding.sql',
+    '20261028120000_access_simplify.sql',
   ]) {
     try {
       await db.exec(readFileSync('supabase/migrations/' + file, 'utf8'));
@@ -340,24 +341,23 @@ it('quotes the fixed-price packages at once from the published price, and keeps 
     state: 'quoted',
     amount_minor: 50000,
     term_days: 90,
-    package_name: 'ক্লাসিক · শুভ্র',
+    package_name: 'ক্লাসিক',
     revision: 0,
   });
-  expect(classic.quote_notes).toMatch(/90 দিন/);
-  expect(classic.quote_notes).toMatch(/Refunds are not automatic/);
+  expect(classic.quote_notes).toMatch(/90/);
   const premium = await command(requestBody('rose', { termDays: 45 }));
-  expect(premium).toMatchObject({ state: 'quoted', amount_minor: 75000, term_days: 45 });
+  expect(premium).toMatchObject({ state: 'quoted', amount_minor: 75000, term_days: 90 });
   expect(premium.package_name).toBe('প্রিমিয়াম');
   const custom = await command(requestBody('custom'));
   expect(custom).toMatchObject({ state: 'requested', amount_minor: null, package_name: null });
   await db.exec('reset role');
   const quotes = await db.query<{ n: number }>(
-    "select count(*)::int n from public.audit_events where action='sales.auto-quote'",
+    "select count(*)::int n from public.audit_events where action='quote' and reason='auto standard quote'",
   );
   expect(quotes.rows[0].n).toBeGreaterThanOrEqual(2);
 });
 
-it('does not let the caller choose the price, an over-long term or an invalid number', async () => {
+it('does not let the caller choose the price, the term or an invalid number', async () => {
   await resetQuota();
   await actor(alice);
   const tampered = await command(
@@ -365,8 +365,8 @@ it('does not let the caller choose the price, an over-long term or an invalid nu
   );
   expect(tampered.amount_minor).toBe(50000);
   expect(tampered.quote_notes).not.toMatch(/Free forever/);
-  await expect(command(requestBody('holud', { termDays: 366 }))).rejects.toThrow(/hosting term/);
-  await expect(command(requestBody('holud', { termDays: 0 }))).rejects.toThrow(/hosting term/);
+  // The term is the catalog's, never the caller's.
+  expect((await command(requestBody('holud', { termDays: 3650 }))).term_days).toBe(90);
   await expect(command(requestBody('holud', { phone: '01712345678' }))).rejects.toThrow(/WhatsApp/);
   await expect(command(requestBody('custom', { phone: 'call me' }))).rejects.toThrow(/WhatsApp/);
 });
@@ -421,13 +421,7 @@ it('verifies, confirms and activates in one click with every audit event kept, a
   );
   expect(grant.rows[0].state).toBe('active');
   const actions = await auditActions(o.id);
-  for (const action of [
-    'verify-payment',
-    'confirm',
-    'activate',
-    'verify-confirm-activate',
-    'payment_submission.verify',
-  ])
+  for (const action of ['verify-payment', 'confirm', 'activate', 'payment_submission.verify'])
     expect(actions).toContain(action);
   await actor(seller, 'aal2');
   expect((await command(body, key, 'payment_submission_command')).id).toBe(p.id);
@@ -504,4 +498,104 @@ it('keeps the combined seller command behind verified seller MFA', async () => {
   );
   const done = await command(body, crypto.randomUUID(), 'seller_command');
   expect(done.weddingId).toBeTruthy();
+});
+it('auto-quotes standard prices, retains manual custom quoting and validates customer contact', async () => {
+  const r = await request('jamdani');
+  expect(r).toMatchObject({ state: 'quoted', amount_minor: 50000, term_days: 90, package_name: 'ক্লাসিক' });
+  expect(r.quote_notes).toContain('90');
+  const custom = await request('custom');
+  expect(custom.state).toBe('requested');
+  expect(custom.amount_minor).toBeNull();
+  await resetQuota();
+  await actor(alice);
+  await expect(
+    command({
+      kind: 'request',
+      templateId: 'ivory',
+      name: 'Test',
+      brief: 'Synthetic celebration',
+      eventDate: '',
+      phone: '0171234',
+    }),
+  ).rejects.toThrow(/WhatsApp/);
+  const contact = await command({
+    kind: 'request',
+    templateId: 'ivory',
+    name: 'Test',
+    brief: 'Synthetic celebration',
+    eventDate: '',
+    phone: '+8801700000001',
+  });
+  expect(contact.customer_phone).toBe('+8801700000001');
+});
+it('verifies, confirms and activates atomically and replays the receipt without repeating side effects', async () => {
+  const r = await order();
+  await actor(alice);
+  const p = await command(
+    { kind: 'submit', requestId: r.id, method: 'bKash', reference: 'AUTO-' + r.id, sender: '01700000001' },
+    crypto.randomUUID(),
+    'payment_submission_command',
+  );
+  await actor(seller, 'aal2');
+  const key = crypto.randomUUID();
+  const body = { kind: 'verify', id: p.id, activate: true, reason: 'Matched actual synthetic transfer.' };
+  expect((await command(body, key, 'payment_submission_command')).state).toBe('verified');
+  expect((await command(body, key, 'payment_submission_command')).state).toBe('verified');
+  const o = (await db.query<any>('select * from public.orders where id=$1', [r.order_id])).rows[0];
+  expect(o).toMatchObject({ payment_status: 'manually_verified', status: 'confirmed', revision: 3 });
+  const audit = (
+    await db.query<any>('select action from public.audit_events where order_id=$1', [r.order_id])
+  ).rows.map((row) => row.action);
+  for (const action of ['verify-payment', 'confirm', 'activate'])
+    expect(audit.filter((value) => value === action)).toHaveLength(1);
+  await actor(alice);
+  expect(
+    (await db.query<any>('select public.my_sales_progress() p')).rows[0].p.find(
+      (row: any) => row.requestId === r.id,
+    ).access,
+  ).toBe('active');
+});
+it('rolls back every payment and order change when activation fails, and protects admin summary with AAL2', async () => {
+  const r = await order();
+  await actor(alice);
+  const p = await command(
+    {
+      kind: 'submit',
+      requestId: r.id,
+      method: 'bKash',
+      reference: 'ROLLBACK-' + r.id,
+      sender: '01700000001',
+    },
+    crypto.randomUUID(),
+    'payment_submission_command',
+  );
+  await db.exec('reset role');
+  await db.query("update auth.users set banned_until=now()+interval '1 day' where id=$1", [alice]);
+  await actor(seller, 'aal2');
+  await expect(
+    command(
+      { kind: 'verify', id: p.id, activate: true, reason: 'Matched actual synthetic transfer.' },
+      crypto.randomUUID(),
+      'payment_submission_command',
+    ),
+  ).rejects.toThrow(/verify their email/);
+  expect(
+    (
+      await db.query<any>('select payment_status,status,revision from public.orders where id=$1', [
+        r.order_id,
+      ])
+    ).rows[0],
+  ).toEqual({ payment_status: 'pending', status: 'reviewing', revision: 0 });
+  expect(
+    (await db.query<any>('select state from public.payment_submissions where id=$1', [p.id])).rows[0].state,
+  ).toBe('pending');
+  expect((await db.query('select * from public.weddings where order_id=$1', [r.order_id])).rows).toHaveLength(
+    0,
+  );
+  const summary = (await db.query<any>('select public.admin_summary() s')).rows[0].s;
+  expect(summary.pendingPayments).toBeGreaterThan(0);
+  await actor(seller);
+  await expect(db.query('select public.admin_summary()')).rejects.toThrow(/seller MFA/);
+  await db.exec('reset role');
+  await db.query('update auth.users set banned_until=null where id=$1', [alice]);
 });

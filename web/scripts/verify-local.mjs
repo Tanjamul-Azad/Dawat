@@ -172,7 +172,7 @@ assert.equal(enquiry.customer_email, `buyer-${run}@example.test`);
 assert.equal(enquiry.customer_phone, '+8801712345678', 'The number is stored as E.164.');
 assert.equal(enquiry.state, 'quoted', 'Premium is quoted immediately.');
 assert.equal(enquiry.amount_minor, 75000);
-assert.equal(enquiry.term_days, 90, 'STANDARD_TERM_DAYS defaults to 90.');
+assert.equal(enquiry.term_days, 90, 'The standard term is 90 days.');
 assert.match(enquiry.package_name, /^প্রিমিয়াম/);
 assert.equal(
   (await bob.request('/api/sales/')).json.data.requests.some((r) => r.id === enquiry.id),
@@ -244,9 +244,9 @@ assert.equal(
   403,
 );
 // One click: verify the transfer, confirm the order and open the customer's page.
-const countsBefore = (await seller.request('/api/admin/counts/')).json.data;
-assert.ok(countsBefore.payments >= 1, 'The pending payment is counted for the team.');
-assert.equal((await buyer.request('/api/admin/counts/')).status, 403);
+const countsBefore = (await seller.request('/api/admin/summary/')).json.data;
+assert.ok(countsBefore.pendingPayments >= 1, 'The pending payment is counted for the team.');
+assert.equal((await buyer.request('/api/admin/summary/')).status, 403);
 await sales(
   seller,
   {
@@ -265,7 +265,7 @@ assert.equal(
 const phoneOrders = await seller.request(
   `/api/admin/orders/?field=email&search=${encodeURIComponent(`buyer-${run}@example.test`)}`,
 );
-assert.equal(phoneOrders.json.data.orders[0].customerPhone, '+8801712345678');
+assert.equal(phoneOrders.json.data.orders[0].customer_phone, '+8801712345678');
 assert.equal(phoneOrders.json.data.orders[0].status, 'confirmed');
 assert.equal(phoneOrders.json.data.orders[0].access, 'active');
 const agreed = { weddingId: phoneOrders.json.data.orders[0].weddingId };
@@ -279,6 +279,10 @@ assert.equal(progress.weddingId, agreed.weddingId);
 const purchasedDraft = await buyer.request(`/api/weddings/${agreed.weddingId}/`);
 assert.equal(purchasedDraft.json.data.content.templateId, 'midnight');
 assert.equal((await bob.request(`/api/weddings/${agreed.weddingId}/`)).status, 404);
+const customEnquiry = await sales(buyer, { kind: 'request', templateId: 'custom', name: 'Synthetic custom buyer', eventDate: '', brief: 'Synthetic custom design enquiry for manual quote verification.' });
+assert.equal(customEnquiry.state, 'requested');
+const customQuoted = await sales(seller, { kind: 'quote', id: customEnquiry.id, expectedRevision: customEnquiry.revision, packageName: 'Custom', amountMinor: 150000, termDays: 90, notes: 'Synthetic custom design terms agreed manually.' });
+assert.equal(customQuoted.state, 'quoted');
 console.log('Storefront sales/payment/activation HTTP journey passed.');
 async function provision(name, email) {
   const createKey = crypto.randomUUID();
@@ -632,6 +636,28 @@ const personalUrl2 = (
     key: crypto.randomUUID(),
   })
 ).json.data.url;
+// Shared invitation joins the existing personal reply and report flow.
+const openPath = `/api/weddings/${x.weddingId}/open-invite/`;
+const openSettings = await alice.request(openPath, { method: 'PUT', key: crypto.randomUUID(), body: { expectedRevision: 0, enabled: true, eventIds: ['reception'], maxPeople: 3, greetingBn: 'প্রিয় অতিথি', greetingEn: 'Dear guest', askPhone: true, rotate: false } });
+assert.equal(openSettings.status, 200, openSettings.raw);
+const sharedUrl = new URL(openSettings.json.data.url);
+const sharedGuest = client();
+assert.equal((await sharedGuest.request(sharedUrl.pathname)).status, 200);
+const bot = await sharedGuest.request(sharedUrl.pathname + 'api/', { method: 'POST', body: { name: 'Synthetic shared guest', phone: '', website: 'bot.example.test' } });
+assert.equal(bot.status, 422, bot.raw);
+const joined = await sharedGuest.request(sharedUrl.pathname + 'api/', { method: 'POST', body: { name: 'Synthetic shared guest', phone: '০১৭০০০০০০০১', website: '' } });
+assert.equal(joined.status, 303, joined.raw);
+const joinedApi = joined.headers.get('location') + 'api/';
+const openPayload = (await sharedGuest.request(joinedApi)).json.data;
+assert.equal(openPayload.scopes[0].maxPeople, 3);
+assert.ok(!JSON.stringify(openPayload).includes('contact_phone'));
+const openReply = await sharedGuest.request(joinedApi, { method: 'POST', key: crypto.randomUUID(), body: { kind: 'response', expectedHouseholdRevision: openPayload.householdRevision, expectedResponseRevision: openPayload.responseRevision, expectedPolicyRevision: openPayload.policyRevision, answers: [{ eventId: 'reception', attendance: 'accepted', adults: 2, children: 0, note: 'Synthetic shared link reply' }] } });
+assert.equal(openReply.status, 200, openReply.raw);
+const sharedReport = await alice.request(`/api/weddings/${x.weddingId}/households/?event=reception&source=open`);
+assert.equal(sharedReport.json.data.rows.find(h => h.id === openPayload.guest.id).responses.reception.adults, 2);
+const reused = await sharedGuest.request(sharedUrl.pathname + 'api/', { method: 'POST', body: { name: '', phone: '', website: '' } });
+assert.equal(reused.headers.get('location'), joined.headers.get('location'));
+console.log('Shared-link join, honeypot, RSVP, device reuse and host report HTTP checks passed.');
 const visibilityPath = `/api/weddings/${x.weddingId}/visibility/`;
 const visibilityDetail = (await alice.request(`/api/weddings/${x.weddingId}/`)).json.data;
 const pauseBody = { live: false, expectedPublicationRevision: visibilityDetail.wedding.publication_revision };
@@ -786,7 +812,8 @@ assert.equal(
 );
 const finalReport = (await alice.request(`/api/weddings/${x.weddingId}/households/?event=reception`)).json
   .data;
-assert.equal(finalReport.summary.accepted, 1, 'Revocation must retain saved attendance.');
+assert.equal(finalReport.summary.accepted, 2, 'Revocation must retain both personal and shared-link attendance.');
+assert.equal(finalReport.rows.find(row => row.id === hid).responses.reception.adults, 2, 'Personal attendance remains after rotation and revocation.');
 assert.equal(
   (await alice.request(`${mediaRoot}/${firstPhoto}/`, { method: 'DELETE' })).status,
   409,

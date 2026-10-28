@@ -32,7 +32,8 @@ function useAdminCounts(enabled: boolean, locale: 'bn' | 'en') {
     const load = async () => {
       if (disposed || document.visibilityState === 'hidden') return;
       try {
-        const next = await api<AdminCounts>('/api/admin/counts/');
+        const summary = await api<{ newRequests: number; pendingPayments: number }>('/api/admin/summary/');
+        const next = { requests: summary.newRequests, payments: summary.pendingPayments };
         if (!disposed) setCounts(next);
       } catch {
         /* Keep the last count; the page itself reports real errors. */

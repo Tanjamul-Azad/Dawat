@@ -48,7 +48,7 @@ const empty: SalesPage = { requests: [], payments: [], progress: [], nextCursor:
 // Bangla য়/ড়/ঢ় exist in two encodings; compare them as one.
 const same = (expected: string) => (content: string) =>
   content.normalize('NFC') === expected.normalize('NFC');
-// The admin frame also polls /api/admin/counts/, so answer by method instead of by call order.
+// The admin frame also polls /api/admin/summary/, so answer by method instead of by call order.
 function answers({ post, get }: { post: unknown; get: unknown }) {
   return vi.fn(
     async (url: string, init?: RequestInit) =>
@@ -57,8 +57,8 @@ function answers({ post, get }: { post: unknown; get: unknown }) {
           data:
             init?.method === 'POST'
               ? post
-              : String(url).includes('/counts/')
-                ? { requests: 0, payments: 1 }
+              : String(url).includes('/summary/')
+                ? { newRequests: 0, pendingPayments: 1 }
                 : get,
         }),
       ),
@@ -201,7 +201,7 @@ it('prefills the couple names from the public site and opens the form even with 
     />,
   );
   expect((screen.getByLabelText(same('আয়োজন ও প্রয়োজনের কথা')) as HTMLTextAreaElement).value).toBe(
-    'বর-কনের নাম: রাইহান ও নাবিলা\n',
+    'বর ও কনে: রাইহান ও নাবিলা',
   );
 });
 
@@ -226,5 +226,5 @@ it('refreshes nothing on its own for the buyer when there is no admin frame', as
   vi.stubGlobal('fetch', fetcher);
   wrap(<SalesDesk initial={empty} email="buyer@example.test" />);
   await act(async () => {});
-  expect(fetcher.mock.calls.some(([url]) => String(url).includes('/api/admin/counts/'))).toBe(false);
+  expect(fetcher.mock.calls.some(([url]) => String(url).includes('/api/admin/summary/'))).toBe(false);
 });

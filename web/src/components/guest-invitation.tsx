@@ -33,6 +33,7 @@ type Props = {
     guestId?: string;
   };
   responseTransport?: ResponseTransport;
+  hostWhatsapp?: string;
   onLocaleChange?: (locale: Locale) => void;
 };
 
@@ -43,6 +44,7 @@ export function GuestInvitation({
   storageError = '',
   authority,
   responseTransport,
+  hostWhatsapp,
   onLocaleChange,
 }: Props) {
   // Public sample replies never mutate an order, customer draft or the host workspace.
@@ -505,6 +507,7 @@ export function GuestInvitation({
               )}
             </>
           )}
+          {hostWhatsapp && <p style={{ textAlign: 'center', padding: 24 }}><a href={`https://wa.me/${hostWhatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">{locale === 'bn' ? 'প্রশ্ন থাকলে WhatsApp করুন' : 'Questions? WhatsApp us'}</a></p>}
           <footer className={s.closing}>
             <WovenPattern className={s.closingPattern} />
             <span className={s.kicker}>{t.closing}</span>

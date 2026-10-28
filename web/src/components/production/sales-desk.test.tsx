@@ -333,3 +333,22 @@ it('makes the seller choose a payment decision and links to that exact order', (
     '/admin/orders/?order=20000000-0000-4000-8000-000000000009',
   );
 });
+
+it('prefills names only when no request draft exists and preserves an existing draft', async () => {
+  const empty = { requests: [], payments: [], progress: [], nextCursor: null };
+  const view = render(<SalesDesk initial={empty} email="new@example.test" names="মেহরিন ও আরিব" />);
+  expect((screen.getByLabelText('আয়োজন ও প্রয়োজনের কথা') as HTMLTextAreaElement).value).toBe(
+    'বর ও কনে: মেহরিন ও আরিব',
+  );
+  view.unmount();
+  localStorage.setItem(
+    'dawat:request-draft:new@example.test',
+    JSON.stringify({ name: 'Test', date: '', brief: 'Existing draft stays here.', template: 'jamdani' }),
+  );
+  render(<SalesDesk initial={empty} email="new@example.test" names="Other names" />);
+  await waitFor(() =>
+    expect((screen.getByLabelText('আয়োজন ও প্রয়োজনের কথা') as HTMLTextAreaElement).value).toBe(
+      'Existing draft stays here.',
+    ),
+  );
+});

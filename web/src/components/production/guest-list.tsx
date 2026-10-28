@@ -3,10 +3,14 @@ import { Fragment, useState } from 'react';
 import { Check, ChevronDown, Copy, Eye, PencilLine, RotateCcw, ShieldOff } from 'lucide-react';
 import type { HouseholdRow } from '@/features/production/guests';
 import { useProductLocale } from './product-locale';
+import { DeliveryStatus, SendMenu } from './guest-send';
 import s from './workspace.module.css';
 
 type Action = (row: HouseholdRow) => void;
 export function GuestList({
+  wid,
+  onSaved,
+  onHide,
   rows,
   eventId,
   busy,
@@ -19,6 +23,9 @@ export function GuestList({
   onRotate,
   onRevoke,
 }: {
+  wid?: string;
+  onSaved?: () => void;
+  onHide?: Action;
   rows: HouseholdRow[];
   eventId: string;
   busy: boolean;
@@ -82,6 +89,13 @@ export function GuestList({
                       <ChevronDown size={16} aria-hidden="true" />
                       <span className={s.guestName}>
                         {row.name}
+                        {row.source === 'open' && <small>{t('সবার লিংক থেকে', 'From shared link')}</small>}
+                        {row.duplicateOf && (
+                          <small>
+                            {t('সম্ভবত একই:', 'Possibly the same:')}{' '}
+                            {rows.find((h) => h.id === row.duplicateOf)?.name ?? row.name}
+                          </small>
+                        )}
                         {(names.get(row.name.trim().toLocaleLowerCase()) ?? 0) > 1 && (
                           <small>
                             {row.privateNote ||
@@ -106,6 +120,7 @@ export function GuestList({
                   </td>
                   <td data-label={tr('Link')}>
                     <span className={s.linkStatus}>{tr(row.linkState)}</span>
+                    <DeliveryStatus row={row} eventId={eventId} />
                   </td>
                   <td>
                     <button
@@ -131,6 +146,9 @@ export function GuestList({
                             : t('কপি', 'Copy')}
                       </span>
                     </button>
+                    {wid && row.linkState !== 'revoked' && (
+                      <SendMenu wid={wid} row={row} onSaved={onSaved ?? (() => {})} />
+                    )}
                   </td>
                 </tr>
                 {open && (
@@ -198,6 +216,11 @@ export function GuestList({
                           )}
                         </dl>
                         <div className={s.actions}>
+                          {onHide && (
+                            <button className={s.secondary} disabled={busy} onClick={() => onHide(row)}>
+                              {row.hidden ? t('আবার দেখান', 'Show again') : t('লুকিয়ে রাখুন', 'Hide')}
+                            </button>
+                          )}
                           <button className={s.secondary} disabled={busy} onClick={() => onPreview(row)}>
                             <Eye size={14} />
                             {tr('Preview')}

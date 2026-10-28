@@ -10,6 +10,7 @@ import { latinDigits } from '@/features/production/copy';
 import { WorkspaceFrame } from './frame';
 import { Modal } from '../ui';
 import { NotifyCustomer } from './notify-customer';
+import { parsePhone } from '@/features/production/phone';
 import s from './workspace.module.css';
 type Page = {
   orders: SellerOrder[];
@@ -176,7 +177,7 @@ export function SellerOrders({
           url: `${window.location.origin}/weddings/${weddingId}/`,
           email: selected.customer_email,
           name: selected.customer_name,
-          phone: selected.customerPhone ?? null,
+          phone: parsePhone(selected.customer_phone ?? selected.payment_sender),
         });
       attempt.current = null;
       setAction(null);
@@ -432,7 +433,7 @@ export function SellerOrders({
                       url: `${window.location.origin}/weddings/${selected.weddingId}/`,
                       email: selected.customer_email,
                       name: selected.customer_name,
-                      phone: selected.customerPhone ?? null,
+                      phone: parsePhone(selected.customer_phone ?? selected.payment_sender),
                     });
                     void navigator.clipboard
                       .writeText(`${window.location.origin}/weddings/${selected.weddingId}/`)
@@ -449,7 +450,7 @@ export function SellerOrders({
               <NotifyCustomer
                 name={selected.customer_name}
                 email={selected.customer_email}
-                phone={selected.customerPhone ?? null}
+                phone={parsePhone(selected.customer_phone ?? selected.payment_sender)}
                 url={`${typeof window === 'undefined' ? '' : window.location.origin}/weddings/${selected.weddingId}/`}
               />
             )}

@@ -136,6 +136,10 @@ describe('Media tenancy, trusted processing and publication references', () => {
     await db.exec(
       readFileSync('supabase/migrations/20261021054738_preserve_household_event_scope.sql', 'utf8'),
     );
+    await db.exec(readFileSync('supabase/migrations/20261020094118_host_response_tools.sql', 'utf8'));
+    await db.exec(readFileSync('supabase/migrations/20261028100000_whatsapp_delivery.sql', 'utf8'));
+    await db.exec(readFileSync('supabase/migrations/20261028110000_open_invitation.sql', 'utf8'));
+    await db.exec(readFileSync('supabase/migrations/20261028130000_guest_contact_retention.sql', 'utf8').split('-- Schedule')[0] + 'commit;');
     await db.query('insert into public.staff_roles(user_id) values($1)', [staff]);
   }, 30000);
   beforeEach(async () => {
@@ -144,6 +148,17 @@ describe('Media tenancy, trusted processing and publication references', () => {
     await db.exec('update private.media_processing set lease_until=null');
   });
   afterAll(async () => db?.close());
+  it('removes expired guest phones from household rows and retry receipts while retaining current contacts', async () => {
+    const f = await fixture(); await rpc('save_draft', [f.wid, 0, content]); await rpc('publish_invitation', [f.wid, 1, crypto.randomUUID()]);
+    const hid = crypto.randomUUID(); const key = crypto.randomUUID();
+    await rpc('save_household', [f.wid, hid, 0, key, { name: 'Synthetic guest', nameBn: '', greeting: '', greetingEn: '', message: '', messageEn: '', privateNote: '', contactPhone: '+8801700000001', events: [{ eventId: 'reception', maxPeople: 1 }] }]);
+    await db.exec('reset role'); await db.query('select private.purge_expired_guest_contacts()');
+    expect((await db.query<any>('select contact_phone from public.households where id=$1', [hid])).rows[0].contact_phone).toBe('+8801700000001');
+    await db.query("update public.entitlements set starts_at=now()-interval '130 days', expires_at=now()-interval '31 days' where wedding_id=$1", [f.wid]);
+    await db.query('select private.purge_expired_guest_contacts()');
+    expect((await db.query<any>('select contact_phone from public.households where id=$1', [hid])).rows[0].contact_phone).toBeNull();
+    expect(JSON.stringify((await db.query('select body from private.commands where key=$1', [key])).rows)).not.toContain('1700000001');
+  });
   it('reserves a slot once for a retry key', async () => {
     const f = await fixture();
     const key = crypto.randomUUID();

@@ -10,6 +10,7 @@ import { emptyDraft, type WeddingDetail } from '@/features/production/contracts'
 import type { HouseholdRow } from '@/features/production/guests';
 import { templateWording } from '@/features/production/template-wording';
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }) }));
+vi.mock('./open-invite', () => ({ OpenInviteCard: () => null, HostWhatsappSettings: () => null }));
 const wid = '20000000-0000-4000-8000-000000000001';
 const initial: WeddingDetail = {
   wedding: {

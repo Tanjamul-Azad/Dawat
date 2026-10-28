@@ -156,6 +156,8 @@ export type WeddingDetail = {
 };
 export type SellerOrder = {
   id: string;
+  customer_phone?: string | null;
+  payment_sender?: string | null;
   customer_email: string;
   customer_name: string;
   package_name: string;
@@ -169,6 +171,4 @@ export type SellerOrder = {
   created_at: string;
   weddingId: string | null;
   access: string;
-  /** E.164 number from the customer's request, when they gave one. Staff only. */
-  customerPhone?: string | null;
 };

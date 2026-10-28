@@ -7,7 +7,7 @@ import type { SalesPage, SalesRequest, SalesCommand, PaymentCommand } from '@/fe
 import { useProductLocale } from './product-locale';
 import { WorkspaceFrame } from './frame';
 import { NotifyCustomer } from './notify-customer';
-import { displayPhone, whatsappChatUrl } from '@/features/production/phone';
+import { displayPhone, parsePhone, whatsappChatUrl } from '@/features/production/phone';
 import s from './workspace.module.css';
 import c from './sales-desk.module.css';
 import { ManualPayment } from '../manual-payment';
@@ -34,10 +34,7 @@ export function SalesDesk({
   const [page, setPage] = useState(initial);
   const [selected, setSelected] = useState<string | null>(initial.requests[0]?.id ?? null);
   // An existing open request is shown first, so a reload never looks like a lost submission.
-  const namesNote = names
-    ? `${locale === 'bn' ? 'বর-কনের নাম' : 'Couple names'}: ${names}
-`
-    : '';
+  const namesNote = names ? `${locale === 'bn' ? 'বর ও কনে' : 'Couple'}: ${names}` : '';
   const [creating, setCreating] = useState(
     !seller && (!!names || !initial.requests.some((r) => r.state !== 'cancelled')),
   );
@@ -928,7 +925,7 @@ export function SalesDesk({
                   <NotifyCustomer
                     name={current.customer_name}
                     email={current.customer_email}
-                    phone={current.customer_phone}
+                    phone={current.customer_phone ?? parsePhone(payments[0]?.sender)}
                     url={`${origin}/weddings/${progress.weddingId}/`}
                   />
                 )}

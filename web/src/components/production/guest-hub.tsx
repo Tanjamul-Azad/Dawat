@@ -16,6 +16,9 @@ import { api } from '@/features/production/client';
 import { downloadCsv } from '@/features/production/download';
 import { errorText, latinDigits } from '@/features/production/copy';
 import { formatDhaka } from '@/features/production/dates';
+import { normalizePhone } from '@/features/production/phone';
+import { SendQueue } from './guest-send';
+import { OpenInviteCard } from './open-invite';
 import { GuestList } from './guest-list';
 import { WorkspaceFrame, WorkspaceLink } from './frame';
 import { Modal, copyText } from '../ui';
@@ -57,6 +60,7 @@ export function GuestHub({
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [busy, setBusy] = useState(false);
+  const [exportContacts, setExportContacts] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [stale, setStale] = useState(false);
   const [pageTrail, setPageTrail] = useState<(string | null)[]>([null]);
@@ -71,6 +75,8 @@ export function GuestHub({
     kind: 'rotate' | 'revoke';
   } | null>(null);
   const [policyOpen, setPolicyOpen] = useState(false);
+  const [sendOpen, setSendOpen] = useState(false);
+  const [source, setSource] = useState('all');
   const [bulkOpen, setBulkOpen] = useState(false);
   const [editorRound, setEditorRound] = useState(0);
   // The page notice can be far off-screen on a phone, so the copied row says so too.
@@ -84,7 +90,7 @@ export function GuestHub({
     key: string;
   } | null>(null);
   const cursor = useRef<string | null>(null);
-  const appliedFilters = useRef({ eventId: initialEvent, search: '', status: 'all' });
+  const appliedFilters = useRef({ eventId: initialEvent, search: '', status: 'all', source: 'all' });
   const wishCursor = useRef<string | null>(null);
   const retryAt = useRef(0);
   const failures = useRef(0);
@@ -108,6 +114,7 @@ export function GuestHub({
       event: filters.eventId,
       search: filters.search,
       status: filters.status,
+      source: filters.source,
     });
     if (after) query.set('after', after);
     try {
@@ -258,6 +265,22 @@ export function GuestHub({
       setBusy(false);
     }
   }
+  async function hide(row: HouseholdRow) {
+    setBusy(true);
+    setError('');
+    try {
+      await api(`${root}/households/${row.id}/hide/`, {
+        method: 'POST',
+        key: crypto.randomUUID(),
+        body: { hidden: !row.hidden },
+      });
+      await refresh();
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
   const rows = data.rows;
   const reportEventId = appliedFilters.current.eventId;
   return (
@@ -287,6 +310,9 @@ export function GuestHub({
             <ListPlus size={16} />
             {locale === 'bn' ? 'একসঙ্গে অনেক পরিবার' : 'Add many at once'}
           </button>
+          <button className={s.secondary} disabled={busy || !events.length} onClick={() => setSendOpen(true)}>
+            {locale === 'bn' ? 'আমন্ত্রণ পাঠান' : 'Send invitations'}
+          </button>
           <button className={s.button} disabled={busy || !events.length} onClick={() => setEditing(null)}>
             <Plus size={16} />
             {tr('Add household')}
@@ -304,6 +330,24 @@ export function GuestHub({
           {notice}
         </p>
       )}
+      {events.length > 0 && <OpenInviteCard wid={wid} events={events} />}
+      {sendOpen && (
+        <SendQueue
+          wid={wid}
+          eventId={eventId}
+          onClose={() => setSendOpen(false)}
+          onSaved={() => void refresh()}
+        />
+      )}
+      <p className={s.muted}>
+        {locale === 'bn'
+          ? `পাঠানো ${count(data.summary.sent ?? 0)} · খুলেছেন ${count(data.summary.opened ?? 0)} · উত্তর ${count(data.summary.replied ?? 0)}`
+          : `Sent ${count(data.summary.sent ?? 0)} · Opened ${count(data.summary.opened ?? 0)} · Replied ${count(data.summary.replied ?? 0)}`}
+        <br />
+        {locale === 'bn'
+          ? `নাম ধরে: ${count(data.summary.hostCount ?? data.summary.invited)} · সবার লিংক থেকে: ${count(data.summary.openCount ?? 0)}`
+          : `Named: ${count(data.summary.hostCount ?? data.summary.invited)} · From shared link: ${count(data.summary.openCount ?? 0)}`}
+      </p>
       <nav className={s.steps} aria-label={tr('Guest management')}>
         <button aria-current={panel === 'guests' ? 'step' : undefined} onClick={() => setPanel('guests')}>
           {tr('Invitations & replies')}
@@ -394,13 +438,13 @@ export function GuestHub({
               <h2>{locale === 'bn' ? 'অতিথি তালিকা' : 'Guest list'}</h2>
               <button
                 className={s.secondary}
-                disabled={exporting || busy}
+                disabled={exporting || busy || appliedFilters.current.status === 'hidden'}
                 onClick={async () => {
                   setExporting(true);
                   setError('');
                   try {
                     await downloadCsv(
-                      `${root}/export/?${new URLSearchParams({ event: appliedFilters.current.eventId, search: appliedFilters.current.search, status: appliedFilters.current.status })}`,
+                      `${root}/export/?${new URLSearchParams({ event: appliedFilters.current.eventId, search: appliedFilters.current.search, status: appliedFilters.current.status, ...(appliedFilters.current.source !== 'all' ? { source: appliedFilters.current.source } : {}), ...(exportContacts ? { contacts: '1' } : {}) })}`,
                     );
                   } catch (e) {
                     setError(
@@ -425,6 +469,14 @@ export function GuestHub({
                     : 'Download CSV'}
               </button>
             </div>
+            <label className={s.checkbox}>
+              <input
+                type="checkbox"
+                checked={exportContacts}
+                onChange={(e) => setExportContacts(e.target.checked)}
+              />
+              {locale === 'bn' ? 'CSV-তে WhatsApp নম্বরও রাখুন' : 'Include WhatsApp numbers in CSV'}
+            </label>
             <p className={s.muted}>
               {locale === 'bn'
                 ? 'CSV-তে প্রয়োগ করা খোঁজ ও ফিল্টারের সব আমন্ত্রণ থাকবে; শুধু এই পাতা নয়। ব্যক্তিগত লিংক ও আপনার নোট থাকবে না।'
@@ -434,7 +486,7 @@ export function GuestHub({
               className={`${s.form} ${s.filters}`}
               onSubmit={(e) => {
                 e.preventDefault();
-                void refresh(null, { eventId, search: search.trim(), status });
+                void refresh(null, { eventId, search: search.trim(), status, source });
               }}
             >
               <label>
@@ -447,6 +499,20 @@ export function GuestHub({
                 />
               </label>
               <label>
+                {locale === 'bn' ? 'আমন্ত্রণের উৎস' : 'Invitation source'}
+                <select
+                  value={source}
+                  onChange={(e) => {
+                    setSource(e.target.value);
+                    void refresh(null, { ...appliedFilters.current, source: e.target.value });
+                  }}
+                >
+                  <option value="all">{locale === 'bn' ? 'সব' : 'All'}</option>
+                  <option value="host">{locale === 'bn' ? 'নাম ধরে' : 'Named'}</option>
+                  <option value="open">{locale === 'bn' ? 'সবার লিংক থেকে' : 'From shared link'}</option>
+                </select>
+              </label>
+              <label>
                 {tr('Reply status')}
                 <select
                   value={status}
@@ -455,7 +521,7 @@ export function GuestHub({
                     void refresh(null, { ...appliedFilters.current, status: e.target.value });
                   }}
                 >
-                  {['all', 'accepted', 'declined', 'pending'].map((v) => (
+                  {['all', 'accepted', 'declined', 'pending', 'hidden'].map((v) => (
                     <option key={v} value={v}>
                       {tr(v)}
                     </option>
@@ -473,10 +539,12 @@ export function GuestHub({
                   onClick={() => {
                     setSearch('');
                     setStatus('all');
+                    setSource('all');
                     void refresh(null, {
                       eventId: appliedFilters.current.eventId,
                       search: '',
                       status: 'all',
+                      source: 'all',
                     });
                   }}
                 >
@@ -492,6 +560,9 @@ export function GuestHub({
               </p>
             )}
             <GuestList
+              wid={wid}
+              onSaved={() => void refresh()}
+              onHide={(row) => void hide(row)}
               key={reportEventId + ':' + (cursor.current ?? 'first')}
               rows={rows}
               eventId={reportEventId}
@@ -816,6 +887,7 @@ function HouseholdEditor({
   const [busy, setBusy] = useState(false);
   const [dirty, setDirty] = useState(false);
   const [duplicate, setDuplicate] = useState('');
+  const [phoneError, setPhoneError] = useState('');
   const id = useRef(row?.id ?? crypto.randomUUID());
   const another = useRef(false);
   // A new family starts in the event the host is looking at (or the only event).
@@ -890,6 +962,7 @@ function HouseholdEditor({
     const text = (k: string) => String(f.get(k) ?? '').trim();
     const value: HouseholdInput = {
       name: text('name'),
+      contactPhone: text('contactPhone'),
       nameBn: text('nameBn'),
       greeting: text('greeting'),
       greetingEn: text('greetingEn'),
@@ -960,6 +1033,35 @@ function HouseholdEditor({
               }
             />
           </label>
+          <label>
+            {locale === 'bn' ? 'WhatsApp নম্বর (ঐচ্ছিক)' : 'WhatsApp number (optional)'}
+            <input
+              name="contactPhone"
+              inputMode="tel"
+              maxLength={80}
+              defaultValue={row?.contactPhone ?? ''}
+              aria-invalid={!!phoneError}
+              aria-describedby="phone-hint"
+              onBlur={(e) => {
+                try {
+                  e.target.value = normalizePhone(e.target.value) ?? '';
+                  setPhoneError('');
+                } catch (error) {
+                  setPhoneError((error as Error).message);
+                }
+              }}
+            />
+            <small id="phone-hint">
+              {locale === 'bn'
+                ? 'শুধু আমন্ত্রণ পাঠাতে লাগবে। অতিথির পাতায় দেখাবে না।'
+                : 'Only for sending invitations. Never shown on the guest page.'}
+            </small>
+          </label>
+          {phoneError && (
+            <p role="alert" className={s.error}>
+              {errorText(phoneError, locale)}
+            </p>
+          )}
           {duplicate && (
             <p className={s.notice} role="status">
               {duplicate}
@@ -1129,11 +1231,20 @@ function BulkHouseholds({
     return () => window.removeEventListener('beforeunload', warn);
   }, [text, lines.length]);
   const parsed = lines.map((line) => {
-    const match = /^(.*?)(?:[,،;|\t]\s*([^,،;|\t]+))?$/.exec(line);
-    const name = (match?.[1] ?? line).trim();
-    const people = Number(latinDigits(match?.[2] ?? '1'));
+    const columns = line.split(/[,،;|\t]/).map((value) => value.trim());
+    const name = columns[0];
+    const people = Number(latinDigits(columns[1] || '1'));
+    let phone: string | null = null;
+    let phoneError = '';
+    try {
+      phone = normalizePhone(columns[2]);
+      if (columns.length > 3) throw new Error('Use name, people, phone.');
+    } catch (e) {
+      phoneError = (e as Error).message;
+    }
     const household: HouseholdInput = {
       name,
+      contactPhone: phone,
       nameBn: '',
       greeting: '',
       greetingEn: '',
@@ -1142,7 +1253,14 @@ function BulkHouseholds({
       privateNote: '',
       events: events.filter((ev) => included.has(ev.id)).map((ev) => ({ eventId: ev.id, maxPeople: people })),
     };
-    return { line, name, people, valid: householdInput.safeParse(household), household };
+    return {
+      line,
+      name,
+      people,
+      phoneError,
+      valid: phoneError ? { success: false as const } : householdInput.safeParse(household),
+      household,
+    };
   });
   const ready = parsed.filter((p) => p.valid.success);
   async function create() {
@@ -1195,8 +1313,8 @@ function BulkHouseholds({
     >
       <p>
         {bn
-          ? 'প্রতি লাইনে একটি পরিবার: নাম, তারপর কমা দিয়ে মোট কতজন। সংখ্যা না দিলে ১ জন ধরা হবে। একবারে সর্বোচ্চ ১০০টি।'
-          : 'One family per line: the name, then a comma and the total people. No number means 1. Up to 100 at a time.'}
+          ? 'প্রতি লাইনে লিখুন: নাম, কতজন, নম্বর। নম্বর না দিলেও চলবে। সংখ্যা না দিলে ১ জন। একবারে সর্বোচ্চ ১০০টি।'
+          : 'One family per line: name, people, phone. Phone is optional. No count means 1. Up to 100 at a time.'}
       </p>
       {error && (
         <p role="alert" className={s.error}>
@@ -1261,17 +1379,19 @@ function BulkHouseholds({
               .map((p, i) => (
                 <li key={i}>
                   {p.line} —{' '}
-                  {!included.size
-                    ? bn
-                      ? 'অন্তত একটি অনুষ্ঠান বেছে নিন'
-                      : 'choose at least one event'
-                    : !Number.isInteger(p.people) || p.people < 1 || p.people > 50
+                  {p.phoneError
+                    ? errorText(p.phoneError, locale)
+                    : !included.size
                       ? bn
-                        ? 'সংখ্যা ১ থেকে ৫০ এর মধ্যে দিন'
-                        : 'use 1 to 50 people'
-                      : bn
-                        ? 'নাম ঠিক করুন'
-                        : 'fix the name'}
+                        ? 'অন্তত একটি অনুষ্ঠান বেছে নিন'
+                        : 'choose at least one event'
+                      : !Number.isInteger(p.people) || p.people < 1 || p.people > 50
+                        ? bn
+                          ? 'সংখ্যা ১ থেকে ৫০ এর মধ্যে দিন'
+                          : 'use 1 to 50 people'
+                        : bn
+                          ? 'নাম ঠিক করুন'
+                          : 'fix the name'}
                 </li>
               ))}
           </ul>
