@@ -1,6 +1,6 @@
 # আপনার দাওয়াত কর্মপরিসর
 
-আপনার লিংক: **https://dawat-client-pilot.netlify.app/dashboard/**
+আপনার লিংক: **https://dawatcard.netlify.app/dashboard/**
 
 এই পাইলটে প্রবেশাধিকার `i.m.tanjamul@gmail.com` অ্যাকাউন্টে। অন্য কাউকে শুধু এই লিংক পাঠালে তিনি সম্পাদনা করতে পারবেন না। এই কর্মপরিসরের লিংক অতিথিদের পাঠাবেন না।
 

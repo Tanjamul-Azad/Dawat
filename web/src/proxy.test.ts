@@ -46,7 +46,7 @@ it('blocks the pilot operator API before refreshing an identity', async () => {
 });
 it('refuses production credentials on a deploy preview before any Auth network request', async () => {
   vi.stubEnv('NEXT_PUBLIC_SUPABASE_URL', 'https://zztiestaqjbsbjuzmbqp.supabase.co');
-  vi.stubEnv('APP_ORIGIN', 'https://dawat-client-pilot.netlify.app');
+  vi.stubEnv('APP_ORIGIN', 'https://dawatcard.netlify.app');
   vi.stubEnv('DAWAT_ENVIRONMENT', 'production');
   vi.stubEnv('DAWAT_SURFACE', 'pilot');
   vi.stubEnv('CONTEXT', 'deploy-preview');

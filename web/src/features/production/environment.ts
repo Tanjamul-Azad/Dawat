@@ -1,7 +1,7 @@
 // Public deployment identities, never credentials. One hosted production backend;
 // development and recovery use distinct loopback Supabase instances.
 export const productionBackend = 'https://zztiestaqjbsbjuzmbqp.supabase.co';
-export const productionOrigin = 'https://dawat-client-pilot.netlify.app';
+export const productionOrigin = 'https://dawatcard.netlify.app';
 export function assertEnvironment(input: {
   environment?: string;
   backend?: string;

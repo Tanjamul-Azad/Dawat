@@ -4,7 +4,7 @@
 
 ## Installed operation
 
-- Production is Supabase `zztiestaqjbsbjuzmbqp` (Dawat Production), served only by `https://dawat-client-pilot.netlify.app`.
+- Production is Supabase `zztiestaqjbsbjuzmbqp` (Dawat Production), served only by `https://dawatcard.netlify.app`.
 - Development uses local project `dawat-local`, ports54321–54324. Recovery uses a separate disposable local project `dawat-recovery`, ports55321–55324 and app3104. Its bridge has a loopback binding; on Windows a project-scoped Docker CLI adapter also supplies explicit127.0.0.1port mappings before containers are created, because Docker Desktop ignored the bridge default during verification. The adapter uses the already-installed .NET compiler, inherits streams/arguments without a shell and changes neither global PATH nor Docker settings. Startup and restore inspect actual API/DB/inbox port bindings and refuse wildcards. Local SMTP goes only to the recovery inbox; never point a restored app at production SMTP.
 - Windows task **Dawat Local Encrypted Backup** runs daily19:00, with missed-start recovery, overlap prevention and a15-minute limit. It runs as the existing signed-in Windows user, without storing that user's password. Docker Desktop must be running. This is a local Task Scheduler job, not a cloud job.
 - Backup directory: `C:\Users\User\Documents\DawatBackups`. Each complete directory has encrypted manifest/payloads and a non-sensitive `receipt.json`. `status.json` reports the most recent attempt. A failed attempt never deletes the previous complete backup. No automatic pruning.
