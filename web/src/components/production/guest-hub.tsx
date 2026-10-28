@@ -523,7 +523,7 @@ export function GuestHub({
                 >
                   {['all', 'accepted', 'declined', 'pending', 'hidden'].map((v) => (
                     <option key={v} value={v}>
-                      {tr(v)}
+                      {v === 'hidden' ? (locale === 'bn' ? 'লুকানো' : 'Hidden') : tr(v)}
                     </option>
                   ))}
                 </select>

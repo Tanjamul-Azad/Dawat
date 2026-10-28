@@ -274,6 +274,7 @@ export const banglaCopy: Record<string, string> = {
     'সঙ্গে সঙ্গে অর্ডার নিশ্চিত করে আয়োজনের পাতা চালু করুন',
   'Enter a valid WhatsApp number, or leave it empty.':
     'WhatsApp নম্বরটা ঠিক মনে হচ্ছে না। 01XXXXXXXXX লিখুন, অথবা ঘরটা খালি রাখুন।',
+  hidden: 'লুকানো',
 };
 const neutralEnglish: Record<string, string> = {
   'Seller workspace': 'Dawat team desk',
