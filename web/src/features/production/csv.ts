@@ -9,6 +9,7 @@ export type ExportSnapshot = {
   asOf: string;
   eventId: string;
   rows: {
+    contact_phone?: string | null;
     id: string;
     name: string;
     name_bn: string;
@@ -40,7 +41,9 @@ export function householdCsv(snapshot: ExportSnapshot) {
     ],
   ];
   const status: Record<string, string> = { accepted: 'আসবেন', declined: 'আসবেন না', pending: 'উত্তর বাকি' };
-  for (const row of snapshot.rows)
+  const contacts = snapshot.rows.some(row => Object.hasOwn(row, 'contact_phone'));
+  if (contacts) rows[0].push('WhatsApp');
+  for (const row of snapshot.rows) {
     rows.push([
       row.id,
       row.name,
@@ -55,6 +58,8 @@ export function householdCsv(snapshot: ExportSnapshot) {
       row.source === 'host' ? 'আয়োজকের সংশোধন' : row.source === 'guest' ? 'অতিথি' : '',
       row.updated_at,
       snapshot.asOf,
+      ...(contacts ? [row.contact_phone] : []),
     ]);
+  }
   return '\ufeff' + rows.map((row) => row.map(csvCell).join(',')).join('\r\n') + '\r\n';
 }

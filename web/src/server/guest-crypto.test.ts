@@ -23,6 +23,11 @@ describe('Recoverable, identity-bound guest credentials', () => {
     expect(() => decryptLink(enc.ciphertext, 'v1', 'x', 'b')).toThrow();
     expect(() => decryptLink('A' + enc.ciphertext.slice(1), 'v1', 'x', 'a')).toThrow();
   });
+  it('separates shared invitation and personal link ciphertext purposes', () => {
+    setup(); const token = secret(); const encrypted = encryptLink(token, 'w', 'w', 'open-invite');
+    expect(decryptLink(encrypted.ciphertext, 'v1', 'w', 'w', 'open-invite')).toBe(token);
+    expect(() => decryptLink(encrypted.ciphertext, 'v1', 'w', 'w')).toThrow();
+  });
   it('fails closed for missing or wrong-sized keys', () => {
     vi.stubEnv('GUEST_LINK_KEYS', '{}');
     expect(() => encryptLink(secret(), 'w', 'h')).toThrow();

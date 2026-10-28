@@ -1780,3 +1780,8 @@ label.photoUpload {
     transition: none !important;
   }
 }
+.sendMenu { position: relative; display: inline-block; margin: 4px; }
+.sendMenu summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; padding: 8px; }
+.sendOptions { display: grid; gap: 8px; width: min(280px, 70vw); padding: 12px; background: #fffdf7; border: 1px solid #d8cebc; border-radius: 12px; }
+.sendOptions button, .sendOptions a { min-height: 44px; white-space: normal; }
+.messagePreview { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; padding: 16px; background: #f6f1e7; border-radius: 12px; }

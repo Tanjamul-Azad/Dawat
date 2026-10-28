@@ -117,7 +117,7 @@ export function ClientDashboard({ initial, email }: { initial: WeddingSummary[];
                     <span className={s.badge}>
                       <LockKeyhole size={13} />
                       {w.state === 'expired'
-                        ? t('মেয়াদ শেষ · বিক্রেতার সঙ্গে যোগাযোগ করুন', 'Expired · contact your seller')
+                        ? t('মেয়াদ শেষ · দাওয়াত টিমের সঙ্গে যোগাযোগ করুন', 'Expired · contact your seller')
                         : tr(w.state)}
                     </span>
                   )}
@@ -142,7 +142,7 @@ export function ClientDashboard({ initial, email }: { initial: WeddingSummary[];
           <p>{tr('Your draft stays private until you publish.')}</p>
           <p>
             {t(
-              'নিজের কর্মপরিসরের লিংক ব্যক্তিগত রাখুন। অতিথিদের জন্য আলাদা আমন্ত্রণের লিংক তৈরি করবেন।',
+              'নিজের আয়োজনের পাতার লিংক ব্যক্তিগত রাখুন। অতিথিদের জন্য আলাদা আমন্ত্রণের লিংক তৈরি করবেন।',
               'Keep your workspace link private. Create separate invitation links for guests.',
             )}
           </p>

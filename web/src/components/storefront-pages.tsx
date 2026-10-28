@@ -31,7 +31,7 @@ export function ContactPage() {
         <h2>{t('ইতোমধ্যে অর্ডার করেছেন?', 'Already have an order?')}</h2>
         <p>
           {t(
-            'যাচাই করা ইমেইল দিয়ে অর্ডারের পৃষ্ঠায় প্রবেশ করুন। অনুরোধ, কোটেশন ও পেমেন্টের অবস্থা সেখানেই পাবেন।',
+            'যাচাই করা ইমেইল দিয়ে অর্ডারের পৃষ্ঠায় লগইন করুন। অনুরোধ, দাম ও শর্ত ও পেমেন্টের অবস্থা সেখানেই পাবেন।',
             'Sign in with your verified email to see your request, quote and payment progress.',
           )}
         </p>
@@ -54,48 +54,48 @@ export function PoliciesPage() {
         <h1>{t('সেবার শর্ত ও গোপনীয়তা', 'Service & privacy')}</h1>
         <p>
           {t(
-            'প্রযোজ্য: ২৬ অক্টোবর ২০২৬। অর্ডারের লিখিত সম্মতিতে আপনার নির্দিষ্ট কাজের পরিধি, মূল্য ও মেয়াদ দেওয়া থাকবে।',
-            'Effective 26 October 2026. Your written order agreement specifies your scope, price and hosting term.',
+            'প্রযোজ্য: ২৮ অক্টোবর ২০২৬। অর্ডারের লিখিত সম্মতিতে আপনার নির্দিষ্ট কাজের পরিধি, মূল্য ও মেয়াদ দেওয়া থাকবে।',
+            'Effective 28 October 2026. Your written order agreement specifies your scope, price and hosting term.',
           )}
         </p>
         {[
           [
             t('কী পাবেন', 'What you receive'),
             t(
-              'এটি ডিজিটাল বিয়ের আমন্ত্রণের সেবা। প্যাকেজে নির্বাচিত নকশা, নিজের তথ্য সম্পাদনা, সর্বোচ্চ পাঁচটি ছবি, ব্যক্তিগত অতিথি লিংক ও উত্তর ব্যবস্থাপনা থাকে। ছাপানো কার্ড, স্বয়ংক্রিয় মেসেজ পাঠানো ও custom domain অন্তর্ভুক্ত নয়। কাস্টম নকশার কাজ ও সংশোধনের পরিধি অর্ডারে নির্ধারিত হবে।',
+              'এটি ডিজিটাল বিয়ের আমন্ত্রণের সেবা। নিজের তথ্য বদলাতে, পাঁচটি ছবি দিতে এবং অতিথির উত্তর দেখতে পারবেন। নাম ধরে বা সবার জন্য এক লিংক পাঠাতে পারবেন। ছাপানো কার্ড, নিজে থেকে বার্তা পাঠানো ও নিজের ডোমেইন প্যাকেজে নেই। কাস্টম নকশার কাজ ও পরিবর্তনের সীমা অর্ডারে ঠিক হবে।',
               'This is a digital wedding invitation service with your selected design, editable details, up to five photos, personal guest links and reply management. Printed cards, automated messaging and custom domains are not included. Custom design scope and revisions are agreed in your order.',
             ),
           ],
           [
-            t('মূল্য, পেমেন্ট ও activation', 'Pricing, payment & activation'),
+            t('দাম, পেমেন্ট ও আয়োজন চালু করা', 'Pricing, payment & activation'),
             t(
-              'Normal ৳৫০০, Premium ৳৭৫০, Customized ৳১,৫০০। অর্ডারের মূল্য, মেয়াদ ও নির্দেশনা নিশ্চিত হওয়ার আগে টাকা পাঠাবেন না। Transaction ID জমা দেওয়া পেমেন্ট যাচাইয়ের সমান নয়। বিক্রেতা আসল লেনদেন মিলিয়ে দেখার পরে order confirmation এবং portal activation করবেন।',
-              'Normal ৳500, Premium ৳750, Customized ৳1,500. Confirm the order amount, term and payment instructions before transferring. A submitted transaction ID does not verify payment. The seller checks the actual transfer before order confirmation and portal activation.',
+              'ক্লাসিক ৳৫০০, প্রিমিয়াম ৳৭৫০, নিজের মতো ৳১,৫০০। দাম, মেয়াদ ও নির্দেশনা দেখে সম্মতি দেওয়ার পরে টাকা পাঠান। লেনদেন নম্বর জমা দিলেই পেমেন্ট যাচাই হয় না। দাওয়াত টিম আসল লেনদেন মিলিয়ে অর্ডার নিশ্চিত করবে এবং আয়োজনের পাতা চালু করবে।',
+              'Classic ৳500, Premium ৳750, Custom ৳1,500. Confirm the order amount, term and payment instructions before transferring. A submitted transaction ID does not verify payment. The seller checks the actual transfer before order confirmation and portal activation.',
             ),
           ],
           [
             t('মেয়াদ, পরিবর্তন ও বাতিল', 'Term, changes & cancellation'),
             t(
-              'মেয়াদ প্রথম প্রকাশ থেকে শুরু হয়; republish করলে বাড়ে না। অগ্রহণ করা অনুরোধ নিজে বাতিল করতে পারবেন। গ্রহণ করা বা paid অর্ডারের পরিবর্তন, বাতিল ও refund বিষয়ে অর্ডার reference-সহ আমাদের সঙ্গে যোগাযোগ করুন। প্রযোজ্য শর্ত payment-এর আগে লিখিত quote-এ সম্মত হবে; স্বয়ংক্রিয় refund নেই।',
+              'মেয়াদ প্রথমবার প্রকাশ থেকে শুরু হয়। আবার প্রকাশ করলে মেয়াদ বাড়ে না। সাধারণ প্যাকেজের মেয়াদ ৯০ দিন। সম্মতি না দেওয়া অনুরোধ নিজে বাতিল করতে পারবেন। সম্মতি দেওয়া বা টাকা দেওয়া অর্ডার বদলাতে, বাতিল করতে বা টাকা ফেরত চাইতে অর্ডার নম্বরসহ যোগাযোগ করুন। পেমেন্টের আগে লিখিত দাম ও শর্তে সম্মতি দিতে হবে। টাকা নিজে থেকে ফেরত আসে না।',
               'The term begins on first publication and does not restart on republishing. You can cancel an unaccepted request. For changes, cancellation or refund of accepted or paid orders, contact us with your reference. Applicable terms must be agreed in the written quote before payment; refunds are not automatic.',
             ),
           ],
           [
             t('আপনার তথ্য', 'Your information'),
             t(
-              'সেবা দিতে আপনার ইমেইল, অর্ডারের তথ্য, আমন্ত্রণের লেখা ও ছবি, অতিথির নাম এবং তাঁদের উত্তর সংরক্ষিত হয়। অতিথির উত্তর, ব্যক্তিগত নোট ও শুভেচ্ছা public collection-এ দেখানো হয় না। লগইন ও ভাষা পছন্দের জন্য প্রয়োজনীয় cookies ব্যবহার হয়। এই site-এ বিজ্ঞাপন tracking যোগ করা হয়নি।',
-              'We store your email, order details, invitation content and photos, guest names and replies to provide the service. Guest replies, private notes and wishes do not appear in the public collection. Essential cookies support login and language preference. No advertising tracking has been added.',
+              'সেবা দিতে ইমেইল, অর্ডারের তথ্য, আমন্ত্রণের লেখা ও ছবি, অতিথির নাম, ঐচ্ছিক ফোন নম্বর এবং উত্তর রাখা হয়। অতিথির উত্তর, নিজের নোট ও শুভেচ্ছা সবার সামনে দেখানো হয় না। লগইন ও ভাষা মনে রাখতে প্রয়োজনীয় কুকি ব্যবহার হয়। বিজ্ঞাপনের জন্য কাউকে অনুসরণ করা হয় না। আমন্ত্রণের মেয়াদ শেষের ৩০ দিন পরে অতিথির ফোন নম্বর মুছে দেওয়া হয়।',
+              'We store your email, order details, invitation content and photos, guest names and replies to provide the service. Guest replies, private notes and wishes do not appear in the public collection. Essential cookies support login and language preference. No advertising tracking has been added. Guest phone numbers are deleted 30 days after the invitation expires.',
             ),
           ],
           [
             t('লিংক শেয়ার ও তথ্য অপসারণ', 'Sharing & data removal'),
             t(
-              'ব্যক্তিগত invitation link যার কাছে থাকবে তিনি সেই আমন্ত্রণের উত্তর দিতে পারবেন, তাই সতর্কভাবে শেয়ার করুন। পোর্টাল থেকে লিংক বাতিল করা যায়। তথ্য দেখা, সংশোধন বা অপসারণের অনুরোধে verified ইমেইল থেকে যোগাযোগ করুন। প্রয়োজনীয় order/audit records-এর retention ও অপসারণের সময়সীমা support-এর সঙ্গে নিশ্চিত করুন।',
+              'ব্যক্তিগত লিংক যাঁর কাছে থাকবে, তিনি সেই পরিবারের হয়ে উত্তর দিতে পারবেন। তাই বুঝে শেয়ার করুন। আমার আয়োজন থেকে লিংক বন্ধ করা যায়। তথ্য দেখতে, বদলাতে বা মুছতে নিজের যাচাই করা ইমেইল থেকে যোগাযোগ করুন। অর্ডার ও কাজের ইতিহাস কতদিন রাখা হবে, তা দাওয়াত টিমের সঙ্গে জেনে নিন।',
               'Anyone holding a personal invitation link can reply for that invitation, so share it carefully. Links can be revoked from your portal. Contact us from your verified email to request access, correction or removal of data. Confirm retention of necessary order/audit records and removal timing with support.',
             ),
           ],
         ].map(([heading, body]) => (
-          <div key={heading}>
+          <div key={heading} id={heading === t('আপনার তথ্য', 'Your information') ? 'privacy' : heading === t('মেয়াদ, পরিবর্তন ও বাতিল', 'Term, changes & cancellation') ? 'refund' : undefined}>
             <h2>{heading}</h2>
             <p>{body}</p>
           </div>
@@ -138,7 +138,7 @@ export function OrderIntro({ templateId }: { templateId?: string }) {
             </a>
             <p>
               {t(
-                'অ্যাকাউন্ট খুললেই পেমেন্ট নেওয়া হয় না। আপনার ইমেইলেই আপনার অর্ডার ও পোর্টাল থাকবে।',
+                'অ্যাকাউন্ট খুললেই পেমেন্ট নেওয়া হয় না। আপনার ইমেইলেই আপনার অর্ডার ও আয়োজনের পাতা থাকবে।',
                 'Creating an account does not take payment. Your own email keeps your order and portal together.',
               )}
             </p>

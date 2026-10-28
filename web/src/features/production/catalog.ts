@@ -72,6 +72,11 @@ export function findTemplate(value: unknown) {
   return templates.find((t) => t.id === value) ?? templates[0];
 }
 export const prices = { normal: 500, premium: 750, custom: 1500 } as const;
+export const packageNames = {
+  normal: { bn: 'ক্লাসিক', en: 'Classic' },
+  premium: { bn: 'প্রিমিয়াম', en: 'Premium' },
+  custom: { bn: 'নিজের মতো', en: 'Custom' },
+} as const;
 export const whatsappNumber = '8801606092143';
 export function whatsappLink(message = 'দাওয়াত সম্পর্কে জানতে চাই।') {
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;

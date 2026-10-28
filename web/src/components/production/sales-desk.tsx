@@ -6,6 +6,7 @@ import {
   findTemplate,
   templates,
   prices,
+  packageNames,
   whatsappLink,
   type TemplateId,
 } from '@/features/production/catalog';
@@ -14,6 +15,7 @@ import { useProductLocale } from './product-locale';
 import { WorkspaceFrame } from './frame';
 import s from './workspace.module.css';
 import c from './sales-desk.module.css';
+import { CustomerHandoff } from './customer-handoff';
 import { ManualPayment } from '../manual-payment';
 import { manualPayment, orderPaymentReference } from '@/features/production/payment';
 import { taka, takaFromPaisa } from '@/features/production/money';
@@ -23,11 +25,13 @@ export function SalesDesk({
   email,
   seller = false,
   templateId,
+  names,
 }: {
   initial: SalesPage;
   email: string;
   seller?: boolean;
   templateId?: string;
+  names?: string;
 }) {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
@@ -40,6 +44,7 @@ export function SalesDesk({
   const [restoredDraft, setRestoredDraft] = useState(false);
   const [draft, setDraft] = useState<{
     name: string;
+    phone?: string;
     date: string;
     brief: string;
     template: TemplateId | 'custom';
@@ -48,6 +53,7 @@ export function SalesDesk({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  const [decisions, setDecisions] = useState<Record<string, string>>({});
   const [filter, setFilter] = useState('all');
   const initialTemplate = templateId === 'custom' ? 'custom' : findTemplate(templateId).id;
   const [chosen, setChosen] = useState<TemplateId | 'custom'>(initialTemplate);
@@ -97,7 +103,7 @@ export function SalesDesk({
           saved.template === 'custom' || templates.some((d) => d.id === saved.template)
             ? saved.template
             : initialTemplate;
-        setDraft({ name: saved.name, date: saved.date, brief: saved.brief, template });
+        setDraft({ name: saved.name, phone: typeof saved.phone === 'string' ? saved.phone : '', date: saved.date, brief: saved.brief, template });
         setChosen(template);
         setDirty(true);
         setRestoredDraft(true);
@@ -118,12 +124,13 @@ export function SalesDesk({
     const f = new FormData(form);
     const value = {
       name: String(f.get('name') ?? ''),
+      phone: String(f.get('phone') ?? ''),
       date: String(f.get('date') ?? ''),
       brief: String(f.get('brief') ?? ''),
       template,
     };
     setDraft(value);
-    setDirty(!!(value.name.trim() || value.date || value.brief.trim() || template !== initialTemplate));
+    setDirty(!!(value.phone.trim() || value.name.trim() || value.date || value.brief.trim() || template !== initialTemplate));
     try {
       localStorage.setItem(draftKey, JSON.stringify(value));
     } catch {
@@ -213,8 +220,8 @@ export function SalesDesk({
   const amount = (n: number) => takaFromPaisa(n, locale);
   const state = (value: string) =>
     ({
-      requested: t('কোটেশনের অপেক্ষায়', 'Awaiting quote'),
-      quoted: t('কোটেশন এসেছে', 'Quote ready'),
+      requested: t('দাম ও শর্তের অপেক্ষায়', 'Awaiting quote'),
+      quoted: t('দাম ও শর্ত এসেছে', 'Quote ready'),
       accepted: t('সম্মতি দেওয়া হয়েছে', 'Accepted'),
       ordered: t('অর্ডার তৈরি', 'Order placed'),
       cancelled: t('বাতিল', 'Cancelled'),
@@ -333,7 +340,7 @@ export function SalesDesk({
           <p>
             {t(
               seller
-                ? 'কোটেশন দিন, লেনদেন মিলিয়ে দেখুন, তারপর গ্রাহকের পোর্টাল চালু করুন।'
+                ? 'দাম ও শর্ত দিন, লেনদেন মিলিয়ে দেখুন, তারপর গ্রাহকের পোর্টাল চালু করুন।'
                 : 'নকশা, সম্মত মূল্য, পেমেন্ট ও পোর্টাল—প্রতিটি ধাপের খবর এখানে।',
               seller
                 ? 'Quote, check the actual transfer, then activate the customer portal.'
@@ -385,7 +392,7 @@ export function SalesDesk({
             <h2>{t('আয়োজনের কথা জানান', 'Tell us about your celebration')}</h2>
             <p className={s.muted}>
               {t(
-                'আপনার verified ইমেইল এই অর্ডারের মালিক থাকবে। এই ধাপে পেমেন্ট নেওয়া হচ্ছে না।',
+                'আপনার যাচাই করা ইমেইলেই অর্ডার থাকবে। এই ধাপে টাকা দিতে হবে না।',
                 'Your verified email owns this order. No payment is taken at this step.',
               )}
             </p>
@@ -398,6 +405,7 @@ export function SalesDesk({
                 {
                   kind: 'request',
                   name: v('name'),
+                  phone: v('phone'),
                   templateId: chosen,
                   eventDate: v('date'),
                   brief: v('brief'),
@@ -419,6 +427,7 @@ export function SalesDesk({
                   onChange={(e) => saveDraft(e.currentTarget.form!)}
                 />
               </label>
+              <label>{t('WhatsApp নম্বর (ঐচ্ছিক, পোর্টাল চালু হলে জানাতে)', 'WhatsApp number (optional, to notify you when access is ready)')}<input name="phone" inputMode="tel" maxLength={80} value={draft?.phone ?? ''} onChange={e => saveDraft(e.currentTarget.form!)} /></label>
               <label>
                 {t('পছন্দের নকশা', 'Selected design')}
                 <select
@@ -434,7 +443,7 @@ export function SalesDesk({
                       {locale === 'bn' ? d.name : d.en} · {taka(prices[d.tier], locale)}
                     </option>
                   ))}
-                  <option value="custom">Customized · {taka(1500, locale)}</option>
+                  <option value="custom">{packageNames.custom[locale]} · {taka(1500, locale)}</option>
                 </select>
               </label>
               <label>
@@ -454,7 +463,7 @@ export function SalesDesk({
                   minLength={10}
                   maxLength={2000}
                   required
-                  value={draft?.brief ?? ''}
+                  value={draft?.brief ?? (names ? `বর ও কনে: ${names.slice(0, 240)}` : '')}
                   onChange={(e) => saveDraft(e.currentTarget.form!)}
                   placeholder={t(
                     'অনুষ্ঠান, কতদিন লিংক প্রয়োজন, বিশেষ কোনো ভাবনা…',
@@ -481,7 +490,7 @@ export function SalesDesk({
         {[
           ['all', t('সব', 'All')],
           ['requested', t('নতুন', 'New')],
-          ['quoted', t('কোটেশন', 'Quoted')],
+          ['quoted', t('দাম ও শর্ত', 'Quoted')],
           ['accepted', t('গ্রহণ করা', 'Accepted')],
           ['payments', t('পেমেন্ট যাচাই', 'Payment review')],
           ['ordered', t('অর্ডার', 'Ordered')],
@@ -526,14 +535,14 @@ export function SalesDesk({
                 <strong>{r.customer_name}</strong>
                 <span>
                   {r.template_id === 'custom'
-                    ? 'Customized'
+                    ? packageNames.custom[locale]
                     : locale === 'bn'
                       ? findTemplate(r.template_id).name
                       : findTemplate(r.template_id).en}
                 </span>
                 <small>{state(r.state)}</small>
                 {seller && page.payments.some((p) => p.request_id === r.id && p.state === 'pending') && (
-                  <em>{t('পেমেন্ট অপেক্ষমাণ', 'Payment pending')}</em>
+                  <em>{t('পেমেন্ট যাচাই বাকি', 'Payment pending')}</em>
                 )}
               </button>
             ))}
@@ -591,7 +600,7 @@ export function SalesDesk({
               <div className={c.brief} hidden={current.state === 'ordered'}>
                 <strong>
                   {current.template_id === 'custom'
-                    ? 'Customized'
+                    ? packageNames.custom[locale]
                     : locale === 'bn'
                       ? findTemplate(current.template_id).name
                       : findTemplate(current.template_id).en}
@@ -602,7 +611,7 @@ export function SalesDesk({
               {current.package_name && current.state === 'ordered' && (
                 <details className={c.quoteSummary}>
                   <summary>
-                    {t('সম্মত কোটেশন', 'Agreed quote')} · {current.package_name} ·{' '}
+                    {t('সম্মত দাম ও শর্ত', 'Agreed quote')} · {current.package_name} ·{' '}
                     {amount(current.amount_minor!)}
                   </summary>
                   <p>
@@ -614,7 +623,7 @@ export function SalesDesk({
               )}
               {current.package_name && current.state !== 'ordered' && (
                 <div className={c.quote}>
-                  <span className={s.eyebrow}>{t('আপনার কোটেশন', 'YOUR QUOTE')}</span>
+                  <span className={s.eyebrow}>{t('আপনার দাম ও শর্ত', 'YOUR QUOTE')}</span>
                   <h3>{current.package_name}</h3>
                   <div className={c.quotePrice}>
                     <strong>{amount(current.amount_minor!)}</strong>
@@ -670,7 +679,7 @@ export function SalesDesk({
                     );
                   }}
                 >
-                  <h3>{t('কোটেশন ও নির্দেশনা', 'Quote & instructions')}</h3>
+                  <h3>{t('দাম, শর্ত ও নির্দেশনা', 'Quote & instructions')}</h3>
                   <fieldset className={s.form} disabled={busy}>
                     <label>
                       {t('প্যাকেজের নাম', 'Package name')}
@@ -680,7 +689,7 @@ export function SalesDesk({
                         maxLength={160}
                         defaultValue={
                           current.package_name ??
-                          `${current.template_id === 'custom' ? 'Customized' : findTemplate(current.template_id).en} · Dawat`
+                          `${current.template_id === 'custom' ? packageNames.custom[locale] : findTemplate(current.template_id).en} · Dawat`
                         }
                       />
                     </label>
@@ -728,7 +737,7 @@ export function SalesDesk({
                     </label>
                     {inlineError('quote')}
                     <button className={s.button} disabled={busy}>
-                      {t('কোটেশন সংরক্ষণ করুন', 'Save quote')}
+                      {t('দাম ও শর্ত সংরক্ষণ করুন', 'Save quote')}
                     </button>
                   </fieldset>
                 </form>
@@ -760,6 +769,7 @@ export function SalesDesk({
                   )}
                 </p>
               )}
+              {seller && progress?.access === 'active' && progress.weddingId && <CustomerHandoff weddingId={progress.weddingId} name={current.customer_name} email={current.customer_email} phone={current.customer_phone} sender={payments[0]?.sender} />}
               {current.state === 'ordered' && seller && (
                 <div className={c.paymentPaper}>
                   <span className={c.paymentEyebrow}>{t('পেমেন্ট যাচাই', 'PAYMENT REVIEW')}</span>
@@ -800,7 +810,7 @@ export function SalesDesk({
                           onSubmit={(e) => {
                             const v = formValues(e);
                             void command(
-                              { kind: v('decision') as 'verify' | 'reject', id: p.id, reason: v('reason') },
+                              { kind: v('decision') as 'verify' | 'reject', id: p.id, reason: v('reason'), activate: v('decision') === 'verify' && v('activate') === 'on' },
                               true,
                               'review',
                             );
@@ -809,7 +819,7 @@ export function SalesDesk({
                           <fieldset className={s.form} disabled={busy}>
                             <label>
                               {t('সিদ্ধান্ত', 'Decision')}
-                              <select name="decision" required defaultValue="">
+                              <select name="decision" required defaultValue="" onChange={e => setDecisions(current => ({ ...current, [p.id]: e.target.value }))}>
                                 <option value="" disabled>
                                   {t('বেছে নিন…', 'Choose…')}
                                 </option>
@@ -835,6 +845,7 @@ export function SalesDesk({
                                 'I checked the actual transfer in the bKash app.',
                               )}
                             </label>
+                            {decisions[p.id] === 'verify' && <label className={c.consent}><input type="checkbox" name="activate" defaultChecked />{t('যাচাইয়ের সঙ্গে সঙ্গে অর্ডার নিশ্চিত করে আয়োজনের পাতা চালু করুন', 'Confirm the order and activate the workspace as soon as payment is verified')}</label>}
                             {inlineError('review')}
                             <button className={s.button} disabled={busy}>
                               {t('সিদ্ধান্ত সংরক্ষণ করুন', 'Save review decision')}
@@ -844,7 +855,7 @@ export function SalesDesk({
                       )}
                     </div>
                   ))}
-                  {current.order_id && (
+                  {current.order_id && progress?.access !== 'active' && (
                     <a className={s.button} href={`/admin/orders/?order=${current.order_id}`}>
                       {t('এই অর্ডার নিশ্চিত ও পোর্টাল চালু করুন', 'Confirm this order & activate portal')}
                       <ArrowRight size={16} />

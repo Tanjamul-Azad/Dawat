@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { phoneInput } from './delivery';
 import { uuid } from './contracts';
 import { templateIds } from './catalog';
 import { manualPayment, orderPaymentReference } from './payment';
@@ -7,6 +8,7 @@ const identity = { id: uuid, expectedRevision: z.number().int().min(0) };
 export const salesCommand = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('request'),
+    phone: phoneInput,
     templateId: z.enum([...templateIds, 'custom']),
     name: z.string().trim().min(1).max(120),
     brief: z.string().trim().min(10).max(2000),
@@ -28,6 +30,7 @@ export type SalesRequest = {
   user_id: string;
   customer_email: string;
   customer_name: string;
+  customer_phone?: string | null;
   template_id: (typeof templateIds)[number] | 'custom';
   event_date: string | null;
   brief: string;
@@ -72,7 +75,7 @@ export const paymentCommand = z.discriminatedUnion('kind', [
       path: ['reference'],
       message: 'Enter the bKash transaction ID from your successful transfer, not the order reference.',
     }),
-  z.object({ kind: z.enum(['verify', 'reject']), id: uuid, reason: z.string().trim().min(10).max(1000) }),
+  z.object({ kind: z.enum(['verify', 'reject']), id: uuid, reason: z.string().trim().min(10).max(1000), activate: z.boolean().optional() }),
 ]);
 export type PaymentCommand = z.infer<typeof paymentCommand>;
 export type SalesPage = {

@@ -12,6 +12,8 @@ export async function GET(request: Request, ctx: { params: Promise<{ id: string 
     const { db } = await session();
     const result = await db.rpc('export_households', {
       p_wedding_id: wid,
+      p_include_contacts: params.get('contacts') === '1',
+      p_source: z.enum(['all','host','open']).parse(params.get('source') ?? 'all'),
       p_event_id: z.enum(['nikah', 'reception']).parse(params.get('event')),
       p_search: z
         .string()

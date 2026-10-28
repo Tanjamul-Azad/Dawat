@@ -83,7 +83,7 @@ it('keeps a pending individual distinct from a declined group and targets duplic
     />,
   );
   const rows = within(screen.getByRole('table')).getAllByRole('row');
-  expect(within(rows[1]).getByText('অপেক্ষমাণ')).toBeTruthy();
+  expect(within(rows[1]).getByText('উত্তর বাকি')).toBeTruthy();
   expect(within(rows[2]).getByText('আসবেন না')).toBeTruthy();
   fireEvent.click(within(rows[1]).getByRole('button', { name: /তৈরি করে কপি/ }));
   expect(callbacks.onCopy).toHaveBeenCalledWith(row);

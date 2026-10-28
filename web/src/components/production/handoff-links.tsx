@@ -37,7 +37,7 @@ export function HandoffLinks({
       <div className={s.handoffRow}>
         <LockKeyhole size={18} aria-hidden="true" />
         <div>
-          <strong>{t('আপনার ব্যক্তিগত কর্মপরিসর', 'Your private workspace')}</strong>
+          <strong>{t('আপনার ব্যক্তিগত আয়োজনের পাতা', 'Your private workspace')}</strong>
           <p>
             {t(
               'শুধু আপনার জন্য। অতিথিদের পাঠাবেন না। খুলতে নির্ধারিত ইমেইলে প্রবেশ করতে হবে।',
@@ -47,7 +47,7 @@ export function HandoffLinks({
           <details className={s.optionalFields}>
             <summary>{t('নিজের প্রবেশের লিংক রাখুন', 'Keep your workspace link')}</summary>
             <label className={s.form}>
-              {t('কর্মপরিসরের লিংক', 'Workspace link')}
+              {t('আয়োজনের পাতার লিংক', 'Workspace link')}
               <input readOnly value={workspaceUrl} onFocus={(e) => e.target.select()} />
             </label>
             <button className={s.quiet} onClick={() => copy(workspaceUrl)}>

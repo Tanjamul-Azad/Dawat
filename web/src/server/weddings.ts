@@ -109,11 +109,15 @@ export async function listOrders(
         )
     : { data: [], error: null };
   dbError(grants.error);
+  const contacts = rows.length ? await db.from('sales_requests').select('order_id,customer_phone,payment_submissions(sender,created_at)').in('order_id', rows.map(o => o.id)) : { data: [], error: null };
+  dbError(contacts.error);
   return {
     orders: rows.map((o) => {
       const w = weddings.data!.find((w) => w.order_id === o.id);
       return {
         ...o,
+        customer_phone: contacts.data?.find(r => r.order_id === o.id)?.customer_phone ?? null,
+        payment_sender: contacts.data?.find(r => r.order_id === o.id)?.payment_submissions.sort((a,b) => b.created_at.localeCompare(a.created_at))[0]?.sender ?? null,
         weddingId: w?.id ?? null,
         access: grants.data!.find((g) => g.wedding_id === w?.id)?.state ?? 'inactive',
       };

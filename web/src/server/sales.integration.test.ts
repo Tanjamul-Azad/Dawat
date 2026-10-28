@@ -61,6 +61,8 @@ insert into auth.users(id,email,email_confirmed_at) values('${seller}','seller@e
     '20261026054154_sales_requests.sql',
     '20261026054200_manual_payment_submissions.sql',
     '20261027120000_accept_opens_order.sql',
+    '20261028090000_access_onboarding.sql',
+    '20261028120000_access_simplify.sql',
   ]) {
     try {
       await db.exec(readFileSync('supabase/migrations/' + file, 'utf8'));
@@ -306,4 +308,37 @@ it('accepts known catalog content and rejects fabricated templates', async () =>
       JSON.stringify({ ...base, templateId: 'invalid' }),
     ]),
   ).rejects.toThrow(/Unsupported design/);
+});
+
+it('auto-quotes standard prices, retains manual custom quoting and validates customer contact', async () => {
+  const r = await request('jamdani'); expect(r).toMatchObject({ state: 'quoted', amount_minor: 50000, term_days: 90, package_name: 'ক্লাসিক' });
+  expect(r.quote_notes).toContain('90');
+  const custom = await request('custom'); expect(custom.state).toBe('requested'); expect(custom.amount_minor).toBeNull();
+  await resetQuota(); await actor(alice);
+  await expect(command({ kind: 'request', templateId: 'ivory', name: 'Test', brief: 'Synthetic celebration', eventDate: '', phone: '0171234' })).rejects.toThrow(/WhatsApp/);
+  const contact = await command({ kind: 'request', templateId: 'ivory', name: 'Test', brief: 'Synthetic celebration', eventDate: '', phone: '+8801700000001' }); expect(contact.customer_phone).toBe('+8801700000001');
+});
+it('verifies, confirms and activates atomically and replays the receipt without repeating side effects', async () => {
+  const r = await order(); await actor(alice);
+  const p = await command({ kind: 'submit', requestId: r.id, method: 'bKash', reference: 'AUTO-' + r.id, sender: '01700000001' }, crypto.randomUUID(), 'payment_submission_command');
+  await actor(seller, 'aal2'); const key = crypto.randomUUID(); const body = { kind: 'verify', id: p.id, activate: true, reason: 'Matched actual synthetic transfer.' };
+  expect((await command(body, key, 'payment_submission_command')).state).toBe('verified');
+  expect((await command(body, key, 'payment_submission_command')).state).toBe('verified');
+  const o = (await db.query<any>('select * from public.orders where id=$1', [r.order_id])).rows[0]; expect(o).toMatchObject({ payment_status: 'manually_verified', status: 'confirmed', revision: 3 });
+  const audit = (await db.query<any>('select action from public.audit_events where order_id=$1', [r.order_id])).rows.map(row => row.action);
+  for (const action of ['verify-payment', 'confirm', 'activate']) expect(audit.filter(value => value === action)).toHaveLength(1);
+  await actor(alice); expect((await db.query<any>('select public.my_sales_progress() p')).rows[0].p.find((row: any) => row.requestId === r.id).access).toBe('active');
+});
+it('rolls back every payment and order change when activation fails, and protects admin summary with AAL2', async () => {
+  const r = await order(); await actor(alice);
+  const p = await command({ kind: 'submit', requestId: r.id, method: 'bKash', reference: 'ROLLBACK-' + r.id, sender: '01700000001' }, crypto.randomUUID(), 'payment_submission_command');
+  await db.exec('reset role'); await db.query("update auth.users set banned_until=now()+interval '1 day' where id=$1", [alice]);
+  await actor(seller, 'aal2');
+  await expect(command({ kind: 'verify', id: p.id, activate: true, reason: 'Matched actual synthetic transfer.' }, crypto.randomUUID(), 'payment_submission_command')).rejects.toThrow(/verify their email/);
+  expect((await db.query<any>('select payment_status,status,revision from public.orders where id=$1', [r.order_id])).rows[0]).toEqual({ payment_status: 'pending', status: 'reviewing', revision: 0 });
+  expect((await db.query<any>('select state from public.payment_submissions where id=$1', [p.id])).rows[0].state).toBe('pending');
+  expect((await db.query('select * from public.weddings where order_id=$1', [r.order_id])).rows).toHaveLength(0);
+  const summary = (await db.query<any>('select public.admin_summary() s')).rows[0].s; expect(summary.pendingPayments).toBeGreaterThan(0);
+  await actor(seller); await expect(db.query('select public.admin_summary()')).rejects.toThrow(/seller MFA/);
+  await db.exec('reset role'); await db.query('update auth.users set banned_until=null where id=$1', [alice]);
 });

@@ -9,6 +9,7 @@ vi.mock('./product-locale', () => ({
 }));
 vi.mock('./frame', () => ({ WorkspaceFrame: ({ children }: { children: React.ReactNode }) => children }));
 vi.mock('../ui', () => ({
+  copyText: (text: string) => navigator.clipboard.writeText(text),
   Modal: ({ title, children }: { title: string; children: React.ReactNode }) => (
     <section role="dialog" aria-label={title}>
       {children}

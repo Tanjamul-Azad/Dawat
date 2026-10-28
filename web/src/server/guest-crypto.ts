@@ -13,19 +13,19 @@ function keyRing() {
     throw new Error('Guest link encryption requires 32-byte keys.');
   return { id, keys };
 }
-const aad = (wid: string, hid: string, id: string) => Buffer.from(`dawat:guest-link:v1:${wid}:${hid}:${id}`);
-export function encryptLink(token: string, wid: string, hid: string) {
+const aad = (wid: string, hid: string, id: string, purpose: string) => Buffer.from(`dawat:${purpose}:v1:${wid}:${hid}:${id}`);
+export function encryptLink(token: string, wid: string, hid: string, purpose = 'guest-link') {
   const { id, keys } = keyRing();
   const iv = randomBytes(12);
   const cipher = createCipheriv('aes-256-gcm', Buffer.from(keys[id], 'base64'), iv);
-  cipher.setAAD(aad(wid, hid, id));
+  cipher.setAAD(aad(wid, hid, id, purpose));
   const ciphertext = Buffer.concat([cipher.update(token, 'utf8'), cipher.final()]);
   return {
     keyId: id,
     ciphertext: [iv, cipher.getAuthTag(), ciphertext].map((b) => b.toString('base64url')).join('.'),
   };
 }
-export function decryptLink(ciphertext: string, id: string, wid: string, hid: string) {
+export function decryptLink(ciphertext: string, id: string, wid: string, hid: string, purpose = 'guest-link') {
   const { keys } = keyRing();
   const key = keys[id];
   if (!key || Buffer.from(key, 'base64').length !== 32)
@@ -35,7 +35,7 @@ export function decryptLink(ciphertext: string, id: string, wid: string, hid: st
   const [iv, tag, body] = parts.map((s) => Buffer.from(s, 'base64url'));
   if (iv.length !== 12 || tag.length !== 16) throw new Error('Invalid encrypted link.');
   const cipher = createDecipheriv('aes-256-gcm', Buffer.from(key, 'base64'), iv);
-  cipher.setAAD(aad(wid, hid, id));
+  cipher.setAAD(aad(wid, hid, id, purpose));
   cipher.setAuthTag(tag);
   const token = Buffer.concat([cipher.update(body), cipher.final()]).toString('utf8');
   if (!/^[A-Za-z0-9_-]{43}$/.test(token)) throw new Error('Invalid link token.');

@@ -29,6 +29,7 @@ import { PhotoLibrary } from './photo-library';
 import { useProductLocale } from './product-locale';
 import { errorText } from '@/features/production/copy';
 import { type EditorSection } from '@/features/production/navigation';
+import { HostWhatsappSettings } from './open-invite';
 import { HandoffLinks } from './handoff-links';
 import { findTemplate } from '@/features/production/catalog';
 import { formatDhaka } from '@/features/production/dates';
@@ -547,6 +548,7 @@ export function WeddingDesk({
                   </button>
                 </div>
               </section>
+              <HostWhatsappSettings wid={initial.wedding.id} />
               {detail.workspaceUrl && (
                 <HandoffLinks
                   workspaceUrl={detail.workspaceUrl}

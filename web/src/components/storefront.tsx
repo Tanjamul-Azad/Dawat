@@ -16,8 +16,8 @@ import {
   X,
 } from 'lucide-react';
 import { useProductLocale } from './production/product-locale';
-import { templates, prices, whatsappLink } from '@/features/production/catalog';
-import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
+import { templates, prices, packageNames, whatsappLink } from '@/features/production/catalog';
+import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF, paymentReviewPromise, customerReviews, facebookUrl, founder } from '@/features/production/brand';
 import { taka } from '@/features/production/money';
 import s from './storefront.module.css';
 import { ManualPayment } from './manual-payment';
@@ -28,18 +28,23 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
   const { locale, setLocale } = useProductLocale();
   const pathname = usePathname() ?? '/';
   const [menu, setMenu] = useState(false);
+  const [solid, setSolid] = useState(false);
+  const dialog = useRef<HTMLDialogElement>(null);
+  useEffect(() => { const onScroll = () => setSolid(window.scrollY > 24); onScroll(); window.addEventListener('scroll', onScroll, { passive: true }); return () => window.removeEventListener('scroll', onScroll); }, []);
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   useEffect(() => {
-    if (!menu) return;
-    const close = (event: KeyboardEvent) => event.key === 'Escape' && setMenu(false);
-    window.addEventListener('keydown', close);
-    return () => window.removeEventListener('keydown', close);
+    if (!menu) { dialog.current?.close(); return; }
+    const previous = document.activeElement as HTMLElement | null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    dialog.current?.showModal();
+    return () => { document.body.style.overflow = overflow; previous?.focus(); };
   }, [menu]);
   const links: [string, string][] = [
-    ['/templates/', t('নকশার সংগ্রহ', 'Collection')],
-    ['/#how-it-works', t('যেভাবে কাজ করে', 'How it works')],
-    ['/pricing/', t('প্যাকেজ ও মূল্য', 'Pricing')],
-    ['/contact/', t('যোগাযোগ', 'Contact')],
+    ['/templates/', t('নকশা', 'Designs')],
+    ['/#how-it-works', t('কীভাবে কাজ করে', 'How it works')],
+    ['/pricing/', t('দাম', 'Pricing')],
+    ['/#faq', t('প্রশ্নোত্তর', 'FAQ')],
   ];
   return (
     <MotionConfig reducedMotion="user" transition={{ duration: 0.22, ease: 'easeOut' }}>
@@ -47,14 +52,14 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
         <a className="skip-link" href="#public-main">
           {t('মূল বিষয়বস্তু', 'Skip to content')}
         </a>
-        <header className={s.header}>
+        <header className={s.header} data-overlay={pathname === '/'} data-solid={solid || pathname !== '/'}>
           <div className={s.headerInner}>
             <a className={s.brand} href="/" aria-label={t('Dawat — প্রথম পাতা', 'Dawat — home')}>
               <BrandLockup locale={locale} size={34} wordClassName={s.brandWord} />
             </a>
             <nav
               id="public-navigation"
-              className={menu ? `${s.nav} ${s.navOpen}` : s.nav}
+              className={s.nav}
               aria-label={t('মূল মেনু', 'Main navigation')}
               onClick={() => setMenu(false)}
             >
@@ -64,7 +69,7 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
                 </a>
               ))}
               <a className={s.navPortal} href="/dashboard/">
-                {t('আমার পোর্টাল', 'My portal')} <ArrowUpRight size={16} />
+                {t('লগইন', 'Log in')} <ArrowUpRight size={16} />
               </a>
             </nav>
             <div className={s.headerActions}>
@@ -77,13 +82,14 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
                 {locale === 'bn' ? 'EN' : 'বাং'}
               </button>
               <a className={s.signin} href="/dashboard/">
-                {t('আমার পোর্টাল', 'My portal')}
+                {t('লগইন', 'Log in')}
               </a>
+              <a className={s.headerCta} href="/templates/">{t('নকশা বেছে নিন', 'Choose a design')}</a>
               <button
                 className={s.menu}
                 aria-label={menu ? t('মেনু বন্ধ করুন', 'Close menu') : t('মেনু খুলুন', 'Open menu')}
                 aria-expanded={menu}
-                aria-controls="public-navigation"
+                aria-controls="public-mobile-menu"
                 onClick={() => setMenu(!menu)}
               >
                 {menu ? <X size={22} /> : <Menu size={22} />}
@@ -91,6 +97,10 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
             </div>
           </div>
         </header>
+        <dialog ref={dialog} id="public-mobile-menu" className={s.mobileSheet} aria-label={t('মূল মেনু', 'Main menu')} onCancel={() => setMenu(false)} onClick={event => { if (event.target === event.currentTarget) setMenu(false); }}>
+          <div><button className={s.sheetClose} onClick={() => setMenu(false)}>{t('বন্ধ করুন', 'Close')} <X size={20} /></button>
+          <nav onClick={() => setMenu(false)}>{links.map(([href, label]) => <a href={href} key={href}>{label}</a>)}<a href="/auth/login/">{t('লগইন', 'Log in')}</a><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a><a className={s.primary} href="/templates/">{t('নকশা বেছে নিন', 'Choose a design')}</a></nav></div>
+        </dialog>
         <main id="public-main">{children}</main>
         <footer className={s.footer}>
           <div className={s.footerInner}>
@@ -108,7 +118,7 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
               <strong>{t('আপনার আয়োজন', 'Your celebration')}</strong>
               <a href="/templates/">{t('নকশা দেখুন', 'Explore designs')}</a>
               <a href="/order/requests/">{t('অর্ডারের অবস্থা', 'Order status')}</a>
-              <a href="/pricing/">{t('প্যাকেজ ও মূল্য', 'Packages')}</a>
+              <a href="/pricing/">{t('দাম', 'Pricing')}</a>
             </nav>
             <nav aria-label={t('পাশে আছি', 'Here to help')}>
               <strong>{t('পাশে আছি', 'Here to help')}</strong>
@@ -116,13 +126,17 @@ export function StorefrontFrame({ children }: { children: ReactNode }) {
                 WhatsApp · 01606 092143
               </a>
               <a href={DAWAT_CONTACT_HREF}>{DAWAT_CONTACT_EMAIL}</a>
-              <a href="/policies/">{t('সেবার শর্ত ও গোপনীয়তা', 'Service & privacy')}</a>
+              <a href="/#how-it-works">{t('কীভাবে কাজ করে', 'How it works')}</a><a href="/#faq">{t('প্রশ্নোত্তর', 'FAQ')}</a><a href="/contact/">{t('যোগাযোগ', 'Contact')}</a>
+            </nav><nav aria-label={t('নিয়ম', 'Policies')}><strong>{t('নিয়ম', 'Policies')}</strong>
+              <a href="/policies/">{t('সেবার শর্ত', 'Service terms')}</a><a href="/policies/#privacy">{t('গোপনীয়তা', 'Privacy')}</a><a href="/policies/#refund">{t('টাকা ফেরতের নিয়ম', 'Refund policy')}</a>
+              {facebookUrl && <a href={facebookUrl}>Facebook</a>}
             </nav>
           </div>
+          <p className={s.paymentRow}>{t('bKash-এ পেমেন্ট · প্রতিটি পেমেন্ট মানুষ দিয়ে মিলিয়ে দেখা হয়', 'Pay with bKash · Every payment is checked by our team')}</p>
           <div className={s.footerBottom}>
             <span>© {new Date().getFullYear()} Dawat</span>
             <span>
-              {t('একটি সুন্দর আমন্ত্রণ থেকেই শুরু।', 'Every celebration begins with an invitation.')}
+              {t('বাংলাদেশে তৈরি', 'Made in Bangladesh')}
             </span>
           </div>
         </footer>
@@ -150,6 +164,9 @@ export function TemplateCard({
   const { locale } = useProductLocale();
   const bn = locale === 'bn';
   const reduceMotion = useReducedMotion();
+  const [one, setOne] = useState('');
+  const [two, setTwo] = useState('');
+  const names = [one.trim(), two.trim()].filter(Boolean).join(' ও ');
   return (
     <motion.article
       className={s.templateCard}
@@ -159,26 +176,27 @@ export function TemplateCard({
       whileTap={reduceMotion ? undefined : { scale: 0.99 }}
     >
       <a
-        href={`/invite/?template=${template.id}`}
+        href={`/demo/?template=${template.id}`}
         className={`${s.templateArt} ${s[template.id] ?? ''}`}
         style={
           {
             '--card-ink': template.color,
             '--card-paper': template.paper,
-            backgroundImage: template.art ? `url('${template.art}')` : undefined,
+
           } as CSSProperties
         }
         aria-label={`${bn ? 'নমুনা খুলুন' : 'Preview'} · ${bn ? template.name : template.en}`}
       >
-        {template.tier === 'premium' && <span className={s.tierBadge}>Premium</span>}
+        <img className={s.cardArtImage} src={template.art.replace('.webp', '-480.webp')} srcSet={`${template.art.replace('.webp', '-480.webp')} 480w, ${template.art} 960w`} sizes="(max-width: 767px) 80vw, (max-width: 1199px) 25vw, 200px" alt="" loading="lazy" width={480} height={720} />
+        {template.tier === 'premium' && <span className={s.tierBadge}>{packageNames.premium[locale]}</span>}
         <div className={s.cardFrame}>
           <span>بِسْمِ اللَّهِ</span>
           <Flower2 size={24} />
           <small>{bn ? 'শুভ বিবাহ' : 'THE WEDDING OF'}</small>
           <strong>
-            {bn ? 'মেহরিন' : 'Mehrin'}
+            {one || (bn ? 'মেহরিন' : 'Mehrin')}
             <i>&</i>
-            {bn ? 'আরিব' : 'Arib'}
+            {two || (bn ? 'আরিব' : 'Arib')}
           </strong>
           <span>{bn ? '১২ . ১২ . ২০২৬' : '12 . 12 . 2026'}</span>
           <small>{bn ? 'ভালোবাসার আমন্ত্রণ' : 'WITH LOVE, ALWAYS'}</small>
@@ -189,14 +207,15 @@ export function TemplateCard({
         <strong>{taka(prices[template.tier], locale)}</strong>
       </div>
       <p className={s.cardMeta}>
-        {bn ? template.mood : template.moodEn} · {template.tier === 'premium' ? 'Premium' : 'Normal'}
+        {bn ? template.mood : template.moodEn} · {packageNames[template.tier][locale]}
       </p>
+      <details className={s.nameTry}><summary>{bn ? 'নিজেদের নাম লিখে দেখুন' : 'Try your names'}</summary><label>{bn ? 'বরের নাম' : 'First name'}<input maxLength={120} value={one} onChange={e => setOne(e.target.value)} /></label><label>{bn ? 'কনের নাম' : 'Second name'}<input maxLength={120} value={two} onChange={e => setTwo(e.target.value)} /></label></details>
       <div className={selected ? s.cardButtonsSingle : s.cardButtons}>
-        <a href={`/invite/?template=${template.id}`}>
+        <a href={`/demo/?template=${template.id}`}>
           {bn ? 'নমুনা খুলুন' : 'Live preview'} <ArrowUpRight size={14} />
         </a>
         {!selected && (
-          <a href={`/order/?template=${template.id}`}>
+          <a href={`/order/requests/?template=${template.id}${names ? `&names=${encodeURIComponent(names)}` : ''}`}>
             {bn ? 'এটি বেছে নিন' : 'Choose design'} <ArrowRight size={14} />
           </a>
         )}
@@ -259,8 +278,8 @@ export function TemplateCollection({ full = false }: { full?: boolean }) {
       <div className={s.filters} role="group" aria-label={t('নকশার ধরন', 'Design category')}>
         {[
           ['all', t('সব নকশা', 'All designs')],
-          ['normal', 'Normal', taka(prices.normal, locale)],
-          ['premium', 'Premium', taka(prices.premium, locale)],
+          ['normal', packageNames.normal[locale], taka(prices.normal, locale)],
+          ['premium', packageNames.premium[locale], taka(prices.premium, locale)],
         ].map(([id, title, price]) => (
           <button key={id} onClick={() => setFilter(id)} aria-pressed={filter === id}>
             {title}
@@ -285,14 +304,14 @@ export function TemplateCollection({ full = false }: { full?: boolean }) {
             <h3>{t('একেবারে আপনাদের মতো কিছু?', 'Something entirely yours?')}</h3>
             <p>
               {t(
-                'Customized · ৳১,৫০০। আপনার ভাবনা, রং ও আয়োজন নিয়ে আমাদের সঙ্গে কথা বলুন।',
-                'Customized · ৳1,500. Tell us about your colours, your story, your celebration.',
+                'নিজের মতো · ৳১,৫০০। আপনার ভাবনা, রং ও আয়োজন নিয়ে আমাদের সঙ্গে কথা বলুন।',
+                'Custom · ৳1,500. Tell us about your colours, your story, your celebration.',
               )}
             </p>
           </div>
           <a
             className={s.secondary}
-            href={whatsappLink('৳১,৫০০ Customized invitation নিয়ে আলোচনা করতে চাই।')}
+            href={whatsappLink('৳১,৫০০ নিজের মতো আমন্ত্রণ নিয়ে আলোচনা করতে চাই।')}
             target="_blank"
             rel="noreferrer"
           >
@@ -332,28 +351,28 @@ export function Pricing({
       <div className={s.priceGrid}>
         {[
           [
-            'Normal',
+            packageNames.normal[locale],
             taka(prices.normal, locale),
             t('চেনা ঐতিহ্য, নিজের মতো।', 'Beautiful essentials, made personal.'),
             t('৩টি নকশা থেকে নির্বাচন', 'Choose from 3 designs'),
             '/templates/',
           ],
           [
-            'Premium',
+            packageNames.premium[locale],
             taka(prices.premium, locale),
             t('বিশেষ দিনের বিশেষ নকশা।', 'A little more extraordinary.'),
             t('মৌলিক শিল্পকর্মে সাজানো ৩টি নকশা', '3 designs with rich original artwork'),
             '/templates/',
           ],
           [
-            'Customized',
+            packageNames.custom[locale],
             taka(prices.custom, locale),
             t('আপনার ভাবনা থেকে শুরু।', 'Beginning with your vision.'),
             t('আলোচনা করে নির্ধারিত কাস্টম নকশা', 'A custom design with agreed scope'),
-            whatsappLink('Customized ৳১,৫০০ প্যাকেজটি সম্পর্কে জানতে চাই।'),
+            whatsappLink('নিজের মতো ৳১,৫০০ প্যাকেজটি সম্পর্কে জানতে চাই।'),
           ],
         ].map(([name, price, note, feature, href]) => (
-          <article key={name} className={name === 'Premium' ? s.featuredPrice : undefined}>
+          <article key={name} className={name === packageNames.premium[locale] ? s.featuredPrice : undefined}>
             <span>{name}</span>
             <h3>
               {price}
@@ -365,11 +384,11 @@ export function Pricing({
               {feature}
             </p>
             <a
-              className={name === 'Premium' ? s.primary : s.secondary}
+              className={name === packageNames.premium[locale] ? s.primary : s.secondary}
               href={href}
-              {...(name === 'Customized' ? { target: '_blank', rel: 'noreferrer' } : {})}
+              {...(name === packageNames.custom[locale] ? { target: '_blank', rel: 'noreferrer' } : {})}
             >
-              {name === 'Customized'
+              {name === packageNames.custom[locale]
                 ? t('WhatsApp-এ আলোচনা করুন', 'Discuss on WhatsApp')
                 : t('নকশা বেছে নিন', 'Choose your design')}
               <ArrowRight size={16} />
@@ -384,7 +403,7 @@ export function Pricing({
             t('বাংলা ও ইংরেজি আমন্ত্রণ', 'Bengali & English invitation'),
             t('নিজের নাম, অনুষ্ঠান ও সর্বোচ্চ ৫টি ছবি', 'Your names, events & up to 5 photos'),
             t('নাম ধরে ব্যক্তিগত লিংক ও অতিথির উত্তর', 'Named links & guest replies'),
-            t('নিজস্ব কাস্টমার পোর্টাল', 'Your own customer portal'),
+            t('নিজস্ব আয়োজনের পাতা', 'Your own customer portal'),
           ].map((item) => (
             <li key={item}>
               <Check size={16} aria-hidden="true" />
@@ -398,8 +417,8 @@ export function Pricing({
       ) : (
         <p className={s.paymentNote}>
           {t(
-            'অর্ডার নিশ্চিত হওয়ার পর বিকাশে ম্যানুয়ালি পেমেন্ট করবেন। নম্বর ও নির্দেশনা আপনার অর্ডারের পেমেন্ট ধাপে পাবেন।',
-            'Pay manually by bKash after your order is confirmed. The number and instructions appear in your order’s payment step.',
+            'দাম ও শর্তে সম্মতি দিয়ে বিকাশে পেমেন্ট করুন। নম্বর ও নির্দেশনা আপনার অর্ডারের পেমেন্ট ধাপে পাবেন।',
+            'Pay by bKash after accepting your price and terms. The number and instructions appear in your order’s payment step.',
           )}{' '}
           <a href="/pricing/#payment">{t('পেমেন্টের বিস্তারিত', 'Payment details')}</a>
         </p>
@@ -412,7 +431,7 @@ export function FAQ() {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   return (
-    <section className={s.faq}>
+    <section id="faq" className={s.faq}>
       <div>
         <h2>{t('কিছু প্রশ্ন, সহজ উত্তর।', 'A few questions, answered.')}</h2>
       </div>
@@ -421,28 +440,28 @@ export function FAQ() {
           [
             t('কীভাবে অর্ডার করব?', 'How do I order?'),
             t(
-              'নকশা বেছে নিজের ইমেইল দিয়ে প্রবেশ করুন। আয়োজনের তথ্য দিন। মূল্য, কাজের পরিধি ও মেয়াদ নিশ্চিত করে পেমেন্টের নির্দেশনা অনুসরণ করুন।',
+              'নকশা বেছে নিজের ইমেইল দিয়ে লগইন করুন। আয়োজনের তথ্য দিন। মূল্য, কাজের পরিধি ও মেয়াদ নিশ্চিত করে পেমেন্টের নির্দেশনা অনুসরণ করুন।',
               'Choose a design and sign in with your own email. Share your event details, agree the scope and term, then follow the payment instructions.',
             ),
           ],
           [
-            t('পেমেন্টের পরই কি পোর্টাল খুলবে?', 'Does payment immediately unlock my portal?'),
+            t('পেমেন্টের পরই কি আয়োজনের পাতা খুলবে?', 'Does payment immediately unlock my portal?'),
             t(
-              'Transaction ID জমা দেওয়ার পর আমাদের টিম আসল লেনদেন মিলিয়ে দেখবে। যাচাই শেষে পোর্টাল চালু হলে আপনার অ্যাকাউন্টে তা খুলবে।',
+              'Transaction ID জমা দেওয়ার পর আমাদের টিম আসল লেনদেন মিলিয়ে দেখবে। যাচাই শেষে আয়োজনের পাতা চালু হলে আপনার অ্যাকাউন্টে তা খুলবে।',
               'After you submit the transaction ID, our team checks the actual transfer. Your portal opens after verification and activation.',
             ),
           ],
           [
             t('অতিথিদের কীভাবে পাঠাব?', 'How do I share invitations?'),
             t(
-              'অতিথির নামে লিংক তৈরি করে WhatsApp, Messenger বা ইমেইলে নিজে পাঠাতে পারবেন। স্বয়ংক্রিয় মেসেজ পাঠানো এখন এই প্যাকেজে নেই।',
-              'Create a named link and share it yourself through WhatsApp, Messenger or email. Automated sending is not included.',
+              'নাম ধরে আলাদা লিংক আপনার WhatsApp থেকে একে একে পাঠান। কে খুলেছেন ও উত্তর দিয়েছেন দেখুন। অথবা এক লিংক গ্রুপে বা সম্প্রচার তালিকায় পাঠান। অতিথি নিজের নাম লিখে উত্তর দেবেন।',
+              'Send named links one by one from your own WhatsApp and see who opened and replied. Or share one link in a group or broadcast list; guests enter their own names to reply.',
             ),
           ],
           [
             t('নকশা ও তথ্য কি বদলানো যাবে?', 'Can I edit my invitation?'),
             t(
-              'পোর্টাল থেকে নাম, অনুষ্ঠান, ছবি ও বক্তব্য সম্পাদনা করে প্রিভিউ দেখতে পারবেন। প্রকাশ করার পরেই পরিবর্তন অতিথিদের কাছে যাবে। কাস্টম শিল্পকর্মের পরিবর্তন আলোচনা করে নির্ধারিত হবে।',
+              'আয়োজনের পাতা থেকে নাম, অনুষ্ঠান, ছবি ও বক্তব্য সম্পাদনা করে প্রিভিউ দেখতে পারবেন। প্রকাশ করার পরেই পরিবর্তন অতিথিদের কাছে যাবে। কাস্টম শিল্পকর্মের পরিবর্তন আলোচনা করে নির্ধারিত হবে।',
               'Edit names, events, photographs and wording in your portal, then preview. Guests see changes only after publication. Custom artwork revisions follow the agreed scope.',
             ),
           ],
@@ -488,19 +507,21 @@ export function StorefrontHome() {
             <a className={s.primary} href="/templates/">
               {t('আপনার নকশা খুঁজুন', 'Find your invitation')} <ArrowRight size={16} />
             </a>
-            <a className={s.secondary} href="/invite/">
+            <a className={s.secondary} href="/demo/">
               {t('নমুনা দেখুন', 'View a sample')} <ArrowUpRight size={16} />
             </a>
           </div>
           <ul className={s.heroFacts}>
             <li>{t('৳৫০০ থেকে', 'From ৳500')}</li>
             <li>{t('বাংলা ও ইংরেজি', 'Bengali & English')}</li>
-            <li>{t('নিজস্ব পোর্টাল', 'Your own portal')}</li>
+            <li>{t('নিজস্ব আয়োজনের পাতা', 'Your own portal')}</li>
           </ul>
         </div>
         <figure className={s.heroArt}>
           <img
-            src="/brand/storefront-hero-match.webp"
+            src="/brand/storefront-hero-match-900.webp"
+            srcSet="/brand/storefront-hero-match-900.webp 900w, /brand/storefront-hero-match.webp 1600w"
+            sizes="100vw"
             alt={t(
               'জামদানি-অনুপ্রাণিত ডিজিটাল আমন্ত্রণের শিল্পিত উপস্থাপনা',
               'An artistic presentation of a Jamdani-inspired digital invitation',
@@ -537,7 +558,7 @@ export function StorefrontHome() {
                 'Every invitation, addressed by name—with care and the beauty of tradition.',
               )}
             </p>
-            <a className={s.textLink} href="/invite/">
+            <a className={s.textLink} href="/demo/">
               {t('নমুনা দেখুন', 'See a sample')}
               <ArrowRight size={16} />
             </a>
@@ -561,40 +582,17 @@ export function StorefrontHome() {
         </article>
       </section>
       <section id="how-it-works" className={s.steps}>
-        <h2>{t('তিন ধাপে সুন্দর শুরু।', 'Three steps to something lovely.')}</h2>
-        <ol>
-          {[
-            [
-              t('নকশা বেছে নিন', 'Find your design'),
-              t(
-                'সংগ্রহ ঘুরে দেখুন, নমুনা খুলুন, আপনার আয়োজনের তথ্য দিন।',
-                'Browse the collection, open the samples, share your event details.',
-              ),
-            ],
-            [
-              t('অর্ডার নিশ্চিত করুন', 'Make it yours'),
-              t(
-                'মূল্য ও মেয়াদ দেখে পেমেন্ট করুন। যাচাইয়ের পর নিজের পোর্টাল পান।',
-                'Agree the price and term, make your transfer, and receive portal access after verification.',
-              ),
-            ],
-            [
-              t('প্রিয়জনকে আমন্ত্রণ জানান', 'Invite your people'),
-              t(
-                'তথ্য ও ছবি সাজিয়ে প্রকাশ করুন। ব্যক্তিগত লিংক পাঠিয়ে উত্তর দেখুন।',
-                'Add your details and photos, publish, share personal links, and follow the replies.',
-              ),
-            ],
-          ].map(([title, body], i) => (
-            <li key={title}>
-              <b aria-hidden="true">{locale === 'bn' ? ['১', '২', '৩'][i] : i + 1}</b>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </li>
-          ))}
-        </ol>
+        <h2>{t('চার ধাপে নিজের আমন্ত্রণ।', 'Your invitation in four steps.')}</h2>
+        <ol>{[
+          [t('নকশা বেছে নিন', 'Choose a design'), t('নমুনা দেখুন। নাম লিখে নিজের কার্ড কেমন হবে দেখে নিন।', 'Open a sample and try your names on the card.'), 'design'],
+          [t('দাম ও শর্ত দেখে পেমেন্ট করুন', 'Review the terms and pay'), t('দাম ও মেয়াদ দেখে সম্মতি দিন। নির্দেশনা মেনে বিকাশে টাকা পাঠান।', 'Accept the price and term, then pay using the bKash instructions.'), 'payment'],
+          [t('আমন্ত্রণ সাজিয়ে চালু করুন', 'Prepare and publish'), t('নিজের তথ্য ও ছবি দিন। প্রিভিউ দেখে অতিথিদের জন্য চালু করুন।', 'Add your details and photos, preview, then publish for guests.'), 'workspace'],
+          [t('পাঠান ও উত্তর দেখুন', 'Share and see replies'), t('নাম ধরে অথবা সবার জন্য এক লিংক WhatsApp-এ পাঠান। উত্তর এক তালিকায় দেখুন।', 'Send named links or one shared link through WhatsApp. See replies together.'), 'replies'],
+        ].map(([title, body, screen], i) => <li key={screen}><b aria-hidden="true">{new Intl.NumberFormat(locale).format(i + 1)}</b><h3>{title}</h3><p>{body}</p><img src={`/brand/screens/${screen}.webp`} width={375} height={812} sizes="(max-width: 767px) 200px, 220px" loading="lazy" alt={t(`${title} — দাওয়াতের নমুনা পাতা`, `${title} — Dawat sample screen`)} /></li>)}</ol>
       </section>
       <Pricing paymentDetails={false} />
+      <section className={s.trust}><h2>{t('দাম ও শর্ত আগে জানুন', 'Know the price and terms first')}</h2><p>{t('টাকা দেওয়ার আগে দাম ও শর্ত লেখা থাকবে। অতিথির তথ্য বিক্রি বা বিজ্ঞাপনে ব্যবহার হয় না।', 'Your price and terms are written before payment. Guest information is never sold or used for advertising.')}</p>{paymentReviewPromise[locale] && <p>{paymentReviewPromise[locale]}</p>}{customerReviews.map(review => <blockquote key={review.name}><p>{locale === 'bn' ? review.quoteBn : review.quoteEn}</p><cite>{review.name}</cite></blockquote>)}</section>
+      <FounderNote person={founder} />
       <FAQ />
       <section className={s.finalCta}>
         <LotusMark size={36} />
@@ -610,4 +608,10 @@ export function StorefrontHome() {
       </section>
     </StorefrontFrame>
   );
+}
+
+function FounderNote({ person }: { person: { name: string; photo: string; messageBn: string; messageEn: string } | null }) {
+  const { locale } = useProductLocale();
+  if (!person) return null;
+  return <section className={s.trust}><img src={person.photo} alt={person.name} width={96} height={96} loading="lazy" /><h2>{person.name}</h2><p>{locale === 'bn' ? person.messageBn : person.messageEn}</p></section>;
 }

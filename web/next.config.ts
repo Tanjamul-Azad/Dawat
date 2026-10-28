@@ -10,6 +10,7 @@ assertEnvironment({
 });
 
 const config: NextConfig = {
+  env: { NEXT_PUBLIC_PAYMENT_REVIEW_PROMISE_BN: process.env.PAYMENT_REVIEW_PROMISE_BN ?? '', NEXT_PUBLIC_PAYMENT_REVIEW_PROMISE_EN: process.env.PAYMENT_REVIEW_PROMISE_EN ?? '' },
   // Keep the isolated local rehearsal usable alongside its Docker database.
   experimental: process.env.DAWAT_LOCAL_QA === '1' ? { cpus: 1 } : undefined,
   output: process.env.DAWAT_STANDALONE === '1' ? 'standalone' : undefined,

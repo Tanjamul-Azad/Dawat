@@ -24,7 +24,7 @@ it('keeps the private workspace distinct from guest links before publication', a
     </ProductLocale>,
   );
   fireEvent.click(screen.getByText('নিজের প্রবেশের লিংক রাখুন'));
-  expect((screen.getByLabelText('কর্মপরিসরের লিংক') as HTMLInputElement).readOnly).toBe(true);
+  expect((screen.getByLabelText('আয়োজনের পাতার লিংক') as HTMLInputElement).readOnly).toBe(true);
   expect(screen.getByText(/অতিথিদের পাঠাবেন না/)).toBeTruthy();
   expect(screen.queryByLabelText('সাধারণ আমন্ত্রণের লিংক')).toBeNull();
   await act(async () => fireEvent.click(screen.getByRole('button', { name: 'নিজের লিংক কপি করুন' })));

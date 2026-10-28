@@ -61,6 +61,16 @@ export function WorkspaceFrame({
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   // The support bubble sits over row actions on a phone, so it steps aside while the page scrolls down.
+  const [counts, setCounts] = useState({ newRequests: 0, pendingPayments: 0 });
+  useEffect(() => {
+    if (!seller) return;
+    let active = true;
+    const original = document.title.replace(/^\(\d+\) /, '');
+    const sync = async () => { if (document.hidden) return; try { const value = await api<typeof counts>('/api/admin/summary/'); if (active) { setCounts(value); const total = value.newRequests + value.pendingPayments; document.title = (total ? `(${total}) ` : '') + original; } } catch { /* Keep the last counts during a temporary outage. */ } };
+    void sync(); const timer = window.setInterval(() => void sync(), 60000);
+    const focus = () => void sync(); window.addEventListener('focus', focus);
+    return () => { active = false; clearInterval(timer); window.removeEventListener('focus', focus); document.title = original; };
+  }, [seller]);
   const [tucked, setTucked] = useState(false);
   useEffect(() => {
     let last = window.scrollY;
@@ -149,6 +159,7 @@ export function WorkspaceFrame({
             >
               {seller ? <ShieldCheck size={18} /> : <LayoutGrid size={18} />}{' '}
               {seller ? tr('Orders & access') : tr('My weddings')}
+              {seller && counts.pendingPayments > 0 && <strong aria-label={locale === 'bn' ? 'পেমেন্ট যাচাই বাকি' : 'Payments awaiting review'}>{counts.pendingPayments}</strong>}
             </WorkspaceLink>
             <WorkspaceLink
               href={seller ? '/admin/requests/' : '/order/requests/'}
@@ -158,11 +169,12 @@ export function WorkspaceFrame({
               <NotebookPen size={18} />
               {locale === 'bn'
                 ? seller
-                  ? 'অনুরোধ ও কোটেশন'
+                  ? 'অনুরোধ ও দাম ও শর্ত'
                   : 'আমার অর্ডার'
                 : seller
                   ? 'Requests & quotes'
                   : 'My orders'}
+              {seller && counts.newRequests > 0 && <strong aria-label={locale === 'bn' ? 'নতুন অনুরোধ' : 'New requests'}>{counts.newRequests}</strong>}
             </WorkspaceLink>
             {wedding && (
               <>

@@ -7,6 +7,7 @@ import { api } from '@/features/production/client';
 import { parseBDT, takaFromPaisa } from '@/features/production/money';
 import { formatDhaka } from '@/features/production/dates';
 import { latinDigits } from '@/features/production/copy';
+import { CustomerHandoff } from './customer-handoff';
 import { WorkspaceFrame } from './frame';
 import { Modal } from '../ui';
 import s from './workspace.module.css';
@@ -398,32 +399,7 @@ export function SellerOrders({
                 </dd>
               </div>
             </dl>
-            {selected.access === 'active' && selected.weddingId && (
-              <div className={s.detail}>
-                <p className={s.muted}>
-                  {locale === 'bn' ? 'গ্রাহকের নিজস্ব পোর্টাল লিংক' : "Customer's own portal link"}
-                </p>
-                <p
-                  className={s.code}
-                >{`${typeof window === 'undefined' ? '' : window.location.origin}/weddings/${selected.weddingId}/`}</p>
-                <button
-                  className={s.secondary}
-                  onClick={() => {
-                    setHandoff({
-                      url: `${window.location.origin}/weddings/${selected.weddingId}/`,
-                      email: selected.customer_email,
-                    });
-                    void navigator.clipboard
-                      .writeText(`${window.location.origin}/weddings/${selected.weddingId}/`)
-                      .then(() => setCopied(true))
-                      .catch(() => setCopied(false));
-                  }}
-                >
-                  <Copy size={15} />
-                  {locale === 'bn' ? 'লিংক কপি করুন' : 'Copy link'}
-                </button>
-              </div>
-            )}
+            {selected.access === 'active' && selected.weddingId && <CustomerHandoff weddingId={selected.weddingId} name={selected.customer_name} email={selected.customer_email} phone={selected.customer_phone} sender={selected.payment_sender} />}
             <div className={s.actions}>
               {selected.payment_status === 'pending' && (
                 <button className={s.secondary} onClick={() => setAction('verify-payment')}>

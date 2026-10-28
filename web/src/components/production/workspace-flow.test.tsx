@@ -9,6 +9,7 @@ import { ProductLocale } from './product-locale';
 import { emptyDraft, type WeddingDetail } from '@/features/production/contracts';
 import type { HouseholdRow } from '@/features/production/guests';
 import { templateWording } from '@/features/production/template-wording';
+vi.mock('./open-invite', () => ({ OpenInviteCard: () => null, HostWhatsappSettings: () => null }));
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }) }));
 const wid = '20000000-0000-4000-8000-000000000001';
 const initial: WeddingDetail = {
@@ -476,7 +477,7 @@ it('marks the current contextual navigation instead of falsely selecting the wed
     </WorkspaceFrame>,
   );
   expect(screen.getByRole('link', { name: 'অতিথি ও উত্তর' }).getAttribute('aria-current')).toBe('page');
-  expect(screen.getByRole('link', { name: 'আমার আয়োজন' }).hasAttribute('aria-current')).toBe(false);
+  expect(screen.getByRole('link', { name: 'আমার আয়োজন' }).hasAttribute('aria-current')).toBe(false);
 });
 it('requires confirmation before pausing and keeps the dialog open while the command is pending', async () => {
   let finish!: (r: Response) => void;

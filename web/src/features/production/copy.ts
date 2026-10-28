@@ -1,10 +1,13 @@
 export const banglaCopy: Record<string, string> = {
   'Enter the bKash transaction ID from your successful transfer, not the order reference.':
-    'সফল বিকাশ লেনদেনের Transaction ID দিন। অর্ডারের reference এই ঘরে দেবেন না।',
+    'সফল বিকাশ লেনদেনের নম্বর দিন। অর্ডারের নম্বর এই ঘরে দেবেন না।',
   all: 'সব',
+  hidden: 'লুকানো',
+  'Enter a valid WhatsApp number, including the country code for international numbers.': 'সঠিক WhatsApp নম্বর দিন। বিদেশি নম্বরে দেশের কোডও দিন।',
+  'Enter a valid WhatsApp number.': 'সঠিক WhatsApp নম্বর দিন।',
   accepted: 'আসবেন',
   declined: 'আসবেন না',
-  pending: 'অপেক্ষমাণ',
+  pending: 'উত্তর বাকি',
   active: 'চালু',
   inactive: 'বন্ধ',
   suspended: 'সাময়িক বন্ধ',
@@ -22,7 +25,7 @@ export const banglaCopy: Record<string, string> = {
   rejected: 'গ্রহণ করা যায়নি',
   Accepted: 'আসবেন',
   Declined: 'আসবেন না',
-  Pending: 'অপেক্ষমাণ',
+  Pending: 'উত্তর বাকি',
   create: 'তৈরি করুন',
   confirm: 'নিশ্চিত করুন',
   activate: 'চালু করুন',
@@ -36,17 +39,17 @@ export const banglaCopy: Record<string, string> = {
   RETRY_UPLOAD: 'আবার আপলোড করুন',
   INVALID_IMAGE: 'ছবিটি গ্রহণ করা যায়নি',
   'Skip to content': 'মূল অংশে যান',
-  'Seller workspace': 'বিক্রেতার কর্মপরিসর',
+  'Seller workspace': 'দাওয়াত টিম',
   'Your wedding, thoughtfully arranged': 'আপনার বিয়ের আয়োজন, যত্নে সাজানো',
   'Sign out': 'বেরিয়ে যান',
-  'Workspace navigation': 'কর্মপরিসরের মেনু',
+  'Workspace navigation': 'আয়োজনের পাতার মেনু',
   Operations: 'পরিচালনা',
-  'Your workspace': 'আপনার কর্মপরিসর',
-  'Orders & access': 'অর্ডার ও প্রবেশাধিকার',
-  'My weddings': 'আমার আয়োজন',
+  'Your workspace': 'আমার আয়োজন',
+  'Orders & access': 'অর্ডার ও অ্যাক্সেস',
+  'My weddings': 'আমার আয়োজন',
   'View sample': 'নমুনা দেখুন',
   'Payment, access and guest publication have independent controls.':
-    'অর্থপ্রদান, প্রবেশাধিকার ও আমন্ত্রণ প্রকাশ আলাদাভাবে নিয়ন্ত্রণ করুন।',
+    'অর্থপ্রদান, অ্যাক্সেস ও আমন্ত্রণ প্রকাশ আলাদাভাবে নিয়ন্ত্রণ করুন।',
   'A little organisation. More room for the celebration.': 'আয়োজন থাকুক গোছানো। আনন্দ হোক নির্ভার।',
   'Backend setup': 'সেবা প্রস্তুতি',
   'A proper home for every wedding.': 'প্রতিটি আয়োজনের নিজস্ব ঠিকানা।',
@@ -56,44 +59,44 @@ export const banglaCopy: Record<string, string> = {
   'Follow the repository’s local backend guide, start Supabase and add its URL and publishable key to the environment file. Restart the app when the configuration is ready.':
     'সেবাটি প্রস্তুত করতে পরিচালকের সঙ্গে যোগাযোগ করুন।',
   'Customer management becomes available only after verified sign-in and seller activation.':
-    'ইমেইল যাচাই ও বিক্রেতার অনুমোদনের পরে আপনার কর্মপরিসর খুলবে।',
+    'ইমেইল যাচাই ও দাওয়াত টিমের অনুমোদনের পরে আমার আয়োজন খুলবে।',
   'Open sample invitation': 'নমুনা আমন্ত্রণ খুলুন',
   'A place for your celebration': 'আপনার আনন্দ আয়োজনের ঠিকানা',
   'Welcome to your': 'স্বাগতম আপনার',
-  'wedding workspace.': 'বিয়ের কর্মপরিসরে।',
-  'Email sign-in is being prepared. Please contact your seller before trying to access a customer workspace. ইমেইল সাইন-ইন প্রস্তুত হলে এখানে প্রবেশ করা যাবে।':
-    'ইমেইল দিয়ে প্রবেশের সেবা প্রস্তুত হচ্ছে। সহায়তার জন্য বিক্রেতার সঙ্গে যোগাযোগ করুন।',
+  'wedding workspace.': 'বিয়ের আয়োজনের পাতায়।',
+  'Email sign-in is being prepared. Please contact the Dawat team for help.':
+    'ইমেইল দিয়ে প্রবেশের সেবা প্রস্তুত হচ্ছে। সহায়তার জন্য দাওয়াত টিমের সঙ্গে যোগাযোগ করুন।',
   'Email address': 'ইমেইল ঠিকানা',
   'Enter the code sent to': 'এই ইমেইলে পাঠানো কোডটি দিন:',
   '. Check your spam folder too.': '। স্প্যাম ফোল্ডারও দেখুন।',
-  'Verification code': 'যাচাইকরণ কোড',
+  'Verification code': 'ইমেইলে আসা কোড',
   'Please wait…': 'অপেক্ষা করুন…',
   'Verify & continue': 'যাচাই করে এগিয়ে যান',
   'Email me a code': 'ইমেইলে কোড পাঠান',
   'Change email or request a new code': 'ইমেইল বদলান বা নতুন কোড চান',
   'Signing in does not activate an order. Your seller confirms and activates access separately.':
-    'প্রবেশ করলেই অর্ডার সক্রিয় হবে না। বিক্রেতা অর্ডার নিশ্চিত করে আলাদাভাবে প্রবেশাধিকার চালু করবেন।',
+    'প্রবেশ করলেই অর্ডার সক্রিয় হবে না। দাওয়াত টিম অর্ডার নিশ্চিত করে আলাদাভাবে অ্যাক্সেস চালু করবেন।',
   'One more check.': 'আরেক ধাপ যাচাই।',
-  'Seller controls require an authenticator code.': 'বিক্রেতার নিয়ন্ত্রণ খুলতে অথেন্টিকেটর কোড দিন।',
+  'Seller controls require an authenticator code.': 'দাওয়াত টিমের নিয়ন্ত্রণ খুলতে অথেন্টিকেটর কোড দিন।',
   'Set up authenticator': 'অথেন্টিকেটর চালু করুন',
   'Scan this code with your authenticator app, then enter its six-digit code.':
     'অথেন্টিকেটর অ্যাপে এই QR স্ক্যান করে ছয় সংখ্যার কোড দিন।',
   'Authenticator enrollment QR code': 'অথেন্টিকেটর চালুর QR কোড',
   'Authenticator code': 'অথেন্টিকেটর কোড',
   'Verifying…': 'যাচাই হচ্ছে…',
-  'Verify seller access': 'বিক্রেতার প্রবেশাধিকার যাচাই করুন',
+  'Verify seller access': 'দাওয়াত টিমের অ্যাক্সেস যাচাই করুন',
   'The wedding desk': 'আয়োজনের খাতা',
   'Let’s make room for joy.': 'আনন্দের আয়োজন হোক সহজ।',
-  'আপনার আমন্ত্রণ, আপনার আয়োজন। Each wedding has its own invitation and workspace.':
-    'আপনার আমন্ত্রণ, আপনার আয়োজন। প্রতিটি বিয়ের নিজস্ব আমন্ত্রণ ও আলাদা কর্মপরিসর।',
-  'Refresh access': 'প্রবেশাধিকার হালনাগাদ করুন',
+  'Each wedding has its own invitation and workspace.':
+    'আপনার আমন্ত্রণ, আপনার আয়োজন। প্রতিটি বিয়ের নিজস্ব আমন্ত্রণ ও আলাদা আয়োজনের পাতা।',
+  'Refresh access': 'অ্যাক্সেস রিফ্রেশ করুন',
   'Previously loaded weddings are shown.': 'আগে দেখা আয়োজনগুলো দেখানো হচ্ছে।',
   'Your celebrations': 'আপনার আয়োজন',
-  'Your workspace is waiting.': 'আপনার কর্মপরিসর অপেক্ষায়।',
+  'Your workspace is waiting.': 'আমার আয়োজন অপেক্ষায়।',
   'Your email is verified. Ask your seller to confirm your order and activate this account. Refresh here after activation.':
-    'আপনার ইমেইল যাচাই হয়েছে। বিক্রেতাকে অর্ডার নিশ্চিত করে এই অ্যাকাউন্টের প্রবেশাধিকার চালু করতে বলুন। তারপর হালনাগাদ করুন।',
-  'আপনার অর্ডার নিশ্চিত ও access চালু হলে এখানে দেখা যাবে।':
-    'অর্ডার নিশ্চিত ও প্রবেশাধিকার চালু হলে এখানে দেখা যাবে।',
+    'আপনার ইমেইল যাচাই হয়েছে। দাওয়াত টিমকে অর্ডার নিশ্চিত করে এই অ্যাকাউন্টের অ্যাক্সেস চালু করতে বলুন। তারপর রিফ্রেশ করুন।',
+  'Your order appears here when your celebration workspace is active.':
+    'অর্ডার নিশ্চিত ও অ্যাক্সেস চালু হলে এখানে দেখা যাবে।',
   'Published invitation': 'আমন্ত্রণ প্রকাশিত',
   'Ready for your first draft': 'প্রথম খসড়া লেখার জন্য প্রস্তুত',
   Open: 'খুলুন',
@@ -103,16 +106,16 @@ export const banglaCopy: Record<string, string> = {
   '03 · Preview, review & publish': '০৩ · প্রিভিউ দেখে প্রকাশ করুন',
   'Your draft stays private until you publish.': 'প্রকাশ না করা পর্যন্ত খসড়া শুধু আপনার কাছেই থাকবে।',
   'Access activated for the intended verified customer. Copy their dashboard entry below; no message has been sent.':
-    'নির্ধারিত যাচাইকৃত গ্রাহকের প্রবেশাধিকার চালু হয়েছে। নিচের ঠিকানা কপি করুন; কোনো বার্তা পাঠানো হয়নি।',
+    'নির্ধারিত যাচাইকৃত গ্রাহকের অ্যাক্সেস চালু হয়েছে। নিচের ঠিকানা কপি করুন; কোনো বার্তা পাঠানো হয়নি।',
   'Action saved and recorded in the audit timeline.':
     'কাজটি সংরক্ষিত হয়েছে এবং কার্যবিবরণীতে নথিভুক্ত হয়েছে।',
   'The action was saved, but the list could not refresh. Refresh before taking another action.':
-    'কাজটি সংরক্ষিত হয়েছে, তবে তালিকা হালনাগাদ হয়নি। পরের কাজের আগে তালিকা হালনাগাদ করুন।',
-  'Seller operations': 'বিক্রেতার পরিচালনা',
+    'কাজটি সংরক্ষিত হয়েছে, তবে তালিকা রিফ্রেশ হয়নি। পরের কাজের আগে তালিকা রিফ্রেশ করুন।',
+  'Seller operations': 'দাওয়াত টিমের পরিচালনা',
   'Every order, a clear next step.': 'প্রতিটি অর্ডারের পরের ধাপ স্পষ্ট।',
   'Verify the agreement. Confirm the wedding. Activate the intended customer.':
-    'চুক্তি যাচাই করুন। অর্ডার নিশ্চিত করুন। নির্ধারিত গ্রাহকের প্রবেশাধিকার চালু করুন।',
-  Refresh: 'হালনাগাদ করুন',
+    'চুক্তি যাচাই করুন। অর্ডার নিশ্চিত করুন। নির্ধারিত গ্রাহকের অ্যাক্সেস চালু করুন।',
+  Refresh: 'রিফ্রেশ করুন',
   'New order': 'নতুন অর্ডার',
   'Customer entry: /dashboard/': 'গ্রাহকের প্রবেশপথ: /dashboard/',
   'Order / customer': 'অর্ডার / গ্রাহক',
@@ -126,18 +129,18 @@ export const banglaCopy: Record<string, string> = {
   Review: 'পর্যালোচনা',
   'A clean order book.': 'অর্ডারের খাতা প্রস্তুত।',
   'Add a manually reviewed order to begin. Nothing is automatically paid or activated.':
-    'যাচাই করা অর্ডার দিয়ে শুরু করুন। অর্থপ্রদান বা প্রবেশাধিকার নিজে থেকে নিশ্চিত হবে না।',
+    'যাচাই করা অর্ডার দিয়ে শুরু করুন। অর্থপ্রদান বা অ্যাক্সেস নিজে থেকে নিশ্চিত হবে না।',
   'Next 25 orders': 'পরের ২৫টি অর্ডার',
   'Intended owner': 'নির্ধারিত মালিক',
   'Package / term': 'প্যাকেজ / মেয়াদ',
-  'Order / access': 'অর্ডার / প্রবেশাধিকার',
+  'Order / access': 'অর্ডার / অ্যাক্সেস',
   'Verify payment': 'অর্থপ্রদান যাচাই করুন',
-  'Confirm & provision': 'নিশ্চিত করে কর্মপরিসর তৈরি করুন',
-  'Activate customer access': 'গ্রাহকের প্রবেশাধিকার চালু করুন',
+  'Confirm & provision': 'নিশ্চিত করে আয়োজনের পাতা তৈরি করুন',
+  'Activate customer access': 'গ্রাহকের অ্যাক্সেস চালু করুন',
   'Suspend management': 'পরিচালনা সাময়িক বন্ধ করুন',
   'Revoke management': 'পরিচালনার অনুমতি প্রত্যাহার করুন',
   'Confirmation and access activation are separate. Suspending or revoking management keeps the existing guest publication unchanged.':
-    'অর্ডার নিশ্চিতকরণ ও প্রবেশাধিকার চালু আলাদা ধাপ। পরিচালনা বন্ধ করলেও প্রকাশিত আমন্ত্রণ অক্ষত থাকবে।',
+    'অর্ডার নিশ্চিতকরণ ও অ্যাক্সেস চালু আলাদা ধাপ। পরিচালনা বন্ধ করলেও প্রকাশিত আমন্ত্রণ অক্ষত থাকবে।',
   'Audit timeline': 'কার্যবিবরণী',
   '· actor': '· সম্পাদনাকারী',
   'No timeline loaded yet.': 'কার্যবিবরণী এখনও দেখা হয়নি।',
@@ -159,11 +162,11 @@ export const banglaCopy: Record<string, string> = {
   'Confirm against the actual bank/provider record. Uploaded proof alone is insufficient.':
     'ব্যাংক বা সেবাদাতার প্রকৃত রেকর্ড মিলিয়ে নিশ্চিত করুন। আপলোড করা প্রমাণ একা যথেষ্ট নয়।',
   'I explicitly approve a complimentary/test exception. Payment will remain pending.':
-    'বিনামূল্যে / পরীক্ষামূলক ব্যতিক্রম স্পষ্টভাবে অনুমোদন করছি। অর্থপ্রদান অপেক্ষমাণ থাকবে।',
+    'বিনামূল্যে / পরীক্ষামূলক ব্যতিক্রম স্পষ্টভাবে অনুমোদন করছি। পেমেন্ট যাচাই বাকি থাকবে।',
   'Only the verified account matching this order’s email receives management access. Ask the customer to sign in first. No external message will be sent.':
-    'অর্ডারের ইমেইলের সঙ্গে মেলা যাচাইকৃত অ্যাকাউন্টই প্রবেশাধিকার পাবে। আগে গ্রাহককে প্রবেশ করতে বলুন। কোনো বাহ্যিক বার্তা পাঠানো হবে না।',
+    'অর্ডারের ইমেইলের সঙ্গে মেলা যাচাইকৃত অ্যাকাউন্টই অ্যাক্সেস পাবে। আগে গ্রাহককে প্রবেশ করতে বলুন। কোনো বাহ্যিক বার্তা পাঠানো হবে না।',
   'This customer will lose access to drafts and dashboard commands immediately. Guest publication and existing records remain.':
-    'গ্রাহক এখনই খসড়া ও পরিচালনার প্রবেশাধিকার হারাবেন। প্রকাশিত আমন্ত্রণ ও রেকর্ড অক্ষত থাকবে।',
+    'গ্রাহক এখনই খসড়া ও পরিচালনার অ্যাক্সেস হারাবেন। প্রকাশিত আমন্ত্রণ ও রেকর্ড অক্ষত থাকবে।',
   'Reason / evidence reviewed': 'কারণ / যাচাই করা প্রমাণ',
   'Record order': 'অর্ডার নথিভুক্ত করুন',
   'Personal link copied. No message has been sent.': 'ব্যক্তিগত লিংক কপি হয়েছে। কোনো বার্তা পাঠানো হয়নি।',
@@ -195,7 +198,7 @@ export const banglaCopy: Record<string, string> = {
   'Apply search': 'খুঁজুন',
   Link: 'লিংক',
   'people maximum': 'জন পর্যন্ত',
-  'Pending · no reply yet': 'অপেক্ষমাণ · এখনও উত্তর আসেনি',
+  'Pending · no reply yet': 'উত্তর বাকি · এখনও উত্তর আসেনি',
   'Guest note:': 'অতিথির কথা:',
   'Personal details & link actions': 'ব্যক্তিগত বিবরণ ও লিংকের কাজ',
   'Private host note:': 'আপনার ব্যক্তিগত নোট:',
@@ -259,12 +262,12 @@ export const banglaCopy: Record<string, string> = {
   Cancel: 'বাতিল',
   Save: 'সংরক্ষণ করুন',
   'This personal invitation is unavailable.': 'এই ব্যক্তিগত আমন্ত্রণ পাওয়া যাচ্ছে না।',
-  'এই লিংকটি পরিবর্তিত বা বন্ধ হয়েছে। Please ask the hosts for their current personal link.':
+  'Please ask the hosts for their current personal link.':
     'এই লিংকটি বদলেছে বা বন্ধ হয়েছে। আয়োজকের কাছে বর্তমান ব্যক্তিগত লিংকটি চান।',
   'Connection interrupted. Last loaded invitation shown; new replies need server confirmation.':
     'সংযোগ বিচ্ছিন্ন। আগে পাওয়া আমন্ত্রণ দেখানো হচ্ছে; নতুন উত্তর নিশ্চিত করতে সংযোগ প্রয়োজন।',
   'An invitation, especially for you.': 'শুধু আপনার জন্য আমন্ত্রণ।',
-  'আপনার আমন্ত্রণ প্রস্তুত হচ্ছে… Preparing your invitation…': 'আপনার আমন্ত্রণ প্রস্তুত হচ্ছে…',
+  'Preparing your invitation…': 'আপনার আমন্ত্রণ প্রস্তুত হচ্ছে…',
   'Try again': 'আবার চেষ্টা করুন',
   'Please use the current personal link from your hosts.':
     'আয়োজকের দেওয়া বর্তমান ব্যক্তিগত লিংকটি ব্যবহার করুন।',
@@ -301,13 +304,18 @@ export function errorText(text: string, locale: 'bn' | 'en' = 'bn', code = '') {
   if (locale === 'en') return text;
   if (banglaCopy[text]) return banglaCopy[text];
   const rules: [RegExp, string][] = [
+    [/WhatsApp number/i, 'সঠিক WhatsApp নম্বর দিন। বিদেশি নম্বরে দেশের কোডও দিন।'],
+    [/shared invitation is full/i, 'এই লিংকে অতিথি যোগ দেওয়ার সীমা পূর্ণ। আয়োজকের সঙ্গে যোগাযোগ করুন।'],
+    [/Enter your name/i, 'আপনার নাম লিখুন; সর্বোচ্চ ১২০ অক্ষর।'],
+    [/greeting and an allowance/i, 'অনুষ্ঠান, সম্বোধন এবং ১ থেকে ২০ জনের সীমা বেছে নিন।'],
+    [/website field/i, 'তথ্যগুলো দেখে আবার চেষ্টা করুন।'],
     [
       /event with invited households cannot be removed/i,
       'এই অনুষ্ঠানে অতিথিদের আমন্ত্রণ দেওয়া আছে। আগে অতিথি তালিকায় তাঁদের অনুষ্ঠানের অনুমতি সমন্বয় করুন।',
     ],
     [
       /verification is temporarily unavailable/i,
-      'প্রবেশাধিকার যাচাইয়ের সেবায় সাময়িক সমস্যা। আপনার লেখা অক্ষত আছে। একটু পরে চেষ্টা করুন।',
+      'অ্যাক্সেস যাচাইয়ের সেবায় সাময়িক সমস্যা। আপনার লেখা অক্ষত আছে। একটু পরে চেষ্টা করুন।',
     ],
     [/request took too long/i, 'অনুরোধের সময়সীমা শেষ হয়েছে। আবার চেষ্টা করুন।'],
     [
@@ -322,7 +330,7 @@ export function errorText(text: string, locale: 'bn' | 'en' = 'bn', code = '') {
     [/Complete (nikah|reception)/i, 'অনুষ্ঠানের নাম, তারিখ, সময় ও স্থান সম্পূর্ণ করুন।'],
     [
       /Unable to send a code/i,
-      'যাচাইকরণ কোড পাঠানো যাচ্ছে না। একটু পরে চেষ্টা করুন বা সহায়তার জন্য যোগাযোগ করুন।',
+      'ইমেইলে আসা কোড পাঠানো যাচ্ছে না। একটু পরে চেষ্টা করুন বা সহায়তার জন্য যোগাযোগ করুন।',
     ],
     [
       /Five photo|five photos|five processed/,
@@ -345,7 +353,7 @@ export function errorText(text: string, locale: 'bn' | 'en' = 'bn', code = '') {
     ],
     [
       /photo is unavailable|Photo unavailable|another wedding|unprocessed/i,
-      'ছবিটি প্রস্তুত নেই বা এই আয়োজনের নয়। ছবির তালিকা হালনাগাদ করুন।',
+      'ছবিটি প্রস্তুত নেই বা এই আয়োজনের নয়। ছবির তালিকা রিফ্রেশ করুন।',
     ],
     [/Photo storage is being configured/, 'ছবি রাখার সেবা প্রস্তুত হচ্ছে। আপনার আগের খসড়া অক্ষত আছে।'],
     [

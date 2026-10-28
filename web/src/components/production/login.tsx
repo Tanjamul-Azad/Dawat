@@ -7,7 +7,7 @@ import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
 import { latinDigits } from '@/features/production/copy';
 import { BrandLockup } from '../brand-mark';
-import { findTemplate, prices } from '@/features/production/catalog';
+import { findTemplate, prices, packageNames } from '@/features/production/catalog';
 import { taka } from '@/features/production/money';
 function LoginStory() {
   const { locale } = useProductLocale();
@@ -35,11 +35,12 @@ function LoginStory() {
 // When sign-in starts from an order, say what is being ordered and why the email is checked.
 function OrderContext({ next }: { next: string }) {
   const { locale } = useProductLocale();
-  const id = /^\/order\/requests\/?\?template=([a-z]+)$/.exec(next)?.[1];
+  const target = new URL(next, 'http://localhost');
+  const id = /^\/order\/requests\/?$/.test(target.pathname) ? target.searchParams.get('template') : null;
   if (!id) return null;
   const custom = id === 'custom';
   const design = findTemplate(id);
-  const name = custom ? 'Customized' : locale === 'bn' ? design.name : design.en;
+  const name = custom ? packageNames.custom[locale] : locale === 'bn' ? design.name : design.en;
   const price = taka(custom ? 1500 : prices[design.tier], locale);
   return (
     <div className={s.panel} role="note" style={{ display: 'grid', gap: 6 }}>
@@ -127,7 +128,7 @@ export function Login({ next, available = true }: { next: string; available?: bo
           {!available ? (
             <p role="status">
               {tr(
-                'Email sign-in is being prepared. Please contact your seller before trying to access a customer workspace. \u0987\u09AE\u09C7\u0987\u09B2 \u09B8\u09BE\u0987\u09A8-\u0987\u09A8 \u09AA\u09CD\u09B0\u09B8\u09CD\u09A4\u09C1\u09A4 \u09B9\u09B2\u09C7 \u098F\u0996\u09BE\u09A8\u09C7 \u09AA\u09CD\u09B0\u09AC\u09C7\u09B6 \u0995\u09B0\u09BE \u09AF\u09BE\u09AC\u09C7\u0964',
+                'Email sign-in is being prepared. Please contact the Dawat team for help.',
               )}
             </p>
           ) : (
