@@ -98,7 +98,7 @@ export function TemplateCard({
           {bn ? 'লাইভ নমুনা' : 'Live sample'} <ArrowUpRight size={14} />
         </a>
         {!selected && (
-          <a href={withNames(`/order/?template=${template.id}`, names)}>
+          <a href={withNames(`/order/requests/?template=${template.id}`, names)}>
             {bn ? 'এটা বেছে নিন' : 'Choose this'} <ArrowRight size={14} />
           </a>
         )}

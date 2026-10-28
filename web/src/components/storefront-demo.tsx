@@ -41,13 +41,8 @@ export function DemoInvitation({ templateId }: { templateId: TemplateId }) {
         <a href="/templates/">
           <ArrowLeft size={16} aria-hidden="true" /> {t('সব নকশা', 'All designs')}
         </a>
-        <span>
-          {t(
-            'লাইভ নমুনা · উত্তর দিয়ে দেখুন, কিছু পাঠানো হয় না',
-            'Live sample · try replying, nothing is sent',
-          )}
-        </span>
-        <a href={`/order/?template=${templateId}`}>
+        <span>{t('এটা নমুনা, উত্তর সংরক্ষণ হয়নি', 'This is a sample, replies are not saved')}</span>
+        <a href={`/order/requests/?template=${templateId}`}>
           {t('এই নকশা বেছে নিন', 'Choose this design')} <ArrowRight size={16} aria-hidden="true" />
         </a>
       </div>

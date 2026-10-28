@@ -5,7 +5,7 @@ import { ArrowRight, Menu, MessageCircle, X } from 'lucide-react';
 import { useProductLocale } from './production/product-locale';
 import { whatsappLink, whatsappNumber } from '@/features/production/catalog';
 import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/brand';
-import { socialLinks } from '@/features/production/social-proof';
+import { socialLinks } from '@/features/production/brand';
 import { BrandLockup, LotusMark } from './brand-mark';
 import { MotionConfig } from 'motion/react';
 import s from './storefront.module.css';
@@ -65,7 +65,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const close = useCallback(() => setMenu(false), []);
   const sheet = useSheet(menu, close, opener);
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 8);
+    const update = () => setScrolled(window.scrollY > 24);
     update();
     window.addEventListener('scroll', update, { passive: true });
     return () => window.removeEventListener('scroll', update);

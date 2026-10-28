@@ -69,8 +69,8 @@ export function PoliciesPage() {
             'terms',
             t('কী পাবেন', 'What you receive'),
             t(
-              'এটা ডিজিটাল বিয়ের আমন্ত্রণের সেবা। প্যাকেজে থাকে বেছে নেওয়া নকশা, নিজের তথ্য এডিট করার সুযোগ, সর্বোচ্চ পাঁচটি ছবি, অতিথির ব্যক্তিগত লিংক আর উত্তরের হিসাব। ছাপানো কার্ড আর নিজের ডোমেইন এতে নেই। WhatsApp-এ সম্পূর্ণ স্বয়ংক্রিয় বার্তাও নেই: আপনি নিজের WhatsApp থেকে এক ট্যাপে পাঠান। নিজের মতো নকশার কাজ আর কতবার বদলানো যাবে, তা অর্ডারে ঠিক করা হয়।',
-              'This is a digital wedding invitation service. A package includes your chosen design, editing your own details, up to five photos, personal guest links and reply tracking. Printed cards and custom domains are not included. Fully automatic WhatsApp messages are not included either: you send from your own WhatsApp in one tap. The scope and number of changes for a custom design are agreed in your order.',
+              'এটা ডিজিটাল বিয়ের আমন্ত্রণের সেবা। প্যাকেজে থাকে বেছে নেওয়া নকশা, নিজের তথ্য এডিট করার সুযোগ, সর্বোচ্চ পাঁচটি ছবি, অতিথির ব্যক্তিগত লিংক আর উত্তরের হিসাব। ছাপানো কার্ড আর নিজের ডোমেইন এতে নেই। WhatsApp-এ সম্পূর্ণ স্বয়ংক্রিয় বার্তাও নেই: আপনি নিজের WhatsApp থেকে পাঠান, আপনাকে শুধু Send চাপতে হয়। নিজের মতো নকশার কাজ আর কতবার বদলানো যাবে, তা অর্ডারে ঠিক করা হয়।',
+              'This is a digital wedding invitation service. A package includes your chosen design, editing your own details, up to five photos, personal guest links and reply tracking. Printed cards and custom domains are not included. Fully automatic WhatsApp messages are not included either: you send from your own WhatsApp and only press Send. The scope and number of changes for a custom design are agreed in your order.',
             ),
           ],
           [
@@ -93,16 +93,16 @@ export function PoliciesPage() {
             'privacy',
             t('আপনার তথ্য', 'Your information'),
             t(
-              'সেবা দেওয়ার জন্য আমরা আপনার ইমেইল, অর্ডারের তথ্য, আমন্ত্রণের লেখা ও ছবি, অতিথির নাম আর তাঁদের উত্তর রাখি। অতিথির উত্তর, ব্যক্তিগত নোট আর শুভেচ্ছা সবার জন্য খোলা কোথাও দেখানো হয় না। অতিথির ফোন নম্বর বা ইমেইল শুধু আমন্ত্রণ পাঠানোর জন্য রাখা হয় আর অতিথির পাতায় দেখানো হয় না। বিয়ের মেয়াদ শেষের ৩০ দিন পরে এই যোগাযোগের তথ্য মুছে ফেলা হয়। লগইন আর ভাষা মনে রাখার জন্য শুধু দরকারি কুকি ব্যবহার হয়। এই সাইটে বিজ্ঞাপনের ট্র্যাকিং নেই।',
-              'To provide the service we keep your email, order details, invitation text and photos, guest names and their replies. Guest replies, private notes and wishes are never shown publicly. A guest’s phone number or email is kept only to send the invitation and is never shown on the guest’s page. This contact information is deleted 30 days after the wedding term ends. Only essential cookies are used, for login and language. There is no advertising tracking on this site.',
+              'সেবা দেওয়ার জন্য আমরা আপনার ইমেইল, অর্ডারের তথ্য, আমন্ত্রণের লেখা ও ছবি, অতিথির নাম আর তাঁদের উত্তর রাখি। অতিথির উত্তর, ব্যক্তিগত নোট আর শুভেচ্ছা সবার জন্য খোলা কোথাও দেখানো হয় না। অতিথির ফোন নম্বর শুধু আমন্ত্রণ পাঠানোর জন্য রাখা হয় আর অতিথির পাতায় দেখানো হয় না। আমন্ত্রণের মেয়াদ শেষের ৩০ দিন পরে এই ফোন নম্বর মুছে ফেলা হয়। লগইন আর ভাষা মনে রাখার জন্য শুধু দরকারি কুকি ব্যবহার হয়। এই সাইটে বিজ্ঞাপনের ট্র্যাকিং নেই।',
+              'To provide the service we keep your email, order details, invitation text and photos, guest names and their replies. Guest replies, private notes and wishes are never shown publicly. A guest’s phone number is kept only to send the invitation and is never shown on the guest’s page. This phone number is deleted 30 days after the invitation expires. Only essential cookies are used, for login and language. There is no advertising tracking on this site.',
             ),
           ],
           [
             'sharing',
             t('লিংক শেয়ার আর তথ্য মোছা', 'Sharing links and removing data'),
             t(
-              'ব্যক্তিগত লিংক যাঁর কাছে থাকবে, তিনিই সেই আমন্ত্রণের উত্তর দিতে পারবেন। তাই লিংক সাবধানে পাঠান। আপনার আয়োজনের পাতা থেকে লিংক বন্ধ করা যায়। আপনার তথ্য দেখতে, ঠিক করতে বা মুছতে চাইলে যাচাই করা ইমেইল থেকে আমাদের লিখুন। অর্ডার আর হিসাবের যেসব রেকর্ড রাখা জরুরি, সেগুলো কতদিন রাখা হবে আর কবে মোছা হবে, তা আমাদের কাছ থেকে জেনে নিন।',
-              'Anyone who holds a personal link can reply to that invitation, so share it carefully. You can turn a link off from your page. To see, correct or delete your data, write to us from your verified email. For the order and accounting records we must keep, ask us how long they are kept and when they are deleted.',
+              'ব্যক্তিগত লিংক যাঁর কাছে থাকবে, তিনিই সেই আমন্ত্রণের উত্তর দিতে পারবেন। তাই লিংক সাবধানে পাঠান। সবার জন্য একটি লিংক যাঁরাই পাবেন, তাঁরা নিজের নাম লিখে উত্তর দিতে পারবেন। আপনার আয়োজনের পাতা থেকে লিংক বন্ধ করা যায়। আপনার তথ্য দেখতে, ঠিক করতে বা মুছতে চাইলে যাচাই করা ইমেইল থেকে আমাদের লিখুন। অর্ডার আর হিসাবের যেসব রেকর্ড রাখা জরুরি, সেগুলো কতদিন রাখা হবে আর কবে মোছা হবে, তা আমাদের কাছ থেকে জেনে নিন।',
+              'Anyone who holds a personal link can reply to that invitation, so share it carefully. Anyone who receives the one link for everyone can write their own name and reply. You can turn a link off from your page. To see, correct or delete your data, write to us from your verified email. For the order and accounting records we must keep, ask us how long they are kept and when they are deleted.',
             ),
           ],
         ].map(([id, heading, body]) => (

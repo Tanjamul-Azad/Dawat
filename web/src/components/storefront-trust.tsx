@@ -1,7 +1,7 @@
 'use client';
 import { ChevronDown, HeartHandshake, ShieldCheck, Wallet } from 'lucide-react';
 import { useProductLocale } from './production/product-locale';
-import { reviews, founder, type Review, type Founder } from '@/features/production/social-proof';
+import { reviews, founder, type Review, type Founder } from '@/features/production/brand';
 import type { PaymentReviewPromise } from '@/features/production/public-config';
 import s from './storefront.module.css';
 import x from './storefront-sections.module.css';
@@ -137,12 +137,20 @@ export function faqItems(
       q: t('অতিথিদের কীভাবে পাঠাব?', 'How do I send invitations to guests?'),
       a: [
         t(
-          'প্রতিটি পরিবারের জন্য আলাদা লিংক পাবেন। পরিবারের WhatsApp নম্বর দিয়ে “WhatsApp-এ পাঠান” চাপুন। আপনার নিজের WhatsApp খুলবে, বার্তা আর লিংক লেখা থাকবে। আপনি শুধু Send চাপবেন।',
-          'Each family gets its own link. Add their WhatsApp number and tap “Send on WhatsApp”. Your own WhatsApp opens with the message and link already written. You only press Send.',
+          'দুইভাবে পাঠাতে পারবেন। দুটোই আপনার নিজের WhatsApp থেকে যায়।',
+          'You can send in two ways. Both go out from your own WhatsApp.',
         ),
         t(
-          'কোনো অতিথির ইমেইল দিলে সেটা ইমেইলেও নিজে থেকে চলে যায়। WhatsApp-এ আমরা কিছু নিজে থেকে পাঠাই না, তাই আপনার নম্বর বন্ধ হওয়ার ভয় নেই।',
-          'If you add a guest’s email, the invitation also goes out by email automatically. We never send WhatsApp messages on our own, so your number is never at risk.',
+          'নাম ধরে আলাদা আমন্ত্রণ: প্রতিটি পরিবারের জন্য আলাদা লিংক পাবেন। পরিবারের WhatsApp নম্বর দিয়ে “WhatsApp-এ পাঠান” চাপুন। আপনার নিজের WhatsApp খুলবে, বার্তা আর লিংক লেখা থাকবে। আপনি শুধু Send চাপবেন। কে খুলেছেন আর কে উত্তর দিয়েছেন, তা আপনার তালিকায় দেখা যায়।',
+          'Personal invitations: each family gets its own link. Add the family’s WhatsApp number and tap “Send on WhatsApp”. Your own WhatsApp opens with the message and link already written. You only press Send. Your list shows who has opened it and who has replied.',
+        ),
+        t(
+          'সবার জন্য একটি লিংক: একটি লিংক আর একটি কার্ড, সবার জন্য। একবার WhatsApp গ্রুপে বা ব্রডকাস্ট লিস্টে পাঠালেই হয়। অতিথি নিজেই নিজের নাম আর কতজন আসবেন লিখে উত্তর দেন। সবার কাছে পৌঁছানোর সবচেয়ে দ্রুত উপায় এটাই।',
+          'One link for everyone: one link and one card for all. Send it once to a WhatsApp group or broadcast list. Each guest writes their own name and how many are coming. It is the quickest way to reach everyone.',
+        ),
+        t(
+          'আমরা WhatsApp-এ নিজে থেকে কিছু পাঠাই না, তাই আপনার নম্বর বন্ধ হওয়ার ভয় নেই।',
+          'We never send WhatsApp messages on our own, so your number is never at risk.',
         ),
       ],
     },
@@ -165,11 +173,11 @@ export function faqItems(
       ],
     },
     {
-      q: t('অতিথির ফোন নম্বর বা ইমেইল কি নিরাপদ?', 'Are my guests’ phone numbers and emails safe?'),
+      q: t('অতিথির ফোন নম্বর কি নিরাপদ?', 'Are my guests’ phone numbers safe?'),
       a: [
         t(
-          'এগুলো শুধু আমন্ত্রণ পাঠানোর জন্য রাখা হয়। অতিথির পাতায় দেখানো হয় না। বিয়ের মেয়াদ শেষের ৩০ দিন পরে মুছে ফেলা হয়।',
-          'They are kept only to send invitations and are never shown on a guest’s page. They are deleted 30 days after the wedding term ends.',
+          'ফোন নম্বর শুধু আমন্ত্রণ পাঠানোর জন্য রাখা হয়। অতিথির পাতায় দেখানো হয় না। আমন্ত্রণের মেয়াদ শেষের ৩০ দিন পরে মুছে ফেলা হয়।',
+          'Phone numbers are kept only to send invitations and are never shown on a guest’s page. They are deleted 30 days after the invitation expires.',
         ),
       ],
     },

@@ -88,12 +88,15 @@ it('renders no reviews or founder note until real data exists', () => {
   expect(real.container.textContent).toContain('খুব সুন্দর হয়েছে');
 });
 
-it('explains one-tap WhatsApp, automatic email and the 30-day deletion in the FAQ', () => {
+it('explains both ways of sending from the host’s own WhatsApp, with no email promise, and the 30-day deletion in the FAQ', () => {
   wrap(<FAQ />);
   const text = document.body.textContent ?? '';
   expect(text).toContain('Send চাপবেন');
-  expect(text).toContain('ইমেইলেও নিজে থেকে চলে যায়');
-  expect(text).toContain('আমরা কিছু নিজে থেকে পাঠাই না');
+  expect(text).toContain('নাম ধরে আলাদা আমন্ত্রণ');
+  expect(text).toContain('সবার জন্য একটি লিংক');
+  expect(text).toContain('কতজন আসবেন');
+  expect(text).not.toContain('নিজে থেকে চলে যায়');
+  expect(text).toContain('আমরা WhatsApp-এ নিজে থেকে কিছু পাঠাই না');
   expect(text).toContain('৩০ দিন পরে');
 });
 
@@ -130,7 +133,8 @@ it('names the packages Classic and Premium on cards and links the live sample', 
 it('writes the policies in plain Bangla with the guest-contact deletion line', () => {
   wrap(<PoliciesPage />);
   const text = document.body.textContent ?? '';
-  expect(text).toContain('৩০ দিন পরে এই যোগাযোগের তথ্য মুছে ফেলা হয়');
+  expect(text).toContain('৩০ দিন পরে এই ফোন নম্বর মুছে ফেলা হয়');
+  expect(text).not.toMatch(/ইমেইল বা|MAIL_/);
   expect(text).toContain('ক্লাসিক ৳৫০০');
   expect(text).not.toMatch(/portal activation|republish|refund|retention|order\/audit|বিক্রেতা/);
 });

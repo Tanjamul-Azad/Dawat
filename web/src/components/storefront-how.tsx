@@ -108,8 +108,8 @@ export function HowItWorks() {
     {
       title: t('অতিথিদের পাঠান', 'Send it to your guests'),
       body: t(
-        'প্রতিটি পরিবারের আলাদা লিংক। WhatsApp-এ এক ট্যাপে পাঠান। অতিথি ছবির এই পাতায় উত্তর দেন, আপনি সব উত্তর এক জায়গায় দেখেন।',
-        'Each family gets its own link. Send it on WhatsApp in one tap. Guests reply on the page shown here, and you see every reply in one place.',
+        'নাম ধরে আলাদা লিংক, নয়তো সবার জন্য একটি লিংক। দুটোই আপনার নিজের WhatsApp থেকে যায়। অতিথি ছবির এই পাতায় উত্তর দেন, আপনি সব উত্তর এক জায়গায় দেখেন।',
+        'Either a personal link for each family, or one link for everyone. Both go out from your own WhatsApp. Guests reply on the page shown here, and you see every reply in one place.',
       ),
     },
   ];
