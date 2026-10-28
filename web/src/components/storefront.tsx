@@ -392,6 +392,49 @@ export function Pricing({
   );
 }
 
+// Tuberose petals and gold dust drifting over the hero photo. Fixed positions keep server and
+// client markup identical; the motion is CSS only and is removed for reduced motion.
+const petals = [
+  [34, 11, 15, 0, 26], [48, 9, 19, 4, -32], [61, 13, 17, 9, 18], [72, 8, 21, 2, -20],
+  [83, 12, 16, 6, 30], [92, 10, 20, 12, -24], [55, 7, 23, 14, 22], [40, 9, 18, 17, -18],
+  [66, 11, 22, 19, 28], [88, 8, 17, 21, -30], [77, 14, 24, 7, 16], [96, 9, 19, 15, -14],
+] as const;
+const dust = [
+  [52, 22, 0], [64, 38, 1.4], [74, 18, 2.8], [86, 44, 0.7], [58, 62, 2.1],
+  [80, 70, 3.5], [92, 28, 1.8], [69, 54, 4.2], [46, 40, 3], [95, 60, 0.4],
+] as const;
+function HeroPetals() {
+  return (
+    <div className={s.petals} aria-hidden="true">
+      {petals.map(([left, size, duration, delay, sway], i) => (
+        <svg
+          key={`p${i}`}
+          className={i % 4 === 2 ? `${s.petal} ${s.petalMarigold}` : s.petal}
+          viewBox="0 0 12 18"
+          style={
+            {
+              left: `${left}%`,
+              width: size,
+              animationDuration: `${duration}s`,
+              animationDelay: `-${delay}s`,
+              '--sway': `${sway}px`,
+            } as React.CSSProperties
+          }
+        >
+          <path d="M6 0C10 5 10 13 6 18C2 13 2 5 6 0Z" />
+        </svg>
+      ))}
+      {dust.map(([left, top, delay], i) => (
+        <span
+          key={`d${i}`}
+          className={s.dust}
+          style={{ left: `${left}%`, top: `${top}%`, animationDelay: `${delay}s` }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentReviewPromise }) {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
@@ -424,12 +467,16 @@ export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentRev
             src="/brand/storefront-hero-match.webp"
             srcSet="/brand/storefront-hero-match-900.webp 900w, /brand/storefront-hero-match.webp 1600w"
             sizes="100vw"
-            alt={t('জামদানি নকশার ডিজিটাল আমন্ত্রণের ছবি', 'A Jamdani-inspired digital invitation')}
+            alt={t(
+              'জামদানি নকশার বিয়ের আমন্ত্রণপত্র, পাশে খাম ও ফুল',
+              'A Jamdani-bordered wedding invitation card with its envelope and flowers',
+            )}
             width="1600"
             height="900"
             fetchPriority="high"
           />
         </figure>
+        <HeroPetals />
       </section>
       <ul className={s.values}>
         <li>
