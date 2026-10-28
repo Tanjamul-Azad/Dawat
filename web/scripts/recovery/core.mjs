@@ -133,7 +133,7 @@ export async function tableInventory(client) {
   const { rows } = await client.query(`select n.nspname as schema,c.relname as name from pg_class c
     join pg_namespace n on n.oid=c.relnamespace where c.relkind='r'
     and n.nspname in ('public','private','auth','supabase_migrations')
-    and not (n.nspname='auth' and c.relname='schema_migrations') order by 1,2`);
+    and not (n.nspname='auth' and (c.relname='schema_migrations' or c.relname like 'mfa\_%')) order by 1,2`);
   const tables = [];
   for (const row of rows) {
     const table = `${quote(row.schema)}.${quote(row.name)}`;
@@ -181,9 +181,10 @@ export async function backup({ recoveryEnv, deploymentEnv }) {
     const snapshot = (await client.query('select pg_export_snapshot() snapshot')).rows[0].snapshot;
     const inventory = await tableInventory(client);
     const vault = await client.query('select count(*)::int n from vault.secrets');
-    const mfa = await client.query('select count(*)::int n from auth.mfa_factors');
-    if (vault.rows[0].n || mfa.rows[0].n)
-      throw Error('Encrypted platform secrets/MFA require an additional root-key recovery procedure.');
+    if (vault.rows[0].n) throw Error('Encrypted platform secrets require an additional root-key recovery procedure.');
+    // Authenticator secrets are never exported. After a restore each MFA user enrolls again.
+    const mfaFactors = (await client.query("select count(*)::int n from auth.mfa_factors where status='verified'"))
+      .rows[0].n;
     const columns = (
       await client.query(`select table_schema,table_name,column_name,data_type from information_schema.columns
       where table_schema='auth' order by table_name,ordinal_position`)
@@ -263,6 +264,8 @@ export async function backup({ recoveryEnv, deploymentEnv }) {
           'auth',
           '--exclude-table',
           'auth.schema_migrations',
+          '--exclude-table-data',
+          'auth.mfa_*',
         ],
         { env: pgEnv },
       ),
@@ -310,6 +313,7 @@ export async function backup({ recoveryEnv, deploymentEnv }) {
       buckets,
       policies,
       objectBytes,
+      mfaFactorsNotRestored: mfaFactors,
     };
     writeFileSync(
       join(pending, 'manifest.bin'),
@@ -329,6 +333,7 @@ export async function backup({ recoveryEnv, deploymentEnv }) {
       objectBytes,
       entries: entries.length,
       encrypted: true,
+      mfaReenrollRequired: mfaFactors > 0,
     };
     writeFileSync(join(destination, 'receipt.json'), JSON.stringify(proof, null, 2), { mode: 0o600 });
     return { destination, proof };
