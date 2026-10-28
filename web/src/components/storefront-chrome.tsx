@@ -9,6 +9,7 @@ import { socialLinks } from '@/features/production/brand';
 import { BrandLockup, LotusMark } from './brand-mark';
 import { MotionConfig } from 'motion/react';
 import s from './storefront.module.css';
+import { usePageMotion } from './storefront-motion';
 
 const phoneDisplay = `0${whatsappNumber.slice(3, 7)} ${whatsappNumber.slice(7)}`;
 
@@ -301,6 +302,7 @@ function WhatsAppBubble() {
 
 export function StorefrontFrame({ children, overlay = false }: { children: ReactNode; overlay?: boolean }) {
   const { locale } = useProductLocale();
+  usePageMotion();
   return (
     <MotionConfig reducedMotion="user" transition={{ duration: 0.22, ease: 'easeOut' }}>
       <div className={s.site} lang={locale}>

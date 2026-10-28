@@ -464,6 +464,63 @@
   }
 }
 
+/* Phones and tablets: steps and promises become side-by-side swipe rails, like the design and journey rails. */
+@media (max-width: 1023.98px) {
+  .stepList {
+    grid-auto-columns: min(84%, 340px);
+    grid-auto-flow: column;
+    gap: 14px;
+    margin: 28px calc(-1 * var(--gutter)) 0 !important;
+    padding: 4px var(--gutter) 14px !important;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: var(--gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .stepList::before,
+  .stepList::after {
+    display: none;
+  }
+  .stepList li {
+    align-content: start;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    scroll-snap-align: start;
+  }
+  .stepList .phone {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 180px;
+  }
+}
+@media (max-width: 599.98px) {
+  /* Three short promises fit side by side on a phone; no swiping needed. */
+  .promise ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .promise li {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 10px;
+  }
+  .promise li > svg {
+    width: 20px;
+    height: 20px;
+  }
+  .promise li h3 {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+  .promise li p {
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .stepList::after,
   .stepList b,
@@ -568,15 +625,20 @@
 }
 .journeyList {
   display: grid;
-  grid-auto-columns: 74%;
+  grid-auto-columns: 46%;
   grid-auto-flow: column;
-  gap: 16px;
+  gap: 12px;
   margin: 28px calc(-1 * var(--gutter)) 0 !important;
   padding: 8px var(--gutter) 14px !important;
   overflow-x: auto;
   scroll-padding-inline: var(--gutter);
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.journeyList::-webkit-scrollbar,
+.stepList::-webkit-scrollbar {
+  display: none;
 }
 .journeyList > li {
   position: relative;

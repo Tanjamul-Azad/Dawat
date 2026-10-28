@@ -2698,3 +2698,48 @@ legend {
     transform: none !important;
   }
 }
+
+/* Public-site motion (see storefront-motion.ts). Elements below the fold rise in once; the
+   attribute is removed afterwards so each element's own hover and tilt transforms take over. */
+#public-main [data-motion] {
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--motion-delay, 0ms);
+}
+#public-main [data-motion='hidden'] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0) scale(0.985);
+}
+/* A soft light that follows the pointer across marked cards (fine pointers only). */
+@media (hover: hover) and (pointer: fine) {
+  #public-main [data-glow] {
+    position: relative;
+    isolation: isolate;
+  }
+  #public-main [data-glow]::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      260px circle at var(--gx, 50%) var(--gy, 50%),
+      rgb(201 160 80 / 0.2),
+      transparent 65%
+    );
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  #public-main [data-glow]:hover::after {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #public-main [data-motion] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

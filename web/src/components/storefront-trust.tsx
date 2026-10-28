@@ -42,7 +42,7 @@ export function PromiseBlock({ paymentPromise }: { paymentPromise?: PaymentRevie
       <h2 id="promise-title">{t('আমাদের কথা দেওয়া', 'What we promise')}</h2>
       <ul>
         {items.map((item) => (
-          <li key={item.title}>
+          <li key={item.title} data-glow>
             {item.icon}
             <div>
               <h3>{item.title}</h3>

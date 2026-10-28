@@ -128,7 +128,7 @@ export function HowItWorks() {
       </div>
       <ol ref={list} className={x.stepList}>
         {steps.map((step, index) => (
-          <li key={step.title} data-reached={index < reached || undefined}>
+          <li key={step.title} data-reached={index < reached || undefined} data-glow>
             <b aria-hidden="true">{locale === 'bn' ? ['১', '২', '৩', '৪'][index] : index + 1}</b>
             <div className={x.stepText}>
               <h3>{step.title}</h3>

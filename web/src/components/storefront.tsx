@@ -23,7 +23,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { StorefrontFrame, StickyCta } from './storefront-chrome';
 import { CornerOrnaments, JamdaniDivider } from './storefront-ornaments';
 import { FAQ, FounderNote, PromiseBlock, Reviews } from './storefront-trust';
-import { HowItWorks, JourneyStrip, PhoneFrame, RsvpDemo } from './storefront-how';
+import { HowItWorks, JourneyStrip, RsvpDemo } from './storefront-how';
 import { NAME_LIMIT, withNames, type CoupleNames } from './storefront-names';
 
 export { StorefrontFrame, FAQ };
@@ -330,7 +330,7 @@ export function Pricing({
       </div>
       <div className={s.priceGrid}>
         {cards.map(({ tier, note, feature, href }) => (
-          <article key={tier} className={tier === 'premium' ? s.featuredPrice : undefined}>
+          <article key={tier} className={tier === 'premium' ? s.featuredPrice : undefined} data-glow>
             {tier === 'premium' && (
               <>
                 <span className={s.pickBadge}>{t('সবচেয়ে পছন্দের', 'Recommended')}</span>
@@ -397,7 +397,7 @@ export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentRev
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   return (
     <StorefrontFrame overlay>
-      <section className={`${s.hero} ${s.heroUnderHeader}`}>
+      <section className={`${s.hero} ${s.heroUnderHeader}`} data-parallax>
         <div className={s.heroCopy}>
           <h1>
             {t('একটি নিমন্ত্রণপত্র।', 'An invitation.')}
@@ -435,9 +435,6 @@ export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentRev
             fetchPriority="high"
           />
         </figure>
-        <div className={s.heroPhone} aria-hidden="true">
-          <PhoneFrame step={3} width={400} height={866} alt="" />
-        </div>
       </section>
       <ul className={s.values}>
         <li>
