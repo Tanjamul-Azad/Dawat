@@ -66,3 +66,4 @@ export async function listSales(staff = false, cursor?: string): Promise<SalesPa
     nextCursor: rows.length > 25 ? `${rows[24].created_at}|${rows[24].id}` : null,
   };
 }
+

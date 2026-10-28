@@ -29,6 +29,7 @@ type Props = {
 };
 
 export type ResponseTransport = {
+  demo?: boolean;
   allowances: Record<string, number>;
   policies: Record<string, { isOpen: boolean; deadline: string | null }>;
   submitResponse: (eventId: string, answer: Guest['responses'][string]) => Promise<void>;
@@ -231,7 +232,7 @@ export function InvitationResponse({ invitation, guest, events, locale, update, 
                 </strong>
               )}
               <small>
-                {remote
+                {remote?.demo ? (locale === 'bn' ? 'এটা নমুনা, উত্তর সংরক্ষণ হয়নি' : 'This is a sample; your reply was not saved.') : remote
                   ? locale === 'bn'
                     ? 'সার্ভারে আপনার উত্তর সংরক্ষিত হয়েছে।'
                     : 'Your reply is confirmed on the server.'

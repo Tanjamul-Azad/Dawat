@@ -105,7 +105,7 @@ export function ClientDashboard({ initial, email }: { initial: WeddingSummary[];
                     <div className={s.actions}>
                       <a className={s.button} href={`/weddings/${w.id}/`}>
                         <NotebookPen size={15} />
-                        {t('আমন্ত্রণ সম্পাদনা', 'Edit invitation')}
+                        {t('আমন্ত্রণ এডিট করুন', 'Edit invitation')}
                         <ArrowRight size={14} />
                       </a>
                       <a className={s.secondary} href={`/weddings/${w.id}/guests/`}>
@@ -117,7 +117,7 @@ export function ClientDashboard({ initial, email }: { initial: WeddingSummary[];
                     <span className={s.badge}>
                       <LockKeyhole size={13} />
                       {w.state === 'expired'
-                        ? t('মেয়াদ শেষ · বিক্রেতার সঙ্গে যোগাযোগ করুন', 'Expired · contact your seller')
+                        ? t('মেয়াদ শেষ · দাওয়াত টিমের সঙ্গে কথা বলুন', 'Expired · contact the Dawat team')
                         : tr(w.state)}
                     </span>
                   )}
@@ -142,7 +142,7 @@ export function ClientDashboard({ initial, email }: { initial: WeddingSummary[];
           <p>{tr('Your draft stays private until you publish.')}</p>
           <p>
             {t(
-              'নিজের কর্মপরিসরের লিংক ব্যক্তিগত রাখুন। অতিথিদের জন্য আলাদা আমন্ত্রণের লিংক তৈরি করবেন।',
+              'আপনার আয়োজনের পাতার লিংক গোপন রাখুন। অতিথিদের জন্য আলাদা আমন্ত্রণের লিংক বানাবেন।',
               'Keep your workspace link private. Create separate invitation links for guests.',
             )}
           </p>

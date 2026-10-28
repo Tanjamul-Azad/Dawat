@@ -29,6 +29,7 @@ import { PhotoLibrary } from './photo-library';
 import { useProductLocale } from './product-locale';
 import { errorText } from '@/features/production/copy';
 import { type EditorSection } from '@/features/production/navigation';
+import { HostWhatsappSettings } from './open-invite';
 import { HandoffLinks } from './handoff-links';
 import { findTemplate } from '@/features/production/catalog';
 import { formatDhaka } from '@/features/production/dates';
@@ -335,7 +336,7 @@ export function WeddingDesk({
             {isPaused
               ? t('Paused', 'সাময়িক বন্ধ')
               : isPublished
-                ? t('Published', 'প্রকাশিত')
+                ? t('Published', 'অতিথিদের জন্য চালু')
                 : t('Private draft', 'ব্যক্তিগত খসড়া')}
             {isPublished && !publishedCurrent ? ' · ' + t('Draft changes', 'খসড়ায় পরিবর্তন') : ''}
           </span>
@@ -348,7 +349,7 @@ export function WeddingDesk({
       )}
       {needsSignIn && (
         <section className={s.panel} role="status">
-          <h2>{t('Sign in again to save.', 'সংরক্ষণ করতে আবার প্রবেশ করুন।')}</h2>
+          <h2>{t('Sign in again to save.', 'সেভ করতে আবার লগইন করুন।')}</h2>
           <p>
             {t(
               'Your edits remain in this tab. Sign in with the same account in a new tab, then return and refresh to review before saving.',
@@ -361,7 +362,7 @@ export function WeddingDesk({
             target="_blank"
             rel="noopener noreferrer"
           >
-            {t('Sign in in a new tab', 'নতুন ট্যাবে প্রবেশ করুন')}
+            {t('Sign in in a new tab', 'নতুন ট্যাবে লগইন করুন')}
           </WorkspaceLink>
           <button className={s.secondary} disabled={busy || saving} onClick={refresh}>
             {t('Review saved version', 'সংরক্ষিত সংস্করণ যাচাই করুন')}
@@ -510,10 +511,13 @@ export function WeddingDesk({
                   <li>
                     {publishedCurrent ? <Check size={16} /> : <Circle size={16} />}{' '}
                     <button className={s.quiet} onClick={() => setStep('review')}>
-                      {t('Review publication', 'প্রকাশের আগে যাচাই')}
+                      {t('Review publication', 'চালু করার আগে দেখে নিন')}
                     </button>
                     <span>
-                      {t('Preview and publish when ready.', 'প্রিভিউ দেখে প্রস্তুত হলে প্রকাশ করুন।')}
+                      {t(
+                        'Preview and publish when ready.',
+                        'প্রিভিউ দেখে ঠিক মনে হলে অতিথিদের জন্য চালু করুন।',
+                      )}
                     </span>
                   </li>
                 </ul>
@@ -538,7 +542,7 @@ export function WeddingDesk({
                     }
                   >
                     {publishedCurrent
-                      ? t('Edit invitation', 'আমন্ত্রণ সম্পাদনা')
+                      ? t('Edit invitation', 'আমন্ত্রণ এডিট করুন')
                       : t('Continue setup', 'পরের ধাপে যান')}
                   </button>
                   <button className={s.secondary} disabled={busy} onClick={refresh}>
@@ -547,6 +551,7 @@ export function WeddingDesk({
                   </button>
                 </div>
               </section>
+              <HostWhatsappSettings wid={initial.wedding.id} />
               {detail.workspaceUrl && (
                 <HandoffLinks
                   workspaceUrl={detail.workspaceUrl}
@@ -557,7 +562,7 @@ export function WeddingDesk({
                 />
               )}
               <section className={s.panel}>
-                <h2>{t('Publication & sharing', 'প্রকাশনা ও শেয়ারিং')}</h2>
+                <h2>{t('Publication & sharing', 'আমন্ত্রণ চালু ও শেয়ার')}</h2>
                 {isPaused && (
                   <p className={s.notice}>
                     {t(
@@ -596,7 +601,7 @@ export function WeddingDesk({
                   <p>
                     {t(
                       'No events are selected for a general invitation. Select them in Celebrations before sharing a general link.',
-                      'সাধারণ লিংকের জন্য কোনো অনুষ্ঠান নির্বাচন করা হয়নি।',
+                      'সবার জন্য লিংকে কোনো অনুষ্ঠান বাছা হয়নি।',
                     )}
                   </p>
                 )}
@@ -651,7 +656,7 @@ export function WeddingDesk({
                       }}
                     >
                       <PencilLine size={15} />{' '}
-                      {wordingEditing ? t('Done', 'সম্পাদনা শেষ') : t('Edit wording', 'লেখা সম্পাদনা করুন')}
+                      {wordingEditing ? t('Done', 'এডিট শেষ') : t('Edit wording', 'লেখা এডিট করুন')}
                     </button>
                   </div>
                   {!wordingEditing && (
@@ -931,8 +936,10 @@ export function WeddingDesk({
                   : publishedCurrent
                     ? isPaused
                       ? t('Paused', 'সাময়িক বন্ধ')
-                      : t('Published', 'প্রকাশিত')
-                    : t('Publish invitation', 'আমন্ত্রণ প্রকাশ করুন')}
+                      : t('Published', 'অতিথিদের জন্য চালু')
+                    : isPublished
+                      ? t('Publish changes', 'পরিবর্তন প্রকাশ করুন')
+                      : t('Publish invitation', 'অতিথিদের জন্য চালু করুন')}
               </button>
             </section>
           )}

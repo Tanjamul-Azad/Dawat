@@ -9,6 +9,8 @@ import { formatDhaka } from '@/features/production/dates';
 import { latinDigits } from '@/features/production/copy';
 import { WorkspaceFrame } from './frame';
 import { Modal } from '../ui';
+import { NotifyCustomer } from './notify-customer';
+import { parsePhone } from '@/features/production/phone';
 import s from './workspace.module.css';
 type Page = {
   orders: SellerOrder[];
@@ -33,11 +35,18 @@ export function SellerOrders({
   const [page, setPage] = useState(initial);
   const [selected, setSelected] = useState<SellerOrder | null>(null);
   const [creating, setCreating] = useState(false);
-  const [action, setAction] = useState<SellerCommand['kind'] | null>(null);
+  const [action, setAction] = useState<Exclude<SellerCommand['kind'], 'verify-confirm-activate'> | null>(
+    null,
+  );
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   // After activation: the customer's own portal address, ready to copy and send.
-  const [handoff, setHandoff] = useState<{ url: string; email: string } | null>(null);
+  const [handoff, setHandoff] = useState<{
+    url: string;
+    email: string;
+    name: string;
+    phone: string | null;
+  } | null>(null);
   const [copied, setCopied] = useState(false);
   const [busy, setBusy] = useState(false);
   const [timeline, setTimeline] = useState<Timeline>([]);
@@ -137,7 +146,7 @@ export function SellerOrders({
       command =
         action === 'verify-payment'
           ? {
-              kind: action,
+              kind: f.get('activate') ? ('verify-confirm-activate' as const) : action,
               ...base,
               amountMinor: amount!,
               method: value('method'),
@@ -162,21 +171,26 @@ export function SellerOrders({
         key: attempt.current.key,
       });
       const weddingId = result?.weddingId ?? (selected?.weddingId || null);
-      if (command.kind === 'activate' && weddingId && selected)
+      const opensAccess = command.kind === 'activate' || command.kind === 'verify-confirm-activate';
+      if (opensAccess && weddingId && selected)
         setHandoff({
           url: `${window.location.origin}/weddings/${weddingId}/`,
           email: selected.customer_email,
+          name: selected.customer_name,
+          phone: parsePhone(selected.customer_phone ?? selected.payment_sender),
         });
       attempt.current = null;
       setAction(null);
       setCreating(false);
       setSelected(null);
       setNotice(
-        command.kind === 'activate'
-          ? tr(
-              'Access activated for the intended verified customer. Copy their dashboard entry below; no message has been sent.',
-            )
-          : tr('Action saved and recorded in the audit timeline.'),
+        command.kind === 'verify-confirm-activate'
+          ? tr('Payment verified, order confirmed and access opened. Tell the customer below.')
+          : command.kind === 'activate'
+            ? tr(
+                'Access activated for the intended verified customer. Copy their dashboard entry below; no message has been sent.',
+              )
+            : tr('Action saved and recorded in the audit timeline.'),
       );
       try {
         await refresh();
@@ -230,15 +244,16 @@ export function SellerOrders({
       {handoff && (
         <section
           className={s.panel}
-          aria-label={locale === 'bn' ? 'গ্রাহকের পোর্টাল লিংক' : 'Customer portal link'}
+          aria-label={locale === 'bn' ? 'গ্রাহকের আয়োজনের পাতার লিংক' : 'Customer’s wedding page link'}
         >
-          <h2>{locale === 'bn' ? 'গ্রাহকের নিজস্ব পোর্টাল লিংক' : "Customer's own portal link"}</h2>
+          <h2>{locale === 'bn' ? 'গ্রাহকের আয়োজনের পাতার লিংক' : 'Customer’s wedding page link'}</h2>
           <p className={s.muted}>
             {locale === 'bn'
               ? `এই লিংক ${handoff.email}-কে পাঠান। তিনি এই ইমেইলের কোড দিয়ে লগইন করলেই সরাসরি তাঁর আমন্ত্রণ খুলবে। কোনো বার্তা স্বয়ংক্রিয়ভাবে পাঠানো হয়নি।`
               : `Send this link to ${handoff.email}. Signing in with that email opens their invitation directly. No message has been sent automatically.`}
           </p>
           <p className={s.code}>{handoff.url}</p>
+          <NotifyCustomer name={handoff.name} email={handoff.email} phone={handoff.phone} url={handoff.url} />
           <button className={s.button} onClick={() => void copyHandoff()}>
             <Copy size={15} />
             {copied
@@ -306,7 +321,9 @@ export function SellerOrders({
                     </small>
                   </td>
                   <td data-label={tr('Payment')}>
-                    {o.payment_status === 'manually_verified' ? tr('Manually verified') : tr('Pending')}
+                    {o.payment_status === 'manually_verified'
+                      ? tr('Manually verified')
+                      : tr('Payment pending')}
                     {o.exception_reason && <small>{tr('Approved exception')}</small>}
                   </td>
                   <td data-label={tr('Management')}>
@@ -388,7 +405,10 @@ export function SellerOrders({
               <div>
                 <dt>{tr('Payment')}</dt>
                 <dd>
-                  {tr(selected.payment_status)} · {money(selected.amount_minor)}
+                  {selected.payment_status === 'pending'
+                    ? tr('Payment pending')
+                    : tr(selected.payment_status)}{' '}
+                  · {money(selected.amount_minor)}
                 </dd>
               </div>
               <div>
@@ -401,7 +421,7 @@ export function SellerOrders({
             {selected.access === 'active' && selected.weddingId && (
               <div className={s.detail}>
                 <p className={s.muted}>
-                  {locale === 'bn' ? 'গ্রাহকের নিজস্ব পোর্টাল লিংক' : "Customer's own portal link"}
+                  {locale === 'bn' ? 'গ্রাহকের আয়োজনের পাতার লিংক' : 'Customer’s wedding page link'}
                 </p>
                 <p
                   className={s.code}
@@ -412,6 +432,8 @@ export function SellerOrders({
                     setHandoff({
                       url: `${window.location.origin}/weddings/${selected.weddingId}/`,
                       email: selected.customer_email,
+                      name: selected.customer_name,
+                      phone: parsePhone(selected.customer_phone ?? selected.payment_sender),
                     });
                     void navigator.clipboard
                       .writeText(`${window.location.origin}/weddings/${selected.weddingId}/`)
@@ -423,6 +445,14 @@ export function SellerOrders({
                   {locale === 'bn' ? 'লিংক কপি করুন' : 'Copy link'}
                 </button>
               </div>
+            )}
+            {selected.access === 'active' && selected.weddingId && (
+              <NotifyCustomer
+                name={selected.customer_name}
+                email={selected.customer_email}
+                phone={parsePhone(selected.customer_phone ?? selected.payment_sender)}
+                url={`${typeof window === 'undefined' ? '' : window.location.origin}/weddings/${selected.weddingId}/`}
+              />
             )}
             <div className={s.actions}>
               {selected.payment_status === 'pending' && (
@@ -601,6 +631,12 @@ export function SellerOrders({
                         'This customer will lose access to drafts and dashboard commands immediately. Guest publication and existing records remain.',
                       )}
                     </p>
+                  )}
+                  {action === 'verify-payment' && selected?.status === 'reviewing' && (
+                    <label className={s.checkbox}>
+                      <input type="checkbox" name="activate" defaultChecked />
+                      {tr('Also confirm the order and open the customer’s page right now')}
+                    </label>
                   )}
                   <label>
                     {tr('Reason / evidence reviewed')}

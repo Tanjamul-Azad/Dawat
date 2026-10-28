@@ -156,9 +156,10 @@ export async function serveMedia(args: {
   slug?: string;
   hid?: string;
   sessionDigest?: string;
+  openDigest?: string;
 }) {
   const db = await database();
-  const r = await db.rpc('resolve_media', {
+  const r = args.openDigest ? await db.rpc('resolve_open_media', { p_slug: args.slug!, p_open_digest: args.openDigest, p_asset_id: args.assetId, p_size: args.size }) : await db.rpc('resolve_media', {
     p_asset_id: args.assetId,
     p_size: args.size,
     p_wedding_id: args.wid,

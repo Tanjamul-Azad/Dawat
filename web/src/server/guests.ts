@@ -96,6 +96,8 @@ export async function report(
   search: string,
   status: string,
   verified?: Awaited<ReturnType<typeof session>>,
+  delivery = 'all',
+  source = 'all',
 ): Promise<HouseholdReport> {
   const { db } = verified ?? (await session());
   const r = await db.rpc('household_report', {
@@ -104,6 +106,8 @@ export async function report(
     p_after: after ?? undefined,
     p_search: search,
     p_status: status,
+    p_delivery: delivery,
+    p_source: source,
   });
   dbError(r.error);
   return r.data as unknown as HouseholdReport;

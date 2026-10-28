@@ -151,7 +151,7 @@ export function PhotoLibrary({
         <p role="status" className={s.notice}>
           {t(
             'Photo uploads are not available yet. You can still edit and save the other invitation details.',
-            'ছবি আপলোড সেবা এখনও চালু হয়নি। অন্য তথ্য সম্পাদনা ও সংরক্ষণ করতে পারবেন।',
+            'ছবি আপলোড সেবা এখনও চালু হয়নি। বাকি তথ্য এডিট ও সেভ করতে পারবেন।',
           )}
         </p>
       )}
@@ -343,7 +343,7 @@ export function PhotoLibrary({
       <p className={s.muted}>
         {t(
           'Save prepares the gallery. Publish makes changes visible to your guests.',
-          'সংরক্ষণে খসড়া প্রস্তুত হবে। প্রকাশ করলে অতিথিরা পরিবর্তন দেখবেন।',
+          'সেভ করলে খসড়া তৈরি হবে। অতিথিদের জন্য চালু করলে তাঁরা পরিবর্তন দেখবেন।',
         )}
       </p>
     </section>

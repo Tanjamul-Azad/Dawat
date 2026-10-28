@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { draftContent, uuid } from './contracts';
+import { phoneInput } from './delivery';
 const plain = (max: number) => z.string().max(max);
 const meaningful = (s: string) =>
   s.replace(/[\s\u0000-\u001f\u007f\u200b\u200c\u200d\ufeff]/g, '').length > 0;
@@ -13,6 +14,7 @@ export const householdInput = z
       .refine(meaningful, 'Enter a guest or family name.')
       .refine((s) => !/[\u0000-\u001f\u007f]/.test(s), 'Names cannot contain control characters.'),
     nameBn: plain(120),
+    contactPhone: phoneInput,
     greeting: plain(300),
     greetingEn: plain(300),
     message: plain(500),
@@ -93,6 +95,7 @@ export const guestPayload = z
     householdRevision: z.number().int(),
     responseRevision: z.number().int(),
     policyRevision: z.number().int(),
+    hostWhatsapp: z.string().optional(),
   })
   .strict();
 export type GuestPayload = z.infer<typeof guestPayload>;
@@ -102,6 +105,11 @@ export type HouseholdRow = HouseholdInput & {
   responseRevision: number;
   linkRevision: number;
   linkState: 'missing' | 'active' | 'revoked';
+  lastDelivery?: { channel: 'whatsapp' | 'share' | 'copy'; at: string; linkRevision: number } | null;
+  firstOpenedAt?: string | null;
+  source?: 'host' | 'open';
+  hidden?: boolean;
+  duplicateOf?: string | null;
   responses: GuestPayload['guest']['responses'];
 };
 export type HouseholdReport = {
@@ -114,6 +122,11 @@ export type HouseholdReport = {
     pending: number;
     adults: number;
     children: number;
+    sent?: number;
+    opened?: number;
+    replied?: number;
+    openCount?: number;
+    hostCount?: number;
   };
   asOf: string;
   policyRevision: number;

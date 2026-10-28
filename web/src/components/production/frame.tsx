@@ -20,6 +20,44 @@ import { DAWAT_CONTACT_EMAIL, DAWAT_CONTACT_HREF } from '@/features/production/b
 import { safeReturnPath } from '@/features/production/navigation';
 import s from './workspace.module.css';
 import { BrandLockup } from '../brand-mark';
+type AdminCounts = { requests: number; payments: number };
+const banglaDigits = (n: number) => new Intl.NumberFormat('bn-BD').format(n);
+// The menu badge and the "(2)" in the tab title share one count. It refreshes every minute
+// and whenever the team returns to the tab.
+function useAdminCounts(enabled: boolean, locale: 'bn' | 'en') {
+  const [counts, setCounts] = useState<AdminCounts | null>(null);
+  useEffect(() => {
+    if (!enabled) return;
+    let disposed = false;
+    const load = async () => {
+      if (disposed || document.visibilityState === 'hidden') return;
+      try {
+        const summary = await api<{ newRequests: number; pendingPayments: number }>('/api/admin/summary/');
+        const next = { requests: summary.newRequests, payments: summary.pendingPayments };
+        if (!disposed) setCounts(next);
+      } catch {
+        /* Keep the last count; the page itself reports real errors. */
+      }
+    };
+    void load();
+    const timer = setInterval(() => void load(), 60_000);
+    document.addEventListener('visibilitychange', load);
+    window.addEventListener('focus', load);
+    return () => {
+      disposed = true;
+      clearInterval(timer);
+      document.removeEventListener('visibilitychange', load);
+      window.removeEventListener('focus', load);
+    };
+  }, [enabled]);
+  const total = counts ? counts.requests + counts.payments : 0;
+  useEffect(() => {
+    if (!enabled) return;
+    const base = document.title.replace(/^\([\d০-৯]+\)\s*/, '');
+    document.title = total > 0 ? `(${locale === 'bn' ? banglaDigits(total) : total}) ${base}` : base;
+  }, [enabled, total, locale]);
+  return { counts, total };
+}
 const NavigationGuard = createContext<{ pending: boolean; save: () => Promise<boolean> } | null>(null);
 export function WorkspaceLink(props: ComponentProps<typeof Link>) {
   const guard = useContext(NavigationGuard);
@@ -58,6 +96,7 @@ export function WorkspaceFrame({
   section?: 'requests';
 }) {
   const { tr, locale, setLocale } = useProductLocale();
+  const adminCounts = useAdminCounts(seller && !!email, locale);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   // The support bubble sits over row actions on a phone, so it steps aside while the page scrolls down.
@@ -110,11 +149,11 @@ export function WorkspaceFrame({
                   <span>{email}</span>
                 </summary>
                 <div className={s.accountPopover}>
-                  <strong>{locale === 'bn' ? 'প্রবেশ করা অ্যাকাউন্ট' : 'Signed-in account'}</strong>
+                  <strong>{locale === 'bn' ? 'লগইন করা অ্যাকাউন্ট' : 'Signed-in account'}</strong>
                   <p>{email}</p>
                   <p>
                     {locale === 'bn'
-                      ? 'অন্য ইমেইলে প্রবেশ করতে আগে বেরিয়ে যান।'
+                      ? 'অন্য ইমেইলে লগইন করতে আগে লগআউট করুন।'
                       : 'Sign out before using a different email.'}
                   </p>
                   <WorkspaceLink className={s.quiet} href={seller ? '/admin/orders/' : '/dashboard/?all=1'}>
@@ -158,11 +197,24 @@ export function WorkspaceFrame({
               <NotebookPen size={18} />
               {locale === 'bn'
                 ? seller
-                  ? 'অনুরোধ ও কোটেশন'
+                  ? 'অনুরোধ, দাম ও শর্ত'
                   : 'আমার অর্ডার'
                 : seller
-                  ? 'Requests & quotes'
+                  ? 'Requests, prices & terms'
                   : 'My orders'}
+              {seller && adminCounts.counts && adminCounts.total > 0 && (
+                <span
+                  className={s.navBadge}
+                  role="status"
+                  aria-label={
+                    locale === 'bn'
+                      ? `${banglaDigits(adminCounts.counts.requests)}টি নতুন অনুরোধ, ${banglaDigits(adminCounts.counts.payments)}টি পেমেন্ট যাচাই বাকি`
+                      : `${adminCounts.counts.requests} new requests, ${adminCounts.counts.payments} payments to check`
+                  }
+                >
+                  {locale === 'bn' ? banglaDigits(adminCounts.total) : adminCounts.total}
+                </span>
+              )}
             </WorkspaceLink>
             {wedding && (
               <>
@@ -195,7 +247,7 @@ export function WorkspaceFrame({
                   aria-current={wedding.view === 'editor' ? 'page' : undefined}
                 >
                   <NotebookPen size={18} />
-                  {locale === 'bn' ? 'আমন্ত্রণ সম্পাদনা' : 'Edit invitation'}
+                  {locale === 'bn' ? 'আমন্ত্রণ এডিট করুন' : 'Edit invitation'}
                 </WorkspaceLink>
                 <WorkspaceLink
                   href={`/weddings/${wedding.id}/guests/`}

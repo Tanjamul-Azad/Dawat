@@ -1780,3 +1780,19 @@ label.photoUpload {
     transition: none !important;
   }
 }
+
+/* Count of things waiting for the team, shown on the admin menu. */
+.navBadge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  margin-left: auto;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--wine, #7b1e3a);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}

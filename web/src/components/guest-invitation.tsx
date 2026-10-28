@@ -33,6 +33,7 @@ type Props = {
     guestId?: string;
   };
   responseTransport?: ResponseTransport;
+  hostWhatsapp?: string;
   onLocaleChange?: (locale: Locale) => void;
 };
 
@@ -43,6 +44,7 @@ export function GuestInvitation({
   storageError = '',
   authority,
   responseTransport,
+  hostWhatsapp,
   onLocaleChange,
 }: Props) {
   // Public sample replies never mutate an order, customer draft or the host workspace.
@@ -453,7 +455,7 @@ export function GuestInvitation({
               {authority && authority.scope !== 'public-sample' ? (
                 <p>
                   {locale === 'bn'
-                    ? 'এটি আপনার ব্যক্তিগত প্রিভিউ। বন্ধ করে তথ্য সম্পাদনা করুন। আমন্ত্রণ প্রকাশের পর অতিথিদের ব্যক্তিগত লিংক থেকে উত্তর ও শুভেচ্ছা নেওয়া যাবে।'
+                    ? 'এটি আপনার ব্যক্তিগত প্রিভিউ। বন্ধ করে তথ্য এডিট করুন। অতিথিদের জন্য চালু করার পর তাঁরা নিজের লিংক থেকে উত্তর ও শুভেচ্ছা পাঠাতে পারবেন।'
                     : 'This is your private preview. Close it to edit the details. After publishing, guests can reply and leave wishes through their personal invitation links.'}
                 </p>
               ) : (
@@ -505,6 +507,7 @@ export function GuestInvitation({
               )}
             </>
           )}
+          {hostWhatsapp && <p style={{ textAlign: 'center', padding: 24 }}><a href={`https://wa.me/${hostWhatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">{locale === 'bn' ? 'প্রশ্ন থাকলে WhatsApp করুন' : 'Questions? WhatsApp us'}</a></p>}
           <footer className={s.closing}>
             <WovenPattern className={s.closingPattern} />
             <span className={s.kicker}>{t.closing}</span>

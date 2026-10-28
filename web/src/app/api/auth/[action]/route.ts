@@ -13,7 +13,7 @@ export async function POST(request: Request, context: { params: Promise<{ action
         throw new HttpError(
           503,
           'EMAIL_SETUP_PENDING',
-          'Email sign-in is being prepared. Please contact your seller.',
+          'Email sign-in is being prepared. Please contact the Dawat team.',
         );
       const input = await body(request, z.object({ email: z.email().max(254) }).strict());
       const { error } = await db.auth.signInWithOtp({

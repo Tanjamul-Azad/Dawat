@@ -133,12 +133,104 @@ describe('Named guest credentials, isolation and real transactional replies', ()
     await db.exec(
       readFileSync('supabase/migrations/20261021054738_preserve_household_event_scope.sql', 'utf8'),
     );
+    await db.exec(readFileSync('supabase/migrations/20261028100000_whatsapp_delivery.sql', 'utf8'));
+    await db.exec(readFileSync('supabase/migrations/20261028110000_open_invitation.sql', 'utf8'));
+    await db.exec(readFileSync('supabase/migrations/20261028140000_household_duplicate_indexes.sql', 'utf8'));
     await db.query('insert into public.staff_roles(user_id) values($1)', [ids.staff]);
   }, 30000);
   afterAll(async () => db?.close());
   beforeEach(async () => {
     await db.exec('reset role');
     await db.exec('truncate private.rate_limits');
+  });
+
+  async function openFixture() {
+    const f = await fixture(); await actor();
+    const token = crypto.randomUUID();
+    await rpc('set_open_invite', [crypto.randomUUID(), f.wid, { expectedRevision: 0, enabled: true, eventIds: ['reception'], maxPeople: 2, greetingBn: 'প্রিয় অতিথি', greetingEn: 'Dear guest', askPhone: true, rotate: false }, hash(token), 'x'.repeat(90), 'v1']);
+    return { ...f, openToken: token };
+  }
+  async function join(f: Awaited<ReturnType<typeof openFixture>>, device = hash(crypto.randomUUID()), ip = hash(crypto.randomUUID()), name = 'Shared guest', phone: string | null = '+8801700000001') {
+    await actor(ids.alice, 'aal1', 'anon');
+    const session = hash(crypto.randomUUID());
+    const proposed = crypto.randomUUID();
+    const value = await rpc<{ householdId: string; expiresIn: number }>('join_open_invitation', [f.slug, hash(f.openToken), device, ip, name, phone, session, hash(crypto.randomUUID()), 'y'.repeat(90), 'v1', proposed]);
+    return { ...value, session, device };
+  }
+  it('normalizes the contract at the database boundary, records revision-bound delivery exactly once and isolates contacts', async () => {
+    const f = await fixture(); await actor();
+    await expect(rpc('save_household', [f.wid, f.hid, 1, crypto.randomUUID(), { ...household, contactPhone: '0171234' }])).rejects.toThrow(/WhatsApp/);
+    await rpc('save_household', [f.wid, f.hid, 1, crypto.randomUUID(), { ...household, contactPhone: '+8801700000001' }]);
+    const key = crypto.randomUUID();
+    const sent = await rpc('record_delivery', [key, f.wid, f.hid, 'whatsapp', 1]);
+    expect(await rpc('record_delivery', [key, f.wid, f.hid, 'whatsapp', 1])).toEqual(sent);
+    await expect(rpc('record_delivery', [crypto.randomUUID(), f.wid, f.hid, 'whatsapp', 2])).rejects.toThrow(/link changed/);
+    let report = await rpc<any>('household_report', [f.wid, 'reception']);
+    expect(report.rows[0]).toMatchObject({ contactPhone: '+8801700000001', lastDelivery: { channel: 'whatsapp', linkRevision: 1 } });
+    expect(report.rows[0].firstOpenedAt).toBeTruthy(); expect(report.summary.sent).toBe(1);
+    expect((await rpc<any>('household_report', [f.wid, 'reception', null, '', 'all', 'unsent'])).rows).toHaveLength(0);
+    expect(JSON.stringify(await rpc('export_households', [f.wid, 'reception']))).not.toContain('contact_phone');
+    expect(JSON.stringify(await rpc('export_households', [f.wid, 'reception', '', 'all', true]))).toContain('+8801700000001');
+    await actor(ids.bob); await expect(rpc('record_delivery', [crypto.randomUUID(), f.wid, f.hid, 'whatsapp', 1])).rejects.toThrow(/unavailable/);
+    await actor(ids.alice, 'aal1', 'anon'); expect(JSON.stringify(await read(f))).not.toMatch(/contactPhone|contact_phone|1700000001/);
+    await actor(); await rpc('household_link', [f.wid, f.hid, 'rotate', 1, crypto.randomUUID(), hash(crypto.randomUUID()), 'z'.repeat(90), 'v1']);
+    report = await rpc<any>('household_report', [f.wid, 'reception']); expect(report.rows[0].firstOpenedAt).toBeNull(); expect(report.summary.sent).toBe(0); expect(report.summary.opened).toBe(0);
+    expect(report.rows[0].lastDelivery.linkRevision).toBe(1);
+  });
+  it('exposes only the opted-in host number, with idempotent revision-checked settings', async () => {
+    const f = await fixture(); await actor(); const key = crypto.randomUUID();
+    const body = { expectedRevision: 0, hostWhatsapp: '+8801700000002', showHostWhatsapp: false, messageBn: '', messageEn: '' };
+    await rpc('set_invite_settings', [key, f.wid, body]); await rpc('set_invite_settings', [key, f.wid, body]);
+    await expect(rpc('set_invite_settings', [crypto.randomUUID(), f.wid, body])).rejects.toThrow(/changed/);
+    await actor(ids.alice, 'aal1', 'anon'); expect(await read(f)).not.toHaveProperty('hostWhatsapp');
+    await actor(); await rpc('set_invite_settings', [crypto.randomUUID(), f.wid, { ...body, expectedRevision: 1, showHostWhatsapp: true }]);
+    await actor(ids.alice, 'aal1', 'anon'); expect(await read(f)).toHaveProperty('hostWhatsapp', '+8801700000002');
+  });
+  it('joins one ordinary scoped household per device, reuses it and supports the existing allowance and RSVP command', async () => {
+    const f = await openFixture(); const g = await join(f);
+    expect((await join(f, g.device)).householdId).toBe(g.householdId);
+    const gf = { ...f, hid: g.householdId, session: g.session };
+    const payload = await read(gf); expect(payload.scopes).toEqual([{ eventId: 'reception', maxPeople: 2 }]);
+    await expect(command(gf, { ...(await replyBody(gf)), answers: [{ eventId: 'reception', attendance: 'accepted', adults: 3, children: 0, note: '' }] })).rejects.toThrow(/allowance/);
+    await command(gf, { ...(await replyBody(gf)), answers: [{ eventId: 'reception', attendance: 'accepted', adults: 2, children: 0, note: '' }] });
+    await expect(rpc('guest_invitation', [f.slug, f.hid, g.session])).rejects.toThrow(/unavailable/);
+    await expect(db.query('select * from public.households')).rejects.toThrow(/permission denied/);
+    await actor(); const report = await rpc<any>('household_report', [f.wid, 'reception', null, '', 'all', 'all', 'open']);
+    expect(report.rows).toHaveLength(1); expect(report.rows[0]).toMatchObject({ source: 'open', name: 'Shared guest', contactPhone: '+8801700000001' }); expect(report.summary.openCount).toBe(1);
+  });
+  it('denies disabled, wrong, paused and expired shared links', async () => {
+    const f = await openFixture(); await actor(ids.alice, 'aal1', 'anon');
+    await expect(rpc('resolve_open_invitation', [f.slug, hash('wrong')])).rejects.toThrow(/unavailable/);
+    await db.exec('reset role'); await db.query('update private.open_invites set enabled=false where wedding_id=$1', [f.wid]);
+    await expect(join(f)).rejects.toThrow(/unavailable/);
+    await db.exec('reset role'); await db.query('update private.open_invites set enabled=true where wedding_id=$1', [f.wid]); await db.query("update public.weddings set visibility='paused' where id=$1", [f.wid]);
+    await expect(join(f)).rejects.toThrow(/unavailable/);
+    await db.exec('reset role'); await db.query("update public.weddings set visibility='live' where id=$1", [f.wid]); await db.query("update public.entitlements set starts_at=now()-interval '2 days',expires_at=now()-interval '1 second' where wedding_id=$1", [f.wid]);
+    await expect(join(f)).rejects.toThrow(/unavailable/);
+  });
+  it('validates names and phones, enforces shared-link capacity and the IP limit', async () => {
+    const f = await openFixture();
+    for (const name of ['', ' '.repeat(3), 'a'.repeat(121), 'guest\nname']) await expect(join(f, undefined, undefined, name)).rejects.toThrow(/name/);
+    await expect(join(f, undefined, undefined, 'Guest', '0171234')).rejects.toThrow(/WhatsApp/);
+    const ip = hash('synthetic-ip-' + f.wid);
+    for (let i = 0; i < 10; i++) await join(f, undefined, ip);
+    await expect(join(f, undefined, ip)).rejects.toThrow(/Too many/);
+    await db.exec('reset role'); await db.query('update private.open_invites set cap=10 where wedding_id=$1', [f.wid]);
+    await expect(join(f)).rejects.toThrow(/full/);
+  });
+  it('stops old shared URLs after rotation while retaining joined personal sessions and detects duplicates', async () => {
+    const f = await openFixture(); const g = await join(f, undefined, undefined, household.name, null);
+    await actor();
+    const old = await rpc<any>('open_invite_link', [f.wid]);
+    await rpc('set_open_invite', [crypto.randomUUID(), f.wid, { expectedRevision: old.revision, enabled: true, eventIds: ['reception'], maxPeople: 2, greetingBn: 'প্রিয় অতিথি', greetingEn: 'Dear guest', askPhone: true, rotate: true }, hash('new-' + f.openToken), 'n'.repeat(90), 'v1']);
+    await expect(join(f)).rejects.toThrow(/unavailable/);
+    await actor(ids.alice, 'aal1', 'anon'); expect((await read({ ...f, hid: g.householdId, session: g.session })).guest.name).toBe(household.name);
+    await actor(); const r = await rpc<any>('household_report', [f.wid, 'reception']); expect(r.rows.find((h: any) => h.id === g.householdId).duplicateOf).toBe(f.hid);
+    await rpc('hide_household', [crypto.randomUUID(), f.wid, g.householdId, true]);
+    expect((await rpc<any>('household_report', [f.wid, 'reception'])).summary.invited).toBe(1);
+    expect((await rpc<any>('household_report', [f.wid, 'reception', null, '', 'hidden'])).rows.map((h: any) => h.id)).toEqual([g.householdId]);
+    expect((await rpc<any>('export_households', [f.wid, 'reception'])).rows.map((h: any) => h.id)).toEqual([f.hid]);
+    await rpc('hide_household', [crypto.randomUUID(), f.wid, g.householdId, false]); expect((await rpc<any>('household_report', [f.wid, 'reception'])).summary.invited).toBe(2);
   });
   it('pages through 1000 individual/group invitations without duplicates or unbounded result sets', async () => {
     const f = await fixture();

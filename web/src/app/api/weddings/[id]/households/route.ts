@@ -16,7 +16,10 @@ export async function GET(request: Request, ctx: { params: Promise<{ id: string 
         .string()
         .max(120)
         .parse(p.get('search') ?? ''),
-      z.enum(['all', 'accepted', 'declined', 'pending']).parse(p.get('status') ?? 'all'),
+      z.enum(['all', 'accepted', 'declined', 'pending', 'hidden']).parse(p.get('status') ?? 'all'),
+      undefined,
+      z.enum(['all', 'unsent', 'sent_unreplied']).parse(p.get('delivery') ?? 'all'),
+      z.enum(['all', 'host', 'open']).parse(p.get('source') ?? 'all'),
     );
   });
 }

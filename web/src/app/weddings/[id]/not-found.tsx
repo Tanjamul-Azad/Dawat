@@ -7,18 +7,18 @@ export default async function NotFound() {
   return (
     <WorkspaceFrame email={account?.user.email}>
       <h1>
-        <ProductText en="Workspace unavailable." bn="কর্মপরিসর পাওয়া যাচ্ছে না।" />
+        <ProductText en="Workspace unavailable." bn="আয়োজনের পাতা পাওয়া যাচ্ছে না।" />
       </h1>
       <p>
         <ProductText
-          en="This account cannot manage this wedding right now. Sign in with the intended account or ask your seller to review access."
-          bn="এই অ্যাকাউন্টে এখন আয়োজনটি পরিচালনা করা যাবে না। নির্ধারিত ইমেইলে প্রবেশ করুন বা বিক্রেতাকে প্রবেশাধিকার যাচাই করতে বলুন।"
+          en="This account cannot manage this wedding right now. Sign in with the intended account or ask the Dawat team to check access."
+          bn="এই অ্যাকাউন্ট দিয়ে এখন আয়োজনটি এডিট করা যাবে না। অর্ডারের ইমেইল দিয়ে লগইন করুন, অথবা দাওয়াত টিমকে অ্যাক্সেস দেখতে বলুন।"
         />
       </p>
       <p>
         <ProductText
-          en="If you are signed in with another email, sign out above and open the original workspace link again. Access may also be waiting for activation or paused by your seller."
-          bn="অন্য ইমেইলে প্রবেশ করে থাকলে উপরে ‘বেরিয়ে যান’ চেপে নির্ধারিত ইমেইলে প্রবেশ করুন। প্রবেশাধিকার চালু হওয়ার অপেক্ষায় বা সাময়িক বন্ধও থাকতে পারে।"
+          en="If you are signed in with another email, sign out above and open the original workspace link again. Access may also be waiting for activation or paused by the Dawat team."
+          bn="অন্য ইমেইলে লগইন করা থাকলে উপরে ‘লগআউট’ চেপে অর্ডারের ইমেইলে আবার লগইন করুন। অ্যাক্সেস এখনো চালু না হয়ে থাকতে পারে, বা সাময়িক বন্ধ থাকতে পারে।"
         />
       </p>
       <a className="button" href="/dashboard/?all=1">

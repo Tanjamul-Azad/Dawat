@@ -11,6 +11,7 @@ const row: SalesRequest = {
   id: '20000000-0000-4000-8000-000000000001',
   user_id: '20000000-0000-4000-8000-000000000002',
   customer_email: 'buyer@example.test',
+  customer_phone: null,
   customer_name: 'Test buyer',
   template_id: 'garden',
   event_date: null,
@@ -187,7 +188,7 @@ it.each([null, 'active'])(
     expect(screen.getByText('bKash · FINALVERIFIED')).toBeTruthy();
     expect(screen.queryByText(/আগে টাকা পাঠিয়ে থাকলে আবার পাঠাবেন না/)).toBeNull();
     expect(screen.queryByRole('button', { name: 'যাচাইয়ের জন্য জমা দিন' })).toBeNull();
-    if (access) expect(screen.getByRole('link', { name: 'আপনার পোর্টাল খুলুন' })).toBeTruthy();
+    if (access) expect(screen.getByRole('link', { name: 'আমার আয়োজন খুলুন' })).toBeTruthy();
   },
 );
 it('shows verified server progress without offering customer verification controls', async () => {
@@ -210,7 +211,7 @@ it('shows verified server progress without offering customer verification contro
   await act(async () => {
     window.dispatchEvent(new Event('focus'));
   });
-  expect((await screen.findByRole('link', { name: 'আপনার পোর্টাল খুলুন' })).getAttribute('href')).toBe(
+  expect((await screen.findByRole('link', { name: 'আমার আয়োজন খুলুন' })).getAttribute('href')).toBe(
     `/weddings/${row.id}/`,
   );
   expect(screen.queryByRole('button', { name: 'সিদ্ধান্ত সংরক্ষণ করুন' })).toBeNull();
@@ -256,7 +257,7 @@ it('submits actual bKash evidence and hides transfer instructions while review i
     sender: '01700000000',
   });
   expect(screen.queryByDisplayValue('01606092143')).toBeNull();
-  expect(screen.queryByRole('link', { name: 'আপনার পোর্টাল খুলুন' })).toBeNull();
+  expect(screen.queryByRole('link', { name: 'আমার আয়োজন খুলুন' })).toBeNull();
 });
 it('rejects an order reference used as a transaction ID and unconfigured payment methods', () => {
   const input = {
@@ -296,7 +297,7 @@ it('hides details when the selected filter has no matching request', () => {
     </ProductLocale>,
   );
   expect(screen.getByText('Test buyer', { selector: 'h2' })).toBeTruthy();
-  fireEvent.click(screen.getByRole('button', { name: 'কোটেশন' }));
+  fireEvent.click(screen.getByRole('button', { name: 'দাম ও শর্ত' }));
   expect(screen.queryByText('Test buyer', { selector: 'h2' })).toBeNull();
 });
 it('makes the seller choose a payment decision and links to that exact order', () => {
@@ -330,5 +331,24 @@ it('makes the seller choose a payment decision and links to that exact order', (
   expect(screen.queryByText(/Send Money করুন/)).toBeNull();
   expect(screen.getByRole('link', { name: /এই অর্ডার নিশ্চিত/ }).getAttribute('href')).toBe(
     '/admin/orders/?order=20000000-0000-4000-8000-000000000009',
+  );
+});
+
+it('prefills names only when no request draft exists and preserves an existing draft', async () => {
+  const empty = { requests: [], payments: [], progress: [], nextCursor: null };
+  const view = render(<SalesDesk initial={empty} email="new@example.test" names="মেহরিন ও আরিব" />);
+  expect((screen.getByLabelText('আয়োজন ও প্রয়োজনের কথা') as HTMLTextAreaElement).value).toBe(
+    'বর ও কনে: মেহরিন ও আরিব',
+  );
+  view.unmount();
+  localStorage.setItem(
+    'dawat:request-draft:new@example.test',
+    JSON.stringify({ name: 'Test', date: '', brief: 'Existing draft stays here.', template: 'jamdani' }),
+  );
+  render(<SalesDesk initial={empty} email="new@example.test" names="Other names" />);
+  await waitFor(() =>
+    expect((screen.getByLabelText('আয়োজন ও প্রয়োজনের কথা') as HTMLTextAreaElement).value).toBe(
+      'Existing draft stays here.',
+    ),
   );
 });

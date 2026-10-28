@@ -135,11 +135,7 @@ export function GuestLive({
     return (
       <main style={{ maxWidth: 540, margin: '12vh auto', padding: 24 }}>
         <h1>{tr('This personal invitation is unavailable.')}</h1>
-        <p>
-          {tr(
-            '\u098F\u0987 \u09B2\u09BF\u0982\u0995\u099F\u09BF \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09BF\u09A4 \u09AC\u09BE \u09AC\u09A8\u09CD\u09A7 \u09B9\u09DF\u09C7\u099B\u09C7\u0964 Please ask the hosts for their current personal link.',
-          )}
-        </p>
+        <p>{tr('Please ask the hosts for their current personal link.')}</p>
       </main>
     );
   const guest: Guest = {
@@ -178,6 +174,7 @@ export function GuestLive({
           scope: `household-${guest.id}`,
           guestId: guest.id,
         }}
+        hostWhatsapp={payload.hostWhatsapp}
         responseTransport={preview ? undefined : transport}
         onLocaleChange={setLocale}
       />
@@ -219,11 +216,7 @@ export function GuestExchange({ slug }: { slug: string }) {
         {tr('An invitation, especially for you.')}
       </h1>
       {busy ? (
-        <p role="status">
-          {tr(
-            '\u0986\u09AA\u09A8\u09BE\u09B0 \u0986\u09AE\u09A8\u09CD\u09A4\u09CD\u09B0\u09A3 \u09AA\u09CD\u09B0\u09B8\u09CD\u09A4\u09C1\u09A4 \u09B9\u099A\u09CD\u099B\u09C7\u2026 Preparing your invitation\u2026',
-          )}
-        </p>
+        <p role="status">{tr('Preparing your invitation…')}</p>
       ) : (
         <>
           <p role="alert">{error}</p>
