@@ -30,7 +30,8 @@
     "recovery:restore": "node scripts/recovery/restore-drill.mjs",
     "recovery:build": "node scripts/recovery/app.mjs build",
     "recovery:app": "node scripts/recovery/app.mjs start",
-    "recovery:verify": "node scripts/recovery/app.mjs verify"
+    "recovery:verify": "node scripts/recovery/app.mjs verify",
+    "release:migrate": "node scripts/release/apply-hosted-migrations.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
