@@ -226,6 +226,50 @@ export function SiteFooter() {
   );
 }
 
+/** On phones, once the hero has scrolled away, a bar offers the main action. It hides while typing and near the footer. */
+export function StickyCta() {
+  const { locale } = useProductLocale();
+  const [past, setPast] = useState(false);
+  const [typing, setTyping] = useState(false);
+  const [atFooter, setAtFooter] = useState(false);
+  useEffect(() => {
+    const update = () => setPast(window.scrollY > window.innerHeight * 0.85);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    const on = (event: FocusEvent) =>
+      setTyping(event.target instanceof HTMLElement && event.target.matches('input, textarea, select'));
+    const off = () => setTyping(false);
+    document.addEventListener('focusin', on);
+    document.addEventListener('focusout', off);
+    const footer = document.querySelector('footer');
+    const observer = footer ? new IntersectionObserver(([entry]) => setAtFooter(entry.isIntersecting)) : null;
+    if (footer) observer?.observe(footer);
+    return () => {
+      window.removeEventListener('scroll', update);
+      document.removeEventListener('focusin', on);
+      document.removeEventListener('focusout', off);
+      observer?.disconnect();
+    };
+  }, []);
+  const bn = locale === 'bn';
+  return (
+    <div className={s.stickyCta} data-show={(past && !typing && !atFooter) || undefined}>
+      <a className={s.primary} href="/templates/">
+        {bn ? 'নকশা বেছে নিন' : 'Choose a design'} <ArrowRight size={16} />
+      </a>
+      <a
+        className={s.secondary}
+        href={whatsappLink()}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={bn ? 'WhatsApp-এ কথা বলুন' : 'Chat on WhatsApp'}
+      >
+        <MessageCircle size={18} />
+      </a>
+    </div>
+  );
+}
+
 /** Round WhatsApp button. It steps aside while the visitor types so it never covers a field. */
 function WhatsAppBubble() {
   const { locale } = useProductLocale();

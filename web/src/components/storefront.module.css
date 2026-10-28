@@ -28,6 +28,9 @@
   --gutter: clamp(16px, 4vw, 40px);
   --section: clamp(40px, 7vw, 88px);
   --header-h: 64px;
+  --shadow-lg: 0 28px 60px -24px rgb(70 40 20 / 0.35);
+  --ease: cubic-bezier(0.22, 0.8, 0.28, 1);
+  --gold-deep: #a2742c;
 
   min-height: 100vh;
   background: var(--paper) url('/brand/paper-grain.svg');
@@ -88,7 +91,8 @@
   font-size: clamp(32px, 2.6vw + 18px, 52px);
 }
 .site h2 {
-  font-size: clamp(26px, 1.8vw + 18px, 38px);
+  font-size: clamp(28px, 2.2vw + 18px, 46px);
+  line-height: 1.3;
 }
 .site h3 {
   font-size: 19px;
@@ -114,6 +118,15 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+  margin-right: 10px;
+  background: currentColor;
+  vertical-align: middle;
 }
 .site[lang='bn'] .eyebrow {
   font-size: 14px;
@@ -142,6 +155,14 @@
     color 0.18s,
     box-shadow 0.18s;
 }
+.primary:active,
+.secondary:active,
+.headerCta:active,
+.login:active,
+.cardButtons a:active,
+.cardButtonsSingle a:active {
+  transform: translateY(1px) scale(0.985);
+}
 .primary {
   background: var(--wine);
   color: #fffaf2 !important;
@@ -149,6 +170,7 @@
 }
 .primary:hover {
   background: var(--wine-strong);
+  box-shadow: 0 10px 22px -10px rgb(116 17 38 / 0.55);
 }
 .secondary {
   border-color: var(--line-strong);
@@ -452,6 +474,55 @@
   margin-top: calc(-1 * var(--header-h));
   padding-top: calc(var(--header-h) + 24px) !important;
 }
+.heroCopy > * {
+  animation: riseIn 0.8s var(--ease) both;
+}
+.heroCopy > :nth-child(2) {
+  animation-delay: 0.1s;
+}
+.heroCopy > :nth-child(3) {
+  animation-delay: 0.2s;
+}
+.heroCopy > :nth-child(4) {
+  animation-delay: 0.3s;
+}
+.heroCopy h1 em {
+  background: linear-gradient(100deg, var(--wine) 0 38%, var(--gold-deep) 50%, var(--wine) 62% 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: foil 7s ease-in-out 1.2s infinite;
+}
+.heroPhone {
+  display: none;
+}
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes foil {
+  0%,
+  55%,
+  100% {
+    background-position: 100% 0;
+  }
+  80% {
+    background-position: 0 0;
+  }
+}
+@keyframes floatY {
+  50% {
+    transform: translateY(-8px) rotate(4deg);
+  }
+}
+@keyframes heroZoom {
+  from {
+    transform: scale(1.05);
+  }
+}
 .heroArt {
   margin-top: 28px;
   overflow: hidden;
@@ -563,8 +634,18 @@
 }
 .templateGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-auto-columns: 76%;
+  grid-auto-flow: column;
+  gap: 14px;
+  margin-inline: calc(-1 * var(--gutter));
+  padding: 4px var(--gutter) 14px;
+  overflow-x: auto;
+  scroll-padding-inline: var(--gutter);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.templateGrid > * {
+  scroll-snap-align: start;
 }
 .collectionLink {
   margin-top: 12px;
@@ -602,8 +683,38 @@
   border-color: var(--line-strong);
   box-shadow: var(--shadow);
 }
+.swatches {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.swatches i {
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgb(45 35 28 / 0.25);
+  border-radius: 50%;
+}
+.templateArt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 0%),
+    rgb(255 255 255 / 0.28),
+    transparent 62%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.templateArt:hover::after {
+  opacity: 1;
+}
 .templateArt {
   position: relative;
+  transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.35s var(--ease);
   display: block;
   aspect-ratio: 2 / 3;
   padding: 9cqi;
@@ -837,9 +948,38 @@
   width: 100%;
   margin-top: auto;
 }
-.featuredPrice {
-  border: 1.5px solid var(--wine) !important;
+.priceGrid article {
+  position: relative;
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s;
+}
+.priceGrid article:hover {
   box-shadow: var(--shadow);
+  transform: translateY(-3px);
+}
+.featuredPrice {
+  padding: 34px 28px 28px !important;
+  border: 1.5px solid var(--wine) !important;
+  background: linear-gradient(180deg, #fffdf9, #f9efe3) !important;
+  box-shadow: var(--shadow-lg);
+}
+.priceGrid .pickBadge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  padding: 4px 16px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.6;
+  text-transform: none;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 .included {
   margin-top: 16px;
@@ -896,6 +1036,19 @@
   font-weight: 500;
   list-style: none;
   cursor: pointer;
+}
+.faq details {
+  interpolate-size: allow-keywords;
+}
+.faq details::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size 0.3s var(--ease),
+    content-visibility 0.3s allow-discrete;
+}
+.faq details[open]::details-content {
+  block-size: auto;
 }
 .faq summary::-webkit-details-marker {
   display: none;
@@ -1052,6 +1205,46 @@
   font-size: 13px;
 }
 
+/* ---------- Sticky call to action on phones, after the hero ---------- */
+.stickyCta {
+  position: fixed;
+  z-index: 35;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  left: 12px;
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgb(255 253 249 / 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(150%);
+  visibility: hidden;
+  transition:
+    transform 0.3s var(--ease),
+    visibility 0s 0.3s;
+}
+.stickyCta[data-show] {
+  transform: none;
+  visibility: visible;
+  transition:
+    transform 0.3s var(--ease),
+    visibility 0s;
+}
+.stickyCta .primary {
+  flex: 1;
+}
+.stickyCta .secondary {
+  padding: 0 14px;
+}
+@media (min-width: 768px) {
+  .stickyCta {
+    display: none;
+  }
+}
+
 /* ---------- Floating WhatsApp ---------- */
 /* Only on very wide screens, in the margin beside the page, so it never sits on top of a button. */
 .whatsapp {
@@ -1170,8 +1363,13 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .templateGrid {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
+    margin-inline: 0;
+    padding: 0;
+    overflow: visible;
+    gap: 22px;
   }
   .templateRail {
     grid-auto-columns: calc((100% - 2 * 14px) / 3.3);
@@ -1213,7 +1411,19 @@
     padding: var(--header-h) 0 0 !important;
     isolation: isolate;
   }
+  .hero::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background: url('/brand/paper-grain.svg');
+    mix-blend-mode: multiply;
+    opacity: 0.4;
+    pointer-events: none;
+  }
   .heroCopy {
+    position: relative;
+    z-index: 1;
     width: 100%;
     max-width: calc(var(--container) + 2 * var(--gutter));
     margin-inline: auto;
@@ -1255,9 +1465,24 @@
     height: 100%;
     aspect-ratio: auto;
     object-position: right center;
+    animation: heroZoom 2.4s var(--ease) both;
   }
   .values {
     margin-top: 0 !important;
+  }
+}
+
+@media (min-width: 1100px) {
+  .heroPhone {
+    position: absolute;
+    z-index: 2;
+    right: clamp(24px, 4vw, 72px);
+    bottom: 28px;
+    display: block;
+    width: 168px;
+    transform: rotate(5deg);
+    animation: floatY 7s ease-in-out infinite;
+    filter: drop-shadow(0 24px 30px rgb(45 35 28 / 0.35));
   }
 }
 
@@ -1363,14 +1588,7 @@
 /* ---------- Desktop: copy sits over the left of the hero artwork ---------- */
 @media (min-width: 1200px) {
   .templateRail {
-    grid-auto-columns: calc((100% - 5 * 14px) / 6);
-    overflow: visible;
-  }
-  .railControls {
-    display: none;
-  }
-  .templateGrid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-columns: calc((100% - 3 * 14px) / 4);
   }
 }
 

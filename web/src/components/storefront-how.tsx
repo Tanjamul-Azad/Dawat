@@ -231,3 +231,86 @@ export function RsvpDemo() {
     </section>
   );
 }
+
+/** "এক নজরে দাওয়াত": what happens from the guest's phone to the host's list. The two outer panels are drawings, the middle two are real screens. */
+export function JourneyStrip() {
+  const { locale } = useProductLocale();
+  const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
+  const panels = [
+    { title: t('WhatsApp-এ লিংক আসে', 'The link arrives on WhatsApp') },
+    { title: t('কার্ড খুলে দেখেন', 'They open the card') },
+    { title: t('উত্তর দেন', 'They reply') },
+    { title: t('আপনি তালিকায় দেখেন', 'You see it in your list') },
+  ];
+  return (
+    <section className={x.journey} aria-labelledby="journey-title">
+      <div className={x.howHead}>
+        <span className={s.eyebrow}>{t('এক নজরে দাওয়াত', 'DAWAT AT A GLANCE')}</span>
+        <h2 id="journey-title">{t('অতিথির ফোন থেকে আপনার তালিকায়', 'From a guest’s phone to your list')}</h2>
+        <p>
+          {t(
+            'মাঝের দুটি ছবি আসল পাতা। বাকি দুটি নমুনার আঁকা ছবি।',
+            'The two middle pictures are real pages. The other two are drawings of a sample.',
+          )}
+        </p>
+      </div>
+      <ol className={x.journeyList}>
+        <li>
+          <div className={x.phone}>
+            <div className={x.chat}>
+              <small>{t('রহমান পরিবার', 'Rahman family')}</small>
+              <p>
+                {t(
+                  'আসসালামু আলাইকুম। আমাদের বিয়েতে আপনাদের দাওয়াত। নিচের লিংকে আমন্ত্রণপত্র দেখে আসবেন কি না জানিয়ে দিন।',
+                  'Assalamu alaikum. You are invited to our wedding. Please open the link below and let us know if you can come.',
+                )}
+              </p>
+              <span className={x.chatLink}>{t('আপনার ব্যক্তিগত লিংক', 'Your personal link')}</span>
+            </div>
+          </div>
+          <h3>{panels[0].title}</h3>
+        </li>
+        <li>
+          <PhoneFrame
+            step={3}
+            width={400}
+            height={866}
+            alt={t('নমুনা আমন্ত্রণের প্রথম পাতা', 'The first page of a sample invitation')}
+          />
+          <h3>{panels[1].title}</h3>
+        </li>
+        <li>
+          <PhoneFrame
+            step={4}
+            width={400}
+            height={866}
+            alt={t('অতিথির উত্তর দেওয়ার পাতা', 'The page where a guest replies')}
+          />
+          <h3>{panels[2].title}</h3>
+        </li>
+        <li>
+          <div className={x.phone}>
+            <div className={x.hostList}>
+              <small>{t('আপনার অতিথি তালিকা', 'Your guest list')}</small>
+              <ul>
+                <li>
+                  <span>{t('রহমান পরিবার', 'Rahman family')}</span>
+                  <em data-state="yes">{t('আসবেন · ৪ জন', 'Coming · 4')}</em>
+                </li>
+                <li>
+                  <span>{t('চৌধুরী পরিবার', 'Chowdhury family')}</span>
+                  <em data-state="open">{t('খুলেছেন', 'Opened')}</em>
+                </li>
+                <li>
+                  <span>{t('সালমা খালা', 'Aunt Salma')}</span>
+                  <em>{t('উত্তর বাকি', 'Awaiting reply')}</em>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h3>{panels[3].title}</h3>
+        </li>
+      </ol>
+    </section>
+  );
+}

@@ -15,8 +15,8 @@ Screenshots live under the ignored `.artifacts/public-site-2026-10-28/`:
 
 - `catalog.ts` has `packageNames` and `packageName(tier, locale)`: ক্লাসিক / প্রিমিয়াম / নিজের মতো and Classic / Premium / Custom. Ids (`normal`, `premium`, `custom`) and prices (৳500 / ৳750 / ৳1,500) are unchanged.
 - Home, templates, pricing, contact, policies, `order/page.tsx`, header and footer are rewritten in plain colloquial Bangla, following 4.2 and the 4.3 glossary. A `rg` for the old words (কর্মপরিসর, প্রবেশাধিকার, যাচাইকরণ, অপেক্ষমাণ, হালনাগাদ, সম্পাদনা, নির্ধারিত, অন্তর্ভুক্ত, বিক্রেতা, কোটেশন, Normal, Customized) over the public files finds nothing. A test guards the policies page.
-- Policies: no mixed-language sentences. Section anchors are `#terms`, `#pricing`, `#refund`, `#privacy`, `#sharing`, and the footer links to them. Decision G is added as one line: guest phone/email is kept only to send the invitation, is never shown on the guest page, and is deleted 30 days after the wedding term ends.
-- FAQ has 7 questions. Sending to guests now says: one-tap WhatsApp from the host's own WhatsApp, automatic email when the host adds a guest email, and no fully automatic WhatsApp.
+- Policies: no mixed-language sentences. Section anchors are `#terms`, `#pricing`, `#refund`, `#privacy`, `#sharing`, and the footer links to them. Decision G is added as one line: guest phone numbers are kept only to send the invitation, are never shown on the guest page, and are deleted 30 days after the invitation expires.
+- FAQ has 7 questions. "অতিথিদের কীভাবে পাঠাব?" now describes the two ways, both from the host's own WhatsApp: **নাম ধরে আলাদা আমন্ত্রণ** (one personal link per family, sent one tap at a time; the host sees who opened and replied) and **সবার জন্য একটি লিংক** (one link and one card, sent once to a group or broadcast list; guests write their own name and how many are coming). There is no email promise anywhere, and no fully automatic WhatsApp.
 
 **Header, footer, trust**
 
@@ -50,10 +50,53 @@ Screenshots live under the ignored `.artifacts/public-site-2026-10-28/`:
 | --- | --- | --- |
 | Netlify env `PAYMENT_REVIEW_PROMISE_BN` | e.g. `সাধারণত একই দিনে যাচাই করি` | Shown on the home promise block, the pricing page and the payment FAQ answer. Empty means hidden. |
 | Netlify env `PAYMENT_REVIEW_PROMISE_EN` | e.g. `We usually check payments the same day` | Same, English. |
-| `web/src/features/production/social-proof.ts` | `reviews`, `founder` | Fill only with real, permitted entries. Until then both sections are absent. |
+| `web/src/features/production/brand.ts` | `reviews`, `founder` | Fill only with real, permitted entries. Until then both sections are absent. |
 | same file | `socialLinks.facebook` | Set only when a real page exists. It then appears in the footer. |
 
 Home and pricing are `force-dynamic`, so changing the env values needs only a restart or redeploy and no code change. No hard-coded hour or number is promised anywhere.
+
+## Second pass: copy correction and premium visual pass (29 October)
+
+**Copy.** Email sending is not being built, so every guest-email promise and every `MAIL_*` mention is gone from the FAQ, policies and how-it-works. The sending answer, the policies and step 4 now describe the two WhatsApp paths above. The deletion line covers phone numbers only. Header turns solid after 24px of scroll. Template and order links go straight to `/order/requests/?template=<id>&names=<encoded>`, as the spec's shared contract says. Review, founder and Facebook data moved from `social-proof.ts` to `brand.ts` (the spec names `brand.ts`). `/demo/` shows "এটা নমুনা, উত্তর সংরক্ষণ হয়নি" in its top bar and calls no API.
+
+**Visuals** (own artwork, real screenshots and in-repo SVG only; no stock images, so nothing was added to `public/licenses`):
+
+- Hero keeps the full-bleed layout. It now has a staggered entrance, a slow settle on the photo, a paper-grain layer, a gold-foil shimmer on the second headline line (static under reduced motion), and from 1100px a floating phone showing a real sample invitation.
+- Section rhythm: ivory band (how it works and the RSVP demo), deep-wine band (promise), cream (pricing), ivory band (FAQ). Hand-drawn jamdani divider and corner ornaments are SVG in `storefront-ornaments.tsx`. Section headings are larger, with a gold line before each label.
+- Template showcase: bigger cards (3 per row on the templates page, 4 per view in the home rail on desktop) and a scroll-snap carousel on phones. Hover gives a pointer-following tilt with a light sheen (mouse only, off under reduced motion) and a slow artwork zoom. Each card shows its real colours as two swatches. I did not build the open-envelope reveal.
+- "এক নজরে দাওয়াত": a four-panel journey strip, from the WhatsApp message to the guest's reply to the host's list. The two middle panels are real screens; the WhatsApp message and host list are drawings and are labelled that way.
+- Polish: button press states, a smooth accordion (modern browsers; others open instantly), a step line that fills on scroll, and a sticky bottom call-to-action bar on phones that appears after the hero and hides while typing, near the footer, and while the menu is open (`after2/sticky-cta-400.png`, `after2/sticky-hidden-at-footer-400.png`). Pricing is premium cards, with the middle package marked "সবচেয়ে পছন্দের" ("Recommended" in English) purely as a visual recommendation. No sales number is claimed. Shared shadow, easing and radius tokens are used across all public pages.
+
+**Checks for the second pass**
+
+- `tsc` is clean. `vitest`: 46 files, 367 tests pass (3 more: recommended badge, journey strip, sticky bar hidden at the top).
+- `npm run qa:build` passes.
+- Screenshots: `.artifacts/public-site-2026-10-28/after2/`, `<page>-<width>.png`, 375px and 1280px. No horizontal scroll on any page (`overflow-after2.txt`).
+- Simulated mobile LCP and CLS (`perf-after2.txt`; same method as above, not Lighthouse):
+
+| Page | LCP | CLS |
+| --- | --- | --- |
+| home | 1.92 s | 0.0006 |
+| templates | 1.10 s | 0.055 |
+| pricing | 1.02 s | 0.025 |
+| contact | 1.02 s | 0.015 |
+| policies | 1.03 s | 0.013 |
+| order | 1.06 s | 0.028 |
+| demo | 4.46 s | 0.005 |
+
+- Contrast (`a11y-after2.txt`): the first run caught the "সবচেয়ে পছন্দের" badge at 3.05:1 (gold on gold). It is fixed and no longer reported. What remains is not a real failure:
+  - the off-screen skip link;
+  - text drawn over artwork, which the tool cannot measure;
+  - the gradient headline, which it reads as transparent. It is wine to a darker gold (#a2742c) on cream, large text.
+- The sticky bar covers the bottom 64px of the viewport while it shows. That is inherent to a sticky bar; it hides near the footer and never shows on screens 768px wide or more. The WhatsApp bubble is still only shown from 1480px wide.
+
+**Not done or not verified in this pass**
+
+- Real Lighthouse, as before. The `/demo/` LCP is still above 2.5 s for the same reason as `/invite/`.
+- The step 3 and 4 screenshots were retaken without the demo bar, but they are still the guest-side sample invitation, not host screens.
+- The hero phone and the tilt were checked in Chrome only. No Safari or real-device pass.
+- The sticky bar, the `::details-content` accordion animation and the `interpolate-size` property are progressive: browsers without them show the plain behaviour.
+
 
 ## Checks
 
@@ -87,9 +130,9 @@ Home and pricing are `force-dynamic`, so changing the env values needs only a re
 - **Step 3 and 4 screenshots are not host-side app screens.** Docker and local Supabase were not running, so the logged-in editor and guest list could not be captured with synthetic data. The old demo sandbox (`NEXT_PUBLIC_APP_MODE=demo`) is a different, older UI and would have misrepresented the product.
   - Step 1 is the real templates page, step 2 the real order page, step 3 the sample invitation, and step 4 the guest's reply page. The step text and alt text describe exactly that, and the section says "ছবিগুলো আসল সাইট থেকে নেওয়া। নাম আর তথ্য কাল্পনিক।".
   - Retake steps 3 and 4 from the host's editor and guest list once the app session lands and Supabase is up.
-- **The FAQ says email goes out automatically.** That is true only when the app session's email feature and `MAIL_*` env are live. If the owner deploys the public site first, hold the second paragraph of the "অতিথিদের কীভাবে পাঠাব?" answer back, or ship both together.
+- **The sending copy depends on the app session.** The FAQ, step 4 of "how it works" and the policies describe the personal-link WhatsApp flow and the shared link. If the public site is deployed before the app session lands (the shared link in particular), hold back the "সবার জন্য একটি লিংক" paragraph or ship both together.
 - **Policies wording needs the owner's eye.**
-  - "No automated messaging" became "no fully automatic WhatsApp, you send in one tap" so it matches the new feature.
+  - "No automated messaging" became "no fully automatic WhatsApp, you send from your own WhatsApp and only press Send" so it matches the new feature.
   - The date line changed to "শেষ বদল: ২৮ অক্টোবর ২০২৬" because section 4 gained the 30-day line.
   - The deletion itself is the app/server side of decision G and is not implemented here.
 - Keyboard use is covered by the unit test (focus trap, Esc, focus return) and native elements (links, buttons, `<details>`), not by a screen reader or a real-device pass. The English toggle was checked for overflow only, not read through.

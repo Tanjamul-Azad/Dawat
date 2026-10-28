@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useState, type CSSProperties } from 'react';
+import { useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -20,9 +20,10 @@ import x from './storefront-sections.module.css';
 import { ManualPayment } from './manual-payment';
 import { LotusMark } from './brand-mark';
 import { motion, useReducedMotion } from 'motion/react';
-import { StorefrontFrame } from './storefront-chrome';
+import { StorefrontFrame, StickyCta } from './storefront-chrome';
+import { CornerOrnaments, JamdaniDivider } from './storefront-ornaments';
 import { FAQ, FounderNote, PromiseBlock, Reviews } from './storefront-trust';
-import { HowItWorks, RsvpDemo } from './storefront-how';
+import { HowItWorks, JourneyStrip, PhoneFrame, RsvpDemo } from './storefront-how';
 import { NAME_LIMIT, withNames, type CoupleNames } from './storefront-names';
 
 export { StorefrontFrame, FAQ };
@@ -44,6 +45,20 @@ export function TemplateCard({
   const bn = locale === 'bn';
   const reduceMotion = useReducedMotion();
   const demoHref = `/demo/?template=${template.id}`;
+  const tilt = (event: PointerEvent<HTMLElement>) => {
+    if (reduceMotion || event.pointerType !== 'mouse') return;
+    const box = event.currentTarget.getBoundingClientRect();
+    const px = (event.clientX - box.left) / box.width;
+    const py = (event.clientY - box.top) / box.height;
+    event.currentTarget.style.setProperty('--ry', `${((px - 0.5) * 9).toFixed(2)}deg`);
+    event.currentTarget.style.setProperty('--rx', `${((0.5 - py) * 9).toFixed(2)}deg`);
+    event.currentTarget.style.setProperty('--mx', `${(px * 100).toFixed(1)}%`);
+    event.currentTarget.style.setProperty('--my', `${(py * 100).toFixed(1)}%`);
+  };
+  const level = (event: PointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty('--ry', '0deg');
+    event.currentTarget.style.setProperty('--rx', '0deg');
+  };
   const label = bn ? template.name : template.en;
   return (
     <motion.article
@@ -55,6 +70,8 @@ export function TemplateCard({
     >
       <a
         href={demoHref}
+        onPointerMove={tilt}
+        onPointerLeave={level}
         className={`${s.templateArt} ${s[template.id] ?? ''}`}
         style={{ '--card-ink': template.color, '--card-paper': template.paper } as CSSProperties}
         aria-label={`${bn ? 'লাইভ নমুনা খুলুন' : 'Open live sample'} · ${label}`}
@@ -92,6 +109,10 @@ export function TemplateCard({
       </div>
       <p className={s.cardMeta}>
         {bn ? template.mood : template.moodEn} · {packageName(template.tier, locale)}
+        <span className={s.swatches} aria-hidden="true">
+          <i style={{ background: template.paper }} />
+          <i style={{ background: template.color }} />
+        </span>
       </p>
       <div className={selected ? s.cardButtonsSingle : s.cardButtons}>
         <a href={demoHref}>
@@ -310,6 +331,12 @@ export function Pricing({
       <div className={s.priceGrid}>
         {cards.map(({ tier, note, feature, href }) => (
           <article key={tier} className={tier === 'premium' ? s.featuredPrice : undefined}>
+            {tier === 'premium' && (
+              <>
+                <span className={s.pickBadge}>{t('সবচেয়ে পছন্দের', 'Recommended')}</span>
+                <CornerOrnaments />
+              </>
+            )}
             <span>{packageName(tier, locale)}</span>
             <h3>
               {taka(prices[tier], locale)}
@@ -408,6 +435,9 @@ export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentRev
             fetchPriority="high"
           />
         </figure>
+        <div className={s.heroPhone} aria-hidden="true">
+          <PhoneFrame step={3} width={400} height={866} alt="" />
+        </div>
       </section>
       <ul className={s.values}>
         <li>
@@ -424,13 +454,21 @@ export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentRev
         </li>
       </ul>
       <TemplateCollection />
-      <HowItWorks />
-      <RsvpDemo />
-      <PromiseBlock paymentPromise={paymentPromise} />
+      <JamdaniDivider />
+      <JourneyStrip />
+      <div className={x.bandIvory}>
+        <HowItWorks />
+        <RsvpDemo />
+      </div>
+      <div className={x.bandWine}>
+        <PromiseBlock paymentPromise={paymentPromise} />
+      </div>
       <Pricing paymentDetails={false} />
       <Reviews />
       <FounderNote />
-      <FAQ paymentPromise={paymentPromise} />
+      <div className={x.bandIvory}>
+        <FAQ paymentPromise={paymentPromise} />
+      </div>
       <section className={s.finalCta}>
         <LotusMark size={36} />
         <h2>{t('আপনাদের গল্পটা শুরু হোক', 'Let your story begin')}</h2>
@@ -443,6 +481,7 @@ export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentRev
           </a>
         </div>
       </section>
+      <StickyCta />
     </StorefrontFrame>
   );
 }

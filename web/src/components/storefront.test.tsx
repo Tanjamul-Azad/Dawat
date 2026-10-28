@@ -3,7 +3,9 @@ import { cleanup, fireEvent, render, screen, within } from '@testing-library/rea
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { SiteFooter, SiteHeader } from './storefront-chrome';
 import { FAQ, FounderNote, PromiseBlock, Reviews } from './storefront-trust';
-import { RsvpDemo } from './storefront-how';
+import { JourneyStrip, RsvpDemo } from './storefront-how';
+import { Pricing } from './storefront';
+import { StickyCta } from './storefront-chrome';
 import { PoliciesPage } from './storefront-pages';
 import { TemplateCard, TemplateCollection } from './storefront';
 import { templates } from '@/features/production/catalog';
@@ -137,4 +139,35 @@ it('writes the policies in plain Bangla with the guest-contact deletion line', (
   expect(text).not.toMatch(/ইমেইল বা|MAIL_/);
   expect(text).toContain('ক্লাসিক ৳৫০০');
   expect(text).not.toMatch(/portal activation|republish|refund|retention|order\/audit|বিক্রেতা/);
+});
+
+it('marks only the middle package as recommended, without any sales claim', () => {
+  wrap(<Pricing paymentDetails={false} />);
+  const badges = screen.getAllByText('সবচেয়ে পছন্দের');
+  expect(badges).toHaveLength(1);
+  expect(badges[0].closest('article')?.textContent).toContain('প্রিমিয়াম');
+  expect(document.body.textContent).not.toMatch(/[0-9০-৯]+ ?(গ্রাহক|customers)/);
+});
+
+it('shows the guest journey from the WhatsApp link to the host list', () => {
+  wrap(<JourneyStrip />);
+  expect(screen.getByText('এক নজরে দাওয়াত')).toBeTruthy();
+  expect(screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent)).toEqual([
+    'WhatsApp-এ লিংক আসে',
+    'কার্ড খুলে দেখেন',
+    'উত্তর দেন',
+    'আপনি তালিকায় দেখেন',
+  ]);
+});
+
+it('keeps the sticky call to action hidden at the top of the page', () => {
+  vi.stubGlobal(
+    'IntersectionObserver',
+    class {
+      observe() {}
+      disconnect() {}
+    },
+  );
+  const { container } = wrap(<StickyCta />);
+  expect(container.querySelector('[data-show]')).toBeNull();
 });
