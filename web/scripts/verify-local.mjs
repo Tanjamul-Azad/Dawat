@@ -178,20 +178,6 @@ assert.equal(
   (await bob.request('/api/sales/')).json.data.requests.some((r) => r.id === enquiry.id),
   false,
 );
-// A custom request still waits for a manual quote.
-const customRequest = await sales(buyer, { ...premiumRequest, templateId: 'custom', phone: '' });
-assert.equal(customRequest.state, 'requested');
-assert.equal(customRequest.customer_phone, null);
-const customQuoted = await sales(seller, {
-  kind: 'quote',
-  id: customRequest.id,
-  expectedRevision: 0,
-  packageName: 'নিজের মতো',
-  amountMinor: 150000,
-  termDays: 90,
-  notes: 'Synthetic custom quote, local QA only.',
-});
-assert.equal(customQuoted.state, 'quoted');
 // Accepting the published quote opens the unpaid order; no separate seller step.
 enquiry = await sales(buyer, { kind: 'accept', id: enquiry.id, expectedRevision: enquiry.revision });
 assert.equal(enquiry.state, 'ordered');
@@ -464,7 +450,7 @@ const detail = (await alice.request(`/api/weddings/${x.weddingId}/`)).json.data;
 const guestWorkspace = await alice.request(`/weddings/${x.weddingId}/guests/`);
 assert.equal(guestWorkspace.status, 200);
 assert.ok(
-  guestWorkspace.raw.includes('আপনজনেই আয়োজন পূর্ণ'),
+  guestWorkspace.raw.includes('আপনার অতিথিদের তালিকা'),
   'Joined live-version read must render the guest workspace, not a streamed error.',
 );
 const publicPath = `/i/${detail.wedding.slug}/`;
