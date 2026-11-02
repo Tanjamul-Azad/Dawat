@@ -23,6 +23,7 @@
     "test:runtime": "node scripts/smoke-runtime.mjs",
     "qa:build": "node scripts/local-qa.mjs build",
     "qa:preview": "node scripts/local-qa.mjs start",
+    "qa:dev": "node scripts/local-qa.mjs dev",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "backup:create": "node scripts/recovery/backup.mjs",

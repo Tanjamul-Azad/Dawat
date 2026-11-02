@@ -10,13 +10,13 @@ if (
 )
   throw new Error('Offline QA requires the isolated loopback configuration.');
 const mode = process.argv[2];
-if (!['build', 'start'].includes(mode)) throw new Error('Use build or start.');
+if (!['build', 'start', 'dev'].includes(mode)) throw new Error('Use build, start or dev.');
 const child = spawn(
   process.execPath,
   [
     'node_modules/next/dist/bin/next',
     mode,
-    ...(mode === 'start' ? ['--hostname', '127.0.0.1', '--port', '3102'] : []),
+    ...(mode === 'build' ? [] : ['--hostname', '127.0.0.1', '--port', '3102']),
   ],
   {
     env: { ...process.env, ...env },

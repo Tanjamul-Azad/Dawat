@@ -7,6 +7,13 @@
       "runtimeArgs": ["--prefix", "web", "run", "qa:preview"],
       "port": 3102,
       "url": "http://127.0.0.1:3102"
+    },
+    {
+      "name": "dawat-local-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "web", "run", "qa:dev"],
+      "port": 3102,
+      "url": "http://127.0.0.1:3102"
     }
   ]
 }
