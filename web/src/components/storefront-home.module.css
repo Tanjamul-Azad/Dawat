@@ -150,7 +150,7 @@
   opacity: 0.9;
   translate: -50% -6px;
 }
-.hint {
+.hero .hint {
   position: absolute;
   left: calc(50% + clamp(90px, 12vw, 180px));
   top: calc(var(--ky) - 10px);
@@ -187,7 +187,7 @@
   max-width: var(--container);
   margin: 0 auto;
 }
-.kicker {
+.hero .kicker {
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -275,7 +275,7 @@
 .statement span {
   opacity: clamp(0.15, calc((var(--p, 0) * 2.1 - 0.3) * var(--n) - var(--i)), 1);
 }
-.values {
+.story .values {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -330,7 +330,7 @@
   font-size: clamp(32px, 4vw, 56px);
   line-height: 1.2;
 }
-.steps ol {
+.envelopeScene .steps ol {
   display: grid;
   gap: 10px;
   margin: 28px 0 0;
@@ -636,7 +636,7 @@
     flex: 1 1 auto;
     justify-content: center;
   }
-  .hint {
+  .hero .hint {
     left: auto;
     right: var(--gutter);
     top: calc(var(--ky) - 70px);
@@ -647,7 +647,7 @@
   .storyThreads {
     opacity: 0.35;
   }
-  .values {
+  .story .values {
     grid-template-columns: 1fr;
   }
   .values li {
@@ -663,7 +663,7 @@
     align-content: start;
     gap: 8px;
   }
-  .steps ol {
+  .envelopeScene .steps ol {
     display: none;
   }
   .nameFields {
