@@ -10,13 +10,13 @@ import { Pricing, TemplateCollection } from './storefront';
 import { FAQ, FounderNote, PromiseBlock, Reviews } from './storefront-trust';
 import { HowItWorks, JourneyStrip, RsvpDemo } from './storefront-how';
 import { NAME_LIMIT, type CoupleNames } from './storefront-names';
-import { GaathchhoraHero } from './storefront-hero';
+import { BondHero } from './storefront-hero';
 import s from './storefront-home.module.css';
 import st from './storefront.module.css';
 import x from './storefront-sections.module.css';
 
 // The public homepage: designs, the guest's journey, how it works, our promise, pricing and questions,
-// opened by a গাঁটছড়া hero, a story that fills in as you read and an envelope that opens with the scroll.
+// opened by a two-thread মিলবন্ধন hero, a story that fills in as you read and an envelope that opens with the scroll.
 // Scenes publish their scroll progress as `--p`; CSS turns that into each stage.
 
 const clamp = (value: number, min = 0, max = 1) => Math.min(max, Math.max(min, value));
@@ -64,7 +64,7 @@ function Story() {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   const words = t(
-    'বিয়ে শুধু দুটি মানুষের নয়, দুটি পরিবারের গাঁটছড়া। সেই বাঁধনের প্রথম খবর পৌঁছায় দাওয়াতে — তাই প্রতিটি দাওয়াত আমরা বুনি যত্ন করে।',
+    'বিয়ে শুধু দুটি মানুষের নয়, দুটি পরিবারের মিলবন্ধন। সেই বাঁধনের প্রথম খবর পৌঁছায় দাওয়াতে — তাই প্রতিটি দাওয়াত আমরা বুনি যত্ন করে।',
     'A wedding ties together two families, not just two people. The first news of that bond travels in an invitation — so we weave every one with care.',
   ).split(' ');
   const values = [
@@ -194,7 +194,7 @@ function Closing() {
         <ellipse cx="8" cy="0" rx="14" ry="8" transform="rotate(30 8 0)" />
       </svg>
       <h2 id="closing-title">
-        {t('আপনাদের গাঁটছড়ার খবর', 'Let the news of your bond')}
+        {t('আপনাদের মিলবন্ধনের খবর', 'Let the news of your union')}
         <br />
         <em>{t('সুন্দর করে পৌঁছে যাক', 'arrive beautifully')}</em>
       </h2>
@@ -216,7 +216,7 @@ export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentRev
   return (
     <StorefrontFrame overlay>
       <div className={s.root}>
-        <GaathchhoraHero />
+        <BondHero />
         <Story />
         <TemplateCollection />
         <EnvelopeMoment />

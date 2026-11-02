@@ -5,7 +5,7 @@ import { useProductLocale } from './production/product-locale';
 import s from './storefront-home.module.css';
 import st from './storefront.module.css';
 
-// গাঁটছড়া: two threads, one from each family, come in from either edge and tie a knot.
+// মিলবন্ধন: two threads, one from each family, come in from either edge and tie a knot.
 // They are soft strings — a pointer or finger can pluck them — and the knot tightens as the page
 // scrolls on. An alpana drawn around the knot shows more strongly wherever the pointer goes.
 
@@ -60,7 +60,7 @@ function Alpana({ lit = false }: { lit?: boolean }) {
   );
 }
 
-export function GaathchhoraHero() {
+export function BondHero() {
   const { locale } = useProductLocale();
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   const hero = useRef<HTMLElement>(null);
@@ -89,9 +89,10 @@ export function GaathchhoraHero() {
       cv.width = Math.round(W * dpr);
       cv.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      // Must match --ky in the stylesheet.
-      const phone = W <= 760;
-      knot = { x: W / 2, y: H * (phone ? 0.52 : 0.64) };
+      // The stylesheet places the knot (--ky) and its label; the threads follow it.
+      const phone = matchMedia('(max-width: 760px)').matches;
+      const ky = parseFloat(getComputedStyle(el).getPropertyValue('--ky')) / 100 || 0.6;
+      knot = { x: W / 2, y: H * ky };
       const n = phone ? 30 : 46;
       const tailLength = H * (phone ? 0.1 : 0.14);
       ropes = [
@@ -103,7 +104,7 @@ export function GaathchhoraHero() {
     };
 
     const step = (now: number, slack: number) => {
-      const reach = W <= 760 ? 70 : 95;
+      const reach = W < 760 ? 70 : 95;
       for (const r of ropes) {
         r.points.forEach((p, i) => {
           if (p.pinned) return;
@@ -238,6 +239,11 @@ export function GaathchhoraHero() {
       delete el.dataset.reveal;
     };
 
+    // The hero grows once its fonts load, so follow its own size rather than the window's.
+    const sizeChanged = () => {
+      const box = el.getBoundingClientRect();
+      return Math.abs(box.width - W) > 1 || Math.abs(box.height - H) > 1;
+    };
     layout();
     if (still) {
       for (let i = 0; i < 400; i++) step(0, 1.12);
@@ -248,8 +254,9 @@ export function GaathchhoraHero() {
         for (let i = 0; i < 400; i++) step(0, 1.12);
         draw(1);
       };
-      addEventListener('resize', redraw);
-      return () => removeEventListener('resize', redraw);
+      const sized = new ResizeObserver(() => sizeChanged() && redraw());
+      sized.observe(el);
+      return () => sized.disconnect();
     }
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
@@ -260,7 +267,8 @@ export function GaathchhoraHero() {
     el.addEventListener('pointerdown', move, { passive: true });
     el.addEventListener('pointerleave', leave);
     el.addEventListener('pointerup', (event) => event.pointerType !== 'mouse' && leave());
-    addEventListener('resize', layout);
+    const sized = new ResizeObserver(() => sizeChanged() && layout());
+    sized.observe(el);
     frame = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(frame);
@@ -268,7 +276,7 @@ export function GaathchhoraHero() {
       el.removeEventListener('pointermove', move);
       el.removeEventListener('pointerdown', move);
       el.removeEventListener('pointerleave', leave);
-      removeEventListener('resize', layout);
+      sized.disconnect();
     };
   }, []);
 
@@ -282,7 +290,7 @@ export function GaathchhoraHero() {
       </div>
       <canvas ref={canvas} className={s.threads} aria-hidden="true" />
       <span className={s.knotLabel} aria-hidden="true">
-        {t('গাঁটছড়া', 'tied together')}
+        {t('মিলবন্ধন', 'one family')}
       </span>
 
       <div className={s.heroTop} data-motion="static">

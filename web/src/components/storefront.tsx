@@ -8,7 +8,7 @@ import s from './storefront.module.css';
 import x from './storefront-sections.module.css';
 import { ManualPayment } from './manual-payment';
 import { LotusMark } from './brand-mark';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion } from 'motion/react';
 import { StorefrontFrame } from './storefront-chrome';
 import { CornerOrnaments } from './storefront-ornaments';
 import { FAQ } from './storefront-trust';
@@ -31,10 +31,9 @@ export function TemplateCard({
 }) {
   const { locale } = useProductLocale();
   const bn = locale === 'bn';
-  const reduceMotion = useReducedMotion();
   const demoHref = `/demo/?template=${template.id}`;
   const tilt = (event: PointerEvent<HTMLElement>) => {
-    if (reduceMotion || event.pointerType !== 'mouse') return;
+    if (event.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const box = event.currentTarget.getBoundingClientRect();
     const px = (event.clientX - box.left) / box.width;
     const py = (event.clientY - box.top) / box.height;
@@ -57,8 +56,9 @@ export function TemplateCard({
       className={s.templateCard}
       layout="position"
       initial={false}
-      whileHover={reduceMotion ? undefined : { y: -4 }}
-      whileTap={reduceMotion ? undefined : { scale: 0.99 }}
+      // StorefrontFrame's MotionConfig drops these for reduced motion, identically on server and client.
+      whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.99 }}
     >
       <a
         href={demoHref}

@@ -19,12 +19,12 @@
 .root {
   --serif: var(--font-bangla), 'Noto Serif Bengali', Georgia, serif;
   --script: 'Dawat Wedding Bangla', var(--serif);
-  /* The knot's height in the hero. Must match `layout()` in storefront-hero.tsx. */
+  /* The knot's height in the hero; storefront-hero.tsx reads it to place the threads. */
   --ky: 64%;
   overflow-x: clip;
 }
 
-/* ——— Hero: গাঁটছড়া ——— */
+/* ——— Hero: two threads, one bond ——— */
 .hero {
   position: relative;
   isolation: isolate;
@@ -309,7 +309,7 @@
   --rise: clamp(0, calc((var(--p, 0) - 0.4) / 0.3), 1);
   --zoom: clamp(0, calc((var(--p, 0) - 0.72) / 0.26), 1);
   position: relative;
-  height: 320vh;
+  height: 260vh;
   background: linear-gradient(180deg, transparent, var(--surface-2) 12%, var(--surface-2) 88%, transparent);
 }
 .sticky {

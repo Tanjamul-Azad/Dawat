@@ -447,6 +447,12 @@
 .railControls button:hover {
   border-color: var(--wine);
 }
+/* A mouse cannot swipe, so wherever the design rail scrolls the arrows show. */
+@media (hover: hover) and (pointer: fine) {
+  .railControls {
+    display: flex;
+  }
+}
 .filters {
   display: flex;
   gap: 4px;
@@ -768,22 +774,31 @@
   width: 100%;
 }
 
-/* ---------- Pricing ---------- */
-@media (max-width: 1023.98px) {
+/* ---------- Pricing ----------
+   Packages are compared, so they are never hidden in a swipe rail: stacked on phones, side by side
+   from 720px. */
+@media (max-width: 719.98px) {
   .priceGrid {
-    grid-auto-columns: min(84%, 340px);
-    grid-auto-flow: column;
-    gap: 14px;
-    margin-inline: calc(-1 * var(--gutter));
-    padding: 20px var(--gutter) 14px;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-padding-inline: var(--gutter);
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    gap: 24px;
+    padding-top: 14px;
   }
-  .priceGrid > * {
-    scroll-snap-align: start;
+}
+@media (min-width: 720px) and (max-width: 1023.98px) {
+  .priceGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    padding-top: 14px;
+  }
+  .priceGrid article,
+  .featuredPrice {
+    padding: 26px 16px 18px !important;
+  }
+  .priceGrid h3 {
+    font-size: 30px;
+  }
+  .priceGrid h3 small {
+    display: block;
+    margin: 2px 0 0;
   }
 }
 .pricing h1 {
@@ -1308,9 +1323,6 @@
     background: rgb(251 246 238 / 0.82);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-  }
-  .railControls {
-    display: flex;
   }
   .templateRail {
     grid-auto-columns: calc((100% - 3 * 14px) / 4);

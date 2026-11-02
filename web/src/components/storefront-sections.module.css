@@ -139,6 +139,7 @@
   background: var(--surface);
 }
 .promise li > svg {
+  flex: none;
   margin-top: 3px;
   color: var(--gold);
 }
@@ -464,8 +465,8 @@
   }
 }
 
-/* Phones and tablets: steps and promises become side-by-side swipe rails, like the design and journey rails. */
-@media (max-width: 1023.98px) {
+/* Below 1024px each step is a card: a swipe rail on phones, a two-by-two grid on tablets. */
+@media (max-width: 599.98px) {
   .stepList {
     grid-auto-columns: min(84%, 340px);
     grid-auto-flow: column;
@@ -478,6 +479,14 @@
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
+}
+@media (min-width: 600px) and (max-width: 1023.98px) {
+  .stepList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+@media (max-width: 1023.98px) {
   .stepList::before,
   .stepList::after {
     display: none;
@@ -497,27 +506,22 @@
   }
 }
 @media (max-width: 599.98px) {
-  /* Three short promises fit side by side on a phone; no swiping needed. */
+  /* On phones the three promises stack, so each reads at full size without swiping. */
   .promise ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 8px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
   }
   .promise li {
-    flex-direction: column;
-    gap: 8px;
-    padding: 12px 10px;
-  }
-  .promise li > svg {
-    width: 20px;
-    height: 20px;
+    flex-direction: row;
+    gap: 12px;
+    padding: 14px 16px;
   }
   .promise li h3 {
-    font-size: 14px;
-    line-height: 1.35;
+    font-size: 16px;
+    line-height: 1.4;
   }
   .promise li p {
-    font-size: 12.5px;
-    line-height: 1.45;
+    font-size: 14px;
   }
 }
 
@@ -717,6 +721,18 @@
   color: #7a5320;
 }
 
+/* Tablets: the four journey screens in two rows instead of a rail. */
+@media (min-width: 600px) and (max-width: 899.98px) {
+  .journeyList {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 24px;
+    margin-inline: 0 !important;
+    padding-inline: 0 !important;
+    overflow: visible;
+  }
+}
 @media (min-width: 900px) {
   .journeyList {
     grid-auto-flow: row;
