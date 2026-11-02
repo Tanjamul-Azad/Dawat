@@ -47,11 +47,20 @@ export function usePageMotion() {
       for (const section of main.querySelectorAll(':scope > section, :scope > * > section')) {
         for (const child of Array.from(section.children) as HTMLElement[]) {
           if (isGroup(child) && getComputedStyle(child).overflowX !== 'auto') {
-            Array.from(child.children).forEach((item, i) => hide(item as HTMLElement, Math.min(i, MAX_STAGGER) * STAGGER));
+            Array.from(child.children).forEach((item, i) =>
+              hide(item as HTMLElement, Math.min(i, MAX_STAGGER) * STAGGER),
+            );
           } else hide(child);
         }
       }
-      cleanups.push(() => observer.disconnect());
+      // Unhide whatever is still waiting, so a remount (or React's dev double-run) starts clean.
+      cleanups.push(() => {
+        observer.disconnect();
+        for (const el of main.querySelectorAll<HTMLElement>('[data-motion="hidden"]')) {
+          delete el.dataset.motion;
+          el.style.removeProperty('--motion-delay');
+        }
+      });
     }
 
     if (matchMedia('(hover: hover) and (pointer: fine)').matches) {

@@ -60,6 +60,10 @@ export function TemplateCard({
     event.currentTarget.style.setProperty('--rx', '0deg');
   };
   const label = bn ? template.name : template.en;
+  // The 360px reference artwork has no smaller copy.
+  const small = template.art.endsWith('-reference.webp')
+    ? template.art
+    : template.art.replace('.webp', '-480.webp');
   return (
     <motion.article
       className={s.templateCard}
@@ -79,8 +83,8 @@ export function TemplateCard({
         {template.art && (
           <img
             className={s.artBg}
-            src={template.art.replace('.webp', '-480.webp')}
-            srcSet={`${template.art.replace('.webp', '-480.webp')} 480w, ${template.art} 960w`}
+            src={small}
+            srcSet={small === template.art ? undefined : `${small} 480w, ${template.art} 960w`}
             sizes="(min-width: 1200px) 200px, (min-width: 768px) 30vw, 46vw"
             width={960}
             height={1440}
