@@ -159,8 +159,7 @@
 .secondary:active,
 .headerCta:active,
 .login:active,
-.cardButtons a:active,
-.cardButtonsSingle a:active {
+.cardButtons a:active {
   transform: translateY(1px) scale(0.985);
 }
 .primary {
@@ -599,8 +598,8 @@
   transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
   transition: transform 0.35s var(--ease);
   display: block;
-  aspect-ratio: 2 / 3;
-  padding: 9cqi;
+  aspect-ratio: 4 / 5;
+  padding: 6cqi;
   overflow: hidden;
   border-radius: var(--radius-sm);
   background-color: var(--card-paper);
@@ -632,6 +631,9 @@
   font-weight: 600;
   line-height: 1.5;
 }
+.tierClassic {
+  color: var(--ink);
+}
 .cardFrame {
   position: relative;
   display: flex;
@@ -639,8 +641,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4.5cqi;
-  padding: 6cqi 2cqi;
+  gap: 2.6cqi;
+  padding: 3cqi 2cqi;
   text-align: center;
 }
 .cardFrame > span {
@@ -682,7 +684,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 10px;
   padding-inline: 4px;
 }
 .cardTitle h3 {
@@ -697,56 +699,96 @@
   white-space: nowrap;
 }
 .cardMeta {
-  margin: 4px 4px 12px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 2px 4px 10px !important;
   font-size: 13px;
   line-height: 1.45;
 }
-.cardButtons,
-.cardButtonsSingle {
+.cardMeta > span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cardMeta .swatches {
+  flex: none;
+  margin-left: 0;
+}
+/* One clear action per card; the live sample opens from the artwork and its chip. */
+.cardButtons {
   display: grid;
-  gap: 8px;
   margin-top: auto;
 }
-.cardButtons {
-  grid-template-columns: 1fr 1fr;
-}
-.cardButtons a,
-.cardButtonsSingle a {
+.cardButtons a {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  min-height: 44px;
+  min-height: 42px;
   padding: 0 10px;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--wine);
   border-radius: var(--radius-sm);
-  color: var(--wine);
+  background: var(--wine);
+  color: #fffaf2;
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
 }
-.cardButtons a:hover,
-.cardButtonsSingle a:hover {
-  border-color: var(--wine);
-}
-.cardButtons a:last-child {
-  border-color: var(--wine);
-  background: var(--wine);
-  color: #fffaf2;
-}
-.cardButtons a:last-child:hover {
+.cardButtons a:hover {
   background: var(--wine-strong);
 }
+.cardButtons a.cardSecondary {
+  border-color: var(--line-strong);
+  background: transparent;
+  color: var(--wine);
+}
+.cardButtons a.cardSecondary:hover {
+  border-color: var(--wine);
+  background: transparent;
+}
+.sampleChip {
+  position: absolute;
+  z-index: 1;
+  right: 8px;
+  bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgb(255 253 249 / 0.92);
+  box-shadow: 0 2px 8px rgb(45 35 28 / 0.18);
+  color: var(--wine);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: transform 0.25s var(--ease);
+}
+.templateArt:hover .sampleChip {
+  transform: translateY(-2px);
+}
+.nameRibbon {
+  position: absolute;
+  z-index: 1;
+  left: 8px;
+  right: 8px;
+  bottom: 40px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: rgb(122 28 32 / 0.88);
+  color: #fffaf2;
+  font: 500 clamp(13px, 7cqi, 18px) / 1.3 var(--font-bangla), serif;
+  text-align: center;
+}
 @container (max-width: 260px) {
-  .cardButtons {
-    grid-template-columns: 1fr;
-  }
   .cardButtons :global(.lucide) {
     display: none;
   }
-  .cardTitle {
-    flex-direction: column;
-    gap: 2px;
+  .cardTitle h3 {
+    font-size: 15px;
   }
 }
 

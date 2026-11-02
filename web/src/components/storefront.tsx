@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useState, type CSSProperties, type PointerEvent } from 'react';
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Check, Flower2 } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Check, Eye, Flower2 } from 'lucide-react';
 import { useProductLocale } from './production/product-locale';
 import { templates, prices, whatsappLink, packageName } from '@/features/production/catalog';
 import { taka } from '@/features/production/money';
@@ -47,10 +47,10 @@ export function TemplateCard({
     event.currentTarget.style.setProperty('--rx', '0deg');
   };
   const label = bn ? template.name : template.en;
+  // Reference artwork is a real card screenshot with its own names, so no overlay is drawn on it.
+  const baked = template.art.endsWith('-reference.webp');
   // The 360px reference artwork has no smaller copy.
-  const small = template.art.endsWith('-reference.webp')
-    ? template.art
-    : template.art.replace('.webp', '-480.webp');
+  const small = baked ? template.art : template.art.replace('.webp', '-480.webp');
   return (
     <motion.article
       className={s.templateCard}
@@ -81,36 +81,51 @@ export function TemplateCard({
             decoding="async"
           />
         )}
-        {template.tier === 'premium' && <span className={s.tierBadge}>{packageName('premium', locale)}</span>}
-        <div className={s.cardFrame}>
-          <span>بِسْمِ اللَّهِ</span>
-          <Flower2 size={24} />
-          <small>{bn ? 'শুভ বিবাহ' : 'THE WEDDING OF'}</small>
-          <strong>
-            {names.first || (bn ? 'মেহরিন' : 'Mehrin')}
-            <i>&</i>
-            {names.second || (bn ? 'আরিব' : 'Arib')}
-          </strong>
-          <span>{bn ? '১২ . ১২ . ২০২৬' : '12 . 12 . 2026'}</span>
-          <small>{bn ? 'ভালোবাসার আমন্ত্রণ' : 'WITH LOVE, ALWAYS'}</small>
-        </div>
+        <span className={template.tier === 'premium' ? s.tierBadge : `${s.tierBadge} ${s.tierClassic}`}>
+          {packageName(template.tier, locale)}
+        </span>
+        <span className={s.sampleChip} aria-hidden="true">
+          <Eye size={13} />
+          {bn ? 'লাইভ নমুনা' : 'Live sample'}
+        </span>
+        {baked ? (
+          names.first && (
+            <span className={s.nameRibbon}>
+              {names.first} {bn ? 'ও' : '&'} {names.second}
+            </span>
+          )
+        ) : (
+          <div className={s.cardFrame}>
+            <span>بِسْمِ اللَّهِ</span>
+            <Flower2 size={24} />
+            <small>{bn ? 'শুভ বিবাহ' : 'THE WEDDING OF'}</small>
+            <strong>
+              {names.first || (bn ? 'মেহরিন' : 'Mehrin')}
+              <i>&</i>
+              {names.second || (bn ? 'আরিব' : 'Arib')}
+            </strong>
+            <span>{bn ? '১২ . ১২ . ২০২৬' : '12 . 12 . 2026'}</span>
+            <small>{bn ? 'ভালোবাসার আমন্ত্রণ' : 'WITH LOVE, ALWAYS'}</small>
+          </div>
+        )}
       </a>
       <div className={s.cardTitle}>
         <h3>{label}</h3>
         <strong>{taka(prices[template.tier], locale)}</strong>
       </div>
       <p className={s.cardMeta}>
-        {bn ? template.mood : template.moodEn} · {packageName(template.tier, locale)}
+        <span>{bn ? template.mood : template.moodEn}</span>
         <span className={s.swatches} aria-hidden="true">
           <i style={{ background: template.paper }} />
           <i style={{ background: template.color }} />
         </span>
       </p>
-      <div className={selected ? s.cardButtonsSingle : s.cardButtons}>
-        <a href={demoHref}>
-          {bn ? 'লাইভ নমুনা' : 'Live sample'} <ArrowUpRight size={14} />
-        </a>
-        {!selected && (
+      <div className={s.cardButtons}>
+        {selected ? (
+          <a href={demoHref} className={s.cardSecondary}>
+            {bn ? 'লাইভ নমুনা' : 'Live sample'} <ArrowUpRight size={14} />
+          </a>
+        ) : (
           <a href={withNames(`/order/requests/?template=${template.id}`, names)}>
             {bn ? 'এটা বেছে নিন' : 'Choose this'} <ArrowRight size={14} />
           </a>

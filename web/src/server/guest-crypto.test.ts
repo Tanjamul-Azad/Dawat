@@ -28,7 +28,8 @@ describe('Recoverable, identity-bound guest credentials', () => {
     const enc = encryptLink(secret(), 'x', 'a');
     expect(() => decryptLink(enc.ciphertext, 'v1', 'y', 'a')).toThrow();
     expect(() => decryptLink(enc.ciphertext, 'v1', 'x', 'b')).toThrow();
-    expect(() => decryptLink('A' + enc.ciphertext.slice(1), 'v1', 'x', 'a')).toThrow();
+    const flipped = (enc.ciphertext[0] === 'A' ? 'B' : 'A') + enc.ciphertext.slice(1);
+    expect(() => decryptLink(flipped, 'v1', 'x', 'a')).toThrow();
   });
   it('separates shared invitation and personal link ciphertext purposes', () => {
     setup(); const token = secret(); const encrypted = encryptLink(token, 'w', 'w', 'open-invite');

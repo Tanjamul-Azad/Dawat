@@ -127,7 +127,8 @@ it('puts typed names on every card and carries them to the order link', () => {
 it('names the packages Classic and Premium on cards and links the live sample', () => {
   wrap(<TemplateCard template={templates[0]} />);
   expect(screen.getByText(/ক্লাসিক/)).toBeTruthy();
-  expect(screen.getAllByRole('link', { name: /লাইভ নমুনা/ })[1].getAttribute('href')).toBe(
+  // The artwork itself opens the live sample; the card's one button is the choice.
+  expect(screen.getAllByRole('link', { name: /লাইভ নমুনা/ })[0].getAttribute('href')).toBe(
     `/demo/?template=${templates[0].id}`,
   );
 });
