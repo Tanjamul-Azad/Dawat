@@ -3,6 +3,7 @@ import { uuid } from '@/features/production/contracts';
 import { session, staffSession } from '@/server/auth';
 import { body, dbError, endpoint } from '@/server/http';
 import { listSales } from '@/server/sales';
+import { afterSalesCommand } from '@/server/notify';
 export async function GET(request: Request) {
   return endpoint(request, () =>
     listSales(false, new URL(request.url).searchParams.get('cursor') ?? undefined),
@@ -17,6 +18,7 @@ export async function POST(request: Request) {
       p_body: input,
     });
     dbError(result.error);
+    await afterSalesCommand(input, result.data);
     return result.data;
   });
 }

@@ -450,7 +450,7 @@ const detail = (await alice.request(`/api/weddings/${x.weddingId}/`)).json.data;
 const guestWorkspace = await alice.request(`/weddings/${x.weddingId}/guests/`);
 assert.equal(guestWorkspace.status, 200);
 assert.ok(
-  guestWorkspace.raw.includes('আপনার অতিথিদের তালিকা'),
+  guestWorkspace.raw.includes('id="host-guest-list"'),
   'Joined live-version read must render the guest workspace, not a streamed error.',
 );
 const publicPath = `/i/${detail.wedding.slug}/`;

@@ -229,6 +229,17 @@ export function SalesDesk({
         <span>{who}</span>
         <strong>{what}</strong>
         {more && <p>{more}</p>}
+        {r.state !== 'cancelled' && (
+          <a
+            className={c.paymentHelp}
+            href={whatsappLink(`অর্ডার ${orderPaymentReference(r.id)} নিয়ে জানতে চাই।`)}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <MessageCircle size={15} />
+            {t('WhatsApp-এ জিজ্ঞেস করুন', 'Ask on WhatsApp')} · {orderPaymentReference(r.id)}
+          </a>
+        )}
       </div>
     );
   }

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { body, dbError, endpoint } from '@/server/http';
 import { staffSession } from '@/server/auth';
 import { listOrders } from '@/server/weddings';
+import { afterSellerCommand } from '@/server/notify';
 export async function GET(request: Request) {
   return endpoint(request, () => {
     const params = new URL(request.url).searchParams;
@@ -25,6 +26,7 @@ export async function POST(request: Request) {
     const key = uuid.parse(request.headers.get('Idempotency-Key'));
     const r = await db.rpc('seller_command', { p_key: key, p_body: input });
     dbError(r.error);
+    await afterSellerCommand(db, input, r.data);
     return r.data;
   });
 }
