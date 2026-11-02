@@ -1,9 +1,10 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  # Each production deploy spends credits, so pushes build only when the newest commit message
-  # contains [deploy]. Everything pushed since the last deploy goes live together. Exit 0 skips.
-  ignore = "! git log -1 --pretty=%B | grep -qF '[deploy]'"
+  # Each production deploy spends credits, so pushes build only when the newest commit's subject
+  # line contains [deploy] (its body may mention the marker freely). Everything pushed since the
+  # last deploy goes live together. Exit 0 skips.
+  ignore = "! git log -1 --pretty=%s | grep -qF '[deploy]'"
 
 [build.environment]
   NODE_VERSION = "22"
