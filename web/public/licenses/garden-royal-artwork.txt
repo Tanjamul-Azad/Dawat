@@ -1,0 +1,11 @@
+Garden Vows / Mayabon royal botanical illustrations
+Generated for this project using OpenAI built-in image generation, 30 October 2026.
+Original generated artwork; no third-party reference images were copied into these assets.
+Prompts and provenance: docs/design/garden-royal-artwork-2026-10-30.md in the project repository.
+The illustrated pavilion is imagined decorative artwork, not a photograph of an event venue.
+Existing sample couple photographs, music and other template assets retain their separate provenance.
+
+Editorial refinement: envelope, photographic flower cutout and emerald silk assets
+were also generated with built-in Imagegen on 30 October 2026.
+Prompts: docs/design/garden-editorial-refinement-2026-10-30.md.
+garden-paper-edge.svg is a native project graphic, not stock artwork.

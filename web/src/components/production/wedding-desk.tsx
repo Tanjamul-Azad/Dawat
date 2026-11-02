@@ -31,6 +31,7 @@ import { errorText } from '@/features/production/copy';
 import { type EditorSection } from '@/features/production/navigation';
 import { HostWhatsappSettings } from './open-invite';
 import { HandoffLinks } from './handoff-links';
+import { WeddingIdentityBanner } from './host-dashboard-overview';
 import { findTemplate } from '@/features/production/catalog';
 import { formatDhaka } from '@/features/production/dates';
 import s from './workspace.module.css';
@@ -75,6 +76,12 @@ export function WeddingDesk({
   const [conflict, setConflict] = useState<WeddingDetail | null>(null);
   const { locale } = useProductLocale();
   const publishAttempt = useRef<{ revision: number; key: string } | null>(null);
+  const coupleTitle =
+    content.partnerOne && content.partnerTwo
+      ? locale === 'bn'
+        ? `${content.partnerOneBn || content.partnerOne} ও ${content.partnerTwoBn || content.partnerTwo}`
+        : `${content.partnerOne} & ${content.partnerTwo}`
+      : detail.wedding.title;
   const dirty = JSON.stringify(content) !== JSON.stringify(detail.content);
   const root = `/api/weddings/${initial.wedding.id}`;
   const issues = publicationIssues(content);
@@ -314,13 +321,7 @@ export function WeddingDesk({
           <WorkspaceLink className={s.eyebrow} href="/dashboard/?all=1">
             <ArrowLeft size={12} /> {t('My weddings', 'আমার আয়োজন')}
           </WorkspaceLink>
-          <h1>
-            {content.partnerOne && content.partnerTwo
-              ? locale === 'bn'
-                ? `${content.partnerOneBn || content.partnerOne} ও ${content.partnerTwoBn || content.partnerTwo}`
-                : `${content.partnerOne} & ${content.partnerTwo}`
-              : detail.wedding.title}
-          </h1>
+          <h1>{step === 'overview' ? t('Your celebration', 'আপনার আয়োজন') : coupleTitle}</h1>
           <p>
             {t(
               'A thoughtful invitation starts with the details.',
@@ -442,6 +443,14 @@ export function WeddingDesk({
             </button>
           </div>
         </section>
+      )}
+      {step === 'overview' && (
+        <div className={s.overviewBanner}>
+          <WeddingIdentityBanner
+            title={coupleTitle}
+            event={content.events.find((e) => e.id === 'reception') ?? content.events[0]}
+          />
+        </div>
       )}
       <nav className={s.steps} aria-label={t('Invitation sections', 'আমন্ত্রণের বিভাগ')}>
         {[

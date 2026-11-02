@@ -2,7 +2,7 @@
 import { useProductLocale } from './product-locale';
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { ArrowLeft, Plus, RefreshCw, Send, Link2, Heart, Download, ListPlus } from 'lucide-react';
+import { Send, Link2, Heart, Download } from 'lucide-react';
 import type { Invitation } from '@/features/workspace/model';
 import {
   householdInput,
@@ -20,6 +20,8 @@ import { normalizePhone } from '@/features/production/phone';
 import { SendQueue } from './guest-send';
 import { OpenInviteCard } from './open-invite';
 import { GuestList } from './guest-list';
+import { HostDashboardHeader, HostReportSummary } from './host-dashboard-overview';
+import { GuestListToolbar } from './guest-list-toolbar';
 import { WorkspaceFrame, WorkspaceLink } from './frame';
 import { Modal, copyText } from '../ui';
 import { ResponseEditor } from './response-editor';
@@ -31,6 +33,7 @@ type Props = {
   wid: string;
   slug: string;
   title: string;
+  couple?: { partnerOne: string; partnerTwo: string; partnerOneBn?: string; partnerTwoBn?: string };
   email: string;
   events: Invitation['events'];
   initial: HouseholdReport;
@@ -41,6 +44,7 @@ export function GuestHub({
   wid,
   slug,
   title,
+  couple,
   email,
   events,
   initial,
@@ -48,6 +52,12 @@ export function GuestHub({
   refreshOnMount = false,
 }: Props) {
   const { tr, locale } = useProductLocale();
+  const displayTitle =
+    couple?.partnerOne && couple?.partnerTwo
+      ? locale === 'bn'
+        ? `${couple.partnerOneBn || couple.partnerOne} ও ${couple.partnerTwoBn || couple.partnerTwo}`
+        : `${couple.partnerOne} & ${couple.partnerTwo}`
+      : title;
   const root = `/api/weddings/${wid}`;
   const [data, setData] = useState(initial);
   const [eventId, setEventId] = useState(initialEvent);
@@ -78,6 +88,7 @@ export function GuestHub({
   const [sendOpen, setSendOpen] = useState(false);
   const [source, setSource] = useState('all');
   const [bulkOpen, setBulkOpen] = useState(false);
+  const [sharedOpen, setSharedOpen] = useState(false);
   const [editorRound, setEditorRound] = useState(0);
   // The page notice can be far off-screen on a phone, so the copied row says so too.
   const [copiedId, setCopiedId] = useState('');
@@ -284,41 +295,26 @@ export function GuestHub({
   const rows = data.rows;
   const reportEventId = appliedFilters.current.eventId;
   return (
-    <WorkspaceFrame email={email} wedding={{ id: wid, title, view: 'guests' }}>
-      <div className={s.intro}>
-        <div>
-          <WorkspaceLink href={`/weddings/${wid}/`} className={s.eyebrow}>
-            <ArrowLeft size={12} /> {title}
-          </WorkspaceLink>
-          <h1>{tr('People make the celebration.')}</h1>
-          <p>
-            {locale === 'bn'
-              ? 'একজন অতিথি, দম্পতি, পরিবার বা দল—নাম ধরে আমন্ত্রণ ও আলাদা লিংক।'
-              : 'Invite a person, couple, family or group by name, each with a personal link.'}
-          </p>
-        </div>
-        <div className={s.actions}>
-          <button
-            className={s.secondary}
-            disabled={busy}
-            onClick={() => (panel === 'wishes' ? loadWishes() : refresh())}
-          >
-            <RefreshCw size={15} />
-            {busy ? tr('Please wait…') : tr('Refresh')}
-          </button>
-          <button className={s.secondary} disabled={busy || !events.length} onClick={() => setBulkOpen(true)}>
-            <ListPlus size={16} />
-            {locale === 'bn' ? 'একসঙ্গে অনেক পরিবার' : 'Add many at once'}
-          </button>
-          <button className={s.secondary} disabled={busy || !events.length} onClick={() => setSendOpen(true)}>
-            {locale === 'bn' ? 'আমন্ত্রণ পাঠান' : 'Send invitations'}
-          </button>
-          <button className={s.button} disabled={busy || !events.length} onClick={() => setEditing(null)}>
-            <Plus size={16} />
-            {tr('Add household')}
-          </button>
-        </div>
-      </div>
+    <WorkspaceFrame
+      email={email}
+      wedding={{ id: wid, title: displayTitle, view: 'guests' }}
+      onGuests={() => {
+        setPanel('guests');
+        document.getElementById('host-guest-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }}
+    >
+      <HostDashboardHeader
+        title={displayTitle}
+        event={events.find((e) => e.id === reportEventId) ?? events[0]}
+        editHref={`/weddings/${wid}/?section=names`}
+        busy={busy}
+        disabled={!events.length}
+        onRefresh={() => (panel === 'wishes' ? void loadWishes() : void refresh())}
+        onBulk={() => setBulkOpen(true)}
+        onSend={() => setSendOpen(true)}
+        onAdd={() => setEditing(null)}
+        onShared={() => setSharedOpen(true)}
+      />
       {error && editing === undefined && !danger && (
         <p className={s.error} role="alert">
           {errorText(error, locale)}
@@ -330,7 +326,21 @@ export function GuestHub({
           {notice}
         </p>
       )}
-      {events.length > 0 && <OpenInviteCard wid={wid} events={events} />}
+      {events.length > 0 && (
+        <details
+          id="shared-invitation-link"
+          className={s.sharedInvitation}
+          hidden={!sharedOpen}
+          open={sharedOpen}
+          onToggle={(e) => setSharedOpen(e.currentTarget.open)}
+        >
+          <summary>
+            <Link2 size={18} />
+            {locale === 'bn' ? 'সবার জন্য একটি লিংক' : 'One link for everyone'}
+          </summary>
+          <OpenInviteCard wid={wid} events={events} />
+        </details>
+      )}
       {sendOpen && (
         <SendQueue
           wid={wid}
@@ -339,16 +349,38 @@ export function GuestHub({
           onSaved={() => void refresh()}
         />
       )}
-      <p className={s.muted}>
-        {locale === 'bn'
-          ? `পাঠানো ${count(data.summary.sent ?? 0)} · খুলেছেন ${count(data.summary.opened ?? 0)} · উত্তর ${count(data.summary.replied ?? 0)}`
-          : `Sent ${count(data.summary.sent ?? 0)} · Opened ${count(data.summary.opened ?? 0)} · Replied ${count(data.summary.replied ?? 0)}`}
-        <br />
-        {locale === 'bn'
-          ? `নাম ধরে: ${count(data.summary.hostCount ?? data.summary.invited)} · সবার লিংক থেকে: ${count(data.summary.openCount ?? 0)}`
-          : `Named: ${count(data.summary.hostCount ?? data.summary.invited)} · From shared link: ${count(data.summary.openCount ?? 0)}`}
+      <p className={s.deliveryOverview}>
+        <span>
+          {locale === 'bn'
+            ? `পাঠানো ${count(data.summary.sent ?? 0)} · খুলেছেন ${count(data.summary.opened ?? 0)} · উত্তর ${count(data.summary.replied ?? 0)}`
+            : `Sent ${count(data.summary.sent ?? 0)} · Opened ${count(data.summary.opened ?? 0)} · Replied ${count(data.summary.replied ?? 0)}`}
+        </span>
+        <span>
+          {locale === 'bn'
+            ? `নাম ধরে: ${count(data.summary.hostCount ?? data.summary.invited)} · সবার লিংক থেকে: ${count(data.summary.openCount ?? 0)}`
+            : `Named: ${count(data.summary.hostCount ?? data.summary.invited)} · From shared link: ${count(data.summary.openCount ?? 0)}`}
+        </span>
       </p>
-      <nav className={s.steps} aria-label={tr('Guest management')}>
+      {events.length > 0 && panel === 'guests' && (
+        <HostReportSummary
+          data={data}
+          events={events}
+          eventId={eventId}
+          reportEventId={reportEventId}
+          filterLabel={
+            tr(appliedFilters.current.status) +
+            (appliedFilters.current.search ? ' · ' + appliedFilters.current.search : '')
+          }
+          busy={busy}
+          stale={stale}
+          onEventChange={(id) => {
+            setEventId(id);
+            void refresh(null, { ...appliedFilters.current, eventId: id });
+          }}
+          onReplySettings={() => setPolicyOpen(true)}
+        />
+      )}
+      <nav id="host-guest-list" className={s.steps} aria-label={tr('Guest management')}>
         <button aria-current={panel === 'guests' ? 'step' : undefined} onClick={() => setPanel('guests')}>
           {tr('Invitations & replies')}
         </button>
@@ -378,180 +410,121 @@ export function GuestHub({
         </section>
       ) : panel === 'guests' ? (
         <>
-          <div className={s.panel}>
-            <div className={s.actions} style={{ justifyContent: 'space-between', marginBottom: 20 }}>
-              <label>
-                {tr('Celebration')}{' '}
-                <select
-                  value={eventId}
-                  onChange={(e) => {
-                    setEventId(e.target.value);
-                    void refresh(null, { ...appliedFilters.current, eventId: e.target.value });
-                  }}
-                >
-                  {events.map((e) => (
-                    <option key={e.id} value={e.id}>
-                      {locale === 'bn' ? e.titleBn || e.title : e.title}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <span className={s.badge}>{policy?.isOpen ? tr('Replies open') : tr('Replies closed')}</span>
-              <button className={s.quiet} disabled={busy} onClick={() => setPolicyOpen(true)}>
-                {tr('Reply settings')}
-              </button>
-            </div>
-            <p className={s.eyebrow}>{tr('All invited households \u00B7 selected event')}</p>
-            <p className={s.muted}>
-              {locale === 'bn' ? 'দেখানো রিপোর্ট' : 'Displayed report'}: {eventTitle(reportEventId)} ·{' '}
-              {tr(appliedFilters.current.status)}
-              {appliedFilters.current.search ? ' · ' + appliedFilters.current.search : ''}
-            </p>
-            <div className={s.metrics}>
-              {[
-                [tr('Invited households'), data.summary.invited],
-                [tr('Accepted'), data.summary.accepted],
-                [tr('Declined'), data.summary.declined],
-                [tr('Pending'), data.summary.pending],
-              ].map(([label, value]) => (
-                <div key={label}>
-                  <span>{label}</span>
-                  <strong>{count(Number(value))}</strong>
-                </div>
-              ))}
-            </div>
-            <p className={s.confirmed}>
-              <strong>{count(data.summary.adults + data.summary.children)}</strong>
-              {tr('confirmed people')}{' '}
-              <span>
-                {count(data.summary.adults)} {tr('adults +')} {count(data.summary.children)} {tr('children')}
-              </span>
-            </p>
-            <p className={s.muted}>
-              {stale ? tr('Stale \u00B7 ') : ''}
-              {tr('As of')} {formatDhaka(data.asOf, locale, { time: 'medium' })}{' '}
-              {tr('\u00B7 Asia/Dhaka. Totals refer to this event, not unique people across celebrations.')}
-            </p>
-          </div>
-          <section className={s.panel}>
-            <div className={s.sectionHeader}>
-              <h2>{locale === 'bn' ? 'অতিথি তালিকা' : 'Guest list'}</h2>
-              <button
-                className={s.secondary}
-                disabled={exporting || busy || appliedFilters.current.status === 'hidden'}
-                onClick={async () => {
-                  setExporting(true);
-                  setError('');
-                  try {
-                    await downloadCsv(
-                      `${root}/export/?${new URLSearchParams({ event: appliedFilters.current.eventId, search: appliedFilters.current.search, status: appliedFilters.current.status, ...(appliedFilters.current.source !== 'all' ? { source: appliedFilters.current.source } : {}), ...(exportContacts ? { contacts: '1' } : {}) })}`,
-                    );
-                  } catch (e) {
-                    setError(
-                      (e as Error).name === 'TimeoutError'
-                        ? locale === 'bn'
-                          ? 'CSV নামাতে সময় বেশি লাগছে। আবার চেষ্টা করুন।'
-                          : 'Export timed out. Please try again.'
-                        : errorText((e as Error).message, locale),
-                    );
-                  } finally {
-                    setExporting(false);
-                  }
-                }}
-              >
-                <Download size={15} />
-                {exporting
-                  ? locale === 'bn'
-                    ? 'CSV তৈরি হচ্ছে…'
-                    : 'Preparing CSV…'
-                  : locale === 'bn'
-                    ? 'CSV নামান'
-                    : 'Download CSV'}
-              </button>
-            </div>
-            <label className={s.checkbox}>
-              <input
-                type="checkbox"
-                checked={exportContacts}
-                onChange={(e) => setExportContacts(e.target.checked)}
-              />
-              {locale === 'bn' ? 'CSV-তে WhatsApp নম্বরও রাখুন' : 'Include WhatsApp numbers in CSV'}
-            </label>
-            <p className={s.muted}>
-              {locale === 'bn'
-                ? 'CSV-তে প্রয়োগ করা খোঁজ ও ফিল্টারের সব আমন্ত্রণ থাকবে; শুধু এই পাতা নয়। ব্যক্তিগত লিংক ও আপনার নোট থাকবে না।'
-                : 'CSV includes all invitations matching the applied search and filters, across all pages. Private links and host notes are excluded.'}
-            </p>
-            <form
-              className={`${s.form} ${s.filters}`}
-              onSubmit={(e) => {
-                e.preventDefault();
-                void refresh(null, { eventId, search: search.trim(), status, source });
+          <section className={`${s.panel} ${s.guestPanel}`}>
+            <GuestListToolbar
+              search={search}
+              status={status}
+              busy={busy}
+              shown={rows.length}
+              onSearchChange={setSearch}
+              onApply={() => void refresh(null, { eventId, search: search.trim(), status, source })}
+              onStatusChange={(value) => {
+                setStatus(value);
+                void refresh(null, { ...appliedFilters.current, status: value });
               }}
-            >
-              <label>
-                {tr('Search households')}
-                <input
-                  maxLength={120}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder={tr('Name or family')}
-                />
-              </label>
-              <label>
-                {locale === 'bn' ? 'আমন্ত্রণের উৎস' : 'Invitation source'}
-                <select
-                  value={source}
-                  onChange={(e) => {
-                    setSource(e.target.value);
-                    void refresh(null, { ...appliedFilters.current, source: e.target.value });
-                  }}
-                >
-                  <option value="all">{locale === 'bn' ? 'সব' : 'All'}</option>
-                  <option value="host">{locale === 'bn' ? 'নাম ধরে' : 'Named'}</option>
-                  <option value="open">{locale === 'bn' ? 'সবার লিংক থেকে' : 'From shared link'}</option>
-                </select>
-              </label>
-              <label>
-                {tr('Reply status')}
-                <select
-                  value={status}
-                  onChange={(e) => {
-                    setStatus(e.target.value);
-                    void refresh(null, { ...appliedFilters.current, status: e.target.value });
-                  }}
-                >
-                  {['all', 'accepted', 'declined', 'pending', 'hidden'].map((v) => (
-                    <option key={v} value={v}>
-                      {v === 'hidden' ? (locale === 'bn' ? 'লুকানো' : 'Hidden') : tr(v)}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <button className={s.secondary} disabled={busy}>
-                {tr('Apply search')}
-              </button>
-              {(appliedFilters.current.search || appliedFilters.current.status !== 'all') && (
+              onAdd={() => setEditing(null)}
+              exportAction={
                 <button
-                  type="button"
-                  className={s.quiet}
-                  disabled={busy}
-                  onClick={() => {
-                    setSearch('');
-                    setStatus('all');
-                    setSource('all');
-                    void refresh(null, {
-                      eventId: appliedFilters.current.eventId,
-                      search: '',
-                      status: 'all',
-                      source: 'all',
-                    });
+                  className={s.secondary}
+                  aria-label={
+                    exporting
+                      ? locale === 'bn'
+                        ? 'CSV তৈরি হচ্ছে…'
+                        : 'Preparing CSV…'
+                      : locale === 'bn'
+                        ? 'CSV নামান'
+                        : 'Download CSV'
+                  }
+                  title={locale === 'bn' ? 'CSV নামান' : 'Download CSV'}
+                  disabled={exporting || busy || appliedFilters.current.status === 'hidden'}
+                  onClick={async () => {
+                    setExporting(true);
+                    setError('');
+                    try {
+                      await downloadCsv(
+                        `${root}/export/?${new URLSearchParams({ event: appliedFilters.current.eventId, search: appliedFilters.current.search, status: appliedFilters.current.status, ...(appliedFilters.current.source !== 'all' ? { source: appliedFilters.current.source } : {}), ...(exportContacts ? { contacts: '1' } : {}) })}`,
+                      );
+                    } catch (e) {
+                      setError(
+                        (e as Error).name === 'TimeoutError'
+                          ? locale === 'bn'
+                            ? 'CSV নামাতে সময় বেশি লাগছে। আবার চেষ্টা করুন।'
+                            : 'Export timed out. Please try again.'
+                          : errorText((e as Error).message, locale),
+                      );
+                    } finally {
+                      setExporting(false);
+                    }
                   }}
                 >
-                  {locale === 'bn' ? 'বাছাই মুছুন' : 'Clear filters'}
+                  <Download size={15} />
+                  <span>
+                    {exporting
+                      ? locale === 'bn'
+                        ? 'CSV তৈরি হচ্ছে…'
+                        : 'Preparing CSV…'
+                      : locale === 'bn'
+                        ? 'CSV নামান'
+                        : 'Download CSV'}
+                  </span>
                 </button>
-              )}
-            </form>
+              }
+              options={
+                <>
+                  <label>
+                    {locale === 'bn' ? 'আমন্ত্রণের উৎস' : 'Invitation source'}
+                    <select
+                      value={source}
+                      onChange={(e) => {
+                        setSource(e.target.value);
+                        void refresh(null, { ...appliedFilters.current, source: e.target.value });
+                      }}
+                    >
+                      <option value="all">{locale === 'bn' ? 'সব' : 'All'}</option>
+                      <option value="host">{locale === 'bn' ? 'নাম ধরে' : 'Named'}</option>
+                      <option value="open">{locale === 'bn' ? 'সবার লিংক থেকে' : 'From shared link'}</option>
+                    </select>
+                  </label>
+                  <label className={s.checkbox}>
+                    <input
+                      type="checkbox"
+                      checked={exportContacts}
+                      onChange={(e) => setExportContacts(e.target.checked)}
+                    />
+                    {locale === 'bn' ? 'CSV-তে WhatsApp নম্বরও রাখুন' : 'Include WhatsApp numbers in CSV'}
+                  </label>
+                  <p className={s.muted}>
+                    {locale === 'bn'
+                      ? 'CSV-তে প্রয়োগ করা খোঁজ ও ফিল্টারের সব আমন্ত্রণ থাকবে; শুধু এই পাতা নয়। ব্যক্তিগত লিংক ও আপনার নোট থাকবে না।'
+                      : 'CSV includes all invitations matching the applied search and filters, across all pages. Private links and host notes are excluded.'}
+                  </p>
+                </>
+              }
+              clearAction={
+                (appliedFilters.current.search ||
+                  appliedFilters.current.status !== 'all' ||
+                  appliedFilters.current.source !== 'all') && (
+                  <button
+                    type="button"
+                    className={s.quiet}
+                    disabled={busy}
+                    onClick={() => {
+                      setSearch('');
+                      setStatus('all');
+                      setSource('all');
+                      void refresh(null, {
+                        eventId: appliedFilters.current.eventId,
+                        search: '',
+                        status: 'all',
+                        source: 'all',
+                      });
+                    }}
+                  >
+                    {locale === 'bn' ? 'বাছাই মুছুন' : 'Clear filters'}
+                  </button>
+                )
+              }
+            />
             {search.trim() !== appliedFilters.current.search && (
               <p className={s.muted}>
                 {locale === 'bn'

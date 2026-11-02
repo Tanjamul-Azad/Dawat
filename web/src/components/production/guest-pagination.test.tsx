@@ -64,6 +64,65 @@ afterEach(() => {
   vi.clearAllMocks();
 });
 
+it('renders updated invitation names in the banner instead of the old workspace title', () => {
+  const props = {
+    wid,
+    slug: wid,
+    title: 'পুরোনো আয়োজনের নাম',
+    email: 'test@example.test',
+    events: [
+      {
+        id: 'reception' as const,
+        title: 'সংবর্ধনা',
+        date: '2026-12-12',
+        time: '19:00',
+        venue: 'ঢাকা',
+        address: '',
+      },
+    ],
+    initial: first,
+    initialEvent: 'reception',
+  };
+  const { rerender } = render(
+    <GuestHub
+      {...props}
+      couple={{ partnerOne: 'Sara', partnerTwo: 'Ayaan', partnerOneBn: 'সারা', partnerTwoBn: 'আয়ান' }}
+    />,
+  );
+  expect(screen.getByRole('heading', { name: 'সারা ও আয়ান', level: 2 })).toBeTruthy();
+  expect(screen.queryByRole('heading', { name: props.title })).toBeNull();
+  rerender(
+    <GuestHub
+      {...props}
+      couple={{ partnerOne: 'Nabila', partnerTwo: 'Omar', partnerOneBn: 'নাবিলা', partnerTwoBn: 'ওমর' }}
+    />,
+  );
+  expect(screen.getByRole('heading', { name: 'নাবিলা ও ওমর', level: 2 })).toBeTruthy();
+  expect(screen.queryByRole('heading', { name: 'সারা ও আয়ান', level: 2 })).toBeNull();
+});
+
+it('uses the reply chips with applied search and clears a source-only filter', async () => {
+  const fetcher = vi.fn().mockResolvedValue(json(first));
+  vi.stubGlobal('fetch', fetcher);
+  mount();
+  fireEvent.change(screen.getByRole('textbox', { name: 'নাম দিয়ে খুঁজুন' }), {
+    target: { value: 'এখনও প্রয়োগ হয়নি' },
+  });
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: 'উত্তর বাকি' })));
+  expect(query(fetcher, 0).get('status')).toBe('pending');
+  expect(query(fetcher, 0).get('search')).toBe('');
+  expect(screen.getByRole('button', { name: 'উত্তর বাকি' }).getAttribute('aria-pressed')).toBe('true');
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: 'সব আমন্ত্রণ' })));
+  await act(async () =>
+    fireEvent.change(screen.getByLabelText('আমন্ত্রণের উৎস'), { target: { value: 'open' } }),
+  );
+  expect(query(fetcher, 2).get('source')).toBe('open');
+  await act(async () => fireEvent.click(screen.getByRole('button', { name: 'বাছাই মুছুন' })));
+  expect(query(fetcher, 3).get('source')).toBe('all');
+  expect(query(fetcher, 3).get('search')).toBe('');
+  expect(query(fetcher, 3).get('status')).toBe('all');
+});
+
 it('navigates forward/back with applied filters, resets search pagination and exports the displayed filters', async () => {
   const fetcher = vi
     .fn()

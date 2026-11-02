@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { GuestInvitation } from './guest-invitation';
 import s from './invitation-entry.module.css';
+import type { TemplateId } from '@/features/production/catalog';
 
 const PerformanceProbe = dynamic(() => import('./invitation-performance-probe'));
 
 // Guest links do not need the storefront, order journey or editor bundles.
-export function InvitationEntry() {
+export function InvitationEntry({ sampleTemplateId }: { sampleTemplateId?: TemplateId } = {}) {
   const store = useWorkspace();
   const [performanceQa, setPerformanceQa] = useState(false);
   useEffect(() => {
@@ -17,7 +18,7 @@ export function InvitationEntry() {
   }, []);
   return (
     <main id="main" className={s.root}>
-      <GuestInvitation {...store} notify={() => {}} />
+      <GuestInvitation {...store} notify={() => {}} sampleTemplateId={sampleTemplateId} />
       {performanceQa && <PerformanceProbe />}
     </main>
   );

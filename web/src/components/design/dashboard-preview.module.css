@@ -1,0 +1,70 @@
+.previewNote {
+  margin: 0 0 16px;
+  padding: 7px 10px;
+  border: 1px solid #deebe2;
+  border-radius: 7px;
+  color: #607966;
+  background: #ebf3ee;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.sharedBody {
+  padding: 0 20px 20px;
+}
+.sharedBody > a {
+  display: inline-block;
+  margin-right: 20px;
+  color: #27704b;
+  text-decoration: underline;
+}
+.tableFoot {
+  color: #65776b;
+  font-size: 12px;
+  margin: 0;
+  padding: 17px 22px;
+  border-top: 1px solid #e6ede7;
+}
+.wish {
+  padding: 20px;
+  border: 1px solid #e0e9e2;
+  border-left: 3px solid #8abd9a;
+  border-radius: 10px;
+  background: #f9fcfa;
+  margin-top: 16px;
+}
+.wish > span {
+  display: block;
+  font:
+    600 15px/1.5 var(--font-ui),
+    var(--font-bangla-ui),
+    sans-serif;
+  color: #355f43;
+}
+.wish small {
+  display: block;
+  color: #708074;
+  font-size: 12px;
+  margin: 5px 0 13px;
+}
+.wish p {
+  max-width: 650px;
+  margin: 0;
+  color: #4b6051;
+  font-size: 15px;
+  line-height: 1.8;
+}
+@media (max-width: 600px) {
+  .previewNote {
+    font-size: 11px;
+  }
+  .sharedBody > a {
+    display: block;
+    margin-bottom: 16px;
+  }
+  .tableFoot {
+    padding-inline: 16px;
+  }
+  .wish {
+    padding: 17px;
+  }
+}

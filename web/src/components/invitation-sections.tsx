@@ -18,6 +18,8 @@ import { copyText, Modal } from './ui';
 import { Botanical } from './artwork';
 import s from './jamdani.module.css';
 import { PhotoReel } from './photo-reel';
+import { GardenPhotoCollage } from './garden-royal';
+import { IvoryPhotographs } from './ivory-orchid';
 
 export function Flourish() {
   return (
@@ -138,6 +140,7 @@ export function CelebrationEvents({
   const [copied, setCopied] = useState<string | null>(null);
   const [failed, setFailed] = useState<string | null>(null);
   const t = words[locale];
+  const stationery = invitation.templateId === 'garden' || invitation.templateId === 'ivory';
   async function copy(event: Invitation['events'][number]) {
     try {
       const text = eventText(event, locale);
@@ -156,59 +159,79 @@ export function CelebrationEvents({
           03 / {locale === 'bn' ? 'আয়োজন' : 'THE CELEBRATIONS'}
         </span>
         <span className={s.kicker}>{t.programmeLabel}</span>
-        <h2 id="events-title">{t.programme}</h2>
+        <h2 id="events-title">
+          {stationery ? (locale === 'bn' ? 'আমাদের আয়োজন' : 'The celebration') : t.programme}
+        </h2>
         <Flourish />
       </header>
       <div className={s.eventList}>
         {events.map((event, index) => {
           const text = eventText(event, locale);
+          const calendarButton = (
+            <button
+              onClick={() =>
+                download(
+                  `${event.id}.ics`,
+                  calendarContent(event, invitation, locale),
+                  'text/calendar;charset=utf-8',
+                )
+              }
+            >
+              <CalendarDays size={16} />
+              {t.calendar}
+            </button>
+          );
+          const utilities = (
+            <div className={s.secondaryActions}>
+              <button onClick={() => copy(event)}>
+                {copied === event.id ? <Check size={14} /> : <Copy size={14} />}
+                {copied === event.id ? t.copied : t.address}
+              </button>
+              <button
+                aria-expanded={expanded === event.id}
+                aria-controls={`map-${event.id}`}
+                onClick={() => setExpanded(expanded === event.id ? null : event.id)}
+              >
+                {expanded === event.id ? t.hideMap : t.showMap}
+                <Plus size={14} />
+              </button>
+            </div>
+          );
           return (
             <article key={event.id} className={s.event} data-reveal>
-              <div className={s.eventDate}>
-                <span>{number(index + 1, locale, 2)}</span>
-                <div aria-hidden="true">{event.id === 'nikah' ? '❋' : '✧'}</div>
-                <p>{formatDate(event.date, locale)}</p>
-              </div>
+              {stationery ? (
+                <header className={s.eventLetterTitle}>
+                  <h3>{text.title}</h3>
+                  <p>{formatDate(event.date, locale)}</p>
+                  <time dateTime={`${event.date}T${event.time}:00+06:00`}>{formatTime(event, locale)}</time>
+                </header>
+              ) : (
+                <div className={s.eventDate}>
+                  <span>{number(index + 1, locale, 2)}</span>
+                  <div aria-hidden="true">{event.id === 'nikah' ? '❋' : '✧'}</div>
+                  <p>{formatDate(event.date, locale)}</p>
+                </div>
+              )}
               <div className={s.eventBody}>
-                <span className={s.kicker}>
-                  {formatTime(event, locale)} · {locale === 'bn' ? 'বাংলাদেশ সময়' : 'BANGLADESH TIME'}
-                </span>
-                <h3>{text.title}</h3>
+                {!stationery && (
+                  <>
+                    <span className={s.kicker}>
+                      {formatTime(event, locale)} · {locale === 'bn' ? 'বাংলাদেশ সময়' : 'BANGLADESH TIME'}
+                    </span>
+                    <h3>{text.title}</h3>
+                  </>
+                )}
                 <p className={s.venue}>{text.venue}</p>
                 <address>{text.address}</address>
                 <div className={s.eventActions}>
                   <a href={mapUrl(event)} target="_blank" rel="noopener noreferrer">
                     <MapPin size={16} />
-                    {t.directions}
+                    {stationery ? (locale === 'bn' ? 'ম্যাপে দেখুন' : 'View the location') : t.directions}
                     <ArrowRight size={14} />
                   </a>
-                  <button
-                    onClick={() =>
-                      download(
-                        `${event.id}.ics`,
-                        calendarContent(event, invitation, locale),
-                        'text/calendar;charset=utf-8',
-                      )
-                    }
-                  >
-                    <CalendarDays size={16} />
-                    {t.calendar}
-                  </button>
+                  {calendarButton}
                 </div>
-                <div className={s.secondaryActions}>
-                  <button onClick={() => copy(event)}>
-                    {copied === event.id ? <Check size={14} /> : <Copy size={14} />}{' '}
-                    {copied === event.id ? t.copied : t.address}
-                  </button>
-                  <button
-                    aria-expanded={expanded === event.id}
-                    aria-controls={`map-${event.id}`}
-                    onClick={() => setExpanded(expanded === event.id ? null : event.id)}
-                  >
-                    {expanded === event.id ? t.hideMap : t.showMap}
-                    <Plus size={14} />
-                  </button>
-                </div>
+                {utilities}
                 {failed === event.id && (
                   <p role="status" className={s.feedback}>
                     {t.copyFailed}
@@ -238,9 +261,18 @@ export function CelebrationEvents({
   );
 }
 
-export function PhotoMoments({ photos = [], locale }: { photos?: Invitation['photos']; locale: Locale }) {
+export function PhotoMoments({
+  photos = [],
+  locale,
+  layout = 'reel',
+}: {
+  photos?: Invitation['photos'];
+  locale: Locale;
+  layout?: 'reel' | 'garden' | 'ivory';
+}) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [failed, setFailed] = useState<string[]>([]);
+  const [reelExpanded, setReelExpanded] = useState(false);
   const touch = useRef<{ x: number; y: number } | null>(null);
   const t = words[locale];
   const selected = photos.findIndex((photo) => photo.id === selectedId);
@@ -274,14 +306,49 @@ export function PhotoMoments({ photos = [], locale }: { photos?: Invitation['pho
         <h2 id="moments-title">{t.photoTitle}</h2>
         <p>{t.photoNote}</p>
       </header>
-      <PhotoReel
-        photos={photos}
-        locale={locale}
-        failed={failed}
-        onFailure={(src) => setFailed((current) => (current.includes(src) ? current : [...current, src]))}
-        onOpen={setSelectedId}
-        dialogOpen={!!selectedPhoto}
-      />
+      {layout === 'garden' ? (
+        <GardenPhotoCollage
+          photos={photos}
+          locale={locale}
+          failed={failed}
+          onFailure={(src) => setFailed((current) => (current.includes(src) ? current : [...current, src]))}
+          onOpen={setSelectedId}
+        />
+      ) : layout === 'ivory' ? (
+        <IvoryPhotographs
+          photos={photos}
+          locale={locale}
+          failed={failed}
+          onFailure={(src) => setFailed((current) => (current.includes(src) ? current : [...current, src]))}
+          onOpen={setSelectedId}
+        />
+      ) : (
+        <PhotoReel
+          photos={photos}
+          locale={locale}
+          failed={failed}
+          onFailure={(src) => setFailed((current) => (current.includes(src) ? current : [...current, src]))}
+          onOpen={setSelectedId}
+          dialogOpen={!!selectedPhoto}
+        />
+      )}
+      {layout !== 'reel' && (
+        <details className={s.slideshowPanel} onToggle={(event) => setReelExpanded(event.currentTarget.open)}>
+          <summary>{locale === 'bn' ? 'ফটো স্লাইডশো দেখুন' : 'View photo slideshow'}</summary>
+          {reelExpanded && (
+            <PhotoReel
+              photos={photos}
+              locale={locale}
+              failed={failed}
+              onFailure={(src) =>
+                setFailed((current) => (current.includes(src) ? current : [...current, src]))
+              }
+              onOpen={setSelectedId}
+              dialogOpen={!!selectedPhoto}
+            />
+          )}
+        </details>
+      )}
       {selectedPhoto && (
         <Modal
           title={t.photoTitle}

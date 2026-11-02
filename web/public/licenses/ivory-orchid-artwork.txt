@@ -1,0 +1,5 @@
+Ivory orchid invitation artwork
+Generated using OpenAI's built-in image generation tool for Dawat's Ivory invitation design.
+Files: ivory-orchid-640.webp, ivory-lake-768.webp, ivory-lake-1536.webp.
+The imagined terrace scenery is decorative and does not identify an actual wedding venue.
+Exact prompts and provenance: docs/design/ivory-orchid-2026-11-02.md in the source repository.

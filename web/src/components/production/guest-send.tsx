@@ -18,7 +18,20 @@ export function DeliveryStatus({ row, eventId }: { row: HouseholdRow; eventId: s
   const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
   const d = row.lastDelivery;
   return (
-    <small className={s.linkStatus}>
+    <small
+      className={s.linkStatus}
+      data-delivery={
+        d && d.linkRevision !== row.linkRevision
+          ? 'pending'
+          : row.responses[eventId]
+            ? 'replied'
+            : row.firstOpenedAt
+              ? 'opened'
+              : d
+                ? 'sent'
+                : 'unsent'
+      }
+    >
       {d && d.linkRevision !== row.linkRevision
         ? t('নতুন লিংক পাঠানো হয়নি', 'New link not sent')
         : row.responses[eventId]
@@ -26,7 +39,13 @@ export function DeliveryStatus({ row, eventId }: { row: HouseholdRow; eventId: s
           : row.firstOpenedAt
             ? t('খুলেছেন', 'Opened')
             : d
-              ? `${d.channel === 'copy' ? t('কপি করা হয়েছে', 'Copied') : t('পাঠানো হয়েছে', 'Sent')} · ${d.channel === 'whatsapp' ? 'WhatsApp' : d.channel === 'share' ? t('শেয়ার', 'Share') : ''} · ${formatDhaka(d.at, locale, { date: 'medium' })}`
+              ? [
+                  d.channel === 'copy' ? t('কপি করা হয়েছে', 'Copied') : t('পাঠানো হয়েছে', 'Sent'),
+                  d.channel === 'whatsapp' ? 'WhatsApp' : d.channel === 'share' ? t('শেয়ার', 'Share') : '',
+                  formatDhaka(d.at, locale, { date: 'medium' }),
+                ]
+                  .filter(Boolean)
+                  .join(' · ')
               : t('এখনো পাঠানো হয়নি', 'Not sent yet')}
     </small>
   );

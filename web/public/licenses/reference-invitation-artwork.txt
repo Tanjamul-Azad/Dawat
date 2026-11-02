@@ -1,0 +1,5 @@
+Reference invitation artwork for Dawat
+Generated with OpenAI's built-in image generation tool for the owner's requested wedding stationery designs.
+Files: reference-blue-640.webp, reference-rose-640.webp, reference-royal-envelope-960.webp.
+Catalog preview files template-*-reference.webp are captures of the actual locally rendered invitation covers.
+Exact prompts and implementation notes: docs/design/remaining-reference-cards-2026-11-02.md in the source repository.

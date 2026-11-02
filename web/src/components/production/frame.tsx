@@ -83,6 +83,7 @@ export function WorkspaceFrame({
   wedding,
   onOverview,
   onEdit,
+  onGuests,
   navigationGuard,
   section,
 }: {
@@ -92,6 +93,7 @@ export function WorkspaceFrame({
   wedding?: { id: string; title: string; view: 'overview' | 'editor' | 'guests' };
   onOverview?: () => void;
   onEdit?: () => void;
+  onGuests?: () => void;
   navigationGuard?: { pending: boolean; save: () => Promise<boolean> };
   section?: 'requests';
 }) {
@@ -125,7 +127,7 @@ export function WorkspaceFrame({
   }
   return (
     <NavigationGuard.Provider value={navigationGuard ?? null}>
-      <div className={s.shell}>
+      <div className={s.shell} data-portal={seller ? 'operations' : 'host'}>
         <a className="skip-link" href="#workspace-main">
           {tr('Skip to content')}
         </a>
@@ -180,42 +182,12 @@ export function WorkspaceFrame({
             className={`${s.sidebar} ${wedding ? s.weddingNavigation : ''}`}
             aria-label={tr('Workspace navigation')}
           >
+            {!seller && (
+              <WorkspaceLink href="/dashboard/" className={`${s.brand} ${s.sidebarBrand}`}>
+                <BrandLockup locale={locale} size={32} />
+              </WorkspaceLink>
+            )}
             <p>{seller ? tr('Operations') : tr('Your workspace')}</p>
-            <WorkspaceLink
-              className={wedding ? s.secondaryNav : undefined}
-              href={seller ? '/admin/orders/' : '/dashboard/?all=1'}
-              aria-current={!wedding && section !== 'requests' ? 'page' : undefined}
-            >
-              {seller ? <ShieldCheck size={18} /> : <LayoutGrid size={18} />}{' '}
-              {seller ? tr('Orders & access') : tr('My weddings')}
-            </WorkspaceLink>
-            <WorkspaceLink
-              href={seller ? '/admin/requests/' : '/order/requests/'}
-              className={s.secondaryNav}
-              aria-current={!wedding && section === 'requests' ? 'page' : undefined}
-            >
-              <NotebookPen size={18} />
-              {locale === 'bn'
-                ? seller
-                  ? 'অনুরোধ, দাম ও শর্ত'
-                  : 'আমার অর্ডার'
-                : seller
-                  ? 'Requests, prices & terms'
-                  : 'My orders'}
-              {seller && adminCounts.counts && adminCounts.total > 0 && (
-                <span
-                  className={s.navBadge}
-                  role="status"
-                  aria-label={
-                    locale === 'bn'
-                      ? `${banglaDigits(adminCounts.counts.requests)}টি নতুন অনুরোধ, ${banglaDigits(adminCounts.counts.payments)}টি পেমেন্ট যাচাই বাকি`
-                      : `${adminCounts.counts.requests} new requests, ${adminCounts.counts.payments} payments to check`
-                  }
-                >
-                  {locale === 'bn' ? banglaDigits(adminCounts.total) : adminCounts.total}
-                </span>
-              )}
-            </WorkspaceLink>
             {wedding && (
               <>
                 <p className={s.navWedding}>{wedding.title}</p>
@@ -251,6 +223,14 @@ export function WorkspaceFrame({
                 </WorkspaceLink>
                 <WorkspaceLink
                   href={`/weddings/${wedding.id}/guests/`}
+                  onClick={
+                    onGuests
+                      ? (event) => {
+                          event.preventDefault();
+                          onGuests();
+                        }
+                      : undefined
+                  }
                   aria-current={wedding.view === 'guests' ? 'page' : undefined}
                 >
                   <UsersRound size={18} />
@@ -258,6 +238,41 @@ export function WorkspaceFrame({
                 </WorkspaceLink>
               </>
             )}
+            <WorkspaceLink
+              className={wedding ? s.secondaryNav : undefined}
+              href={seller ? '/admin/orders/' : '/dashboard/?all=1'}
+              aria-current={!wedding && section !== 'requests' ? 'page' : undefined}
+            >
+              {seller ? <ShieldCheck size={18} /> : <LayoutGrid size={18} />}{' '}
+              {seller ? tr('Orders & access') : tr('My weddings')}
+            </WorkspaceLink>
+            <WorkspaceLink
+              href={seller ? '/admin/requests/' : '/order/requests/'}
+              className={s.secondaryNav}
+              aria-current={!wedding && section === 'requests' ? 'page' : undefined}
+            >
+              <NotebookPen size={18} />
+              {locale === 'bn'
+                ? seller
+                  ? 'অনুরোধ, দাম ও শর্ত'
+                  : 'আমার অর্ডার'
+                : seller
+                  ? 'Requests, prices & terms'
+                  : 'My orders'}
+              {seller && adminCounts.counts && adminCounts.total > 0 && (
+                <span
+                  className={s.navBadge}
+                  role="status"
+                  aria-label={
+                    locale === 'bn'
+                      ? `${banglaDigits(adminCounts.counts.requests)}টি নতুন অনুরোধ, ${banglaDigits(adminCounts.counts.payments)}টি পেমেন্ট যাচাই বাকি`
+                      : `${adminCounts.counts.requests} new requests, ${adminCounts.counts.payments} payments to check`
+                  }
+                >
+                  {locale === 'bn' ? banglaDigits(adminCounts.total) : adminCounts.total}
+                </span>
+              )}
+            </WorkspaceLink>
             <a
               className={wedding ? s.secondaryNav : undefined}
               href={DAWAT_CONTACT_HREF}
@@ -281,6 +296,12 @@ export function WorkspaceFrame({
             {children}
           </main>
         </div>
+        {!seller && (
+          <a className={s.mobileSupport} href={whatsappLink()} target="_blank" rel="noreferrer">
+            <MessageCircle size={18} />
+            {locale === 'bn' ? 'WhatsApp-এ সহায়তা' : 'Help on WhatsApp'}
+          </a>
+        )}
         <a
           className={`${s.whatsappSupport} ${tucked ? s.whatsappTucked : ''}`}
           tabIndex={tucked ? -1 : undefined}

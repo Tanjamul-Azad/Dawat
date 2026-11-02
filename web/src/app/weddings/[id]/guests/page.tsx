@@ -19,13 +19,24 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       .maybeSingle();
     dbError(w.error);
     if (!w.data) notFound();
-    const events = w.data.live ? draftContent.parse(w.data.live.content).events : [];
+    const published = w.data.live ? draftContent.parse(w.data.live.content) : null;
+    const events = published?.events ?? [];
     const event = events.find((e) => e.id === 'reception')?.id ?? events[0]?.id ?? 'reception';
     return (
       <GuestHub
         wid={id}
         slug={w.data.slug}
         title={w.data.title}
+        couple={
+          published
+            ? {
+                partnerOne: published.partnerOne,
+                partnerTwo: published.partnerTwo,
+                partnerOneBn: published.partnerOneBn,
+                partnerTwoBn: published.partnerTwoBn,
+              }
+            : undefined
+        }
         email={s.user.email ?? ''}
         events={events}
         initial={await report(id, event, null, '', 'all', s)}

@@ -1,12 +1,13 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowRight, Heart, Pause, Play, Volume2, VolumeX, LoaderCircle } from 'lucide-react';
-import { type Workspace } from '@/features/workspace/model';
+import { createWorkspace, type Workspace } from '@/features/workspace/model';
 import { useWorkspace } from '@/features/workspace/use-workspace';
 import {
   eventText,
   guestText,
   formatDate,
+  mapUrl,
   localNames,
   resolveLocale,
   words,
@@ -19,7 +20,16 @@ import { useInvitationMusic } from './use-invitation-music';
 import { WaxSeal, WovenPattern } from './stationery-art';
 import s from './jamdani.module.css';
 import { withTemplateWording } from '@/features/production/template-wording';
-import { findTemplate } from '@/features/production/catalog';
+import { findTemplate, type TemplateId } from '@/features/production/catalog';
+import { GardenDate, GardenFolio, GardenWelcome } from './garden-royal';
+import { IvoryDate, IvoryFolio, IvoryWelcome, Orchid } from './ivory-orchid';
+import {
+  ReferenceFolio,
+  ReferenceWelcome,
+  ReferenceDate,
+  ReferenceClosing,
+  isReferenceTemplate,
+} from './reference-invitations';
 
 type Props = {
   workspace: Workspace;
@@ -35,6 +45,7 @@ type Props = {
   responseTransport?: ResponseTransport;
   hostWhatsapp?: string;
   onLocaleChange?: (locale: Locale) => void;
+  sampleTemplateId?: TemplateId;
 };
 
 export function GuestInvitation({
@@ -46,9 +57,13 @@ export function GuestInvitation({
   responseTransport,
   hostWhatsapp,
   onLocaleChange,
+  sampleTemplateId,
 }: Props) {
   // Public sample replies never mutate an order, customer draft or the host workspace.
-  const sample = useWorkspace('dawat-guest-sample-v1', !authority);
+  const sample = useWorkspace(
+    sampleTemplateId ? `dawat-guest-sample-v1-${sampleTemplateId}` : 'dawat-guest-sample-v1',
+    !authority,
+  );
   const [query, setQuery] = useState<{
     guest: string | null;
     design: boolean;
@@ -150,7 +165,13 @@ export function GuestInvitation({
       music.onOpen();
     }
     if (timer.current) clearTimeout(timer.current);
-    if (quiet || motionOff || motionPaused) {
+    if (
+      quiet ||
+      motionOff ||
+      motionPaused ||
+      invitation?.templateId === 'garden' ||
+      invitation?.templateId === 'ivory'
+    ) {
       setPhase('open');
       return;
     }
@@ -260,12 +281,28 @@ export function GuestInvitation({
   const primaryDate = primaryEvent.date;
   const place = eventText(primaryEvent, locale).address;
   const design = findTemplate(invitation.templateId);
+  const reference = isReferenceTemplate(design.id) ? design.id : null;
+  // Upgrade only our bundled fictional photograph; host uploads remain untouched.
+  const photos =
+    design.id === 'garden' || design.id === 'ivory' || reference
+      ? (invitation.photos ?? []).map((photo) =>
+          photo.src === '/artwork/jamdani-couple-v1.webp'
+            ? {
+                ...photo,
+                src: '/artwork/garden-couple-v2-1024.webp',
+                responsiveSrcSet:
+                  '/artwork/garden-couple-v2-640.webp 640w, /artwork/garden-couple-v2-1024.webp 1024w',
+              }
+            : photo,
+        )
+      : invitation.photos;
   return (
     <div
       ref={page}
       className={`${s.page} ${s[invitation.theme] ?? ''}`}
       lang={locale}
       data-template={design.id}
+      data-suite={reference ?? undefined}
       data-motion={motionOff || motionPaused ? 'quiet' : 'full'}
     >
       {(query.design || !authority) && <div className={s.demoNote}>{query.design ? t.preview : t.demo}</div>}
@@ -307,107 +344,147 @@ export function GuestInvitation({
           {music.status === 'blocked' ? t.blockedMusic : t.failedMusic}
         </p>
       )}
-      <section
-        key="folio"
-        className={s.hero}
-        data-phase={phase}
-        style={hasOpened && coverHeight ? { minHeight: coverHeight } : undefined}
-        aria-label={!hasOpened ? t.personal : undefined}
-        aria-labelledby={hasOpened ? 'couple-names' : undefined}
-      >
-        {phase !== 'closed' && (
-          <picture className={s.heroBackdrop} aria-hidden="true">
-            <source
-              srcSet={design.art || '/artwork/jamdani-garden-v5-640.webp'}
-              sizes="(max-width: 680px) 100vw, 680px"
-              type="image/webp"
-            />
-            <img
-              src={design.art || '/artwork/jamdani-garden-v5-1024.webp'}
-              alt=""
-              width={1024}
-              height={1536}
-              fetchPriority="high"
-              onError={(event) => {
-                event.currentTarget.style.visibility = 'hidden';
-              }}
-            />
-          </picture>
-        )}
-        <div className={s.petals} aria-hidden="true">
-          <i />
-          <i />
-          <i />
-          <i />
-        </div>
-        <div className={s.cardContent} aria-hidden={!hasOpened} inert={!hasOpened}>
-          <span className={s.kicker}>{hosts}</span>
-          <div className={s.monogram} aria-hidden="true">
-            <WaxSeal />
+      {design.id === 'garden' ? (
+        <GardenFolio
+          phase={phase}
+          names={names}
+          hosts={hosts}
+          recipient={recipient}
+          date={primaryDate}
+          place={place}
+          locale={locale}
+          open={open}
+          sealRef={seal}
+          photo={photos?.[0]}
+        />
+      ) : design.id === 'ivory' ? (
+        <IvoryFolio
+          phase={phase}
+          names={names}
+          hosts={hosts}
+          recipient={recipient}
+          date={primaryDate}
+          place={place}
+          locale={locale}
+          open={open}
+          sealRef={seal}
+        />
+      ) : reference ? (
+        <ReferenceFolio
+          variant={reference}
+          phase={phase}
+          names={names}
+          hosts={hosts}
+          recipient={recipient}
+          event={primaryEvent}
+          locale={locale}
+          open={open}
+          sealRef={seal}
+          photo={photos?.[0]}
+        />
+      ) : (
+        <section
+          key="folio"
+          className={s.hero}
+          data-phase={phase}
+          style={hasOpened && coverHeight ? { minHeight: coverHeight } : undefined}
+          aria-label={!hasOpened ? t.personal : undefined}
+          aria-labelledby={hasOpened ? 'couple-names' : undefined}
+        >
+          {phase !== 'closed' && (
+            <picture className={s.heroBackdrop} aria-hidden="true">
+              <source
+                srcSet={design.art || '/artwork/jamdani-garden-v5-640.webp'}
+                sizes="(max-width: 680px) 100vw, 680px"
+                type="image/webp"
+              />
+              <img
+                src={design.art || '/artwork/jamdani-garden-v5-1024.webp'}
+                alt=""
+                width={1024}
+                height={1536}
+                fetchPriority="high"
+                onError={(event) => {
+                  event.currentTarget.style.visibility = 'hidden';
+                }}
+              />
+            </picture>
+          )}
+          <div className={s.petals} aria-hidden="true">
+            <i />
+            <i />
+            <i />
+            <i />
           </div>
-          <h1
-            id="couple-names"
-            tabIndex={-1}
-            className={s.names}
-            data-long={Math.max(...names.map((n) => n.length)) > 22}
-          >
-            <span>{names[0]}</span>
-            <i>&</i>
-            <span>{names[1]}</span>
-          </h1>
-          <p className={s.wedding}>{t.wedding}</p>
-          {recipient && <p className={s.personalGreeting}>{recipient.greeting}</p>}
-          <Flourish />
-          <p className={s.heroDate}>{formatDate(primaryDate, locale)}</p>
-          {place.length <= 80 && <span className={s.heroLocation}>{place}</span>}
-        </div>
-        {phase !== 'open' && (
-          <div key="jacket" className={s.jacket} aria-label={t.personal}>
-            <div className={s.gateLeft} aria-hidden="true">
-              <WovenPattern />
+          <div className={s.cardContent} aria-hidden={!hasOpened} inert={!hasOpened}>
+            <span className={s.kicker}>{hosts}</span>
+            <div className={s.monogram} aria-hidden="true">
+              <WaxSeal />
             </div>
-            <div className={s.gateRight} aria-hidden="true">
-              <WovenPattern />
-            </div>
-            <div key="addressed" className={s.openingScene}>
-              <span className={s.recipientLabel}>{t.addressedTo}</span>
-              <span className={s.recipientName}>{recipient?.name ?? t.forYou}</span>
-              <h2 className={s.openingHeading}>{t.letter}</h2>
-              <button
-                ref={seal}
-                className={s.seal}
-                onClick={() => open()}
-                aria-disabled={phase === 'opening'}
-                aria-label={t.open}
-              >
-                <span aria-hidden="true">
-                  <WaxSeal />
-                </span>
-              </button>
-              <p className={s.openingHint} aria-live="polite">
-                {phase === 'opening' ? t.opening : t.open}
-              </p>
-              <button className={s.quietOpen} onClick={() => open(true)}>
-                {phase === 'opening' ? t.finishOpening : t.openQuietly}
-              </button>
-              <p className={s.fromCouple}>
-                {t.fromCouple}
-                <span>
-                  {names[0]} &amp; {names[1]}
-                </span>
-              </p>
-            </div>
+            <h1
+              id="couple-names"
+              tabIndex={-1}
+              className={s.names}
+              data-long={Math.max(...names.map((n) => n.length)) > 22}
+            >
+              <span>{names[0]}</span>
+              <i>&</i>
+              <span>{names[1]}</span>
+            </h1>
+            <p className={s.wedding}>{t.wedding}</p>
+            {recipient && <p className={s.personalGreeting}>{recipient.greeting}</p>}
+            <Flourish />
+            <p className={s.heroDate}>{formatDate(primaryDate, locale)}</p>
+            {place.length <= 80 && <span className={s.heroLocation}>{place}</span>}
           </div>
-        )}
-        {hasOpened && (
-          <div className={s.heroBottom}>
-            <a href="#welcome">
-              {t.scroll}
-              <ArrowDown size={17} />
-            </a>
-          </div>
-        )}
-      </section>
+          {phase !== 'open' && (
+            <div key="jacket" className={s.jacket} aria-label={t.personal}>
+              <div className={s.gateLeft} aria-hidden="true">
+                <WovenPattern />
+              </div>
+              <div className={s.gateRight} aria-hidden="true">
+                <WovenPattern />
+              </div>
+              <div key="addressed" className={s.openingScene}>
+                <span className={s.recipientLabel}>{t.addressedTo}</span>
+                <span className={s.recipientName}>{recipient?.name ?? t.forYou}</span>
+                <h2 className={s.openingHeading}>{t.letter}</h2>
+                <button
+                  ref={seal}
+                  className={s.seal}
+                  onClick={() => open()}
+                  aria-disabled={phase === 'opening'}
+                  aria-label={t.open}
+                >
+                  <span aria-hidden="true">
+                    <WaxSeal />
+                  </span>
+                </button>
+                <p className={s.openingHint} aria-live="polite">
+                  {phase === 'opening' ? t.opening : t.open}
+                </p>
+                <button className={s.quietOpen} onClick={() => open(true)}>
+                  {phase === 'opening' ? t.finishOpening : t.openQuietly}
+                </button>
+                <p className={s.fromCouple}>
+                  {t.fromCouple}
+                  <span>
+                    {names[0]} &amp; {names[1]}
+                  </span>
+                </p>
+              </div>
+            </div>
+          )}
+          {hasOpened && (
+            <div className={s.heroBottom}>
+              <a href="#welcome">
+                {t.scroll}
+                <ArrowDown size={17} />
+              </a>
+            </div>
+          )}
+        </section>
+      )}
       {hasOpened && (
         <>
           <nav
@@ -426,28 +503,83 @@ export function GuestInvitation({
             <a href="#rsvp" aria-current={chapter === 'rsvp' ? 'location' : undefined}>
               {t.reply}
             </a>
+            <span aria-hidden="true">✧</span>
+            <a href={mapUrl(primaryEvent)} target="_blank" rel="noopener noreferrer">
+              {locale === 'bn' ? 'ম্যাপ' : 'Map'}
+            </a>
           </nav>
-          <section id="welcome" className={s.welcome} data-reveal tabIndex={-1}>
-            <span className={s.chapterNumber} aria-hidden="true">
-              01 / {locale === 'bn' ? 'আমাদের আমন্ত্রণ' : 'THE INVITATION'}
-            </span>
-            <span className={s.kicker}>{t.welcomeLabel}</span>
-            <h2>
-              {t.welcome}
-              <br />
-              <em>{t.welcomeEm}</em>
-            </h2>
-            <p className={s.invitationMessage} lang={locale === 'en' && !wording.messageEn ? 'bn' : locale}>
-              {message}
-            </p>
-            {recipient?.message && <p className={s.personalNote}>{recipient.message}</p>}
-            <span className={s.welcomeFoot}>{t.welcomeNote}</span>
-            <Flourish />
-          </section>
-          <DateKeepsake event={primaryEvent} locale={locale} />
-          <Countdown events={events} locale={locale} />
+          {design.id === 'garden' ? (
+            <GardenWelcome
+              locale={locale}
+              names={names}
+              message={message}
+              messageLang={locale === 'en' && !wording.messageEn ? 'bn' : locale}
+              personalNote={recipient?.message}
+              greeting={recipient?.greeting}
+            />
+          ) : design.id === 'ivory' ? (
+            <IvoryWelcome
+              locale={locale}
+              names={names}
+              message={message}
+              messageLang={locale === 'en' && !wording.messageEn ? 'bn' : locale}
+              personalNote={recipient?.message}
+              greeting={recipient?.greeting}
+            />
+          ) : reference ? (
+            <ReferenceWelcome
+              variant={reference}
+              locale={locale}
+              names={names}
+              message={message}
+              messageLang={locale === 'en' && !wording.messageEn ? 'bn' : locale}
+              greeting={recipient?.greeting}
+              personalNote={recipient?.message}
+              photo={photos?.[0]}
+            />
+          ) : (
+            <section id="welcome" className={s.welcome} data-reveal tabIndex={-1}>
+              <span className={s.chapterNumber} aria-hidden="true">
+                01 / {locale === 'bn' ? 'আমাদের আমন্ত্রণ' : 'THE INVITATION'}
+              </span>
+              <span className={s.kicker}>{t.welcomeLabel}</span>
+              <h2>
+                {t.welcome}
+                <br />
+                <em>{t.welcomeEm}</em>
+              </h2>
+              <p className={s.invitationMessage} lang={locale === 'en' && !wording.messageEn ? 'bn' : locale}>
+                {message}
+              </p>
+              {recipient?.message && <p className={s.personalNote}>{recipient.message}</p>}
+              <span className={s.welcomeFoot}>{t.welcomeNote}</span>
+              <Flourish />
+            </section>
+          )}
+          {design.id === 'garden' ? (
+            <GardenDate date={primaryDate} locale={locale}>
+              <Countdown events={events} locale={locale} />
+            </GardenDate>
+          ) : design.id === 'ivory' ? (
+            <IvoryDate event={primaryEvent} locale={locale}>
+              <Countdown events={events} locale={locale} />
+            </IvoryDate>
+          ) : reference ? (
+            <ReferenceDate variant={reference} event={primaryEvent} locale={locale}>
+              <Countdown events={events} locale={locale} />
+            </ReferenceDate>
+          ) : (
+            <>
+              <DateKeepsake event={primaryEvent} locale={locale} />
+              <Countdown events={events} locale={locale} />
+            </>
+          )}
           <CelebrationEvents invitation={invitation} events={events} locale={locale} />
-          <PhotoMoments photos={invitation.photos} locale={locale} />
+          <PhotoMoments
+            photos={photos}
+            locale={locale}
+            layout={design.id === 'garden' ? 'garden' : design.id === 'ivory' ? 'ivory' : 'reel'}
+          />
           {query.design ? (
             <section id="rsvp" className={s.previewPanel} tabIndex={-1}>
               <Heart size={25} />
@@ -475,7 +607,15 @@ export function GuestInvitation({
                   <p>{t.sampleReply}</p>
                   <button
                     onClick={() => {
-                      if (!sample.reset()) return;
+                      if (
+                        !sample.update(() => {
+                          const seed = createWorkspace();
+                          seed.draft.templateId = design.id;
+                          seed.published = structuredClone(seed.draft);
+                          return seed;
+                        })
+                      )
+                        return;
                       setSampleRevision((current) => current + 1);
                       setQuery((current) => (current ? { ...current, sampleGuest: null } : current));
                       const url = new URL(window.location.href);
@@ -507,8 +647,36 @@ export function GuestInvitation({
               )}
             </>
           )}
-          {hostWhatsapp && <p style={{ textAlign: 'center', padding: 24 }}><a href={`https://wa.me/${hostWhatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">{locale === 'bn' ? 'প্রশ্ন থাকলে WhatsApp করুন' : 'Questions? WhatsApp us'}</a></p>}
+          {hostWhatsapp && (
+            <p style={{ textAlign: 'center', padding: 24 }}>
+              <a
+                href={`https://wa.me/${hostWhatsapp.replace(/\D/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {locale === 'bn' ? 'প্রশ্ন থাকলে WhatsApp করুন' : 'Questions? WhatsApp us'}
+              </a>
+            </p>
+          )}
           <footer className={s.closing}>
+            {reference && <ReferenceClosing variant={reference} />}
+            {design.id === 'ivory' && (
+              <>
+                <Orchid className={s.ivoryClosingLeft} />
+                <Orchid className={s.ivoryClosingRight} />
+              </>
+            )}
+            {design.id === 'garden' && (
+              <img
+                className={s.gardenClosingBlooms}
+                src="/artwork/garden-editorial-blooms-480.webp"
+                width={480}
+                height={320}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
+            )}
             <WovenPattern className={s.closingPattern} />
             <span className={s.kicker}>{t.closing}</span>
             <h2>

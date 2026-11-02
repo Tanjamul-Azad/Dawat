@@ -1,6 +1,19 @@
 'use client';
 import { Fragment, useState } from 'react';
-import { Check, ChevronDown, Copy, Eye, PencilLine, RotateCcw, ShieldOff } from 'lucide-react';
+import {
+  Check,
+  ChevronDown,
+  Clock3,
+  Copy,
+  Eye,
+  MoreHorizontal,
+  PencilLine,
+  RotateCcw,
+  Send,
+  ShieldOff,
+  UsersRound,
+  X,
+} from 'lucide-react';
 import type { HouseholdRow } from '@/features/production/guests';
 import { useProductLocale } from './product-locale';
 import { DeliveryStatus, SendMenu } from './guest-send';
@@ -22,6 +35,7 @@ export function GuestList({
   onCorrect,
   onRotate,
   onRevoke,
+  onSend,
 }: {
   wid?: string;
   onSaved?: () => void;
@@ -37,6 +51,7 @@ export function GuestList({
   onCorrect: Action;
   onRotate: Action;
   onRevoke: Action;
+  onSend?: Action;
 }) {
   const { tr, locale } = useProductLocale();
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -74,6 +89,13 @@ export function GuestList({
             const allowance = row.events.find((e) => e.eventId === eventId)?.maxPeople;
             const open = expanded === row.id;
             const detailId = `invitation-detail-${row.id}`;
+            const initials = row.name
+              .trim()
+              .split(/\s+/)
+              .filter((n) => n !== '&' && n !== 'ও')
+              .slice(0, 2)
+              .map((n) => Array.from(n)[0])
+              .join('');
             return (
               <Fragment key={row.id}>
                 <tr className={s.compactGuestRow} data-expanded={open}>
@@ -86,10 +108,20 @@ export function GuestList({
                       aria-controls={open ? detailId : undefined}
                       title={row.name}
                     >
-                      <ChevronDown size={16} aria-hidden="true" />
+                      <span
+                        className={s.guestAvatar}
+                        aria-hidden="true"
+                        data-tone={row.id.charCodeAt(row.id.length - 1) % 4}
+                      >
+                        {initials}
+                      </span>
                       <span className={s.guestName}>
-                        {row.name}
-                        {row.source === 'open' && <small>{t('সবার লিংক থেকে', 'From shared link')}</small>}
+                        <strong>{row.name}</strong>
+                        <small>
+                          {row.source === 'open'
+                            ? t('সবার লিংক থেকে', 'From shared link')
+                            : t('নাম ধরে আমন্ত্রণ', 'Personal invitation')}
+                        </small>
                         {row.duplicateOf && (
                           <small>
                             {t('সম্ভবত একই:', 'Possibly the same:')}{' '}
@@ -103,52 +135,86 @@ export function GuestList({
                           </small>
                         )}
                       </span>
+                      <ChevronDown className={s.guestExpandIcon} size={16} aria-hidden="true" />
                     </button>
                   </td>
                   <td data-label={tr('Reply status')}>
                     <span
                       className={`${s.replyStatus} ${answer?.attendance === 'accepted' ? s.acceptedStatus : answer?.attendance === 'declined' ? s.declinedStatus : s.pendingStatus}`}
                     >
+                      {answer?.attendance === 'accepted' ? (
+                        <Check size={13} aria-hidden="true" />
+                      ) : answer?.attendance === 'declined' ? (
+                        <X size={13} aria-hidden="true" />
+                      ) : (
+                        <Clock3 size={13} aria-hidden="true" />
+                      )}
                       {tr(answer?.attendance ?? 'pending')}
                     </span>
                   </td>
                   <td data-label={t('লোকসংখ্যা', 'People')}>
                     <span className={s.guestCount}>
+                      <UsersRound size={15} aria-hidden="true" />
                       {answer ? count(answer.adults + answer.children) : '—'}{' '}
                       <small>/ {allowance === undefined ? '—' : count(allowance)}</small>
                     </span>
                   </td>
                   <td data-label={tr('Link')}>
-                    <span className={s.linkStatus}>{tr(row.linkState)}</span>
+                    <span className={s.linkStatus} data-state={row.linkState}>
+                      {tr(row.linkState)}
+                    </span>
                     <DeliveryStatus row={row} eventId={eventId} />
                   </td>
                   <td>
-                    <button
-                      className={s.guestCopy}
-                      disabled={busy || row.linkState === 'revoked'}
-                      onClick={() => onCopy(row)}
-                      aria-label={`${row.linkState === 'missing' ? tr('Create & copy') : tr('Copy link')} · ${row.name}`}
-                      title={
-                        row.linkState === 'revoked'
-                          ? t(
-                              'লিংক বন্ধ আছে; বিস্তারিত থেকে নতুন লিংক তৈরি করুন',
-                              'Link revoked; expand to replace it',
-                            )
-                          : tr('Copy link')
-                      }
-                    >
-                      {row.id === copiedId ? <Check size={14} /> : <Copy size={14} />}
-                      <span>
-                        {row.id === copiedId
-                          ? t('কপি হয়েছে', 'Copied')
-                          : row.linkState === 'missing'
-                            ? t('তৈরি করুন', 'Create')
-                            : t('কপি', 'Copy')}
-                      </span>
-                    </button>
-                    {wid && row.linkState !== 'revoked' && (
-                      <SendMenu wid={wid} row={row} onSaved={onSaved ?? (() => {})} />
-                    )}
+                    <div className={s.guestRowActions}>
+                      <button
+                        className={s.guestCopy}
+                        disabled={busy || row.linkState === 'revoked'}
+                        onClick={() => onCopy(row)}
+                        aria-label={`${row.linkState === 'missing' ? tr('Create & copy') : tr('Copy link')} · ${row.name}`}
+                        title={
+                          row.linkState === 'revoked'
+                            ? t(
+                                'লিংক বন্ধ আছে; বিস্তারিত থেকে নতুন লিংক তৈরি করুন',
+                                'Link revoked; expand to replace it',
+                              )
+                            : tr('Copy link')
+                        }
+                      >
+                        {row.id === copiedId ? <Check size={14} /> : <Copy size={14} />}
+                        <span>
+                          {row.id === copiedId
+                            ? t('কপি হয়েছে', 'Copied')
+                            : row.linkState === 'missing'
+                              ? t('তৈরি করুন', 'Create')
+                              : t('কপি', 'Copy')}
+                        </span>
+                      </button>
+                      {onSend && row.linkState !== 'revoked' && (
+                        <button
+                          className={s.guestSend}
+                          disabled={busy}
+                          onClick={() => onSend(row)}
+                          aria-label={`${t('আমন্ত্রণ পাঠান', 'Send invitation')} · ${row.name}`}
+                        >
+                          <Send size={15} />
+                          <span>{t('পাঠান', 'Send')}</span>
+                        </button>
+                      )}
+                      {wid && row.linkState !== 'revoked' && (
+                        <SendMenu wid={wid} row={row} onSaved={onSaved ?? (() => {})} />
+                      )}
+                      <button
+                        className={s.guestMore}
+                        onClick={() => setExpanded(open ? null : row.id)}
+                        aria-label={`${t('বিস্তারিত দেখুন', 'View details')} · ${row.name}`}
+                        aria-expanded={open}
+                        aria-controls={open ? detailId : undefined}
+                        title={t('বিস্তারিত দেখুন', 'View details')}
+                      >
+                        <MoreHorizontal size={19} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
                 {open && (

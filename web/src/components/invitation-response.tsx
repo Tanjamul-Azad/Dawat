@@ -38,6 +38,7 @@ export type ResponseTransport = {
 };
 
 export function InvitationResponse({ invitation, guest, events, locale, update, remote }: Props) {
+  const stationery = invitation.templateId === 'garden' || invitation.templateId === 'ivory';
   const [eventId, setEventId] = useState(
     events.find((event) => event.id === 'reception')?.id ?? events[0]?.id,
   );
@@ -174,11 +175,27 @@ export function InvitationResponse({ invitation, guest, events, locale, update, 
           </span>
           <span className={s.kicker}>{t.rsvpLabel}</span>
           <h2 id="rsvp-title">
-            {t.rsvpTitle}
-            <br />
-            <em>{t.rsvpEm}</em>
+            {stationery ? (
+              locale === 'bn' ? (
+                'আপনার উত্তর'
+              ) : (
+                'Kindly reply'
+              )
+            ) : (
+              <>
+                {t.rsvpTitle}
+                <br />
+                <em>{t.rsvpEm}</em>
+              </>
+            )}
           </h2>
-          <p>{t.rsvpNote}</p>
+          <p>
+            {stationery
+              ? locale === 'bn'
+                ? 'আপনি আসবেন কি না, জানিয়ে রাখুন।'
+                : 'We would love to celebrate with you. Please let us know if you can join us.'
+              : t.rsvpNote}
+          </p>
           <Flourish />
           <div className={s.replyIdentity}>
             <span className={s.kicker}>{t.replyAs}</span>
@@ -232,11 +249,15 @@ export function InvitationResponse({ invitation, guest, events, locale, update, 
                 </strong>
               )}
               <small>
-                {remote?.demo ? (locale === 'bn' ? 'এটা নমুনা, উত্তর সংরক্ষণ হয়নি' : 'This is a sample; your reply was not saved.') : remote
+                {remote?.demo
                   ? locale === 'bn'
-                    ? 'সার্ভারে আপনার উত্তর সংরক্ষিত হয়েছে।'
-                    : 'Your reply is confirmed on the server.'
-                  : t.localSaved}
+                    ? 'এটা নমুনা, উত্তর সংরক্ষণ হয়নি'
+                    : 'This is a sample; your reply was not saved.'
+                  : remote
+                    ? locale === 'bn'
+                      ? 'সার্ভারে আপনার উত্তর সংরক্ষিত হয়েছে।'
+                      : 'Your reply is confirmed on the server.'
+                    : t.localSaved}
               </small>
               {!closed && (
                 <button className={s.textButton} onClick={() => setConfirmed(false)}>

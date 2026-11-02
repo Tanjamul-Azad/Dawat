@@ -1,0 +1,276 @@
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 23px 24px 16px;
+}
+.heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font:
+    600 21px/1.4 var(--font-ui),
+    var(--font-bangla-ui),
+    sans-serif;
+  color: #1e332c;
+  letter-spacing: -0.4px;
+}
+.heading h2 > span {
+  display: grid;
+  place-items: center;
+  min-width: 27px;
+  height: 25px;
+  padding: 0 8px;
+  background: #e9f2ed;
+  color: #25684e;
+  border-radius: 7px;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.heading p {
+  margin: 5px 0 0;
+  color: #65776b;
+  font-size: 12px;
+}
+.headingActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.headingActions button {
+  min-height: 42px;
+}
+.tools {
+  position: sticky;
+  top: 68px;
+  z-index: 12;
+  background: #fff;
+  padding: 0 24px;
+  border-bottom: 1px solid #e7ece9;
+}
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 13px;
+}
+.search {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  background: #f5f7f6;
+  border: 1px solid #dce5df;
+  border-radius: 8px;
+  padding: 0 13px;
+  margin: 0;
+  color: #65776b;
+}
+.search input {
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  min-height: 44px;
+  padding: 8px 0 !important;
+  margin: 0 !important;
+  color: #233c30;
+}
+.search:focus-within {
+  outline: 2px solid #257c5c;
+  outline-offset: 1px;
+  background: #fff;
+}
+.search input:focus-visible {
+  outline: none;
+}
+.searchSubmit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 17px;
+  border: 1px solid #d7e1db;
+  border-radius: 8px;
+  background: #fff;
+  color: #285d47;
+  font-size: 13px;
+  font-weight: 600;
+}
+.filterRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.statuses {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow-x: auto;
+  padding: 0 0 11px;
+  scrollbar-width: none;
+}
+.statuses::-webkit-scrollbar {
+  display: none;
+}
+.statuses button {
+  min-height: 38px;
+  padding: 7px 12px;
+  flex-shrink: 0;
+  background: none;
+  border: 0;
+  border-radius: 7px;
+  color: #65776b;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.statuses button[aria-pressed='true'] {
+  color: #165f42;
+  background: #e6f2eb;
+  font-weight: 600;
+}
+.statuses button:hover {
+  background: #f0f5f2;
+}
+.options {
+  position: relative;
+  flex-shrink: 0;
+}
+.options summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 6px 10px;
+  color: #456354;
+  font-size: 13px;
+  list-style: none;
+  cursor: pointer;
+}
+.options summary::-webkit-details-marker {
+  display: none;
+}
+.options[open] > summary {
+  background: #edf4ef;
+  border-radius: 7px;
+}
+.options > div {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  padding: 20px;
+  border: 1px solid #d9e4dc;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 40px #173c2920;
+}
+.options > div label {
+  margin: 0 0 14px;
+}
+.options > div p {
+  font-size: 12px;
+  color: #65776b;
+  line-height: 1.7;
+}
+:global(html[lang='bn']) .heading h2 {
+  font-family: var(--font-bangla-ui), sans-serif;
+  letter-spacing: 0;
+  font-size: 22px;
+}
+@media (max-width: 767px) {
+  .heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 18px 16px 14px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .heading h2 {
+    font-size: 20px;
+  }
+  .heading p {
+    display: none;
+  }
+  .headingActions {
+    margin-left: 0;
+  }
+  .headingActions > button {
+    padding: 9px 12px;
+    min-height: 44px;
+    font-size: 13px;
+  }
+  .headingActions > button:first-child {
+    padding: 10px;
+  }
+  .headingActions > button > span {
+    display: none;
+  }
+  .headingActions > button {
+    min-width: 44px;
+    padding: 10px;
+  }
+  .tools {
+    top: 60px;
+    padding: 0 14px;
+  }
+  .searchRow {
+    padding-bottom: 10px;
+  }
+  .filterRow {
+    gap: 5px;
+  }
+  .statuses {
+    padding-bottom: 10px;
+    min-width: 0;
+  }
+  .statuses button {
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  .options summary {
+    min-height: 44px;
+    min-width: 44px;
+    padding-inline: 9px;
+  }
+  .options summary > span {
+    display: none;
+  }
+  .options > div {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: min(300px, calc(100vw - 48px));
+    margin-top: 0;
+  }
+  .clearAction > button {
+    font-size: 0;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+  }
+  .clearAction > button::after {
+    content: '×';
+    font-size: 23px;
+    line-height: 1;
+  }
+}
+@media (max-width: 360px) {
+  :global(html[lang='bn']) .heading h2 {
+    font-size: 19px;
+    gap: 6px;
+  }
+  .heading h2 > span {
+    min-width: 23px;
+    padding-inline: 6px;
+  }
+}

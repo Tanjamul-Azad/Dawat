@@ -1,5 +1,15 @@
 # Private client dashboard mockups
 
+Latest host implementation: [ImageGen-led dashboard product design, 2 November 2026](host-dashboard-product-design-2026-11-02.md).
+
+Latest Midnight refinement: [navy wedding stationery and visibility fixes, 2 November 2026](midnight-wedding-refinement-2026-11-02.md).
+
+Completed reference invitations: [four remaining cards and restored feature visibility](remaining-reference-cards-2026-11-02.md).
+
+Latest invitation implementation: [Ivory orchid, 2 November 2026](ivory-orchid-2026-11-02.md), including the owner's reference, image prompts, local assets and validation. [Garden photo and lettering review](garden-photo-and-lettering-2026-11-02.md) remains available separately.
+
+**Latest visual planning · 30 October 2026:** follow the [design enhancement plan](../plans/design-enhancement-plan-2026-10-30.md) and the [owner-supplied stationery reference](references/owner-stationery-direction-2026-10-30.png) for the next dashboard, invitation and public-site design pass. The notes below describe the earlier mockups.
+
 Created 19 October 2026. These original SVG layouts use fictional wedding and guest data and remain static artifacts with no working controls. A later interactive design slice now exists separately in `web/`; production backend/auth/payment is still pending.
 
 **Current status:** the user has since requested a more premium, celebratory visual direction inspired by The Digital Yes, Dribbble and Pinterest. These two layouts are structural drafts, not approved final UI. Follow [design roadmap](design-roadmap.md) and [inspiration brief](inspiration-board.md) for the next high-fidelity pass.

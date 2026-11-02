@@ -1,0 +1,5 @@
+Garden sample couple photograph, revision 2
+Created with OpenAI's built-in image generation tool from the project's bundled fictional couple artwork.
+Synthetic people and setting, used only as sample invitation content.
+Native generated size: 1024x1536. Full-size WebP is lossless.
+Prompt and provenance: docs/design/garden-photo-and-lettering-2026-11-02.md in the source repository.

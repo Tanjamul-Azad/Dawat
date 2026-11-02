@@ -13,15 +13,19 @@ const SAMPLE_KEY = 'dawat-guest-sample-v1';
 /** Points the browser-only sample workspace at one design. Replies are kept when the design did not change. */
 function seedSample(templateId: TemplateId) {
   try {
-    const raw = localStorage.getItem(SAMPLE_KEY);
+    const key = `${SAMPLE_KEY}-${templateId}`;
+    const raw = localStorage.getItem(key) || localStorage.getItem(SAMPLE_KEY);
     if (raw) {
       const saved = workspaceSchema.parse(JSON.parse(raw));
-      if (saved.published?.templateId === templateId) return;
+      if (saved.published?.templateId === templateId) {
+        localStorage.setItem(key, JSON.stringify(saved));
+        return;
+      }
     }
     const seed = createWorkspace();
     seed.draft = { ...seed.draft, templateId };
     seed.published = structuredClone(seed.draft);
-    localStorage.setItem(SAMPLE_KEY, JSON.stringify(workspaceSchema.parse(seed)));
+    localStorage.setItem(key, JSON.stringify(workspaceSchema.parse(seed)));
   } catch {
     /* Without storage the sample still opens; replies just are not remembered. */
   }
@@ -46,7 +50,7 @@ export function DemoInvitation({ templateId }: { templateId: TemplateId }) {
           {t('এই নকশা বেছে নিন', 'Choose this design')} <ArrowRight size={16} aria-hidden="true" />
         </a>
       </div>
-      <InvitationEntry />
+      <InvitationEntry sampleTemplateId={templateId} />
     </>
   );
 }
