@@ -74,7 +74,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   const links: [string, string][] = [
     ['/templates/', t('নকশা', 'Designs')],
     ['/#how-it-works', t('কীভাবে কাজ করে', 'How it works')],
-    ['/pricing/', t('দাম', 'Pricing')],
+    ['/#pricing', t('দাম', 'Pricing')],
     ['/#faq', t('প্রশ্নোত্তর', 'FAQ')],
   ];
   const clear = overlay && !scrolled && !menu;

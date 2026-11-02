@@ -1,29 +1,17 @@
 'use client';
 import { useRef, useState, type CSSProperties, type PointerEvent } from 'react';
-import {
-  ArrowRight,
-  ArrowUpRight,
-  ChevronLeft,
-  ChevronRight,
-  Check,
-  Flower2,
-  MessageCircle,
-  ShieldCheck,
-  UsersRound,
-} from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Check, Flower2 } from 'lucide-react';
 import { useProductLocale } from './production/product-locale';
 import { templates, prices, whatsappLink, packageName } from '@/features/production/catalog';
-import type { PaymentReviewPromise } from '@/features/production/public-config';
 import { taka } from '@/features/production/money';
 import s from './storefront.module.css';
 import x from './storefront-sections.module.css';
 import { ManualPayment } from './manual-payment';
 import { LotusMark } from './brand-mark';
 import { motion, useReducedMotion } from 'motion/react';
-import { StorefrontFrame, StickyCta } from './storefront-chrome';
-import { CornerOrnaments, JamdaniDivider } from './storefront-ornaments';
-import { FAQ, FounderNote, PromiseBlock, Reviews } from './storefront-trust';
-import { HowItWorks, JourneyStrip, RsvpDemo } from './storefront-how';
+import { StorefrontFrame } from './storefront-chrome';
+import { CornerOrnaments } from './storefront-ornaments';
+import { FAQ } from './storefront-trust';
 import { NAME_LIMIT, withNames, type CoupleNames } from './storefront-names';
 
 export { StorefrontFrame, FAQ };
@@ -393,138 +381,5 @@ export function Pricing({
         </p>
       )}
     </section>
-  );
-}
-
-// Tuberose petals and gold dust drifting over the hero photo. Fixed positions keep server and
-// client markup identical; the motion is CSS only and is removed for reduced motion.
-const petals = [
-  [34, 11, 15, 0, 26], [48, 9, 19, 4, -32], [61, 13, 17, 9, 18], [72, 8, 21, 2, -20],
-  [83, 12, 16, 6, 30], [92, 10, 20, 12, -24], [55, 7, 23, 14, 22], [40, 9, 18, 17, -18],
-  [66, 11, 22, 19, 28], [88, 8, 17, 21, -30], [77, 14, 24, 7, 16], [96, 9, 19, 15, -14],
-] as const;
-const dust = [
-  [52, 22, 0], [64, 38, 1.4], [74, 18, 2.8], [86, 44, 0.7], [58, 62, 2.1],
-  [80, 70, 3.5], [92, 28, 1.8], [69, 54, 4.2], [46, 40, 3], [95, 60, 0.4],
-] as const;
-function HeroPetals() {
-  return (
-    <div className={s.petals} aria-hidden="true">
-      {petals.map(([left, size, duration, delay, sway], i) => (
-        <svg
-          key={`p${i}`}
-          className={i % 4 === 2 ? `${s.petal} ${s.petalMarigold}` : s.petal}
-          viewBox="0 0 12 18"
-          style={
-            {
-              left: `${left}%`,
-              width: size,
-              animationDuration: `${duration}s`,
-              animationDelay: `-${delay}s`,
-              '--sway': `${sway}px`,
-            } as React.CSSProperties
-          }
-        >
-          <path d="M6 0C10 5 10 13 6 18C2 13 2 5 6 0Z" />
-        </svg>
-      ))}
-      {dust.map(([left, top, delay], i) => (
-        <span
-          key={`d${i}`}
-          className={s.dust}
-          style={{ left: `${left}%`, top: `${top}%`, animationDelay: `${delay}s` }}
-        />
-      ))}
-    </div>
-  );
-}
-
-export function StorefrontHome({ paymentPromise }: { paymentPromise?: PaymentReviewPromise }) {
-  const { locale } = useProductLocale();
-  const t = (bn: string, en: string) => (locale === 'bn' ? bn : en);
-  return (
-    <StorefrontFrame overlay>
-      <section className={`${s.hero} ${s.heroUnderHeader}`} data-parallax>
-        <div className={s.heroCopy}>
-          <h1>
-            {t('একটি নিমন্ত্রণপত্র।', 'An invitation.')}
-            <br />
-            <em>{t('আরও একটু ব্যক্তিগত।', 'A little more personal.')}</em>
-          </h1>
-          <p>
-            {t(
-              'আপনাদের গল্প, আমাদের নকশা। বাংলার ঐতিহ্যে সাজানো ডিজিটাল আমন্ত্রণ, প্রতিটি পরিবারের নামে আলাদা লিংক।',
-              'Your story, our design. A digital wedding invitation in the Bengali tradition, with a separate link for every family.',
-            )}
-          </p>
-          <div className={s.heroActions}>
-            <a className={s.primary} href="/templates/">
-              {t('নকশা বেছে নিন', 'Choose a design')} <ArrowRight size={16} />
-            </a>
-            <a className={s.secondary} href="/demo/">
-              {t('লাইভ নমুনা দেখুন', 'See a live sample')} <ArrowUpRight size={16} />
-            </a>
-          </div>
-        </div>
-        <figure className={s.heroArt}>
-          <img
-            src="/brand/storefront-hero-match.webp"
-            srcSet="/brand/storefront-hero-match-900.webp 900w, /brand/storefront-hero-match.webp 1600w"
-            sizes="100vw"
-            alt={t(
-              'জামদানি নকশার বিয়ের আমন্ত্রণপত্র, পাশে খাম ও ফুল',
-              'A Jamdani-bordered wedding invitation card with its envelope and flowers',
-            )}
-            width="1600"
-            height="900"
-            fetchPriority="high"
-          />
-        </figure>
-        <HeroPetals />
-      </section>
-      <ul className={s.values}>
-        <li>
-          <Flower2 size={20} aria-hidden="true" />
-          {t('বাংলার নকশা, আধুনিক আয়োজনে', 'Bengali craft for a modern celebration')}
-        </li>
-        <li>
-          <UsersRound size={20} aria-hidden="true" />
-          {t('প্রতিটি পরিবারের নামে আলাদা লিংক', 'A separate link for every family')}
-        </li>
-        <li>
-          <ShieldCheck size={20} aria-hidden="true" />
-          {t('উত্তর আর শুভেচ্ছা শুধু আপনার কাছে', 'Replies and wishes reach only you')}
-        </li>
-      </ul>
-      <TemplateCollection />
-      <JamdaniDivider />
-      <JourneyStrip />
-      <div className={x.bandIvory}>
-        <HowItWorks />
-        <RsvpDemo />
-      </div>
-      <div className={x.bandWine}>
-        <PromiseBlock paymentPromise={paymentPromise} />
-      </div>
-      <Pricing paymentDetails={false} />
-      <Reviews />
-      <FounderNote />
-      <div className={x.bandIvory}>
-        <FAQ paymentPromise={paymentPromise} />
-      </div>
-      <section className={s.finalCta}>
-        <LotusMark size={36} />
-        <h2>{t('আপনাদের গল্পটা শুরু হোক', 'Let your story begin')}</h2>
-        <div className={s.heroActions}>
-          <a className={s.primary} href="/templates/">
-            {t('নকশা বেছে নিন', 'Choose a design')} <ArrowRight size={16} />
-          </a>
-          <a className={s.secondary} href={whatsappLink()} target="_blank" rel="noreferrer">
-            <MessageCircle size={16} /> {t('WhatsApp-এ কথা বলুন', 'Chat on WhatsApp')}
-          </a>
-        </div>
-      </section>
-      <StickyCta />
-    </StorefrontFrame>
   );
 }

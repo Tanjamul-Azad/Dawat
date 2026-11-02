@@ -429,113 +429,6 @@
   }
 }
 
-/* ---------- Hero ---------- */
-.hero {
-  width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
-  margin-inline: auto;
-  padding: 32px var(--gutter) 0;
-}
-.heroCopy h1 em {
-  display: block;
-  color: var(--wine);
-  font-style: italic;
-}
-.site[lang='bn'] .heroCopy h1 em {
-  font-style: normal;
-}
-.heroCopy > p {
-  max-width: 34em;
-  margin-top: 16px;
-  color: var(--ink-2);
-  font-size: 17px;
-}
-.heroActions {
-  display: grid;
-  gap: 12px;
-  margin-top: 28px;
-}
-.heroUnderHeader {
-  margin-top: calc(-1 * var(--header-h));
-  padding-top: calc(var(--header-h) + 24px) !important;
-}
-.heroCopy > * {
-  animation: riseIn 0.8s var(--ease) both;
-}
-.heroCopy > :nth-child(2) {
-  animation-delay: 0.1s;
-}
-.heroCopy > :nth-child(3) {
-  animation-delay: 0.2s;
-}
-.heroCopy > :nth-child(4) {
-  animation-delay: 0.3s;
-}
-.heroCopy h1 em {
-  background: linear-gradient(100deg, var(--wine) 0 38%, var(--gold-deep) 50%, var(--wine) 62% 100%);
-  background-size: 260% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: foil 7s ease-in-out 1.2s infinite;
-}
-@keyframes riseIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-}
-@keyframes foil {
-  0%,
-  55%,
-  100% {
-    background-position: 100% 0;
-  }
-  80% {
-    background-position: 0 0;
-  }
-}
-@keyframes heroZoom {
-  from {
-    transform: scale(1.05);
-  }
-}
-.heroArt {
-  margin-top: 28px;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: var(--surface-2);
-}
-.heroArt img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: 74% center;
-}
-
-/* ---------- Value strip ---------- */
-.values {
-  display: grid;
-  gap: 14px;
-  width: 100%;
-  max-width: calc(var(--container) + 2 * var(--gutter));
-  margin: 32px auto 0 !important;
-  padding: 20px var(--gutter) !important;
-  border-block: 1px solid var(--line);
-}
-.values li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--ink-2);
-  font-size: 15px;
-  line-height: 1.4;
-}
-.values :global(.lucide) {
-  color: var(--gold);
-}
-
 /* ---------- Collection ---------- */
 .railControls {
   display: none;
@@ -1066,46 +959,6 @@
   font-size: 15px;
 }
 
-/* ---------- Closing call to action ---------- */
-.finalCta {
-  display: grid;
-  justify-items: center;
-  gap: 16px;
-  width: calc(100% - 2 * var(--gutter));
-  max-width: var(--container);
-  margin: var(--section) auto 0;
-  padding: clamp(36px, 6vw, 64px) var(--gutter);
-  border-radius: var(--radius-lg);
-  background: var(--wine) url('/brand/paper-grain.svg');
-  text-align: center;
-}
-.finalCta > svg {
-  color: var(--gold-soft);
-}
-.finalCta h2 {
-  color: #fffaf2;
-}
-.finalCta .heroActions {
-  width: 100%;
-  margin-top: 8px;
-}
-.finalCta .primary {
-  background: #fffaf2;
-  color: var(--wine) !important;
-}
-.finalCta .primary:hover {
-  background: #f6e8e4;
-}
-.finalCta .secondary {
-  border-color: rgb(255 250 242 / 0.4);
-  background: transparent;
-  color: #fffaf2 !important;
-}
-.finalCta .secondary:hover {
-  border-color: #fffaf2;
-  background: rgb(255 250 242 / 0.08);
-}
-
 /* ---------- Footer ---------- */
 .footer {
   margin-top: var(--section);
@@ -1325,13 +1178,6 @@
 
 /* ---------- Large phones ---------- */
 @media (min-width: 600px) {
-  .heroActions {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .finalCta .heroActions {
-    justify-content: center;
-  }
   .templateRail {
     grid-auto-columns: 42%;
   }
@@ -1356,12 +1202,6 @@
 @media (min-width: 768px) {
   .site {
     --header-h: 72px;
-  }
-  .heroArt img {
-    aspect-ratio: 16 / 9;
-  }
-  .values {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .templateGrid {
     grid-auto-flow: row;
@@ -1397,84 +1237,6 @@
   }
   .orderPreview {
     width: 100%;
-  }
-}
-
-/* ---------- Small laptop: hero copy beside the artwork ---------- */
-/* Full-bleed hero: the photo fills the band, copy sits on its left. */
-@media (min-width: 900px) {
-  .hero {
-    position: relative;
-    display: flex;
-    align-items: center;
-    max-width: none;
-    min-height: clamp(520px, 46vw, 700px);
-    padding: var(--header-h) 0 0 !important;
-    isolation: isolate;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    inset: 0;
-    background: url('/brand/paper-grain.svg');
-    mix-blend-mode: multiply;
-    opacity: 0.4;
-    pointer-events: none;
-  }
-  .heroCopy {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: calc(var(--container) + 2 * var(--gutter));
-    margin-inline: auto;
-    padding: 56px var(--gutter);
-  }
-  .heroCopy > * {
-    max-width: 520px;
-  }
-  .heroCopy > p {
-    max-width: 400px;
-  }
-  .heroArt {
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    margin: 0;
-    border-radius: 0;
-  }
-  .heroArt::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      90deg,
-      rgb(244 235 222 / 0.92) 0%,
-      rgb(244 235 222 / 0.6) 32%,
-      transparent 52%
-    );
-  }
-  .heroArt::before {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    inset: 0 0 auto;
-    height: calc(var(--header-h) + 48px);
-    background: linear-gradient(180deg, rgb(244 235 222 / 0.85), transparent);
-  }
-  .heroArt img {
-    height: 100%;
-    aspect-ratio: auto;
-    object-position: right center;
-    animation:
-      heroZoom 2.4s var(--ease) both,
-      heroDrift 26s ease-in-out 2.4s infinite alternate;
-    scale: 1.04;
-    translate: calc(var(--px, 0) * -14px) calc(var(--py, 0) * -9px);
-    transition: translate 0.5s var(--ease);
-  }
-  .values {
-    margin-top: 0 !important;
   }
 }
 
@@ -1577,7 +1339,7 @@
   }
 }
 
-/* ---------- Desktop: copy sits over the left of the hero artwork ---------- */
+/* ---------- Desktop ---------- */
 @media (min-width: 1200px) {
   .templateRail {
     grid-auto-columns: calc((100% - 3 * 14px) / 4);
@@ -1590,152 +1352,6 @@
   .site *::after {
     scroll-behavior: auto !important;
     transition: none !important;
-    animation: none !important;
-  }
-}
-
-/* ---------- Phones and tablets: full-bleed hero like desktop ----------
-   The photo fills the hero edge to edge, anchored to the bottom so the card sits below the
-   copy; a cream wash keeps the text readable where the two meet. */
-@media (max-width: 899.98px) {
-  .hero {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    max-width: none;
-    min-height: clamp(640px, 100svh, 860px);
-    padding-bottom: 0;
-    isolation: isolate;
-  }
-  /* Heading and text at the top, the card in the middle, the two buttons side by side at the bottom. */
-  .heroCopy {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    padding-bottom: 24px;
-  }
-  .hero .heroActions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: auto;
-  }
-  .hero .heroActions > a {
-    justify-content: center;
-    padding-inline: 10px;
-    white-space: nowrap;
-  }
-  .heroArt {
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    margin: 0;
-    overflow: hidden;
-    border-radius: 0;
-    background: var(--cream, #f4ebde);
-  }
-  .heroArt img {
-    position: absolute;
-    inset: auto 0 0;
-    width: 100%;
-    height: 80%;
-    aspect-ratio: auto;
-    object-fit: cover;
-    object-position: 76% 100%;
-    animation:
-      heroZoom 2.4s var(--ease) both,
-      heroDrift 26s ease-in-out 2.4s infinite alternate;
-  }
-  .heroArt::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(
-        180deg,
-        rgb(244 235 222 / 0.97) 0%,
-        rgb(244 235 222 / 0.9) 30%,
-        rgb(244 235 222 / 0.3) 42%,
-        rgb(244 235 222 / 0) 50%
-      ),
-      linear-gradient(0deg, rgb(43 25 20 / 0.32) 0%, rgb(43 25 20 / 0) 22%);
-  }
-}
-
-/* ---------- Hero motion: slow drift, falling petals, twinkling gold dust ---------- */
-@keyframes heroDrift {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.07) translate3d(-1.2%, -0.8%, 0);
-  }
-}
-.petals {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.petal {
-  position: absolute;
-  top: -6%;
-  height: auto;
-  fill: #fffaf0;
-  filter: drop-shadow(0 2px 3px rgb(60 30 20 / 0.25));
-  opacity: 0;
-  animation: petalFall linear infinite;
-}
-.petalMarigold {
-  fill: #e8a23a;
-}
-@keyframes petalFall {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-  10% {
-    opacity: 0.9;
-  }
-  50% {
-    transform: translate3d(var(--sway), 55vh, 0) rotate(180deg);
-  }
-  90% {
-    opacity: 0.85;
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(calc(var(--sway) * -0.5), 110vh, 0) rotate(340deg);
-  }
-}
-.dust {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #f6dc9a 0%, #c9a050 60%, transparent 70%);
-  box-shadow: 0 0 8px 2px rgb(233 196 106 / 0.55);
-  opacity: 0;
-  animation: twinkle 4.8s ease-in-out infinite;
-}
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .petals {
-    display: none;
-  }
-  .heroArt img {
     animation: none !important;
   }
 }

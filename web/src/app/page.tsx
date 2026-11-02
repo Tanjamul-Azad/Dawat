@@ -1,4 +1,4 @@
-import { StorefrontHome } from '@/components/storefront';
+import { StorefrontHome } from '@/components/storefront-home';
 import { redirect } from 'next/navigation';
 import { deploymentSurface } from '@/features/production/surface';
 import { brandShare, storefrontMetadata } from '@/features/production/share';
