@@ -91,7 +91,8 @@ it('requires fresh consent after a quote revision changes, but keeps consent for
   expect(screen.getByRole('checkbox').hasAttribute('required')).toBe(true);
 });
 
-it('keeps the complete unfinished request across hiding, reopening, and a fresh mount', () => {
+// A first order has no list to hide the form behind; the draft must survive leaving the page.
+it('keeps the complete unfinished first request across a fresh mount', () => {
   const empty = { requests: [], payments: [], progress: [], nextCursor: null };
   const view = show(empty);
   fireEvent.change(screen.getByLabelText('আপনার নাম'), { target: { value: 'Draft buyer' } });
@@ -101,10 +102,7 @@ it('keeps the complete unfinished request across hiding, reopening, and a fresh 
   });
   fireEvent.change(screen.getByLabelText('পছন্দের নকশা'), { target: { value: 'midnight' } });
   expect(screen.queryByText('আগের অসম্পূর্ণ লেখা ফিরিয়ে আনা হয়েছে।')).toBeNull();
-  fireEvent.click(screen.getByRole('button', { name: 'নতুন অর্ডার' }));
-  fireEvent.click(screen.getByRole('button', { name: 'নতুন অর্ডার' }));
-  expect((screen.getByLabelText('আপনার নাম') as HTMLInputElement).value).toBe('Draft buyer');
-  expect((screen.getByLabelText('পছন্দের নকশা') as HTMLSelectElement).value).toBe('midnight');
+  expect(screen.queryByRole('button', { name: 'নতুন অর্ডার' })).toBeNull();
   view.unmount();
   show(empty);
   expect((screen.getByLabelText('আপনার নাম') as HTMLInputElement).value).toBe('Draft buyer');

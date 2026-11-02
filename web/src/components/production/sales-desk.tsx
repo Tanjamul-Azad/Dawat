@@ -6,6 +6,7 @@ import { findTemplate, templates, whatsappLink, type TemplateId } from '@/featur
 import type { SalesPage, SalesRequest, SalesCommand, PaymentCommand } from '@/features/production/sales';
 import { useProductLocale } from './product-locale';
 import { WorkspaceFrame } from './frame';
+import { OrderSteps } from './order-steps';
 import { NotifyCustomer } from './notify-customer';
 import { displayPhone, parsePhone, whatsappChatUrl } from '@/features/production/phone';
 import s from './workspace.module.css';
@@ -341,52 +342,67 @@ export function SalesDesk({
     return (key: string) => String(f.get(key) ?? '').trim();
   }
   const basic = (r: SalesRequest) => ({ id: r.id, expectedRevision: r.revision });
+  // A buyer with no request yet sees only the order form, placed in the order journey.
+  const firstOrder = !seller && !page.requests.length;
   return (
     <WorkspaceFrame email={email} seller={seller} section="requests">
-      <div className={s.intro}>
-        <div>
-          <p className={s.eyebrow}>
-            {t(
-              seller ? 'দাওয়াত · বিক্রয় ও সেবা' : 'আপনার আয়োজনের শুরু',
-              seller ? 'DAWAT · SALES & SERVICE' : 'YOUR CELEBRATION STARTS HERE',
-            )}
-          </p>
-          <h1>
-            {t(
-              seller ? 'অনুরোধ থেকে আমন্ত্রণ।' : 'আপনার অর্ডার, এক জায়গায়।',
-              seller ? 'From enquiry to invitation.' : 'Your order, all together.',
-            )}
-          </h1>
+      {firstOrder ? (
+        <div className={c.firstOrder}>
+          <OrderSteps current={3} />
+          <h1>{t('আপনার আয়োজনের কথা জানান', 'Tell us about your celebration')}</h1>
           <p>
             {t(
-              seller
-                ? 'দাম ও শর্ত পাঠান, লেনদেন মিলিয়ে দেখুন, তারপর গ্রাহকের আয়োজনের পাতা চালু করুন।'
-                : 'নকশা, দাম, পেমেন্ট আর আমার আয়োজন—প্রতিটি ধাপের খবর এখানে।',
-              seller
-                ? 'Send the price and terms, check the actual transfer, then open the customer’s page.'
-                : 'Your design, price, payment and your wedding page—follow every step here.',
+              'এই ধাপে কোনো টাকা লাগবে না। আমরা দাম ও শর্ত পাঠাব, আপনি রাজি হলে তারপর bKash-এ পেমেন্ট।',
+              'Nothing is paid at this step. We send the price and terms, and you pay by bKash only after you agree.',
             )}
           </p>
         </div>
-        <div className={s.actions}>
-          <button className={s.secondary} disabled={busy} onClick={() => void reload()}>
-            <RefreshCw size={15} />
-            {t('রিফ্রেশ', 'Refresh')}
-          </button>
-          {!seller && (
-            <button className={s.button} disabled={busy} onClick={() => setCreating(!creating)}>
-              <Plus size={16} />
-              {t('নতুন অর্ডার', 'New request')}
+      ) : (
+        <div className={s.intro}>
+          <div>
+            <p className={s.eyebrow}>
+              {t(
+                seller ? 'দাওয়াত · বিক্রয় ও সেবা' : 'আপনার আয়োজনের শুরু',
+                seller ? 'DAWAT · SALES & SERVICE' : 'YOUR CELEBRATION STARTS HERE',
+              )}
+            </p>
+            <h1>
+              {t(
+                seller ? 'অনুরোধ থেকে আমন্ত্রণ।' : 'আপনার অর্ডার, এক জায়গায়।',
+                seller ? 'From enquiry to invitation.' : 'Your order, all together.',
+              )}
+            </h1>
+            <p>
+              {t(
+                seller
+                  ? 'দাম ও শর্ত পাঠান, লেনদেন মিলিয়ে দেখুন, তারপর গ্রাহকের আয়োজনের পাতা চালু করুন।'
+                  : 'নকশা, দাম, পেমেন্ট আর আমার আয়োজন—প্রতিটি ধাপের খবর এখানে।',
+                seller
+                  ? 'Send the price and terms, check the actual transfer, then open the customer’s page.'
+                  : 'Your design, price, payment and your wedding page—follow every step here.',
+              )}
+            </p>
+          </div>
+          <div className={s.actions}>
+            <button className={s.secondary} disabled={busy} onClick={() => void reload()}>
+              <RefreshCw size={15} />
+              {t('রিফ্রেশ', 'Refresh')}
             </button>
-          )}
-          {seller && (
-            <a className={s.button} href="/admin/orders/">
-              {t('অর্ডার ও অ্যাক্সেস চালু', 'Orders & access')}
-              <ArrowRight size={15} />
-            </a>
-          )}
+            {!seller && (
+              <button className={s.button} disabled={busy} onClick={() => setCreating(!creating)}>
+                <Plus size={16} />
+                {t('নতুন অর্ডার', 'New request')}
+              </button>
+            )}
+            {seller && (
+              <a className={s.button} href="/admin/orders/">
+                {t('অর্ডার ও অ্যাক্সেস চালু', 'Orders & access')}
+                <ArrowRight size={15} />
+              </a>
+            )}
+          </div>
         </div>
-      </div>
+      )}
       {error && !errorAt && (
         <p className={s.error} role="alert">
           {error}
@@ -406,8 +422,8 @@ export function SalesDesk({
         </p>
       )}
       {creating && (
-        <section className={`${s.panel} ${c.create}`}>
-          <div>
+        <section className={`${s.panel} ${c.create} ${firstOrder ? c.createFirst : ''}`}>
+          <div hidden={firstOrder}>
             <span className={s.eyebrow}>{t('প্রথম ধাপ', 'STEP ONE')}</span>
             <h2>{t('আয়োজনের কথা জানান', 'Tell us about your celebration')}</h2>
             <p className={s.muted}>
@@ -466,27 +482,40 @@ export function SalesDesk({
                   )}
                 </small>
               </label>
-              <label>
-                {t('পছন্দের নকশা', 'Selected design')}
-                <select
-                  value={chosen}
-                  onChange={(e) => {
-                    const template = e.target.value as typeof chosen;
-                    setChosen(template);
-                    saveDraft(e.currentTarget.form!, template);
-                  }}
-                >
-                  {templates.map((d) => (
-                    <option value={d.id} key={d.id}>
-                      {locale === 'bn' ? d.name : d.en} · {packageName(d.id, locale)} ·{' '}
-                      {taka(packagePrice(d.id), locale)}
+              {/* The picker sits beside the chosen design's art, with a link to its live sample. */}
+              <div className={c.choice}>
+                {chosen === 'custom' ? (
+                  <span className={c.choiceBlank} aria-hidden="true" />
+                ) : (
+                  <img src={findTemplate(chosen).art} alt="" width={40} height={60} />
+                )}
+                <label>
+                  {t('পছন্দের নকশা', 'Selected design')}
+                  <select
+                    value={chosen}
+                    onChange={(e) => {
+                      const template = e.target.value as typeof chosen;
+                      setChosen(template);
+                      saveDraft(e.currentTarget.form!, template);
+                    }}
+                  >
+                    {templates.map((d) => (
+                      <option value={d.id} key={d.id}>
+                        {locale === 'bn' ? d.name : d.en} · {packageName(d.id, locale)} ·{' '}
+                        {taka(packagePrice(d.id), locale)}
+                      </option>
+                    ))}
+                    <option value="custom">
+                      {packageName('custom', locale)} · {taka(packagePrice('custom'), locale)}
                     </option>
-                  ))}
-                  <option value="custom">
-                    {packageName('custom', locale)} · {taka(packagePrice('custom'), locale)}
-                  </option>
-                </select>
-              </label>
+                  </select>
+                </label>
+                {chosen !== 'custom' && (
+                  <a href={`/demo/?template=${chosen}`} target="_blank" rel="noreferrer">
+                    {t('নমুনা', 'Sample')}
+                  </a>
+                )}
+              </div>
               <label>
                 {t('আয়োজনের তারিখ · জানা থাকলে', 'Event date · if known')}
                 <input
@@ -527,21 +556,23 @@ export function SalesDesk({
           </form>
         </section>
       )}
-      <div className={c.tabs} role="group" aria-label={t('অনুরোধ ফিল্টার', 'Filter requests')}>
-        {[
-          ['all', t('সব', 'All')],
-          ['requested', t('নতুন', 'New')],
-          ['quoted', t('দাম ও শর্ত', 'Price & terms')],
-          ['accepted', t('গ্রহণ করা', 'Accepted')],
-          ['payments', t('পেমেন্ট যাচাই', 'Payment review')],
-          ['ordered', t('অর্ডার', 'Ordered')],
-        ].map(([id, title]) => (
-          <button key={id} aria-pressed={filter === id} onClick={() => setFilter(id)}>
-            {title}
-          </button>
-        ))}
-      </div>
-      {!page.requests.length ? (
+      {!firstOrder && (
+        <div className={c.tabs} role="group" aria-label={t('অনুরোধ ফিল্টার', 'Filter requests')}>
+          {[
+            ['all', t('সব', 'All')],
+            ['requested', t('নতুন', 'New')],
+            ['quoted', t('দাম ও শর্ত', 'Price & terms')],
+            ['accepted', t('গ্রহণ করা', 'Accepted')],
+            ['payments', t('পেমেন্ট যাচাই', 'Payment review')],
+            ['ordered', t('অর্ডার', 'Ordered')],
+          ].map(([id, title]) => (
+            <button key={id} aria-pressed={filter === id} onClick={() => setFilter(id)}>
+              {title}
+            </button>
+          ))}
+        </div>
+      )}
+      {firstOrder ? null : !page.requests.length ? (
         <section className={s.panel}>
           <FileText size={30} />
           <h2>{t('এখনো কোনো অনুরোধ নেই', 'No requests yet')}</h2>

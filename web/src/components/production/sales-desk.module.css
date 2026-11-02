@@ -511,3 +511,68 @@ label.consent {
   color: var(--muted);
   font-size: 14px;
 }
+
+/* ---------- A buyer's first order: the journey, then only the form ---------- */
+.firstOrder {
+  max-width: 720px;
+  margin: 0 0 16px;
+}
+.firstOrder h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(24px, 4vw, 32px);
+  line-height: 1.25;
+}
+.firstOrder > p {
+  margin: 6px 0 0;
+  color: var(--ink-2);
+  font-size: 15px;
+}
+/* The first order form: one column, with short fields paired on wider screens. */
+.createFirst {
+  grid-template-columns: minmax(0, 1fr) !important;
+  max-width: 720px;
+}
+@media (min-width: 720px) {
+  .createFirst fieldset {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    column-gap: 16px;
+  }
+  .createFirst fieldset > * {
+    grid-column: 1 / -1;
+  }
+  .createFirst fieldset > label:nth-child(1),
+  .createFirst fieldset > label:nth-child(2),
+  .createFirst fieldset > .choice,
+  .createFirst fieldset > label:nth-child(4) {
+    grid-column: auto;
+  }
+}
+/* The design picker beside the chosen design's art. */
+.choice {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+}
+.choice img,
+.choiceBlank {
+  width: 40px;
+  height: 60px;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+.choiceBlank {
+  background: var(--surface-2);
+}
+.choice a {
+  padding-bottom: 12px;
+  color: var(--ok, var(--wine));
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}

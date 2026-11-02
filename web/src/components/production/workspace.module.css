@@ -1501,6 +1501,30 @@ label.photoUpload {
   justify-content: space-between;
   width: 100%;
 }
+/* The design being ordered, beside its name and price. */
+.login .orderContext {
+  margin-top: 14px;
+  padding: 12px 14px;
+}
+.orderContext {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 4px 14px;
+}
+.orderContext img {
+  width: 56px;
+  height: 84px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+}
+.orderContext p {
+  margin: 0;
+}
+.login .orderContext strong {
+  font-size: 18px;
+}
 .login input[autocomplete='one-time-code'] {
   min-height: 50px;
   font-family: var(--font-ui);

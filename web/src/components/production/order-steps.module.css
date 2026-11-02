@@ -1,0 +1,84 @@
+/* Order journey indicator. Inherits the portal or storefront colour tokens it sits in. */
+.steps {
+  --accent: var(--wine, #741126);
+  margin: 0 0 16px;
+}
+/* Inside the host workspace the journey takes the workspace's green, like its buttons. */
+:global([data-portal='host']) .steps {
+  --accent: var(--ok, #1b7050);
+}
+.summary {
+  margin: 0 0 10px !important;
+  font-size: 13px !important;
+  font-weight: 600;
+  color: var(--accent) !important;
+}
+.steps ol {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* The track behind the dots, filled up to the current step. */
+.steps ol::before,
+.steps ol::after {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line, #e7d9c5);
+}
+.steps ol::after {
+  right: auto;
+  width: calc(80% * var(--done));
+  background: var(--accent);
+}
+.steps li {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  text-align: center;
+}
+.steps li span {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 2px solid var(--line-strong, #d3bd9c);
+  border-radius: 999px;
+  background: var(--surface, #fffdf9);
+  color: var(--muted, #6b5d4f);
+  font-size: 11px;
+  font-weight: 700;
+}
+.steps li[data-state='done'] span,
+.steps li[data-state='here'] span {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+.steps li[data-state='here'] span {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.steps small {
+  font-size: 11.5px;
+  line-height: 1.3;
+  color: var(--muted, #6b5d4f);
+}
+.steps li[data-state='here'] small {
+  font-weight: 700;
+  color: var(--ink, #2d231c);
+}
+/* On narrow phones the dots stand alone; the summary line already names the current step. */
+@media (max-width: 419.98px) {
+  .steps small {
+    display: none;
+  }
+}

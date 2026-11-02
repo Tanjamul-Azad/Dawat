@@ -10,6 +10,7 @@ import { BrandLockup } from '../brand-mark';
 import { findTemplate } from '@/features/production/catalog';
 import { packageName, packagePrice } from '@/features/production/packages';
 import { taka } from '@/features/production/money';
+import { OrderSteps } from './order-steps';
 function LoginStory() {
   const { locale } = useProductLocale();
   return (
@@ -33,30 +34,30 @@ function LoginStory() {
     </div>
   );
 }
-// When sign-in starts from an order, say what is being ordered and why the email is checked.
-function OrderContext({ next }: { next: string }) {
-  const { locale } = useProductLocale();
+/** The design being ordered when sign-in starts from an order link, or null. */
+function orderFrom(next: string) {
   const id = /^\/order\/requests\/?\?template=([a-z]+)(?:&names=[^&]*)?$/.exec(next)?.[1];
-  if (!id) return null;
+  return id ?? null;
+}
+// When sign-in starts from an order, show what is being ordered and why the email is checked.
+function OrderContext({ id }: { id: string }) {
+  const { locale } = useProductLocale();
   const custom = id === 'custom';
   const design = findTemplate(id);
-  const name = custom
-    ? packageName(id, locale)
-    : `${locale === 'bn' ? design.name : design.en} · ${packageName(id, locale)}`;
-  const price = taka(packagePrice(id), locale);
+  const name = custom ? packageName(id, locale) : locale === 'bn' ? design.name : design.en;
   return (
-    <div className={s.panel} role="note" style={{ display: 'grid', gap: 6 }}>
-      <p className={s.eyebrow}>{locale === 'bn' ? 'আপনার অর্ডার' : 'YOUR ORDER'}</p>
-      <p>
-        <strong>
-          {name} · {price}
-        </strong>
-      </p>
-      <p className={s.muted}>
-        {locale === 'bn'
-          ? 'অর্ডারটি আপনার ইমেইলে থাকবে, তাই একবার ইমেইল যাচাই করছি। কোড দেওয়ার পর সরাসরি অর্ডারের পেজে যাবেন।'
-          : 'Your order belongs to your email, so we check it once. After the code you go straight to your order.'}
-      </p>
+    <div className={`${s.panel} ${s.orderContext}`} role="note">
+      {!custom && design.art && <img src={design.art} alt="" width={56} height={84} />}
+      <div>
+        <p className={s.eyebrow}>{locale === 'bn' ? 'আপনার অর্ডার' : 'YOUR ORDER'}</p>
+        <p>
+          <strong>{name}</strong>
+        </p>
+        <p className={s.muted}>
+          {custom ? '' : `${packageName(id, locale)} · `}
+          {taka(packagePrice(id), locale)}
+        </p>
+      </div>
     </div>
   );
 }
@@ -69,6 +70,7 @@ export function Login({ next, available = true }: { next: string; available?: bo
   const [error, setError] = useState('');
   const [retryAt, setRetryAt] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const order = orderFrom(next);
   useEffect(() => {
     const tick = () => setSeconds(Math.max(0, Math.ceil((retryAt - Date.now()) / 1000)));
     tick();
@@ -109,18 +111,32 @@ export function Login({ next, available = true }: { next: string; available?: bo
             {locale === 'bn' ? 'English' : 'বাংলা'}
           </button>
         </div>
-        <p className={s.eyebrow}>{tr('A place for your celebration')}</p>
-        <h1>
-          {tr('Welcome to your')}
-          <br />
-          {tr('wedding workspace.')}
-        </h1>
-        <p>
-          {locale === 'bn'
-            ? 'ইমেইল যাচাই করে আপনার আমন্ত্রণের কাজ শুরু করুন।'
-            : 'Verify your email to start working on your invitation.'}
-        </p>
-        <OrderContext next={next} />
+        {order ? (
+          <>
+            <OrderSteps current={2} />
+            <h1>{locale === 'bn' ? 'আপনার ইমেইলটি যাচাই করুন' : 'Confirm your email'}</h1>
+            <p>
+              {locale === 'bn'
+                ? 'অর্ডারটি এই ইমেইলেই থাকবে। কোড দিলেই সরাসরি অর্ডারের তথ্য দেওয়ার পাতায় যাবেন, কোনো পাসওয়ার্ড লাগবে না।'
+                : 'Your order stays with this email. Enter the code and you go straight to the order form; no password needed.'}
+            </p>
+            <OrderContext id={order} />
+          </>
+        ) : (
+          <>
+            <p className={s.eyebrow}>{tr('A place for your celebration')}</p>
+            <h1>
+              {tr('Welcome to your')}
+              <br />
+              {tr('wedding workspace.')}
+            </h1>
+            <p>
+              {locale === 'bn'
+                ? 'ইমেইল যাচাই করে আপনার আমন্ত্রণের কাজ শুরু করুন।'
+                : 'Verify your email to start working on your invitation.'}
+            </p>
+          </>
+        )}
         <div className={s.panel}>
           {error && (
             <p className={s.error} role="alert">
