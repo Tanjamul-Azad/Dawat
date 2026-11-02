@@ -3,7 +3,6 @@ import { StorefrontFrame } from '@/components/storefront-chrome';
 import { FAQ, PromiseBlock } from '@/components/storefront-trust';
 import { storefrontMetadata } from '@/features/production/share';
 import { paymentReviewPromise } from '@/features/production/public-config';
-export const dynamic = 'force-dynamic';
 export const metadata = {
   ...storefrontMetadata({
     title: 'প্যাকেজ ও দাম — Dawat',

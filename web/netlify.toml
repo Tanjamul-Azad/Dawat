@@ -1,6 +1,9 @@
 [build]
   command = "npm run build"
   publish = ".next"
+  # Each production deploy spends credits, so pushes build only when the newest commit message
+  # contains [deploy]. Everything pushed since the last deploy goes live together. Exit 0 skips.
+  ignore = "! git log -1 --pretty=%B | grep -qF '[deploy]'"
 
 [build.environment]
   NODE_VERSION = "22"
@@ -9,3 +12,22 @@
 # Set DAWAT_SURFACE=all in the Netlify UI, for build AND function runtime.
 # Private keys belong in that project's private env settings, never this file.
 # Native image processing stays in Node route handlers, never middleware/Edge.
+
+# Artwork, fonts and audio are served straight from the CDN and kept by browsers for 30 days.
+# A browser may show an old copy for that long, so a changed file gets a new name (…-v3.webp).
+[[headers]]
+  for = "/artwork/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+[[headers]]
+  for = "/brand/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+[[headers]]
+  for = "/audio/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"

@@ -74,7 +74,6 @@ export const config = {
     '/i/:path*',
     '/operator/:path*',
     '/studio/:path*',
-    '/templates/:path*',
-    '/order/:path*',
+    '/order/requests/:path*',
   ],
 };
