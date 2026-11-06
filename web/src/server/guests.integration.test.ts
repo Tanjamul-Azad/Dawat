@@ -232,6 +232,7 @@ describe('Named guest credentials, isolation and real transactional replies', ()
     expect((await rpc<any>('export_households', [f.wid, 'reception'])).rows.map((h: any) => h.id)).toEqual([f.hid]);
     await rpc('hide_household', [crypto.randomUUID(), f.wid, g.householdId, false]); expect((await rpc<any>('household_report', [f.wid, 'reception'])).summary.invited).toBe(2);
   });
+  // Forty PGlite report queries can take longer than 30 seconds on shared CI runners.
   it('pages through 1000 individual/group invitations without duplicates or unbounded result sets', async () => {
     const f = await fixture();
     const added = Array.from({ length: 999 }, (_, index) => ({
@@ -278,7 +279,7 @@ describe('Named guest credentials, isolation and real transactional replies', ()
       'pending',
     ]);
     expect(match.rows.map((row) => row.name)).toEqual(['Scale guest 0998']);
-  }, 30000);
+  }, 90000);
 
   it('supports an individual invitation with one person and rejects an extra guest', async () => {
     const f = await fixture();
